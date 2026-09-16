@@ -1,895 +1,391 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SkillHub - Capacitação Profissional e Empregabilidade para Jovens em Curitiba</title>
-  
-  <!-- Google Fonts: Plus Jakarta Sans -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillHub - Seu Primeiro Passo para o Mercado de Trabalho</title>
+
+  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Extraído diretamente da Logo da imagem */
+      --purple-dark: #3B1466;
+      --purple-main: #581C87;
+      --purple-accent: #7E22CE;
+      --purple-light: #A855F7;
+      --gold-main: #D97706;
+      --gold-accent: #F59E0B;
+      --gold-light: #FCD34D;
+      
+      --bg-dark: #0F0919;
+      --card-bg: #1A102A;
+      --card-border: #2D1B47;
+      --text-main: #F9FAFB;
+      --text-muted: #C0B6D3;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* --- CABEÇALHO --- */
+    header {
+      background: rgba(26, 16, 42, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand-container {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .logo-img {
+      width: 48px;
+      height: 48px;
+    }
+
+    .brand-name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: var(--text-main);
+      letter-spacing: -0.5px;
+    }
+
+    .brand-name span {
+      color: var(--gold-accent);
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--gold-light);
+    }
+
+    /* --- BOTÕES --- */
+    .btn {
+      padding: 0.8rem 1.8rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      border: none;
+      transition: all 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold-accent), var(--gold-main));
+      color: #0F0919;
+      box-shadow: 0 4px 20px rgba(245, 158, 11, 0.3);
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(245, 158, 11, 0.5);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--purple-light);
+      color: var(--text-main);
+    }
+
+    .btn-outline:hover {
+      background: var(--purple-main);
+      border-color: var(--purple-main);
+    }
+
+    /* --- HERO SECTION (DESTAQUE) --- */
+    .hero-section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      min-height: 80vh;
+    }
+
+    .hero-text h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3rem;
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-text h1 span {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-accent));
+      -webkit-background-clipP: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-text p {
+      font-size: 1.1rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    /* EMBLEMA CENTRAL DA LOGO NA HERO */
+    .hero-logo-display {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    .logo-badge-wrapper {
+      width: 380px;
+      height: 380px;
+      background: radial-gradient(circle, rgba(126, 34, 206, 0.3) 0%, rgba(15, 9, 25, 0) 70%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+
+    /* SVG REPRODUZINDO OS ELEMENTOS DA LOGO FORNECIDA */
+    .vector-logo {
+      width: 100%;
+      height: 100%;
+      filter: drop-shadow(0 10px 30px rgba(126, 34, 206, 0.4));
+    }
+
+    /* --- SEÇÃO "COMO FUNCIONA O SKILLHUB" --- */
+    .about-section {
+      background: var(--card-bg);
+      border-top: 1px solid var(--card-border);
+      border-bottom: 1px solid var(--card-border);
+      padding: 5rem 2rem;
+    }
+
+    .section-title {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 3.5rem;
+    }
+
+    .section-title h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+    }
+
+    .features-grid {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .feature-card {
+      background: var(--bg-dark);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 2rem;
+      position: relative;
+      transition: transform 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--purple-accent);
+    }
+
+    .feature-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(126, 34, 206, 0.2);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      color: var(--gold-accent);
+      margin-bottom: 1.2rem;
+    }
+
+    .feature-card h3 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.2rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    /* --- RODAPÉ --- */
+    footer {
+      text-align: center;
+      padding: 2.5rem;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--card-border);
+    }
+
+    @media (max-width: 900px) {
+      .hero-section { grid-template-columns: 1fr; text-align: center; }
+      .hero-buttons { justify-content: center; }
+      .features-grid { grid-template-columns: 1fr; }
+      .logo-badge-wrapper { width: 280px; height: 280px; margin: 0 auto; }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- ==========================================
-       BARRA DE PROGRESSO & PRIVACIDADE DO TOPO
-       ========================================== -->
-  <div class="top-progress-bar-wrap">
-    <div class="container">
-      <div class="user-quick-progress">
-        <span style="font-size: 0.8rem; font-weight: 600;">
-          <i class="fa-solid fa-graduation-cap" style="color: var(--light-cyan);"></i> Meu Aprendizado:
-        </span>
-        <div class="progress-pill-outer" title="Progresso geral de badges conquistadas">
-          <div class="progress-pill-inner" id="topProgressFill" style="width: 11%;"></div>
-        </div>
-        <span id="topProgressText"><strong>1 de 9</strong> Badges conquistadas (11%)</span>
-      </div>
-
-      <div class="lgpd-badge-top" onclick="app.openLgpdModal()" title="Clique para ver detalhes de proteção do menor">
-        <i class="fa-solid fa-shield-halved"></i>
-        <span>Ambiente 100% Protegido (LGPD para Menores e Aprendizes)</span>
-      </div>
+  <!-- CABEÇALHO -->
+  <header>
+    <div class="brand-container">
+      <!-- ÍCONE DO LOGO INTEGRADO -->
+      <svg class="logo-img" viewBox="0 0 100 100" fill="none">
+        <path d="M50 10 L85 25 L85 75 L50 90 L15 75 L15 25 Z" fill="#3B1466" stroke="#F59E0B" stroke-width="3"/>
+        <path d="M30 35 L50 25 L70 35 L50 45 Z" fill="#F59E0B"/>
+        <polygon points="50,45 55,60 70,60 58,68 62,82 50,72 38,82 42,68 30,60 45,60" fill="#FCD34D"/>
+      </svg>
+      <div class="brand-name">Skill<span>Hub</span></div>
     </div>
-  </div>
 
-  <!-- ==========================================
-       CABEÇALHO & NAVBAR PRINCIPAL
-       ========================================== -->
-  <header class="site-header">
-    <div class="container nav-container">
-      <a href="#home" class="logo-wrap spa-nav-trigger">
-        <div class="logo-icon">
-          <i class="fa-solid fa-rocket"></i>
-        </div>
-        <div class="logo-text">
-          <span class="logo-title">Skill<span>Hub</span></span>
-          <span class="logo-subtitle">Empregabilidade Jovem</span>
-        </div>
-      </a>
-
-      <!-- Menu de Navegação SPA -->
-      <nav class="main-nav" id="mainNav">
-        <ul>
-          <li>
-            <a href="#home" class="nav-link active">
-              <i class="fa-solid fa-house"></i> Início
-            </a>
-          </li>
-          <li>
-            <a href="#trilhas" class="nav-link">
-              <i class="fa-solid fa-layer-group"></i> Trilhas & Cursos
-            </a>
-          </li>
-          <li>
-            <a href="#painel-aluno" class="nav-link">
-              <i class="fa-solid fa-id-card"></i> Área do Aluno
-            </a>
-          </li>
-          <li>
-            <a href="#mapa-vagas" class="nav-link">
-              <i class="fa-solid fa-map-location-dot"></i> Mapa de Vagas
-            </a>
-          </li>
-          <li>
-            <a href="#simulador" class="nav-link">
-              <i class="fa-solid fa-comments"></i> Simulador STAR
-            </a>
-          </li>
-        </ul>
-      </nav>
-
-      <div class="nav-actions">
-        <a href="#mapa-vagas" class="btn btn-coral btn-sm spa-nav-trigger">
-          <i class="fa-solid fa-magnifying-glass"></i> Buscar Vagas
-        </a>
-        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir Menu">
-          <i class="fa-solid fa-bars"></i>
-        </button>
-      </div>
-    </div>
+    <nav>
+      <a href="#como-funciona">Como Funciona</a>
+      <a href="#cursos">Trilhas de Cursos</a>
+      <a href="#vagas">Mapa de Vagas</a>
+      <a href="#" class="btn btn-outline" style="padding: 0.5rem 1.2rem; font-size: 0.85rem;">Entrar</a>
+    </nav>
   </header>
 
-  <!-- ==========================================================================
-       PÁGINA 1: HOME / LANDING PAGE (#home)
-       ========================================================================== -->
-  <main id="home" class="page-view active">
-    <!-- Hero Section -->
-    <section class="hero-section">
-      <div class="container">
-        <div class="hero-grid">
-          <div class="hero-content">
-            <span class="hero-tag">
-              <i class="fa-solid fa-sparkles"></i> 100% Gratuito • Padrão Fundação Bradesco & Vagas em Curitiba
-            </span>
-            <h1 class="hero-title">
-              Sua ponte para o <span class="highlight-cyan">Primeiro Emprego</span> com certificações reconhecidas.
-            </h1>
-            <p class="hero-description">
-              Capacite-se gratuitamente para vagas de <strong>Jovem Aprendiz e Estagiário</strong>. Ganhe microcertificações práticas em rotinas de escritório, atendimento e postura corporativa, conectando-se diretamente às empresas de Curitiba com total sigilo dos seus dados.
-            </p>
-            <div class="hero-ctas">
-              <a href="#trilhas" class="btn btn-primary btn-lg spa-nav-trigger">
-                <i class="fa-solid fa-play"></i> Iniciar Capacitação Gratuita
-              </a>
-              <a href="#mapa-vagas" class="btn btn-coral btn-lg spa-nav-trigger">
-                <i class="fa-solid fa-map-pin"></i> Ver Mapa de Oportunidades
-              </a>
-            </div>
-            <div class="hero-trust-badges">
-              <div class="trust-item"><i class="fa-solid fa-circle-check"></i> Sem necessidade de experiência prévia</div>
-              <div class="trust-item"><i class="fa-solid fa-circle-check"></i> Currículo gerado com 1 clique</div>
-            </div>
-          </div>
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="hero-text">
+      <h1>Seu conhecimento abre portas. <span>Seu bairro tem a vaga.</span></h1>
+      <p>
+        O SkillHub é a plataforma gratuita de capacitação e empregabilidade feita para jovens de Curitiba. Aprenda com cursos práticos e encontre vagas de Jovem Aprendiz e Estágio perto de você!
+      </p>
 
-          <!-- Hero Interactive Card Preview -->
-          <div class="hero-card-preview">
-            <div class="student-card-mini">
-              <div class="student-header">
-                <div class="avatar-bubble">
-                  <i class="fa-solid fa-user-graduate"></i>
-                </div>
-                <div class="student-info">
-                  <h4>Gabriel Alencar</h4>
-                  <p><i class="fa-solid fa-location-dot"></i> Curitiba - PR • Boqueirão</p>
-                </div>
-              </div>
-
-              <div style="background: rgba(0, 0, 0, 0.25); padding: 1rem; border-radius: 10px;">
-                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 0.4rem;">
-                  <span style="color: #CBD5E1;">Badges Prontas para RH:</span>
-                  <span style="color: var(--light-cyan); font-weight: 700;">Pronto para Entrevista</span>
-                </div>
-                <div class="badges-row-preview">
-                  <div class="mini-badge"><i class="fa-solid fa-scale-balanced"></i> Legislação do Aprendiz</div>
-                  <div class="mini-badge"><i class="fa-solid fa-table"></i> Excel Essencial</div>
-                  <div class="mini-badge curitiba-badge"><i class="fa-solid fa-shield-halved"></i> Perfil Protegido LGPD</div>
-                </div>
-              </div>
-
-              <div style="display: flex; gap: 0.75rem;">
-                <a href="#painel-aluno" class="btn btn-primary btn-sm spa-nav-trigger" style="flex: 1;">
-                  <i class="fa-solid fa-id-card"></i> Minha Área
-                </a>
-                <button class="btn btn-outline-white btn-sm" onclick="app.openLgpdModal()">
-                  <i class="fa-solid fa-shield-halved"></i> Privacidade
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Indicadores de Impacto -->
-    <div class="container">
-      <div class="stats-banner">
-        <div class="stats-grid">
-          <div class="stat-item">
-            <div class="stat-icon cyan"><i class="fa-solid fa-certificate"></i></div>
-            <div class="stat-content">
-              <h3>5 Trilhas</h3>
-              <p>Foco em Desenvolvimento Pessoal e Profissional</p>
-            </div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-icon mint"><i class="fa-solid fa-hand-holding-heart"></i></div>
-            <div class="stat-content">
-              <h3>100% Gratuito</h3>
-              <p>Inclusão social e acesso sem barreiras</p>
-            </div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-icon coral"><i class="fa-solid fa-building-user"></i></div>
-            <div class="stat-content">
-              <h3>+45 Vagas</h3>
-              <p>Mapeadas por bairros em Curitiba</p>
-            </div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-icon amber"><i class="fa-solid fa-user-shield"></i></div>
-            <div class="stat-content">
-              <h3>LGPD Blindada</h3>
-              <p>Dados de menores seguros e anônimos</p>
-            </div>
-          </div>
-        </div>
+      <div class="hero-buttons">
+        <a href="#" class="btn btn-gold">🚀 Criar Minha Conta Grátis</a>
+        <a href="#como-funciona" class="btn btn-outline">🔍 Conhecer a Plataforma</a>
       </div>
     </div>
 
-    <!-- Destaques da Plataforma -->
-    <section class="section">
-      <div class="container">
-        <div class="section-header">
-          <span class="badge-tag cyan section-tag">Por que a SkillHub?</span>
-          <h2 class="section-title">O que você conquista estudando aqui</h2>
-          <p class="section-subtitle">Construímos uma experiência inspirada na Fundação Bradesco para quem nunca trabalhou e quer começar com segurança, postura e confiança.</p>
-        </div>
+    <div class="hero-logo-display">
+      <div class="logo-badge-wrapper">
+        <!-- VETORIZAÇÃO DA LOGO (JARDIM BOTÂNICO, CAPELO E ROSA DOS VENTOS) -->
+        <svg class="vector-logo" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Silhueta da Cidade / Jardim Botânico -->
+          <path d="M60 210 Q 80 160 100 210 Q 120 160 140 210 L 140 230 L 60 230 Z" fill="#3B1466" stroke="#F59E0B" stroke-width="2"/>
+          <path d="M260 230 L 260 180 L 280 180 L 280 230 L 300 230 L 300 160 L 320 160 L 340 230 Z" fill="#3B1466" stroke="#F59E0B" stroke-width="2"/>
+          
+          <!-- Escudo Roxo Exterior -->
+          <path d="M200 60 L320 120 V250 C320 310 200 360 200 360 C200 360 80 310 80 250 V120 L200 60 Z" fill="#581C87" stroke="#F59E0B" stroke-width="4"/>
+          
+          <!-- Capelo (Chapéu de Formatura) -->
+          <path d="M130 140 L200 110 L270 140 L200 170 Z" fill="#F59E0B"/>
+          <rect x="175" y="160" width="50" height="25" fill="#FCD34D" rx="4"/>
 
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon-box" style="background: var(--soft-teal); color: var(--primary-cyan);">
-              <i class="fa-solid fa-award"></i>
-            </div>
-            <h3>Badges & Avaliação Rigorosa</h3>
-            <p>Cursos estruturados com ementa oficial e avaliação final (média mínima de 70%) para atestar sua prontidão profissional perante as empresas.</p>
-            <a href="#trilhas" class="feature-link spa-nav-trigger">Ver catálogo de cursos <i class="fa-solid fa-arrow-right"></i></a>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon-box" style="background: rgba(2, 195, 154, 0.15); color: var(--primary-cyan);">
-              <i class="fa-solid fa-map-location-dot"></i>
-            </div>
-            <h3>Busca de Vagas Regionalizadas</h3>
-            <p>Sistema inspirado no Indeed e InfoJobs para encontrar vagas de Jovem Aprendiz e Estagiário no seu bairro de Curitiba.</p>
-            <a href="#mapa-vagas" class="feature-link spa-nav-trigger">Explorar mapa regional <i class="fa-solid fa-arrow-right"></i></a>
-          </div>
-
-          <div class="feature-card">
-            <div class="feature-icon-box" style="background: var(--amber-soft); color: var(--amber-warning);">
-              <i class="fa-solid fa-user-astronaut"></i>
-            </div>
-            <h3>Simulador de Entrevistas STAR</h3>
-            <p>Treine respostas para perguntas reais de recrutadores, reduza o nervosismo e receba dicas de mentores voluntários.</p>
-            <a href="#simulador" class="feature-link spa-nav-trigger">Treinar entrevista <i class="fa-solid fa-arrow-right"></i></a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Sessão Saúde Mental & Acolhimento -->
-    <div class="container">
-      <div class="mental-health-section">
-        <div class="mental-health-grid">
-          <div class="mental-health-content">
-            <span class="badge-tag accent-light" style="margin-bottom: 0.75rem;">Acolhimento & Bem-Estar</span>
-            <h3>Sentindo ansiedade com a primeira entrevista?</h3>
-            <p>É completamente natural sentir frio na barriga quando estamos diante do desconhecido. Preparamos técnicas simples de acolhimento para você respirar e manter a calma.</p>
-            
-            <div class="anxiety-tips-list">
-              <div class="anxiety-tip-item">
-                <i class="fa-solid fa-heart"></i>
-                <span><strong>Lembre-se:</strong> O recrutador não espera experiência profissional prévia; ele busca sua atitude positiva e vontade de aprender.</span>
-              </div>
-              <div class="anxiety-tip-item">
-                <i class="fa-solid fa-wind"></i>
-                <span><strong>Técnica 4-4-4:</strong> Faça ciclos de respiração guiada antes de entrar na sala de entrevista ou videochamada.</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Widget Interativo de Respiração -->
-          <div class="breathing-box">
-            <h4 style="color: #064E3B; font-weight: 700;">Exercício de Respiração Guiada</h4>
-            <div class="breathing-circle-outer" id="breathingOuter">
-              <div class="breathing-circle-inner" id="breathingText">Inspire...</div>
-            </div>
-            <p style="font-size: 0.8rem; color: var(--text-secondary);">Acompanhe o ritmo para desacelerar seus batimentos cardíacos.</p>
-          </div>
-        </div>
+          <!-- Rosa dos Ventos / Bússola Interna -->
+          <circle cx="200" cy="240" r="50" fill="#3B1466" stroke="#F59E0B" stroke-width="3"/>
+          <polygon points="200,180 212,228 260,240 212,252 200,300 188,252 140,240 188,228" fill="#F59E0B"/>
+          <polygon points="200,180 200,240 260,240 200,240 200,300 200,240 140,240 200,240" fill="#FCD34D"/>
+          
+          <!-- Pin de Geolocalização -->
+          <path d="M285 220 C285 205 305 205 305 220 C305 235 295 250 295 250 C295 250 285 235 285 220 Z" fill="#F59E0B"/>
+          <circle cx="295" cy="218" r="4" fill="#3B1466"/>
+        </svg>
       </div>
     </div>
+  </section>
 
-    <!-- Banner de Privacidade & Transparência LGPD -->
-    <div class="container">
-      <div class="lgpd-banner">
-        <div class="lgpd-info">
-          <div class="lgpd-icon">
-            <i class="fa-solid fa-shield-halved"></i>
-          </div>
-          <div class="lgpd-text">
-            <h4>Compromisso com a Privacidade do Jovem (Lei Geral de Proteção de Dados)</h4>
-            <p>Seu número de telefone, endereço residencial exato e documentos <strong>nunca são expostos publicamente</strong>. Recrutadores veem apenas sua região de Curitiba e as badges conquistadas.</p>
-          </div>
-        </div>
-        <button class="btn btn-deep-cyan btn-sm" onclick="app.openLgpdModal()">
-          <i class="fa-solid fa-eye"></i> Entender Diretrizes
-        </button>
-      </div>
+  <!-- SEÇÃO EXPLICAÇÃO DO SITE -->
+  <section class="about-section" id="como-funciona">
+    <div class="section-title">
+      <h2>O que é o SkillHub?</h2>
+      <p>Combinamos qualificação profissional de alto nível com oportunidades reais nos bairros de Curitiba.</p>
     </div>
-  </main>
 
-  <!-- ==========================================================================
-       PÁGINA 2: TRILHAS & CATÁLOGO DE CURSOS (ESTILO FUNDAÇÃO BRADESCO)
-       ========================================================================== -->
-  <main id="trilhas" class="page-view">
-    <div class="container section">
-      <div class="section-header">
-        <span class="badge-tag cyan section-tag">Catálogo Oficial Fundação Bradesco</span>
-        <h2 class="section-title">Desenvolvimento Pessoal e Profissional</h2>
-        <p class="section-subtitle">Escolha um curso, assista às aulas teóricas e práticas e realize a Avaliação Final (média mínima de 70%) para emitir sua Badge.</p>
-      </div>
-
-      <!-- Filtros e Busca -->
-      <div class="courses-filter-wrap">
-        <div class="search-and-filters">
-          <div class="search-input-box">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="courseSearchInput" placeholder="Buscar por título do curso, ementa ou badge (ex: Legislação, Excel, Postura)..." />
-          </div>
-
-          <div class="filter-selects">
-            <select id="filterDuration" class="filter-select">
-              <option value="all">Todas as durações</option>
-              <option value="short">Rápidos (até 10h)</option>
-              <option value="medium">Médios (10h a 15h)</option>
-              <option value="long">Completos (+15h)</option>
-            </select>
-
-            <select id="filterLevel" class="filter-select">
-              <option value="all">Todos os níveis</option>
-              <option value="iniciante">Iniciante</option>
-              <option value="fundamental">Fundamental</option>
-              <option value="intermediário">Intermediário</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- Abas das Trilhas Oficiais da Fundação Bradesco -->
-        <div class="tracks-tabs">
-          <button class="track-tab-btn active" data-track="all">
-            <i class="fa-solid fa-border-all"></i> Todas as Trilhas
-          </button>
-          <button class="track-tab-btn" data-track="trilha-1">
-            <i class="fa-solid fa-scale-balanced"></i> 1. Entrada no Mercado & Primeiro Emprego
-          </button>
-          <button class="track-tab-btn" data-track="trilha-2">
-            <i class="fa-solid fa-user-tie"></i> 2. Desenvolvimento Pessoal & Atitude
-          </button>
-          <button class="track-tab-btn" data-track="trilha-3">
-            <i class="fa-solid fa-headset"></i> 3. Atendimento & Relacionamento
-          </button>
-          <button class="track-tab-btn" data-track="trilha-4">
-            <i class="fa-solid fa-table"></i> 4. Ferramentas de Escritório
-          </button>
-          <button class="track-tab-btn" data-track="trilha-5">
-            <i class="fa-solid fa-wallet"></i> 5. Educação Financeira
-          </button>
-        </div>
-      </div>
-
-      <!-- Grid de Cursos Renderizado via JS -->
-      <div class="courses-grid" id="coursesGrid"></div>
-    </div>
-  </main>
-
-  <!-- ==========================================================================
-       PÁGINA 3: ÁREA DO ALUNO & CADASTRO BUROCRÁTICO (#painel-aluno)
-       ========================================================================== -->
-  <main id="painel-aluno" class="page-view">
-    <div class="container section">
+    <div class="features-grid">
       
-      <!-- Cabeçalho do Perfil -->
-      <div class="student-profile-header">
-        <div class="profile-header-grid">
-          <div class="profile-avatar-large">
-            <i class="fa-solid fa-user-graduate"></i>
-          </div>
-          <div class="profile-info">
-            <h2>Gabriel Alencar dos Santos</h2>
-            <p style="color: #CBD5E1; font-size: 0.95rem;">
-              <i class="fa-solid fa-location-dot" style="color: var(--light-cyan);"></i> Boqueirão, Curitiba - PR • 17 anos (Ensino Médio 2º Ano)
-            </p>
-            <div class="profile-tags">
-              <span class="badge-tag accent-light"><i class="fa-solid fa-shield-halved"></i> Perfil Protegido (LGPD)</span>
-              <span class="badge-tag cyan"><i class="fa-solid fa-briefcase"></i> Disponível para Jovem Aprendiz / Estágio</span>
-            </div>
-          </div>
-          <div class="profile-stats-cards">
-            <div class="stat-box-mini">
-              <div class="stat-val" id="dashEnrolledCount">2</div>
-              <div class="stat-lbl">Matrículas</div>
-            </div>
-            <div class="stat-box-mini">
-              <div class="stat-val" id="dashBadgesCount">1</div>
-              <div class="stat-lbl">Badges Ganhas</div>
-            </div>
-          </div>
-        </div>
+      <!-- CARD 1 -->
+      <div class="feature-card">
+        <div class="feature-icon">🎓</div>
+        <h3>Cursos Gratuitos em Trilhas</h3>
+        <p>Capacitação 100% gratuita com certificação por Badges e conexão com o mercado local.</p>
       </div>
 
-      <!-- Card do Cadastro Burocrático Obrigatório -->
-      <div class="bureaucracy-card" id="bureaucracyStatusBox"></div>
+      <!-- CARD 2 -->
+      <div class="feature-card">
+        <div class="feature-icon">🏅</div>
+        <h3>Badges no seu Currículo</h3>
+        <p>A cada curso concluído com nota igual ou superior a 70% no Quiz, você desbloqueia uma Badge Digital que comprova suas habilidades para as empresas.</p>
+      </div>
 
-      <!-- Layout do Dashboard -->
-      <div class="dashboard-grid">
-        <!-- Coluna Esquerda: Cursos em Andamento -->
-        <div>
-          <div class="dashboard-panel">
-            <div class="panel-title">
-              <span><i class="fa-solid fa-book-open-reader" style="color: var(--primary-cyan);"></i> Meus Cursos em Andamento</span>
-              <a href="#trilhas" class="btn btn-outline btn-sm spa-nav-trigger">+ Novo Curso</a>
-            </div>
-            
-            <div class="my-courses-list" id="myCoursesList"></div>
-          </div>
-
-          <!-- Galeria de Badges -->
-          <div class="dashboard-panel">
-            <div class="panel-title">
-              <span><i class="fa-solid fa-award" style="color: var(--amber-warning);"></i> Galeria de Badges Oficiais Conquistadas</span>
-            </div>
-            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
-              Badges atestam suas habilidades aprovadas com nota mínima de 70% e habilitam sua candidatura direta nas vagas parceiras.
-            </p>
-            <div class="badges-grid" id="dashboardBadgesGrid"></div>
-          </div>
-        </div>
-
-        <!-- Coluna Direita: Currículo Automático & Privacidade -->
-        <div>
-          <!-- Card de Geração de Currículo -->
-          <div class="dashboard-panel" style="text-align: center;">
-            <div style="width: 56px; height: 56px; background: var(--soft-teal); color: var(--primary-cyan); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; margin: 0 auto 1rem;">
-              <i class="fa-solid fa-file-arrow-down"></i>
-            </div>
-            <h3 style="font-size: 1.2rem; color: var(--deep-cyan); margin-bottom: 0.5rem;">Currículo Oficial com Badges</h3>
-            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
-              Gere um currículo formatado e pronto para impressão ou download em PDF, contendo suas informações escolares e badges validadas.
-            </p>
-            <button class="btn btn-primary btn-sm" onclick="app.openCvModal()" style="width: 100%;">
-              <i class="fa-solid fa-eye"></i> Visualizar & Baixar Currículo
-            </button>
-          </div>
-
-          <!-- Painel de Privacidade do Aluno (LGPD) -->
-          <div class="dashboard-panel">
-            <h3 style="font-size: 1.15rem; color: var(--deep-cyan); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
-              <i class="fa-solid fa-shield-halved" style="color: var(--primary-cyan);"></i> Controle de Privacidade (LGPD)
-            </h3>
-
-            <div class="privacy-control-box">
-              <div class="privacy-toggle-row">
-                <div>
-                  <strong style="font-size: 0.88rem; color: var(--deep-cyan); display: block;">Perfil Visível para Recrutadores</strong>
-                  <span style="font-size: 0.78rem; color: var(--text-secondary);">Permitir que empresas parceiras visualizem suas badges para convite de vagas.</span>
-                </div>
-                <label class="toggle-switch">
-                  <input type="checkbox" id="privacyRecruiterToggle" checked />
-                  <span class="toggle-slider"></span>
-                </label>
-              </div>
-
-              <div style="font-size: 0.78rem; color: #064E3B; background: var(--soft-teal); padding: 0.75rem; border-radius: 6px;">
-                <i class="fa-solid fa-lock"></i> <strong>Garantia de Sigilo:</strong> Seu endereço exato, contatos e dados sensíveis permanecem ocultos até você aceitar um convite de entrevista.
-              </div>
-            </div>
-          </div>
-        </div>
+      <!-- CARD 3 -->
+      <div class="feature-card">
+        <div class="feature-icon">📍</div>
+        <h3>Mapa Geolocalizado de Vagas</h3>
+        <p>Encontre oportunidades de Aprendiz e Estágio perto de você (CIC, Boqueirão, Centro, Tatuquara). Candidaturas sem complicação e com total segurança.</p>
       </div>
 
     </div>
-  </main>
+  </section>
 
-  <!-- ==========================================================================
-       PÁGINA 4: MAPA INTERATIVO DE VAGAS (ESTILO INDEED / INFOJOBS) (#mapa-vagas)
-       ========================================================================== -->
-  <main id="mapa-vagas" class="page-view">
-    <div class="container section">
-      <div class="section-header">
-        <span class="badge-tag coral section-tag">Plataforma de Oportunidades</span>
-        <h2 class="section-title">Mapa de Vagas em Curitiba</h2>
-        <p class="section-subtitle">Sistema de busca com filtros simultâneos por bairro, empresa e modalidade (Jovem Aprendiz / Estágio).</p>
-      </div>
-
-      <!-- Barra de Busca Multifiltro (Indeed / InfoJobs / Jobrapido Style) -->
-      <div class="map-search-bar">
-        <div class="multi-filter-row">
-          <div class="search-field-group" style="flex: 2;">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" id="jobKeywordInput" placeholder="Cargo, palavra-chave ou nome da empresa (ex: Administrativo, SAC, Logística)..." />
-          </div>
-
-          <div class="search-field-group">
-            <i class="fa-solid fa-location-dot"></i>
-            <select id="jobNeighborhoodSelect">
-              <option value="all">Todos os Bairros de Curitiba</option>
-              <option value="CIC">CIC (Cidade Industrial)</option>
-              <option value="Boqueirão">Boqueirão</option>
-              <option value="Batel">Batel</option>
-              <option value="Centro">Centro</option>
-              <option value="Portão">Portão</option>
-              <option value="Tatuquara">Tatuquara</option>
-            </select>
-          </div>
-
-          <div class="search-field-group">
-            <i class="fa-solid fa-briefcase"></i>
-            <select id="jobModalitySelect">
-              <option value="all">Todas as Modalidades</option>
-              <option value="jovem-aprendiz">Jovem Aprendiz (Lei 10.097/00)</option>
-              <option value="estagio">Estágio Ensino Médio</option>
-            </select>
-          </div>
-        </div>
-        
-        <div class="neighborhood-tags-row">
-          <span style="font-size: 0.85rem; font-weight: 700; color: var(--deep-cyan); align-self: center;">Atalhos Regionais:</span>
-          <button class="neighborhood-tag-btn active" data-zone="all" onclick="app.selectNeighborhood('all')">Todos</button>
-          <button class="neighborhood-tag-btn" data-zone="CIC" onclick="app.selectNeighborhood('CIC')">CIC</button>
-          <button class="neighborhood-tag-btn" data-zone="Boqueirão" onclick="app.selectNeighborhood('Boqueirão')">Boqueirão</button>
-          <button class="neighborhood-tag-btn" data-zone="Batel" onclick="app.selectNeighborhood('Batel')">Batel</button>
-          <button class="neighborhood-tag-btn" data-zone="Centro" onclick="app.selectNeighborhood('Centro')">Centro</button>
-          <button class="neighborhood-tag-btn" data-zone="Tatuquara" onclick="app.selectNeighborhood('Tatuquara')">Tatuquara</button>
-          <button class="neighborhood-tag-btn" data-zone="Portão" onclick="app.selectNeighborhood('Portão')">Portão</button>
-        </div>
-      </div>
-
-      <!-- Layout do Mapa e Lista de Vagas -->
-      <div class="map-page-layout">
-        <!-- Visualização Simulação do Mapa Geográfico Seguro -->
-        <div class="curitiba-map-container">
-          <div class="map-header-bar">
-            <div>
-              <h3 style="font-size: 1.15rem; font-weight: 700;">Zonas Regionais de Curitiba</h3>
-              <p style="font-size: 0.78rem; color: var(--light-cyan);">Exibição agregada por setor regional (LGPD Compliant)</p>
-            </div>
-            <span class="badge-tag accent-light" style="font-size: 0.75rem;"><i class="fa-solid fa-signal"></i> Dados em Tempo Real</span>
-          </div>
-
-          <div class="map-grid-interactive">
-            <div class="neighborhood-zone-card" data-zone="CIC" onclick="app.selectNeighborhood('CIC')">
-              <div class="zone-name"><span class="zone-status-dot"></span> CIC</div>
-              <div class="zone-count">Logística & Indústria</div>
-            </div>
-            <div class="neighborhood-zone-card" data-zone="Centro" onclick="app.selectNeighborhood('Centro')">
-              <div class="zone-name"><span class="zone-status-dot"></span> Centro</div>
-              <div class="zone-count">Serviços & Cartórios</div>
-            </div>
-            <div class="neighborhood-zone-card" data-zone="Boqueirão" onclick="app.selectNeighborhood('Boqueirão')">
-              <div class="zone-name"><span class="zone-status-dot"></span> Boqueirão</div>
-              <div class="zone-count">Comércio & Varejo</div>
-            </div>
-            <div class="neighborhood-zone-card" data-zone="Batel" onclick="app.selectNeighborhood('Batel')">
-              <div class="zone-name"><span class="zone-status-dot"></span> Batel</div>
-              <div class="zone-count">Clínicas & Escritórios</div>
-            </div>
-            <div class="neighborhood-zone-card" data-zone="Portão" onclick="app.selectNeighborhood('Portão')">
-              <div class="zone-name"><span class="zone-status-dot"></span> Portão</div>
-              <div class="zone-count">Tecnologia & E-commerce</div>
-            </div>
-            <div class="neighborhood-zone-card" data-zone="Tatuquara" onclick="app.selectNeighborhood('Tatuquara')">
-              <div class="zone-name"><span class="zone-status-dot"></span> Tatuquara</div>
-              <div class="zone-count">Indústria Metalúrgica</div>
-            </div>
-          </div>
-
-          <div style="margin-top: 1.5rem; background: rgba(0, 0, 0, 0.35); padding: 0.85rem; border-radius: 8px; font-size: 0.78rem; color: #CBD5E1; z-index: 2;">
-            <i class="fa-solid fa-circle-info" style="color: var(--light-cyan);"></i> 
-            <strong>Critério de Proximidade:</strong> As empresas parceiras dão preferência a estudantes residentes no mesmo eixo de transporte urbano de Curitiba (RIT).
-          </div>
-        </div>
-
-        <!-- Lista de Vagas Filtradas -->
-        <div>
-          <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--deep-cyan); margin-bottom: 1rem;">
-            Oportunidades Disponíveis
-          </h3>
-          <div class="jobs-list-container" id="jobsListContainer"></div>
-        </div>
-      </div>
-
-    </div>
-  </main>
-
-  <!-- ==========================================================================
-       PÁGINA 5: SIMULADOR DE ENTREVISTAS & MENTORIA (#simulador)
-       ========================================================================== -->
-  <main id="simulador" class="page-view">
-    <div class="container section">
-      <div class="section-header">
-        <span class="badge-tag amber section-tag">Treinamento Interativo</span>
-        <h2 class="section-title">Simulador de Entrevistas (STAR) & Mentoria</h2>
-        <p class="section-subtitle">Treine suas respostas com a Técnica STAR e agende simulações individuais com profissionais de RH voluntários.</p>
-      </div>
-
-      <div class="simulator-layout">
-        <!-- Ferramenta Interativa de Perguntas e Respostas -->
-        <div class="simulator-card">
-          <div class="question-box">
-            <div class="question-counter" id="simCounter">Pergunta 1 de 3</div>
-            <div style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 0.4rem;" id="simTheme">Tema: Apresentação Pessoal</div>
-            <h3 class="question-text" id="simQuestionText">Carregando pergunta...</h3>
-          </div>
-
-          <!-- Guia STAR -->
-          <div class="star-technique-guide">
-            <div class="star-title">
-              <i class="fa-solid fa-wand-magic-sparkles"></i> Dica de Resposta (Estrutura STAR):
-            </div>
-            <p id="simStarTip" style="margin-bottom: 0.75rem; font-weight: 500;">Use a técnica para encantar o recrutador:</p>
-            <div class="star-steps-grid">
-              <div class="star-step">
-                <strong>S - Situação</strong>
-                <span>Qual era o cenário?</span>
-              </div>
-              <div class="star-step">
-                <strong>T - Tarefa</strong>
-                <span>Qual era sua meta?</span>
-              </div>
-              <div class="star-step">
-                <strong>A - Ação</strong>
-                <span>O que você fez?</span>
-              </div>
-              <div class="star-step">
-                <strong>R - Resultado</strong>
-                <span>O que deu certo?</span>
-              </div>
-            </div>
-          </div>
-
-          <label for="simAnswerInput" style="font-size: 0.9rem; font-weight: 700; color: var(--deep-cyan); display: block; margin-bottom: 0.5rem;">
-            Digite sua resposta como se estivesse conversando com o recrutador:
-          </label>
-          <textarea id="simAnswerInput" class="simulator-textarea" placeholder="Ex: Atualmente estou no 2º ano do ensino médio e busco minha primeira vaga de jovem aprendiz para desenvolver minhas habilidades com organização e planilhas..."></textarea>
-
-          <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
-            <button class="btn btn-primary btn-sm" onclick="app.evaluateAnswer()">
-              <i class="fa-solid fa-spell-check"></i> Avaliar Minha Resposta
-            </button>
-            <button class="btn btn-outline btn-sm" onclick="app.nextQuestion()">
-              <i class="fa-solid fa-forward"></i> Próxima Pergunta
-            </button>
-          </div>
-
-          <!-- Caixa de Resultado do Feedback -->
-          <div class="feedback-result-box" id="simFeedbackBox">
-            <div id="simFeedbackContent"></div>
-          </div>
-        </div>
-
-        <!-- Mentoria com Especialistas de RH -->
-        <div>
-          <div class="simulator-card">
-            <h3 style="font-size: 1.25rem; font-weight: 700; color: var(--deep-cyan); margin-bottom: 0.5rem;">
-              <i class="fa-solid fa-user-group" style="color: var(--primary-cyan);"></i> Mentoria Voluntária Gratuita
-            </h3>
-            <p style="font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 1.5rem;">
-              Profissionais voluntários de grandes empresas de Curitiba doam tempo para treinar jovens para suas primeiras entrevistas.
-            </p>
-
-            <div class="mentors-list" id="mentorsList"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <!-- ==========================================
-       MODAIS (DETALHES, QUIZ, EMPRESA, PERFIL, CHECKLIST, CV, CERT, MENTORIA, LGPD)
-       ========================================== -->
-  
-  <!-- Modal 1: Ementa do Curso (Fundação Bradesco) -->
-  <div class="modal-overlay" id="courseModal">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3 id="courseModalTitle">Ementa do Curso</h3>
-        <button class="modal-close-btn" onclick="app.closeModals()"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="modal-body" id="courseModalBody"></div>
-      <div class="modal-footer">
-        <button class="btn btn-outline btn-sm" onclick="app.closeModals()">Fechar</button>
-        <button class="btn btn-primary btn-sm" id="courseModalActionBtn">Matricular-se</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 2: Avaliação Final do Curso (Quiz 70%) -->
-  <div class="modal-overlay" id="quizModal">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3 id="quizModalTitle">Avaliação Final</h3>
-        <button class="modal-close-btn" onclick="app.closeModals()"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="modal-body" id="quizModalBody"></div>
-      <div class="modal-footer">
-        <button class="btn btn-outline btn-sm" onclick="app.closeModals()">Cancelar</button>
-        <button class="btn btn-primary btn-sm" id="quizSubmitBtn">Finalizar Avaliação & Emitir Badge</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 3: Detalhes da Empresa & Vaga (Indeed / InfoJobs) -->
-  <div class="modal-overlay" id="companyModal">
-    <div class="modal-card" style="max-width: 700px;">
-      <div class="modal-header">
-        <h3 id="companyModalTitle">Detalhes da Vaga</h3>
-        <button class="modal-close-btn" onclick="app.closeModals()"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="modal-body" id="companyModalBody"></div>
-      <div class="modal-footer">
-        <button class="btn btn-outline btn-sm" onclick="app.closeModals()">Voltar</button>
-        <button class="btn btn-coral btn-sm" id="companyModalActionBtn">Candidatar-se</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 4: Cadastro Burocrático Formal -->
-  <div class="modal-overlay" id="profileModal">
-    <div class="modal-card" style="max-width: 680px;">
-      <div class="modal-header">
-        <h3><i class="fa-solid fa-id-card" style="color: var(--primary-cyan);"></i> Cadastro Formal do Estudante (Fundação Bradesco)</h3>
-        <button class="modal-close-btn" onclick="app.closeModals()"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="modal-body" id="profileModalBody"></div>
-      <div class="modal-footer">
-        <button class="btn btn-outline btn-sm" onclick="app.closeModals()">Cancelar</button>
-        <button class="btn btn-primary btn-sm" onclick="app.saveProfileData()">Salvar e Homologar Cadastro</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 5: Checklist Diagnóstico de Pré-requisitos -->
-  <div class="modal-overlay" id="checklistModal">
-    <div class="modal-card" style="max-width: 580px;">
-      <div class="modal-header">
-        <h3 id="checklistModalTitle">Pré-requisitos da Vaga</h3>
-        <button class="modal-close-btn" onclick="app.closeModals()"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="modal-body" id="checklistModalBody"></div>
-      <div class="modal-footer">
-        <button class="btn btn-outline btn-sm" onclick="app.closeModals()">Fechar</button>
-        <button class="btn btn-primary btn-sm" id="checklistModalActionBtn">Completar Pendências</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 6: Currículo Automático Oficial -->
-  <div class="modal-overlay" id="cvModal">
-    <div class="modal-card" style="max-width: 750px;">
-      <div class="modal-header">
-        <h3><i class="fa-solid fa-file-lines" style="color: var(--primary-cyan);"></i> Meu Currículo Profissional SkillHub</h3>
-        <button class="modal-close-btn" onclick="app.closeModals()"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="modal-body">
-        <div class="cv-preview-sheet" id="cvSheetContent"></div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-outline btn-sm" onclick="app.closeModals()">Voltar</button>
-        <button class="btn btn-primary btn-sm" onclick="app.printCv()">
-          <i class="fa-solid fa-print"></i> Imprimir / Salvar em PDF
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 7: Certificado Individual Oficial -->
-  <div class="modal-overlay" id="certModal">
-    <div class="modal-card" style="max-width: 600px;">
-      <div class="modal-header">
-        <h3>Insígnia & Certificação Digital</h3>
-        <button class="modal-close-btn" onclick="app.closeModals()"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="modal-body" id="certModalBody"></div>
-      <div class="modal-footer">
-        <button class="btn btn-primary btn-sm" onclick="app.closeModals()">Fechar</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 8: Agendamento de Mentoria -->
-  <div class="modal-overlay" id="mentorModal">
-    <div class="modal-card">
-      <div class="modal-header">
-        <h3 id="mentorModalTitle">Agendar Mentoria</h3>
-        <button class="modal-close-btn" onclick="app.closeModals()"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="modal-body" id="mentorModalBody"></div>
-      <div class="modal-footer">
-        <button class="btn btn-outline btn-sm" onclick="app.closeModals()">Cancelar</button>
-        <button class="btn btn-deep-cyan btn-sm" id="mentorConfirmBtn">Confirmar Agendamento</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 9: Transparência LGPD para Menores -->
-  <div class="modal-overlay" id="lgpdModal">
-    <div class="modal-card" style="max-width: 650px;">
-      <div class="modal-header">
-        <h3><i class="fa-solid fa-shield-halved" style="color: var(--primary-cyan);"></i> Diretrizes de Privacidade e LGPD</h3>
-        <button class="modal-close-btn" onclick="app.closeModals()"><i class="fa-solid fa-xmark"></i></button>
-      </div>
-      <div class="modal-body" style="font-size: 0.92rem; color: var(--text-primary); line-height: 1.6;">
-        <h4 style="color: var(--deep-cyan); margin-bottom: 0.5rem;">Como a SkillHub protege estudantes e menores de idade:</h4>
-        
-        <ul style="display: flex; flex-direction: column; gap: 0.85rem; margin: 1rem 0;">
-          <li>
-            <strong>1. Anonimização Geográfica:</strong> No Mapa de Vagas, recrutadores e empresas nunca têm acesso ao endereço residencial dos estudantes. Apenas o bairro de referência é utilizado para fins de cálculo de logística de transporte.
-          </li>
-          <li>
-            <strong>2. Candidatura Voluntária e Burocrática:</strong> Seus dados de contato (e-mail e telefone) só são transmitidos para a empresa após sua ação voluntária de candidatura e validação dos pré-requisitos.
-          </li>
-          <li>
-            <strong>3. Proteção Integral ao Menor (Art. 14 da LGPD):</strong> O tratamento de dados de adolescentes é realizado com foco exclusivo em seu melhor interesse, para acesso a capacitação gratuita e inserção no mercado de trabalho protegido pela Lei da Aprendizagem (Lei 10.097/2000).
-          </li>
-          <li>
-            <strong>4. Controle Total pelo Estudante:</strong> Pelo painel do aluno, você pode a qualquer momento desativar a visibilidade de seu perfil para recrutadores.
-          </li>
-        </ul>
-
-        <div style="background: var(--soft-teal); padding: 1rem; border-radius: 8px; color: #064E3B; font-size: 0.85rem;">
-          <i class="fa-solid fa-check-circle"></i> Plataforma em total conformidade com a Autoridade Nacional de Proteção de Dados (ANPD).
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-primary btn-sm" onclick="app.closeModals()">Entendi e Concordo</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Toast Container -->
-  <div class="toast-container" id="toastContainer"></div>
-
-  <!-- ==========================================
-       RODAPÉ (FOOTER)
-       ========================================== -->
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-col">
-          <div class="logo-wrap" style="margin-bottom: 1rem;">
-            <div class="logo-icon"><i class="fa-solid fa-rocket"></i></div>
-            <div class="logo-text">
-              <span class="logo-title">Skill<span>Hub</span></span>
-              <span class="logo-subtitle">Empregabilidade Jovem</span>
-            </div>
-          </div>
-          <p style="font-size: 0.88rem; line-height: 1.6;">
-            Plataforma gratuita e inclusiva inspirada na Escola Virtual da Fundação Bradesco, dedicada à formação profissional, gamificação por badges e encaminhamento de Jovens Aprendizes e Estagiários em Curitiba e Região Metropolitana.
-          </p>
-        </div>
-
-        <div class="footer-col">
-          <h4>Navegação</h4>
-          <div class="footer-links">
-            <a href="#home" class="spa-nav-trigger">Início</a>
-            <a href="#trilhas" class="spa-nav-trigger">Trilhas de Cursos</a>
-            <a href="#painel-aluno" class="spa-nav-trigger">Área do Aluno</a>
-            <a href="#mapa-vagas" class="spa-nav-trigger">Mapa de Vagas em Curitiba</a>
-            <a href="#simulador" class="spa-nav-trigger">Simulador STAR</a>
-          </div>
-        </div>
-
-        <div class="footer-col">
-          <h4>Trilhas em Destaque</h4>
-          <div class="footer-links">
-            <a href="#trilhas" class="spa-nav-trigger">1. Entrada no Mercado</a>
-            <a href="#trilhas" class="spa-nav-trigger">2. Atitude Profissional</a>
-            <a href="#trilhas" class="spa-nav-trigger">3. Atendimento & SAC</a>
-            <a href="#trilhas" class="spa-nav-trigger">4. Ferramentas de Escritório</a>
-            <a href="#trilhas" class="spa-nav-trigger">5. Educação Financeira</a>
-          </div>
-        </div>
-
-        <div class="footer-col">
-          <h4>Privacidade & Apoio</h4>
-          <div class="footer-links">
-            <a href="javascript:void(0)" onclick="app.openLgpdModal()">Diretrizes LGPD para Menores</a>
-            <a href="javascript:void(0)" onclick="app.showToast('Canal de acolhimento disponível via simulador de mentoria.', 'info')">Canal de Acolhimento Jovem</a>
-            <a href="javascript:void(0)" onclick="app.showToast('A Lei da Aprendizagem garante contrato formal, salário mínimo-hora e formação teórica.', 'info')">Lei da Aprendizagem (10.097/00)</a>
-          </div>
-        </div>
-      </div>
-
-      <div class="footer-bottom">
-        <div>
-          &copy; 2026 SkillHub Curitiba. Todos os direitos reservados. Projeto educacional de impacto social.
-        </div>
-        <div style="display: flex; gap: 1rem;">
-          <span>Desenvolvido com foco em acessibilidade e inclusão.</span>
-        </div>
-      </div>
-    </div>
+  <!-- RODAPÉ -->
+  <footer>
+    <p>© 2026 SkillHub Curitiba - Plataforma de Capacitação Profissional. Todos os direitos reservados.</p>
   </footer>
 
-  <!-- Scripts -->
-  <script src="app.js"></script>
 </body>
 </html>

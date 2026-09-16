@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0C0717;
+  --foreground: #F8F7FC;
+  
+  /* PALETA EQUILIBRADA SKILLHUB - ROXO SUAVE, ELEGANTE E MODERNO */
+  --purple-brand-dark: #1E0F36;
+  --purple-brand-main: #351859;
+  --purple-brand-vibrant: #4F2684;
+  --purple-brand-accent: #6D34A8;
+  --purple-brand-light: #8B5CF6;
+  --purple-brand-soft: #DDD6FE;
+  
+  --grad-header: linear-gradient(135deg, #22103B 0%, #351859 50%, #481F78 100%);
+  --grad-hero: linear-gradient(135deg, #24123E 0%, #351859 50%, #4A207A 100%);
+  --grad-card: linear-gradient(145deg, #1C0F32 0%, #291546 100%);
+  --grad-button: linear-gradient(135deg, #6D28D9 0%, #8B5CF6 100%);
+  --grad-button-hover: linear-gradient(135deg, #7C3AED 0%, #9D4EDD 100%);
+}
+
+body {
+  color: var(--foreground);
+  background: #0C0717;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar Roxo Suave */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0C0717;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4F2684;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6D34A8;
+}
+
+.glow-purple {
+  box-shadow: 0 0 25px rgba(109, 52, 168, 0.35), 0 0 10px rgba(139, 92, 246, 0.2);
+}
+
+.border-purple-brand {
+  border-color: rgba(109, 52, 168, 0.35);
+}
+
+.bg-purple-brand-hero {
+  background: linear-gradient(135deg, #24123E 0%, #351859 50%, #4A207A 100%);
+}
+
+.btn-purple-brand {
+  background: linear-gradient(135deg, #6D28D9 0%, #8B5CF6 100%);
+  color: #FFFFFF;
+  font-weight: 700;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(109, 52, 168, 0.35);
+}
+
+.btn-purple-brand:hover {
+  background: linear-gradient(135deg, #7C3AED 0%, #9D4EDD 100%);
+  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.45);
+  transform: translateY(-1px);
+}
