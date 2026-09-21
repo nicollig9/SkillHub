@@ -1,0 +1,133 @@
+Product Backlog — Projeto SkillHub
+Projeto: SkillHub — Plataforma de Formação, Empregabilidade e Conexão de Aprendizes
+Data: Setembro de 2026
+Equipe: Samuel, Lana, Lucas e Nicoli
+1. Visão Geral do Product Backlog
+O Product Backlog do SkillHub organiza de forma priorizada todas as entregas necessárias para a construção da plataforma digital. Ele contempla o desenvolvimento da interface em Next.js, serviços de back-end em Web API .NET, banco de dados PostgreSQL com Prisma/ORM, geolocalização por bairros com Leaflet e mecanismos de segurança e proteção de dados (LGPD para menores).
+2. Matriz de Priorização e Estrutura por Sprints
+Sprints
+Épico / Módulo
+Entregáveis e Funcionalidades
+Prioridade
+Stack Principal
+ 
+S1 — S4
+Planejamento & UX/UI
+Design da Landing Page, Identidade Visual, Wireframes de UX/UI e Mapeamento de Trilhas
+Alta
+Figma / Next.js
+S5
+Épico 1: Autenticação & Perfis
+Cadastro/Login de Aluno e Empresa, Tokens JWT, Hashing BCrypt e Rate Limiting
+Alta
+Next.js / .NET / JWT
+S6
+Épico 2: Capacitação & Badges
+Player de Cursos, Quizzes de Fixação, Emissão Automática de Badges e Carteira Digital
+Alta
+Next.js / .NET
+S7
+Épico 3: Validação de Empresas & Segurança
+Validação de CNPJ via Receita Federal, Proteções Anti-SQLi e Anti-XSS
+Média
+.NET / API Receita Federal
+S8
+Épico 4: Geolocalização & LGPD
+Mapa Interativo de Vagas por Bairros (Leaflet) e Proteção de Dados de Menores
+Alta
+Next.js Leaflet / .NET
+S9
+Épico 5: Painel RH & Moderação
+Cadastro de Vagas com Requisitos de Badges, Varredura Anti-Vagas Abusivas e Filtro Anti-Assédio
+Média
+Next.js / .NET
+S10
+Épico 6: Banco de Dados & API
+Modelagem PostgreSQL (Prisma/ORM), Documentação Swagger Ativa e Migrations
+Alta
+PostgreSQL / Prisma / Swagger
+
+
+3. Detalhamento de Histórias de Usuário e Tarefas Técnicas
+Épico 1: Autenticação, Cadastro e Perfil de Usuários (Sprint 5)
+História de Usuário (US01): Como Aluno ou Recrutador de RH, quero criar minha conta e me autenticar na plataforma para acessar os serviços e painéis do meu perfil.
+Tarefas de Front-End (Next.js):
+Desenvolver formulário de cadastro de Alunos contendo Nome, E-mail, CPF, Data de Nascimento e Endereço/Bairro.
+Desenvolver formulário de cadastro de Empresas contendo Razão Social, CNPJ, E-mail e Endereço/Bairro.
+Criar interface de Login única com controle de estado de sessão e redirecionamento dinâmico.
+Tarefas de Back-End (Web API .NET / C#):
+Criar rotas da API RESTful para registro e autenticação de Alunos e Empresas.
+Implementar emissão e validação de tokens JWT (JSON Web Token) stateless com atributo de autorização por perfil (Roles).
+Criptografar senhas com algoritmo BCrypt e Salt individual.
+Configurar Middleware de Rate Limiting para bloqueio de requisições excessivas (proteção contra força bruta).
+Critérios de Aceite e Regras de Segurança:
+Senhas jamais devem ser armazenadas em texto puro no banco de dados.
+A autenticação de sessão deve utilizar obrigatoriamente tokens JWT assinados digitalmente.
+Tentativas consecutivas e inválidas de login devem ser temporariamente bloqueadas pelo Rate Limiting.
+Épico 2: Capacitação, Trilhas e Gamificação / Badges (Sprint 6)
+História de Usuário (US02): Como Aluno, quero acessar trilhas de aprendizagem divididas por áreas para adquirir conhecimentos profissionais gratuitos.
+História de Usuário (US03): Como Aluno, quero responder a quizzes de fixação para obter Badges (selos) que comprovam minhas competências.
+Tarefas de Front-End (Next.js):
+Construir o Dashboard com catálogo de trilhas (Trabalho, Saúde Mental, Atitude Profissional, Escritório e Finanças).
+Desenvolver o Player de Cursos com medição do tempo de permanência e barra de progresso.
+Desenvolver a interface para Quizzes de Múltipla Escolha com feedback imediato ao estudante.
+Criar o componente visual da Carteira Digital de Badges Conquistadas no perfil do aluno.
+Tarefas de Back-End (Web API .NET / C#):
+Endpoint GET para listagem de trilhas, módulos e conteúdos das aulas.
+Endpoint POST para registro e validação do tempo assistido pelo aluno.
+Endpoint POST para correção automática do quiz e persistência do selo na tabela de conquistas.
+Critérios de Aceite e Regras de Segurança:
+A Badge só é atribuída no banco de dados se o aluno assistir ao tempo mínimo exigido e obtiver nota igual ou superior a 70% no quiz.
+Validação no servidor (back-end) para bloquear requisições forjadas por scripts que tentem simular a conclusão automatizada de aulas.
+Épico 3: Validação de Empresas e Segurança de Dados (Sprint 7)
+História de Usuário (US04): Como Administrador e Aluno, quero garantir que apenas empresas com CNPJ regularizado possam publicar vagas na plataforma.
+Tarefas Técnicas & Segurança:
+Integrar a API em .NET ao serviço da Receita Federal para consulta e validação automática de CNPJ no momento do cadastro.
+Atualizar o status de verificação da empresa no banco de dados.
+Utilizar ORM (Prisma / Entity Framework Core) com parâmetros nas consultas para neutralizar ataques de SQL Injection (SQLi).
+Aplicar sanitização automática de dados no Next.js e no .NET para prevenção de Cross-Site Scripting (XSS).
+Épico 4: Geolocalização e Mapa Interativo por Bairros (Sprint 8)
+História de Usuário (US05): Como Aluno, quero visualizar no mapa de Curitiba as vagas abertas em bairros próximos à minha localização.
+Tarefas de Front-End (Next.js + React Leaflet):
+Implementar componente de mapa interativo cobrindo a região metropolitana de Curitiba usando React Leaflet.
+Posicionar marcadores de vagas de acordo com os centros dos bairros (CIC, Boqueirão, Tatuquara, Batel, Centro, etc.).
+Exibir a identificação "📍 Próximo a você" para vagas situadas no mesmo bairro registrado pelo aluno logado.
+Tarefas de Back-End (.NET / Prisma):
+Endpoint GET para buscar e agrupar vagas ativas por bairro, comparando com a localização aproximada do aluno.
+Critérios de Aceite e Proteção LGPD:
+O mapa NUNCA deve exibir a localização exata da residência do estudante, restringindo a visualização ao bairro.
+Dados sensíveis do aluno (CPF, e-mail e telefone) permanecem ocultos para a empresa até que o jovem aceite se candidatar ou receba convite de entrevista.
+Épico 5: Painel RH, Vagas Abusivas e Moderação (Sprint 9)
+História de Usuário (US06): Como Recrutador de RH, quero cadastrar vagas exigindo requisitos de Badges e filtrar candidatos por bairro.
+História de Usuário (US07): Como Aluno, quero me candidatar a vagas e ter garantia de um ambiente livre de cobranças indevidas ou abordagens inadequadas.
+Tarefas Técnicas & Regras de Moderação:
+Desenvolver o Painel do Recrutador para criação e gestão de vagas com pré-requisitos de Badges.
+Construir filtro de busca ativa de candidatos por região e competências comprovadas.
+Implementar algoritmo de varredura que bloqueia automaticamente vagas contendo cobranças de taxas, materiais ou custos ao jovem.
+Implementar filtro de texto em tempo real nas mensagens para barrar ofensas e termos inadequados, além de disponibilizar canal visível para denúncias.
+Épico 6: Banco de Dados PostgreSQL e Documentação (Sprint 10)
+Tarefas de Banco de Dados & Infraestrutura:
+Criar e executar Migrations para estruturação do banco de dados PostgreSQL contendo as tabelas: Enderecos, Alunos, Empresas, Badges, Alunos_Badges, Vagas, Vagas_Badges_Requeridas e Candidaturas.
+Habilitar e configurar a documentação interativa da API via Swagger no .NET para testes de integrações.
+
+
+
+
+
+
+Resumo=
+
+Divisão por Épicos e Sprints
+Sprints 1 a 4 — Planejamento & UX/UI: Criação de wireframes, identidade visual, landing page e estruturação das trilhas de aprendizagem no Figma.
+Sprint 5 — Autenticação & Perfil (Épico 1): Cadastro e login unificado para alunos e recrutadores de empresas, utilizando controle de sessão por JWT, criptografia de senha com BCrypt e controle de taxa de requisições (Rate Limiting).
+Sprint 6 — Capacitação & Badges (Épico 2): Player para visualização de cursos, quizzes interativos de fixação e emissão de badges (insígnias digitais) registradas no perfil do aluno ao atingir nota mínima.
+Sprint 7 — Validação & Segurança (Épico 3): Validação automática de CNPJ das empresas cadastradas via API da Receita Federal, além de mecanismos de proteção contra invasões (SQL Injection e XSS).
+Sprint 8 — Geolocalização & LGPD (Épico 4): Mapa interativo (com Leaflet) mostrando vagas de emprego por bairros na região de Curitiba, respeitando as diretrizes da LGPD com a ocultação de dados sensíveis e endereço exato de menores de idade.
+Sprint 9 — Painel RH & Moderação (Épico 5): Painel para empresas buscarem candidatos por bairro e habilidades, aliado a algoritmos para bloquear vagas abusivas (que cobram taxas dos candidatos) e filtros de chat anti-assédio.
+Sprint 10 — Banco de Dados & API (Épico 6): Configuração do banco de dados relacional PostgreSQL (Neon), migrations, ORM e documentação ativa das APIs via Swagger.
+
+
+
+
+
+.
