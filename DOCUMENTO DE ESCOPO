@@ -1,0 +1,73 @@
+DOCUMENTO DE ESCOPO, GUARDRAILS E SEGURANÇA DO PROJETO
+Projeto: SkillHub — Plataforma de Formação, Empregabilidade e Conexão de Aprendizes
+Data: Setembro de 2026
+Responsáveis: Samuel, Lana, Lucas e Nicoli
+
+
+1. Visão Geral do Projeto (O que vai ser trabalhado)
+O SkillHub é uma solução digital focada em capacitar jovens estudantes (foco em Jovem Aprendiz e Estagiários) e conectá-los a oportunidades de trabalho na região metropolitana de Curitiba.
+Objetivos do Aplicativo:
+Capacitação Gratuita: Oferecer trilhas de aprendizagem divididas por áreas (Trabalho, Saúde Mental, Atitude Profissional, Ferramentas de Escritório e Finanças).
+Gamificação e Selos (Badges): Emitir selos de conclusão de cursos que comprovam as competências aprendidas pelo estudante
+Mapa Interativo de Vagas: Disponibilizar visualização geográfica por bairros (CIC, Boqueirão, Tatuquara, Batel, etc.) conectando os requisitos das empresas às badges dos jovens.
+Painel do Recrutador (RH): Permitir a abertura de vagas com pré-requisitos de badges e a busca ativa por candidatos qualificados perto da empresa.
+
+
+
+2. O que será Desenvolvido (Escopo de Trabalho)
+Módulos do Sistema:
+Interface do Aluno (Front-end em Next.js):
+Tela inicial explicativa com trilhas de estudo e apoio emocional.
+Player/Ambiente de cursos com questionários (quizzes) de fixação.
+Perfil do aluno com carteira digital de Badges Conquistadas.
+Mapa interativo de empresas e vagas da região.
+Interface do Recrutador / RH (Front-end em Next.js):
+Painel de cadastro e gerenciamento de vagas.
+Filtro de busca ativa de candidatos por bairro e por badges.
+Serviços de Back-end (Web API em .NET):
+API RESTful responsável pelo gerenciamento de usuários, matrículas, emissão de badges e processamento de vagas.
+Regras de negócio centralizadas na camada de domínio.
+
+
+
+3. Guardrails e Regras de Negócio (Trilhos de Proteção)
+Os Guardrails são mecanismos automatizados no código que impedem vazamento de dados, fraudes e uso inadequado da plataforma.
+
+3.1 Proteção de Dados e Privacidade (LGPD para Menores)
+Ocultação Geográfica: O mapa nunca exibe a localização exata da residência do estudante. Exibe apenas o bairro (ex.: Boqueirão) para o recrutador saber a proximidade da vaga.
+Privacidade de Contato: Dados sensíveis (CPF, e-mail, telefone) ficam bloqueados. A empresa só recebe acesso a essas informações após o jovem clicar em "Candidatar-se" ou aceitar um convite de entrevista.
+
+3.2 Validação de Empresas e Vagas
+Validação de CNPJ: Integração com a Receita Federal no momento do cadastro para garantir que a empresa possui CNPJ ativo e regular antes de publicar vagas.
+Bloqueio de Vagas Abusivas: Algoritmo de varredura que bloqueia publicações com termos como "taxa de inscrição", "pago por material" ou cobranças indevidas aos jovens.
+
+3.3 Moderação de Comunicação
+Filtro Anti-Assédio: Filtro de texto em tempo real no chat/candidatura para bloquear ofensas, palavras inadequadas e abordagens impróprias.
+Canal de Denúncia: Botão visível para os usuários notificarem a administração sobre perfis suspeitos.
+
+3.4 Integridade das Badges e Gamificação
+Critérios de Conclusão: A Badge só é gravada no banco de dados se o aluno assistir ao tempo mínimo necessário e atingir nota igual ou superior a 70% na avaliação.
+Proteção Anti-Bot: Validação no servidor (back-end) para impedir que requisições via script/código simulem a conclusão automatizada de cursos.
+
+
+4. Segurança do Banco de Dados, Senhas e Mitigação de Ataques
+
+4.1 Criptografia de Senhas e Autenticação
+Hashing Seguro (BCrypt): Senhas nunca são salvas em texto puro. Utilizam algoritmo matematicamente irreversível com Salt gerado individualmente.
+Sessão via JWT (JSON Web Token): Autenticação stateless com tokens temporários e assinados digitalmente.
+
+4.2 Mitigação de Ataques Hackers
+SQL Injection (SQLi): Uso obrigatório do ORM (Entity Framework) com consultas parametrizadas.
+Cross-Site Scripting (XSS): Sanitização automática de entradas de texto via Next.js e .NET.
+Broken Access Control: Validação de perfis e permissões ([Authorize(Roles = "...")]) diretamente no back-end para impedir acesso a URLs não autorizadas.
+Ataques de Força Bruta: Middleware de Rate Limiting ativado para bloquear conexões repetidas vindas do mesmo IP após múltiplas tentativas sem sucesso.
+
+ PROJETO DE BANCO DE DADOS (DER) E SISTEMA DE MAPA POR PROXIMIDADE
+Projeto: SkillHub — Módulo de Geolocalização e Estrutura de Dados
+Data: Setembro de 2026
+Versão: 1.0
+
+1. Diagrama de Entidade-Relacionamento (DER)
+A estrutura abaixo define a modelagem relacional do sistema no PostgreSQL (Neon) utilizando o Prisma ORM, garantindo a integridade dos dados e o isolamento de informações sensíveis (LGPD).
+1.1 Esquema do Banco de Dados em Código SQL (DDL)
+SQL
