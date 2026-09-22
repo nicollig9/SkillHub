@@ -121,6 +121,8 @@ interface AppContextType {
   filterVagasByProfile: (profile?: CandidateProfileType, bairro?: string) => JobVacancy[];
   resetSimulator: () => void;
   getKnownAccounts: () => { email: string; nome: string; profileType: CandidateProfileType; date: string }[];
+  theme: 'dark' | 'light';
+  toggleTheme: () => void;
 }
 
 const STORAGE_PREFIX = 'skillhub_user_';
@@ -148,6 +150,45 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   
   const [completedModules, setCompletedModules] = useState<Record<string, string[]>>({});
   const [quizResults, setQuizResults] = useState<Record<string, { score: number; passed: boolean; answers: number[]; date: string }>>({});
+
+  // Tema Claro e Escuro
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    try {
+      const savedTheme = localStorage.getItem('skillhub_theme') as 'dark' | 'light' | null;
+      const initialTheme = savedTheme === 'light' ? 'light' : 'dark';
+      setTheme(initialTheme);
+      document.documentElement.setAttribute('data-theme', initialTheme);
+      if (initialTheme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    } catch {
+      // ignore
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    setTheme((prev) => {
+      const next = prev === 'dark' ? 'light' : 'dark';
+      try {
+        localStorage.setItem('skillhub_theme', next);
+      } catch {
+        // ignore
+      }
+      document.documentElement.setAttribute('data-theme', next);
+      if (next === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+      showToast('Tema Alterado', `Modo ${next === 'dark' ? 'Escuro' : 'Claro'} ativado!`, 'info');
+      return next;
+    });
+  };
 
   const [toasts, setToasts] = useState<ToastNotification[]>([]);
 
@@ -974,7 +1015,9 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         filterVagasByBairro,
         filterVagasByProfile,
         resetSimulator,
-        getKnownAccounts
+        getKnownAccounts,
+        theme,
+        toggleTheme
       }}
     >
       {children}

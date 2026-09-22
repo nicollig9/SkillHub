@@ -32,15 +32,15 @@ export default function HomePage() {
   }, [role, isAuthenticated]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#0C0717]">
+    <div className="min-h-screen flex flex-col bg-[var(--background)] transition-colors duration-300">
       {/* Top Header */}
       <Header />
 
       {/* Drawer Sidebar Modal (Só acessível após autenticação) */}
       {isAuthenticated && <Sidebar />}
 
-      {/* Dynamic Main Content Area */}
-      <main className="flex-1 p-4 lg:p-8 overflow-y-auto max-w-7xl w-full mx-auto">
+      {/* Dynamic Main Content Area - Totalmente Centralizada */}
+      <main className="flex-1 p-4 lg:p-8 overflow-y-auto max-w-6xl w-full mx-auto flex flex-col items-center justify-start">
         {!isAuthenticated ? (
           <LoginPage />
         ) : role === 'RECRUTADOR' ? (

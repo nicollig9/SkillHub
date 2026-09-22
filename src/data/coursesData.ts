@@ -89,6 +89,7 @@ export const COURSES: Course[] = [
     badgeCategory: 'Trabalho',
     badgeIcon: 'Scale',
     accentColor: '#8B5CF6',
+    level: 'Avançado',
     learningObjectives: [
       'Compreender as bases legais da Lei da Aprendizagem (Lei nº 10.097/2000) e da Lei do Estágio (Lei nº 11.788/2008).',
       'Diferenciar com clareza contratos de trabalho formais (CLT), programa de aprendizagem e estágio remunerado.',
@@ -318,6 +319,7 @@ export const COURSES: Course[] = [
     badgeCategory: 'Trabalho',
     badgeIcon: 'FileText',
     accentColor: '#3B82F6',
+    level: 'Iniciante',
     learningObjectives: [
       'Montar um currículo objetivo e profissional mesmo sem experiência de carteira assinada.',
       'Valorizar formação escolar, cursos livres, projetos de ciências, voluntariado e Badges digitais.',
@@ -433,6 +435,7 @@ export const COURSES: Course[] = [
     badgeCategory: 'Atitude Profissional',
     badgeIcon: 'UserCheck',
     accentColor: '#8B5CF6',
+    level: 'Iniciante',
     learningObjectives: [
       'Preparar respostas autênticas para as perguntas mais frequentes de recrutadores de RH.',
       'Desenvolver linguagem corporal confiante, contato visual e dicção clara.',
@@ -525,6 +528,7 @@ export const COURSES: Course[] = [
     badgeCategory: 'Ferramentas de Escritório',
     badgeIcon: 'Briefcase',
     accentColor: '#10B981',
+    level: 'Intermediário',
     learningObjectives: [
       'Navegar com destreza pelas células, linhas, colunas e abas do Microsoft Excel e Google Planilhas.',
       'Escrever fórmulas matemáticas básicas e funções essenciais como =SOMA(), =MÉDIA(), =SE() e =PROCV().',
@@ -607,6 +611,7 @@ export const COURSES: Course[] = [
     badgeCategory: 'Ferramentas de Escritório',
     badgeIcon: 'Cpu',
     accentColor: '#3B82F6',
+    level: 'Avançado',
     learningObjectives: [
       'Escrever prompts estruturados para resumir textos longos e gerar rascunhos de relatórios.',
       'Compreender os riscos de vazamento de dados corporativos confidenciais ao usar ferramentas públicas de IA.',
@@ -669,6 +674,7 @@ export const COURSES: Course[] = [
     badgeCategory: 'Ferramentas de Escritório',
     badgeIcon: 'Building',
     accentColor: '#F59E0B',
+    level: 'Intermediário',
     learningObjectives: [
       'Organizar pastas e arquivos digitais em nuvem seguindo nomenclatura padronizada.',
       'Controlar recebimento de notas fiscais e encaminhamento a departamentos contábeis.',
@@ -730,6 +736,7 @@ export const COURSES: Course[] = [
     badgeCategory: 'Finanças',
     badgeIcon: 'DollarSign',
     accentColor: '#10B981',
+    level: 'Iniciante',
     learningObjectives: [
       'Aprender a planejar gastos mensais a partir do salário líquido real.',
       'Aplicar o método de divisão de orçamento 50/30/20.',
@@ -792,6 +799,7 @@ export const COURSES: Course[] = [
     badgeCategory: 'Saúde Mental',
     badgeIcon: 'HeartPulse',
     accentColor: '#EC4899',
+    level: 'Iniciante',
     learningObjectives: [
       'Identificar gatilhos de ansiedade no primeiro emprego e desenvolver técnicas de respiração e foco.',
       'Saber comunicar limites e pedir ajuda quando sobrecarregado com tarefas da escola e do trabalho.',
@@ -853,6 +861,7 @@ export const COURSES: Course[] = [
     badgeCategory: 'Atitude Profissional',
     badgeIcon: 'Mail',
     accentColor: '#EC4899',
+    level: 'Intermediário',
     learningObjectives: [
       'Redigir e-mails profissionais com assunto claro, saudação adequada e despedida cordial.',
       'Evitar gírias e abreviações de internet em comunicações formais da empresa.',
@@ -914,6 +923,7 @@ export const COURSES: Course[] = [
     badgeCategory: 'Atitude Profissional',
     badgeIcon: 'Headphones',
     accentColor: '#EC4899',
+    level: 'Iniciante',
     learningObjectives: [
       'Atender chamadas telefônicas com cordialidade e padrão corporativo.',
       'Praticar escuta ativa para entender o problema do cliente antes de responder.',
@@ -975,6 +985,7 @@ export const COURSES: Course[] = [
     badgeCategory: 'Ferramentas de Escritório',
     badgeIcon: 'Shield',
     accentColor: '#3B82F6',
+    level: 'Intermediário',
     learningObjectives: [
       'Criar senhas fortes e gerenciar autenticação em dois fatores.',
       'Identificar e-mails de phishing e links maliciosos.',
@@ -1036,6 +1047,7 @@ export const COURSES: Course[] = [
     badgeCategory: 'Atitude Profissional',
     badgeIcon: 'Clock',
     accentColor: '#F59E0B',
+    level: 'Iniciante',
     learningObjectives: [
       'Classificar tarefas entre urgentes e importantes usando a Matriz de Eisenhower.',
       'Utilizar a Técnica Pomodoro (25 minutos de foco + 5 de pausa) para estudar e trabalhar.',
@@ -1073,6 +1085,261 @@ export const COURSES: Course[] = [
         ],
         correct: 1,
         explanation: 'Os ciclos de foco com pausas curtas evitam a fadiga mental e aumentam a concentração.'
+      }
+    ]
+  },
+
+  // =========================================================================
+  // 13. COMUNICAÇÃO NÃO-VIOLENTA (CNV) E EMPATIA
+  // =========================================================================
+  {
+    id: 'curso-comunicacao-nao-violenta',
+    trackId: 'trilha-2',
+    trackName: 'TRILHA 2: Soft Skills, Postura & Comunicação Corporativa',
+    category: 'Desenvolvimento Pessoal',
+    targetAudienceType: 'TODOS',
+    title: 'Comunicação Não-Violenta (CNV) e Empatia no Trabalho',
+    subtitle: 'Os 4 pilares da CNV (Observação, Sentimento, Necessidade e Pedido) para relacionamentos saudáveis no primeiro emprego',
+    hours: 8,
+    equivalentHours: 8,
+    modality: 'EAD 100% Gratuito',
+    targetAudience: 'Jovens aprendizes, estagiários e estudantes',
+    prerequisites: 'Nenhum.',
+    badgeName: 'CNV & Empatia',
+    badgeCategory: 'Atitude Profissional',
+    badgeIcon: 'HeartHandshake',
+    accentColor: '#EC4899',
+    level: 'Iniciante',
+    learningObjectives: [
+      'Identificar fatos objetivos sem misturar com julgamentos ou suposições.',
+      'Reconhecer necessidades humanas básicas por trás de feedbacks difíceis.',
+      'Formular pedidos claros e acionáveis em vez de exigências no trabalho.'
+    ],
+    modules: [
+      {
+        id: 'cnv-mod-1',
+        number: 1,
+        title: 'MÓDULO 1: Os 4 Passos da Comunicação Não-Violenta',
+        summary: 'Aprenda a fórmula prática de Marshall Rosenberg para se comunicar sem gerar brigas ou defensividade.',
+        estimatedMinutes: 30,
+        content: {
+          sections: [
+            {
+              subheading: '1.1 A Fórmula dos 4 Passos',
+              body: [
+                '1. Observação: Relate o fato concreto sem adjetivos acusatórios (ex: "Ontem a planilha não foi preenchida").',
+                '2. Sentimento: Diga como se sente de forma honesta (ex: "Fiquei preocupado com o prazo do cliente").',
+                '3. Necessidade: Explique a necessidade por trás (ex: "Porque nossa equipe precisa de previsibilidade").',
+                '4. Pedido: Faça um pedido concreto e realizável (ex: "Você poderia me avisar até as 14h se houver atraso?").'
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    caseStudies: [],
+    quiz: [
+      {
+        id: 1,
+        question: 'Qual é o primeiro passo da Comunicação Não-Violenta (CNV)?',
+        options: [
+          'Exigir que a outra pessoa peça desculpas imediatamente.',
+          'Observar fatos concretos sem misturar com julgamentos ou críticas pessoais.',
+          'Reclamar com o chefe da empresa.',
+          'Ficar em silêncio e não responder.'
+        ],
+        correct: 1,
+        explanation: 'Observar fatos objetivos sem julgar evita que o interlocutor entre em modo de defesa.'
+      }
+    ]
+  },
+
+  // =========================================================================
+  // 14. EXCEL PARA INICIANTES
+  // =========================================================================
+  {
+    id: 'curso-excel-iniciante',
+    trackId: 'trilha-3',
+    trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
+    category: 'Tecnologia da Informação',
+    targetAudienceType: 'TODOS',
+    title: 'Excel do Zero: Primeiras Planilhas, Fórmulas Básicas e Gráficos',
+    subtitle: 'Navegação em células, formatação de dados, fórmulas essenciais (SOMA, MÉDIA, MÁXIMO) e criação de gráficos simples',
+    hours: 10,
+    equivalentHours: 10,
+    modality: 'EAD 100% Gratuito',
+    targetAudience: 'Estudantes que nunca utilizaram planilhas ou querem reforçar a base',
+    prerequisites: 'Nenhum.',
+    badgeName: 'Excel Fundamentos',
+    badgeCategory: 'Ferramentas de Escritório',
+    badgeIcon: 'FileSpreadsheet',
+    accentColor: '#10B981',
+    level: 'Iniciante',
+    learningObjectives: [
+      'Entender linhas, colunas, células e referências no Excel e Google Planilhas.',
+      'Utilizar operadores matemáticos (+, -, *, /) e funções básicas como =SOMA() e =MÉDIA().',
+      'Formatar tabelas com moeda (R$), porcentagem (%) e criar gráficos de colunas.'
+    ],
+    modules: [
+      {
+        id: 'exc-ini-mod-1',
+        number: 1,
+        title: 'MÓDULO 1: Estrutura da Planilha e Primeiras Fórmulas',
+        summary: 'Domine a interface do Excel e aprenda como o sinal de igual (=) inicia qualquer cálculo inteligente.',
+        estimatedMinutes: 30,
+        content: {
+          sections: [
+            {
+              subheading: '1.1 O Segredo do Sinal de Igual',
+              body: [
+                'No Excel, toda fórmula começa com "=". Para somar os valores das células A1 até A10, usamos =SOMA(A1:A10).',
+                'Para calcular uma média aritmética, basta digitar =MÉDIA(B2:B8).'
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    caseStudies: [],
+    quiz: [
+      {
+        id: 1,
+        question: 'Qual caractere obrigatório deve iniciar qualquer fórmula no Excel ou Planilhas?',
+        options: [
+          'O símbolo de arroba (@)',
+          'O sinal de igual (=)',
+          'O ponto de exclamação (!)',
+          'As aspas duplas (")'
+        ],
+        correct: 1,
+        explanation: 'O sinal de igual (=) avisa o Excel que o texto seguinte é uma instrução de cálculo ou função.'
+      }
+    ]
+  },
+
+  // =========================================================================
+  // 15. LGPD, PRIVACIDADE E SEGURANÇA DIGITAL
+  // =========================================================================
+  {
+    id: 'curso-lgpd-seguranca-dados',
+    trackId: 'trilha-3',
+    trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
+    category: 'Tecnologia da Informação',
+    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTAGIARIO'],
+    title: 'LGPD, Privacidade e Segurança Digital Corporativa',
+    subtitle: 'Lei Geral de Proteção de Dados (Lei nº 13.709/18), proteção de dados de menores, phishing e sigilo de senhas',
+    hours: 14,
+    equivalentHours: 14,
+    modality: 'EAD 100% Gratuito',
+    targetAudience: 'Jovens aprendizes e estagiários em ambientes corporativos informatizados',
+    prerequisites: 'Noções básicas de informática.',
+    badgeName: 'Especialista em LGPD & Dados',
+    badgeCategory: 'Trabalho',
+    badgeIcon: 'ShieldCheck',
+    accentColor: '#8B5CF6',
+    level: 'Avançado',
+    learningObjectives: [
+      'Compreender o conceito de Dado Pessoal e Dado Pessoal Sensível segundo a LGPD.',
+      'Saber como tratar dados de clientes e colegas de trabalho sem infringir a lei.',
+      'Identificar ataques de engenharia social, phishing e manter autenticação em 2 fatores ativa.'
+    ],
+    modules: [
+      {
+        id: 'lgpd-mod-1',
+        number: 1,
+        title: 'MÓDULO 1: Fundamentos da LGPD e Responsabilidade no Trabalho',
+        summary: 'Conheça as principais obrigações que todo colaborador deve seguir ao lidar com dados de terceiros.',
+        estimatedMinutes: 35,
+        content: {
+          sections: [
+            {
+              subheading: '1.1 O que é Dado Pessoal?',
+              body: [
+                'Qualquer informação relacionada a pessoa natural identificada ou identificável (CPF, e-mail, telefone, biometria).',
+                'Compartilhar listas de clientes em grupos não autorizados de WhatsApp é infração grave com penalidades para a empresa e o colaborador.'
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    caseStudies: [],
+    quiz: [
+      {
+        id: 1,
+        question: 'O que o colaborador deve fazer ao receber um e-mail suspeito solicitando senhas internas da empresa?',
+        options: [
+          'Enviar a senha imediatamente para não ser demitido.',
+          'Nunca fornecer senhas e reportar imediatamente à equipe de TI/Segurança da Informação.',
+          'Encaminhar o e-mail para todos os seus colegas de sala.',
+          'Clicar em todos os links para verificar se é verdade.'
+        ],
+        correct: 1,
+        explanation: 'Golpes de phishing visam roubar credenciais corporativas. Nunca compartilhe senhas e reporte o incidente.'
+      }
+    ]
+  },
+
+  // =========================================================================
+  // 16. PLANEJAMENTO E MATEMÁTICA FINANCEIRA
+  // =========================================================================
+  {
+    id: 'curso-planejamento-orcamento',
+    trackId: 'trilha-5',
+    trackName: 'TRILHA 5: Educação Financeira & Cidadania no Trabalho',
+    category: 'Desenvolvimento Pessoal',
+    targetAudienceType: 'TODOS',
+    title: 'Planejamento Financeiro, Orçamento 50-30-20 e Reserva de Emergência',
+    subtitle: 'Método 50-30-20 na prática, cálculo de juros simples vs compostos e construção da primeira reserva financeira',
+    hours: 12,
+    equivalentHours: 12,
+    modality: 'EAD 100% Gratuito',
+    targetAudience: 'Jovens que recebem bolsa-auxílio ou salário de aprendiz',
+    prerequisites: 'Nenhum.',
+    badgeName: 'Mestre do Orçamento',
+    badgeCategory: 'Finanças',
+    badgeIcon: 'PiggyBank',
+    accentColor: '#F59E0B',
+    level: 'Intermediário',
+    learningObjectives: [
+      'Dividir o salário mensal segundo a regra 50% (Necessidades), 30% (Desejos) e 20% (Futuro).',
+      'Evitar o endividamento em cartões de crédito e juros rotativos abusivos.',
+      'Calcular o valor ideal da Reserva de Emergência (3 a 6 meses de custos fixos).'
+    ],
+    modules: [
+      {
+        id: 'fin-mod-1',
+        number: 1,
+        title: 'MÓDULO 1: A Regra 50-30-20 Aplicada à Realidade do Jovem',
+        summary: 'Como administrar uma bolsa de R$ 900 a R$ 1.500 sem ficar no vermelho.',
+        estimatedMinutes: 30,
+        content: {
+          sections: [
+            {
+              subheading: '1.1 Divisão dos Potes Financeiros',
+              body: [
+                '50% para Gastos Essenciais: Passagens, materiais escolares, auxílio nas contas de casa.',
+                '30% para Lazer e Estilo de Vida: Saídas com amigos, assinaturas, passeios.',
+                '20% para o Futuro: Guardar em conta rendendo 100% do CDI para formar a reserva de emergência.'
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    caseStudies: [],
+    quiz: [
+      {
+        id: 1,
+        question: 'Segundo a regra 50-30-20, qual porcentagem da sua renda deve ser direcionada para economias e reserva do futuro?',
+        options: [
+          '0% (gastar tudo no mesmo dia)',
+          '20% da renda líquida',
+          '90% da renda líquida',
+          '100% da renda líquida'
+        ],
+        correct: 1,
+        explanation: 'Destinar 20% para a reserva garante estabilidade financeira e autonomia para o jovem.'
       }
     ]
   }

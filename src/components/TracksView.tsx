@@ -37,7 +37,7 @@ export default function TracksView() {
   };
 
   return (
-    <div className="space-y-6 max-w-7xl mx-auto pb-12">
+    <div className="space-y-6 max-w-6xl w-full mx-auto pb-12">
       
       {/* Header Banner */}
       <div className="bg-gradient-to-r from-[#22103B] via-[#351859] to-[#481F78] border border-[#6D34A8]/40 rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">

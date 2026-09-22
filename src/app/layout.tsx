@@ -20,7 +20,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Montserrat:wght@700;800&display=swap" rel="stylesheet" />
       </head>
-      <body className="bg-[#090D16] text-[#F9FAFB] min-h-screen antialiased selection:bg-purple-600 selection:text-white">
+      <body className="bg-[var(--background)] text-[var(--foreground)] min-h-screen antialiased selection:bg-purple-600 selection:text-white transition-colors duration-300">
         <AppProvider>
           {children}
           <ToastContainer />

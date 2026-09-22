@@ -2,11 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
+:root, [data-theme="dark"] {
   --background: #0C0717;
   --foreground: #F8F7FC;
+  --card-bg: #170C2B;
+  --card-border: rgba(109, 52, 168, 0.35);
   
-  /* PALETA EQUILIBRADA SKILLHUB - ROXO SUAVE, ELEGANTE E MODERNO */
+  /* PALETA SKILLHUB ROXO IMPERIAL */
   --purple-brand-dark: #1E0F36;
   --purple-brand-main: #351859;
   --purple-brand-vibrant: #4F2684;
@@ -21,30 +23,48 @@
   --grad-button-hover: linear-gradient(135deg, #7C3AED 0%, #9D4EDD 100%);
 }
 
-body {
-  color: var(--foreground);
-  background: #0C0717;
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  overflow-x: hidden;
+/* ==========================================================================
+   TEMA CLARO (LIGHT THEME) - PALETA LIMPA, LUMINOSA E COM ALTO CONTRASTE
+   ========================================================================== */
+[data-theme="light"], .light {
+  --background: #F8FAFC;
+  --foreground: #0F172A;
+  --card-bg: #FFFFFF;
+  --card-border: #E2E8F0;
+
+  --purple-brand-dark: #3B0764;
+  --purple-brand-main: #6D28D9;
+  --purple-brand-vibrant: #7C3AED;
+  --purple-brand-accent: #8B5CF6;
+  --purple-brand-light: #6D28D9;
+  --purple-brand-soft: #F3E8FF;
 }
 
-/* Custom scrollbar Roxo Suave */
+body {
+  color: var(--foreground);
+  background-color: var(--background);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #0C0717;
+  background: var(--background);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #4F2684;
+  background: var(--purple-brand-accent);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #6D34A8;
+  background: var(--purple-brand-light);
 }
 
 .glow-purple {
@@ -55,13 +75,9 @@ body {
   border-color: rgba(109, 52, 168, 0.35);
 }
 
-.bg-purple-brand-hero {
-  background: linear-gradient(135deg, #24123E 0%, #351859 50%, #4A207A 100%);
-}
-
 .btn-purple-brand {
   background: linear-gradient(135deg, #6D28D9 0%, #8B5CF6 100%);
-  color: #FFFFFF;
+  color: #FFFFFF !important;
   font-weight: 700;
   transition: all 0.2s ease;
   box-shadow: 0 4px 15px rgba(109, 52, 168, 0.35);
@@ -71,4 +87,237 @@ body {
   background: linear-gradient(135deg, #7C3AED 0%, #9D4EDD 100%);
   box-shadow: 0 6px 20px rgba(139, 92, 246, 0.45);
   transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   REGRAS ESPECÍFICAS DE CONTRASTE E LEGIBILIDADE NO MODO CLARO
+   ========================================================================== */
+[data-theme="light"] body,
+[data-theme="light"] main {
+  background-color: #F8FAFC !important;
+  color: #0F172A !important;
+}
+
+/* 1. Containers escuros transformados em superfícies brancas / suaves */
+[data-theme="light"] .bg-\[\#0C0717\],
+[data-theme="light"] .bg-\[\#090D16\],
+[data-theme="light"] .bg-\[\#0D0618\],
+[data-theme="light"] .bg-\[\#0D1117\] {
+  background-color: #F8FAFC !important;
+}
+
+[data-theme="light"] .bg-\[\#170C2B\],
+[data-theme="light"] .bg-\[\#160A25\],
+[data-theme="light"] .bg-\[\#1C0730\],
+[data-theme="light"] .bg-\[\#150524\],
+[data-theme="light"] .bg-\[\#150524\]\/90,
+[data-theme="light"] .bg-\[\#150524\]\/80,
+[data-theme="light"] .bg-\[\#10061D\],
+[data-theme="light"] .bg-\[\#140824\],
+[data-theme="light"] .bg-\[\#140824\]\/90,
+[data-theme="light"] .bg-\[\#17092A\],
+[data-theme="light"] .bg-\[\#1C0D33\],
+[data-theme="light"] .bg-\[\#1C0D33\]\/90,
+[data-theme="light"] .bg-\[\#110520\],
+[data-theme="light"] .bg-\[\#250B3E\],
+[data-theme="light"] .bg-\[\#24123E\],
+[data-theme="light"] .bg-\[\#15092A\],
+[data-theme="light"] .bg-\[\#120722\],
+[data-theme="light"] .bg-\[\#18092E\],
+[data-theme="light"] .bg-\[\#1A0B2E\],
+[data-theme="light"] .bg-\[\#1E0F36\],
+[data-theme="light"] .bg-\[\#2A0E47\],
+[data-theme="light"] .bg-\[\#2E1254\],
+[data-theme="light"] .bg-\[\#120B20\],
+[data-theme="light"] .bg-\[\#160B29\],
+[data-theme="light"] [class*="bg-gradient-to-b from-[#1C0D33]"] {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.06) !important;
+}
+
+/* 2. Banners ganham degradê suave e luminoso no modo claro */
+[data-theme="light"] [class*="bg-gradient-to-r from-[#22103B]"],
+[data-theme="light"] [class*="bg-gradient-to-r from-[#200E3D]"],
+[data-theme="light"] [class*="bg-gradient-to-r from-[#1C0730]"],
+[data-theme="light"] [class*="bg-gradient-to-br from-[#1C0730]"] {
+  background: linear-gradient(135deg, #FAF5FF 0%, #F3E8FF 50%, #EDE9FE 100%) !important;
+  border-color: #D8B4FE !important;
+  box-shadow: 0 6px 20px rgba(124, 58, 237, 0.08) !important;
+}
+
+[data-theme="light"] [class*="bg-gradient-to-r from-[#22103B]"] h1,
+[data-theme="light"] [class*="bg-gradient-to-r from-[#22103B]"] h2,
+[data-theme="light"] [class*="bg-gradient-to-r from-[#200E3D]"] h1,
+[data-theme="light"] [class*="bg-gradient-to-r from-[#200E3D]"] h2,
+[data-theme="light"] [class*="bg-gradient-to-r from-[#1C0730]"] h1,
+[data-theme="light"] [class*="bg-gradient-to-r from-[#1C0730]"] h2,
+[data-theme="light"] [class*="bg-gradient-to-br from-[#1C0730]"] h1,
+[data-theme="light"] [class*="bg-gradient-to-br from-[#1C0730]"] h2 {
+  color: #3B0764 !important;
+}
+
+[data-theme="light"] [class*="bg-gradient-to-r from-[#22103B]"] p,
+[data-theme="light"] [class*="bg-gradient-to-r from-[#200E3D]"] p,
+[data-theme="light"] [class*="bg-gradient-to-r from-[#1C0730]"] p,
+[data-theme="light"] [class*="bg-gradient-to-br from-[#1C0730]"] p {
+  color: #475569 !important;
+}
+
+[data-theme="light"] [class*="bg-gradient-to-r from-[#22103B]"] .inline-flex,
+[data-theme="light"] [class*="bg-gradient-to-r from-[#200E3D]"] .inline-flex {
+  background-color: #FFFFFF !important;
+  border-color: #C084FC !important;
+  color: #6D28D9 !important;
+}
+
+/* 3. CORREÇÃO DE TEXTOS BRANCOS DENTRO DE CARDS NO TEMA CLARO */
+[data-theme="light"] main h1.text-white,
+[data-theme="light"] main h2.text-white,
+[data-theme="light"] main h3.text-white,
+[data-theme="light"] main h4.text-white,
+[data-theme="light"] main h5.text-white,
+[data-theme="light"] main p.text-white,
+[data-theme="light"] main div.text-white:not(button *):not(.btn *):not([class*="from-purple-"] *):not([class*="bg-purple-"] *),
+[data-theme="light"] main span.text-white:not(button *):not(.btn *):not([class*="from-purple-"] *):not([class*="bg-purple-"] *),
+[data-theme="light"] main strong.text-white:not(button *):not(.btn *):not([class*="from-purple-"] *):not([class*="bg-purple-"] *) {
+  color: #1E1B4B !important;
+}
+
+/* Títulos de cursos e vagas em hover */
+[data-theme="light"] .group:hover .group-hover\:text-\[\#FDE68A\] {
+  color: #6D28D9 !important;
+}
+
+/* Métrica em destaque (ex: números 0, 1, 2, 10h) */
+[data-theme="light"] .text-3xl.font-black.text-white {
+  color: #3B0764 !important;
+}
+
+/* 4. Textos secundários, subtítulos e metadados que eram roxos bem claros */
+[data-theme="light"] main .text-purple-100,
+[data-theme="light"] main .text-purple-200,
+[data-theme="light"] main .text-purple-300,
+[data-theme="light"] main .text-purple-200\/80,
+[data-theme="light"] main .text-purple-300\/80 {
+  color: #475569 !important;
+}
+
+/* 5. Pílulas e tags secundárias dentro de cards */
+[data-theme="light"] .bg-\[\#24123E\],
+[data-theme="light"] .bg-\[\#2E1254\],
+[data-theme="light"] .bg-\[\#17092A\] {
+  background-color: #F3E8FF !important;
+  color: #6D28D9 !important;
+  border-color: #DDD6FE !important;
+}
+
+/* 6. Inputs, selects e textareas claros */
+[data-theme="light"] input,
+[data-theme="light"] select,
+[data-theme="light"] textarea {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+  border: 1.5px solid #CBD5E1 !important;
+}
+
+[data-theme="light"] input:focus,
+[data-theme="light"] select:focus,
+[data-theme="light"] textarea:focus {
+  border-color: #7C3AED !important;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15) !important;
+}
+
+/* 7. Botões inativos ou de filtro em tema claro */
+[data-theme="light"] button.bg-\[\#18092E\],
+[data-theme="light"] button.bg-\[\#10061D\],
+[data-theme="light"] button.bg-\[\#24123E\] {
+  background-color: #F1F5F9 !important;
+  border-color: #CBD5E1 !important;
+  color: #475569 !important;
+}
+
+[data-theme="light"] button.bg-\[\#18092E\]:hover,
+[data-theme="light"] button.bg-\[\#10061D\]:hover,
+[data-theme="light"] button.bg-\[\#24123E\]:hover {
+  background-color: #E2E8F0 !important;
+  color: #1E1B4B !important;
+}
+
+/* 8. BOTÕES PRINCIPAIS E COLORIDOS PRESERVAM O TEXTO BRANCO PURO */
+[data-theme="light"] button[class*="from-[#6D28D9]"],
+[data-theme="light"] button[class*="from-purple-600"],
+[data-theme="light"] button[class*="from-[#521C7E]"],
+[data-theme="light"] button[class*="bg-purple-600"],
+[data-theme="light"] button[class*="bg-[#7C3AED]"],
+[data-theme="light"] button.btn-purple-brand,
+[data-theme="light"] .btn-primary,
+[data-theme="light"] .btn-coral {
+  color: #FFFFFF !important;
+}
+
+[data-theme="light"] button[class*="from-[#6D28D9]"] *,
+[data-theme="light"] button[class*="from-purple-600"] *,
+[data-theme="light"] button[class*="from-[#521C7E]"] *,
+[data-theme="light"] button[class*="bg-purple-600"] *,
+[data-theme="light"] button[class*="bg-[#7C3AED]"] *,
+[data-theme="light"] button.btn-purple-brand *,
+[data-theme="light"] .btn-primary *,
+[data-theme="light"] .btn-coral * {
+  color: #FFFFFF !important;
+}
+
+/* Botões com gradiente âmbar */
+[data-theme="light"] button[class*="from-amber-400"],
+[data-theme="light"] button[class*="from-[#F59E0B]"] {
+  color: #0F172A !important;
+}
+
+/* 9. CABEÇALHO GLOBAL: Mantém o degradê imperial e a nitidez */
+[data-theme="light"] header {
+  background: linear-gradient(135deg, #3B0764 0%, #4C1D95 50%, #6D28D9 100%) !important;
+}
+
+[data-theme="light"] header h1,
+[data-theme="light"] header .text-white {
+  color: #FFFFFF !important;
+}
+
+[data-theme="light"] header .text-purple-200,
+[data-theme="light"] header .text-purple-300 {
+  color: #EDE9FE !important;
+}
+
+[data-theme="light"] header button.text-purple-200 {
+  color: #EDE9FE !important;
+}
+
+[data-theme="light"] header button.text-purple-200:hover {
+  color: #FFFFFF !important;
+}
+
+/* 10. GAVETA LATERAL (SIDEBAR) NO TEMA CLARO */
+[data-theme="light"] aside {
+  background-color: #FFFFFF !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+}
+
+[data-theme="light"] aside .text-white {
+  color: #1E1B4B !important;
+}
+
+[data-theme="light"] aside .text-purple-300 {
+  color: #64748B !important;
+}
+
+[data-theme="light"] aside .bg-\[\#24123E\] {
+  background-color: #F1F5F9 !important;
+  border-color: #CBD5E1 !important;
+  color: #4C1D95 !important;
+}
+
+[data-theme="light"] aside button:hover {
+  background-color: #F8FAFC !important;
 }

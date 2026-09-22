@@ -362,6 +362,237 @@ const COURSES_DATA = [
         correct: 1
       }
     ]
+  },
+  {
+    id: 'c10',
+    track: 'trilha-2',
+    trackName: '2. Soft Skills & Comunicação Corporativa',
+    title: 'Comunicação Não-Violenta (CNV) e Empatia no Trabalho',
+    description: 'Aprenda os 4 pilares da CNV (Observação, Sentimento, Necessidade e Pedido) para se relacionar com tranquilidade e evitar conflitos no primeiro emprego.',
+    duration: '8 horas',
+    level: 'Iniciante',
+    format: 'EAD Interativo',
+    badgeName: 'CNV & Empatia',
+    badgeIcon: 'fa-handshake',
+    accentColor: 'accent-pink',
+    syllabus: [
+      'Módulo 1: O que é CNV e como separar fatos de julgamentos',
+      'Módulo 2: Identificando necessidades não atendidas em situações de conflito',
+      'Módulo 3: Formulando pedidos claros e construtivos para colegas e chefia',
+      'Módulo 4: Prática de escuta empática e feedbacks respeitosos'
+    ],
+    prerequisites: 'Nenhum.',
+    instructor: 'Renata Lins (Psicóloga e Mediadora de Conflitos)',
+    quiz: [
+      {
+        question: 'Qual é a primeira etapa da Comunicação Não-Violenta?',
+        options: [
+          'Fazer uma crítica imediata.',
+          'Observar fatos concretos sem julgamento ou acusação prévia.',
+          'Exigir que a outra pessoa se desculpe.',
+          'Guardar o ressentimento para si.'
+        ],
+        correct: 1
+      }
+    ]
+  },
+  {
+    id: 'c11',
+    track: 'trilha-3',
+    trackName: '3. Tecnologia & Informática',
+    title: 'Excel do Zero: Fórmulas Básicas e Primeiras Planilhas',
+    description: 'Navegação em células, formatação de dados em tabelas, operações matemáticas essenciais e funções fundamentais como =SOMA() e =MÉDIA().',
+    duration: '10 horas',
+    level: 'Iniciante',
+    format: 'Laboratório Prático',
+    badgeName: 'Excel Fundamentos',
+    badgeIcon: 'fa-table-cells',
+    accentColor: 'cyan',
+    syllabus: [
+      'Módulo 1: Anatomia de uma planilha: linhas, colunas e células',
+      'Módulo 2: Inserção de dados numéricos, texto e formato monetário (R$)',
+      'Módulo 3: O segredo do sinal de igual (=) e fórmulas fundamentais',
+      'Módulo 4: Criação de gráficos simples para apresentação de relatórios'
+    ],
+    prerequisites: 'Nenhum.',
+    instructor: 'Lucas Andrade (Analista de Sistemas)',
+    quiz: [
+      {
+        question: 'No Excel, com qual caractere obrigatório deve iniciar qualquer fórmula de cálculo?',
+        options: [
+          'Arroba (@)',
+          'Sinal de Igual (=)',
+          'Ponto e vírgula (;)',
+          'Jogo da velha (#)'
+        ],
+        correct: 1
+      }
+    ]
+  },
+  {
+    id: 'c12',
+    track: 'trilha-3',
+    trackName: '3. Tecnologia & Informática',
+    title: 'LGPD, Privacidade e Proteção de Dados de Menores',
+    description: 'Compreenda os fundamentos da Lei Geral de Proteção de Dados (Lei nº 13.709/18), a proteção reforçada para adolescentes e boas práticas com senhas e sigilo corporativo.',
+    duration: '14 horas',
+    level: 'Avançado',
+    format: 'EAD Avançado',
+    badgeName: 'Especialista em LGPD & Dados',
+    badgeIcon: 'fa-shield-halved',
+    accentColor: 'accent-purple',
+    syllabus: [
+      'Módulo 1: O que são Dados Pessoais e Dados Pessoais Sensíveis segundo a lei',
+      'Módulo 2: Consentimento de pais/responsáveis para menores de 18 anos',
+      'Módulo 3: Cuidados no manuseio de listas de clientes e prevenção de vazamentos',
+      'Módulo 4: Boas práticas de cibersegurança e autenticação em dois fatores'
+    ],
+    prerequisites: 'Noções de informática.',
+    instructor: 'Dra. Gabriela Vasconcelos (Especialista em Direito Digital)',
+    quiz: [
+      {
+        question: 'O que o colaborador deve fazer ao receber mensagens solicitando senhas de acesso aos sistemas da empresa?',
+        options: [
+          'Enviar a senha imediatamente.',
+          'Nunca compartilhar senhas corporativas e alertar o time de segurança/TI.',
+          'Compartilhar nos grupos de WhatsApp dos colegas.',
+          'Salvar a senha em um post-it colado no monitor.'
+        ],
+        correct: 1
+      }
+    ]
+  },
+  {
+    id: 'c13',
+    track: 'trilha-3',
+    trackName: '3. Tecnologia & Informática',
+    title: 'Inteligência Artificial Aplicada ao Trabalho de Escritório',
+    description: 'Como utilizar prompts estruturados para otimizar resumos, organizar ideias e redigir rascunhos, mantendo a ética e a privacidade de dados corporativos.',
+    duration: '12 horas',
+    level: 'Avançado',
+    format: 'Oficina Interativa',
+    badgeName: 'Inovador em IA & Produtividade',
+    badgeIcon: 'fa-microchip',
+    accentColor: 'cyan',
+    syllabus: [
+      'Módulo 1: Princípios da IA Generativa e estrutura de prompts eficientes',
+      'Módulo 2: Resumo e síntese de documentos longos e atas de reunião',
+      'Módulo 3: Cuidados éticos: nunca inserir dados confidenciais em IAs públicas',
+      'Módulo 4: Verificação crítica de fontes para evitar alucinações de IA'
+    ],
+    prerequisites: 'Navegação na web.',
+    instructor: 'Prof. Thiago Duarte (Especialista em IA e Transformação Digital)',
+    quiz: [
+      {
+        question: 'Qual é a regra de ouro ao utilizar ferramentas públicas de Inteligência Artificial no trabalho?',
+        options: [
+          'Copiar e colar dados bancários e senhas de clientes no prompt.',
+          'Nunca inserir informações confidenciais ou segredos comerciais da empresa em ferramentas abertas.',
+          'Acreditar 100% nas respostas da IA sem qualquer checagem.',
+          'Deixar a IA responder e-mails de clientes sem revisão humana.'
+        ],
+        correct: 1
+      }
+    ]
+  },
+  {
+    id: 'c14',
+    track: 'trilha-4',
+    trackName: '4. Ferramentas de Escritório',
+    title: 'Rotinas de Suporte ao RH e Departamento Pessoal',
+    description: 'Fluxos de triagem de currículos, conferência de documentação admissional, controle de ponto e benefícios obrigatórios da CLT.',
+    duration: '12 horas',
+    level: 'Intermediário',
+    format: 'EAD Prático',
+    badgeName: 'Apoio a RH & DP',
+    badgeIcon: 'fa-id-card-clip',
+    accentColor: 'amber',
+    syllabus: [
+      'Módulo 1: Documentos necessários para admissão de estagiários e aprendizes',
+      'Módulo 2: Apuração básica de cartão de ponto e controle de atestados',
+      'Módulo 3: Benefícios obrigatórios: Vale Transporte e Seguro contra Acidentes',
+      'Módulo 4: Organização de prontuários com sigilo conforme a LGPD'
+    ],
+    prerequisites: 'Nenhum.',
+    instructor: 'Mariana Peixoto (Consultora de RH)',
+    quiz: [
+      {
+        question: 'Qual benefício é legalmente obrigatório tanto para o Jovem Aprendiz quanto para o Estagiário não-obrigatório?',
+        options: [
+          'Carro corporativo com motorista.',
+          'Auxílio Transporte (Vale Transporte).',
+          'Viagem internacional anual.',
+          'Participação nos lucros sem limite.'
+        ],
+        correct: 1
+      }
+    ]
+  },
+  {
+    id: 'c15',
+    track: 'trilha-5',
+    trackName: '5. Educação Financeira',
+    title: 'Matemática Financeira e Planejamento do Orçamento Pessoal',
+    description: 'Cálculo de juros simples vs compostos, método dos potes 50-30-20, inflação e primeiros passos para a independência financeira.',
+    duration: '10 horas',
+    level: 'Intermediário',
+    format: 'Simulador Prático',
+    badgeName: 'Mestre do Orçamento',
+    badgeIcon: 'fa-piggy-bank',
+    accentColor: 'accent-light',
+    syllabus: [
+      'Módulo 1: O impacto dos juros compostos nas dívidas e nos investimentos',
+      'Módulo 2: Divisão salarial em gastos essenciais (50%), lazer (30%) e futuro (20%)',
+      'Módulo 3: Criação da Reserva de Emergência para imprevistos',
+      'Módulo 4: Noções de inflação (IPCA) e rentabilidade líquida'
+    ],
+    prerequisites: 'Nenhum.',
+    instructor: 'Eduardo Martins (Educador Financeiro)',
+    quiz: [
+      {
+        question: 'Segundo o método 50-30-20, qual percentual da renda deve ser guardado para o futuro e reserva de emergência?',
+        options: [
+          '0% (gastar tudo imediatamente)',
+          '20% da renda líquida',
+          '80% da renda líquida',
+          '100% da renda líquida'
+        ],
+        correct: 1
+      }
+    ]
+  },
+  {
+    id: 'c16',
+    track: 'trilha-2',
+    trackName: '2. Soft Skills & Comunicação Corporativa',
+    title: 'Saúde Mental, Ansiedade e Foco no Trabalho',
+    description: 'Técnicas de respiração diafragmática, gerenciamento da ansiedade no primeiro emprego, comunicação de limites e equilíbrio entre escola e rotina profissional.',
+    duration: '8 horas',
+    level: 'Iniciante',
+    format: 'Acolhimento & Guias Práticos',
+    badgeName: 'Inteligência Emocional',
+    badgeIcon: 'fa-heart-pulse',
+    accentColor: 'accent-pink',
+    syllabus: [
+      'Módulo 1: Reconhecendo sinais de estresse e sobrecarga no dia a dia',
+      'Módulo 2: Técnicas práticas de respiração e foco (Box Breathing e Pomodoro)',
+      'Módulo 3: Como conversar com o gestor sobre dificuldades de conciliação escolar',
+      'Módulo 4: Canais de acolhimento e rede de apoio psicossocial'
+    ],
+    prerequisites: 'Nenhum.',
+    instructor: 'Dra. Beatriz Fontana (Psicóloga Organizacional)',
+    quiz: [
+      {
+        question: 'O que o jovem deve fazer se perceber que suas tarefas de trabalho estão prejudicando suas notas escolares?',
+        options: [
+          'Abandonar a escola sem avisar ninguém.',
+          'Conversar com o supervisor da empresa e com a coordenação pedagógica para readequar horários e prioridades.',
+          'Faltar ao trabalho todos os dias.',
+          'Não falar com ninguém e sofrer em silêncio.'
+        ],
+        correct: 1
+      }
+    ]
   }
 ];
 
@@ -589,6 +820,7 @@ class SkillHubApp {
   }
 
   init() {
+    this.initTheme();
     this.setupNavigation();
     this.setupEventListeners();
     this.renderCoursesCatalog();
@@ -601,6 +833,45 @@ class SkillHubApp {
 
     window.addEventListener('hashchange', () => this.handleRoute());
     this.handleRoute();
+  }
+
+  // --- CONTROLE DE TEMA CLARO E ESCURO ---
+  initTheme() {
+    const savedTheme = localStorage.getItem('skillhub_theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+    document.documentElement.classList.toggle('light', savedTheme === 'light');
+    if (document.body) {
+      document.body.setAttribute('data-theme', savedTheme);
+    }
+    this.updateThemeButton(savedTheme);
+  }
+
+  toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    document.documentElement.classList.toggle('dark', next === 'dark');
+    document.documentElement.classList.toggle('light', next === 'light');
+    if (document.body) {
+      document.body.setAttribute('data-theme', next);
+    }
+    localStorage.setItem('skillhub_theme', next);
+    this.updateThemeButton(next);
+    this.showToast(`Modo ${next === 'dark' ? 'Escuro' : 'Claro'} ativado!`, 'info');
+  }
+
+  updateThemeButton(theme) {
+    const btn = document.getElementById('themeToggleBtn');
+    if (btn) {
+      if (theme === 'light') {
+        btn.innerHTML = '<i class="fa-solid fa-moon" style="color: #6D28D9;"></i> <span>Tema Escuro</span>';
+        btn.setAttribute('title', 'Mudar para Tema Escuro');
+      } else {
+        btn.innerHTML = '<i class="fa-solid fa-sun" style="color: #F59E0B;"></i> <span>Tema Claro</span>';
+        btn.setAttribute('title', 'Mudar para Tema Claro');
+      }
+    }
   }
 
   // --- NAVEGAÇÃO SPA ---
@@ -629,8 +900,13 @@ class SkillHubApp {
   }
 
   handleRoute() {
-    const hash = window.location.hash || '#home';
-    const targetId = hash.substring(1);
+    let hash = window.location.hash || '#home';
+    let targetId = hash.substring(1);
+    
+    // Suporte tanto a #trilhas quanto #cursos
+    if (targetId === 'trilhas') {
+      targetId = 'cursos';
+    }
     
     const pages = document.querySelectorAll('.page-view');
     let pageFound = false;
@@ -650,7 +926,8 @@ class SkillHubApp {
     }
 
     document.querySelectorAll('.nav-link').forEach(link => {
-      if (link.getAttribute('href') === hash) {
+      const href = link.getAttribute('href');
+      if (href === hash || (targetId === 'cursos' && (href === '#cursos' || href === '#trilhas'))) {
         link.classList.add('active');
       } else {
         link.classList.remove('active');
@@ -702,12 +979,20 @@ class SkillHubApp {
       return matchesTrack && matchesSearch && matchesDuration && matchesLevel;
     });
 
+    // Ordenação: cursos mais fáceis (Iniciante) antes dos cursos complexos (Avançado)
+    const levelWeight = { 'Iniciante': 1, 'Intermediário': 2, 'Avançado': 3 };
+    filtered.sort((a, b) => {
+      const weightA = levelWeight[a.level || 'Iniciante'] || 99;
+      const weightB = levelWeight[b.level || 'Iniciante'] || 99;
+      return weightA - weightB;
+    });
+
     if (filtered.length === 0) {
       container.innerHTML = `
-        <div style="grid-column: 1/-1; text-align: center; padding: 3rem; background: white; border-radius: 12px; border: 1px dashed var(--border-color);">
-          <i class="fa-solid fa-search" style="font-size: 2.5rem; color: var(--text-secondary); margin-bottom: 1rem;"></i>
-          <h4 style="color: var(--deep-cyan); margin-bottom: 0.5rem;">Nenhum curso encontrado com esses filtros</h4>
-          <p style="color: var(--text-secondary); font-size: 0.9rem;">Tente buscar por outro termo ou limpar os filtros de duração/nível.</p>
+        <div style="grid-column: 1/-1; text-align: center; padding: 3rem; background: var(--card-bg); color: var(--text-main); border-radius: 12px; border: 1px dashed var(--card-border);">
+          <i class="fa-solid fa-search" style="font-size: 2.5rem; color: var(--purple-primary); margin-bottom: 1rem;"></i>
+          <h4 style="color: var(--text-main); margin-bottom: 0.5rem;">Nenhum curso encontrado com esses filtros</h4>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Tente buscar por outro termo ou limpar os filtros de duração/nível.</p>
         </div>
       `;
       return;
@@ -813,10 +1098,16 @@ class SkillHubApp {
     this.updateTopProgressBar();
   }
 
-  // --- AVALIAÇÃO FINAL (QUIZ 70% ESTILO FUNDAÇÃO BRADESCO) ---
+  // --- AVALIAÇÃO FINAL (QUIZ 70% ESTILO FUNDAÇÃO BRADESCO - SÓ APÓS 100% DOS MÓDULOS) ---
   openCourseExam(courseId) {
     const course = COURSES_DATA.find(c => c.id === courseId);
     if (!course || !course.quiz) return;
+
+    const enrolled = this.enrolledCourses[courseId];
+    if (!enrolled || enrolled.progress < 100) {
+      this.showToast(`🔒 Avaliação Bloqueada: Conclua todas as aulas do curso "${course.title}" para liberar o teste e emitir sua Badge!`, 'warning');
+      return;
+    }
 
     const modal = document.getElementById('quizModal');
     const title = document.getElementById('quizModalTitle');

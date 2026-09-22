@@ -106,6 +106,7 @@ export interface Course {
   badgeCategory: string;
   badgeIcon: string;
   accentColor: string;
+  level?: 'Iniciante' | 'Intermediário' | 'Avançado';
   learningObjectives: string[];
   modules: CourseModule[];
   caseStudies: CaseStudy[];

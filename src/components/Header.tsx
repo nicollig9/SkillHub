@@ -12,7 +12,9 @@ import {
   Calculator, 
   User, 
   LogOut,
-  Building2
+  Building2,
+  Sun,
+  Moon
 } from 'lucide-react';
 
 export default function Header() {
@@ -25,7 +27,9 @@ export default function Header() {
     toggleSidebar, 
     isAuthenticated, 
     currentUser, 
-    logout 
+    logout,
+    theme,
+    toggleTheme
   } = useApp();
 
   return (
@@ -191,6 +195,26 @@ export default function Header() {
               <span>Entrar / Cadastrar</span>
             </button>
           )}
+
+          {/* Botão de Alternar Tema Claro / Escuro */}
+          <button
+            onClick={toggleTheme}
+            title={theme === 'dark' ? 'Mudar para Tema Claro' : 'Mudar para Tema Escuro'}
+            aria-label="Alternar tema de cores"
+            className="flex items-center gap-1.5 p-2 px-2.5 rounded-xl text-xs font-bold transition-all border shadow-sm bg-[#1C0D33]/90 hover:bg-[#2F1352] text-amber-300 hover:text-amber-200 border-[#5B2594]/60 hover:border-amber-400/50"
+          >
+            {theme === 'dark' ? (
+              <>
+                <Sun className="w-4 h-4 text-amber-400 animate-spin-slow" />
+                <span className="hidden md:inline text-[11px] text-amber-200 font-semibold">Claro</span>
+              </>
+            ) : (
+              <>
+                <Moon className="w-4 h-4 text-purple-300" />
+                <span className="hidden md:inline text-[11px] text-purple-200 font-semibold">Escuro</span>
+              </>
+            )}
+          </button>
 
           {isAuthenticated && (
             <button

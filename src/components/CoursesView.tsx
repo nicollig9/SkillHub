@@ -39,6 +39,12 @@ export default function CoursesView() {
     'Legislação e Cidadania'
   ];
 
+  const levelWeight: Record<string, number> = {
+    'Iniciante': 1,
+    'Intermediário': 2,
+    'Avançado': 3
+  };
+
   const filteredCourses = COURSES.filter((course) => {
     // Filtro por texto
     const matchesSearch = 
@@ -57,13 +63,18 @@ export default function CoursesView() {
       (Array.isArray(course.targetAudienceType) && course.targetAudienceType.includes(selectedAudience));
 
     return matchesSearch && matchesCategory && matchesAudience;
+  }).sort((a, b) => {
+    // Ordenação pedagógica: Cursos mais fáceis (Iniciante) antes dos cursos mais complexos (Avançado)
+    const weightA = levelWeight[a.level || 'Iniciante'] || 99;
+    const weightB = levelWeight[b.level || 'Iniciante'] || 99;
+    return weightA - weightB;
   });
 
   return (
-    <div className="space-y-6 max-w-7xl mx-auto pb-12">
+    <div className="w-full max-w-6xl mx-auto pb-12 space-y-6 flex flex-col items-center">
       
-      {/* Top Banner da Aba de Cursos */}
-      <div className="bg-gradient-to-r from-[#22103B] via-[#351859] to-[#481F78] border border-[#6D34A8]/40 rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
+      {/* Top Banner da Aba de Cursos - 100% Centralizado */}
+      <div className="w-full bg-gradient-to-r from-[#22103B] via-[#351859] to-[#481F78] border border-[#6D34A8]/40 rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative z-10">
           <div className="space-y-2 max-w-2xl">
             <div className="inline-flex items-center gap-2 bg-[#17092A] border border-[#7C3AED]/40 px-3 py-1 rounded-full text-xs font-bold text-[#DDD6FE]">
@@ -85,8 +96,8 @@ export default function CoursesView() {
         </div>
       </div>
 
-      {/* Barra de Filtros & Pesquisa */}
-      <div className="bg-[#170C2B] border border-[#4C1D95]/40 rounded-2xl p-4 shadow-lg space-y-4">
+      {/* Barra de Filtros & Pesquisa - 100% Centralizada */}
+      <div className="w-full bg-[#170C2B] border border-[#4C1D95]/40 rounded-2xl p-4 shadow-lg space-y-4">
         
         {/* Linha 1: Input de Busca + Filtro por Público */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3">
@@ -139,22 +150,33 @@ export default function CoursesView() {
 
       </div>
 
-      {/* Grid de Cursos */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      {/* Grid de Cursos - 100% Centralizado no Meio */}
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 justify-center">
         {filteredCourses.map((course) => (
           <div
             key={course.id}
             className="bg-[#170C2B] border border-[#4C1D95]/40 hover:border-[#8B5CF6]/70 rounded-2xl p-6 shadow-xl flex flex-col justify-between space-y-4 transition-all duration-200 hover:-translate-y-1 group"
           >
             <div className="space-y-3">
-              {/* Header do Card */}
+              {/* Header do Card com Nível de Dificuldade */}
               <div className="flex items-center justify-between gap-2">
-                <span className="text-[10px] font-bold bg-[#24123E] text-[#DDD6FE] border border-[#7C3AED]/30 px-2.5 py-0.5 rounded-md">
-                  {course.category}
-                </span>
-                <span className="text-xs font-semibold text-purple-300 flex items-center gap-1">
+                <div className="flex items-center gap-1.5 flex-wrap">
+                  <span className="text-[10px] font-bold bg-[#24123E] text-[#DDD6FE] border border-[#7C3AED]/30 px-2.5 py-0.5 rounded-md">
+                    {course.category}
+                  </span>
+                  <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md border ${
+                    course.level === 'Iniciante' 
+                      ? 'bg-emerald-950/70 text-emerald-300 border-emerald-500/40' 
+                      : course.level === 'Intermediário'
+                      ? 'bg-amber-950/70 text-amber-300 border-amber-500/40'
+                      : 'bg-purple-950/70 text-purple-300 border-purple-500/40'
+                  }`}>
+                    {course.level || 'Iniciante'}
+                  </span>
+                </div>
+                <span className="text-xs font-semibold text-purple-300 flex items-center gap-1 shrink-0">
                   <Clock className="w-3.5 h-3.5 text-[#F59E0B]" />
-                  <span>{course.hours} Horas</span>
+                  <span>{course.hours}h</span>
                 </span>
               </div>
 

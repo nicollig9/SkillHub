@@ -21,7 +21,9 @@ import {
   GraduationCap,
   Sparkles,
   Info,
-  Layers
+  Layers,
+  Lock,
+  Unlock
 } from 'lucide-react';
 
 export default function CourseViewer() {
@@ -99,8 +101,12 @@ export default function CourseViewer() {
 
   const currentQuizResult = quizResults[course.id];
 
+  const isAllModulesCompleted = course.modules.every((mod) => completedList.includes(mod.id));
+  const completedModulesCount = course.modules.filter((mod) => completedList.includes(mod.id)).length;
+  const progressPercent = Math.round((completedModulesCount / Math.max(course.modules.length, 1)) * 100);
+
   return (
-    <div className="space-y-6 max-w-6xl mx-auto">
+    <div className="space-y-6 max-w-6xl w-full mx-auto">
       {/* Course Banner Header */}
       <div className="bg-gradient-to-r from-[#1C0730] via-[#3C1361] to-[#521C7E] border border-[#6E259F]/60 rounded-3xl p-6 lg:p-8 shadow-2xl relative overflow-hidden">
         <div className="flex flex-col lg:flex-row justify-between gap-6 relative z-10">
@@ -201,12 +207,23 @@ export default function CourseViewer() {
           className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
             activeTab === 'QUIZ'
               ? 'bg-gradient-to-r from-[#521C7E] to-[#6E259F] text-white shadow-md shadow-purple-900/50'
-              : 'text-purple-200 hover:text-white hover:bg-[#250B3E]/60'
+              : isAllModulesCompleted
+              ? 'text-purple-200 hover:text-white hover:bg-[#250B3E]/60'
+              : 'text-purple-300/60 hover:text-purple-200 bg-[#160A25]/40 border border-purple-900/40'
           }`}
         >
-          <HelpCircle className="w-4 h-4" />
-          Avaliação de Fixação (Quiz)
-          {currentQuizResult && (
+          {isAllModulesCompleted ? (
+            <HelpCircle className="w-4 h-4 text-emerald-400" />
+          ) : (
+            <Lock className="w-4 h-4 text-amber-400" />
+          )}
+          <span>Avaliação Final (Quiz)</span>
+          {!isAllModulesCompleted && (
+            <span className="text-[10px] bg-amber-500/20 text-amber-300 border border-amber-500/30 px-1.5 py-0.5 rounded-full font-bold">
+              Bloqueado ({completedModulesCount}/{course.modules.length})
+            </span>
+          )}
+          {isAllModulesCompleted && currentQuizResult && (
             <span className={`text-[10px] px-2 py-0.2 rounded-full font-bold ${currentQuizResult.passed ? 'bg-emerald-500/20 text-emerald-300' : 'bg-rose-500/20 text-rose-300'}`}>
               {currentQuizResult.score}%
             </span>
@@ -665,9 +682,55 @@ export default function CourseViewer() {
         </div>
       )}
 
-      {/* TAB 3: QUIZ EVALUATION */}
+      {/* TAB 3: QUIZ EVALUATION (BLOQUEADO ATÉ CONCLUIR 100% DOS MÓDULOS) */}
       {activeTab === 'QUIZ' && (
-        <div className="bg-[#160A25] border border-[#3C1361] rounded-3xl p-6 lg:p-8 space-y-6 shadow-2xl">
+        !isAllModulesCompleted ? (
+          <div className="bg-[#160A25] border border-amber-500/40 rounded-3xl p-8 lg:p-12 text-center space-y-6 shadow-2xl">
+            <div className="w-20 h-20 mx-auto rounded-3xl bg-gradient-to-br from-amber-500/20 to-purple-900/40 border border-amber-500/40 flex items-center justify-center text-amber-400 shadow-xl">
+              <Lock className="w-10 h-10 animate-pulse" />
+            </div>
+
+            <div className="max-w-xl mx-auto space-y-3">
+              <span className="inline-block bg-amber-500/20 border border-amber-500/40 text-amber-300 text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider">
+                🔒 Avaliação Final Bloqueada
+              </span>
+              <h2 className="text-2xl lg:text-3xl font-black text-white">
+                Conclua todos os módulos para liberar o Quiz
+              </h2>
+              <p className="text-sm text-purple-200 leading-relaxed">
+                De acordo com as diretrizes pedagógicas da Escola Virtual e da Lei da Aprendizagem, a avaliação final e a emissão da Badge <strong>"{course.badgeName}"</strong> só são liberadas após a conclusão de <strong>100% dos módulos</strong> deste curso.
+              </p>
+            </div>
+
+            {/* Card de Progresso */}
+            <div className="max-w-md mx-auto bg-[#10061D] border border-purple-900/50 rounded-2xl p-4 space-y-2 text-left">
+              <div className="flex justify-between items-center text-xs font-bold">
+                <span className="text-purple-300">Seu Progresso nas Aulas:</span>
+                <span className="text-emerald-400 font-extrabold">{completedModulesCount} de {course.modules.length} módulos ({progressPercent}%)</span>
+              </div>
+              <div className="w-full h-3 bg-[#1D0933] rounded-full overflow-hidden border border-purple-950">
+                <div 
+                  className="h-full bg-gradient-to-r from-[#8B5CF6] to-[#10B981] transition-all duration-500" 
+                  style={{ width: `${progressPercent}%` }}
+                />
+              </div>
+              <div className="text-[11px] text-purple-400 text-center pt-1">
+                Faltam {course.modules.length - completedModulesCount} módulo(s) para você desbloquear a avaliação!
+              </div>
+            </div>
+
+            <div>
+              <button
+                onClick={() => setActiveTab('MODULES')}
+                className="px-6 py-3 rounded-xl bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] hover:from-[#7C3AED] hover:to-[#9D4EDD] text-white text-xs font-black shadow-lg shadow-purple-950/60 inline-flex items-center gap-2 transition-all transform hover:scale-105"
+              >
+                <BookOpen className="w-4 h-4" />
+                <span>Voltar para as Aulas e Concluir Módulos</span>
+              </button>
+            </div>
+          </div>
+        ) : (
+          <div className="bg-[#160A25] border border-[#3C1361] rounded-3xl p-6 lg:p-8 space-y-6 shadow-2xl">
           <div className="border-b border-[#3C1361]/60 pb-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div>
               <div className="flex items-center gap-2 text-purple-300 font-bold text-xs uppercase mb-1">
@@ -791,6 +854,7 @@ export default function CourseViewer() {
             </div>
           </div>
         </div>
+        )
       )}
     </div>
   );

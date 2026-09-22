@@ -15,7 +15,7 @@ export default function CourseCatalog() {
   const { openCourse, completedModules, student } = useApp();
 
   return (
-    <div className="space-y-6 max-w-6xl mx-auto">
+    <div className="space-y-6 max-w-6xl w-full mx-auto">
       {/* Header Banner with Logo Imperial Purple Theme */}
       <div className="bg-gradient-to-r from-[#1C0730] via-[#3C1361] to-[#521C7E] border border-[#6E259F]/50 rounded-3xl p-6 lg:p-8 shadow-2xl relative overflow-hidden">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6">
@@ -105,45 +105,61 @@ export default function CourseCatalog() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {COURSES.filter((c) => c.id !== 'curso-jovem-aprendiz-avancado').map((course) => {
-            return (
-              <div
-                key={course.id}
-                className="bg-[#160A25] border border-[#3C1361]/80 hover:border-[#6E259F] rounded-2xl p-5 shadow-lg flex flex-col justify-between transition-all"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="text-[10px] font-bold bg-[#250B3E] text-purple-200 border border-[#521C7E]/40 px-2.5 py-0.5 rounded-md">
-                      {course.trackName.split(':')[0]}
-                    </span>
-                    <span className="text-[11px] text-purple-300 flex items-center gap-1">
-                      <Clock className="w-3.5 h-3.5 text-[#D8B4FE]" /> {course.hours}h
-                    </span>
+          {COURSES.filter((c) => c.id !== 'curso-jovem-aprendiz-avancado')
+            .sort((a, b) => {
+              const weights: Record<string, number> = { 'Iniciante': 1, 'Intermediário': 2, 'Avançado': 3 };
+              return (weights[a.level || 'Iniciante'] || 99) - (weights[b.level || 'Iniciante'] || 99);
+            })
+            .map((course) => {
+              return (
+                <div
+                  key={course.id}
+                  className="bg-[#160A25] border border-[#3C1361]/80 hover:border-[#6E259F] rounded-2xl p-5 shadow-lg flex flex-col justify-between transition-all"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center gap-1.5 flex-wrap">
+                        <span className="text-[10px] font-bold bg-[#250B3E] text-purple-200 border border-[#521C7E]/40 px-2 py-0.5 rounded-md">
+                          {course.trackName.split(':')[0]}
+                        </span>
+                        <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md border ${
+                          course.level === 'Iniciante' 
+                            ? 'bg-emerald-950/70 text-emerald-300 border-emerald-500/40' 
+                            : course.level === 'Intermediário'
+                            ? 'bg-amber-950/70 text-amber-300 border-amber-500/40'
+                            : 'bg-purple-950/70 text-purple-300 border-purple-500/40'
+                        }`}>
+                          {course.level || 'Iniciante'}
+                        </span>
+                      </div>
+                      <span className="text-[11px] text-purple-300 flex items-center gap-1 shrink-0">
+                        <Clock className="w-3.5 h-3.5 text-[#D8B4FE]" /> {course.hours}h
+                      </span>
+                    </div>
+
+                    <h3 className="text-sm font-extrabold text-white mb-2 leading-tight">
+                      {course.title}
+                    </h3>
+                    <p className="text-xs text-purple-200 line-clamp-3 mb-4">
+                      {course.subtitle}
+                    </p>
                   </div>
 
-                  <h3 className="text-sm font-extrabold text-white mb-2 leading-tight">
-                    {course.title}
-                  </h3>
-                  <p className="text-xs text-purple-200 line-clamp-3 mb-4">
-                    {course.subtitle}
-                  </p>
-                </div>
+                  <div className="pt-3 border-t border-[#3C1361]/40 flex items-center justify-between">
+                    <span className="text-[11px] text-purple-300 font-semibold flex items-center gap-1">
+                      <Award className="w-3.5 h-3.5 text-[#D8B4FE]" /> Badge: {course.badgeName}
+                    </span>
 
-                <div className="pt-3 border-t border-[#3C1361]/40 flex items-center justify-between">
-                  <span className="text-[11px] text-purple-300 font-semibold flex items-center gap-1">
-                    <Award className="w-3.5 h-3.5 text-[#D8B4FE]" /> Badge: {course.badgeName}
-                  </span>
-
-                  <button
-                    onClick={() => openCourse(course.id)}
-                    className="px-4 py-1.5 rounded-lg bg-[#250B3E] hover:bg-[#521C7E] text-white border border-[#521C7E]/50 text-xs font-bold transition-all"
-                  >
-                    Estudar
-                  </button>
+                    <button
+                      onClick={() => openCourse(course.id)}
+                      className="px-4 py-1.5 rounded-lg bg-[#250B3E] hover:bg-[#521C7E] text-white border border-[#521C7E]/50 text-xs font-bold transition-all"
+                    >
+                      Estudar
+                    </button>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
         </div>
       </div>
     </div>
