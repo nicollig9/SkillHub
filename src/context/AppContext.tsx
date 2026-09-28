@@ -127,6 +127,7 @@ interface AppContextType {
 
 const STORAGE_PREFIX = 'skillhub_user_';
 const ACCOUNTS_INDEX_KEY = 'skillhub_registered_accounts';
+const SESSION_KEY = 'skillhub_session';
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
@@ -170,6 +171,51 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       // ignore
     }
   }, []);
+
+  useEffect(() => {
+    try {
+      const rawSession = localStorage.getItem(SESSION_KEY);
+      if (!rawSession) return;
+
+      const session = JSON.parse(rawSession) as UserAccount;
+      if (!session?.email || !session.role) {
+        localStorage.removeItem(SESSION_KEY);
+        return;
+      }
+
+      setCurrentUser(session);
+      setRole(session.role);
+      setIsAuthenticated(true);
+
+      if (session.role === 'ALUNO' && session.email !== 'demo@skillhub.com.br') {
+        const rawUserData = localStorage.getItem(`${STORAGE_PREFIX}${session.email.toLowerCase().trim()}`);
+        const savedData = rawUserData ? JSON.parse(rawUserData) as UserSavedData : null;
+        if (savedData?.student) {
+          setCandidateProfileType(savedData.candidateProfileType || session.profileType);
+          setStudent(savedData.student);
+          setCompletedModules(savedData.completedModules || {});
+          setQuizResults(savedData.quizResults || {});
+          setBadges(savedData.badges || INITIAL_BADGES);
+          setApplications(savedData.applications || []);
+          setCurrentView(savedData.lastView && savedData.lastView !== 'LOGIN' ? savedData.lastView : 'DASHBOARD');
+        }
+      } else if (session.role === 'RECRUTADOR') {
+        setCurrentView('RECRUTADOR_RH');
+      } else {
+        setCurrentView('DASHBOARD');
+      }
+    } catch {
+      localStorage.removeItem(SESSION_KEY);
+    }
+  }, []);
+
+  const persistSession = (user: UserAccount) => {
+    try {
+      localStorage.setItem(SESSION_KEY, JSON.stringify(user));
+    } catch {
+      // The in-memory session remains usable if storage is unavailable.
+    }
+  };
 
   const toggleTheme = () => {
     setTheme((prev) => {
@@ -613,6 +659,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         idade: 17,
         menorDeIdade: true
       };
+      persistSession(demoAccount);
       setCurrentUser(demoAccount);
       setCompletedModules({});
       setQuizResults({});
@@ -648,6 +695,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         idade: 35,
         menorDeIdade: false
       };
+      persistSession(empAccount);
       setCurrentUser(empAccount);
       setCurrentView('RECRUTADOR_RH');
       showToast('Bem-vindo(a) ao Portal RH', `Sessão iniciada como ${userName}`, 'success');
@@ -687,6 +735,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         idade: savedData.student.idade || 17,
         menorDeIdade: (savedData.student.idade || 17) < 18
       };
+      persistSession(restoredUser);
       setCurrentUser(restoredUser);
       setStudent(savedData.student);
       setCompletedModules(savedData.completedModules || {});
@@ -735,6 +784,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         idade: 17,
         menorDeIdade: true
       };
+      persistSession(newAccount);
 
       const newStudent: Student = {
         ...INITIAL_STUDENT,
@@ -825,6 +875,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       responsavelLegal: data.responsavelLegal,
       matriculaEscolar: data.matriculaEscolar
     };
+    persistSession(account);
 
     const newStudent: Student = {
       ...INITIAL_STUDENT,
@@ -937,6 +988,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       }
     };
 
+    persistSession(account);
     setCurrentUser(account);
 
     const log: GuardrailLog = {
@@ -954,6 +1006,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   };
 
   const logout = () => {
+    localStorage.removeItem(SESSION_KEY);
     setIsAuthenticated(false);
     setCurrentUser(null);
     setCurrentView('LOGIN');

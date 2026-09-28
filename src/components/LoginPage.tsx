@@ -41,6 +41,16 @@ export default function LoginPage() {
     setSavedAccounts(getKnownAccounts());
   }, [authMode]);
 
+  React.useEffect(() => {
+    const selectRegistration = () => setAuthMode('CADASTRO');
+    if (new URLSearchParams(window.location.search).get('cadastro') === '1') {
+      setAuthMode('CADASTRO');
+    }
+
+    window.addEventListener('skillhub:register', selectRegistration);
+    return () => window.removeEventListener('skillhub:register', selectRegistration);
+  }, []);
+
   // Form Candidato (inicia limpo)
   const [candEmail, setCandEmail] = useState('');
   const [candSenha, setCandSenha] = useState('');

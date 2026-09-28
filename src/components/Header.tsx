@@ -1,6 +1,7 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useApp } from '@/context/AppContext';
 import { 
   Menu, 
@@ -18,6 +19,8 @@ import {
 } from 'lucide-react';
 
 export default function Header() {
+  const router = useRouter();
+  const [hasStoredSession, setHasStoredSession] = useState(false);
   const { 
     role, 
     student, 
@@ -31,6 +34,20 @@ export default function Header() {
     theme,
     toggleTheme
   } = useApp();
+
+  useEffect(() => {
+    const syncStoredSession = () => setHasStoredSession(Boolean(localStorage.getItem('skillhub_session')));
+    syncStoredSession();
+    window.addEventListener('storage', syncStoredSession);
+    return () => window.removeEventListener('storage', syncStoredSession);
+  }, [isAuthenticated]);
+
+  const handleLogout = () => {
+    logout();
+    router.push('/login');
+  };
+
+  const hasSession = isAuthenticated && hasStoredSession;
 
   return (
     <header className="sticky top-0 z-40 bg-gradient-to-r from-[#200F38] via-[#331656] to-[#481E78] border-b border-[#6D34A8]/40 px-4 lg:px-8 py-3 shadow-2xl backdrop-blur-md">
@@ -155,7 +172,7 @@ export default function Header() {
         {/* Lado Direito: Perfil do Usuário / Login & Reset */}
         <div className="flex items-center gap-3">
           
-          {isAuthenticated ? (
+          {hasSession ? (
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setCurrentView(role === 'RECRUTADOR' ? 'RECRUTADOR_RH' : 'DASHBOARD')}
@@ -179,21 +196,33 @@ export default function Header() {
               </button>
 
               <button
-                onClick={logout}
+                onClick={handleLogout}
                 title="Encerrar Sessão"
-                className="p-2 text-purple-300 hover:text-rose-400 hover:bg-rose-500/10 rounded-xl transition-all border border-[#5B2594]/40"
+                className="flex items-center gap-1.5 px-3 py-2 text-purple-100 hover:text-white hover:bg-rose-500/15 rounded-xl transition-all border border-[#5B2594]/40 text-xs font-bold"
               >
                 <LogOut className="w-4 h-4" />
+                <span>Sair</span>
               </button>
             </div>
           ) : (
-            <button
-              onClick={() => setCurrentView('LOGIN')}
-              className="flex items-center gap-1.5 bg-gradient-to-r from-[#F59E0B] to-[#D97706] hover:from-[#FBBF24] hover:to-[#F59E0B] text-[#1A0B2E] font-extrabold px-4 py-2 rounded-xl text-xs shadow-md transition-all transform hover:scale-105"
-            >
-              <User className="w-3.5 h-3.5 text-[#1A0B2E]" />
-              <span>Entrar / Cadastrar</span>
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => router.push('/login')}
+                className="flex items-center gap-1.5 border border-[#8B5CF6]/50 hover:bg-[#351859] text-white font-bold px-3 py-2 rounded-xl text-xs transition-colors"
+              >
+                <User className="w-3.5 h-3.5" />
+                <span>Login</span>
+              </button>
+              <button
+                onClick={() => {
+                  router.push('/login?cadastro=1');
+                  window.dispatchEvent(new Event('skillhub:register'));
+                }}
+                className="bg-gradient-to-r from-[#F59E0B] to-[#D97706] hover:from-[#FBBF24] hover:to-[#F59E0B] text-[#1A0B2E] font-extrabold px-3 py-2 rounded-xl text-xs shadow-md transition-colors"
+              >
+                Cadastrar
+              </button>
+            </div>
           )}
 
           {/* Botão de Alternar Tema Claro / Escuro */}
