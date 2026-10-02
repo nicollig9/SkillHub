@@ -38,6 +38,12 @@
   --purple-brand-accent: #8B5CF6;
   --purple-brand-light: #6D28D9;
   --purple-brand-soft: #F3E8FF;
+
+  --grad-header: linear-gradient(135deg, #3B0764 0%, #4C1D95 50%, #6D28D9 100%);
+  --grad-hero: linear-gradient(135deg, #FAF5FF 0%, #F3E8FF 50%, #EDE9FE 100%);
+  --grad-card: linear-gradient(145deg, #FFFFFF 0%, #F8FAFC 100%);
+  --grad-button: linear-gradient(135deg, #6D28D9 0%, #8B5CF6 100%);
+  --grad-button-hover: linear-gradient(135deg, #7C3AED 0%, #9D4EDD 100%);
 }
 
 body {
@@ -90,54 +96,74 @@ body {
 }
 
 /* ==========================================================================
-   REGRAS ESPECÍFICAS DE CONTRASTE E LEGIBILIDADE NO MODO CLARO
+   REGRAS ESPECÍFICAS DE CONTRASTE E LEGIBILIDADE NO MODO CLARO (100% COBERTURA)
    ========================================================================== */
+
+/* 1. Superfície Base e Fundo da Página */
 [data-theme="light"] body,
-[data-theme="light"] main {
+[data-theme="light"] main,
+[data-theme="light"] .min-h-screen {
   background-color: #F8FAFC !important;
   color: #0F172A !important;
 }
 
-/* 1. Containers escuros transformados em superfícies brancas / suaves */
-[data-theme="light"] .bg-\[\#0C0717\],
-[data-theme="light"] .bg-\[\#090D16\],
-[data-theme="light"] .bg-\[\#0D0618\],
-[data-theme="light"] .bg-\[\#0D1117\] {
-  background-color: #F8FAFC !important;
-}
-
-[data-theme="light"] .bg-\[\#170C2B\],
-[data-theme="light"] .bg-\[\#160A25\],
-[data-theme="light"] .bg-\[\#1C0730\],
-[data-theme="light"] .bg-\[\#150524\],
-[data-theme="light"] .bg-\[\#150524\]\/90,
-[data-theme="light"] .bg-\[\#150524\]\/80,
-[data-theme="light"] .bg-\[\#10061D\],
-[data-theme="light"] .bg-\[\#140824\],
-[data-theme="light"] .bg-\[\#140824\]\/90,
-[data-theme="light"] .bg-\[\#17092A\],
-[data-theme="light"] .bg-\[\#1C0D33\],
-[data-theme="light"] .bg-\[\#1C0D33\]\/90,
-[data-theme="light"] .bg-\[\#110520\],
-[data-theme="light"] .bg-\[\#250B3E\],
-[data-theme="light"] .bg-\[\#24123E\],
-[data-theme="light"] .bg-\[\#15092A\],
-[data-theme="light"] .bg-\[\#120722\],
-[data-theme="light"] .bg-\[\#18092E\],
-[data-theme="light"] .bg-\[\#1A0B2E\],
-[data-theme="light"] .bg-\[\#1E0F36\],
-[data-theme="light"] .bg-\[\#2A0E47\],
-[data-theme="light"] .bg-\[\#2E1254\],
-[data-theme="light"] .bg-\[\#120B20\],
-[data-theme="light"] .bg-\[\#160B29\],
-[data-theme="light"] [class*="bg-gradient-to-b from-[#1C0D33]"] {
+/* 2. Containers escuros transformados em superfícies brancas / cartões luminosos */
+[data-theme="light"] [class*="bg-[#0C0717]"],
+[data-theme="light"] [class*="bg-[#090D16]"],
+[data-theme="light"] [class*="bg-[#0D0618]"],
+[data-theme="light"] [class*="bg-[#0D1117]"],
+[data-theme="light"] [class*="bg-[#0F0D1E]"],
+[data-theme="light"] [class*="bg-[#10061D]"]:not(button):not(header *),
+[data-theme="light"] [class*="bg-[#110520]"],
+[data-theme="light"] [class*="bg-[#120722]"],
+[data-theme="light"] [class*="bg-[#130722]"],
+[data-theme="light"] [class*="bg-[#140726]"]:not(header *),
+[data-theme="light"] [class*="bg-[#140824]"]:not(button):not(header *),
+[data-theme="light"] [class*="bg-[#140A23]"],
+[data-theme="light"] [class*="bg-[#150524]"]:not(span),
+[data-theme="light"] [class*="bg-[#150926]"]:not(button):not(span),
+[data-theme="light"] [class*="bg-[#15092A]"],
+[data-theme="light"] [class*="bg-[#150B25]"],
+[data-theme="light"] [class*="bg-[#160A25]"],
+[data-theme="light"] [class*="bg-[#160B29]"],
+[data-theme="light"] [class*="bg-[#17092A]"]:not(button):not(span):not(header *),
+[data-theme="light"] [class*="bg-[#17092B]"],
+[data-theme="light"] [class*="bg-[#170C2B]"],
+[data-theme="light"] [class*="bg-[#18092E]"]:not(button),
+[data-theme="light"] [class*="bg-[#180A2D]"],
+[data-theme="light"] [class*="bg-[#180C2C]"],
+[data-theme="light"] [class*="bg-[#190D2E]"],
+[data-theme="light"] [class*="bg-[#1A0B2E]"]:not(button),
+[data-theme="light"] [class*="bg-[#1B0D30]"],
+[data-theme="light"] [class*="bg-[#1C0730]"],
+[data-theme="light"] [class*="bg-[#1C0D33]"]:not(button):not(header *),
+[data-theme="light"] [class*="bg-[#1C0E33]"],
+[data-theme="light"] [class*="bg-[#1C0F32]"],
+[data-theme="light"] [class*="bg-[#1D0933]"],
+[data-theme="light"] [class*="bg-[#1E0F36]"],
+[data-theme="light"] [class*="bg-[#1E0F38]"],
+[data-theme="light"] [class*="bg-[#1F0E34]"],
+[data-theme="light"] [class*="bg-[#1F0E38]"],
+[data-theme="light"] [class*="bg-[#220E3A]"],
+[data-theme="light"] [class*="bg-[#24123E]"]:not(button):not(span),
+[data-theme="light"] [class*="bg-[#250B3E]"]:not(button):not(span),
+[data-theme="light"] [class*="bg-[#25123E]"],
+[data-theme="light"] [class*="bg-[#2A0E47]"],
+[data-theme="light"] [class*="bg-[#2A114D]"]:not(button):not(.fixed span),
+[data-theme="light"] [class*="bg-[#2D164E]"]:not(button):not(span),
+[data-theme="light"] [class*="bg-[#2E1254]"]:not(button):not(span),
+[data-theme="light"] [class*="bg-[#3C1A6E]"],
+[data-theme="light"] [class*="bg-slate-950"]:not(button):not(span):not(tr),
+[data-theme="light"] [class*="bg-slate-900"]:not(button):not(span):not(tr):not(header *),
+[data-theme="light"] [class*="bg-gradient-to-b from-[#1C0D33]"],
+[data-theme="light"] [class*="bg-gradient-to-b from-[#140A23]"] {
   background: #FFFFFF !important;
   background-color: #FFFFFF !important;
   border-color: #E2E8F0 !important;
-  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.06) !important;
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.05) !important;
 }
 
-/* 2. Banners ganham degradê suave e luminoso no modo claro */
+/* 3. Banners e destaques principais ganham degradê suave e luminoso */
 [data-theme="light"] [class*="bg-gradient-to-r from-[#22103B]"],
 [data-theme="light"] [class*="bg-gradient-to-r from-[#200E3D]"],
 [data-theme="light"] [class*="bg-gradient-to-r from-[#1C0730]"],
@@ -172,51 +198,105 @@ body {
   color: #6D28D9 !important;
 }
 
-/* 3. CORREÇÃO DE TEXTOS BRANCOS DENTRO DE CARDS NO TEMA CLARO */
-[data-theme="light"] main h1.text-white,
-[data-theme="light"] main h2.text-white,
-[data-theme="light"] main h3.text-white,
-[data-theme="light"] main h4.text-white,
-[data-theme="light"] main h5.text-white,
-[data-theme="light"] main p.text-white,
-[data-theme="light"] main div.text-white:not(button *):not(.btn *):not([class*="from-purple-"] *):not([class*="bg-purple-"] *),
-[data-theme="light"] main span.text-white:not(button *):not(.btn *):not([class*="from-purple-"] *):not([class*="bg-purple-"] *),
-[data-theme="light"] main strong.text-white:not(button *):not(.btn *):not([class*="from-purple-"] *):not([class*="bg-purple-"] *) {
-  color: #1E1B4B !important;
+/* 4. Textos no Modo Claro: Alto Contraste e Legibilidade Total */
+[data-theme="light"] h1.text-white:not(header *):not(.btn *):not(button *):not(.fixed [class*="from-[#2A114D]"] *),
+[data-theme="light"] h2.text-white:not(header *):not(.btn *):not(button *):not(.fixed [class*="from-[#2A114D]"] *),
+[data-theme="light"] h3.text-white:not(header *):not(.btn *):not(button *):not(.fixed [class*="from-[#2A114D]"] *),
+[data-theme="light"] h4.text-white:not(header *):not(.btn *):not(button *):not(.fixed [class*="from-[#2A114D]"] *),
+[data-theme="light"] h5.text-white:not(header *):not(.btn *):not(button *):not(.fixed [class*="from-[#2A114D]"] *),
+[data-theme="light"] p.text-white:not(header *):not(.btn *):not(button *):not(.fixed [class*="from-[#2A114D]"] *),
+[data-theme="light"] div.text-white:not(header *):not(button *):not(.btn *):not([class*="from-purple-"] *):not([class*="bg-purple-"] *):not([class*="from-[#6D28D9]"] *):not([class*="bg-[#7C3AED]"] *):not([class*="bg-[#6D28D9]"] *):not(.fixed [class*="from-[#2A114D]"] *),
+[data-theme="light"] span.text-white:not(header *):not(button *):not(.btn *):not([class*="from-purple-"] *):not([class*="bg-purple-"] *):not([class*="from-[#6D28D9]"] *):not([class*="bg-[#7C3AED]"] *):not([class*="bg-[#6D28D9]"] *):not(.fixed [class*="from-[#2A114D]"] *),
+[data-theme="light"] strong.text-white:not(header *):not(button *):not(.btn *):not([class*="from-purple-"] *):not([class*="bg-purple-"] *):not([class*="from-[#6D28D9]"] *):not([class*="bg-[#7C3AED]"] *):not([class*="bg-[#6D28D9]"] *):not(.fixed [class*="from-[#2A114D]"] *) {
+  color: #0F172A !important;
 }
 
-/* Títulos de cursos e vagas em hover */
+[data-theme="light"] .text-slate-100:not(header *):not(button *):not(.btn *),
+[data-theme="light"] .text-slate-200:not(header *):not(button *):not(.btn *) {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .text-slate-300:not(header *):not(button *):not(.btn *) {
+  color: #334155 !important;
+}
+
+[data-theme="light"] .text-slate-400:not(header *):not(button *):not(.btn *) {
+  color: #64748B !important;
+}
+
+[data-theme="light"] .text-purple-100:not(header *):not(button *):not(.btn *),
+[data-theme="light"] .text-purple-200:not(header *):not(button *):not(.btn *),
+[data-theme="light"] .text-purple-300:not(header *):not(button *):not(.btn *),
+[data-theme="light"] .text-purple-400:not(header *):not(button *):not(.btn *),
+[data-theme="light"] [class*="text-purple-200/"]:not(header *):not(button *):not(.btn *),
+[data-theme="light"] [class*="text-purple-300/"]:not(header *):not(button *):not(.btn *) {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .text-\[\#DDD6FE\],
+[data-theme="light"] .text-\[\#D8B4FE\] {
+  color: #6D28D9 !important;
+}
+
+[data-theme="light"] .text-yellow-200,
+[data-theme="light"] .text-yellow-300,
+[data-theme="light"] .text-amber-200,
+[data-theme="light"] .text-amber-300 {
+  color: #B45309 !important;
+}
+
 [data-theme="light"] .group:hover .group-hover\:text-\[\#FDE68A\] {
   color: #6D28D9 !important;
 }
 
-/* Métrica em destaque (ex: números 0, 1, 2, 10h) */
 [data-theme="light"] .text-3xl.font-black.text-white {
   color: #3B0764 !important;
 }
 
-/* 4. Textos secundários, subtítulos e metadados que eram roxos bem claros */
-[data-theme="light"] main .text-purple-100,
-[data-theme="light"] main .text-purple-200,
-[data-theme="light"] main .text-purple-300,
-[data-theme="light"] main .text-purple-200\/80,
-[data-theme="light"] main .text-purple-300\/80 {
-  color: #475569 !important;
-}
-
-/* 5. Pílulas e tags secundárias dentro de cards */
-[data-theme="light"] .bg-\[\#24123E\],
-[data-theme="light"] .bg-\[\#2E1254\],
-[data-theme="light"] .bg-\[\#17092A\] {
+/* 5. Pílulas, Tags e Badges Secundárias */
+[data-theme="light"] span[class*="bg-[#24123E]"],
+[data-theme="light"] span[class*="bg-[#2E1254]"],
+[data-theme="light"] span[class*="bg-[#17092A]"],
+[data-theme="light"] span[class*="bg-[#150926]"],
+[data-theme="light"] span[class*="bg-[#150524]"],
+[data-theme="light"] span[class*="bg-[#250B3E]"],
+[data-theme="light"] span[class*="bg-[#521C7E]"],
+[data-theme="light"] div[class*="bg-[#17092A]"]:not(header *) {
   background-color: #F3E8FF !important;
   color: #6D28D9 !important;
   border-color: #DDD6FE !important;
 }
 
-/* 6. Inputs, selects e textareas claros */
-[data-theme="light"] input,
+[data-theme="light"] span[class*="bg-slate-800"],
+[data-theme="light"] span[class*="bg-slate-900"],
+[data-theme="light"] span[class*="bg-slate-950"] {
+  background-color: #F1F5F9 !important;
+  color: #475569 !important;
+  border-color: #E2E8F0 !important;
+}
+
+[data-theme="light"] [class*="bg-amber-400/20"],
+[data-theme="light"] [class*="bg-yellow-400/20"],
+[data-theme="light"] [class*="bg-yellow-500/20"] {
+  background-color: #FEF3C7 !important;
+  color: #92400E !important;
+  border-color: #FCD34D !important;
+}
+
+[data-theme="light"] [class*="bg-emerald-500/20"],
+[data-theme="light"] [class*="bg-emerald-950/40"] {
+  background-color: #D1FAE5 !important;
+  color: #065F46 !important;
+  border-color: #6EE7B7 !important;
+}
+
+/* 6. Inputs, Selects, Textareas e Sliders */
+[data-theme="light"] input:not([type="checkbox"]):not([type="radio"]),
 [data-theme="light"] select,
-[data-theme="light"] textarea {
+[data-theme="light"] textarea,
+[data-theme="light"] [class*="bg-slate-950"] input,
+[data-theme="light"] [class*="bg-slate-950"] select,
+[data-theme="light"] [class*="bg-slate-950"] textarea {
   background-color: #FFFFFF !important;
   color: #0F172A !important;
   border: 1.5px solid #CBD5E1 !important;
@@ -229,28 +309,65 @@ body {
   box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15) !important;
 }
 
-/* 7. Botões inativos ou de filtro em tema claro */
-[data-theme="light"] button.bg-\[\#18092E\],
-[data-theme="light"] button.bg-\[\#10061D\],
-[data-theme="light"] button.bg-\[\#24123E\] {
+[data-theme="light"] input::placeholder,
+[data-theme="light"] textarea::placeholder {
+  color: #94A3B8 !important;
+}
+
+[data-theme="light"] input[type="range"] {
+  background-color: #E2E8F0 !important;
+}
+
+/* 7. Botões Inativos, Filtros e Ações Secundárias */
+[data-theme="light"] button[class*="bg-[#18092E]"],
+[data-theme="light"] button[class*="bg-[#10061D]"],
+[data-theme="light"] button[class*="bg-[#24123E]"],
+[data-theme="light"] button[class*="bg-[#17092A]"]:not(header *),
+[data-theme="light"] button[class*="bg-[#150926]"],
+[data-theme="light"] button[class*="bg-slate-900"]:not(header *),
+[data-theme="light"] button[class*="bg-slate-800"]:not(header *) {
   background-color: #F1F5F9 !important;
   border-color: #CBD5E1 !important;
-  color: #475569 !important;
+  color: #334155 !important;
 }
 
-[data-theme="light"] button.bg-\[\#18092E\]:hover,
-[data-theme="light"] button.bg-\[\#10061D\]:hover,
-[data-theme="light"] button.bg-\[\#24123E\]:hover {
+[data-theme="light"] button[class*="bg-[#18092E]"]:hover,
+[data-theme="light"] button[class*="bg-[#10061D]"]:hover,
+[data-theme="light"] button[class*="bg-[#24123E]"]:hover,
+[data-theme="light"] button[class*="bg-[#17092A]"]:not(header *):hover,
+[data-theme="light"] button[class*="bg-[#150926]"]:hover,
+[data-theme="light"] button[class*="bg-slate-900"]:not(header *):hover,
+[data-theme="light"] button[class*="bg-slate-800"]:not(header *):hover {
   background-color: #E2E8F0 !important;
-  color: #1E1B4B !important;
+  color: #0F172A !important;
+  border-color: #94A3B8 !important;
 }
 
-/* 8. BOTÕES PRINCIPAIS E COLORIDOS PRESERVAM O TEXTO BRANCO PURO */
+/* Botões de Situação do Usuário (LoginPage) */
+[data-theme="light"] [class*="from-[#381665]"][class*="to-[#250F44]"] {
+  background: linear-gradient(135deg, #FAF5FF 0%, #F3E8FF 100%) !important;
+  border-color: #7C3AED !important;
+  box-shadow: 0 4px 15px rgba(124, 58, 237, 0.15) !important;
+}
+
+[data-theme="light"] [class*="from-[#381665]"][class*="to-[#250F44]"] div {
+  color: #3B0764 !important;
+}
+
+/* Abas ativas em botões chaveadores */
+[data-theme="light"] button[class*="bg-[#311554]"] {
+  background-color: #7C3AED !important;
+  color: #FFFFFF !important;
+  border-color: #6D28D9 !important;
+}
+
+/* 8. Botões Principais e Coloridos Preservam o Texto Branco Puro */
 [data-theme="light"] button[class*="from-[#6D28D9]"],
-[data-theme="light"] button[class*="from-purple-600"],
+[data-theme="light"] button[class*="from-purple-"],
 [data-theme="light"] button[class*="from-[#521C7E]"],
-[data-theme="light"] button[class*="bg-purple-600"],
+[data-theme="light"] button[class*="bg-purple-"],
 [data-theme="light"] button[class*="bg-[#7C3AED]"],
+[data-theme="light"] button[class*="bg-[#6D28D9]"],
 [data-theme="light"] button.btn-purple-brand,
 [data-theme="light"] .btn-primary,
 [data-theme="light"] .btn-coral {
@@ -258,23 +375,120 @@ body {
 }
 
 [data-theme="light"] button[class*="from-[#6D28D9]"] *,
-[data-theme="light"] button[class*="from-purple-600"] *,
+[data-theme="light"] button[class*="from-purple-"] *,
 [data-theme="light"] button[class*="from-[#521C7E]"] *,
-[data-theme="light"] button[class*="bg-purple-600"] *,
+[data-theme="light"] button[class*="bg-purple-"] *,
 [data-theme="light"] button[class*="bg-[#7C3AED]"] *,
+[data-theme="light"] button[class*="bg-[#6D28D9]"] *,
 [data-theme="light"] button.btn-purple-brand *,
 [data-theme="light"] .btn-primary *,
 [data-theme="light"] .btn-coral * {
   color: #FFFFFF !important;
 }
 
-/* Botões com gradiente âmbar */
+/* Botões com gradiente âmbar/dourado */
 [data-theme="light"] button[class*="from-amber-400"],
-[data-theme="light"] button[class*="from-[#F59E0B]"] {
+[data-theme="light"] button[class*="from-[#F59E0B]"],
+[data-theme="light"] button[class*="from-[#D97706]"] {
   color: #0F172A !important;
 }
 
-/* 9. CABEÇALHO GLOBAL: Mantém o degradê imperial e a nitidez */
+/* 9. Modais e Caixas de Diálogo (100% Cobertos) */
+[data-theme="light"] .fixed.inset-0[class*="bg-black/"] {
+  background-color: rgba(15, 23, 42, 0.65) !important;
+}
+
+[data-theme="light"] .fixed [class*="bg-[#150B25]"],
+[data-theme="light"] .fixed [class*="bg-slate-900"] {
+  background-color: #FFFFFF !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.25) !important;
+}
+
+[data-theme="light"] .fixed [class*="from-[#2A114D]"] {
+  background: linear-gradient(135deg, #4C1D95 0%, #6D28D9 50%, #7C3AED 100%) !important;
+  border-color: #6D28D9 !important;
+}
+
+[data-theme="light"] .fixed [class*="from-[#2A114D]"] h2,
+[data-theme="light"] .fixed [class*="from-[#2A114D]"] .text-white {
+  color: #FFFFFF !important;
+}
+
+[data-theme="light"] .fixed [class*="from-[#2A114D]"] .text-purple-200 {
+  color: #EDE9FE !important;
+}
+
+[data-theme="light"] .fixed [class*="bg-[#10061D]"] {
+  background-color: #F8FAFC !important;
+  border-color: #E2E8F0 !important;
+}
+
+[data-theme="light"] .fixed span[class*="bg-[#2A114D]"] {
+  background-color: #EDE9FE !important;
+  border-color: #C084FC !important;
+  color: #6D28D9 !important;
+}
+
+[data-theme="light"] .fixed [class*="bg-[#1C0E33]"],
+[data-theme="light"] .fixed [class*="bg-[#120722]"],
+[data-theme="light"] .fixed [class*="bg-[#1A0B2E]"],
+[data-theme="light"] .fixed [class*="bg-slate-950"] {
+  background-color: #F8FAFC !important;
+  border-color: #E2E8F0 !important;
+}
+
+/* 10. Toast Container (Notificações Flutuantes) */
+[data-theme="light"] .fixed.bottom-4 [class*="bg-slate-900"] {
+  background-color: #FFFFFF !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+  border-color: #E2E8F0 !important;
+}
+
+[data-theme="light"] .fixed.bottom-4 [class*="bg-slate-900"] .text-white {
+  color: #0F172A !important;
+}
+
+[data-theme="light"] .fixed.bottom-4 [class*="bg-slate-900"] .text-slate-300,
+[data-theme="light"] .fixed.bottom-4 [class*="bg-slate-900"] .text-slate-400 {
+  color: #475569 !important;
+}
+
+/* 11. Tabelas, Código e Bordas Gerais */
+[data-theme="light"] [class*="border-slate-800"],
+[data-theme="light"] [class*="border-slate-700"],
+[data-theme="light"] [class*="border-slate-900"],
+[data-theme="light"] [class*="border-purple-900"],
+[data-theme="light"] [class*="border-[#3C1361]"],
+[data-theme="light"] [class*="border-[#4C1D95]"],
+[data-theme="light"] [class*="border-[#521C7E]"],
+[data-theme="light"] [class*="border-[#5B2594]"]:not(header *),
+[data-theme="light"] [class*="border-[#6D34A8]"]:not(header *),
+[data-theme="light"] [class*="border-[#3E1C66]"],
+[data-theme="light"] [class*="border-[#3F1F68]"] {
+  border-color: #E2E8F0 !important;
+}
+
+[data-theme="light"] pre,
+[data-theme="light"] code {
+  background-color: #F8FAFC !important;
+  color: #1E1B4B !important;
+  border-color: #E2E8F0 !important;
+}
+
+[data-theme="light"] table tr[class*="bg-slate-950"],
+[data-theme="light"] table tr[class*="bg-[#1F0E34]"],
+[data-theme="light"] table thead tr {
+  background-color: #F1F5F9 !important;
+  color: #334155 !important;
+  border-color: #E2E8F0 !important;
+}
+
+[data-theme="light"] table tbody tr:hover {
+  background-color: #F8FAFC !important;
+}
+
+/* 12. Cabeçalho Global: Mantém o Degradê Imperial e Nitidez */
 [data-theme="light"] header {
   background: linear-gradient(135deg, #3B0764 0%, #4C1D95 50%, #6D28D9 100%) !important;
 }
@@ -297,7 +511,20 @@ body {
   color: #FFFFFF !important;
 }
 
-/* 10. GAVETA LATERAL (SIDEBAR) NO TEMA CLARO */
+[data-theme="light"] header [class*="bg-[#17092A]"],
+[data-theme="light"] header [class*="bg-[#140726]"],
+[data-theme="light"] header [class*="bg-[#1C0D33]"],
+[data-theme="light"] header [class*="bg-[#351859]"] {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+  color: #FFFFFF !important;
+}
+
+[data-theme="light"] header [class*="bg-[#351859]"] {
+  background: rgba(255, 255, 255, 0.28) !important;
+}
+
+/* 13. Gaveta Lateral (Sidebar) no Tema Claro */
 [data-theme="light"] aside {
   background-color: #FFFFFF !important;
   border-color: #E2E8F0 !important;
@@ -308,11 +535,13 @@ body {
   color: #1E1B4B !important;
 }
 
-[data-theme="light"] aside .text-purple-300 {
+[data-theme="light"] aside .text-purple-300,
+[data-theme="light"] aside .text-purple-200 {
   color: #64748B !important;
 }
 
-[data-theme="light"] aside .bg-\[\#24123E\] {
+[data-theme="light"] aside [class*="bg-[#24123E]"],
+[data-theme="light"] aside [class*="bg-[#140A23]"] {
   background-color: #F1F5F9 !important;
   border-color: #CBD5E1 !important;
   color: #4C1D95 !important;
