@@ -126,7 +126,7 @@ export default function CoursesView() {
             <div className="flex flex-wrap items-center gap-4 text-xs text-purple-200 pt-2 border-t border-[#6E259F]/30">
               <div>
                 <span className="text-purple-300">Público Atendido:</span>{' '}
-                <strong className="text-white">Jovens Aprendizes, Estagiários, Estudantes e Primeiro Emprego</strong>
+                <strong className="text-white">Jovens Aprendizes, Estagiários e Primeiro Emprego</strong>
               </div>
               <div>
                 <span className="text-purple-300">Metodologia:</span>{' '}
@@ -157,14 +157,13 @@ export default function CoursesView() {
         <div className="mt-6 bg-[#150524]/85 border border-[#521C7E]/50 rounded-2xl p-5 space-y-4">
           <div className="text-xs font-bold text-purple-200 uppercase tracking-wider flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-[#FBBF24]" />
-            <span>🎯 O que você vai desenvolver em nossos cursos:</span>
+            <span>O que você vai desenvolver em nossos cursos:</span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs text-purple-100">
             {/* Bloco 1: Desenvolvimento Pessoal */}
             <div className="bg-[#1C0A33]/90 border border-[#4C1D95]/40 rounded-xl p-4 space-y-2.5">
               <div className="text-sm font-black text-[#DDD6FE] flex items-center gap-1.5">
-                <span>🌱</span>
                 <span>Desenvolvimento Pessoal &amp; Comportamental</span>
               </div>
               <ul className="space-y-2 text-purple-200/90 leading-relaxed text-[11.5px]">
@@ -186,7 +185,6 @@ export default function CoursesView() {
             {/* Bloco 2: Desenvolvimento para o Mercado de Trabalho */}
             <div className="bg-[#1C0A33]/90 border border-[#4C1D95]/40 rounded-xl p-4 space-y-2.5">
               <div className="text-sm font-black text-[#DDD6FE] flex items-center gap-1.5">
-                <span>💼</span>
                 <span>Desenvolvimento para o Mercado de Trabalho</span>
               </div>
               <ul className="space-y-2 text-purple-200/90 leading-relaxed text-[11.5px]">
@@ -220,7 +218,7 @@ export default function CoursesView() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Pesquisar por título, assunto ou badge (ex: Excel, Holerite, Comunicação)..."
+              placeholder="Digite sua pesquisa"
               className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl pl-10 pr-4 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-[#8B5CF6]"
             />
           </div>
@@ -233,10 +231,9 @@ export default function CoursesView() {
               className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl px-3 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-[#8B5CF6]"
             >
               <option value="TODOS">Todos os Públicos</option>
-              <option value="JOVEM_APRENDIZ">🛡️ Jovem Aprendiz</option>
-              <option value="ESTAGIARIO">💼 Estagiário</option>
-              <option value="ESTUDANTE">🎒 Estudante</option>
-              <option value="PRIMEIRO_EMPREGO">🚀 Primeiro Emprego</option>
+              <option value="JOVEM_APRENDIZ">Jovem Aprendiz</option>
+              <option value="ESTAGIARIO">Estagiário</option>
+              <option value="PRIMEIRO_EMPREGO">Primeiro Emprego</option>
             </select>
           </div>
 
