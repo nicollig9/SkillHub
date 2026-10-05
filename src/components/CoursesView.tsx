@@ -14,7 +14,8 @@ import {
   GraduationCap, 
   Sparkles,
   CheckCircle2,
-  Play
+  Play,
+  Scale
 } from 'lucide-react';
 
 export default function CoursesView() {
@@ -73,13 +74,25 @@ export default function CoursesView() {
   return (
     <div className="w-full max-w-6xl mx-auto pb-12 space-y-6 flex flex-col items-center">
       
-      {/* Top Banner da Aba de Cursos - 100% Centralizado */}
-      <div className="w-full bg-gradient-to-r from-[#22103B] via-[#351859] to-[#481F78] border border-[#6D34A8]/40 rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative z-10">
+      {/* Banner Principal Unificado: Aba de Cursos & Para que servem os cursos */}
+      <div className="w-full bg-gradient-to-r from-[#1C0730] via-[#3C1361] to-[#521C7E] border border-[#6E259F]/60 rounded-3xl p-6 lg:p-8 shadow-2xl relative overflow-hidden space-y-6">
+        
+        {/* Cabeçalho da Aba de Cursos */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative z-10 pb-6 border-b border-[#6E259F]/40">
           <div className="space-y-2 max-w-2xl">
-            <div className="inline-flex items-center gap-2 bg-[#17092A] border border-[#7C3AED]/40 px-3 py-1 rounded-full text-xs font-bold text-[#DDD6FE]">
-              <GraduationCap className="w-3.5 h-3.5 text-[#F59E0B]" />
-              <span>Catálogo Oficial de Cursos (Escola Virtual)</span>
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="inline-flex items-center gap-2 bg-[#17092A] border border-[#7C3AED]/40 px-3 py-1 rounded-full text-xs font-bold text-[#DDD6FE]">
+                <GraduationCap className="w-3.5 h-3.5 text-[#F59E0B]" />
+                <span>Catálogo Oficial de Cursos</span>
+              </div>
+              <span className="bg-[#250B3E]/90 text-purple-200 border border-purple-500/40 text-xs font-semibold px-2.5 py-0.5 rounded-full flex items-center gap-1">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                100% Gratuito &amp; Online
+              </span>
+              <span className="bg-[#150524]/90 text-purple-200 border border-purple-500/30 text-xs font-semibold px-2.5 py-0.5 rounded-full flex items-center gap-1">
+                <Award className="w-3.5 h-3.5 text-[#D8B4FE]" />
+                Certificação com Badges Oficiais
+              </span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
               Aba de Cursos Disponíveis
@@ -92,6 +105,98 @@ export default function CoursesView() {
           <div className="bg-[#140824]/90 border border-[#7C3AED]/50 rounded-2xl p-4 text-center shrink-0 shadow-lg">
             <div className="text-2xl font-black text-[#FBBF24]">{filteredCourses.length}</div>
             <div className="text-[11px] text-purple-200 mt-0.5">Cursos Filtrados</div>
+          </div>
+        </div>
+
+        {/* Seção Explicativa: Para que servem os cursos */}
+        <div className="flex flex-col lg:flex-row justify-between gap-6 relative z-10">
+          <div className="space-y-3 max-w-3xl">
+            <h2 className="text-xl lg:text-2xl font-black text-white tracking-tight leading-tight">
+              Para que servem os cursos da nossa plataforma?
+            </h2>
+            <p className="text-sm sm:text-base text-purple-100 leading-relaxed font-medium">
+              Nossos cursos foram desenvolvidos para apoiar você em duas etapas fundamentais da sua jornada: o seu <strong className="text-[#FBBF24]">desenvolvimento pessoal</strong> — fortalecendo sua autoconfiança, inteligência emocional e comunicação — e a sua <strong className="text-white">preparação completa para o mercado de trabalho</strong>, qualificando você para conquistar oportunidades reais de Jovem Aprendiz, Estágio e Primeiro Emprego em Curitiba e Região Metropolitana.
+            </p>
+
+            <div className="flex flex-wrap items-center gap-4 text-xs text-purple-200 pt-2 border-t border-[#6E259F]/30">
+              <div>
+                <span className="text-purple-300">Público Atendido:</span>{' '}
+                <strong className="text-white">Jovens Aprendizes, Estagiários e Primeiro Emprego</strong>
+              </div>
+              <div>
+                <span className="text-purple-300">Metodologia:</span>{' '}
+                <strong className="text-white">Aulas Práticas, Simulações Reais e Casos do Cotidiano</strong>
+              </div>
+            </div>
+          </div>
+
+          {/* Card Lateral de Certificação e Empregabilidade */}
+          <div className="bg-[#150524]/90 border border-[#6E259F]/60 rounded-2xl p-5 lg:w-72 text-center flex flex-col items-center justify-between shrink-0 shadow-xl">
+            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#521C7E] to-[#6E259F] flex items-center justify-center text-white mb-2 shadow-lg shadow-purple-900/50">
+              <GraduationCap className="w-8 h-8 text-[#DDD6FE]" />
+            </div>
+            <div>
+              <div className="text-xs font-bold text-white mb-0.5">Certificação Reconhecida</div>
+              <div className="text-xs text-purple-200 font-extrabold mb-1">Badges de Competência</div>
+              <div className="text-[11px] text-purple-300 leading-tight">
+                Cada curso concluído gera um Badge Oficial que comprova suas habilidades práticas perante as empresas parceiras.
+              </div>
+            </div>
+            <div className="mt-3 w-full bg-[#24103E] border border-purple-500/30 text-purple-200 text-[11px] font-bold py-1.5 px-3 rounded-xl flex items-center justify-center gap-1.5">
+              <span>{COURSES.length} Cursos Práticos Disponíveis</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Pilares: Desenvolvimento Pessoal vs Mercado de Trabalho */}
+        <div className="mt-6 bg-[#150524]/85 border border-[#521C7E]/50 rounded-2xl p-5 space-y-4">
+          <div className="text-xs font-bold text-purple-200 uppercase tracking-wider flex items-center gap-2">
+            <Sparkles className="w-4 h-4 text-[#FBBF24]" />
+            <span>O que você vai desenvolver em nossos cursos:</span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs text-purple-100">
+            {/* Bloco 1: Desenvolvimento Pessoal */}
+            <div className="bg-[#1C0A33]/90 border border-[#4C1D95]/40 rounded-xl p-4 space-y-2.5">
+              <div className="text-sm font-black text-[#DDD6FE] flex items-center gap-1.5">
+                <span>Desenvolvimento Pessoal &amp; Comportamental</span>
+              </div>
+              <ul className="space-y-2 text-purple-200/90 leading-relaxed text-[11.5px]">
+                <li className="flex items-start gap-2">
+                  <span className="text-[#A78BFA] font-bold">•</span>
+                  <span><strong>Autoconfiança e Postura Ética:</strong> Desenvolva maturidade, responsabilidade e inteligência emocional para superar inseguranças.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#A78BFA] font-bold">•</span>
+                  <span><strong>Comunicação e Relacionamento:</strong> Aprenda a se expressar com clareza, ouvir com empatia e colaborar de forma produtiva em equipe.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#A78BFA] font-bold">•</span>
+                  <span><strong>Organização e Educação Financeira:</strong> Gestão do próprio tempo, disciplina nos estudos e planejamento do seu primeiro salário.</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Bloco 2: Desenvolvimento para o Mercado de Trabalho */}
+            <div className="bg-[#1C0A33]/90 border border-[#4C1D95]/40 rounded-xl p-4 space-y-2.5">
+              <div className="text-sm font-black text-[#DDD6FE] flex items-center gap-1.5">
+                <span>Desenvolvimento para o Mercado de Trabalho</span>
+              </div>
+              <ul className="space-y-2 text-purple-200/90 leading-relaxed text-[11.5px]">
+                <li className="flex items-start gap-2">
+                  <span className="text-[#A78BFA] font-bold">•</span>
+                  <span><strong>Empregabilidade e Entrevistas:</strong> Técnicas comprovadas para montar currículos atrativos e passar com segurança em processos seletivos.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#A78BFA] font-bold">•</span>
+                  <span><strong>Ferramentas e Rotinas Empresariais:</strong> Domínio prático de pacote Office, Excel, ferramentas digitais e atendimento profissional.</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-[#A78BFA] font-bold">•</span>
+                  <span><strong>Direitos e Deveres Trabalhistas:</strong> Conheça as leis de Aprendizagem (10.097), Estágio e CLT, entendendo seu holerite e benefícios.</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -108,7 +213,7 @@ export default function CoursesView() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Pesquisar por título, assunto ou badge (ex: Excel, Holerite, Comunicação)..."
+              placeholder="Digite sua pesquisa"
               className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl pl-10 pr-4 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-[#8B5CF6]"
             />
           </div>
@@ -121,17 +226,16 @@ export default function CoursesView() {
               className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl px-3 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-[#8B5CF6]"
             >
               <option value="TODOS">Todos os Públicos</option>
-              <option value="JOVEM_APRENDIZ">🛡️ Jovem Aprendiz</option>
-              <option value="ESTAGIARIO">💼 Estagiário</option>
-              <option value="ESTUDANTE">🎒 Estudante</option>
-              <option value="PRIMEIRO_EMPREGO">🚀 Primeiro Emprego</option>
+              <option value="JOVEM_APRENDIZ">Jovem Aprendiz</option>
+              <option value="ESTAGIARIO">Estagiário</option>
+              <option value="PRIMEIRO_EMPREGO">Primeiro Emprego</option>
             </select>
           </div>
 
         </div>
 
         {/* Linha 2: Categorias da Escola Virtual */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-1 text-xs">
+        <div className="flex flex-wrap items-center justify-center gap-2 text-xs">
           <span className="text-purple-300 font-bold shrink-0">Categorias:</span>
           {categories.map((cat) => (
             <button

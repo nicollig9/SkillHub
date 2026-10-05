@@ -139,23 +139,6 @@ export default function StudentDashboard() {
               <span>📍 Bairro: <strong>{studentBairro}</strong> (Curitiba/PR)</span>
             </p>
           </div>
-
-          <div className="bg-[#150926] border border-[#521E8A]/50 p-1.5 rounded-xl flex items-center gap-1">
-            <span className="text-[10px] text-purple-300 font-bold px-2 hidden sm:inline">Visão:</span>
-            {(['JOVEM_APRENDIZ', 'ESTAGIARIO', 'ESTUDANTE', 'PRIMEIRO_EMPREGO'] as const).map((p) => (
-              <button
-                key={p}
-                onClick={() => setCandidateProfileType(p)}
-                className={`px-2.5 py-1 rounded-lg text-[11px] font-bold transition-all ${
-                  userProfile === p
-                    ? 'bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] text-white shadow'
-                    : 'text-purple-300 hover:text-white'
-                }`}
-              >
-                {profileLabels[p].label.split(' ')[0]}
-              </button>
-            ))}
-          </div>
         </div>
       </div>
 

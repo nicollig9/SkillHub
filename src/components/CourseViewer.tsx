@@ -23,7 +23,9 @@ import {
   Info,
   Layers,
   Lock,
-  Unlock
+  Unlock,
+  ChevronDown,
+  ChevronUp
 } from 'lucide-react';
 
 export default function CourseViewer() {
@@ -41,6 +43,8 @@ export default function CourseViewer() {
   const course = COURSES.find((c) => c.id === selectedCourseId) || COURSES[0];
 
   const [activeTab, setActiveTab] = useState<'MODULES' | 'CASE_STUDIES' | 'QUIZ'>('MODULES');
+  const [isReadingMode, setIsReadingMode] = useState<boolean>(false);
+  const [expandedDesc, setExpandedDesc] = useState<Record<string, boolean>>({});
   const [selectedCaseIdx, setSelectedCaseIdx] = useState<number>(0);
   const [caseAnswers, setCaseAnswers] = useState<Record<string, number>>({});
   const [userQuizAnswers, setUserQuizAnswers] = useState<Record<number, number>>({});
@@ -106,78 +110,29 @@ export default function CourseViewer() {
   const progressPercent = Math.round((completedModulesCount / Math.max(course.modules.length, 1)) * 100);
 
   return (
-    <div className="space-y-6 max-w-6xl w-full mx-auto">
-      {/* Course Banner Header */}
-      <div className="bg-gradient-to-r from-[#1C0730] via-[#3C1361] to-[#521C7E] border border-[#6E259F]/60 rounded-3xl p-6 lg:p-8 shadow-2xl relative overflow-hidden">
-        <div className="flex flex-col lg:flex-row justify-between gap-6 relative z-10">
-          <div className="space-y-3 max-w-3xl">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="bg-[#521C7E] text-white text-xs font-bold px-3.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
-                {course.trackName}
-              </span>
-              <span className="bg-[#250B3E]/90 text-purple-200 border border-purple-500/40 text-xs font-semibold px-2.5 py-0.5 rounded-full flex items-center gap-1">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                {course.modality}
-              </span>
-              <span className="bg-[#150524]/90 text-purple-200 border border-purple-500/30 text-xs font-semibold px-2.5 py-0.5 rounded-full flex items-center gap-1">
-                <Clock className="w-3.5 h-3.5 text-[#D8B4FE]" />
-                {course.equivalentHours}h equivalentes
-              </span>
-            </div>
-
-            <h1 className="text-2xl lg:text-3xl font-black text-white tracking-tight leading-tight">
-              {course.title}
-            </h1>
-            <p className="text-sm text-purple-100 leading-relaxed">
-              {course.subtitle}
-            </p>
-
-            <div className="flex flex-wrap items-center gap-4 text-xs text-purple-200 pt-2 border-t border-[#6E259F]/30">
-              <div>
-                <span className="text-purple-300">Público-Alvo:</span>{' '}
-                <strong className="text-white">{course.targetAudience}</strong>
-              </div>
-              <div>
-                <span className="text-purple-300">Certificação:</span>{' '}
-                <strong className="text-white">Badge 🏅 {course.badgeName}</strong>
-              </div>
-            </div>
-          </div>
-
-          {/* Badge Preview Card */}
-          <div className="bg-[#150524]/90 border border-[#6E259F]/60 rounded-2xl p-5 lg:w-64 text-center flex flex-col items-center justify-center shrink-0 shadow-xl">
-            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-[#521C7E] to-[#6E259F] flex items-center justify-center text-white mb-2 shadow-lg shadow-purple-900/50">
-              <Scale className="w-8 h-8 text-white" />
-            </div>
-            <div className="text-xs font-bold text-white mb-0.5">Badge Oficial</div>
-            <div className="text-xs text-purple-200 font-extrabold mb-2">{course.badgeName}</div>
-            <div className="text-[11px] text-purple-300 leading-tight">
-              Requisito: Estudar os 5 módulos e obter nota ≥ 70% na avaliação.
-            </div>
-          </div>
-        </div>
-
-        {/* Course Objectives */}
-        <div className="mt-6 bg-[#150524]/80 border border-[#521C7E]/40 rounded-2xl p-4">
-          <div className="text-xs font-bold text-purple-200 mb-2 flex items-center gap-1.5">
-            <Sparkles className="w-4 h-4 text-[#D8B4FE]" />
-            <span>🎯 Objetivos de Aprendizagem Deste Curso</span>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-xs text-purple-100">
-            {course.learningObjectives.map((obj, i) => (
-              <div key={i} className="flex items-start gap-2">
-                <span className="text-[#D8B4FE] font-bold">•</span>
-                <span>{obj}</span>
-              </div>
-            ))}
-          </div>
+    <div className="space-y-6 max-w-5xl w-full mx-auto flex flex-col items-center">
+      {/* Top Breadcrumb */}
+      <div className="w-full flex items-center justify-between text-xs text-purple-300 pb-1">
+        <div className="flex items-center gap-2">
+          <button
+            onClick={() => setCurrentView('CURSOS_DISPONIVEIS')}
+            className="hover:text-white flex items-center gap-1.5 transition-colors font-medium cursor-pointer"
+          >
+            <GraduationCap className="w-4 h-4 text-[#A78BFA]" />
+            <span>Cursos Disponíveis</span>
+          </button>
+          <span>&gt;</span>
+          <span className="text-white font-semibold truncate max-w-xs sm:max-w-md">{course.title}</span>
         </div>
       </div>
 
-      {/* Main Tabs */}
-      <div className="flex items-center gap-2 border-b border-[#3C1361]/60 pb-2">
+      {/* Main Tabs - 100% Centralizado */}
+      <div className="w-full flex flex-wrap items-center justify-center gap-2 border-b border-[#3C1361]/60 pb-3">
         <button
-          onClick={() => setActiveTab('MODULES')}
+          onClick={() => {
+            setActiveTab('MODULES');
+            setIsReadingMode(false);
+          }}
           className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold transition-all ${
             activeTab === 'MODULES'
               ? 'bg-gradient-to-r from-[#521C7E] to-[#6E259F] text-white shadow-md shadow-purple-900/50'
@@ -231,61 +186,173 @@ export default function CourseViewer() {
         </button>
       </div>
 
-      {/* TAB 1: MODULES CONTENT */}
-      {activeTab === 'MODULES' && (
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          {/* Module Selector Sidebar */}
-          <div className="lg:col-span-4 space-y-2.5">
-            <div className="text-xs font-bold text-purple-300 uppercase tracking-wider px-1">
-              Trilha de Módulos (5 Módulos Separados)
+      {/* TAB 1: MODULES OVERVIEW (CARDS GRID NO ESTILO DO PRINT) */}
+      {activeTab === 'MODULES' && !isReadingMode && (
+        <div className="w-full space-y-6 flex flex-col items-center">
+          {/* Header da Seção de Módulos (com títulos e cores do site) */}
+          <div className="w-full flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#3C1361]/60 pb-4">
+            <div>
+              <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+                Módulos do Curso
+              </h2>
+              <p className="text-xs sm:text-sm text-purple-200 mt-1">
+                {course.title} • {course.modules.length} módulos disponíveis
+              </p>
             </div>
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-bold text-purple-300">
+                Progresso Geral:
+              </span>
+              <span className="bg-[#24123E] border border-purple-500/40 text-purple-200 text-xs font-black px-3 py-1 rounded-full">
+                {completedList.length}/{course.modules.length} concluídos ({progressPercent}%)
+              </span>
+            </div>
+          </div>
 
+          {/* Grid de Cards dos Módulos (estilo exato do print do usuário, com as cores do site) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full justify-center">
             {course.modules.map((mod, idx) => {
               const isCompleted = completedList.includes(mod.id);
-              const isCurrent = activeModuleIndex === idx;
+              const isExpanded = !!expandedDesc[mod.id];
 
               return (
-                <button
+                <div
                   key={mod.id}
-                  onClick={() => setActiveModuleIndex(idx)}
-                  className={`w-full text-left p-4 rounded-2xl border transition-all duration-200 ${
-                    isCurrent
-                      ? 'bg-gradient-to-r from-[#250B3E] to-[#3C1361] border-[#6E259F] shadow-lg ring-1 ring-[#9B51E0]'
-                      : isCompleted
-                      ? 'bg-[#160A25] border-[#3C1361]/60 hover:border-[#521C7E]'
-                      : 'bg-[#110520] border-[#250B3E] hover:border-[#3C1361]'
+                  className={`bg-[#170C2B] border rounded-2xl p-6 shadow-xl flex flex-col justify-between space-y-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl ${
+                    isCompleted
+                      ? 'border-emerald-500/50 hover:border-emerald-400 shadow-emerald-950/20'
+                      : 'border-[#4C1D95]/50 hover:border-[#8B5CF6]/80 shadow-purple-950/30'
                   }`}
                 >
-                  <div className="flex items-center justify-between mb-1.5">
-                    <span className={`text-[11px] font-bold px-2.5 py-0.5 rounded-md ${isCurrent ? 'bg-[#521C7E] text-white' : 'bg-[#250B3E] text-purple-200'}`}>
-                      Módulo {mod.number}
-                    </span>
-                    <div className="flex items-center gap-1.5 text-[11px]">
+                  {/* Cabeçalho do Card: Badge do Módulo + Status */}
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="bg-[#24103D] border border-[#6D28D9]/50 text-[#DDD6FE] text-xs font-black px-3 py-1 rounded-xl uppercase tracking-wider">
+                        Módulo {mod.number}
+                      </span>
                       {isCompleted ? (
-                        <span className="text-emerald-400 font-semibold flex items-center gap-1">
-                          <Check className="w-3.5 h-3.5" /> Concluído
+                        <span className="bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 text-[11px] font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1">
+                          <Check className="w-3 h-3" /> Concluído
                         </span>
                       ) : (
-                        <span className="text-purple-300/80 flex items-center gap-1">
-                          <Clock className="w-3 h-3 text-[#D8B4FE]" /> {mod.estimatedMinutes} min
+                        <span className="bg-[#220E3D]/60 text-purple-300 border border-purple-500/20 text-[11px] font-semibold px-2.5 py-0.5 rounded-full">
+                          Disponível
                         </span>
                       )}
                     </div>
+
+                    {/* Título do Módulo */}
+                    <h3 className="text-base sm:text-lg font-black text-white leading-snug">
+                      {mod.title.replace(/MÓDULO \d+: /, '')}
+                    </h3>
+
+                    {/* Resumo do Módulo */}
+                    <p className={`text-xs text-purple-200/90 leading-relaxed ${isExpanded ? '' : 'line-clamp-2'}`}>
+                      {mod.summary}
+                    </p>
+
+                    {mod.summary && mod.summary.length > 70 && (
+                      <button
+                        type="button"
+                        onClick={() => setExpandedDesc(prev => ({ ...prev, [mod.id]: !prev[mod.id] }))}
+                        className="text-[11px] text-[#A78BFA] hover:text-white font-bold flex items-center gap-1 transition-colors cursor-pointer"
+                      >
+                        <span>{isExpanded ? 'Ver menos' : 'Ver mais'}</span>
+                        <ChevronDown className={`w-3 h-3 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+                      </button>
+                    )}
                   </div>
 
-                  <div className={`text-xs font-bold leading-snug mb-1 ${isCurrent ? 'text-white' : 'text-purple-100'}`}>
-                    {mod.title.replace(/MÓDULO \d+: /, '')}
+                  {/* Metadados: Duração e Atividades */}
+                  <div className="grid grid-cols-2 gap-2.5 pt-1">
+                    <div className="bg-[#10061D] border border-[#3C1361]/70 rounded-xl p-2.5 flex flex-col items-center justify-center text-center">
+                      <div className="flex items-center gap-1.5 text-xs font-bold text-white mb-0.5">
+                        <Clock className="w-3.5 h-3.5 text-[#A78BFA]" />
+                        <span>{mod.estimatedMinutes} min</span>
+                      </div>
+                      <span className="text-[10px] text-purple-300 font-medium">Duração</span>
+                    </div>
+
+                    <div className="bg-[#10061D] border border-[#3C1361]/70 rounded-xl p-2.5 flex flex-col items-center justify-center text-center">
+                      <div className="flex items-center gap-1.5 text-xs font-bold text-white mb-0.5">
+                        <Layers className="w-3.5 h-3.5 text-[#A78BFA]" />
+                        <span>7 atividades</span>
+                      </div>
+                      <span className="text-[10px] text-purple-300 font-medium">Disponíveis</span>
+                    </div>
                   </div>
-                  <div className="text-[11px] text-purple-300 line-clamp-2">
-                    {mod.summary}
+
+                  {/* Barra de Progresso */}
+                  <div className="space-y-1.5 pt-1">
+                    <div className="flex items-center justify-between text-xs font-bold">
+                      <span className="text-purple-300">Progresso</span>
+                      <span className={isCompleted ? 'text-emerald-400 font-black' : 'text-purple-300'}>
+                        {isCompleted ? '100%' : '0%'}
+                      </span>
+                    </div>
+                    <div className="w-full h-2 bg-[#10061D] rounded-full overflow-hidden border border-[#3C1361]/50">
+                      <div
+                        className={`h-full transition-all duration-500 ${
+                          isCompleted
+                            ? 'bg-gradient-to-r from-emerald-500 to-teal-400 w-full'
+                            : 'bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] w-0'
+                        }`}
+                      />
+                    </div>
                   </div>
-                </button>
+
+                  {/* Botão Acessar Módulo */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setActiveModuleIndex(idx);
+                      setIsReadingMode(true);
+                    }}
+                    className="w-full mt-2 py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] hover:from-[#7C3AED] hover:to-[#9333EA] text-white text-xs font-black flex items-center justify-center gap-2 shadow-lg shadow-purple-950/60 transition-all duration-200 hover:scale-[1.02] cursor-pointer"
+                  >
+                    <span>{isCompleted ? 'Revisar Módulo' : 'Acessar Módulo'}</span>
+                    <ArrowRight className="w-4 h-4 text-white" />
+                  </button>
+                </div>
               );
             })}
           </div>
+        </div>
+      )}
+
+      {/* TAB 1: MODO LEITURA DO MÓDULO SELECIONADO */}
+      {activeTab === 'MODULES' && isReadingMode && (
+        <div className="w-full space-y-5">
+          {/* Barra Superior de Navegação no Modo Leitura */}
+          <div className="w-full bg-[#180A2B] border border-[#521C7E]/70 rounded-2xl p-4 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-3">
+            <button
+              type="button"
+              onClick={() => setIsReadingMode(false)}
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-[#250B3E] hover:bg-[#35135A] text-purple-200 hover:text-white text-xs font-bold transition-all border border-purple-500/30 shadow cursor-pointer"
+            >
+              <ArrowLeft className="w-4 h-4 text-[#A78BFA]" />
+              <span>Voltar para Todos os Módulos</span>
+            </button>
+
+            {/* Dropdown seletor rápido */}
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-purple-300 font-bold hidden sm:inline">Módulo Atual:</span>
+              <select
+                value={activeModuleIndex}
+                onChange={(e) => setActiveModuleIndex(Number(e.target.value))}
+                className="bg-[#10061D] border border-[#4C1D95]/60 text-white text-xs font-bold rounded-xl px-3 py-1.5 focus:outline-none focus:border-[#8B5CF6]"
+              >
+                {course.modules.map((m, mIdx) => (
+                  <option key={m.id} value={mIdx}>
+                    Módulo {m.number}: {m.title.replace(/MÓDULO \d+: /, '')} {completedList.includes(m.id) ? '✓' : ''}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
 
           {/* Module Content Viewer */}
-          <div className="lg:col-span-8 bg-[#160A25] border border-[#3C1361] rounded-3xl p-6 lg:p-8 space-y-6 shadow-2xl">
+          <div className="w-full bg-[#160A25] border border-[#3C1361] rounded-3xl p-6 lg:p-8 space-y-6 shadow-2xl">
             <div className="border-b border-[#3C1361]/60 pb-4">
               <div className="flex items-center gap-2 text-purple-300 font-bold text-xs uppercase mb-1">
                 <span>Módulo {currentModule.number} de {course.modules.length}</span>
@@ -536,8 +603,16 @@ export default function CourseViewer() {
               </button>
 
               <button
+                type="button"
+                onClick={() => setIsReadingMode(false)}
+                className="w-full sm:w-auto px-4 py-2.5 rounded-xl border border-purple-500/30 text-purple-200 text-xs font-bold hover:bg-[#250B3E] flex items-center justify-center gap-2 cursor-pointer transition-colors"
+              >
+                <Layers className="w-4 h-4 text-[#A78BFA]" /> Ver Todos os Módulos
+              </button>
+
+              <button
                 onClick={handleNextModule}
-                className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#521C7E] to-[#6E259F] hover:from-[#6E259F] hover:to-[#8736C2] text-white text-xs font-bold flex items-center justify-center gap-2 shadow-lg shadow-purple-950/60"
+                className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] hover:from-[#7C3AED] hover:to-[#9333EA] text-white text-xs font-bold flex items-center justify-center gap-2 shadow-lg shadow-purple-950/60"
               >
                 <span>{activeModuleIndex === course.modules.length - 1 ? 'Concluir Módulos e Ir para Casos' : 'Concluir Módulo e Avançar'}</span>
                 <ArrowRight className="w-4 h-4" />
@@ -549,7 +624,7 @@ export default function CourseViewer() {
 
       {/* TAB 2: CASE STUDIES */}
       {activeTab === 'CASE_STUDIES' && (
-        <div className="space-y-6">
+        <div className="w-full space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {course.caseStudies.map((cs, idx) => (
               <button
@@ -685,7 +760,7 @@ export default function CourseViewer() {
       {/* TAB 3: QUIZ EVALUATION (BLOQUEADO ATÉ CONCLUIR 100% DOS MÓDULOS) */}
       {activeTab === 'QUIZ' && (
         !isAllModulesCompleted ? (
-          <div className="bg-[#160A25] border border-amber-500/40 rounded-3xl p-8 lg:p-12 text-center space-y-6 shadow-2xl">
+          <div className="w-full bg-[#160A25] border border-amber-500/40 rounded-3xl p-8 lg:p-12 text-center space-y-6 shadow-2xl">
             <div className="w-20 h-20 mx-auto rounded-3xl bg-gradient-to-br from-amber-500/20 to-purple-900/40 border border-amber-500/40 flex items-center justify-center text-amber-400 shadow-xl">
               <Lock className="w-10 h-10 animate-pulse" />
             </div>
@@ -730,7 +805,7 @@ export default function CourseViewer() {
             </div>
           </div>
         ) : (
-          <div className="bg-[#160A25] border border-[#3C1361] rounded-3xl p-6 lg:p-8 space-y-6 shadow-2xl">
+          <div className="w-full bg-[#160A25] border border-[#3C1361] rounded-3xl p-6 lg:p-8 space-y-6 shadow-2xl">
           <div className="border-b border-[#3C1361]/60 pb-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
             <div>
               <div className="flex items-center gap-2 text-purple-300 font-bold text-xs uppercase mb-1">
@@ -806,9 +881,48 @@ export default function CourseViewer() {
                   </div>
 
                   {quizSubmitted && (
-                    <div className="p-3 bg-[#150524] border border-[#3C1361] rounded-xl text-xs text-purple-200 mt-2">
-                      <strong className="text-white">Explicação: </strong>
-                      {q.explanation}
+                    <div className={`p-4 rounded-xl text-xs mt-3 border space-y-2 ${
+                      isCorrect 
+                        ? 'bg-emerald-950/40 border-emerald-500/50 text-emerald-100' 
+                        : 'bg-rose-950/40 border-rose-500/50 text-rose-100'
+                    }`}>
+                      <div className="font-bold flex items-center gap-2 text-sm">
+                        {isCorrect ? (
+                          <span className="text-emerald-300 flex items-center gap-1.5">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                            Você acertou!
+                          </span>
+                        ) : (
+                          <span className="text-rose-300 flex items-center gap-1.5">
+                            <AlertTriangle className="w-4 h-4 text-rose-400" />
+                            Você errou esta questão
+                          </span>
+                        )}
+                      </div>
+
+                      {!isCorrect && (
+                        <div className="text-xs text-rose-200 bg-rose-950/70 p-3 rounded-lg border border-rose-800/40 leading-relaxed">
+                          <div>
+                            Sua escolha:{' '}
+                            <span className="font-bold text-white">
+                              {selectedOpt !== undefined ? `Alternativa (${String.fromCharCode(65 + selectedOpt)})` : 'Não respondeu'}
+                            </span>
+                          </div>
+                          <div className="mt-1">
+                            Alternativa correta:{' '}
+                            <span className="font-bold text-emerald-300">
+                              Alternativa ({String.fromCharCode(65 + q.correct)}) - &ldquo;{q.options[q.correct]}&rdquo;
+                            </span>
+                          </div>
+                        </div>
+                      )}
+
+                      <div className="text-purple-100 leading-relaxed pt-1">
+                        <strong className="text-white font-semibold">
+                          {isCorrect ? 'Explicação & Justificativa:' : 'Por que a alternativa (' + String.fromCharCode(65 + q.correct) + ') é a correta:'}
+                        </strong>{' '}
+                        <span>{q.explanation}</span>
+                      </div>
                     </div>
                   )}
                 </div>

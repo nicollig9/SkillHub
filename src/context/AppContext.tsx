@@ -23,7 +23,7 @@ export type AppView =
   | 'RECRUTADOR_RH'
   | 'GUARDRAILS_DER';
 
-interface ToastNotification {
+export interface ToastNotification {
   id: string;
   title: string;
   message: string;
@@ -60,6 +60,7 @@ interface AppContextType {
   loginUser: (email: string, role: UserRole, profileType?: CandidateProfileType, name?: string, isDemo?: boolean) => void;
   registerCandidate: (data: { 
     nome: string; 
+    username?: string;
     email: string; 
     profileType: CandidateProfileType; 
     bairro: string; 
@@ -120,9 +121,10 @@ interface AppContextType {
   filterVagasByBairro: (bairro: string) => JobVacancy[];
   filterVagasByProfile: (profile?: CandidateProfileType, bairro?: string) => JobVacancy[];
   resetSimulator: () => void;
-  getKnownAccounts: () => { email: string; nome: string; profileType: CandidateProfileType; date: string }[];
+  getKnownAccounts: () => { email: string; nome: string; username?: string; profileType: CandidateProfileType; date: string }[];
   theme: 'dark' | 'light';
   toggleTheme: () => void;
+  isDemoMode: boolean;
 }
 
 const STORAGE_PREFIX = 'skillhub_user_';
@@ -140,6 +142,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
   const [candidateProfileType, setCandidateProfileType] = useState<CandidateProfileType>('JOVEM_APRENDIZ');
   const [currentUser, setCurrentUser] = useState<UserAccount | null>(null);
+  const isDemoMode = Boolean(currentUser?.isDemo || currentUser?.email === 'demo@skillhub.com.br' || currentUser?.email === 'rh.demo@empresa.com.br' || currentUser?.nome?.includes('Demonstração'));
   const [selectedCourseId, setSelectedCourseId] = useState<string>('curso-jovem-aprendiz-avancado');
   const [activeModuleIndex, setActiveModuleIndex] = useState<number>(0);
 
@@ -239,14 +242,20 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [toasts, setToasts] = useState<ToastNotification[]>([]);
 
   const showToast = (title: string, message: string, type: ToastNotification['type'] = 'info') => {
+    const id = 'toast-' + Date.now() + Math.random();
     const newToast: ToastNotification = {
-      id: 'toast-' + Date.now() + Math.random(),
+      id,
       title,
       message,
       type,
       timestamp: new Date().toLocaleTimeString('pt-BR')
     };
     setToasts((prev) => [newToast, ...prev].slice(0, 4));
+
+    // Remove automaticamente após 4.2 segundos caso não tenha sido fechado
+    setTimeout(() => {
+      setToasts((prev) => prev.filter((t) => t.id !== id));
+    }, 4200);
   };
 
   const dismissToast = (id: string) => {
@@ -254,16 +263,18 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   };
 
   // Helper para salvar conta no índice de contas locais
-  const recordAccountInIndex = (email: string, nome: string, profileType: CandidateProfileType) => {
+  const recordAccountInIndex = (email: string, nome: string, profileType: CandidateProfileType, username?: string) => {
     if (typeof window === 'undefined' || !email) return;
     try {
       const raw = localStorage.getItem(ACCOUNTS_INDEX_KEY);
-      let list: { email: string; nome: string; profileType: CandidateProfileType; date: string }[] = raw ? JSON.parse(raw) : [];
+      let list: { email: string; nome: string; username?: string; profileType: CandidateProfileType; date: string }[] = raw ? JSON.parse(raw) : [];
       const cleanEmail = email.toLowerCase().trim();
-      list = list.filter((a) => a.email.toLowerCase().trim() !== cleanEmail);
+      const cleanUser = username?.toLowerCase().trim();
+      list = list.filter((a) => a.email.toLowerCase().trim() !== cleanEmail && (!cleanUser || a.username?.toLowerCase().trim() !== cleanUser));
       list.unshift({
         email: cleanEmail,
         nome,
+        username: cleanUser,
         profileType,
         date: new Date().toLocaleDateString('pt-BR')
       });
@@ -646,37 +657,43 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
     if (isDemo) {
       setCandidateProfileType(profileType);
+      const isCompany = targetRole === 'RECRUTADOR';
       const demoAccount: UserAccount = {
-        id: 'usr-demo',
-        nome: 'Visitante (Demonstração)',
-        email: 'demo@skillhub.com.br',
-        role: 'ALUNO',
+        id: isCompany ? 'emp-demo' : 'usr-demo',
+        nome: isCompany ? 'Empresa Parceira (Demonstração)' : `Visitante (Demonstração - ${profileType === 'ESTAGIARIO' ? 'Estagiário' : profileType === 'PRIMEIRO_EMPREGO' ? '1º Emprego' : 'Jovem Aprendiz'})`,
+        email: isCompany ? 'rh.demo@empresa.com.br' : 'demo@skillhub.com.br',
+        role: targetRole,
         profileType: profileType,
-        bairro: 'Boqueirão',
+        bairro: isCompany ? 'Centro' : 'Boqueirão',
         cidade: 'Curitiba',
-        cpfOrCnpjMasked: '***.***.***-**',
-        avatarInitials: 'DM',
-        idade: 17,
-        menorDeIdade: true
+        cpfOrCnpjMasked: isCompany ? '12.345.678/0001-90' : '***.***.***-**',
+        avatarInitials: isCompany ? 'RH' : 'DM',
+        idade: isCompany ? 35 : 17,
+        menorDeIdade: !isCompany,
+        isDemo: true
       };
       persistSession(demoAccount);
       setCurrentUser(demoAccount);
-      setCompletedModules({});
-      setQuizResults({});
-      setApplications([]);
-      setBadges(INITIAL_BADGES.map((b) => ({ ...b, dateEarned: undefined, score: undefined, codeVerificador: undefined })));
-      setVagas(INITIAL_VAGAS.map((v) => ({ ...v, jaCandidatou: false })));
-      setStudent({
-        ...INITIAL_STUDENT,
-        id: 9999,
-        nome: 'Visitante (Demonstração)',
-        email: 'demo@skillhub.com.br',
-        profileType: profileType,
-        badgesEarned: [],
-        bio: 'Navegação demonstrativa do SkillHub em Curitiba/PR.',
-      });
-      setCurrentView('DASHBOARD');
-      showToast('Modo Demonstração Ativado', 'Você está navegando como visitante para conhecer as ferramentas do SkillHub.', 'info');
+      if (isCompany) {
+        setCurrentView('RECRUTADOR_RH');
+      } else {
+        setCompletedModules({});
+        setQuizResults({});
+        setApplications([]);
+        setBadges(INITIAL_BADGES.map((b) => ({ ...b, dateEarned: undefined, score: undefined, codeVerificador: undefined })));
+        setVagas(INITIAL_VAGAS.map((v) => ({ ...v, jaCandidatou: false })));
+        setStudent({
+          ...INITIAL_STUDENT,
+          id: 9999,
+          nome: 'Visitante (Demonstração)',
+          email: 'demo@skillhub.com.br',
+          profileType: profileType,
+          badgesEarned: [],
+          bio: 'Navegação demonstrativa do SkillHub em Curitiba/PR.',
+        });
+        setCurrentView('DASHBOARD');
+      }
+      showToast('Modo Demonstração Ativado', `Você está navegando como ${isCompany ? 'Empresa / Recrutador RH' : 'Candidato'} com guias de funcionalidades ativados.`, 'info');
       return;
     }
 
@@ -703,7 +720,19 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     }
 
     // CANDIDATO (ALUNO): VERIFICA SE JÁ EXISTE CONTA SALVA NO DISPOSITIVO
-    const cleanEmail = (email || '').toLowerCase().trim();
+    let cleanEmail = (email || '').toLowerCase().trim();
+    if (!cleanEmail.includes('@') && typeof window !== 'undefined') {
+      try {
+        const rawAccounts = localStorage.getItem(ACCOUNTS_INDEX_KEY);
+        if (rawAccounts) {
+          const accs = JSON.parse(rawAccounts) as { email: string; username?: string }[];
+          const match = accs.find((a) => (a.username && a.username.toLowerCase() === cleanEmail) || a.email.split('@')[0].toLowerCase() === cleanEmail);
+          if (match) {
+            cleanEmail = match.email;
+          }
+        }
+      } catch {}
+    }
     const storageKey = `${STORAGE_PREFIX}${cleanEmail}`;
     let savedData: UserSavedData | null = null;
 
@@ -838,6 +867,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
   const registerCandidate = (data: { 
     nome: string; 
+    username?: string;
     email: string; 
     profileType: CandidateProfileType; 
     bairro: string; 
@@ -852,6 +882,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     setCandidateProfileType(data.profileType);
 
     const cleanEmail = data.email.toLowerCase().trim();
+    const cleanUsername = (data.username || cleanEmail.split('@')[0]).toLowerCase().trim();
     const initials = data.nome.split(' ').map((n) => n[0]).slice(0, 2).join('').toUpperCase();
     const cleanCpf = data.cpf.replace(/\D/g, '');
     const maskedCpf = cleanCpf.length === 11 
@@ -863,6 +894,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     const account: UserAccount = {
       id: 'cand-' + Date.now(),
       nome: data.nome,
+      username: cleanUsername,
       email: cleanEmail,
       role: 'ALUNO',
       profileType: data.profileType,
@@ -921,7 +953,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
           savedAt: new Date().toISOString()
         };
         localStorage.setItem(storageKey, JSON.stringify(initialRecord));
-        recordAccountInIndex(cleanEmail, data.nome, data.profileType);
+        recordAccountInIndex(cleanEmail, data.nome, data.profileType, cleanUsername);
       } catch (e) {
         console.error('Erro ao salvar registro de cadastro:', e);
       }
@@ -1070,7 +1102,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         resetSimulator,
         getKnownAccounts,
         theme,
-        toggleTheme
+        toggleTheme,
+        isDemoMode
       }}
     >
       {children}
