@@ -263,22 +263,11 @@ export default function CourseViewer() {
                     )}
                   </div>
 
-                  {/* Metadados: Duração e Atividades */}
-                  <div className="grid grid-cols-2 gap-2.5 pt-1">
-                    <div className="bg-[#10061D] border border-[#3C1361]/70 rounded-xl p-2.5 flex flex-col items-center justify-center text-center">
-                      <div className="flex items-center gap-1.5 text-xs font-bold text-white mb-0.5">
-                        <Clock className="w-3.5 h-3.5 text-[#A78BFA]" />
-                        <span>{mod.estimatedMinutes} min</span>
-                      </div>
-                      <span className="text-[10px] text-purple-300 font-medium">Duração</span>
-                    </div>
-
-                    <div className="bg-[#10061D] border border-[#3C1361]/70 rounded-xl p-2.5 flex flex-col items-center justify-center text-center">
-                      <div className="flex items-center gap-1.5 text-xs font-bold text-white mb-0.5">
-                        <Layers className="w-3.5 h-3.5 text-[#A78BFA]" />
-                        <span>7 atividades</span>
-                      </div>
-                      <span className="text-[10px] text-purple-300 font-medium">Disponíveis</span>
+                  {/* Metadados: Atividades */}
+                  <div className="pt-1">
+                    <div className="bg-[#10061D] border border-[#3C1361]/70 rounded-xl p-2.5 flex items-center justify-center gap-2 text-center">
+                      <Layers className="w-4 h-4 text-[#A78BFA]" />
+                      <span className="text-xs font-bold text-white">7 atividades disponíveis</span>
                     </div>
                   </div>
 
@@ -356,8 +345,6 @@ export default function CourseViewer() {
             <div className="border-b border-[#3C1361]/60 pb-4">
               <div className="flex items-center gap-2 text-purple-300 font-bold text-xs uppercase mb-1">
                 <span>Módulo {currentModule.number} de {course.modules.length}</span>
-                <span>•</span>
-                <span>{currentModule.estimatedMinutes} minutos estimados</span>
               </div>
               <h2 className="text-xl lg:text-2xl font-black text-white">
                 {currentModule.title}
