@@ -74,13 +74,25 @@ export default function CoursesView() {
   return (
     <div className="w-full max-w-6xl mx-auto pb-12 space-y-6 flex flex-col items-center">
       
-      {/* Top Banner da Aba de Cursos - 100% Centralizado */}
-      <div className="w-full bg-gradient-to-r from-[#22103B] via-[#351859] to-[#481F78] border border-[#6D34A8]/40 rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative z-10">
+      {/* Banner Principal Unificado: Aba de Cursos & Para que servem os cursos */}
+      <div className="w-full bg-gradient-to-r from-[#1C0730] via-[#3C1361] to-[#521C7E] border border-[#6E259F]/60 rounded-3xl p-6 lg:p-8 shadow-2xl relative overflow-hidden space-y-6">
+        
+        {/* Cabeçalho da Aba de Cursos */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative z-10 pb-6 border-b border-[#6E259F]/40">
           <div className="space-y-2 max-w-2xl">
-            <div className="inline-flex items-center gap-2 bg-[#17092A] border border-[#7C3AED]/40 px-3 py-1 rounded-full text-xs font-bold text-[#DDD6FE]">
-              <GraduationCap className="w-3.5 h-3.5 text-[#F59E0B]" />
-              <span>Catálogo Oficial de Cursos (Escola Virtual)</span>
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="inline-flex items-center gap-2 bg-[#17092A] border border-[#7C3AED]/40 px-3 py-1 rounded-full text-xs font-bold text-[#DDD6FE]">
+                <GraduationCap className="w-3.5 h-3.5 text-[#F59E0B]" />
+                <span>Catálogo Oficial de Cursos</span>
+              </div>
+              <span className="bg-[#250B3E]/90 text-purple-200 border border-purple-500/40 text-xs font-semibold px-2.5 py-0.5 rounded-full flex items-center gap-1">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
+                100% Gratuito &amp; Online
+              </span>
+              <span className="bg-[#150524]/90 text-purple-200 border border-purple-500/30 text-xs font-semibold px-2.5 py-0.5 rounded-full flex items-center gap-1">
+                <Award className="w-3.5 h-3.5 text-[#D8B4FE]" />
+                Certificação com Badges Oficiais
+              </span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
               Aba de Cursos Disponíveis
@@ -95,28 +107,11 @@ export default function CoursesView() {
             <div className="text-[11px] text-purple-200 mt-0.5">Cursos Filtrados</div>
           </div>
         </div>
-      </div>
 
-      {/* Banner Explicativo: Para que servem os Cursos da Escola Virtual */}
-      <div className="w-full bg-gradient-to-r from-[#1C0730] via-[#3C1361] to-[#521C7E] border border-[#6E259F]/60 rounded-3xl p-6 lg:p-8 shadow-2xl relative overflow-hidden">
+        {/* Seção Explicativa: Para que servem os cursos */}
         <div className="flex flex-col lg:flex-row justify-between gap-6 relative z-10">
           <div className="space-y-3 max-w-3xl">
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="bg-[#521C7E] text-white text-xs font-bold px-3.5 py-1 rounded-full uppercase tracking-wider shadow-sm flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-[#FBBF24]" />
-                ESCOLA VIRTUAL SKILLHUB
-              </span>
-              <span className="bg-[#250B3E]/90 text-purple-200 border border-purple-500/40 text-xs font-semibold px-2.5 py-0.5 rounded-full flex items-center gap-1">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                100% Gratuito &amp; Online
-              </span>
-              <span className="bg-[#150524]/90 text-purple-200 border border-purple-500/30 text-xs font-semibold px-2.5 py-0.5 rounded-full flex items-center gap-1">
-                <Award className="w-3.5 h-3.5 text-[#D8B4FE]" />
-                Certificação com Badges Oficiais
-              </span>
-            </div>
-
-            <h2 className="text-2xl lg:text-3xl font-black text-white tracking-tight leading-tight">
+            <h2 className="text-xl lg:text-2xl font-black text-white tracking-tight leading-tight">
               Para que servem os cursos da nossa plataforma?
             </h2>
             <p className="text-sm sm:text-base text-purple-100 leading-relaxed font-medium">
