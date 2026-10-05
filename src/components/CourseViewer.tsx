@@ -881,9 +881,48 @@ export default function CourseViewer() {
                   </div>
 
                   {quizSubmitted && (
-                    <div className="p-3 bg-[#150524] border border-[#3C1361] rounded-xl text-xs text-purple-200 mt-2">
-                      <strong className="text-white">Explicação: </strong>
-                      {q.explanation}
+                    <div className={`p-4 rounded-xl text-xs mt-3 border space-y-2 ${
+                      isCorrect 
+                        ? 'bg-emerald-950/40 border-emerald-500/50 text-emerald-100' 
+                        : 'bg-rose-950/40 border-rose-500/50 text-rose-100'
+                    }`}>
+                      <div className="font-bold flex items-center gap-2 text-sm">
+                        {isCorrect ? (
+                          <span className="text-emerald-300 flex items-center gap-1.5">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                            Você acertou!
+                          </span>
+                        ) : (
+                          <span className="text-rose-300 flex items-center gap-1.5">
+                            <AlertTriangle className="w-4 h-4 text-rose-400" />
+                            Você errou esta questão
+                          </span>
+                        )}
+                      </div>
+
+                      {!isCorrect && (
+                        <div className="text-xs text-rose-200 bg-rose-950/70 p-3 rounded-lg border border-rose-800/40 leading-relaxed">
+                          <div>
+                            Sua escolha:{' '}
+                            <span className="font-bold text-white">
+                              {selectedOpt !== undefined ? `Alternativa (${String.fromCharCode(65 + selectedOpt)})` : 'Não respondeu'}
+                            </span>
+                          </div>
+                          <div className="mt-1">
+                            Alternativa correta:{' '}
+                            <span className="font-bold text-emerald-300">
+                              Alternativa ({String.fromCharCode(65 + q.correct)}) - &ldquo;{q.options[q.correct]}&rdquo;
+                            </span>
+                          </div>
+                        </div>
+                      )}
+
+                      <div className="text-purple-100 leading-relaxed pt-1">
+                        <strong className="text-white font-semibold">
+                          {isCorrect ? 'Explicação & Justificativa:' : 'Por que a alternativa (' + String.fromCharCode(65 + q.correct) + ') é a correta:'}
+                        </strong>{' '}
+                        <span>{q.explanation}</span>
+                      </div>
                     </div>
                   )}
                 </div>

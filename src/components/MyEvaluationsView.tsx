@@ -30,12 +30,12 @@ export default function MyEvaluationsView() {
     },
     {
       courseId: 'curso-curriculo-plataformas',
-      courseTitle: 'Elaboração de Currículo Campeão e Cadastro em Plataformas',
-      badgeName: 'Currículo Campeão',
+      courseTitle: 'Orçamento do Primeiro Salário',
+      badgeName: 'Orçamento do Primeiro Salário',
       date: '10/09/2026',
       score: 85,
       passed: true,
-      questionsCount: 3,
+      questionsCount: 7,
       codeVerificador: 'SKILL-PR-2026-4190B'
     },
     {

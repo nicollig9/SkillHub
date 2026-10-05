@@ -5,9 +5,9 @@ export const TRACKS: Track[] = [
     id: 'trilha-1',
     name: '1. Entrada no Mercado & Primeiro Emprego',
     category: 'Desenvolvimento Pessoal e Legislação',
-    description: 'Trilha fundamental para quem quer conquistar a primeira vaga formal: direitos da Lei 10.097, elaboração de currículo campeão e técnicas comprovadas para entrevistas.',
+    description: 'Trilha fundamental para quem quer conquistar a primeira vaga formal: direitos da Lei 10.097, orçamento do primeiro salário e técnicas comprovadas para entrevistas.',
     targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO'],
-    hoursTotal: 32,
+    hoursTotal: 34,
     coursesCount: 3,
     courseIds: ['curso-jovem-aprendiz-avancado', 'curso-curriculo-plataformas', 'curso-postura-entrevistas'],
     badgeReward: 'Embaixador do Primeiro Emprego',
@@ -300,7 +300,7 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
-  // 2. ELABORAÇÃO DE CURRÍCULO CAMPEÃO & PLATAFORMAS
+  // 2. ORÇAMENTO DO PRIMEIRO SALÁRIO
   // =========================================================================
   {
     id: 'curso-curriculo-plataformas',
@@ -308,79 +308,218 @@ export const COURSES: Course[] = [
     trackName: 'TRILHA 1: Entrada no Mercado & Primeiro Emprego',
     category: 'Desenvolvimento Pessoal',
     targetAudienceType: ['PRIMEIRO_EMPREGO', 'JOVEM_APRENDIZ', 'ESTUDANTE'],
-    title: 'Elaboração de Currículo Campeão e Cadastro em Plataformas',
-    subtitle: 'Estruturação sem experiência prévia, LGPD de dados pessoais, palavras-chave e LinkedIn para jovens',
-    hours: 10,
-    equivalentHours: 10,
+    title: 'Orçamento do Primeiro Salário',
+    subtitle: 'Ensinar a organizar, priorizar e multiplicar o primeiro salário, evitando dívidas e criando hábitos financeiros saudáveis desde o início da carreira.',
+    hours: 12,
+    equivalentHours: 12,
     modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Estudantes e jovens criando seu primeiro currículo profissional',
-    prerequisites: 'Nenhum.',
-    badgeName: 'Currículo Campeão',
-    badgeCategory: 'Trabalho',
-    badgeIcon: 'FileText',
-    accentColor: '#3B82F6',
+    targetAudience: 'Jovens aprendizes, estagiários e profissionais em seu primeiro emprego',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Orçamento do Primeiro Salário',
+    badgeCategory: 'Finanças Pessoais',
+    badgeIcon: 'DollarSign',
+    accentColor: '#10B981',
     level: 'Iniciante',
     learningObjectives: [
-      'Montar um currículo objetivo e profissional mesmo sem experiência de carteira assinada.',
-      'Valorizar formação escolar, cursos livres, projetos de ciências, voluntariado e Badges digitais.',
-      'Compreender a proteção de dados pessoais (LGPD) no envio de currículos digitais.',
-      'Cadastrar-se com eficácia em plataformas de vagas em Curitiba e Região Metropolitana.'
+      'Entender a diferença prática entre Salário Bruto e Salário Líquido, dominando descontos (INSS, IRRF, VT, VR) e análise de holerite.',
+      'Superar a "Síndrome do Salário no Bolso" e o viés do presente, identificando e eliminando ralos financeiros.',
+      'Aplicar a Regra 50/30/20 com adaptabilidade à realidade inicial e escolher ferramentas adequadas de controle (planilhas, apps ou envelopes).',
+      'Construir a Reserva de Emergência com foco em segurança e liquidez diária, dominando o uso consciente do cartão de crédito.',
+      'Planejar metas pelo método SMART, entender títulos de Renda Fixa (Tesouro Selic e CDB com FGC) e o poder multiplicador dos juros compostos.'
     ],
     modules: [
       {
-        id: 'cur-mod-1',
+        id: 'orc-mod-1',
         number: 1,
-        title: 'MÓDULO 1: Estrutura do Currículo de Alto Impacto sem Experiência',
-        summary: 'Cabeçalho limpo, objetivo direto, formação escolar, cursos complementares e projetos de destaque.',
-        estimatedMinutes: 40,
+        title: 'MÓDULO 1: A Anatomia do Primeiro Salário (Mentalidade & Diagnóstico)',
+        summary: 'Bruto vs. Líquido, descontos em folha (INSS, IRRF, VT, VR), a psicologia do consumo imediato e o mapeamento de ralos financeiros.',
+        estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1.1 A Estrutura Perfeita em 5 Blocos',
+              subheading: '1. Bruto vs. Líquido: Entendendo Descontos Básicos',
               body: [
-                'Bloco 1: Cabeçalho com Nome Completo, Bairro/Cidade (ex: Boqueirão, Curitiba/PR), Telefone WhatsApp e E-mail profissional limpo (ex: nome.sobrenome@email.com).',
-                'Bloco 2: Objetivo Profissional Claro (ex: "Jovem Aprendiz Administrativo" ou "Estágio em Suporte Técnico / TI"). Nunca use "A disposição da empresa".',
-                'Bloco 3: Formação Acadêmica: Escola/Colégio, Série ou Ano, Curso e Turno das aulas (Manhã, Tarde ou Noite).',
-                'Bloco 4: Cursos Complementares & Badges: Cursos do SkillHub com carga horária, temas e códigos verificadores.',
-                'Bloco 5: Informações Adicionais: Voluntariado, olimpíadas escolares, participação em grêmio estudantil ou feiras tecnológicas.'
+                'O erro mais comum ao receber a proposta de trabalho é planejar o orçamento com base no salário bruto (o valor nominal do contrato). O valor que realmente cai na conta corrente é o salário líquido, após os descontos compulsórios e voluntários.',
+                'INSS (Instituto Nacional do Seguro Social): Desconto obrigatório regressivo por faixas salariais. Destina-se à previdência social e garante benefícios como auxílio-doença e aposentadoria.',
+                'IRRF (Imposto de Renda Retido na Fonte): Imposto federal descontado diretamente da folha de pagamento caso a renda ultrapasse o teto de isenção estipulado pela Receita Federal.',
+                'Benefícios e Comparticipações:',
+                '• Vale-Transporte (VT): A legislação permite o desconto de até 6% do salário base para o fornecimento do transporte público.',
+                '• Vale-Refeição/Alimentação (VR/VA): Dependendo da convenção coletiva, pode haver um pequeno desconto percentual em folha.',
+                '• Plano de Saúde e Odontológico: Comparticipações e mensalidades do plano corporativo.',
+                'Regra de Ouro: Seu orçamento real só começa a partir do valor numérico do Pix do seu holerite (extrato de pagamento).'
               ],
               highlightBox: {
-                type: 'info',
-                title: 'Exemplo de Objetivo Direto',
-                text: 'Recomendado: "Busco oportunidade como Jovem Aprendiz na área de Logística e Suprimentos para aplicar conhecimentos em controle de estoque e rotinas operacionais."'
+                type: 'calc',
+                title: 'Regra de Ouro do Primeiro Holerite',
+                text: 'Nunca faça planos com base no valor bruto do contrato. O orçamento real é planejado estritamente sobre o valor líquido creditado na sua conta bancária.'
               }
             },
             {
-              subheading: '1.2 O que NUNCA colocar no currículo (LGPD & Segurança)',
+              subheading: '2. Mudança de Mentalidade: A "Síndrome do Salário no Bolso"',
               body: [
-                'Número de CPF, RG ou Título de Eleitor: Devem ser informados somente no momento da admissão formal após ser aprovado.',
-                'Endereço com número de porta ou CEP residencial: Exponha apenas o Bairro e a Cidade para evitar exposição desnecessária.',
-                'Foto 3x4: Só inclua se a vaga solicitar expressamente (para funções artísticas ou recepção).',
-                'Pretensão salarial ou dados bancários: Totalmente inadequado na fase inicial de triagem.'
+                'A transição da vida sem renda para o primeiro salário gera um fenômeno psicológico comum: o viés do presente. O cérebro interpreta a entrada repentina de dinheiro como liquidez infinita, alimentando o impulso de satisfazer desejos represados.',
+                'A Ilusão do Consumo Imediato: Comprar itens caros na primeira semana sob a justificativa "eu trabalhei para isso" reduz o capital necessário para cobrir os dias restantes do mês, levando à dependência do cheque especial ou cartão de crédito.',
+                'Ajuste de Estilo de Vida: Aumentar o padrão de vida na mesma proporção do aumento de renda impede a formação de patrimônio. A maturidade financeira exige postergar pequenas gratificações em prol de estabilidade futura.'
               ],
               highlightBox: {
                 type: 'warning',
-                title: 'Segurança da Informação',
-                text: 'Seu currículo circula por diversas caixas de e-mail. Proteger seus documentos evita fraudes e vazamento de identidade.'
+                title: 'Cuidado com o Viés do Presente',
+                text: 'A sensação de "eu trabalhei para isso" logo após o pagamento é o principal gatilho que empurra o jovem para o cheque especial ou para o rotativo do cartão.'
               }
+            },
+            {
+              subheading: '3. Mapeamento de Gastos: Ralos Financeiros',
+              body: [
+                'Antes de cortar custos, é preciso saber exatamente para onde o dinheiro está escoando. Os gastos dividem-se em três categorias:',
+                '• Custos Fixos: Despesas previsíveis com valor constante ou quase constante (ex: contribuição em casa, conta de celular, faculdade).',
+                '• Custos Variáveis: Despesas necessárias que oscilam conforme o consumo (ex: alimentação fora, transporte aplicativo, energia elétrica).',
+                '• Ralos Financeiros (Gastos Invisíveis): Pequenos saques diários de capital que, somados ao fim do mês, corroem até 20% da renda:',
+                '  - Assinaturas de serviços de streaming que você raramente utiliza.',
+                '  - Compras em aplicativos de entrega (delivery) por preguiça de cozinhar.',
+                '  - Compras de conveniência no dia a dia (cafés, doces e lanches na rua sem planejamento).'
+              ],
+              asciiDiagram: `┌────────────────────────────────────────────────────────┐
+│               MAPEAMENTO DO SALÁRIO LÍQUIDO            │
+├────────────────────────────────────────────────────────┤
+│ [Entrada: Salário Líquido]                             │
+│        │                                               │
+│        ├──► Gastos Fixos (Moradia, Contas, Faculdade)  │
+│        ├──► Gastos Variáveis (Mercado, Transporte, Lazer)
+│        └──► Ralos Financeiros (Assinaturas esquecidas, │
+│             Delivery excessivo, Compras por impulso)   │
+└────────────────────────────────────────────────────────┘`
             }
           ]
         }
       },
       {
-        id: 'cur-mod-2',
+        id: 'orc-mod-2',
         number: 2,
-        title: 'MÓDULO 2: Palavras-Chave e Robôs de Triagem (ATS)',
-        summary: 'Como os sistemas de RH filtram currículos automaticamente e como otimizar seu texto para ser chamado.',
-        estimatedMinutes: 35,
+        title: 'MÓDULO 2: Métodos de Organização e Orçamento',
+        summary: 'A Regra 50/30/20 na prática, adaptabilidade inicial e ferramentas de controle (planilhas, aplicativos e método dos envelopes).',
+        estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '2.1 Entendendo os Robôs de Seleção (ATS)',
+              subheading: '1. A Regra 50/30/20 Aplicada à Realidade Inicial',
               body: [
-                'Grandes empresas de Curitiba usam softwares de recrutamento que buscam palavras-chave específicas no currículo.',
-                'Se a vaga pede "Excel", "Atendimento telefônico" ou "Rotinas de Arquivo", essas palavras devem constar textualmente na sua lista de competências e cursos.'
+                'A Regra 50/30/20 é um modelo de alocação orçamentária projetado para simplificar a tomada de decisão. As proporções incidem diretamente sobre o Salário Líquido:',
+                '• Necessidades Essenciais (50%): Aluguel ou contribuição com as contas da casa, supermercado básico, transporte para o trabalho, contas de luz/água e saúde.',
+                '• Desejos Pessoais (30%): Lazer nos finais de semana, saídas com amigos, hobbys, compras de vestuário, serviços de streaming e viagens.',
+                '• Prioridades Financeiras (20%): Construção da reserva de emergência, quitação de eventuais dívidas e investimentos para objetivos de curto/médio prazo.',
+                'Adaptabilidade do Método: Para quem está no início de carreira e ganha um salário menor ou mora com os pais, a divisão pode ser ajustada (ex: 40% Necessidades / 30% Desejos / 30% Futuro ou 60% Necessidades / 25% Desejos / 15% Futuro).'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Exemplo Prático (Salário Líquido de R$ 2.000,00)',
+                text: 'Necessidades (50%) = R$ 1.000,00 | Desejos (30%) = R$ 600,00 | Prioridades Financeiras (20%) = R$ 400,00.'
+              }
+            },
+            {
+              subheading: '2. Escolha da Ferramenta de Controle',
+              body: [
+                'O método ideal é aquele que você consegue manter de forma consistente ao longo dos meses.',
+                '• Planilhas Eletrônicas (Excel / Google Planilhas): Ideal para quem busca controle analítico detalhado, projeções futuras e gráficos de acompanhamento.',
+                '• Aplicativos de Gestão Financeira: Opção prática para registrar gastos em tempo real diretamente pelo smartphone.',
+                '• Método dos Envelopes (Físico ou Digital): Separação do dinheiro em categorias no início do mês. Acabou o saldo do envelope "Lazer", as saídas são suspensas até o próximo pagamento.'
               ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'orc-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Reserva de Emergência e O Perigo do Crédito',
+        summary: 'Dimensionamento da reserva de emergência, segurança e liquidez, uso consciente do cartão de crédito e prevenção a dívidas precoces.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Construção da Reserva de Emergência',
+              body: [
+                'A reserva de emergência é o alicerce de qualquer planejamento financeiro. Ela evita que você precise recorrer a empréstimos ou juros bancários diante de imprevistos.',
+                'Dimensionamento do Valor:',
+                '• Trabalhadores CLT: 3 a 6 meses do seu custo de vida mensal (não do salário bruto).',
+                '• Profissionais Autônomos / PJ: 6 a 12 meses do seu custo de vida mensal devido à volatilidade da renda.',
+                'Critérios para Escolha do Local de Alocação:',
+                '• Segurança: Baixíssimo risco de perda do valor principal.',
+                '• Liquidez Diária: Capacidade de resgatar o dinheiro no mesmo dia em que ocorrer a emergência.'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Segurança & Liquidez Diária',
+                text: 'A reserva de emergência não foi feita para lucrar alto, e sim para dar tranquilidade. Ela deve estar sempre em ativos de baixíssimo risco e resgate diário imediato.'
+              }
+            },
+            {
+              subheading: '2. Uso Consciente do Cartão de Crédito',
+              body: [
+                'O cartão de crédito não é renda extra; é um instrumento de pagamento com pagamento diferido (adiado).',
+                '• O Ciclo do Crédito: Ao usar o cartão, você está tomando um empréstimo de curto prazo com a instituição financeira. Se pagar a fatura integral na data de vencimento, o custo desse empréstimo é zero.',
+                '• A Armadilha do Juro Rotativo: Ao pagar apenas o "valor mínimo" da fatura, o saldo remanescente entra no juro rotativo — uma das taxas mais altas do mercado financeiro brasileiro.',
+                'Boas Práticas:',
+                '• Mantenha o limite do cartão em um valor inferior ao seu salário líquido.',
+                '• Trate as compras no crédito como se fossem saídas imediatas do seu saldo bancário.'
+              ]
+            },
+            {
+              subheading: '3. Evitando Dívidas Precoces',
+              body: [
+                'Assumir compromissos financeiros de longo prazo no início da carreira compromete a renda futura e reduz a flexibilidade profissional.',
+                '• Financiamentos Precipitados: Entrar em parcelamentos de longo prazo (veículos ou imóveis) limita a capacidade de trocar de emprego, fazer cursos de especialização ou se arriscar em novas oportunidades.',
+                '• A Regra dos 3 Dias para Compras por Impulso: Ao sentir o desejo de comprar algo não essencial, aguarde 72 horas. Se a necessidade persistir após o período de esfriamento emocional, avalie o impacto no seu orçamento.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'orc-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Primeiros Passos nos Investimentos e Objetivos de Vida',
+        summary: 'Metas SMART (curto, médio e longo prazo), renda fixa para iniciantes (Tesouro Selic e CDB com FGC) e o efeito multiplicador dos juros compostos.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Definição de Metas Financeiras (Estrutura SMART)',
+              body: [
+                'Dinheiro sem destino é gasto sem perceber. As metas devem ser categorizadas por horizontes temporais claros:',
+                '• Curto Prazo (Até 1 ano): Comprar um curso de especialização, fazer uma viagem nas férias ou trocar de smartphone.',
+                '• Médio Prazo (1 a 5 anos): Fazer um intercâmbio, juntar valor de entrada em uma conquista maior ou trocar de veículo.',
+                '• Longo Prazo (Acima de 5 anos): Independência financeira, aposentadoria complementar ou constituição de patrimônio.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Metas SMART na Prática',
+                text: 'Defina metas Específicas, Mensuráveis, Atingíveis, Relevantes e com Prazo. Exemplo: "Poupar R$ 150 por mês durante 10 meses para comprar um notebook de estudos."'
+              }
+            },
+            {
+              subheading: '2. Renda Fixa para Iniciantes',
+              body: [
+                'Para a reserva de emergência e metas de curto/médio prazo, a renda fixa é a classe de ativos indicada.',
+                '• Por que fugir da Poupança Tradicional? A caderneta de poupança possui rendimento inferior ao de outras aplicações de renda fixa simples e rende apenas no "aniversário" mensal, perdendo eficiência para a inflação.',
+                '• Tesouro Selic: Título público emitido pelo Governo Federal. É considerado o investimento de menor risco do país, possui liquidez diária e rende 100% da taxa Selic com rentabilidade diária.',
+                '• CDBs (Certificados de Depósito Bancário): Títulos emitidos por bancos. Para a reserva, busca-se CDBs de bancos sólidos que ofereçam 100% do CDI com liquidez diária e garantia do FGC (Fundo Garantidor de Créditos).'
+              ]
+            },
+            {
+              subheading: '3. A Força dos Juros Compostos',
+              body: [
+                'Os juros compostos funcionam como uma bola de neve positiva: os rendimentos de cada período são incorporados ao capital inicial, gerando novos rendimentos no período seguinte.',
+                'O Fator Tempo: Começar a investir no primeiro salário, mesmo que com valores modestos (ex: R$ 50,00 ou R$ 100,00 por mês), é mais vantajoso do que começar com quantias maiores anos mais tarde, devido ao efeito multiplicador do tempo no cálculo dos juros compostos.'
+              ],
+              asciiDiagram: `┌────────────────────────────────────────────────────────┐
+│            A BOLA DE NEVE DOS JUROS COMPOSTOS          │
+├────────────────────────────────────────────────────────┤
+│ Mês 1: Capital Inicial ──► Juros acumulados            │
+│ Mês 2: (Capital Inicial + Juros Mês 1) ──► Novos Juros │
+│ Mês 3: (Capital + Juros Mês 1 + Juros Mês 2) ──► Novos │
+│ Efeito: O tempo multiplica seu capital de forma        │
+│ exponencial quando mantido com consistência!           │
+└────────────────────────────────────────────────────────┘`
             }
           ]
         }
@@ -390,27 +529,87 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'O que NÃO deve constar no currículo inicial de um jovem para preservar sua segurança conforme a LGPD?',
+        question: 'Um profissional assinou seu primeiro contrato de trabalho com o salário bruto registrado em carteira de R$ 2.500,00. Ao receber o primeiro pagamento via depósito bancário, notou que o valor em conta era de R$ 2.180,00. Qual valor deve ser utilizado como base para a montagem do seu orçamento mensal?',
         options: [
-          'Cursos livres e badges conquistadas no SkillHub.',
-          'Nome completo e bairro onde reside.',
-          'Número de CPF, RG, dados bancários e endereço com número de casa.',
-          'Objetivo profissional e turno escolar.'
+          'R$ 2.500,00, pois é a remuneração formal combinada no contrato de trabalho.',
+          'R$ 2.180,00, pois o planejamento orçamentário deve ser feito exclusivamente sobre o salário líquido disponível.',
+          'R$ 2.340,00, calculando a média aritmética entre o valor bruto e o valor líquido.',
+          'R$ 2.500,00 somado ao valor total dos benefícios fornecidos pela empresa (VT e VR).'
         ],
-        correct: 2,
-        explanation: 'Documentos sensíveis como CPF, RG e endereço com número não devem constar no currículo inicial.'
+        correct: 1,
+        explanation: 'O planejamento orçamentário deve ser elaborado estritamente com base no salário líquido (o valor que efetivamente entra na conta). Fazer projeções sobre o valor bruto (R$ 2.500,00) gerará um déficit orçamentário mensal de R$ 320,00 referente aos descontos em folha.'
       },
       {
         id: 2,
-        question: 'Qual a forma mais adequada de redigir o Objetivo Profissional no currículo?',
+        question: 'A Regra 50/30/20 é uma metodologia prática de divisão orçamentária. Ao receber um salário líquido de R$ 2.000,00, qual é a distribuição correta dos valores em reais para Necessidades, Desejos Pessoais e Prioridades Financeiras, respectivamente?',
         options: [
-          '"Qualquer vaga que estiver disponível."',
-          '"Atuar como Jovem Aprendiz Administrativo aplicando conhecimentos em rotinas de escritório e planilhas."',
-          '"Ganhar dinheiro para comprar roupas."',
-          'Deixar o campo em branco.'
+          'R$ 1.000,00 para Necessidades (50%), R$ 600,00 para Desejos (30%) e R$ 400,00 para Prioridades Financeiras (20%).',
+          'R$ 1.200,00 para Necessidades (60%), R$ 400,00 para Desejos (20%) e R$ 400,00 para Prioridades Financeiras (20%).',
+          'R$ 800,00 para Necessidades (40%), R$ 800,00 para Desejos (40%) e R$ 400,00 para Prioridades Financeiras (20%).',
+          'R$ 1.000,00 para Necessidades (50%), R$ 400,00 para Desejos (20%) e R$ 600,00 para Prioridades Financeiras (30%).'
+        ],
+        correct: 0,
+        explanation: 'Aplicando as proporções sobre R$ 2.000,00: 50% (Necessidades) = 2.000 × 0,50 = R$ 1.000,00; 30% (Desejos) = 2.000 × 0,30 = R$ 600,00; e 20% (Prioridades Financeiras) = 2.000 × 0,20 = R$ 400,00.'
+      },
+      {
+        id: 3,
+        question: 'Sobre a construção e manutenção da Reserva de Emergência, qual das alternativas apresenta o local de alocação mais adequado e a justificativa técnica correta?',
+        options: [
+          'Ações de empresas de tecnologia, pois oferecem alto potencial de valorização no curto prazo.',
+          'Caderneta de poupança tradicional, pois é o único produto financeiro no Brasil isento de qualquer tipo de risco sistêmico.',
+          'Tesouro Selic ou CDB de liquidez diária cobrindo 100% do CDI, pois oferecem alta segurança e possibilidade de resgate imediato sem perda de rendimento.',
+          'Títulos de Renda Fixa pré-fixados com vencimento para 5 anos, pois garantem a maior taxa de juros do mercado.'
+        ],
+        correct: 2,
+        explanation: 'A Reserva de Emergência exige combinação de alta segurança e liquidez diária (possibilidade de resgate a qualquer momento sem perdas). O Tesouro Selic e CDBs a 100% do CDI com liquidez diária atendem exatamente a esses dois requisitos técnicos.'
+      },
+      {
+        id: 4,
+        question: 'O uso do cartão de crédito exige disciplina financeira para evitar o endividamento precoce. Qual é a conduta recomendada para o uso consciente dessa ferramenta no dia a dia?',
+        options: [
+          'Utilizar o limite do cartão como uma extensão da renda mensal para complementar o pagamento de contas básicas.',
+          'Pagar sempre o valor mínimo estipulado na fatura mensal para manter dinheiro sobrando na conta corrente.',
+          'Acumular o pagamento de duas faturas consecutivas para negociar um desconto de juros junto ao banco.',
+          'Concentrar gastos controlados na fatura e efetuar o pagamento integral do valor total até a data de vencimento.'
+        ],
+        correct: 3,
+        explanation: 'O uso correto do cartão de crédito envolve centralizar gastos previamente orçados para obter prazos de pagamento ou benefícios (como pontos), efetuando o pagamento 100% integral da fatura no vencimento para evitar a incidência das taxas de juros rotativos.'
+      },
+      {
+        id: 5,
+        question: 'Um jovem profissional deseja acumular dinheiro para realizar uma viagem de férias daqui a 12 meses. Como esse objetivo deve ser classificado dentro do planejamento financeiro e qual o horizonte temporal dessa meta?',
+        options: [
+          'Meta de Longo Prazo, com horizonte temporal acima de 5 anos.',
+          'Meta de Curto Prazo, com horizonte temporal de até 1 ano.',
+          'Meta Indefinida, pois investimentos para férias não podem ser planejados financeiramente.',
+          'Meta de Médio Prazo, com horizonte temporal de 2 a 5 anos.'
         ],
         correct: 1,
-        explanation: 'Um objetivo claro e alinhado à vaga pretendida facilita o trabalho do recrutador e demonstra foco.'
+        explanation: 'Metas financeiras com horizonte de realização de até 12 meses (1 ano) são classificadas tecnicamente como metas de Curto Prazo.'
+      },
+      {
+        id: 6,
+        question: 'O conceito de "Juros Compostos" desempenha um papel fundamental no acúmulo de patrimônio ao longo do tempo. Qual das afirmações abaixo descreve corretamente a dinâmica do seu funcionamento?',
+        options: [
+          'Os rendimentos do período são somados ao capital acumulado, fazendo com que os juros do período seguinte incidam sobre o novo valor total.',
+          'Os juros são calculados apenas uma vez, sobre o capital inicial investido, no momento do resgate do título.',
+          'Trata-se de uma taxa cobrada pelos bancos para administrar a carteira de investimento de clientes iniciantes.',
+          'Os juros compostos aplicam-se exclusivamente a dívidas de cartão de crédito e não aos investimentos de renda fixa.'
+        ],
+        correct: 0,
+        explanation: 'Os juros compostos operam na lógica de "juros sobre juros". A cada ciclo, os rendimentos gerados são incorporados ao montante principal, servindo de base de cálculo para a próxima rentabilidade.'
+      },
+      {
+        id: 7,
+        question: 'Dentre as opções abaixo, qual representa um "ralo financeiro" típico que pode comprometer silenciosamente o orçamento de quem está no primeiro emprego?',
+        options: [
+          'Pagamento de transporte público utilizado para o deslocamento diário até o trabalho.',
+          'Pagamento da mensalidade de um curso de graduação ou capacitação profissional.',
+          'Contratação recorrente de múltiplos serviços de streaming e pedidos frequentes de delivery por aplicativo sem registro no orçamento.',
+          'Destinação de 10% do salário líquido para a reserva de emergência no dia do pagamento.'
+        ],
+        correct: 2,
+        explanation: 'Ralos financeiros são pequenos gastos não essenciais e pouco percebidos no dia a dia (como assinaturas duplicadas/não utilizadas e pedidos de delivery impulsivos) que somam valores expressivos ao final do mês, corroendo a capacidade de poupança.'
       }
     ]
   },
