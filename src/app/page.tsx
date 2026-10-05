@@ -15,6 +15,7 @@ import CuritibaProximityMap from '@/components/CuritibaProximityMap';
 import HoleriteSimulator from '@/components/HoleriteSimulator';
 import BadgeWallet from '@/components/BadgeWallet';
 import RecruiterDashboard from '@/components/RecruiterDashboard';
+import DemoFeatureGuide from '@/components/DemoFeatureGuide';
 import { useApp } from '@/context/AppContext';
 
 export default function HomePage() {
@@ -43,24 +44,29 @@ export default function HomePage() {
       <main className="flex-1 p-4 lg:p-8 overflow-y-auto max-w-6xl w-full mx-auto flex flex-col items-center justify-start">
         {!isAuthenticated ? (
           <LoginPage />
-        ) : role === 'RECRUTADOR' ? (
-          <RecruiterDashboard />
         ) : (
           <>
-            {currentView === 'INICIO' && <StudentDashboard />}
-            {currentView === 'LOGIN' && <StudentDashboard />}
-            {currentView === 'DASHBOARD' && <StudentDashboard />}
-            {currentView === 'CURSOS_DISPONIVEIS' && <CoursesView />}
-            {currentView === 'MEUS_CURSOS' && <MyCoursesView />}
-            {currentView === 'TRILHAS_DISPONIVEIS' && <TracksView />}
-            {currentView === 'MINHAS_TRILHAS' && <TracksView />}
-            {currentView === 'MINHAS_AVALIACOES' && <MyEvaluationsView />}
-            {currentView === 'CURSOS' && <CoursesView />}
-            {currentView === 'TRILHAS' && <TracksView />}
-            {currentView === 'CURSO_DETALHE' && <CourseViewer />}
-            {currentView === 'MAPA_PROXIMIDADE' && <CuritibaProximityMap />}
-            {currentView === 'HOLERITE' && <HoleriteSimulator />}
-            {currentView === 'BADGES_PERFIL' && <BadgeWallet />}
+            <DemoFeatureGuide />
+            {role === 'RECRUTADOR' ? (
+              <RecruiterDashboard />
+            ) : (
+              <>
+                {currentView === 'INICIO' && <StudentDashboard />}
+                {currentView === 'LOGIN' && <StudentDashboard />}
+                {currentView === 'DASHBOARD' && <StudentDashboard />}
+                {currentView === 'CURSOS_DISPONIVEIS' && <CoursesView />}
+                {currentView === 'MEUS_CURSOS' && <MyCoursesView />}
+                {currentView === 'TRILHAS_DISPONIVEIS' && <TracksView />}
+                {currentView === 'MINHAS_TRILHAS' && <TracksView />}
+                {currentView === 'MINHAS_AVALIACOES' && <MyEvaluationsView />}
+                {currentView === 'CURSOS' && <CoursesView />}
+                {currentView === 'TRILHAS' && <TracksView />}
+                {currentView === 'CURSO_DETALHE' && <CourseViewer />}
+                {currentView === 'MAPA_PROXIMIDADE' && <CuritibaProximityMap />}
+                {currentView === 'HOLERITE' && <HoleriteSimulator />}
+                {currentView === 'BADGES_PERFIL' && <BadgeWallet />}
+              </>
+            )}
           </>
         )}
       </main>

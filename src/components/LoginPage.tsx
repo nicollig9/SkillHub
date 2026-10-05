@@ -32,10 +32,10 @@ export default function LoginPage() {
   const { loginUser, registerCandidate, registerCompany, setCurrentView, showToast, getKnownAccounts } = useApp();
 
   const [activeTab, setActiveTab] = useState<'CANDIDATO' | 'EMPRESA'>('CANDIDATO');
-  const [authMode, setAuthMode] = useState<'LOGIN' | 'CADASTRO'>('LOGIN');
+  const [authMode, setAuthMode] = useState<'LOGIN' | 'CADASTRO' | 'DEMO'>('LOGIN');
   const [selectedProfile, setSelectedProfile] = useState<CandidateProfileType>('JOVEM_APRENDIZ');
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [savedAccounts, setSavedAccounts] = useState<{ email: string; nome: string; profileType: CandidateProfileType; date: string }[]>([]);
+  const [savedAccounts, setSavedAccounts] = useState<{ email: string; nome: string; username?: string; profileType: CandidateProfileType; date: string }[]>([]);
 
   React.useEffect(() => {
     setSavedAccounts(getKnownAccounts());
@@ -52,6 +52,7 @@ export default function LoginPage() {
   }, []);
 
   // Form Candidato (inicia limpo)
+  const [candUsuario, setCandUsuario] = useState('');
   const [candEmail, setCandEmail] = useState('');
   const [candSenha, setCandSenha] = useState('');
   const [candNome, setCandNome] = useState('');
@@ -90,9 +91,10 @@ export default function LoginPage() {
   const [decLgpdMenores, setDecLgpdMenores] = useState<boolean>(false);
 
   // Cálculo da idade
-  const calculateAge = (birthDateStr: string) => {
-    if (!birthDateStr) return 17;
+  const calculateAge = (birthDateStr: string): number | null => {
+    if (!birthDateStr) return null;
     const birth = new Date(birthDateStr);
+    if (isNaN(birth.getTime())) return null;
     const today = new Date();
     let age = today.getFullYear() - birth.getFullYear();
     const m = today.getMonth() - birth.getMonth();
@@ -103,15 +105,15 @@ export default function LoginPage() {
   };
 
   const calculatedAge = calculateAge(candDataNasc);
-  const isMinor = calculatedAge < 18;
+  const isMinor = calculatedAge !== null && calculatedAge < 18;
 
   const handleCandidateSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (authMode === 'LOGIN') {
       loginUser(candEmail, 'ALUNO', selectedProfile, candNome);
     } else {
-      if (!candNome || !candEmail || !candCpf) {
-        showToast('Campos Obrigatórios', 'Por favor preencha todos os dados de cadastro.', 'warning');
+      if (!candNome || !candEmail || !candCpf || !candUsuario) {
+        showToast('Campos Obrigatórios', 'Por favor preencha todos os dados de cadastro (incluindo nome de usuário e e-mail).', 'warning');
         return;
       }
       if (isMinor && (!respNome || !respCpf || !respTelefone || !termoParentalAceito)) {
@@ -120,12 +122,13 @@ export default function LoginPage() {
       }
       registerCandidate({
         nome: candNome,
+        username: candUsuario.trim().toLowerCase(),
         email: candEmail,
         profileType: selectedProfile,
         bairro: candBairro,
         cpf: candCpf,
         dataNascimento: candDataNasc,
-        idade: calculatedAge,
+        idade: calculatedAge ?? 18,
         responsavelLegal: isMinor ? {
           nome: respNome,
           parentesco: respParentesco,
@@ -190,8 +193,12 @@ export default function LoginPage() {
 
         {/* Topo do Card com Logo */}
         <div className="text-center space-y-3 relative z-10 mb-8">
-          <div className="inline-flex items-center justify-center p-2 rounded-2xl bg-[#24123E]/80 border border-[#7C3AED]/40 shadow-inner mb-1">
-            <img src="/logo.png" alt="SkillHub" className="w-14 h-14 object-contain" />
+          <div className="flex items-center justify-center mb-3">
+            <img 
+              src="/logo.png" 
+              alt="SkillHub" 
+              className="w-64 sm:w-80 md:w-96 h-auto max-h-36 sm:max-h-44 object-contain filter drop-shadow-xl transition-transform duration-300 hover:scale-105" 
+            />
           </div>
           <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
             Portal de Acesso <span className="text-[#FBBF24]">SkillHub</span>
@@ -201,47 +208,49 @@ export default function LoginPage() {
           </p>
         </div>
 
-        {/* Chaveador Principal: Candidato / Jovem vs Empresa / RH */}
-        <div className="grid grid-cols-2 gap-2 bg-[#10061D] p-1.5 rounded-2xl border border-[#4C1D95]/40 mb-6 relative z-10">
-          <button
-            type="button"
-            onClick={() => {
-              setActiveTab('CANDIDATO');
-            }}
-            className={`flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all ${
-              activeTab === 'CANDIDATO'
-                ? 'bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] text-white shadow-lg shadow-purple-900/40'
-                : 'text-purple-300 hover:text-white'
-            }`}
-          >
-            <GraduationCap className="w-4 h-4 text-[#FDE68A]" />
-            <span>Sou Jovem / Candidato</span>
-          </button>
+        {/* Chaveador Principal: Candidato / Jovem vs Empresa / RH (apenas se não estiver no tour de demonstração) */}
+        {authMode !== 'DEMO' && (
+          <div className="grid grid-cols-2 gap-2 bg-[#10061D] p-1.5 rounded-2xl border border-[#4C1D95]/40 mb-6 relative z-10">
+            <button
+              type="button"
+              onClick={() => {
+                setActiveTab('CANDIDATO');
+              }}
+              className={`flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+                activeTab === 'CANDIDATO'
+                  ? 'bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] text-white shadow-lg shadow-purple-900/40'
+                  : 'text-purple-300 hover:text-white'
+              }`}
+            >
+              <GraduationCap className="w-4 h-4 text-[#FDE68A]" />
+              <span>Sou Jovem / Candidato</span>
+            </button>
 
-          <button
-            type="button"
-            onClick={() => {
-              setActiveTab('EMPRESA');
-            }}
-            className={`flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all ${
-              activeTab === 'EMPRESA'
-                ? 'bg-gradient-to-r from-[#D97706] to-[#F59E0B] text-[#1A0B2E] shadow-lg shadow-amber-950/40 font-black'
-                : 'text-purple-300 hover:text-white'
-            }`}
-          >
-            <Building2 className="w-4 h-4" />
-            <span>Sou Empresa / Recrutador RH</span>
-          </button>
-        </div>
+            <button
+              type="button"
+              onClick={() => {
+                setActiveTab('EMPRESA');
+              }}
+              className={`flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+                activeTab === 'EMPRESA'
+                  ? 'bg-gradient-to-r from-[#D97706] to-[#F59E0B] text-[#1A0B2E] shadow-lg shadow-amber-950/40 font-black'
+                  : 'text-purple-300 hover:text-white'
+              }`}
+            >
+              <Building2 className="w-4 h-4" />
+              <span>Sou Empresa / Recrutador RH</span>
+            </button>
+          </div>
+        )}
 
-        {/* Toggle Login vs Cadastro */}
-        <div className="flex items-center justify-center gap-4 mb-6 border-b border-[#3F1F68]/40 pb-4 text-xs font-bold">
+        {/* Toggle Login vs Cadastro vs Modo Demonstração */}
+        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-6 border-b border-[#3F1F68]/40 pb-4 text-xs font-bold relative z-10">
           <button
             type="button"
             onClick={() => setAuthMode('LOGIN')}
-            className={`px-4 py-1.5 rounded-xl transition-all ${
+            className={`px-4 py-2 rounded-xl transition-all ${
               authMode === 'LOGIN'
-                ? 'bg-[#311554] text-white border border-[#7C3AED]/50'
+                ? 'bg-[#311554] text-white border border-[#7C3AED]/60 shadow-md ring-1 ring-purple-500/30'
                 : 'text-purple-300 hover:text-white'
             }`}
           >
@@ -250,101 +259,271 @@ export default function LoginPage() {
           <button
             type="button"
             onClick={() => setAuthMode('CADASTRO')}
-            className={`px-4 py-1.5 rounded-xl transition-all ${
+            className={`px-4 py-2 rounded-xl transition-all ${
               authMode === 'CADASTRO'
-                ? 'bg-[#311554] text-white border border-[#7C3AED]/50'
+                ? 'bg-[#311554] text-white border border-[#7C3AED]/60 shadow-md ring-1 ring-purple-500/30'
                 : 'text-purple-300 hover:text-white'
             }`}
           >
             Criar nova conta gratuita
           </button>
+          <button
+            type="button"
+            onClick={() => setAuthMode('DEMO')}
+            className={`px-4 py-2 rounded-xl transition-all flex items-center gap-1.5 ${
+              authMode === 'DEMO'
+                ? 'bg-gradient-to-r from-amber-500 to-purple-600 text-white border border-amber-300 shadow-lg font-extrabold ring-2 ring-amber-400/40'
+                : 'text-amber-300 hover:text-white bg-amber-500/10 border border-amber-500/30 hover:border-amber-400'
+            }`}
+          >
+            <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+            <span>Modo Demonstração (Tour)</span>
+          </button>
         </div>
+
+        {/* ========================================================================= */}
+        {/* ABA: MODO DEMONSTRAÇÃO (TOUR GUIADO COMPLETO)                            */}
+        {/* ========================================================================= */}
+        {authMode === 'DEMO' && (
+          <div className="space-y-6 relative z-10 animate-fadeIn">
+            {/* Box Explicativo Principal */}
+            <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-[#271047] via-[#1B0A33] to-[#120524] border border-[#7C3AED]/50 shadow-2xl space-y-4">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-purple-600 flex items-center justify-center text-white shadow-lg shrink-0">
+                  <Sparkles className="w-5 h-5 text-amber-200" />
+                </div>
+                <div>
+                  <h3 className="text-base sm:text-lg font-black text-white flex items-center gap-2">
+                    <span>Como Funciona o Modo Demonstração?</span>
+                    <span className="text-[10px] uppercase font-extrabold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                      Tour do Sistema
+                    </span>
+                  </h3>
+                  <p className="text-xs text-purple-200">
+                    Acesso imediato e irrestrito sem preenchimento de formulários, CPF ou senhas.
+                  </p>
+                </div>
+              </div>
+
+              <div className="text-xs text-purple-200 space-y-3 leading-relaxed border-t border-purple-800/40 pt-4">
+                <p>
+                  O <strong>Modo Demonstração</strong> foi criado para que jovens, orientadores e recrutadores possam vivenciar 100% da experiência da plataforma <strong>SkillHub</strong> instantaneamente, sem precisar cadastrar dados reais ou criar senhas.
+                </p>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
+                  <div className="p-3 rounded-xl bg-[#160728]/80 border border-purple-500/30 space-y-1.5">
+                    <div className="font-bold text-amber-300 text-xs flex items-center gap-1.5">
+                      <span>⚡ Navegação Livre e Segura</span>
+                    </div>
+                    <p className="text-[11px] text-purple-300">
+                      Nenhum dado pessoal é gravado no servidor. Você pode concluir módulos de estudo, simular quizes e emitir badges com total liberdade.
+                    </p>
+                  </div>
+
+                  <div className="p-3 rounded-xl bg-[#160728]/80 border border-purple-500/30 space-y-1.5">
+                    <div className="font-bold text-amber-300 text-xs flex items-center gap-1.5">
+                      <span>📍 Geolocalização Real em Curitiba</span>
+                    </div>
+                    <p className="text-[11px] text-purple-300">
+                      Explore o mapa interativo por proximidade com vagas reais nos 75 bairros de Curitiba (Boqueirão, CIC, Batel, Portão, etc.).
+                    </p>
+                  </div>
+
+                  <div className="p-3 rounded-xl bg-[#160728]/80 border border-purple-500/30 space-y-1.5">
+                    <div className="font-bold text-amber-300 text-xs flex items-center gap-1.5">
+                      <span>🛡️ Proteção Legal & Salarial</span>
+                    </div>
+                    <p className="text-[11px] text-purple-300">
+                      Teste o simulador de holerite com cálculos da CLT, tabela progressiva do INSS 2026 e limite de 6h para jovens aprendizes.
+                    </p>
+                  </div>
+
+                  <div className="p-3 rounded-xl bg-[#160728]/80 border border-purple-500/30 space-y-1.5">
+                    <div className="font-bold text-amber-300 text-xs flex items-center gap-1.5">
+                      <span>💡 Guia Pedagógico em Todas as Telas</span>
+                    </div>
+                    <p className="text-[11px] text-purple-300">
+                      Dentro do app, cada tela terá um painel interativo no topo explicando detalhadamente o objetivo de cada funcionalidade e como testá-la.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Botões para entrar na demonstração */}
+              <div className="pt-3 border-t border-purple-800/40 space-y-3">
+                <div className="text-xs font-bold text-white flex items-center justify-between">
+                  <span>Escolha um perfil para iniciar o Tour guiado:</span>
+                  <span className="text-[10px] text-purple-300 font-normal">Alterne quando quiser pelo menu</span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                  <button
+                    type="button"
+                    onClick={() => quickDemoLogin('JOVEM_APRENDIZ', 'Jovem Aprendiz')}
+                    className="p-3.5 rounded-xl bg-[#1d0b36] hover:bg-[#2e1354] border border-[#7C3AED]/60 hover:border-amber-400 text-left transition-all group flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xl">🛡️</span>
+                        <span className="text-[10px] font-bold text-amber-300 bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/20">Lei 10.097/00</span>
+                      </div>
+                      <div className="text-xs font-bold text-white group-hover:text-amber-300 mt-2">
+                        Tour como Jovem Aprendiz
+                      </div>
+                      <div className="text-[11px] text-purple-300 mt-1">
+                        14 a 24 anos. Formação teórica, holerite com desconto de VT até 6% e vagas com carga horária protegida.
+                      </div>
+                    </div>
+                    <div className="text-[11px] font-bold text-purple-300 group-hover:text-white flex items-center gap-1 mt-3">
+                      <span>Iniciar Tour Aprendiz</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </div>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => quickDemoLogin('ESTAGIARIO', 'Estagiário')}
+                    className="p-3.5 rounded-xl bg-[#1d0b36] hover:bg-[#2e1354] border border-[#7C3AED]/60 hover:border-amber-400 text-left transition-all group flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xl">💼</span>
+                        <span className="text-[10px] font-bold text-purple-300 bg-purple-500/10 px-2 py-0.5 rounded-full border border-purple-500/20">Lei 11.788/08</span>
+                      </div>
+                      <div className="text-xs font-bold text-white group-hover:text-amber-300 mt-2">
+                        Tour como Estagiário
+                      </div>
+                      <div className="text-[11px] text-purple-300 mt-1">
+                        Ensino Médio, Técnico ou Superior. Bolsa-auxílio, termo de compromisso e vagas sem exigência de experiência.
+                      </div>
+                    </div>
+                    <div className="text-[11px] font-bold text-purple-300 group-hover:text-white flex items-center gap-1 mt-3">
+                      <span>Iniciar Tour Estágio</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </div>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => quickDemoLogin('PRIMEIRO_EMPREGO', '1º Emprego')}
+                    className="p-3.5 rounded-xl bg-[#1d0b36] hover:bg-[#2e1354] border border-[#7C3AED]/60 hover:border-amber-400 text-left transition-all group flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xl">🚀</span>
+                        <span className="text-[10px] font-bold text-emerald-300 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">CLT / Entrada</span>
+                      </div>
+                      <div className="text-xs font-bold text-white group-hover:text-amber-300 mt-2">
+                        Tour como 1º Emprego
+                      </div>
+                      <div className="text-[11px] text-purple-300 mt-1">
+                        Em busca da primeira carteira assinada. Cursos rápidos de postura profissional, badges e oportunidades em Curitiba.
+                      </div>
+                    </div>
+                    <div className="text-[11px] font-bold text-purple-300 group-hover:text-white flex items-center gap-1 mt-3">
+                      <span>Iniciar Tour 1º Emprego</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </div>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={loginCompanyDemo}
+                    className="p-3.5 rounded-xl bg-gradient-to-br from-[#271505] to-[#1c0d02] hover:from-[#3a1f07] hover:to-[#2b1403] border border-amber-500/60 hover:border-amber-300 text-left transition-all group flex flex-col justify-between"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between">
+                        <span className="text-xl">🏢</span>
+                        <span className="text-[10px] font-bold text-amber-300 bg-amber-500/20 px-2 py-0.5 rounded-full border border-amber-500/30">Visão RH</span>
+                      </div>
+                      <div className="text-xs font-bold text-amber-200 group-hover:text-white mt-2">
+                        Tour como Empresa / Recrutador RH
+                      </div>
+                      <div className="text-[11px] text-amber-100/70 mt-1">
+                        Painel corporativo para publicar vagas, testar a trava antiassédio com IA e filtrar candidatos por bairros de Curitiba.
+                      </div>
+                    </div>
+                    <div className="text-[11px] font-bold text-amber-300 group-hover:text-amber-200 flex items-center gap-1 mt-3">
+                      <span>Iniciar Tour RH</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* ========================================================================= */}
         {/* ABA 1: JOVEM / CANDIDATO                                                 */}
         {/* ========================================================================= */}
-        {activeTab === 'CANDIDATO' && (
+        {authMode !== 'DEMO' && activeTab === 'CANDIDATO' && (
           <div className="space-y-6 relative z-10">
 
-            {/* SELETOR DE SITUAÇÃO DO JOVEM (4 OPÇÕES CLARAS) */}
-            <div className="space-y-2.5">
-              <label className="text-xs font-bold text-purple-200 flex items-center justify-between">
-                <span>Qual é a sua situação atual? (O app personalizará tudo para você):</span>
-                <span className="text-[11px] text-amber-300 font-normal">Personalização Imediata</span>
-              </label>
+            {/* SELETOR DE SITUAÇÃO DO JOVEM (3 OPÇÕES CLARAS - APENAS NO CADASTRO) */}
+            {authMode === 'CADASTRO' && (
+              <div className="space-y-2.5">
+                <label className="text-xs font-bold text-purple-200 flex items-center justify-between">
+                  <span>Qual é a sua situação atual? (O app personalizará tudo para você):</span>
+                  <span className="text-[11px] text-amber-300 font-normal">Personalização Imediata</span>
+                </label>
 
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
-                
-                {/* Opção 1: Jovem Aprendiz */}
-                <button
-                  type="button"
-                  onClick={() => setSelectedProfile('JOVEM_APRENDIZ')}
-                  className={`p-3 rounded-2xl border text-left flex flex-col justify-between transition-all ${
-                    selectedProfile === 'JOVEM_APRENDIZ'
-                      ? 'bg-gradient-to-b from-[#381665] to-[#250F44] border-purple-400 text-white ring-2 ring-purple-500/40 shadow-lg'
-                      : 'bg-[#150926] border-[#4C1D95]/40 text-purple-300 hover:border-purple-400/60'
-                  }`}
-                >
-                  <span className="text-2xl mb-1">🛡️</span>
-                  <div>
-                    <div className="text-xs font-bold text-white leading-tight">Jovem Aprendiz</div>
-                    <div className="text-[10px] text-purple-300 mt-0.5">14 a 24 anos (Lei 10.097)</div>
-                  </div>
-                </button>
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                  
+                  {/* Opção 1: Jovem Aprendiz */}
+                  <button
+                    type="button"
+                    onClick={() => setSelectedProfile('JOVEM_APRENDIZ')}
+                    className={`p-3 rounded-2xl border text-left flex flex-col justify-between transition-all ${
+                      selectedProfile === 'JOVEM_APRENDIZ'
+                        ? 'bg-gradient-to-b from-[#381665] to-[#250F44] border-purple-400 text-white ring-2 ring-purple-500/40 shadow-lg'
+                        : 'bg-[#150926] border-[#4C1D95]/40 text-purple-300 hover:border-purple-400/60'
+                    }`}
+                  >
+                    <span className="text-2xl mb-1">🛡️</span>
+                    <div>
+                      <div className="text-xs font-bold text-white leading-tight">Jovem Aprendiz</div>
+                      <div className="text-[10px] text-purple-300 mt-0.5">14 a 24 anos (Lei 10.097)</div>
+                    </div>
+                  </button>
 
-                {/* Opção 2: Estagiário */}
-                <button
-                  type="button"
-                  onClick={() => setSelectedProfile('ESTAGIARIO')}
-                  className={`p-3 rounded-2xl border text-left flex flex-col justify-between transition-all ${
-                    selectedProfile === 'ESTAGIARIO'
-                      ? 'bg-gradient-to-b from-[#381665] to-[#250F44] border-purple-400 text-white ring-2 ring-purple-500/40 shadow-lg'
-                      : 'bg-[#150926] border-[#4C1D95]/40 text-purple-300 hover:border-purple-400/60'
-                  }`}
-                >
-                  <span className="text-2xl mb-1">💼</span>
-                  <div>
-                    <div className="text-xs font-bold text-white leading-tight">Estagiário</div>
-                    <div className="text-[10px] text-purple-300 mt-0.5">Técnico / Superior (Lei 11.788)</div>
-                  </div>
-                </button>
+                  {/* Opção 2: Estagiário */}
+                  <button
+                    type="button"
+                    onClick={() => setSelectedProfile('ESTAGIARIO')}
+                    className={`p-3 rounded-2xl border text-left flex flex-col justify-between transition-all ${
+                      selectedProfile === 'ESTAGIARIO'
+                        ? 'bg-gradient-to-b from-[#381665] to-[#250F44] border-purple-400 text-white ring-2 ring-purple-500/40 shadow-lg'
+                        : 'bg-[#150926] border-[#4C1D95]/40 text-purple-300 hover:border-purple-400/60'
+                    }`}
+                  >
+                    <span className="text-2xl mb-1">💼</span>
+                    <div>
+                      <div className="text-xs font-bold text-white leading-tight">Estagiário</div>
+                      <div className="text-[10px] text-purple-300 mt-0.5">Técnico / Superior (Lei 11.788)</div>
+                    </div>
+                  </button>
 
-                {/* Opção 3: Estudante */}
-                <button
-                  type="button"
-                  onClick={() => setSelectedProfile('ESTUDANTE')}
-                  className={`p-3 rounded-2xl border text-left flex flex-col justify-between transition-all ${
-                    selectedProfile === 'ESTUDANTE'
-                      ? 'bg-gradient-to-b from-[#381665] to-[#250F44] border-purple-400 text-white ring-2 ring-purple-500/40 shadow-lg'
-                      : 'bg-[#150926] border-[#4C1D95]/40 text-purple-300 hover:border-purple-400/60'
-                  }`}
-                >
-                  <span className="text-2xl mb-1">🎒</span>
-                  <div>
-                    <div className="text-xs font-bold text-white leading-tight">Estudante</div>
-                    <div className="text-[10px] text-purple-300 mt-0.5">Fundamental ou Médio</div>
-                  </div>
-                </button>
+                  {/* Opção 3: Nenhuma das opções / 1º Emprego */}
+                  <button
+                    type="button"
+                    onClick={() => setSelectedProfile('PRIMEIRO_EMPREGO')}
+                    className={`p-3 rounded-2xl border text-left flex flex-col justify-between transition-all ${
+                      selectedProfile === 'PRIMEIRO_EMPREGO'
+                        ? 'bg-gradient-to-b from-[#381665] to-[#250F44] border-purple-400 text-white ring-2 ring-purple-500/40 shadow-lg'
+                        : 'bg-[#150926] border-[#4C1D95]/40 text-purple-300 hover:border-purple-400/60'
+                    }`}
+                  >
+                    <span className="text-2xl mb-1">🚀</span>
+                    <div>
+                      <div className="text-xs font-bold text-white leading-tight">1º Emprego</div>
+                      <div className="text-[10px] text-purple-300 mt-0.5">Em busca da 1ª vaga</div>
+                    </div>
+                  </button>
 
-                {/* Opção 4: Nenhuma das opções / 1º Emprego */}
-                <button
-                  type="button"
-                  onClick={() => setSelectedProfile('PRIMEIRO_EMPREGO')}
-                  className={`p-3 rounded-2xl border text-left flex flex-col justify-between transition-all ${
-                    selectedProfile === 'PRIMEIRO_EMPREGO'
-                      ? 'bg-gradient-to-b from-[#381665] to-[#250F44] border-purple-400 text-white ring-2 ring-purple-500/40 shadow-lg'
-                      : 'bg-[#150926] border-[#4C1D95]/40 text-purple-300 hover:border-purple-400/60'
-                  }`}
-                >
-                  <span className="text-2xl mb-1">🚀</span>
-                  <div>
-                    <div className="text-xs font-bold text-white leading-tight">1º Emprego</div>
-                    <div className="text-[10px] text-purple-300 mt-0.5">Em busca da 1ª vaga</div>
-                  </div>
-                </button>
-
+                </div>
               </div>
-            </div>
+            )}
 
             {/* FORMULÁRIO DO CANDIDATO */}
             <form onSubmit={handleCandidateSubmit} className="space-y-4">
@@ -399,8 +578,14 @@ export default function LoginPage() {
                     <div className="space-y-1 flex flex-col justify-end">
                       <div className="bg-[#24123E] border border-purple-500/40 rounded-xl p-2 text-center">
                         <span className="text-[10px] text-purple-300 block">Idade Calculada:</span>
-                        <span className="text-sm font-black text-[#FBBF24]">{calculatedAge} anos</span>
-                        <span className="text-[9px] text-emerald-400 block">{isMinor ? '(Menor de 18)' : '(Maior de idade)'}</span>
+                        <span className="text-sm font-black text-[#FBBF24]">
+                          {calculatedAge !== null ? `${calculatedAge} anos` : 'Informe a data'}
+                        </span>
+                        {calculatedAge !== null && (
+                          <span className={`text-[9px] block ${isMinor ? 'text-amber-400 font-bold' : 'text-emerald-400'}`}>
+                            {isMinor ? '(Menor de 18)' : '(Maior de idade)'}
+                          </span>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -525,6 +710,7 @@ export default function LoginPage() {
                         type="button"
                         onClick={() => {
                           setCandEmail(acc.email);
+                          setCandUsuario(acc.username || acc.email.split('@')[0]);
                           setCandSenha('••••••••');
                           setSelectedProfile(acc.profileType);
                         }}
@@ -539,7 +725,7 @@ export default function LoginPage() {
                         </div>
                         <div className="truncate">
                           <div className="text-xs font-bold text-white truncate">{acc.nome}</div>
-                          <div className="text-[10px] text-purple-300 truncate">{acc.email}</div>
+                          <div className="text-[10px] text-purple-300 truncate">{acc.username ? `@${acc.username}` : acc.email}</div>
                         </div>
                       </button>
                     ))}
@@ -547,43 +733,101 @@ export default function LoginPage() {
                 </div>
               )}
 
-              {/* EMAIL & SENHA */}
-              <div className="space-y-1">
-                <label className="text-xs font-bold text-purple-200">E-mail de Acesso:</label>
-                <div className="relative">
-                  <Mail className="w-4 h-4 text-purple-400 absolute left-3.5 top-3" />
-                  <input
-                    type="email"
-                    required
-                    value={candEmail}
-                    onChange={(e) => setCandEmail(e.target.value)}
-                    placeholder="seuemail@exemplo.com"
-                    className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl pl-10 pr-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8B5CF6]"
-                  />
-                </div>
-              </div>
+              {/* NOME DE USUÁRIO, E-MAIL & SENHA */}
+              {authMode === 'CADASTRO' ? (
+                <>
+                  <div className="space-y-1">
+                    <label className="text-xs font-bold text-purple-200">Nome de Usuário:</label>
+                    <div className="relative">
+                      <User className="w-4 h-4 text-purple-400 absolute left-3.5 top-3" />
+                      <input
+                        type="text"
+                        required
+                        value={candUsuario}
+                        onChange={(e) => setCandUsuario(e.target.value.toLowerCase().replace(/\s+/g, ''))}
+                        placeholder="Escolha seu nome de usuário (ex: maria.silva)"
+                        className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl pl-10 pr-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8B5CF6]"
+                      />
+                    </div>
+                  </div>
 
-              <div className="space-y-1">
-                <label className="text-xs font-bold text-purple-200">Senha:</label>
-                <div className="relative">
-                  <Lock className="w-4 h-4 text-purple-400 absolute left-3.5 top-3" />
-                  <input
-                    type={showPassword ? 'text' : 'password'}
-                    required
-                    value={candSenha}
-                    onChange={(e) => setCandSenha(e.target.value)}
-                    placeholder="Sua senha segura"
-                    className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl pl-10 pr-10 py-2.5 text-xs text-white focus:outline-none focus:border-[#8B5CF6]"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3.5 top-3 text-purple-400 hover:text-white"
-                  >
-                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                  </button>
-                </div>
-              </div>
+                  <div className="space-y-1">
+                    <label className="text-xs font-bold text-purple-200">E-mail:</label>
+                    <div className="relative">
+                      <Mail className="w-4 h-4 text-purple-400 absolute left-3.5 top-3" />
+                      <input
+                        type="email"
+                        required
+                        value={candEmail}
+                        onChange={(e) => setCandEmail(e.target.value)}
+                        placeholder="seuemail@exemplo.com"
+                        className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl pl-10 pr-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8B5CF6]"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="text-xs font-bold text-purple-200">Senha:</label>
+                    <div className="relative">
+                      <Lock className="w-4 h-4 text-purple-400 absolute left-3.5 top-3" />
+                      <input
+                        type={showPassword ? 'text' : 'password'}
+                        required
+                        value={candSenha}
+                        onChange={(e) => setCandSenha(e.target.value)}
+                        placeholder="Sua senha segura"
+                        className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl pl-10 pr-10 py-2.5 text-xs text-white focus:outline-none focus:border-[#8B5CF6]"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-3.5 top-3 text-purple-400 hover:text-white"
+                      >
+                        {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                      </button>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="space-y-1">
+                    <label className="text-xs font-bold text-purple-200">Nome de Usuário ou E-mail:</label>
+                    <div className="relative">
+                      <User className="w-4 h-4 text-purple-400 absolute left-3.5 top-3" />
+                      <input
+                        type="text"
+                        required
+                        value={candEmail}
+                        onChange={(e) => setCandEmail(e.target.value)}
+                        placeholder="Seu nome de usuário ou e-mail"
+                        className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl pl-10 pr-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8B5CF6]"
+                      />
+                    </div>
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="text-xs font-bold text-purple-200">Senha:</label>
+                    <div className="relative">
+                      <Lock className="w-4 h-4 text-purple-400 absolute left-3.5 top-3" />
+                      <input
+                        type={showPassword ? 'text' : 'password'}
+                        required
+                        value={candSenha}
+                        onChange={(e) => setCandSenha(e.target.value)}
+                        placeholder="Sua senha de acesso"
+                        className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl pl-10 pr-10 py-2.5 text-xs text-white focus:outline-none focus:border-[#8B5CF6]"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-3.5 top-3 text-purple-400 hover:text-white"
+                      >
+                        {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                      </button>
+                    </div>
+                  </div>
+                </>
+              )}
 
               <button
                 type="submit"
@@ -595,52 +839,16 @@ export default function LoginPage() {
 
             </form>
 
-            {/* Modo Demonstração (Sem Conta / Tour do Aplicativo) */}
-            <div className="pt-4 border-t border-[#3F1F68]/40 space-y-2.5">
-              <div className="flex items-center justify-center gap-1.5 text-xs font-bold text-amber-300 uppercase tracking-wider text-center">
-                <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-                <span>Modo Demonstração (Tour do App Sem Conta)</span>
-              </div>
-              <p className="text-[11px] text-purple-300 text-center">
-                Explore o aplicativo como visitante para conhecer os cursos, o mapa de vagas de Curitiba e os simuladores sem criar conta:
-              </p>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                <button
-                  type="button"
-                  onClick={() => quickDemoLogin('JOVEM_APRENDIZ', 'Jovem Aprendiz')}
-                  className="p-2.5 rounded-xl bg-[#22103B] hover:bg-[#341859] border border-[#7C3AED]/40 hover:border-amber-400 text-center transition-all group"
-                >
-                  <div className="text-xs font-bold text-white group-hover:text-amber-300">🛡️ Tour Aprendiz</div>
-                  <div className="text-[10px] text-purple-300">Lei 10.097/00</div>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => quickDemoLogin('ESTAGIARIO', 'Estagiário')}
-                  className="p-2.5 rounded-xl bg-[#22103B] hover:bg-[#341859] border border-[#7C3AED]/40 hover:border-amber-400 text-center transition-all group"
-                >
-                  <div className="text-xs font-bold text-white group-hover:text-amber-300">💼 Tour Estágio</div>
-                  <div className="text-[10px] text-purple-300">Lei 11.788/08</div>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => quickDemoLogin('PRIMEIRO_EMPREGO', '1º Emprego')}
-                  className="p-2.5 rounded-xl bg-[#22103B] hover:bg-[#341859] border border-[#7C3AED]/40 hover:border-amber-400 text-center transition-all group"
-                >
-                  <div className="text-xs font-bold text-white group-hover:text-amber-300">🚀 1º Emprego</div>
-                  <div className="text-[10px] text-purple-300">Sem Experiência</div>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => quickDemoLogin('ESTUDANTE', 'Estudante')}
-                  className="p-2.5 rounded-xl bg-[#22103B] hover:bg-[#341859] border border-[#7C3AED]/40 hover:border-amber-400 text-center transition-all group"
-                >
-                  <div className="text-xs font-bold text-white group-hover:text-amber-300">🎒 Estudante</div>
-                  <div className="text-[10px] text-purple-300">Ensino Médio</div>
-                </button>
-              </div>
+            {/* Atalho para Modo Demonstração */}
+            <div className="pt-4 border-t border-[#3F1F68]/40 text-center">
+              <button
+                type="button"
+                onClick={() => setAuthMode('DEMO')}
+                className="text-xs text-amber-300 hover:text-amber-200 transition-colors inline-flex items-center gap-1.5 font-bold"
+              >
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Quer apenas conhecer a plataforma? Acesse o Modo Demonstração</span>
+              </button>
             </div>
 
           </div>
@@ -649,7 +857,7 @@ export default function LoginPage() {
         {/* ========================================================================= */}
         {/* ABA 2: EMPRESA / RECRUTADOR RH (COM BUROCRACIA COMPLETA DE VALIDAÇÃO)      */}
         {/* ========================================================================= */}
-        {activeTab === 'EMPRESA' && (
+        {authMode !== 'DEMO' && activeTab === 'EMPRESA' && (
           <div className="space-y-6 relative z-10">
             
             {authMode === 'LOGIN' ? (

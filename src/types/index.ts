@@ -11,6 +11,7 @@ export type UserType = CandidateProfileType | 'EMPRESA';
 export interface UserAccount {
   id: string;
   nome: string;
+  username?: string;
   email: string;
   role: UserRole;
   profileType: CandidateProfileType;
@@ -18,6 +19,7 @@ export interface UserAccount {
   cidade: string;
   cpfOrCnpjMasked: string;
   avatarInitials: string;
+  isDemo?: boolean;
   idade?: number;
   menorDeIdade?: boolean;
   responsavelLegal?: {
