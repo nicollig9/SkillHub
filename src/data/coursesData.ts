@@ -5,9 +5,9 @@ export const TRACKS: Track[] = [
     id: 'trilha-1',
     name: '1. Entrada no Mercado & Primeiro Emprego',
     category: 'Desenvolvimento Pessoal e Legislação',
-    description: 'Trilha fundamental para quem quer conquistar a primeira vaga formal: direitos da Lei 10.097, orçamento do primeiro salário e técnicas comprovadas para entrevistas.',
+    description: 'Trilha fundamental para quem quer conquistar a primeira vaga formal: direitos da Lei 10.097, orçamento do primeiro salário e equilíbrio emocional no trabalho.',
     targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO'],
-    hoursTotal: 34,
+    hoursTotal: 36,
     coursesCount: 3,
     courseIds: ['curso-jovem-aprendiz-avancado', 'curso-curriculo-plataformas', 'curso-postura-entrevistas'],
     badgeReward: 'Embaixador do Primeiro Emprego',
@@ -615,7 +615,7 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
-  // 3. POSTURA PROFISSIONAL & ENTREVISTAS DE EMPREGO
+  // 3. EQUILÍBRIO EMOCIONAL, ANSIEDADE E FOCO NO TRABALHO
   // =========================================================================
   {
     id: 'curso-postura-entrevistas',
@@ -623,68 +623,189 @@ export const COURSES: Course[] = [
     trackName: 'TRILHA 1: Entrada no Mercado & Primeiro Emprego',
     category: 'Desenvolvimento Pessoal',
     targetAudienceType: ['PRIMEIRO_EMPREGO', 'JOVEM_APRENDIZ', 'ESTUDANTE'],
-    title: 'Postura Profissional e Técnicas para Entrevistas de Emprego',
-    subtitle: 'Comportamento corporativo, dinâmicas de grupo, vestimenta adequada, comunicação assertiva e perguntas difíceis',
-    hours: 10,
-    equivalentHours: 10,
+    title: 'Equilíbrio Emocional, Ansiedade e Foco no Trabalho',
+    subtitle: 'Capacitar o profissional a identificar gatilhos de estresse e ansiedade, aplicar técnicas de autorregulação e mindfulness, e construir rotina mentalmente saudável.',
+    hours: 12,
+    equivalentHours: 12,
     modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Jovens participando de processos seletivos',
-    prerequisites: 'Nenhum.',
-    badgeName: 'Destaque em Entrevistas',
-    badgeCategory: 'Atitude Profissional',
-    badgeIcon: 'UserCheck',
+    targetAudience: 'Jovens aprendizes, estagiários e profissionais em início de carreira buscando produtividade e saúde mental',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Equilíbrio & Foco no Trabalho',
+    badgeCategory: 'Saúde Mental & Carreira',
+    badgeIcon: 'HeartHandshake',
     accentColor: '#8B5CF6',
     level: 'Iniciante',
     learningObjectives: [
-      'Preparar respostas autênticas para as perguntas mais frequentes de recrutadores de RH.',
-      'Desenvolver linguagem corporal confiante, contato visual e dicção clara.',
-      'Saber se posicionar em dinâmicas de grupo com espírito de equipe e sem timidez.',
-      'Fazer perguntas inteligentes ao entrevistador no final da conversa.'
+      'Identificar o mecanismo biológico do estresse no trabalho, diferenciando Eustresse (positivo) e Distresse (negativo).',
+      'Mapear gatilhos individuais internos (perfeccionismo, síndrome do impostor) e externos (pressões, reuniões e demandas).',
+      'Aplicar técnicas de autorregulação fisiológica como Respiração Quadrada (Box Breathing), Técnica 4-7-8 e Reestruturação Cognitiva.',
+      'Implementar o conceito de Deep Work (Trabalho Profundo) e a pausa estratégica com o método S.T.O.P. de Mindfulness Corporativo.',
+      'Estabelecer fronteiras e desconexão digital no expediente, prevenindo precocemente os sinais da Síndrome de Burnout.'
     ],
     modules: [
       {
-        id: 'pos-mod-1',
+        id: 'emo-mod-1',
         number: 1,
-        title: 'MÓDULO 1: Preparação e Apresentação Pessoal',
-        summary: 'Pesquisa prévia sobre a empresa, pontualidade britânica, vestimenta adequada e controle do nervosismo.',
-        estimatedMinutes: 40,
+        title: 'MÓDULO 1: Inteligência Emocional e Mapeamento de Gatilhos',
+        summary: 'Autoconhecimento no ambiente corporativo, mecanismo do estresse (eustresse vs. distresse) e mapeamento de gatilhos internos e externos.',
+        estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1.1 A Regra dos 15 Minutos de Antecedência',
+              subheading: '1. O Mecanismo do Estresse no Trabalho',
               body: [
-                'Em Curitiba, imprevistos no transporte coletivo ou trânsito acontecem. Calcule seu trajeto com antecedência e chegue 15 minutos antes do horário marcado.',
-                'Pesquise sobre a empresa: qual o ramo de atuação, produtos fabricados ou serviços prestados. Isso demonstra interesse real.'
-              ]
+                'O primeiro passo para o equilíbrio emocional é o autoconhecimento. O ambiente corporativo expõe os profissionais a pressões constantes, prazos curtos e conflitos interpessoais. Entender como o corpo e a mente reagem a esses estímulos é fundamental para evitar a exaustão.',
+                'O estresse é uma resposta biológica natural de preservação. No entanto, quando ativado de forma crônica no escritório (reação de "luta ou fuga"), ele libera cortisol e adrenalina continuamente, prejudicando o raciocínio lógico e a tomada de decisões.',
+                '• Estresse Positivo (Eustresse): O nível de ativação saudável e equilibrado que gera motivação, foco e impulso para cumprir prazos.',
+                '• Estresse Negativo (Distresse): A sobrecarga contínua que gera paralisia, irritabilidade, esquecimentos e exaustão física.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Eustresse vs. Distresse',
+                text: 'O eustresse é o nível produtivo de energia que nos move. O perigo é a sobrecarga constante sem descanso, que descamba para o distresse crônico.'
+              }
             },
             {
-              subheading: '1.2 Vestimenta e Comunicação Não-Verbal',
+              subheading: '2. Mapeamento de Gatilhos Individuais',
               body: [
-                'Vista-se de maneira sóbria e profissional (calça jeans sem rasgos, camisa ou polo, calçado fechado).',
-                'Mantenha postura ereta, cumprimente os entrevistadores com firmeza e mantenha contato visual cordial durante as respostas.'
-              ]
+                'Cada profissional reage de forma diferente aos estímulos do trabalho. O mapeamento consiste em identificar as situações específicas que desencadeiam picos de ansiedade:',
+                '• Gatilhos Internos: Perfeccionismo extremo, medo de errar, síndrome do impostor e necessidade contínua de aprovação alheia.',
+                '• Gatilhos Externos: E-mails de cobrança, reuniões de última hora, sobrecarga de demandas e comunicação agressiva de terceiros.'
+              ],
+              asciiDiagram: `┌────────────────────────────────────────────────────────┐
+│           MAPEAMENTO DE GATILHOS CORPORATIVOS          │
+├────────────────────────────────────────────────────────┤
+│ GATILHOS INTERNOS:                                     │
+│ • Perfeccionismo ──► Medo de errar ──► Procrastinação  │
+│ • Síndrome do Impostor ──► Insegurança contínua        │
+├────────────────────────────────────────────────────────┤
+│ GATILHOS EXTERNOS:                                     │
+│ • Demandas urgentes ──► Sobrecarga ──► Desorganização  │
+│ • Cobranças e prazos ──► Reação de Luta ou Fuga        │
+└────────────────────────────────────────────────────────┘`
             }
           ]
         }
       },
       {
-        id: 'pos-mod-2',
+        id: 'emo-mod-2',
         number: 2,
-        title: 'MÓDULO 2: Dominando as Perguntas Clássicas do RH',
-        summary: '"Conte sobre você", pontos fortes, pontos a melhorar e por que quer trabalhar conosco.',
-        estimatedMinutes: 40,
+        title: 'MÓDULO 2: Técnicas de Autorregulação e Gestão da Ansiedade',
+        summary: 'Exercícios práticos de respiração para ativação parassimpática (Box Breathing e 4-7-8) e reestruturação cognitiva contra a catastrofização.',
+        estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '2.1 A Estrutura da Pergunta "Conte-me sobre você"',
+              subheading: '1. Técnicas Respiratórias para Redução Ansiolítica',
               body: [
-                'Não conte sua história desde a infância. Use o roteiro: Presente (o que está estudando) -> Conquistas (cursos, badges, habilidades) -> Futuro (por que quer essa vaga).'
+                'A ansiedade manifesta-se quando a mente antecipa cenários futuros catastróficos. A autorregulação emocional reúne ferramentas práticas para trazer a atenção de volta ao presente e acalmar o sistema nervoso autônomo.',
+                'A respiração é a ponte direta para ativar o sistema nervoso parassimpático, desacelerando os batimentos cardíacos:',
+                '• Respiração Quadrada (Box Breathing): Inspirar em 4 segundos, reter o ar por 4 segundos, expirar em 4 segundos e manter os pulmões vazios por 4 segundos. Ideal para fazer antes de reuniões decisivas ou apresentações.',
+                '• Técnica 4-7-8: Inspirar pelo nariz em 4 segundos, reter o ar por 7 segundos e soltar o ar lentamente pela boca durante 8 segundos.'
+              ],
+              highlightBox: {
+                type: 'calc',
+                title: 'Respiração Quadrada (Box Breathing)',
+                text: 'Inspire em 4s ──► Segure em 4s ──► Expire em 4s ──► Pause em 4s. Pratique 4 rodadas para normalizar batimentos e clarear o raciocínio.'
+              }
+            },
+            {
+              subheading: '2. Reestruturação Cognitiva',
+              body: [
+                'Diante de uma crise de ansiedade ou de um erro no projeto, a mente costuma criar distorções cognitivas (catastrofização). A reestruturação é o ato de questionar o pensamento ansiogênico com fatos concretos:',
+                '• Pensamento Ansiogênico: "Apresentei o relatório com um dado incorreto, serei demitido imediatamente."',
+                '• Questionamento Racional: "O dado foi corrigido a tempo? Qual é a probabilidade real de demissão por esse fato isolado? Qual o plano de ação prático agora para alinhar com o gestor?"'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Fatos vs. Suposições',
+                text: 'Não tome pensamentos catastróficos como certezas. Busque fatos observáveis e estruture um plano de resolução em vez de alimentar o pânico.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'emo-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Foco Profundo (Deep Work) e Atenção Plena',
+        summary: 'Metodologia de Trabalho Profundo (Deep Work) vs. Trabalho Superficial (Shallow Work) e aplicação do método S.T.O.P. de mindfulness no trabalho.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. O Estado de Flow e o Trabalho Profundo (Deep Work)',
+              body: [
+                'A oscilação emocional corrói a capacidade de concentração. Em um ambiente repleto de notificações, manter o foco em tarefas complexas exige estratégias deliberadas de proteção mental.',
+                'O conceito de Deep Work (Trabalho Profundo), desenvolvido por Cal Newport, refere-se à capacidade de focar sem distrações em uma tarefa cognitivamente exigente.',
+                '• Trabalho Superficial (Shallow Work): Tarefas mecânicas e operacionais (responder e-mails rápidos, organizar pastas) que exigem pouco esforço mental, mas consomem o dia.',
+                '• Construção de Rituais de Foco: Eliminação de abas desnecessárias, bloqueio de notificações e definição de metas claras para o bloco de trabalho focado.'
+              ]
+            },
+            {
+              subheading: '2. Aplicação Prática do Mindfulness Corporativo (Método S.T.O.P.)',
+              body: [
+                'Atenção plena (Mindfulness) não significa "esvaziar a mente", mas observar os pensamentos e emoções sem julgamento imediato, ancorando-se na atividade presente.',
+                'A Pausa Estratégica (Método S.T.O.P.):',
+                '• S (Stop): Pare o que está fazendo por instantes.',
+                '• T (Take a breath): Tome uma respiração profunda e lenta.',
+                '• O (Observe): Observe seus pensamentos, suas emoções e as sensações do seu corpo com curiosidade.',
+                '• P (Proceed): Prossiga com clareza, intenção e tranquilidade.'
+              ],
+              asciiDiagram: `┌────────────────────────────────────────────────────────┐
+│               MÉTODO S.T.O.P. DE MINDFULNESS           │
+├────────────────────────────────────────────────────────┤
+│ [S] STOP: Pare imediatamente o que está fazendo        │
+│ [T] TAKE A BREATH: Respire consciente e profundamente  │
+│ [O] OBSERVE: Observe mente, emoções e corpo sem julgar │
+│ [P] PROCEED: Prossiga com foco, calma e intenção clara │
+└────────────────────────────────────────────────────────┘`
+            }
+          ]
+        }
+      },
+      {
+        id: 'emo-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Limites Saudáveis, Comunicação e Prevenção do Burnout',
+        summary: 'Fronteiras profissionais, desconexão digital no expediente, comunicação assertiva e identificação dos sinais precoces e avançados de Burnout.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Estabelecimento de Fronteiras e Desconexão Digital',
+              body: [
+                'O equilíbrio emocional sustentável depende da capacidade de estabelecer fronteiras claras entre a vida profissional e a vida pessoal, evitando o esgotamento extremo (Burnout).',
+                'A hiperconectividade cria a falsa sensação de que tudo precisa ser respondido imediatamente.',
+                '• Desconexão do Expediente: Definir um horário claro para encerrar a checagem de mensagens corporativas no celular pessoal.',
+                '• Gestão de Expectativas: Comunicar à equipe os prazos reais de resposta e entrega, sem assumir compromissos inalcançáveis por medo de dizer "não".'
               ],
               highlightBox: {
                 type: 'info',
-                title: 'Exemplo Prático de Resposta',
-                text: '"Atualmente curso o 2º ano do Ensino Médio no período noturno. Concluí cursos de Informática e Rotinas Administrativas no SkillHub e busco essa vaga de Jovem Aprendiz para colocar em prática minha organização e crescer junto à empresa."'
+                title: 'Comunicação Assertiva',
+                text: 'Dizer "não" fundamentado com alternativas e prazos viáveis é sinal de maturidade profissional e respeito pela qualidade do trabalho.'
               }
+            },
+            {
+              subheading: '2. Sinais de Alerta do Burnout',
+              body: [
+                'A Síndrome de Burnout é o estresse crônico não gerenciado no ambiente de trabalho. Reconhecer os sinais iniciais evita o colapso físico e emocional:',
+                '• Estágio Inicial: Entusiasmo excessivo com negligência de necessidades básicas (sono, alimentação); sensação constante de falta de tempo e ansiedade aos domingos.',
+                '• Estágio Avançado: Exaustão física e mental diária; cinismo, desconexão emocional com o trabalho e queda brusca de produtividade.'
+              ],
+              asciiDiagram: `┌────────────────────────────────────────────────────────┐
+│             ESTÁGIOS DA SÍNDROME DE BURNOUT            │
+├────────────────────────────────────────────────────────┤
+│ ESTÁGIO INICIAL:                                       │
+│ • Entusiasmo desmedido sem descanso                    │
+│ • Negligência com sono e alimentação                   │
+│ • Ansiedade aos domingos e falta de tempo              │
+├────────────────────────────────────────────────────────┤
+│ ESTÁGIO AVANÇADO:                                      │
+│ • Exaustão física e mental diária                      │
+│ • Cinismo, frieza e distanciamento da equipe           │
+│ • Queda drástica de produtividade e esgotamento        │
+└────────────────────────────────────────────────────────┘`
             }
           ]
         }
@@ -694,15 +815,87 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'Qual a conduta recomendada ao responder sobre seus pontos a melhorar em uma entrevista?',
+        question: 'Durante um dia de alta demanda no escritório, um colaborador percebe que sua respiração está acelerada e que não consegue se concentrar nas tarefas devido ao nervosismo. Qual técnica de autorregulação fisiológica é mais indicada para reativar a calma do sistema nervoso de forma rápida?',
         options: [
-          'Dizer que é perfeccionista demais ou que não tem nenhum defeito.',
-          'Citar uma oportunidade de melhoria real e explicar o que tem feito ativamente para desenvolvê-la.',
-          'Falar mal de professores da escola.',
-          'Ficar em silêncio.'
+          'Ingerir bebidas estimulantes com alto teor de cafeína para acelerar o ritmo de trabalho.',
+          'Ignorar os sinais do corpo e continuar digitando em velocidade máxima sem fazer pausas.',
+          'Aplicar a técnica de Respiração Quadrada (Box Breathing), alternando inspiração, retenção, expiração e pausa em tempos iguais.',
+          'Reclamar abertamente sobre a sobrecarga com os colegas de equipe durante o horário de pico.'
+        ],
+        correct: 2,
+        explanation: 'A técnica de Respiração Quadrada (Box Breathing) reduz diretamente os níveis de excitação fisiológica provocados pela ansiedade, desacelerando a frequência cardíaca e ativando o sistema nervoso parassimpático para recuperar o controle consciente.'
+      },
+      {
+        id: 2,
+        question: 'A Síndrome de Burnout foi reconhecida como uma condição ocupacional resultante do estresse crônico no ambiente de trabalho. Qual das opções abaixo apresenta um sintoma característico dessa síndrome em seu estágio avançado?',
+        options: [
+          'Sensação diária de exaustão física/mental acompanhada de atitudes de cinismo e desapego ao trabalho.',
+          'Aumento da criatividade e engajamento constante em novos projetos da empresa.',
+          'Capacidade de manter o foco ininterrupto por 12 horas consecutivas sem apresentar fadiga.',
+          'Facilidade em desligar-se das responsabilidades profissionais no exato momento em que encerra o expediente.'
+        ],
+        correct: 0,
+        explanation: 'O Burnout é caracterizado pela tríade: exaustão emocional profunda, despersonalização/cinismo (desapego frio em relação às tarefas e colegas) e queda da percepção de eficácia profissional.'
+      },
+      {
+        id: 3,
+        question: 'O conceito de Deep Work (Trabalho Profundo) exige eliminar distrações para focar em tarefas cognitivamente complexas. Qual ação prática contribui diretamente para a criação de um ambiente favorável ao Deep Work?',
+        options: [
+          'Deixar os alertas sonoros do e-mail e do chat corporativo ativados na tela principal.',
+          'Alternar a atenção a cada 5 minutos entre a escrita de um relatório e a navegação em redes sociais.',
+          'Realizar chamadas de vídeo sem roteiro prévio enquanto tenta revisar planilhas complexas.',
+          'Agendar o checamento de e-mails para horários específicos do dia e silenciar notificações durante o bloco de foco.'
+        ],
+        correct: 3,
+        explanation: 'O Trabalho Profundo exige a eliminação de fragmentações na atenção. Definir blocos de tempo isolados e silenciar notificações previne a troca constante de contexto, permitindo hiperfoco e alta performance.'
+      },
+      {
+        id: 4,
+        question: 'Diante de um erro cometido em um projeto, a mente de um profissional ansioso pode gerar uma "distorção cognitiva", acreditando que o problema é uma catastrofização irreparável. Qual técnica ajuda a reestruturar esse pensamento de forma racional?',
+        options: [
+          'Aceitar o pensamento catastrófico como verdade absoluta e pedir demissão imediatamente.',
+          'Questionar o pensamento ansiogênico buscando evidências concretas sobre o impacto real e focando no plano de ação para correção.',
+          'Esconder o erro da equipe na esperança de que ninguém perceba a falha.',
+          'Culpar publicamente outros colegas pelo ocorrido para preservar a própria imagem.'
         ],
         correct: 1,
-        explanation: 'Demonstrar autoconhecimento e atitude ativa de aprendizado é o que os recrutadores mais valorizam.'
+        explanation: 'A Reestruturação Cognitiva combate vieses de catastrofização substituindo suposições por fatos. Analisar o erro objetivamente e construir uma solução prática reduz a ansiedade e restaura o senso de controle.'
+      },
+      {
+        id: 5,
+        question: 'O acrônimo S.T.O.P. representa uma pausa consciente no meio da rotina para recuperar a clareza e o equilíbrio emocional. O que significa a letra "O" nessa metodologia de Mindfulness?',
+        options: [
+          'Observar os pensamentos, emoções e sensações corporais sem julgamento imediato.',
+          'Omitir os sentimentos negativos até o fim da semana.',
+          'Optimizar o tempo eliminando o horário de almoço.',
+          'Organizar a mesa de trabalho descartando papéis antigos.'
+        ],
+        correct: 0,
+        explanation: 'No método S.T.O.P. (Stop, Take a breath, Observe, Proceed), o passo Observe orienta o indivíduo a tomar consciência de seus estados internos (pensamentos, emoções, tensão muscular) com curiosidade e sem auto-julgamento.'
+      },
+      {
+        id: 6,
+        question: 'Para manter a saúde mental e prevenir o esgotamento no ambiente de trabalho, o estabelecimento de limites saudáveis é indispensável. Qual postura reflete o estabelecimento de uma fronteira profissional assertiva?',
+        options: [
+          'Responder mensagens de trabalho no aplicativo pessoal de mensagens às 23 horas de um domingo.',
+          'Aceitar todas as solicitações de última hora recebidas, mesmo quando impossibilitam o cumprimento dos prazos já acordados.',
+          'Desligar o telefone corporativo durante o horário de expediente normal sem avisar a equipe.',
+          'Comunicar com clareza a capacidade atual de entregas, renegociar prazos com a liderança e respeitar os horários de descanso.'
+        ],
+        correct: 3,
+        explanation: 'Ter assertividade emocional significa alinhar expectativas e prioridades de forma transparente com a equipe. Dizer "não" fundamentado ou renegociar prazos protege a qualidade das entregas e a saúde mental do profissional.'
+      },
+      {
+        id: 7,
+        question: 'O estresse é uma reação biológica do organismo que pode ser dividida entre "eustresse" e "distresse". Qual a principal característica do eustresse?',
+        options: [
+          'É o estágio final de esgotamento físico que exige afastamento médico imediato.',
+          'Trata-se do sentimento constante de pânico acompanhado de insônia crônica.',
+          'É a forma saudável e positiva de estresse, que mobiliza energia, melhora o foco e motiva a resolução de desafios.',
+          'É a incapacidade total de sentir qualquer tipo de emoção durante reuniões de trabalho.'
+        ],
+        correct: 2,
+        explanation: 'O Eustresse (estresse positivo) é o nível moderado de ativação necessário para nos manter alertas, motivados e engajados na superação de metas e desafios do dia a dia, diferindo do estresse crônico nocivo (distresse).'
       }
     ]
   },
