@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkillHub - Plataforma de Capacitação & Empregabilidade de Jovens em Curitiba</title>
+  
+  <!-- Fontes Google -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome 6 Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Design System CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- BARRA DE PROGRESSO GLOBAL NO TOPO -->
+  <div class="top-progress-bar-container">
+    <div class="top-progress-info">
+      <span id="topProgressText"><strong>0 de 16</strong> Badges conquistadas (0%)</span>
+      <span class="top-progress-tip"><i class="fa-solid fa-graduation-cap"></i> Conclua 100% dos módulos para liberar as avaliações</span>
+    </div>
+    <div class="top-progress-track">
+      <div id="topProgressFill" class="top-progress-fill" style="width: 10%;"></div>
+    </div>
+  </div>
+
+  <!-- CABEÇALHO GLOBAL COM DEGRADÊ ROXO E SELETOR DE TEMA -->
+  <header class="app-header">
+    <div class="header-container">
+      
+      <!-- Logo Oficial SkillHub -->
+      <a href="#home" class="brand-logo spa-nav-trigger">
+        <div class="brand-logo-badge">
+          <img src="logo.jpg" alt="SkillHub Logo" class="brand-logo-img" onerror="this.src='public/logo.jpg'; this.onerror=null;">
+        </div>
+        <div class="brand-text">
+          <div class="brand-name">Skill<span>Hub</span></div>
+          <div class="brand-tagline">Curitiba & Região Metropolitana</div>
+        </div>
+      </a>
+
+      <!-- Menu de Navegação SPA -->
+      <nav id="mainNav" class="main-nav">
+        <a href="#home" class="nav-link active"><i class="fa-solid fa-house"></i> Início</a>
+        <a href="#cursos" class="nav-link"><i class="fa-solid fa-book-open"></i> Trilhas & Cursos</a>
+        <a href="#vagas" class="nav-link"><i class="fa-solid fa-map-location-dot"></i> Mapa de Vagas</a>
+        <a href="#dashboard" class="nav-link"><i class="fa-solid fa-user-graduate"></i> Meu Painel</a>
+        <a href="#simulador" class="nav-link"><i class="fa-solid fa-comments"></i> Treino Entrevistas</a>
+        <a href="#holerite" class="nav-link"><i class="fa-solid fa-calculator"></i> Calculadora</a>
+      </nav>
+
+      <!-- Ações do Cabeçalho: Botão de Alternar Tema + Perfil -->
+      <div class="header-actions">
+        <!-- BOTÃO ALTERNAR TEMA CLARO / ESCURO -->
+        <button id="themeToggleBtn" class="theme-toggle-btn" onclick="app.toggleTheme()" title="Alternar entre Tema Claro e Escuro" aria-label="Alternar Tema">
+          <i class="fa-solid fa-sun" style="color: #F59E0B;"></i>
+          <span>Tema Claro</span>
+        </button>
+
+        <a href="#dashboard" class="user-pill spa-nav-trigger">
+          <div class="user-avatar-sm">GA</div>
+          <div class="user-info-sm">
+            <span class="user-name-sm">Gabriel Alencar</span>
+            <span class="user-role-sm">Boqueirão • Jovem Aprendiz</span>
+          </div>
+        </a>
+
+        <!-- Botão Menu Mobile -->
+        <button id="mobileMenuBtn" class="mobile-menu-toggle" aria-label="Abrir Menu">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- CONTAINER CENTRAL DA SPA -->
+  <main class="app-main-content">
+
+    <!-- =========================================================================
+         VIEW 1: HOME / LANDING PAGE
+         ========================================================================= -->
+    <section id="home" class="page-view active">
+      <div class="centered-container">
+        
+        <!-- HERO SECTION ROXO MODERNO -->
+        <div class="hero-card">
+          <div class="hero-content">
+            <div class="hero-pill">
+              <i class="fa-solid fa-award"></i> Capacitação 100% Gratuita & Empregabilidade
+            </div>
+            <h1 class="hero-title">
+              Seu conhecimento abre portas. <br>
+              <span>Seu bairro tem a vaga.</span>
+            </h1>
+            <p class="hero-description">
+              O <strong>SkillHub</strong> é a plataforma de formação prática e conexão profissional para Jovens Aprendizes e Estagiários na Grande Curitiba. Conquiste Badges digitais verificáveis e encontre vagas perto de casa.
+            </p>
+            <div class="hero-actions">
+              <a href="#cursos" class="btn btn-primary btn-lg spa-nav-trigger">
+                <i class="fa-solid fa-graduation-cap"></i> Explorar Cursos Gratuitos
+              </a>
+              <a href="#vagas" class="btn btn-outline btn-lg spa-nav-trigger">
+                <i class="fa-solid fa-map-pin"></i> Ver Mapa de Vagas por Bairro
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-visual">
+            <div class="hero-logo-frame">
+              <img src="logo.jpg" alt="Emblema SkillHub Curitiba" class="hero-brand-symbol" onerror="this.src='public/logo.jpg'; this.onerror=null;">
+              <div class="hero-badge-float top-left">
+                <i class="fa-solid fa-scale-balanced"></i> Direitos da Lei 10.097/00
+              </div>
+              <div class="hero-badge-float bottom-right">
+                <i class="fa-solid fa-shield-halved"></i> 100% Seguro & LGPD
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 PILARES DO SKILLHUB -->
+        <div class="features-row">
+          <div class="feature-box">
+            <div class="feature-icon-wrapper purple">
+              <i class="fa-solid fa-layer-group"></i>
+            </div>
+            <h3>Cursos em Trilhas Práticas</h3>
+            <p>Do nível <strong>Iniciante</strong> ao <strong>Avançado</strong>: Direitos Trabalhistas, Excel, Rotinas Administrativas, Comunicação Não-Violenta e LGPD.</p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-icon-wrapper green">
+              <i class="fa-solid fa-clipboard-check"></i>
+            </div>
+            <h3>Avaliações & Badges Reais</h3>
+            <p>Conclua 100% dos módulos do curso para liberar o questionário de fixação. Atingindo 70% de acerto, sua Badge é emitida e anexada ao currículo.</p>
+          </div>
+
+          <div class="feature-box">
+            <div class="feature-icon-wrapper amber">
+              <i class="fa-solid fa-location-dot"></i>
+            </div>
+            <h3>Mapa Geolocalizado de Curitiba</h3>
+            <p>Encontre vagas em bairros como CIC, Boqueirão, Tatuquara, Centro e Batel sem taxa alguma para o estudante.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         VIEW 2: CATÁLOGO DE CURSOS & TRILHAS (CENTRALIZADO)
+         ========================================================================= -->
+    <section id="cursos" class="page-view">
+      <div class="centered-container">
+        
+        <!-- Banner da Seção de Cursos -->
+        <div class="section-banner">
+          <div class="section-banner-text">
+            <div class="section-pill"><i class="fa-solid fa-graduation-cap"></i> Escola Virtual Gratuita</div>
+            <h2>Catálogo de Trilhas & Cursos</h2>
+            <p>Aprenda no seu ritmo com módulos interativos estruturados. Conclua todas as aulas para desbloquear o Quiz e emitir sua Badge!</p>
+          </div>
+        </div>
+
+        <!-- Barra de Filtros & Ordenação Pedagógica -->
+        <div class="catalog-toolbar">
+          <div class="toolbar-search">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="courseSearchInput" placeholder="Buscar cursos por título, conteúdo ou badge (ex: Excel, Direitos, Orçamento)...">
+          </div>
+
+          <div class="toolbar-filters">
+            <div class="filter-group">
+              <label for="filterLevel"><i class="fa-solid fa-signal"></i> Nível:</label>
+              <select id="filterLevel">
+                <option value="all">Todos os Níveis (Mais Fáceis Primeiro)</option>
+                <option value="Iniciante">Iniciante</option>
+                <option value="Intermediário">Intermediário</option>
+                <option value="Avançado">Avançado</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label for="filterDuration"><i class="fa-regular fa-clock"></i> Carga Horária:</label>
+              <select id="filterDuration">
+                <option value="all">Todas as Durações</option>
+                <option value="short">Até 10 Horas</option>
+                <option value="medium">10 a 15 Horas</option>
+                <option value="long">Mais de 15 Horas</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Abas de Trilhas de Conhecimento -->
+        <div class="track-tabs-container">
+          <button class="track-tab-btn active" data-track="all">
+            <i class="fa-solid fa-shapes"></i> Todos os Cursos
+          </button>
+          <button class="track-tab-btn" data-track="trilha-1">
+            <i class="fa-solid fa-door-open"></i> 1. Entrada no Mercado
+          </button>
+          <button class="track-tab-btn" data-track="trilha-2">
+            <i class="fa-solid fa-comments"></i> 2. Soft Skills & CNV
+          </button>
+          <button class="track-tab-btn" data-track="trilha-3">
+            <i class="fa-solid fa-laptop-code"></i> 3. Tecnologia & Excel
+          </button>
+          <button class="track-tab-btn" data-track="trilha-4">
+            <i class="fa-solid fa-briefcase"></i> 4. Rotinas de Escritório
+          </button>
+          <button class="track-tab-btn" data-track="trilha-5">
+            <i class="fa-solid fa-coins"></i> 5. Educação Financeira
+          </button>
+        </div>
+
+        <!-- GRID CENTRALIZADO DE CARDS DE CURSOS -->
+        <div id="coursesGrid" class="courses-grid-centered">
+          <!-- Renderizado dinamicamente pelo app.js (ordenado por facilidade) -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         VIEW 3: MAPA DE VAGAS EM CURITIBA
+         ========================================================================= -->
+    <section id="vagas" class="page-view">
+      <div class="centered-container">
+        
+        <div class="section-banner">
+          <div class="section-banner-text">
+            <div class="section-pill"><i class="fa-solid fa-map-pin"></i> Vagas em Curitiba & Região</div>
+            <h2>Mapa Geolocalizado de Oportunidades</h2>
+            <p>Vagas legítimas de Jovem Aprendiz (Lei 10.097/00) e Estágio (Lei 11.788/08) verificadas contra golpes e com respeito integral à LGPD.</p>
+          </div>
+        </div>
+
+        <!-- Filtros Rápidos de Bairro & Modalidade -->
+        <div class="jobs-filter-bar">
+          <div class="job-search-input-wrap">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="jobKeywordInput" placeholder="Buscar vaga por cargo ou palavra-chave...">
+          </div>
+
+          <div class="job-select-wrap">
+            <label for="jobNeighborhoodSelect"><i class="fa-solid fa-location-dot"></i> Bairro:</label>
+            <select id="jobNeighborhoodSelect">
+              <option value="all">Todos os Bairros de Curitiba</option>
+              <option value="CIC">CIC (Cidade Industrial)</option>
+              <option value="Boqueirão">Boqueirão</option>
+              <option value="Centro">Centro / Rebouças</option>
+              <option value="Portão">Portão / Água Verde</option>
+              <option value="Tatuquara">Tatuquara / Pinheirinho</option>
+              <option value="Batel">Batel / Bigorrilho</option>
+            </select>
+          </div>
+
+          <div class="job-select-wrap">
+            <label for="jobModalitySelect"><i class="fa-solid fa-filter"></i> Modalidade:</label>
+            <select id="jobModalitySelect">
+              <option value="all">Todas as Modalidades</option>
+              <option value="jovem-aprendiz">Jovem Aprendiz (14 a 24 anos)</option>
+              <option value="estagio">Estágio (Ensino Médio/Técnico)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- LISTAGEM DE VAGAS -->
+        <div id="jobsListContainer" class="jobs-grid">
+          <!-- Preenchido via app.js -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         VIEW 4: MEU PAINEL / DASHBOARD DO ALUNO
+         ========================================================================= -->
+    <section id="dashboard" class="page-view">
+      <div class="centered-container">
+        
+        <div class="dashboard-header-card">
+          <div class="dashboard-profile-header">
+            <div class="user-avatar-lg">GA</div>
+            <div>
+              <h2 id="dashStudentName">Gabriel Alencar dos Santos</h2>
+              <p class="dash-meta"><i class="fa-solid fa-location-dot"></i> Boqueirão, Curitiba/PR • <i class="fa-solid fa-school"></i> 2º Ano Ensino Médio (Turno Manhã)</p>
+            </div>
+          </div>
+          <div class="dashboard-profile-actions">
+            <button class="btn btn-outline btn-sm" onclick="app.generateCurriculumModal()">
+              <i class="fa-solid fa-file-pdf"></i> Gerar Currículo com Badges
+            </button>
+            <button class="btn btn-outline btn-sm" onclick="app.openLgpdModal()">
+              <i class="fa-solid fa-user-shield"></i> Privacidade & LGPD
+            </button>
+          </div>
+        </div>
+
+        <!-- Seção: Meus Cursos & Progresso de Aulas -->
+        <div class="dashboard-section">
+          <div class="dash-section-title">
+            <h3><i class="fa-solid fa-play-circle"></i> Meus Cursos em Andamento</h3>
+            <span class="badge-tag purple">Conclua 100% para fazer o Quiz</span>
+          </div>
+          <div id="enrolledCoursesGrid" class="dash-courses-grid">
+            <!-- Preenchido via app.js -->
+          </div>
+        </div>
+
+        <!-- Seção: Carteira de Badges Digitais -->
+        <div class="dashboard-section">
+          <div class="dash-section-title">
+            <h3><i class="fa-solid fa-award"></i> Minha Carteira de Badges Conquistadas</h3>
+            <span class="badge-tag green">Emitidas após 70% de acerto</span>
+          </div>
+          <div id="unlockedBadgesGrid" class="badges-wallet-grid">
+            <!-- Preenchido via app.js -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         VIEW 5: SIMULADOR DE ENTREVISTAS (TÉCNICA STAR)
+         ========================================================================= -->
+    <section id="simulador" class="page-view">
+      <div class="centered-container">
+        
+        <div class="section-banner">
+          <div class="section-banner-text">
+            <div class="section-pill"><i class="fa-solid fa-comments"></i> Treinador de RH</div>
+            <h2>Simulador de Entrevistas de Emprego</h2>
+            <p>Treine suas respostas utilizando a <strong>Técnica STAR (Situação, Tarefa, Ação e Resultado)</strong> com feedback em tempo real.</p>
+          </div>
+        </div>
+
+        <div id="interviewSimulatorCard" class="simulator-card">
+          <!-- Preenchido via app.js -->
+        </div>
+
+        <!-- Exercício de Respiração Anti-Ansiedade Pré-Entrevista -->
+        <div class="breathing-card">
+          <div class="breathing-info">
+            <h4><i class="fa-solid fa-heart-pulse"></i> Exercício de Calma Pré-Entrevista</h4>
+            <p>Controle o nervosismo antes de falar com o recrutador com o ciclo 4x4 de respiração diafragmática.</p>
+          </div>
+          <div class="breathing-visual">
+            <div id="breathingOuter" class="breathing-circle">
+              <span id="breathingText">Inspire...</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         VIEW 6: CALCULADORA DE HOLERITE & SALÁRIO
+         ========================================================================= -->
+    <section id="holerite" class="page-view">
+      <div class="centered-container">
+        
+        <div class="section-banner">
+          <div class="section-banner-text">
+            <div class="section-pill"><i class="fa-solid fa-calculator"></i> Educação Financeira</div>
+            <h2>Simulador de Holerite & Descontos Legais</h2>
+            <p>Descubra exatamente quanto cai na sua conta: compare Jovem Aprendiz (Lei 10.097), Estágio e CLT com as deduções de VT, INSS e depósito de FGTS.</p>
+          </div>
+        </div>
+
+        <div class="holerite-simulator-layout">
+          <div class="holerite-inputs-card">
+            <h3><i class="fa-solid fa-sliders"></i> Dados da Contratação</h3>
+            
+            <div class="form-group">
+              <label for="holeriteTipo"><i class="fa-solid fa-file-contract"></i> Tipo de Vínculo:</label>
+              <select id="holeriteTipo" onchange="app.calculateSalary()">
+                <option value="aprendiz">Jovem Aprendiz (FGTS 2% • VT máx 6%)</option>
+                <option value="estagio">Estágio Remunerado (Sem desconto de INSS/VT)</option>
+                <option value="clt">CLT Convencional (INSS Progressivo • FGTS 8%)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="holeriteSalarioBruto"><i class="fa-solid fa-money-bill-wave"></i> Salário Bruto ou Bolsa (R$):</label>
+              <input type="number" id="holeriteSalarioBruto" value="1100" min="400" step="50" oninput="app.calculateSalary()">
+            </div>
+
+            <div class="form-group">
+              <label for="holeriteUsaVT"><i class="fa-solid fa-bus"></i> Opção de Vale Transporte:</label>
+              <select id="holeriteUsaVT" onchange="app.calculateSalary()">
+                <option value="sim">Sim, necessito de Vale Transporte (Desconto até 6%)</option>
+                <option value="nao">Não, vou a pé ou de bicicleta (0% de desconto)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="holerite-receipt-card" id="holeriteReceiptDisplay">
+            <!-- Atualizado interativamente via app.js -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =========================================================================
+       MODAIS DO SISTEMA
+       ========================================================================= -->
+
+  <!-- MODAL DE QUIZ / AVALIAÇÃO FINAL -->
+  <div id="quizModal" class="modal-overlay">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="quizModalTitle"><i class="fa-solid fa-clipboard-question"></i> Avaliação Final</h3>
+        <button class="modal-close-btn" onclick="app.closeModals()">&times;</button>
+      </div>
+      <div id="quizModalBody" class="modal-body">
+        <!-- Renderizado dinamicamente -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="app.closeModals()">Cancelar</button>
+        <button id="quizSubmitBtn" class="btn btn-primary">
+          <i class="fa-solid fa-circle-check"></i> Finalizar Avaliação e Emitir Badge
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE EMENTA DE CURSO -->
+  <div id="courseDetailsModal" class="modal-overlay">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="courseDetailsModalTitle"><i class="fa-solid fa-book-bookmark"></i> Ementa do Curso</h3>
+        <button class="modal-close-btn" onclick="app.closeModals()">&times;</button>
+      </div>
+      <div id="courseDetailsModalBody" class="modal-body">
+        <!-- Renderizado dinamicamente -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="app.closeModals()">Fechar</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE CERTIFICADO DE BADGE -->
+  <div id="certModal" class="modal-overlay">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-award"></i> Certificado Oficial de Badge</h3>
+        <button class="modal-close-btn" onclick="app.closeModals()">&times;</button>
+      </div>
+      <div id="certModalBody" class="modal-body">
+        <!-- Renderizado dinamicamente -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="app.closeModals()">Fechar</button>
+        <button class="btn btn-primary" onclick="app.printCv()">
+          <i class="fa-solid fa-print"></i> Imprimir Certificado
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE CANDIDATURA A VAGA -->
+  <div id="applyModal" class="modal-overlay">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 id="applyModalTitle"><i class="fa-solid fa-paper-plane"></i> Candidatura Segura</h3>
+        <button class="modal-close-btn" onclick="app.closeModals()">&times;</button>
+      </div>
+      <div id="applyModalBody" class="modal-body">
+        <!-- Renderizado dinamicamente -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-outline" onclick="app.closeModals()">Cancelar</button>
+        <button id="applyModalConfirmBtn" class="btn btn-primary">
+          <i class="fa-solid fa-check"></i> Confirmar Inscrição
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE PRIVACIDADE E LGPD -->
+  <div id="lgpdModal" class="modal-overlay">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-shield-halved"></i> Central de Privacidade & LGPD</h3>
+        <button class="modal-close-btn" onclick="app.closeModals()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+          Seus dados estão protegidos conforme as diretrizes da Lei nº 13.709/2018 (LGPD) e o Estatuto da Criança e do Adolescente (ECA). Nenhuma empresa parceira tem acesso a dados sensíveis antes de você formalizar uma candidatura.
+        </p>
+        <div class="privacy-toggle-box">
+          <div>
+            <strong>Visibilidade no Mapa de Talentos para Recrutadores</strong>
+            <p style="font-size: 0.8rem; color: var(--text-muted);">Permitir que empresas parceiras visualizem suas badges conquistadas de forma anônima.</p>
+          </div>
+          <input type="checkbox" id="privacyRecruiterToggle" checked>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-primary" onclick="app.closeModals()">Salvar Preferências</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTAINER DE NOTIFICAÇÕES TOAST -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- RODAPÉ GLOBAL -->
+  <footer class="app-footer">
+    <div class="centered-container footer-content">
+      <div class="footer-brand">
+        <div class="brand-name">Skill<span>Hub</span></div>
+        <p>Plataforma gratuita de formação e empregabilidade voltada a Jovens Aprendizes e Estagiários na Região Metropolitana de Curitiba.</p>
+      </div>
+      <div class="footer-links">
+        <a href="#cursos" class="spa-nav-trigger">Trilhas de Cursos</a>
+        <a href="#vagas" class="spa-nav-trigger">Mapa de Vagas</a>
+        <a href="#simulador" class="spa-nav-trigger">Simulador de Entrevistas</a>
+        <a href="#holerite" class="spa-nav-trigger">Calculadora de Holerite</a>
+      </div>
+      <div class="footer-copy">
+        <p>© 2026 SkillHub Curitiba. Todos os direitos reservados. Em conformidade com a Lei 10.097/00 e LGPD.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT SPA DA APLICAÇÃO -->
+  <script src="app.js"></script>
+</body>
+</html>
