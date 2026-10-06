@@ -55,16 +55,16 @@ export const TRACKS: Track[] = [
   },
   {
     id: 'trilha-5',
-    name: '5. Educação Financeira & Cidadania no Trabalho',
+    name: '5. Gestão do Tempo, Foco & Produtividade',
     category: 'Desenvolvimento Pessoal',
-    description: 'Como administrar o primeiro salário, poupar para o futuro, evitar golpes e entender os impostos e deduções do contracheque.',
+    description: 'Capacitar estudantes e jovens profissionais a conciliar a rotina acadêmica com o ambiente de trabalho, aplicando técnicas de planejamento semanal, priorização e foco.',
     targetAudienceType: 'TODOS',
-    hoursTotal: 20,
+    hoursTotal: 12,
     coursesCount: 1,
     courseIds: ['curso-financas-pessoais'],
-    badgeReward: 'Cidadão Consciente & Finanças',
-    icon: 'DollarSign',
-    accentColor: '#10B981'
+    badgeReward: 'Especialista em Gestão do Tempo',
+    icon: 'Clock',
+    accentColor: '#3B82F6'
   }
 ];
 
@@ -1109,46 +1109,199 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
-  // 7. EDUCAÇÃO FINANCEIRA & ORÇAMENTO PESSOAL
+  // 7. GESTÃO DO TEMPO, FOCO E CONCILIAÇÃO ESCOLA X TRABALHO
   // =========================================================================
   {
     id: 'curso-financas-pessoais',
     trackId: 'trilha-5',
-    trackName: 'TRILHA 5: Educação Financeira & Cidadania no Trabalho',
+    trackName: 'TRILHA 5: Gestão do Tempo, Foco & Produtividade',
     category: 'Desenvolvimento Pessoal',
     targetAudienceType: 'TODOS',
-    title: 'Educação Financeira & Orçamento do Primeiro Salário',
-    subtitle: 'Gestão da primeira renda, regra 50-30-20, reserva de emergência e fuga de endividamento precoce',
-    hours: 10,
-    equivalentHours: 10,
+    title: 'Gestão do Tempo, Foco e Conciliação Escola x Trabalho',
+    subtitle: 'Capacitar estudantes e jovens profissionais a conciliar a rotina acadêmica com o ambiente de trabalho, aplicando técnicas de planejamento semanal, priorização e foco.',
+    hours: 12,
+    equivalentHours: 12,
     modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Aprendizes e estagiários recém-contratados',
-    prerequisites: 'Nenhum.',
-    badgeName: 'Mestre em Finanças',
-    badgeCategory: 'Finanças',
-    badgeIcon: 'DollarSign',
-    accentColor: '#10B981',
+    targetAudience: 'Estudantes e jovens profissionais conciliando estudos e trabalho',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Gestão do Tempo & Foco',
+    badgeCategory: 'Produtividade & Carreira',
+    badgeIcon: 'Clock',
+    accentColor: '#3B82F6',
     level: 'Iniciante',
     learningObjectives: [
-      'Aprender a planejar gastos mensais a partir do salário líquido real.',
-      'Aplicar o método de divisão de orçamento 50/30/20.',
-      'Compreender o perigo dos juros rotativos de cartão de crédito e empréstimos fáceis.'
+      'Calcular a disponibilidade real de tempo, identificando blocos inflexíveis e evitando o superplanejamento.',
+      'Aplicar a Matriz de Prioridades de Eisenhower para equilibrar demandas concorrentes da escola e do trabalho.',
+      'Implementar o planejamento semanal com Time Blocking (blocos de tempo) e centralizar informações em agenda única.',
+      'Maximizar o foco com a Técnica Pomodoro adaptada e minimizar o custo cognitivo de troca de contexto.',
+      'Proteger o sono como ativo cognitivo fundamental e manter comunicação assertiva e transparente com lideranças e colegas.'
     ],
     modules: [
       {
-        id: 'fin-mod-1',
+        id: 'ges-mod-1',
         number: 1,
-        title: 'MÓDULO 1: O Primeiro Salário e a Regra 50/30/20',
-        summary: '50% Necessidades Básicas, 30% Desejos Pessoais, 20% Poupança/Reserva de Futuro.',
-        estimatedMinutes: 30,
+        title: 'MÓDULO 1: Diagnóstico da Rotina Dupla e Priorização Estratégica',
+        summary: 'Mapeamento de horários inflexíveis, cálculo de horas líquidas de estudo, armadilha do superplanejamento e matriz de prioridades.',
+        estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1.1 A armadilha do primeiro salário',
+              subheading: '1. Mapeamento de Horários e Capacidade Real',
               body: [
-                'Ao receber o primeiro salário, muitos jovens gastam 100% no primeiro final de semana.',
-                'O método 50/30/20 ensina a equilibrar o apoio financeiro à família, transporte/alimentação, lazer consciente e uma reserva financeira para imprevistos.'
-              ]
+                'Conciliar estudos e trabalho exige entender que o tempo é um recurso finito. Tentar fazer "tudo ao mesmo tempo" é a principal causa de queda nas notas e queda no rendimento profissional.',
+                'O primeiro passo para o equilíbrio é calcular a disponibilidade real de tempo no dia a dia:',
+                '• Mapeamento de Blocos Inflexíveis: Identificação de horários fixos e inegociáveis (horas de expediente no trabalho, aulas presenciais/online e tempo de deslocamento).',
+                '• Cálculo das Horas Líquidas de Estudo: Determinar quantas horas reais restam na semana para tarefas assíncronas (trabalhos acadêmicos, revisões, leituras e preparação para exames).',
+                '• A Armadilha do Superplanejamento: Evitar criar agendas irrealistas que ignoram o tempo gasto com alimentação, higiene, descanso e imprevistos.'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'A Armadilha do Superplanejamento',
+                text: 'Agendas lotadas de minuto em minuto sem pausas para alimentação, deslocamento e imprevistos colapsam no primeiro atraso do dia. Deixe margens de respiro.'
+              }
+            },
+            {
+              subheading: '2. Matriz de Prioridades para a Dupla Jornada',
+              body: [
+                'Quando demandas do trabalho e da escola coincidem no mesmo período, é preciso saber o que priorizar:',
+                '• Urgente e Importante (Executar Já): Prova no dia seguinte, entrega de relatório profissional com prazo final no dia.',
+                '• Não Urgente, mas Importante (Agendar): Estudar para a prova que ocorrerá em três semanas, elaborar o TCC aos poucos, preparar apresentações com antecedência.',
+                '• Urgente, mas Não Importante (Delegar ou Automatizar): Avisos e mensagens secundárias de grupos de estudo, formatação básica de documentos.'
+              ],
+              asciiDiagram: `┌────────────────────────────────────────────────────────┐
+│               MATRIZ DE PRIORIDADES (EISENHOWER)       │
+├────────────────────────────┬───────────────────────────┤
+│ URGENTE & IMPORTANTE       │ NÃO URGENTE & IMPORTANTE  │
+│ [ EXECUTAR JÁ ]            │ [ AGENDAR & PLANEJAR ]    │
+│ • Prova no dia seguinte    │ • Estudo semanal contínuo │
+│ • Relatório com prazo hoje │ • Projetos e TCC a prazo  │
+├────────────────────────────┼───────────────────────────┤
+│ URGENTE / NÃO IMPORTANTE   │ NÃO URGENTE / NÃO IMPORT. │
+│ [ DELEGAR / FILTRAR ]      │ [ ELIMINAR / REDUZIR ]    │
+│ • Mensagens em grupos      │ • Redes sociais em excesso│
+│ • Demandas secundárias     │ • Procrastinação          │
+└────────────────────────────┴───────────────────────────┘`
+            }
+          ]
+        }
+      },
+      {
+        id: 'ges-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: Métodos de Organização e Planejamento Semanal',
+        summary: 'Técnica de Time Blocking (blocos de tempo), agrupamento de tarefas (day batching) e centralização de informações em agenda única.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Planejamento Baseado em Time Blocking (Blocos de Tempo)',
+              body: [
+                'A organização antecipada elimina o estresse de "apagar incêndios" na véspera de entregas importantes.',
+                'A técnica de blocos de tempo consiste em transformar a agenda semanal em um mapa de compromissos dedicados:',
+                '• Alocação Temática: Reservar horários específicos para "Bloco de Trabalho", "Bloco de Aulas", "Bloco de Estudos Acadêmicos" e "Bloco de Lazer/Descanso".',
+                '• Agrupamento de Tarefas (Day Batching): Concentrar leituras teóricas em determinados dias e a resolução de exercícios ou tarefas práticas em outros, evitando a fragmentação do raciocínio.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Time Blocking na Prática',
+                text: 'Trate seu bloco de estudo agendado como um compromisso formal inegociável. Se você não reservar esse horário, qualquer distração o ocupará.'
+              }
+            },
+            {
+              subheading: '2. Centralização de Informações',
+              body: [
+                'Espalhar anotações em cadernos, e-mails e aplicativos diferentes gera perda de tempo e esquecimentos.',
+                '• Agenda Única Integrada: Uso do Google Agenda ou Outlook para visualizar, no mesmo local, compromissos da escola e do trabalho.',
+                '• Gerenciadores de Pendências: Organização de prazos e tarefas por meio de listas ou quadros visuais (como Trello, Notion ou Todoist).'
+              ],
+              asciiDiagram: `┌────────────────────────────────────────────────────────┐
+│             CENTRALIZAÇÃO DE INFORMAÇÕES               │
+├────────────────────────────────────────────────────────┤
+│ • Google Agenda / Outlook: Visão unificada escola+trampo│
+│ • Trello / Notion: Gerenciamento de entregas e prazos  │
+│ ──► Evita choque de horários e perda de prazos limite! │
+└────────────────────────────────────────────────────────┘`
+            }
+          ]
+        }
+      },
+      {
+        id: 'ges-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Foco, Produtividade nos Estudos e no Trabalho',
+        summary: 'Técnica Pomodoro clássica e expandida para dupla jornada, minimização do custo de troca de contexto e rituais de transição.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Técnica Pomodoro Adaptada para Estudantes que Trabalham',
+              body: [
+                'Estar presente fisicamente não garante produtividade. É preciso maximizar o aproveitamento do tempo dedicado a cada atividade.',
+                'Para quem dispõe de poucas horas para estudar após o expediente, o gerenciamento de energia é crucial:',
+                '• Ciclo Clássico: 25 minutos de estudo/trabalho focado, seguidos de 5 minutos de pausa.',
+                '• Blocos Expandidos: Para leituras densas de faculdade ou elaboração de relatórios complexos, ciclos de 50 minutos com 10 minutos de pausa costumam ser mais eficientes para manter o fluxo de pensamento (flow).'
+              ],
+              highlightBox: {
+                type: 'calc',
+                title: 'Ciclos Pomodoro',
+                text: '25 min de foco total (celular fora do alcance) + 5 min de respiro. 4 blocos equivalem a 2 horas de estudo altamente produtivo.'
+              }
+            },
+            {
+              subheading: '2. Minimização do Custo de Troca de Contexto',
+              body: [
+                'Alternar entre responder e-mails da empresa e ler artigos acadêmicos no mesmo minuto reduz a retenção de aprendizado em até 40%.',
+                '• Ritual de Transição: Criar um pequeno hábito para marcar a mudança de papel (ex: ao encerrar o expediente de trabalho, fazer uma pausa de 10 minutos para tomar água e organizar a mesa antes de abrir o material de estudos).',
+                '• Eliminação de Distrações Digitais: Manter o celular no modo silencioso ou fora do alcance visual durante os blocos dedicados de estudo ou trabalho.'
+              ],
+              asciiDiagram: `┌────────────────────────────────────────────────────────┐
+│             RITUAL DE TRANSIÇÃO ESCOLA-TRABALHO        │
+├────────────────────────────────────────────────────────┤
+│ [Fim do Expediente]                                    │
+│        │                                               │
+│        └──► Pausa de 10 min (água, alongamento, mesa)  │
+│                   │                                    │
+│                   └──► [Início do Bloco de Estudos]    │
+│                        (Celular em silêncio e foco)    │
+└────────────────────────────────────────────────────────┘`
+            }
+          ]
+        }
+      },
+      {
+        id: 'ges-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Gestão da Energia, Limites e Sustentabilidade da Rotina',
+        summary: 'O sono como ativo cognitivo, higiene do sono, estudo de alta densidade e comunicação transparente com gestores e colegas de grupo.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. O Sono como Ativo de Performance',
+              body: [
+                'Sustentar a rotina dupla no longo prazo depende de proteger a saúde física e mental, evitando o colapso por exaustão.',
+                'Cortar horas de sono para estudar na madrugada costuma ser contraproducente. A privação do sono prejudica a consolidação da memória, o foco no trabalho e a imunidade.',
+                '• Higiene do Sono: Manter horários regulares para deitar e acordar, reduzindo o uso de telas luminosas 30 minutos antes de dormir.',
+                '• Estudo de Alta Densidade vs. Horas de Cansaço: Duas horas de estudo com o cérebro descansado rendem mais do que quatro horas de leitura arrastada em estado de exaustão.'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Sono é Memória e Desempenho',
+                text: 'É durante o sono profundo que o cérebro consolida o conteúdo estudado. Estudar de madrugada em exaustão destrói a retenção e o foco no trabalho.'
+              }
+            },
+            {
+              subheading: '2. Comunicação e Alinhamento de Expectativas',
+              body: [
+                'É fundamental manter transparência com as lideranças no trabalho e com os grupos de estudo na escola/faculdade.',
+                '• No Trabalho: Informar a liderança sobre horários de aula para alinhar expectativas quanto a horas extras e viagens corporativas.',
+                '• Na Escola/Faculdade: Comunicar a disponibilidade de horários aos colegas de grupo para dividir tarefas de forma assíncrona sem comprometer as entregas.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Trabalho Acadêmico Assíncrono',
+                text: 'Combine com o grupo de estudos: "Tenho expediente comercial, mas entrego minha parte revisada no drive até quinta-feira às 21h". A clareza evita conflitos.'
+              }
             }
           ]
         }
@@ -1158,15 +1311,87 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'Na metodologia de orçamento 50/30/20, o que representam os 20%?',
+        question: 'Um estudante que trabalha em período integral percebe que está constantemente atrasando trabalhos acadêmicos porque tenta estudar apenas quando "sobra tempo" no final do dia. De acordo com os princípios de planejamento de rotina dupla, qual é a conduta mais adequada para solucionar esse problema?',
         options: [
-          'Gasto exclusivo com roupas e festas.',
-          'Reserva financeira, investimentos para o futuro e poupança de emergência.',
-          'Pagamento de impostos adicionais.',
-          'Gorjetas e apostas online.'
+          'Abandonar o trabalho imediatamente para focar apenas nas obrigações acadêmicas.',
+          'Estudar durante o horário de expediente de trabalho sem que a liderança saiba.',
+          'Agendar blocos fixos de tempo (Time Blocking) na semana dedicados exclusivamente aos estudos, tratando esse horário como um compromisso inegociável.',
+          'Deixar para fazer todas as leituras e trabalhos do semestre apenas na noite anterior às provas finais.'
+        ],
+        correct: 2,
+        explanation: 'Depender do "tempo que sobrar" costuma falhar na dupla jornada. Reservar blocos de tempo fixos na agenda (Time Blocking) garante que os estudos tenham um espaço protegido e previsível ao longo da semana.'
+      },
+      {
+        id: 2,
+        question: 'A alternância constante e rápida entre responder mensagens do trabalho e ler textos da faculdade gera um fenômeno conhecido como "custo de troca de contexto". Qual é o impacto direto desse hábito na rotina do estudante-trabalhador?',
+        options: [
+          'Aumento da capacidade de memorização e aceleração do aprendizado teórico.',
+          'Queda do rendimento em ambas as atividades, aumento do tempo necessário para concluir as tarefas e fadiga mental precoce.',
+          'Redução da fadiga mental e eliminação completa de erros operacionais.',
+          'Melhoria imediata na avaliação de desempenho enviada pela empresa.'
         ],
         correct: 1,
-        explanation: 'Os 20% são destinados à construção da sua reserva de emergência e investimentos futuros.'
+        explanation: 'O cérebro não realiza multitarefa real em atividades cognitivas complexas. Ficar alternando entre trabalho e estudos divide a atenção, eleva a taxa de erros e gera exaustão mental muito mais rápido.'
+      },
+      {
+        id: 3,
+        question: 'Diante de uma semana com entregas concomitantes na faculdade (dois trabalhos em grupo) e no trabalho (um relatório mensal), como a Matriz de Prioridades deve ser aplicada para organizar as ações do dia?',
+        options: [
+          'Mapear prazos e impactos reais de cada entrega, executando primeiro as demandas classificadas como Urgentes e Importantes.',
+          'Classificar as tarefas por ordem de preferência pessoal, fazendo primeiro o que for mais divertido.',
+          'Ignorar os prazos corporativos para focar 100% nas atividades acadêmicas.',
+          'Adiar todas as entregas e solicitar prorrogação de prazo em ambas as instituições sem justificativa.'
+        ],
+        correct: 0,
+        explanation: 'A Matriz de Prioridades orienta a tomada de decisão com base na urgência (prazos) e no impacto (importância). Identificar e executar primeiro as demandas "Urgentes e Importantes" evita prejuízos em ambos os pilares.'
+      },
+      {
+        id: 4,
+        question: 'Ao organizar um trabalho acadêmico em grupo, um estudante que possui jornada de trabalho de 8 horas diárias precisa alinhar sua participação com os colegas. Qual postura reflete uma comunicação assertiva e preventiva?',
+        options: [
+          'Não avisar sobre sua rotina de trabalho e desaparecer dos grupos de mensagem nos dias de semana.',
+          'Assumir a liderança de todas as etapas do trabalho e tentar fazê-las de madrugada sozinho.',
+          'Exigir que todos os colegas façam as reuniões presenciais do grupo durante o seu horário de expediente corporativo.',
+          'Informar previamente à equipe sua disponibilidade real de horários e assumir partes do projeto que possam ser desenvolvidas de forma assíncrona.'
+        ],
+        correct: 3,
+        explanation: 'Comunicar com clareza a disponibilidade de tempo e optar por contribuições assíncronas (onde cada um realiza sua parte em horários flexíveis) permite cumprir o papel no grupo acadêmico sem impactar o trabalho.'
+      },
+      {
+        id: 5,
+        question: 'A privação crônica do sono é um erro comum entre pessoas que tentam conciliar estudos e trabalho. Qual é a consequência biológica e cognitiva direta de reduzir drasticamente as horas de sono para estudar de madrugada?',
+        options: [
+          'Prejuízo na consolidação do aprendizado, queda na capacidade de atenção e aumento da irritabilidade durante o dia.',
+          'Aumento da retenção de memória de longo prazo e ganho de raciocínio lógico.',
+          'Eliminação da necessidade de fazer pausas de descanso durante o expediente de trabalho.',
+          'Aumento imediato da imunidade do organismo contra infecções.'
+        ],
+        correct: 0,
+        explanation: 'É durante o sono REM e de ondas lentas que o cérebro consolida as informações aprendidas durante o dia. A privação do sono compromete diretamente o raciocínio, a memória e a capacidade de concentração.'
+      },
+      {
+        id: 6,
+        question: 'Como a Técnica Pomodoro pode ser aplicada para otimizar os estudos de um profissional que dispõe de apenas 1 hora livre à noite para revisar conteúdos acadêmicos?',
+        options: [
+          'Estudando por 60 minutos ininterruptos sem piscar ou fazer pausas para não perder o ritmo.',
+          'Assistindo a vídeos de entretenimento por 50 minutos e estudando nos 10 minutos finais.',
+          'Dividindo o tempo disponível em blocos de foco total de 25 minutos intercalados por pausas curtas de 5 minutos de descanso.',
+          'Lendo três livros ao mesmo tempo enquanto atende a chamadas telefônicas da empresa.'
+        ],
+        correct: 2,
+        explanation: 'A divisão em blocos de 25 minutos com 5 de descanso mantém o cérebro em alto nível de alerta sem gerar fadiga precoce, sendo ideal para aproveitar períodos curtos de estudo no fim do dia.'
+      },
+      {
+        id: 7,
+        question: 'O que caracteriza a "centralização de informações" como uma boa prática de organização pessoal na dupla jornada?',
+        options: [
+          'Anotar compromissos de trabalho em papéis avulsos e datas de provas em mensagens rascunhadas no celular.',
+          'Utilizar uma ferramenta ou agenda integrada onde seja possível visualizar tanto os prazos acadêmicos quanto os compromissos profissionais em um só lugar.',
+          'Guardar todas as datas importantes apenas na memória, dispensando o uso de agendas físicas ou digitais.',
+          'Delegar a gestão da sua agenda pessoal para os colegas de faculdade.'
+        ],
+        correct: 1,
+        explanation: 'Unificar prazos profissionais e acadêmicos em uma única agenda ou aplicativo evita choque de horários, perda de prazos limite e a sobrecarga de tentar lembrar de tudo de cabeça.'
       }
     ]
   },
@@ -1428,8 +1653,8 @@ export const COURSES: Course[] = [
     trackName: 'TRILHA 4: Rotinas Administrativas & Gestão Empresarial',
     category: 'Desenvolvimento Pessoal',
     targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'ESTAGIARIO'],
-    title: 'Gestão do Tempo, Foco e Conciliação Escola x Trabalho',
-    subtitle: 'Técnica Pomodoro, Matriz de Prioridades de Eisenhower e organização de agenda',
+    title: 'Produtividade Ágil e Organização de Demandas',
+    subtitle: 'Técnicas de priorização, organização de fluxos operacionais e rotinas administrativas de alta performance',
     hours: 10,
     equivalentHours: 10,
     modality: 'EAD 100% Gratuito (Escola Virtual)',
