@@ -5,9 +5,9 @@ export const TRACKS: Track[] = [
     id: 'trilha-1',
     name: '1. Entrada no Mercado & Primeiro Emprego',
     category: 'Desenvolvimento Pessoal e Legislação',
-    description: 'Trilha fundamental para quem quer conquistar a primeira vaga formal: direitos da Lei 10.097, orçamento do primeiro salário e técnicas comprovadas para entrevistas.',
+    description: 'Trilha fundamental para quem quer conquistar a primeira vaga formal: direitos da Lei 10.097, orçamento do primeiro salário e equilíbrio emocional no trabalho.',
     targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO'],
-    hoursTotal: 34,
+    hoursTotal: 36,
     coursesCount: 3,
     courseIds: ['curso-jovem-aprendiz-avancado', 'curso-curriculo-plataformas', 'curso-postura-entrevistas'],
     badgeReward: 'Embaixador do Primeiro Emprego',
@@ -55,16 +55,16 @@ export const TRACKS: Track[] = [
   },
   {
     id: 'trilha-5',
-    name: '5. Educação Financeira & Cidadania no Trabalho',
+    name: '5. Gestão do Tempo, Foco & Produtividade',
     category: 'Desenvolvimento Pessoal',
-    description: 'Como administrar o primeiro salário, poupar para o futuro, evitar golpes e entender os impostos e deduções do contracheque.',
+    description: 'Capacitar estudantes e jovens profissionais a conciliar a rotina acadêmica com o ambiente de trabalho, aplicando técnicas de planejamento semanal, priorização e foco.',
     targetAudienceType: 'TODOS',
-    hoursTotal: 20,
+    hoursTotal: 12,
     coursesCount: 1,
     courseIds: ['curso-financas-pessoais'],
-    badgeReward: 'Cidadão Consciente & Finanças',
-    icon: 'DollarSign',
-    accentColor: '#10B981'
+    badgeReward: 'Especialista em Gestão do Tempo',
+    icon: 'Clock',
+    accentColor: '#3B82F6'
   }
 ];
 
@@ -615,7 +615,7 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
-  // 3. POSTURA PROFISSIONAL & ENTREVISTAS DE EMPREGO
+  // 3. EQUILÍBRIO EMOCIONAL, ANSIEDADE E FOCO NO TRABALHO
   // =========================================================================
   {
     id: 'curso-postura-entrevistas',
@@ -623,68 +623,189 @@ export const COURSES: Course[] = [
     trackName: 'TRILHA 1: Entrada no Mercado & Primeiro Emprego',
     category: 'Desenvolvimento Pessoal',
     targetAudienceType: ['PRIMEIRO_EMPREGO', 'JOVEM_APRENDIZ', 'ESTUDANTE'],
-    title: 'Postura Profissional e Técnicas para Entrevistas de Emprego',
-    subtitle: 'Comportamento corporativo, dinâmicas de grupo, vestimenta adequada, comunicação assertiva e perguntas difíceis',
-    hours: 10,
-    equivalentHours: 10,
+    title: 'Equilíbrio Emocional, Ansiedade e Foco no Trabalho',
+    subtitle: 'Capacitar o profissional a identificar gatilhos de estresse e ansiedade, aplicar técnicas de autorregulação e mindfulness, e construir rotina mentalmente saudável.',
+    hours: 12,
+    equivalentHours: 12,
     modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Jovens participando de processos seletivos',
-    prerequisites: 'Nenhum.',
-    badgeName: 'Destaque em Entrevistas',
-    badgeCategory: 'Atitude Profissional',
-    badgeIcon: 'UserCheck',
+    targetAudience: 'Jovens aprendizes, estagiários e profissionais em início de carreira buscando produtividade e saúde mental',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Equilíbrio & Foco no Trabalho',
+    badgeCategory: 'Saúde Mental & Carreira',
+    badgeIcon: 'HeartHandshake',
     accentColor: '#8B5CF6',
     level: 'Iniciante',
     learningObjectives: [
-      'Preparar respostas autênticas para as perguntas mais frequentes de recrutadores de RH.',
-      'Desenvolver linguagem corporal confiante, contato visual e dicção clara.',
-      'Saber se posicionar em dinâmicas de grupo com espírito de equipe e sem timidez.',
-      'Fazer perguntas inteligentes ao entrevistador no final da conversa.'
+      'Identificar o mecanismo biológico do estresse no trabalho, diferenciando Eustresse (positivo) e Distresse (negativo).',
+      'Mapear gatilhos individuais internos (perfeccionismo, síndrome do impostor) e externos (pressões, reuniões e demandas).',
+      'Aplicar técnicas de autorregulação fisiológica como Respiração Quadrada (Box Breathing), Técnica 4-7-8 e Reestruturação Cognitiva.',
+      'Implementar o conceito de Deep Work (Trabalho Profundo) e a pausa estratégica com o método S.T.O.P. de Mindfulness Corporativo.',
+      'Estabelecer fronteiras e desconexão digital no expediente, prevenindo precocemente os sinais da Síndrome de Burnout.'
     ],
     modules: [
       {
-        id: 'pos-mod-1',
+        id: 'emo-mod-1',
         number: 1,
-        title: 'MÓDULO 1: Preparação e Apresentação Pessoal',
-        summary: 'Pesquisa prévia sobre a empresa, pontualidade britânica, vestimenta adequada e controle do nervosismo.',
-        estimatedMinutes: 40,
+        title: 'MÓDULO 1: Inteligência Emocional e Mapeamento de Gatilhos',
+        summary: 'Autoconhecimento no ambiente corporativo, mecanismo do estresse (eustresse vs. distresse) e mapeamento de gatilhos internos e externos.',
+        estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1.1 A Regra dos 15 Minutos de Antecedência',
+              subheading: '1. O Mecanismo do Estresse no Trabalho',
               body: [
-                'Em Curitiba, imprevistos no transporte coletivo ou trânsito acontecem. Calcule seu trajeto com antecedência e chegue 15 minutos antes do horário marcado.',
-                'Pesquise sobre a empresa: qual o ramo de atuação, produtos fabricados ou serviços prestados. Isso demonstra interesse real.'
-              ]
+                'O primeiro passo para o equilíbrio emocional é o autoconhecimento. O ambiente corporativo expõe os profissionais a pressões constantes, prazos curtos e conflitos interpessoais. Entender como o corpo e a mente reagem a esses estímulos é fundamental para evitar a exaustão.',
+                'O estresse é uma resposta biológica natural de preservação. No entanto, quando ativado de forma crônica no escritório (reação de "luta ou fuga"), ele libera cortisol e adrenalina continuamente, prejudicando o raciocínio lógico e a tomada de decisões.',
+                '• Estresse Positivo (Eustresse): O nível de ativação saudável e equilibrado que gera motivação, foco e impulso para cumprir prazos.',
+                '• Estresse Negativo (Distresse): A sobrecarga contínua que gera paralisia, irritabilidade, esquecimentos e exaustão física.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Eustresse vs. Distresse',
+                text: 'O eustresse é o nível produtivo de energia que nos move. O perigo é a sobrecarga constante sem descanso, que descamba para o distresse crônico.'
+              }
             },
             {
-              subheading: '1.2 Vestimenta e Comunicação Não-Verbal',
+              subheading: '2. Mapeamento de Gatilhos Individuais',
               body: [
-                'Vista-se de maneira sóbria e profissional (calça jeans sem rasgos, camisa ou polo, calçado fechado).',
-                'Mantenha postura ereta, cumprimente os entrevistadores com firmeza e mantenha contato visual cordial durante as respostas.'
-              ]
+                'Cada profissional reage de forma diferente aos estímulos do trabalho. O mapeamento consiste em identificar as situações específicas que desencadeiam picos de ansiedade:',
+                '• Gatilhos Internos: Perfeccionismo extremo, medo de errar, síndrome do impostor e necessidade contínua de aprovação alheia.',
+                '• Gatilhos Externos: E-mails de cobrança, reuniões de última hora, sobrecarga de demandas e comunicação agressiva de terceiros.'
+              ],
+              asciiDiagram: `┌────────────────────────────────────────────────────────┐
+│           MAPEAMENTO DE GATILHOS CORPORATIVOS          │
+├────────────────────────────────────────────────────────┤
+│ GATILHOS INTERNOS:                                     │
+│ • Perfeccionismo ──► Medo de errar ──► Procrastinação  │
+│ • Síndrome do Impostor ──► Insegurança contínua        │
+├────────────────────────────────────────────────────────┤
+│ GATILHOS EXTERNOS:                                     │
+│ • Demandas urgentes ──► Sobrecarga ──► Desorganização  │
+│ • Cobranças e prazos ──► Reação de Luta ou Fuga        │
+└────────────────────────────────────────────────────────┘`
             }
           ]
         }
       },
       {
-        id: 'pos-mod-2',
+        id: 'emo-mod-2',
         number: 2,
-        title: 'MÓDULO 2: Dominando as Perguntas Clássicas do RH',
-        summary: '"Conte sobre você", pontos fortes, pontos a melhorar e por que quer trabalhar conosco.',
-        estimatedMinutes: 40,
+        title: 'MÓDULO 2: Técnicas de Autorregulação e Gestão da Ansiedade',
+        summary: 'Exercícios práticos de respiração para ativação parassimpática (Box Breathing e 4-7-8) e reestruturação cognitiva contra a catastrofização.',
+        estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '2.1 A Estrutura da Pergunta "Conte-me sobre você"',
+              subheading: '1. Técnicas Respiratórias para Redução Ansiolítica',
               body: [
-                'Não conte sua história desde a infância. Use o roteiro: Presente (o que está estudando) -> Conquistas (cursos, badges, habilidades) -> Futuro (por que quer essa vaga).'
+                'A ansiedade manifesta-se quando a mente antecipa cenários futuros catastróficos. A autorregulação emocional reúne ferramentas práticas para trazer a atenção de volta ao presente e acalmar o sistema nervoso autônomo.',
+                'A respiração é a ponte direta para ativar o sistema nervoso parassimpático, desacelerando os batimentos cardíacos:',
+                '• Respiração Quadrada (Box Breathing): Inspirar em 4 segundos, reter o ar por 4 segundos, expirar em 4 segundos e manter os pulmões vazios por 4 segundos. Ideal para fazer antes de reuniões decisivas ou apresentações.',
+                '• Técnica 4-7-8: Inspirar pelo nariz em 4 segundos, reter o ar por 7 segundos e soltar o ar lentamente pela boca durante 8 segundos.'
+              ],
+              highlightBox: {
+                type: 'calc',
+                title: 'Respiração Quadrada (Box Breathing)',
+                text: 'Inspire em 4s ──► Segure em 4s ──► Expire em 4s ──► Pause em 4s. Pratique 4 rodadas para normalizar batimentos e clarear o raciocínio.'
+              }
+            },
+            {
+              subheading: '2. Reestruturação Cognitiva',
+              body: [
+                'Diante de uma crise de ansiedade ou de um erro no projeto, a mente costuma criar distorções cognitivas (catastrofização). A reestruturação é o ato de questionar o pensamento ansiogênico com fatos concretos:',
+                '• Pensamento Ansiogênico: "Apresentei o relatório com um dado incorreto, serei demitido imediatamente."',
+                '• Questionamento Racional: "O dado foi corrigido a tempo? Qual é a probabilidade real de demissão por esse fato isolado? Qual o plano de ação prático agora para alinhar com o gestor?"'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Fatos vs. Suposições',
+                text: 'Não tome pensamentos catastróficos como certezas. Busque fatos observáveis e estruture um plano de resolução em vez de alimentar o pânico.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'emo-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Foco Profundo (Deep Work) e Atenção Plena',
+        summary: 'Metodologia de Trabalho Profundo (Deep Work) vs. Trabalho Superficial (Shallow Work) e aplicação do método S.T.O.P. de mindfulness no trabalho.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. O Estado de Flow e o Trabalho Profundo (Deep Work)',
+              body: [
+                'A oscilação emocional corrói a capacidade de concentração. Em um ambiente repleto de notificações, manter o foco em tarefas complexas exige estratégias deliberadas de proteção mental.',
+                'O conceito de Deep Work (Trabalho Profundo), desenvolvido por Cal Newport, refere-se à capacidade de focar sem distrações em uma tarefa cognitivamente exigente.',
+                '• Trabalho Superficial (Shallow Work): Tarefas mecânicas e operacionais (responder e-mails rápidos, organizar pastas) que exigem pouco esforço mental, mas consomem o dia.',
+                '• Construção de Rituais de Foco: Eliminação de abas desnecessárias, bloqueio de notificações e definição de metas claras para o bloco de trabalho focado.'
+              ]
+            },
+            {
+              subheading: '2. Aplicação Prática do Mindfulness Corporativo (Método S.T.O.P.)',
+              body: [
+                'Atenção plena (Mindfulness) não significa "esvaziar a mente", mas observar os pensamentos e emoções sem julgamento imediato, ancorando-se na atividade presente.',
+                'A Pausa Estratégica (Método S.T.O.P.):',
+                '• S (Stop): Pare o que está fazendo por instantes.',
+                '• T (Take a breath): Tome uma respiração profunda e lenta.',
+                '• O (Observe): Observe seus pensamentos, suas emoções e as sensações do seu corpo com curiosidade.',
+                '• P (Proceed): Prossiga com clareza, intenção e tranquilidade.'
+              ],
+              asciiDiagram: `┌────────────────────────────────────────────────────────┐
+│               MÉTODO S.T.O.P. DE MINDFULNESS           │
+├────────────────────────────────────────────────────────┤
+│ [S] STOP: Pare imediatamente o que está fazendo        │
+│ [T] TAKE A BREATH: Respire consciente e profundamente  │
+│ [O] OBSERVE: Observe mente, emoções e corpo sem julgar │
+│ [P] PROCEED: Prossiga com foco, calma e intenção clara │
+└────────────────────────────────────────────────────────┘`
+            }
+          ]
+        }
+      },
+      {
+        id: 'emo-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Limites Saudáveis, Comunicação e Prevenção do Burnout',
+        summary: 'Fronteiras profissionais, desconexão digital no expediente, comunicação assertiva e identificação dos sinais precoces e avançados de Burnout.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Estabelecimento de Fronteiras e Desconexão Digital',
+              body: [
+                'O equilíbrio emocional sustentável depende da capacidade de estabelecer fronteiras claras entre a vida profissional e a vida pessoal, evitando o esgotamento extremo (Burnout).',
+                'A hiperconectividade cria a falsa sensação de que tudo precisa ser respondido imediatamente.',
+                '• Desconexão do Expediente: Definir um horário claro para encerrar a checagem de mensagens corporativas no celular pessoal.',
+                '• Gestão de Expectativas: Comunicar à equipe os prazos reais de resposta e entrega, sem assumir compromissos inalcançáveis por medo de dizer "não".'
               ],
               highlightBox: {
                 type: 'info',
-                title: 'Exemplo Prático de Resposta',
-                text: '"Atualmente curso o 2º ano do Ensino Médio no período noturno. Concluí cursos de Informática e Rotinas Administrativas no SkillHub e busco essa vaga de Jovem Aprendiz para colocar em prática minha organização e crescer junto à empresa."'
+                title: 'Comunicação Assertiva',
+                text: 'Dizer "não" fundamentado com alternativas e prazos viáveis é sinal de maturidade profissional e respeito pela qualidade do trabalho.'
               }
+            },
+            {
+              subheading: '2. Sinais de Alerta do Burnout',
+              body: [
+                'A Síndrome de Burnout é o estresse crônico não gerenciado no ambiente de trabalho. Reconhecer os sinais iniciais evita o colapso físico e emocional:',
+                '• Estágio Inicial: Entusiasmo excessivo com negligência de necessidades básicas (sono, alimentação); sensação constante de falta de tempo e ansiedade aos domingos.',
+                '• Estágio Avançado: Exaustão física e mental diária; cinismo, desconexão emocional com o trabalho e queda brusca de produtividade.'
+              ],
+              asciiDiagram: `┌────────────────────────────────────────────────────────┐
+│             ESTÁGIOS DA SÍNDROME DE BURNOUT            │
+├────────────────────────────────────────────────────────┤
+│ ESTÁGIO INICIAL:                                       │
+│ • Entusiasmo desmedido sem descanso                    │
+│ • Negligência com sono e alimentação                   │
+│ • Ansiedade aos domingos e falta de tempo              │
+├────────────────────────────────────────────────────────┤
+│ ESTÁGIO AVANÇADO:                                      │
+│ • Exaustão física e mental diária                      │
+│ • Cinismo, frieza e distanciamento da equipe           │
+│ • Queda drástica de produtividade e esgotamento        │
+└────────────────────────────────────────────────────────┘`
             }
           ]
         }
@@ -694,15 +815,87 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'Qual a conduta recomendada ao responder sobre seus pontos a melhorar em uma entrevista?',
+        question: 'Durante um dia de alta demanda no escritório, um colaborador percebe que sua respiração está acelerada e que não consegue se concentrar nas tarefas devido ao nervosismo. Qual técnica de autorregulação fisiológica é mais indicada para reativar a calma do sistema nervoso de forma rápida?',
         options: [
-          'Dizer que é perfeccionista demais ou que não tem nenhum defeito.',
-          'Citar uma oportunidade de melhoria real e explicar o que tem feito ativamente para desenvolvê-la.',
-          'Falar mal de professores da escola.',
-          'Ficar em silêncio.'
+          'Ingerir bebidas estimulantes com alto teor de cafeína para acelerar o ritmo de trabalho.',
+          'Ignorar os sinais do corpo e continuar digitando em velocidade máxima sem fazer pausas.',
+          'Aplicar a técnica de Respiração Quadrada (Box Breathing), alternando inspiração, retenção, expiração e pausa em tempos iguais.',
+          'Reclamar abertamente sobre a sobrecarga com os colegas de equipe durante o horário de pico.'
+        ],
+        correct: 2,
+        explanation: 'A técnica de Respiração Quadrada (Box Breathing) reduz diretamente os níveis de excitação fisiológica provocados pela ansiedade, desacelerando a frequência cardíaca e ativando o sistema nervoso parassimpático para recuperar o controle consciente.'
+      },
+      {
+        id: 2,
+        question: 'A Síndrome de Burnout foi reconhecida como uma condição ocupacional resultante do estresse crônico no ambiente de trabalho. Qual das opções abaixo apresenta um sintoma característico dessa síndrome em seu estágio avançado?',
+        options: [
+          'Sensação diária de exaustão física/mental acompanhada de atitudes de cinismo e desapego ao trabalho.',
+          'Aumento da criatividade e engajamento constante em novos projetos da empresa.',
+          'Capacidade de manter o foco ininterrupto por 12 horas consecutivas sem apresentar fadiga.',
+          'Facilidade em desligar-se das responsabilidades profissionais no exato momento em que encerra o expediente.'
+        ],
+        correct: 0,
+        explanation: 'O Burnout é caracterizado pela tríade: exaustão emocional profunda, despersonalização/cinismo (desapego frio em relação às tarefas e colegas) e queda da percepção de eficácia profissional.'
+      },
+      {
+        id: 3,
+        question: 'O conceito de Deep Work (Trabalho Profundo) exige eliminar distrações para focar em tarefas cognitivamente complexas. Qual ação prática contribui diretamente para a criação de um ambiente favorável ao Deep Work?',
+        options: [
+          'Deixar os alertas sonoros do e-mail e do chat corporativo ativados na tela principal.',
+          'Alternar a atenção a cada 5 minutos entre a escrita de um relatório e a navegação em redes sociais.',
+          'Realizar chamadas de vídeo sem roteiro prévio enquanto tenta revisar planilhas complexas.',
+          'Agendar o checamento de e-mails para horários específicos do dia e silenciar notificações durante o bloco de foco.'
+        ],
+        correct: 3,
+        explanation: 'O Trabalho Profundo exige a eliminação de fragmentações na atenção. Definir blocos de tempo isolados e silenciar notificações previne a troca constante de contexto, permitindo hiperfoco e alta performance.'
+      },
+      {
+        id: 4,
+        question: 'Diante de um erro cometido em um projeto, a mente de um profissional ansioso pode gerar uma "distorção cognitiva", acreditando que o problema é uma catastrofização irreparável. Qual técnica ajuda a reestruturar esse pensamento de forma racional?',
+        options: [
+          'Aceitar o pensamento catastrófico como verdade absoluta e pedir demissão imediatamente.',
+          'Questionar o pensamento ansiogênico buscando evidências concretas sobre o impacto real e focando no plano de ação para correção.',
+          'Esconder o erro da equipe na esperança de que ninguém perceba a falha.',
+          'Culpar publicamente outros colegas pelo ocorrido para preservar a própria imagem.'
         ],
         correct: 1,
-        explanation: 'Demonstrar autoconhecimento e atitude ativa de aprendizado é o que os recrutadores mais valorizam.'
+        explanation: 'A Reestruturação Cognitiva combate vieses de catastrofização substituindo suposições por fatos. Analisar o erro objetivamente e construir uma solução prática reduz a ansiedade e restaura o senso de controle.'
+      },
+      {
+        id: 5,
+        question: 'O acrônimo S.T.O.P. representa uma pausa consciente no meio da rotina para recuperar a clareza e o equilíbrio emocional. O que significa a letra "O" nessa metodologia de Mindfulness?',
+        options: [
+          'Observar os pensamentos, emoções e sensações corporais sem julgamento imediato.',
+          'Omitir os sentimentos negativos até o fim da semana.',
+          'Optimizar o tempo eliminando o horário de almoço.',
+          'Organizar a mesa de trabalho descartando papéis antigos.'
+        ],
+        correct: 0,
+        explanation: 'No método S.T.O.P. (Stop, Take a breath, Observe, Proceed), o passo Observe orienta o indivíduo a tomar consciência de seus estados internos (pensamentos, emoções, tensão muscular) com curiosidade e sem auto-julgamento.'
+      },
+      {
+        id: 6,
+        question: 'Para manter a saúde mental e prevenir o esgotamento no ambiente de trabalho, o estabelecimento de limites saudáveis é indispensável. Qual postura reflete o estabelecimento de uma fronteira profissional assertiva?',
+        options: [
+          'Responder mensagens de trabalho no aplicativo pessoal de mensagens às 23 horas de um domingo.',
+          'Aceitar todas as solicitações de última hora recebidas, mesmo quando impossibilitam o cumprimento dos prazos já acordados.',
+          'Desligar o telefone corporativo durante o horário de expediente normal sem avisar a equipe.',
+          'Comunicar com clareza a capacidade atual de entregas, renegociar prazos com a liderança e respeitar os horários de descanso.'
+        ],
+        correct: 3,
+        explanation: 'Ter assertividade emocional significa alinhar expectativas e prioridades de forma transparente com a equipe. Dizer "não" fundamentado ou renegociar prazos protege a qualidade das entregas e a saúde mental do profissional.'
+      },
+      {
+        id: 7,
+        question: 'O estresse é uma reação biológica do organismo que pode ser dividida entre "eustresse" e "distresse". Qual a principal característica do eustresse?',
+        options: [
+          'É o estágio final de esgotamento físico que exige afastamento médico imediato.',
+          'Trata-se do sentimento constante de pânico acompanhado de insônia crônica.',
+          'É a forma saudável e positiva de estresse, que mobiliza energia, melhora o foco e motiva a resolução de desafios.',
+          'É a incapacidade total de sentir qualquer tipo de emoção durante reuniões de trabalho.'
+        ],
+        correct: 2,
+        explanation: 'O Eustresse (estresse positivo) é o nível moderado de ativação necessário para nos manter alertas, motivados e engajados na superação de metas e desafios do dia a dia, diferindo do estresse crônico nocivo (distresse).'
       }
     ]
   },
@@ -916,46 +1109,199 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
-  // 7. EDUCAÇÃO FINANCEIRA & ORÇAMENTO PESSOAL
+  // 7. GESTÃO DO TEMPO, FOCO E CONCILIAÇÃO ESCOLA X TRABALHO
   // =========================================================================
   {
     id: 'curso-financas-pessoais',
     trackId: 'trilha-5',
-    trackName: 'TRILHA 5: Educação Financeira & Cidadania no Trabalho',
+    trackName: 'TRILHA 5: Gestão do Tempo, Foco & Produtividade',
     category: 'Desenvolvimento Pessoal',
     targetAudienceType: 'TODOS',
-    title: 'Educação Financeira & Orçamento do Primeiro Salário',
-    subtitle: 'Gestão da primeira renda, regra 50-30-20, reserva de emergência e fuga de endividamento precoce',
-    hours: 10,
-    equivalentHours: 10,
+    title: 'Gestão do Tempo, Foco e Conciliação Escola x Trabalho',
+    subtitle: 'Capacitar estudantes e jovens profissionais a conciliar a rotina acadêmica com o ambiente de trabalho, aplicando técnicas de planejamento semanal, priorização e foco.',
+    hours: 12,
+    equivalentHours: 12,
     modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Aprendizes e estagiários recém-contratados',
-    prerequisites: 'Nenhum.',
-    badgeName: 'Mestre em Finanças',
-    badgeCategory: 'Finanças',
-    badgeIcon: 'DollarSign',
-    accentColor: '#10B981',
+    targetAudience: 'Estudantes e jovens profissionais conciliando estudos e trabalho',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Gestão do Tempo & Foco',
+    badgeCategory: 'Produtividade & Carreira',
+    badgeIcon: 'Clock',
+    accentColor: '#3B82F6',
     level: 'Iniciante',
     learningObjectives: [
-      'Aprender a planejar gastos mensais a partir do salário líquido real.',
-      'Aplicar o método de divisão de orçamento 50/30/20.',
-      'Compreender o perigo dos juros rotativos de cartão de crédito e empréstimos fáceis.'
+      'Calcular a disponibilidade real de tempo, identificando blocos inflexíveis e evitando o superplanejamento.',
+      'Aplicar a Matriz de Prioridades de Eisenhower para equilibrar demandas concorrentes da escola e do trabalho.',
+      'Implementar o planejamento semanal com Time Blocking (blocos de tempo) e centralizar informações em agenda única.',
+      'Maximizar o foco com a Técnica Pomodoro adaptada e minimizar o custo cognitivo de troca de contexto.',
+      'Proteger o sono como ativo cognitivo fundamental e manter comunicação assertiva e transparente com lideranças e colegas.'
     ],
     modules: [
       {
-        id: 'fin-mod-1',
+        id: 'ges-mod-1',
         number: 1,
-        title: 'MÓDULO 1: O Primeiro Salário e a Regra 50/30/20',
-        summary: '50% Necessidades Básicas, 30% Desejos Pessoais, 20% Poupança/Reserva de Futuro.',
-        estimatedMinutes: 30,
+        title: 'MÓDULO 1: Diagnóstico da Rotina Dupla e Priorização Estratégica',
+        summary: 'Mapeamento de horários inflexíveis, cálculo de horas líquidas de estudo, armadilha do superplanejamento e matriz de prioridades.',
+        estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1.1 A armadilha do primeiro salário',
+              subheading: '1. Mapeamento de Horários e Capacidade Real',
               body: [
-                'Ao receber o primeiro salário, muitos jovens gastam 100% no primeiro final de semana.',
-                'O método 50/30/20 ensina a equilibrar o apoio financeiro à família, transporte/alimentação, lazer consciente e uma reserva financeira para imprevistos.'
-              ]
+                'Conciliar estudos e trabalho exige entender que o tempo é um recurso finito. Tentar fazer "tudo ao mesmo tempo" é a principal causa de queda nas notas e queda no rendimento profissional.',
+                'O primeiro passo para o equilíbrio é calcular a disponibilidade real de tempo no dia a dia:',
+                '• Mapeamento de Blocos Inflexíveis: Identificação de horários fixos e inegociáveis (horas de expediente no trabalho, aulas presenciais/online e tempo de deslocamento).',
+                '• Cálculo das Horas Líquidas de Estudo: Determinar quantas horas reais restam na semana para tarefas assíncronas (trabalhos acadêmicos, revisões, leituras e preparação para exames).',
+                '• A Armadilha do Superplanejamento: Evitar criar agendas irrealistas que ignoram o tempo gasto com alimentação, higiene, descanso e imprevistos.'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'A Armadilha do Superplanejamento',
+                text: 'Agendas lotadas de minuto em minuto sem pausas para alimentação, deslocamento e imprevistos colapsam no primeiro atraso do dia. Deixe margens de respiro.'
+              }
+            },
+            {
+              subheading: '2. Matriz de Prioridades para a Dupla Jornada',
+              body: [
+                'Quando demandas do trabalho e da escola coincidem no mesmo período, é preciso saber o que priorizar:',
+                '• Urgente e Importante (Executar Já): Prova no dia seguinte, entrega de relatório profissional com prazo final no dia.',
+                '• Não Urgente, mas Importante (Agendar): Estudar para a prova que ocorrerá em três semanas, elaborar o TCC aos poucos, preparar apresentações com antecedência.',
+                '• Urgente, mas Não Importante (Delegar ou Automatizar): Avisos e mensagens secundárias de grupos de estudo, formatação básica de documentos.'
+              ],
+              asciiDiagram: `┌────────────────────────────────────────────────────────┐
+│               MATRIZ DE PRIORIDADES (EISENHOWER)       │
+├────────────────────────────┬───────────────────────────┤
+│ URGENTE & IMPORTANTE       │ NÃO URGENTE & IMPORTANTE  │
+│ [ EXECUTAR JÁ ]            │ [ AGENDAR & PLANEJAR ]    │
+│ • Prova no dia seguinte    │ • Estudo semanal contínuo │
+│ • Relatório com prazo hoje │ • Projetos e TCC a prazo  │
+├────────────────────────────┼───────────────────────────┤
+│ URGENTE / NÃO IMPORTANTE   │ NÃO URGENTE / NÃO IMPORT. │
+│ [ DELEGAR / FILTRAR ]      │ [ ELIMINAR / REDUZIR ]    │
+│ • Mensagens em grupos      │ • Redes sociais em excesso│
+│ • Demandas secundárias     │ • Procrastinação          │
+└────────────────────────────┴───────────────────────────┘`
+            }
+          ]
+        }
+      },
+      {
+        id: 'ges-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: Métodos de Organização e Planejamento Semanal',
+        summary: 'Técnica de Time Blocking (blocos de tempo), agrupamento de tarefas (day batching) e centralização de informações em agenda única.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Planejamento Baseado em Time Blocking (Blocos de Tempo)',
+              body: [
+                'A organização antecipada elimina o estresse de "apagar incêndios" na véspera de entregas importantes.',
+                'A técnica de blocos de tempo consiste em transformar a agenda semanal em um mapa de compromissos dedicados:',
+                '• Alocação Temática: Reservar horários específicos para "Bloco de Trabalho", "Bloco de Aulas", "Bloco de Estudos Acadêmicos" e "Bloco de Lazer/Descanso".',
+                '• Agrupamento de Tarefas (Day Batching): Concentrar leituras teóricas em determinados dias e a resolução de exercícios ou tarefas práticas em outros, evitando a fragmentação do raciocínio.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Time Blocking na Prática',
+                text: 'Trate seu bloco de estudo agendado como um compromisso formal inegociável. Se você não reservar esse horário, qualquer distração o ocupará.'
+              }
+            },
+            {
+              subheading: '2. Centralização de Informações',
+              body: [
+                'Espalhar anotações em cadernos, e-mails e aplicativos diferentes gera perda de tempo e esquecimentos.',
+                '• Agenda Única Integrada: Uso do Google Agenda ou Outlook para visualizar, no mesmo local, compromissos da escola e do trabalho.',
+                '• Gerenciadores de Pendências: Organização de prazos e tarefas por meio de listas ou quadros visuais (como Trello, Notion ou Todoist).'
+              ],
+              asciiDiagram: `┌────────────────────────────────────────────────────────┐
+│             CENTRALIZAÇÃO DE INFORMAÇÕES               │
+├────────────────────────────────────────────────────────┤
+│ • Google Agenda / Outlook: Visão unificada escola+trampo│
+│ • Trello / Notion: Gerenciamento de entregas e prazos  │
+│ ──► Evita choque de horários e perda de prazos limite! │
+└────────────────────────────────────────────────────────┘`
+            }
+          ]
+        }
+      },
+      {
+        id: 'ges-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Foco, Produtividade nos Estudos e no Trabalho',
+        summary: 'Técnica Pomodoro clássica e expandida para dupla jornada, minimização do custo de troca de contexto e rituais de transição.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Técnica Pomodoro Adaptada para Estudantes que Trabalham',
+              body: [
+                'Estar presente fisicamente não garante produtividade. É preciso maximizar o aproveitamento do tempo dedicado a cada atividade.',
+                'Para quem dispõe de poucas horas para estudar após o expediente, o gerenciamento de energia é crucial:',
+                '• Ciclo Clássico: 25 minutos de estudo/trabalho focado, seguidos de 5 minutos de pausa.',
+                '• Blocos Expandidos: Para leituras densas de faculdade ou elaboração de relatórios complexos, ciclos de 50 minutos com 10 minutos de pausa costumam ser mais eficientes para manter o fluxo de pensamento (flow).'
+              ],
+              highlightBox: {
+                type: 'calc',
+                title: 'Ciclos Pomodoro',
+                text: '25 min de foco total (celular fora do alcance) + 5 min de respiro. 4 blocos equivalem a 2 horas de estudo altamente produtivo.'
+              }
+            },
+            {
+              subheading: '2. Minimização do Custo de Troca de Contexto',
+              body: [
+                'Alternar entre responder e-mails da empresa e ler artigos acadêmicos no mesmo minuto reduz a retenção de aprendizado em até 40%.',
+                '• Ritual de Transição: Criar um pequeno hábito para marcar a mudança de papel (ex: ao encerrar o expediente de trabalho, fazer uma pausa de 10 minutos para tomar água e organizar a mesa antes de abrir o material de estudos).',
+                '• Eliminação de Distrações Digitais: Manter o celular no modo silencioso ou fora do alcance visual durante os blocos dedicados de estudo ou trabalho.'
+              ],
+              asciiDiagram: `┌────────────────────────────────────────────────────────┐
+│             RITUAL DE TRANSIÇÃO ESCOLA-TRABALHO        │
+├────────────────────────────────────────────────────────┤
+│ [Fim do Expediente]                                    │
+│        │                                               │
+│        └──► Pausa de 10 min (água, alongamento, mesa)  │
+│                   │                                    │
+│                   └──► [Início do Bloco de Estudos]    │
+│                        (Celular em silêncio e foco)    │
+└────────────────────────────────────────────────────────┘`
+            }
+          ]
+        }
+      },
+      {
+        id: 'ges-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Gestão da Energia, Limites e Sustentabilidade da Rotina',
+        summary: 'O sono como ativo cognitivo, higiene do sono, estudo de alta densidade e comunicação transparente com gestores e colegas de grupo.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. O Sono como Ativo de Performance',
+              body: [
+                'Sustentar a rotina dupla no longo prazo depende de proteger a saúde física e mental, evitando o colapso por exaustão.',
+                'Cortar horas de sono para estudar na madrugada costuma ser contraproducente. A privação do sono prejudica a consolidação da memória, o foco no trabalho e a imunidade.',
+                '• Higiene do Sono: Manter horários regulares para deitar e acordar, reduzindo o uso de telas luminosas 30 minutos antes de dormir.',
+                '• Estudo de Alta Densidade vs. Horas de Cansaço: Duas horas de estudo com o cérebro descansado rendem mais do que quatro horas de leitura arrastada em estado de exaustão.'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Sono é Memória e Desempenho',
+                text: 'É durante o sono profundo que o cérebro consolida o conteúdo estudado. Estudar de madrugada em exaustão destrói a retenção e o foco no trabalho.'
+              }
+            },
+            {
+              subheading: '2. Comunicação e Alinhamento de Expectativas',
+              body: [
+                'É fundamental manter transparência com as lideranças no trabalho e com os grupos de estudo na escola/faculdade.',
+                '• No Trabalho: Informar a liderança sobre horários de aula para alinhar expectativas quanto a horas extras e viagens corporativas.',
+                '• Na Escola/Faculdade: Comunicar a disponibilidade de horários aos colegas de grupo para dividir tarefas de forma assíncrona sem comprometer as entregas.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Trabalho Acadêmico Assíncrono',
+                text: 'Combine com o grupo de estudos: "Tenho expediente comercial, mas entrego minha parte revisada no drive até quinta-feira às 21h". A clareza evita conflitos.'
+              }
             }
           ]
         }
@@ -965,15 +1311,87 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'Na metodologia de orçamento 50/30/20, o que representam os 20%?',
+        question: 'Um estudante que trabalha em período integral percebe que está constantemente atrasando trabalhos acadêmicos porque tenta estudar apenas quando "sobra tempo" no final do dia. De acordo com os princípios de planejamento de rotina dupla, qual é a conduta mais adequada para solucionar esse problema?',
         options: [
-          'Gasto exclusivo com roupas e festas.',
-          'Reserva financeira, investimentos para o futuro e poupança de emergência.',
-          'Pagamento de impostos adicionais.',
-          'Gorjetas e apostas online.'
+          'Abandonar o trabalho imediatamente para focar apenas nas obrigações acadêmicas.',
+          'Estudar durante o horário de expediente de trabalho sem que a liderança saiba.',
+          'Agendar blocos fixos de tempo (Time Blocking) na semana dedicados exclusivamente aos estudos, tratando esse horário como um compromisso inegociável.',
+          'Deixar para fazer todas as leituras e trabalhos do semestre apenas na noite anterior às provas finais.'
+        ],
+        correct: 2,
+        explanation: 'Depender do "tempo que sobrar" costuma falhar na dupla jornada. Reservar blocos de tempo fixos na agenda (Time Blocking) garante que os estudos tenham um espaço protegido e previsível ao longo da semana.'
+      },
+      {
+        id: 2,
+        question: 'A alternância constante e rápida entre responder mensagens do trabalho e ler textos da faculdade gera um fenômeno conhecido como "custo de troca de contexto". Qual é o impacto direto desse hábito na rotina do estudante-trabalhador?',
+        options: [
+          'Aumento da capacidade de memorização e aceleração do aprendizado teórico.',
+          'Queda do rendimento em ambas as atividades, aumento do tempo necessário para concluir as tarefas e fadiga mental precoce.',
+          'Redução da fadiga mental e eliminação completa de erros operacionais.',
+          'Melhoria imediata na avaliação de desempenho enviada pela empresa.'
         ],
         correct: 1,
-        explanation: 'Os 20% são destinados à construção da sua reserva de emergência e investimentos futuros.'
+        explanation: 'O cérebro não realiza multitarefa real em atividades cognitivas complexas. Ficar alternando entre trabalho e estudos divide a atenção, eleva a taxa de erros e gera exaustão mental muito mais rápido.'
+      },
+      {
+        id: 3,
+        question: 'Diante de uma semana com entregas concomitantes na faculdade (dois trabalhos em grupo) e no trabalho (um relatório mensal), como a Matriz de Prioridades deve ser aplicada para organizar as ações do dia?',
+        options: [
+          'Mapear prazos e impactos reais de cada entrega, executando primeiro as demandas classificadas como Urgentes e Importantes.',
+          'Classificar as tarefas por ordem de preferência pessoal, fazendo primeiro o que for mais divertido.',
+          'Ignorar os prazos corporativos para focar 100% nas atividades acadêmicas.',
+          'Adiar todas as entregas e solicitar prorrogação de prazo em ambas as instituições sem justificativa.'
+        ],
+        correct: 0,
+        explanation: 'A Matriz de Prioridades orienta a tomada de decisão com base na urgência (prazos) e no impacto (importância). Identificar e executar primeiro as demandas "Urgentes e Importantes" evita prejuízos em ambos os pilares.'
+      },
+      {
+        id: 4,
+        question: 'Ao organizar um trabalho acadêmico em grupo, um estudante que possui jornada de trabalho de 8 horas diárias precisa alinhar sua participação com os colegas. Qual postura reflete uma comunicação assertiva e preventiva?',
+        options: [
+          'Não avisar sobre sua rotina de trabalho e desaparecer dos grupos de mensagem nos dias de semana.',
+          'Assumir a liderança de todas as etapas do trabalho e tentar fazê-las de madrugada sozinho.',
+          'Exigir que todos os colegas façam as reuniões presenciais do grupo durante o seu horário de expediente corporativo.',
+          'Informar previamente à equipe sua disponibilidade real de horários e assumir partes do projeto que possam ser desenvolvidas de forma assíncrona.'
+        ],
+        correct: 3,
+        explanation: 'Comunicar com clareza a disponibilidade de tempo e optar por contribuições assíncronas (onde cada um realiza sua parte em horários flexíveis) permite cumprir o papel no grupo acadêmico sem impactar o trabalho.'
+      },
+      {
+        id: 5,
+        question: 'A privação crônica do sono é um erro comum entre pessoas que tentam conciliar estudos e trabalho. Qual é a consequência biológica e cognitiva direta de reduzir drasticamente as horas de sono para estudar de madrugada?',
+        options: [
+          'Prejuízo na consolidação do aprendizado, queda na capacidade de atenção e aumento da irritabilidade durante o dia.',
+          'Aumento da retenção de memória de longo prazo e ganho de raciocínio lógico.',
+          'Eliminação da necessidade de fazer pausas de descanso durante o expediente de trabalho.',
+          'Aumento imediato da imunidade do organismo contra infecções.'
+        ],
+        correct: 0,
+        explanation: 'É durante o sono REM e de ondas lentas que o cérebro consolida as informações aprendidas durante o dia. A privação do sono compromete diretamente o raciocínio, a memória e a capacidade de concentração.'
+      },
+      {
+        id: 6,
+        question: 'Como a Técnica Pomodoro pode ser aplicada para otimizar os estudos de um profissional que dispõe de apenas 1 hora livre à noite para revisar conteúdos acadêmicos?',
+        options: [
+          'Estudando por 60 minutos ininterruptos sem piscar ou fazer pausas para não perder o ritmo.',
+          'Assistindo a vídeos de entretenimento por 50 minutos e estudando nos 10 minutos finais.',
+          'Dividindo o tempo disponível em blocos de foco total de 25 minutos intercalados por pausas curtas de 5 minutos de descanso.',
+          'Lendo três livros ao mesmo tempo enquanto atende a chamadas telefônicas da empresa.'
+        ],
+        correct: 2,
+        explanation: 'A divisão em blocos de 25 minutos com 5 de descanso mantém o cérebro em alto nível de alerta sem gerar fadiga precoce, sendo ideal para aproveitar períodos curtos de estudo no fim do dia.'
+      },
+      {
+        id: 7,
+        question: 'O que caracteriza a "centralização de informações" como uma boa prática de organização pessoal na dupla jornada?',
+        options: [
+          'Anotar compromissos de trabalho em papéis avulsos e datas de provas em mensagens rascunhadas no celular.',
+          'Utilizar uma ferramenta ou agenda integrada onde seja possível visualizar tanto os prazos acadêmicos quanto os compromissos profissionais em um só lugar.',
+          'Guardar todas as datas importantes apenas na memória, dispensando o uso de agendas físicas ou digitais.',
+          'Delegar a gestão da sua agenda pessoal para os colegas de faculdade.'
+        ],
+        correct: 1,
+        explanation: 'Unificar prazos profissionais e acadêmicos em uma única agenda ou aplicativo evita choque de horários, perda de prazos limite e a sobrecarga de tentar lembrar de tudo de cabeça.'
       }
     ]
   },
@@ -1235,8 +1653,8 @@ export const COURSES: Course[] = [
     trackName: 'TRILHA 4: Rotinas Administrativas & Gestão Empresarial',
     category: 'Desenvolvimento Pessoal',
     targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'ESTAGIARIO'],
-    title: 'Gestão do Tempo, Foco e Conciliação Escola x Trabalho',
-    subtitle: 'Técnica Pomodoro, Matriz de Prioridades de Eisenhower e organização de agenda',
+    title: 'Produtividade Ágil e Organização de Demandas',
+    subtitle: 'Técnicas de priorização, organização de fluxos operacionais e rotinas administrativas de alta performance',
     hours: 10,
     equivalentHours: 10,
     modality: 'EAD 100% Gratuito (Escola Virtual)',
