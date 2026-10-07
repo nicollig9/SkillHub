@@ -615,197 +615,196 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
-  // 3. EQUILÍBRIO EMOCIONAL, ANSIEDADE E FOCO NO TRABALHO
+  // 3. EXCEL DO ZERO: PRIMEIRAS PLANILHAS, FÓRMULAS BÁSICAS E GRÁFICOS
   // =========================================================================
   {
     id: 'curso-postura-entrevistas',
     trackId: 'trilha-1',
     trackName: 'TRILHA 1: Entrada no Mercado & Primeiro Emprego',
-    category: 'Desenvolvimento Pessoal',
+    category: 'Tecnologia da Informação',
     targetAudienceType: ['PRIMEIRO_EMPREGO', 'JOVEM_APRENDIZ', 'ESTUDANTE'],
-    title: 'Equilíbrio Emocional, Ansiedade e Foco no Trabalho',
-    subtitle: 'Capacitar o profissional a identificar gatilhos de estresse e ansiedade, aplicar técnicas de autorregulação e mindfulness, e construir rotina mentalmente saudável.',
+    title: 'Excel do Zero: Primeiras Planilhas, Fórmulas Básicas e Gráficos',
+    subtitle: 'Capacitar o estudante ou profissional a dominar as funcionalidades essenciais do Microsoft Excel, construindo planilhas organizadas do zero, utilizando fórmulas e funções matemáticas básicas e criando gráficos visuais para apresentações e relatórios de trabalho.',
     hours: 12,
     equivalentHours: 12,
     modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Jovens aprendizes, estagiários e profissionais em início de carreira buscando produtividade e saúde mental',
-    prerequisites: 'Nenhum pré-requisito.',
-    badgeName: 'Equilíbrio & Foco no Trabalho',
-    badgeCategory: 'Saúde Mental & Carreira',
-    badgeIcon: 'HeartHandshake',
-    accentColor: '#8B5CF6',
+    targetAudience: 'Estudantes e profissionais iniciantes que desejam dominar planilhas, fórmulas básicas e criação de relatórios visuais',
+    prerequisites: 'Nenhum pré-requisito (Nível Absoluto Zero).',
+    badgeName: 'Excel do Zero',
+    badgeCategory: 'Ferramentas de Escritório',
+    badgeIcon: 'FileSpreadsheet',
+    accentColor: '#10B981',
     level: 'Iniciante',
     learningObjectives: [
-      'Identificar o mecanismo biológico do estresse no trabalho, diferenciando Eustresse (positivo) e Distresse (negativo).',
-      'Mapear gatilhos individuais internos (perfeccionismo, síndrome do impostor) e externos (pressões, reuniões e demandas).',
-      'Aplicar técnicas de autorregulação fisiológica como Respiração Quadrada (Box Breathing), Técnica 4-7-8 e Reestruturação Cognitiva.',
-      'Implementar o conceito de Deep Work (Trabalho Profundo) e a pausa estratégica com o método S.T.O.P. de Mindfulness Corporativo.',
-      'Estabelecer fronteiras e desconexão digital no expediente, prevenindo precocemente os sinais da Síndrome de Burnout.'
+      'Aprender a navegar na interface do Excel e entender sua lógica espacial de células, linhas e colunas.',
+      'Inserir, editar e formatar dados (texto, números, datas e moedas), além de utilizar a alça de preenchimento automático.',
+      'Dominar operadores matemáticos (+, -, *, /, %) e compreender a diferença entre referências relativas e absolutas ($).',
+      'Aplicar funções nativas essenciais do mundo corporativo: =SOMA(), =MÉDIA(), =MÁXIMO(), =MÍNIMO(), CONT.VALORES, CONT.NÚM e a condicional =SE().',
+      'Criar e personalizar gráficos visuais de colunas, linhas e pizza para relatórios, além de preparar planilhas para impressão e PDF.'
     ],
     modules: [
       {
-        id: 'emo-mod-1',
+        id: 'exc-zero-mod-1',
         number: 1,
-        title: 'MÓDULO 1: Inteligência Emocional e Mapeamento de Gatilhos',
-        summary: 'Autoconhecimento no ambiente corporativo, mecanismo do estresse (eustresse vs. distresse) e mapeamento de gatilhos internos e externos.',
+        title: 'MÓDULO 1: Primeiros Passos e Estrutura da Planilha',
+        summary: 'Aprender a navegar na interface do Excel e entender sua lógica espacial de células, linhas e colunas.',
         estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1. O Mecanismo do Estresse no Trabalho',
+              subheading: '1. Interface, Conceitos e Navegação',
               body: [
-                'O primeiro passo para o equilíbrio emocional é o autoconhecimento. O ambiente corporativo expõe os profissionais a pressões constantes, prazos curtos e conflitos interpessoais. Entender como o corpo e a mente reagem a esses estímulos é fundamental para evitar a exaustão.',
-                'O estresse é uma resposta biológica natural de preservação. No entanto, quando ativado de forma crônica no escritório (reação de "luta ou fuga"), ele libera cortisol e adrenalina continuamente, prejudicando o raciocínio lógico e a tomada de decisões.',
-                '• Estresse Positivo (Eustresse): O nível de ativação saudável e equilibrado que gera motivação, foco e impulso para cumprir prazos.',
-                '• Estresse Negativo (Distresse): A sobrecarga contínua que gera paralisia, irritabilidade, esquecimentos e exaustão física.'
+                'Linhas, Colunas e Células: Entendendo o sistema de coordenadas (ex: a célula A1 é a interseção da Coluna A com a Linha 1).',
+                'Barra de Fórmulas e Caixa de Nome: Onde visualizar e editar o conteúdo exato de cada célula.',
+                'Inserção e Formatação de Dados: Diferença entre texto, números, datas e valores monetários (Moeda e Contábil).',
+                'Ajuste de Células: Largura de colunas, altura de linhas, mesclagem e quebra automática de texto.'
               ],
               highlightBox: {
                 type: 'info',
-                title: 'Eustresse vs. Distresse',
-                text: 'O eustresse é o nível produtivo de energia que nos move. O perigo é a sobrecarga constante sem descanso, que descamba para o distresse crônico.'
+                title: 'Interface e Coordenadas',
+                text: 'A célula A1 é o encontro da Coluna A com a Linha 1. A Caixa de Nome mostra a seleção e a Barra de Fórmulas exibe o conteúdo exato digitado.'
               }
             },
             {
-              subheading: '2. Mapeamento de Gatilhos Individuais',
+              subheading: '2. Organização e Estética de Dados',
               body: [
-                'Cada profissional reage de forma diferente aos estímulos do trabalho. O mapeamento consiste em identificar as situações específicas que desencadeiam picos de ansiedade:',
-                '• Gatilhos Internos: Perfeccionismo extremo, medo de errar, síndrome do impostor e necessidade contínua de aprovação alheia.',
-                '• Gatilhos Externos: E-mails de cobrança, reuniões de última hora, sobrecarga de demandas e comunicação agressiva de terceiros.'
+                'Estilização Básica: Bordas, preenchimento de cor e alinhamento de texto para garantir clareza visual e padronização.',
+                'Autopreenchimento (Alça de Preenchimento): Arrastar o "quadradinho verde" no canto inferior direito para criar sequências automáticas (dias da semana, meses, números sequenciais).'
               ],
               asciiDiagram: `┌────────────────────────────────────────────────────────┐
-│           MAPEAMENTO DE GATILHOS CORPORATIVOS          │
-├────────────────────────────────────────────────────────┤
-│ GATILHOS INTERNOS:                                     │
-│ • Perfeccionismo ──► Medo de errar ──► Procrastinação  │
-│ • Síndrome do Impostor ──► Insegurança contínua        │
-├────────────────────────────────────────────────────────┤
-│ GATILHOS EXTERNOS:                                     │
-│ • Demandas urgentes ──► Sobrecarga ──► Desorganização  │
-│ • Cobranças e prazos ──► Reação de Luta ou Fuga        │
-└────────────────────────────────────────────────────────┘`
+│             ESTRUTURA DA GRADE DO EXCEL                │
+├───────┬──────────────┬──────────────┬──────────────────┤
+│       │   Coluna A   │   Coluna B   │     Coluna C     │
+├───────┼──────────────┼──────────────┼──────────────────┤
+│ Linha 1│  [ Célula A1]│  [ Célula B1]│  [ Célula C1 ]   │
+│ Linha 2│  [ Célula A2]│  [ Célula B2]│  [ Célula C2 ]■ ◄─ Alça de
+│ Linha 3│  [ Célula A3]│  [ Célula B3]│  [ Célula C3 ]   Preenchimento
+└───────┴──────────────┴──────────────┴──────────────────┘`
             }
           ]
         }
       },
       {
-        id: 'emo-mod-2',
+        id: 'exc-zero-mod-2',
         number: 2,
-        title: 'MÓDULO 2: Técnicas de Autorregulação e Gestão da Ansiedade',
-        summary: 'Exercícios práticos de respiração para ativação parassimpática (Box Breathing e 4-7-8) e reestruturação cognitiva contra a catastrofização.',
+        title: 'MÓDULO 2: Fórmulas Matemáticas Básicas e Operadores',
+        summary: 'Compreender que toda fórmula no Excel começa com o sinal de igual (=) e aprender a realizar cálculos do dia a dia.',
         estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1. Técnicas Respiratórias para Redução Ansiolítica',
+              subheading: '1. Operadores Aritméticos Fundamentais',
               body: [
-                'A ansiedade manifesta-se quando a mente antecipa cenários futuros catastróficos. A autorregulação emocional reúne ferramentas práticas para trazer a atenção de volta ao presente e acalmar o sistema nervoso autônomo.',
-                'A respiração é a ponte direta para ativar o sistema nervoso parassimpático, desacelerando os batimentos cardíacos:',
-                '• Respiração Quadrada (Box Breathing): Inspirar em 4 segundos, reter o ar por 4 segundos, expirar em 4 segundos e manter os pulmões vazios por 4 segundos. Ideal para fazer antes de reuniões decisivas ou apresentações.',
-                '• Técnica 4-7-8: Inspirar pelo nariz em 4 segundos, reter o ar por 7 segundos e soltar o ar lentamente pela boca durante 8 segundos.'
+                'Compreender que toda fórmula no Excel começa com o sinal de igual (=) e aprender a realizar cálculos do dia a dia.',
+                '• Adição (+): =A1+B1',
+                '• Subtração (-): =A1-B1',
+                '• Multiplicação (*): =A1*B1',
+                '• Divisão (/): =A1/B1',
+                '• Porcentagem (%): Calculando descontos, margens de lucro e taxas.',
+                '• Precedência de Operações: O Excel respeita estritamente a ordem matemática, executando multiplicações e divisões antes de somas e subtrações.'
               ],
               highlightBox: {
                 type: 'calc',
-                title: 'Respiração Quadrada (Box Breathing)',
-                text: 'Inspire em 4s ──► Segure em 4s ──► Expire em 4s ──► Pause em 4s. Pratique 4 rodadas para normalizar batimentos e clarear o raciocínio.'
+                title: 'O Sinal de Igual (=)',
+                text: 'Toda fórmula no Excel deve começar obrigatoriamente com o sinal de igual (=) para que o programa reconheça que um cálculo deve ser realizado.'
               }
             },
             {
-              subheading: '2. Reestruturação Cognitiva',
+              subheading: '2. Referências Relativas vs. Referências Absolutas (O Cifrão $)',
               body: [
-                'Diante de uma crise de ansiedade ou de um erro no projeto, a mente costuma criar distorções cognitivas (catastrofização). A reestruturação é o ato de questionar o pensamento ansiogênico com fatos concretos:',
-                '• Pensamento Ansiogênico: "Apresentei o relatório com um dado incorreto, serei demitido imediatamente."',
-                '• Questionamento Racional: "O dado foi corrigido a tempo? Qual é a probabilidade real de demissão por esse fato isolado? Qual o plano de ação prático agora para alinhar com o gestor?"'
-              ],
-              highlightBox: {
-                type: 'warning',
-                title: 'Fatos vs. Suposições',
-                text: 'Não tome pensamentos catastróficos como certezas. Busque fatos observáveis e estruture um plano de resolução em vez de alimentar o pânico.'
-              }
-            }
-          ]
-        }
-      },
-      {
-        id: 'emo-mod-3',
-        number: 3,
-        title: 'MÓDULO 3: Foco Profundo (Deep Work) e Atenção Plena',
-        summary: 'Metodologia de Trabalho Profundo (Deep Work) vs. Trabalho Superficial (Shallow Work) e aplicação do método S.T.O.P. de mindfulness no trabalho.',
-        estimatedMinutes: 45,
-        content: {
-          sections: [
-            {
-              subheading: '1. O Estado de Flow e o Trabalho Profundo (Deep Work)',
-              body: [
-                'A oscilação emocional corrói a capacidade de concentração. Em um ambiente repleto de notificações, manter o foco em tarefas complexas exige estratégias deliberadas de proteção mental.',
-                'O conceito de Deep Work (Trabalho Profundo), desenvolvido por Cal Newport, refere-se à capacidade de focar sem distrações em uma tarefa cognitivamente exigente.',
-                '• Trabalho Superficial (Shallow Work): Tarefas mecânicas e operacionais (responder e-mails rápidos, organizar pastas) que exigem pouco esforço mental, mas consomem o dia.',
-                '• Construção de Rituais de Foco: Eliminação de abas desnecessárias, bloqueio de notificações e definição de metas claras para o bloco de trabalho focado.'
-              ]
-            },
-            {
-              subheading: '2. Aplicação Prática do Mindfulness Corporativo (Método S.T.O.P.)',
-              body: [
-                'Atenção plena (Mindfulness) não significa "esvaziar a mente", mas observar os pensamentos e emoções sem julgamento imediato, ancorando-se na atividade presente.',
-                'A Pausa Estratégica (Método S.T.O.P.):',
-                '• S (Stop): Pare o que está fazendo por instantes.',
-                '• T (Take a breath): Tome uma respiração profunda e lenta.',
-                '• O (Observe): Observe seus pensamentos, suas emoções e as sensações do seu corpo com curiosidade.',
-                '• P (Proceed): Prossiga com clareza, intenção e tranquilidade.'
+                'Referência Relativa (A1): Ao copiar uma fórmula para a linha de baixo, o Excel ajusta as células automaticamente (A2, A3).',
+                'Referência Absoluta ($A$1): Usar a tecla F4 para travar uma célula específica com o símbolo de cifrão ($), ideal para multiplicar várias linhas por uma mesma taxa de imposto ou cotação do dólar.'
               ],
               asciiDiagram: `┌────────────────────────────────────────────────────────┐
-│               MÉTODO S.T.O.P. DE MINDFULNESS           │
+│         REFERÊNCIAS RELATIVAS VS. ABSOLUTAS ($)        │
 ├────────────────────────────────────────────────────────┤
-│ [S] STOP: Pare imediatamente o que está fazendo        │
-│ [T] TAKE A BREATH: Respire consciente e profundamente  │
-│ [O] OBSERVE: Observe mente, emoções e corpo sem julgar │
-│ [P] PROCEED: Prossiga com foco, calma e intenção clara │
+│ RELATIVA (=A1*B1):                                     │
+│ • Linha 1: =A1 * B1                                    │
+│ • Linha 2 (ao arrastar): =A2 * B2 (ajuste automático)  │
+├────────────────────────────────────────────────────────┤
+│ ABSOLUTA (=A1*$C$1 com F4):                            │
+│ • Linha 1: =A1 * $C$1 (fixa a célula C1)               │
+│ • Linha 2 (ao arrastar): =A2 * $C$1 (C1 permanece fixo)│
 └────────────────────────────────────────────────────────┘`
             }
           ]
         }
       },
       {
-        id: 'emo-mod-4',
-        number: 4,
-        title: 'MÓDULO 4: Limites Saudáveis, Comunicação e Prevenção do Burnout',
-        summary: 'Fronteiras profissionais, desconexão digital no expediente, comunicação assertiva e identificação dos sinais precoces e avançados de Burnout.',
+        id: 'exc-zero-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: As Funções Mais Usadas no Mundo Corporativo',
+        summary: 'Substituir fórmulas manuais longas por funções nativas do Excel que automatizam cálculos.',
         estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1. Estabelecimento de Fronteiras e Desconexão Digital',
+              subheading: '1. Funções Estatísticas e de Soma',
               body: [
-                'O equilíbrio emocional sustentável depende da capacidade de estabelecer fronteiras claras entre a vida profissional e a vida pessoal, evitando o esgotamento extremo (Burnout).',
-                'A hiperconectividade cria a falsa sensação de que tudo precisa ser respondido imediatamente.',
-                '• Desconexão do Expediente: Definir um horário claro para encerrar a checagem de mensagens corporativas no celular pessoal.',
-                '• Gestão de Expectativas: Comunicar à equipe os prazos reais de resposta e entrega, sem assumir compromissos inalcançáveis por medo de dizer "não".'
+                'Substituir fórmulas manuais longas por funções nativas do Excel que automatizam cálculos:',
+                '• SOMA: =SOMA(A1:A10) para somar um intervalo completo de células.',
+                '• MÉDIA: =MÉDIA(A1:A10) para calcular o valor médio de um grupo de dados.',
+                '• MÁXIMO e MÍNIMO: Identificar rapidamente o maior e o menor valor de uma lista de vendas ou custos.',
+                '• CONT.VALORES e CONT.NÚM: Contar a quantidade de itens cadastrados em uma tabela.'
               ],
               highlightBox: {
                 type: 'info',
-                title: 'Comunicação Assertiva',
-                text: 'Dizer "não" fundamentado com alternativas e prazos viáveis é sinal de maturidade profissional e respeito pela qualidade do trabalho.'
+                title: 'Intervalos com Dois Pontos (:)',
+                text: 'A função =SOMA(A1:A5) utiliza os dois pontos (:) para indicar o intervalo contínuo da célula A1 até a célula A5 de forma rápida e eficiente.'
               }
             },
             {
-              subheading: '2. Sinais de Alerta do Burnout',
+              subheading: '2. Introdução à Lógica: A Função SE',
               body: [
-                'A Síndrome de Burnout é o estresse crônico não gerenciado no ambiente de trabalho. Reconhecer os sinais iniciais evita o colapso físico e emocional:',
-                '• Estágio Inicial: Entusiasmo excessivo com negligência de necessidades básicas (sono, alimentação); sensação constante de falta de tempo e ansiedade aos domingos.',
-                '• Estágio Avançado: Exaustão física e mental diária; cinismo, desconexão emocional com o trabalho e queda brusca de produtividade.'
+                'Sintaxe da Função SE: =SE(teste_lógico; valor_se_verdadeiro; valor_se_falso)',
+                'Exemplo Prático Escolar: =SE(B2>=7; "Aprovado"; "Reprovado") para notas escolares.',
+                'Exemplo Prático Corporativo: =SE(C2>1000; "Meta Atingida"; "Abaixo da Meta") para vendas, ou =SE(B2>=5000; "Bônus"; "Sem Bônus") para comissões.'
               ],
               asciiDiagram: `┌────────────────────────────────────────────────────────┐
-│             ESTÁGIOS DA SÍNDROME DE BURNOUT            │
+│             ESTRUTURA DA FUNÇÃO LÓGICA =SE             │
 ├────────────────────────────────────────────────────────┤
-│ ESTÁGIO INICIAL:                                       │
-│ • Entusiasmo desmedido sem descanso                    │
-│ • Negligência com sono e alimentação                   │
-│ • Ansiedade aos domingos e falta de tempo              │
-├────────────────────────────────────────────────────────┤
-│ ESTÁGIO AVANÇADO:                                      │
-│ • Exaustão física e mental diária                      │
-│ • Cinismo, frieza e distanciamento da equipe           │
-│ • Queda drástica de produtividade e esgotamento        │
-└────────────────────────────────────────────────────────┘`
+│ Sintaxe: =SE( Teste Lógico ; Valor Verdadeiro ; Falso )│
+│                                                        │
+│                  ┌──────────────────┐                  │
+│                  │  B2 >= 5000 ?    │                  │
+│                  └────────┬─────────┘                  │
+│             SIM /         │         \\ NÃO              │
+│          Verdadeiro       │        Falso               │
+│               ▼           │          ▼                 │
+│         ["Bônus"]         │    ["Sem Bônus"]           │
+└───────────────────────────┴────────────────────────────┘`
+            }
+          ]
+        }
+      },
+      {
+        id: 'exc-zero-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Visualização de Dados (Gráficos) e Impressão',
+        summary: 'Transformar tabelas de números em gráficos visuais de fácil leitura para reuniões e apresentações.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Seleção e Criação de Gráficos Básicos',
+              body: [
+                'Transformar tabelas de números em gráficos visuais de fácil leitura para reuniões e apresentações.',
+                '• Gráfico de Colunas/Barras: Ideal para comparar categorias (ex: Vendas por Vendedor ou Gastos por Mês).',
+                '• Gráfico de Linhas: Perfeito para mostrar evolução ao longo do tempo (ex: Crescimento do Salário ou Inflação nos 12 meses do ano).',
+                '• Gráfico de Pizza/Rosca: Recomendado para mostrar a proporção de um todo (ex: Distribuição do Orçamento 50/30/20).'
+              ]
+            },
+            {
+              subheading: '2. Edição de Gráficos e Preparação para Impressão/PDF',
+              body: [
+                'Personalização: Alterar títulos, legendas, rótulos de dados e cores dos gráficos.',
+                'Configuração de Página: Ajustar área de impressão, orientação (Retrato/Paisagem) e exportar a planilha como arquivo PDF.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Gráfico Ideal',
+                text: 'O gráfico de linhas é o modelo visual padrão para demonstrar séries temporais e tendências contínuas ao longo do tempo (meses, trimestres ou anos).'
+              }
             }
           ]
         }
@@ -815,87 +814,87 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'Durante um dia de alta demanda no escritório, um colaborador percebe que sua respiração está acelerada e que não consegue se concentrar nas tarefas devido ao nervosismo. Qual técnica de autorregulação fisiológica é mais indicada para reativar a calma do sistema nervoso de forma rápida?',
+        question: 'Ao abrir uma planilha no Excel, um usuário precisa somar os valores das células A1, A2, A3, A4 e A5. Qual é a forma correta e mais eficiente de escrever essa função?',
         options: [
-          'Ingerir bebidas estimulantes com alto teor de cafeína para acelerar o ritmo de trabalho.',
-          'Ignorar os sinais do corpo e continuar digitando em velocidade máxima sem fazer pausas.',
-          'Aplicar a técnica de Respiração Quadrada (Box Breathing), alternando inspiração, retenção, expiração e pausa em tempos iguais.',
-          'Reclamar abertamente sobre a sobrecarga com os colegas de equipe durante o horário de pico.'
+          '=SOMAR(A1+A5)',
+          'SOMA(A1 ao A5)',
+          '=SOMA(A1:A5)',
+          'A1 + A2 + A3 + A4 + A5 ='
         ],
         correct: 2,
-        explanation: 'A técnica de Respiração Quadrada (Box Breathing) reduz diretamente os níveis de excitação fisiológica provocados pela ansiedade, desacelerando a frequência cardíaca e ativando o sistema nervoso parassimpático para recuperar o controle consciente.'
+        explanation: 'A função =SOMA(A1:A5) utiliza os dois pontos (:) para indicar o intervalo contínuo da célula A1 até a célula A5 de forma rápida e correta.'
       },
       {
         id: 2,
-        question: 'A Síndrome de Burnout foi reconhecida como uma condição ocupacional resultante do estresse crônico no ambiente de trabalho. Qual das opções abaixo apresenta um sintoma característico dessa síndrome em seu estágio avançado?',
+        question: 'Um colaborador precisa calcular o imposto de 10% sobre várias vendas. O valor da alíquota do imposto está fixo na célula C1. Ao arrastar a fórmula para as demais linhas, ele precisa garantir que a referência à célula C1 não se mova. O que ele deve fazer na fórmula?',
         options: [
-          'Sensação diária de exaustão física/mental acompanhada de atitudes de cinismo e desapego ao trabalho.',
-          'Aumento da criatividade e engajamento constante em novos projetos da empresa.',
-          'Capacidade de manter o foco ininterrupto por 12 horas consecutivas sem apresentar fadiga.',
-          'Facilidade em desligar-se das responsabilidades profissionais no exato momento em que encerra o expediente.'
+          'Escrever o nome da célula em letras maiúsculas como C1!.',
+          'Adicionar o sinal de $, transformando a célula em $C$1 (travamento de célula).',
+          'Colocar a célula entre aspas duplas, ficando "C1".',
+          'Colocar um ponto e vírgula antes do nome da célula, ficando ;C1.'
         ],
-        correct: 0,
-        explanation: 'O Burnout é caracterizado pela tríade: exaustão emocional profunda, despersonalização/cinismo (desapego frio em relação às tarefas e colegas) e queda da percepção de eficácia profissional.'
+        correct: 1,
+        explanation: 'O símbolo de cifrão ($) é utilizado no Excel para criar referências absolutas. O atalho de teclado para travar uma célula é a tecla F4, transformando C1 em $C$1.'
       },
       {
         id: 3,
-        question: 'O conceito de Deep Work (Trabalho Profundo) exige eliminar distrações para focar em tarefas cognitivamente complexas. Qual ação prática contribui diretamente para a criação de um ambiente favorável ao Deep Work?',
+        question: 'Toda fórmula ou função no Microsoft Excel deve obrigatoriamente começar com qual caractere para que o programa reconheça que um cálculo deve ser realizado?',
         options: [
-          'Deixar os alertas sonoros do e-mail e do chat corporativo ativados na tela principal.',
-          'Alternar a atenção a cada 5 minutos entre a escrita de um relatório e a navegação em redes sociais.',
-          'Realizar chamadas de vídeo sem roteiro prévio enquanto tenta revisar planilhas complexas.',
-          'Agendar o checamento de e-mails para horários específicos do dia e silenciar notificações durante o bloco de foco.'
+          'O sinal de mais (+)',
+          'O símbolo de arroba (@)',
+          'O parêntese aberto (()',
+          'O sinal de igual (=)'
         ],
         correct: 3,
-        explanation: 'O Trabalho Profundo exige a eliminação de fragmentações na atenção. Definir blocos de tempo isolados e silenciar notificações previne a troca constante de contexto, permitindo hiperfoco e alta performance.'
+        explanation: 'Sem o sinal de igual (=) no início, o Excel interpreta o conteúdo digitado como simples texto ou valor numérico estático, e não como um cálculo.'
       },
       {
         id: 4,
-        question: 'Diante de um erro cometido em um projeto, a mente de um profissional ansioso pode gerar uma "distorção cognitiva", acreditando que o problema é uma catastrofização irreparável. Qual técnica ajuda a reestruturar esse pensamento de forma racional?',
+        question: 'Uma empresa de vendas quer classificar o desempenho de seus vendedores. Se o valor total de vendas na célula B2 for maior ou igual a 5000, o Excel deve exibir "Bônus", caso contrário, deve exibir "Sem Bônus". Qual é a sintaxe correta da função SE para esse caso?',
         options: [
-          'Aceitar o pensamento catastrófico como verdade absoluta e pedir demissão imediatamente.',
-          'Questionar o pensamento ansiogênico buscando evidências concretas sobre o impacto real e focando no plano de ação para correção.',
-          'Esconder o erro da equipe na esperança de que ninguém perceba a falha.',
-          'Culpar publicamente outros colegas pelo ocorrido para preservar a própria imagem.'
+          '=SE("Bônus" >= 5000; B2)',
+          '=SE(B2>=5000; "Bônus"; "Sem Bônus")',
+          '=SE(B2=5000; "Bônus"; SE "Sem Bônus")',
+          '=VERIFICAR(B2>=5000 então "Bônus")'
         ],
         correct: 1,
-        explanation: 'A Reestruturação Cognitiva combate vieses de catastrofização substituindo suposições por fatos. Analisar o erro objetivamente e construir uma solução prática reduz a ansiedade e restaura o senso de controle.'
+        explanation: 'A função SE exige a estrutura =SE(teste_lógico; valor_se_verdadeiro; valor_se_falso). Os textos que serão exibidos devem estar entre aspas duplas.'
       },
       {
         id: 5,
-        question: 'O acrônimo S.T.O.P. representa uma pausa consciente no meio da rotina para recuperar a clareza e o equilíbrio emocional. O que significa a letra "O" nessa metodologia de Mindfulness?',
+        question: 'Qual tipo de gráfico no Excel é o mais recomendado para demonstrar a evolução de um faturamento ao longo dos 12 meses do ano?',
         options: [
-          'Observar os pensamentos, emoções e sensações corporais sem julgamento imediato.',
-          'Omitir os sentimentos negativos até o fim da semana.',
-          'Optimizar o tempo eliminando o horário de almoço.',
-          'Organizar a mesa de trabalho descartando papéis antigos.'
+          'Gráfico de Pizza.',
+          'Gráfico de Dispersão de Radar.',
+          'Gráfico de Linhas.',
+          'Gráfico de Superfície 3D.'
         ],
-        correct: 0,
-        explanation: 'No método S.T.O.P. (Stop, Take a breath, Observe, Proceed), o passo Observe orienta o indivíduo a tomar consciência de seus estados internos (pensamentos, emoções, tensão muscular) com curiosidade e sem auto-julgamento.'
+        correct: 2,
+        explanation: 'O gráfico de linhas é o modelo visual padrão para demonstrar séries temporais e tendências contínuas ao longo do tempo (meses, trimestres ou anos).'
       },
       {
         id: 6,
-        question: 'Para manter a saúde mental e prevenir o esgotamento no ambiente de trabalho, o estabelecimento de limites saudáveis é indispensável. Qual postura reflete o estabelecimento de uma fronteira profissional assertiva?',
+        question: 'Para que serve a "Alça de Preenchimento" (pequeno quadrado verde no canto inferior direito de uma célula selecionada) no Excel?',
         options: [
-          'Responder mensagens de trabalho no aplicativo pessoal de mensagens às 23 horas de um domingo.',
-          'Aceitar todas as solicitações de última hora recebidas, mesmo quando impossibilitam o cumprimento dos prazos já acordados.',
-          'Desligar o telefone corporativo durante o horário de expediente normal sem avisar a equipe.',
-          'Comunicar com clareza a capacidade atual de entregas, renegociar prazos com a liderança e respeitar os horários de descanso.'
+          'Para copiar fórmulas ou continuar sequências lógicas (como dias da semana ou datas) arrastando para as células vizinhas.',
+          'Para excluir o conteúdo da célula de forma permanente.',
+          'Para alterar a cor da fonte do texto selecionado.',
+          'Para salvar o arquivo automaticamente na nuvem.'
         ],
-        correct: 3,
-        explanation: 'Ter assertividade emocional significa alinhar expectativas e prioridades de forma transparente com a equipe. Dizer "não" fundamentado ou renegociar prazos protege a qualidade das entregas e a saúde mental do profissional.'
+        correct: 0,
+        explanation: 'A alça de preenchimento é um recurso de produtividade do Excel que replica fórmulas ajustando suas referências ou completa padrões automaticamente.'
       },
       {
         id: 7,
-        question: 'O estresse é uma reação biológica do organismo que pode ser dividida entre "eustresse" e "distresse". Qual a principal característica do eustresse?',
+        question: 'Qual é o resultado da fórmula matemática =10 + 2 * 5 quando digitada no Excel?',
         options: [
-          'É o estágio final de esgotamento físico que exige afastamento médico imediato.',
-          'Trata-se do sentimento constante de pânico acompanhado de insônia crônica.',
-          'É a forma saudável e positiva de estresse, que mobiliza energia, melhora o foco e motiva a resolução de desafios.',
-          'É a incapacidade total de sentir qualquer tipo de emoção durante reuniões de trabalho.'
+          '60 (pois ele soma 10+2=12 e depois multiplica por 5).',
+          'O Excel exibirá uma mensagem de erro de sintaxe.',
+          '100 (pois ele eleva os números ao quadrado).',
+          '20 (pois o Excel respeita a ordem das operações, fazendo primeiro a multiplicação 2*5=10 e depois somando 10).'
         ],
-        correct: 2,
-        explanation: 'O Eustresse (estresse positivo) é o nível moderado de ativação necessário para nos manter alertas, motivados e engajados na superação de metas e desafios do dia a dia, diferindo do estresse crônico nocivo (distresse).'
+        correct: 3,
+        explanation: 'O Excel segue estritamente a ordem de precedência matemática universal: multiplicações e divisões são executadas antes de somas e subtrações. Portanto, 2*5=10, e 10+10=20.'
       }
     ]
   },
@@ -1397,7 +1396,7 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
-  // 8. EQUILÍBRIO EMOCIONAL E SAÚDE MENTAL
+  // 8. EQUILÍBRIO EMOCIONAL, ANSIEDADE E FOCO NO TRABALHO
   // =========================================================================
   {
     id: 'curso-saude-mental-trabalho',
@@ -1406,36 +1405,187 @@ export const COURSES: Course[] = [
     category: 'Desenvolvimento Pessoal',
     targetAudienceType: 'TODOS',
     title: 'Equilíbrio Emocional, Ansiedade e Foco no Trabalho',
-    subtitle: 'Gestão de estresse, comunicação não-violenta, adaptação ao primeiro ambiente corporativo e acolhimento',
-    hours: 10,
-    equivalentHours: 10,
+    subtitle: 'Capacitar o profissional a identificar gatilhos de estresse e ansiedade no ambiente corporativo, aplicar técnicas de autorregulação emocional e mindfulness, manter o foco em tarefas complexas e construir uma rotina de trabalho mentalmente saudável e sustentável.',
+    hours: 12,
+    equivalentHours: 12,
     modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Estudantes e aprendizes em transição para o mercado',
-    prerequisites: 'Nenhum.',
-    badgeName: 'Inteligência Emocional',
-    badgeCategory: 'Saúde Mental',
+    targetAudience: 'Estudantes, aprendizes e profissionais em transição ou atuação no mercado de trabalho',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Equilíbrio Emocional & Foco',
+    badgeCategory: 'Saúde Mental & Carreira',
     badgeIcon: 'HeartPulse',
     accentColor: '#EC4899',
     level: 'Iniciante',
     learningObjectives: [
-      'Identificar gatilhos de ansiedade no primeiro emprego e desenvolver técnicas de respiração e foco.',
-      'Saber comunicar limites e pedir ajuda quando sobrecarregado com tarefas da escola e do trabalho.',
-      'Identificar ambientes acolhedores e canais de apoio psicossocial.'
+      'Identificar o mecanismo biológico do estresse no trabalho, compreendendo as diferenças entre Eustresse (positivo) e Distresse (negativo).',
+      'Mapear gatilhos individuais internos (perfeccionismo, síndrome do impostor) e externos (pressões, reuniões e cobranças).',
+      'Aplicar técnicas de autorregulação fisiológica e respiratória como Respiração Quadrada (Box Breathing) e Técnica 4-7-8.',
+      'Praticar a reestruturação cognitiva contra a catastrofização, focando em fatos e planos de ação práticos.',
+      'Implementar o Trabalho Profundo (Deep Work) e a pausa estratégica com o método S.T.O.P. de Mindfulness Corporativo.',
+      'Estabelecer fronteiras e desconexão digital no expediente, prevenindo precocemente os sinais e estágios da Síndrome de Burnout.'
     ],
     modules: [
       {
         id: 'sau-mod-1',
         number: 1,
-        title: 'MÓDULO 1: Transição da Escola para o Trabalho com Saúde Mental',
-        summary: 'Como lidar com o medo do erro, cobranças de prazos e convivência com equipes.',
-        estimatedMinutes: 30,
+        title: 'MÓDULO 1: Inteligência Emocional e Mapeamento de Gatilhos',
+        summary: 'O primeiro passo para o equilíbrio emocional é o autoconhecimento. O ambiente corporativo expõe os profissionais a pressões constantes, prazos curtos e conflitos interpessoais. Entender como o corpo e a mente reagem a esses estímulos é fundamental para evitar a exaustão.',
+        estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1.1 O erro como oportunidade de aprendizado',
+              subheading: '1. O Mecanismo do Estresse no Trabalho',
               body: [
-                'O aprendiz está na empresa prioritariamente para aprender. Não tenha vergonha de fazer perguntas ao seu mentor quando tiver dúvidas sobre um procedimento.'
+                'O primeiro passo para o equilíbrio emocional é o autoconhecimento. O ambiente corporativo expõe os profissionais a pressões constantes, prazos curtos e conflitos interpessoais. Entender como o corpo e a mente reagem a esses estímulos é fundamental para evitar a exaustão.',
+                'O estresse é uma resposta biológica natural de preservação. No entanto, quando ativado de forma crônica no escritório (reação de "luta ou fuga"), ele libera cortisol e adrenalina continuamente, prejudicando o raciocínio lógico e a tomada de decisões.',
+                '• Estresse Positivo (Eustresse): O nível de ativação saudável que gera motivação, foco e impulso para cumprir prazos.',
+                '• Estresse Negativo (Distresse): A sobrecarga contínua que gera paralisia, irritabilidade, esquecimentos e exaustão física.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Eustresse vs. Distresse',
+                text: 'O eustresse é o nível produtivo de energia que nos move. O perigo é a sobrecarga constante sem descanso, que descamba para o distresse crônico.'
+              }
+            },
+            {
+              subheading: '2. Mapeamento de Gatilhos Individuais',
+              body: [
+                'Cada profissional reage de forma diferente aos estímulos do trabalho. O mapeamento consiste em identificar as situações específicas que desencadeiam picos de ansiedade:',
+                '• Gatilhos Internos: Perfeccionismo extremo, medo de errar, síndrome do impostor e necessidade contínua de aprovação.',
+                '• Gatilhos Externos: E-mails de cobrança, reuniões de última hora, sobrecarga de demandas e comunicação agressiva de terceiros.'
+              ],
+              asciiDiagram: `┌────────────────────────────────────────────────────────┐
+│           MAPEAMENTO DE GATILHOS CORPORATIVOS          │
+├────────────────────────────────────────────────────────┤
+│ GATILHOS INTERNOS:                                     │
+│ • Perfeccionismo ──► Medo de errar ──► Procrastinação  │
+│ • Síndrome do Impostor ──► Insegurança contínua        │
+├────────────────────────────────────────────────────────┤
+│ GATILHOS EXTERNOS:                                     │
+│ • Demandas urgentes ──► Sobrecarga ──► Desorganização  │
+│ • Cobranças e prazos ──► Reação de Luta ou Fuga        │
+└────────────────────────────────────────────────────────┘`
+            }
+          ]
+        }
+      },
+      {
+        id: 'sau-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: Técnicas de Autorregulação e Gestão da Ansiedade',
+        summary: 'A ansiedade manifesta-se quando a mente antecipa cenários futuros catastróficos. A autorregulação emocional reúne ferramentas práticas para trazer a atenção de volta ao presente e acalmar o sistema nervoso autônomo.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Técnicas Respiratórias para Redução Ansiolítica',
+              body: [
+                'A ansiedade manifesta-se quando a mente antecipa cenários futuros catastróficos. A autorregulação emocional reúne ferramentas práticas para trazer a atenção de volta ao presente e acalmar o sistema nervoso autônomo.',
+                'A respiração é a ponte direta para ativar o sistema nervoso parassimpático, desacelerando os batimentos cardíacos:',
+                '• Respiração Quadrada (Box Breathing): Inspirar em 4 segundos, reter o ar por 4 segundos, expirar em 4 segundos e manter os pulmões vazios por 4 segundos. Ideal para fazer antes de reuniões decisivas.',
+                '• Técnica 4-7-8: Inspirar em 4 segundos, reter o ar por 7 segundos e soltar o ar lentamente pela boca durante 8 segundos.'
+              ],
+              highlightBox: {
+                type: 'calc',
+                title: 'Respiração Quadrada (Box Breathing)',
+                text: 'Inspire em 4s ──► Segure em 4s ──► Expire em 4s ──► Pause em 4s. Pratique rodadas conscientes para normalizar batimentos e clarear o raciocínio.'
+              }
+            },
+            {
+              subheading: '2. Reestruturação Cognitiva',
+              body: [
+                'Diante de uma crise de ansiedade ou de um erro no projeto, a mente costuma criar distorções cognitivas (catastrofização). A reestruturação é o ato de questionar o pensamento ansiogênico com fatos concretos:',
+                '• Pensamento Ansiogênico: "Apresentei o relatório com um dado incorreto, serei demitido imediatamente."',
+                '• Questionamento Racional: "O dado foi corrigido a tempo? Qual é a probabilidade real de demissão por esse fato isolado? Qual o plano de ação prático agora?"'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Fatos vs. Suposições',
+                text: 'Não tome pensamentos catastróficos como certezas. Busque fatos observáveis e estruture um plano de resolução prático em vez de alimentar o pânico.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'sau-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Foco Profundo (Deep Work) e Atenção Plena',
+        summary: 'A oscilação emocional corrói a capacidade de concentração. Em um ambiente repleto de notificações, manter o foco em tarefas complexas exige estratégias deliberadas de proteção mental.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. O Estado de Flow e o Trabalho Profundo (Deep Work)',
+              body: [
+                'O conceito de Deep Work (Trabalho Profundo), desenvolvido por Cal Newport, refere-se à capacidade de focar sem distrações em uma tarefa cognitivamente exigente.',
+                '• Trabalho Superficial (Shallow Work): Tarefas mecânicas e operacionais (responder e-mails rápidos, organizar pastas) que exigem pouco esforço mental, mas consomem o dia.',
+                '• Construção de Rituais de Foco: Eliminação de abas desnecessárias, bloqueio de notificações e definição de metas claras para o bloco de trabalho focado.'
               ]
+            },
+            {
+              subheading: '2. Aplicação Prática do Mindfulness Corporativo',
+              body: [
+                'Atenção plena (Mindfulness) não significa "esvaziar a mente", mas observar os pensamentos e emoções sem julgamento imediato, ancorando-se na atividade presente.',
+                'A Pausa Estratégica (Método STOP):',
+                '• S (Stop): Pare o que está fazendo.',
+                '• T (Take a breath): Tome uma respiração profunda.',
+                '• O (Observe): Observe seus pensamentos e o seu corpo.',
+                '• P (Proceed): Prossiga com clareza e intenção.'
+              ],
+              asciiDiagram: `┌────────────────────────────────────────────────────────┐
+│               MÉTODO S.T.O.P. DE MINDFULNESS           │
+├────────────────────────────────────────────────────────┤
+│ [S] STOP: Pare imediatamente o que está fazendo        │
+│ [T] TAKE A BREATH: Respire consciente e profundamente  │
+│ [O] OBSERVE: Observe mente, emoções e corpo sem julgar │
+│ [P] PROCEED: Prossiga com foco, calma e intenção clara │
+└────────────────────────────────────────────────────────┘`
+            }
+          ]
+        }
+      },
+      {
+        id: 'sau-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Limites Saudáveis, Comunicação e Prevenção do Burnout',
+        summary: 'O equilíbrio emocional sustentável depende da capacidade de estabelecer fronteiras claras entre a vida profissional e a vida pessoal, evitando o esgotamento extremo (Burnout).',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Estabelecimento de Fronteiras e Desconexão Digital',
+              body: [
+                'A hiperconectividade cria a falsa sensação de que tudo precisa ser respondido imediatamente.',
+                '• Desconexão do Expediente: Definir um horário claro para encerrar a checagem de mensagens corporativas no celular pessoal.',
+                '• Gestão de Expectativas: Comunicar à equipe os prazos reais de resposta e entrega, sem assumir compromissos inalcançáveis por medo de dizer "não".'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Comunicação Assertiva',
+                text: 'Dizer "não" fundamentado com alternativas e prazos viáveis é sinal de maturidade profissional e respeito pela qualidade do trabalho.'
+              }
+            },
+            {
+              subheading: '2. Sinais de Alerta do Burnout',
+              body: [
+                'A Síndrome de Burnout é o estresse crônico não gerenciado no ambiente de trabalho. Reconhecer os sinais iniciais evita o colapso físico e emocional:',
+                '• Estágio Inicial: Entusiasmo excessivo com negligência de necessidades básicas (sono, alimentação); sensação constante de falta de tempo e ansiedade aos domingos.',
+                '• Estágio Avançado: Exaustão física e mental diária; cinismo, desconexão emocional com o trabalho e queda brusca de produtividade.'
+              ],
+              asciiDiagram: `┌────────────────────────────────────────────────────────┐
+│             ESTÁGIOS DA SÍNDROME DE BURNOUT            │
+├────────────────────────────────────────────────────────┤
+│ ESTÁGIO INICIAL:                                       │
+│ • Entusiasmo desmedido sem descanso                    │
+│ • Negligência com sono e alimentação                   │
+│ • Ansiedade aos domingos e falta de tempo              │
+├────────────────────────────────────────────────────────┤
+│ ESTÁGIO AVANÇADO:                                      │
+│ • Exaustão física e mental diária                      │
+│ • Cinismo, frieza e distanciamento da equipe           │
+│ • Queda drástica de produtividade e esgotamento        │
+└────────────────────────────────────────────────────────┘`
             }
           ]
         }
@@ -1445,15 +1595,87 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'O que fazer ao se sentir sobrecarregado ou em dúvida sobre uma tarefa no trabalho?',
+        question: 'Durante um dia de alta demanda no escritório, um colaborador percebe que sua respiração está acelerada e que não consegue se concentrar nas tarefas devido ao nervosismo. Qual técnica de autorregulação fisiológica é mais indicada para reativar a calma do sistema nervoso de forma rápida?',
         options: [
-          'Esconder o problema e faltar no dia seguinte.',
-          'Conversar abertamente com seu gestor/tutor, pedir orientação e alinhar prioridades.',
-          'Pedir demissão imediatamente sem avisar ninguém.',
-          'Fazer a tarefa de qualquer jeito sem ler as instruções.'
+          'Ingerir bebidas estimulantes com alto teor de cafeína para acelerar o ritmo de trabalho.',
+          'Ignorar os sinais do corpo e continuar digitando em velocidade máxima sem fazer pausas.',
+          'Aplicar a técnica de Respiração Quadrada (Box Breathing), alternando inspiração, retenção, expiração e pausa em tempos iguais.',
+          'Reclamar abertamente sobre a sobrecarga com os colegas de equipe durante o horário de pico.'
+        ],
+        correct: 2,
+        explanation: 'A técnica de Respiração Quadrada (Box Breathing) reduz diretamente os níveis de excitação fisiológica provocados pela ansiedade, desacelerando a frequência cardíaca e ativando o sistema nervoso parassimpático para recuperar o controle consciente.'
+      },
+      {
+        id: 2,
+        question: 'A Síndrome de Burnout foi reconhecida como uma condição ocupacional resultante do estresse crônico no ambiente de trabalho. Qual das opções abaixo apresenta um sintoma característico dessa síndrome em seu estágio avançado?',
+        options: [
+          'Sensação diária de exaustão física/mental acompanhada de atitudes de cinismo e desapego ao trabalho.',
+          'Aumento da criatividade e engajamento constante em novos projetos da empresa.',
+          'Capacidade de manter o foco ininterrupto por 12 horas consecutivas sem apresentar fadiga.',
+          'Facilidade em desligar-se das responsabilidades profissionais no exato momento em que encerra o expediente.'
+        ],
+        correct: 0,
+        explanation: 'O Burnout é caracterizado pela tríade: exaustão emocional profunda, despersonalização/cinismo (desapego frio em relação às tarefas e colegas) e queda da percepção de eficácia profissional.'
+      },
+      {
+        id: 3,
+        question: 'O conceito de Deep Work (Trabalho Profundo) exige eliminar distrações para focar em tarefas cognitivamente complexas. Qual ação prática contribui diretamente para a criação de um ambiente favorável ao Deep Work?',
+        options: [
+          'Deixar os alertas sonoros do e-mail e do chat corporativo ativados na tela principal.',
+          'Alternar a atenção a cada 5 minutos entre a escrita de um relatório e a navegação em redes sociais.',
+          'Realizar chamadas de vídeo sem roteiro prévio enquanto tenta revisar planilhas complexas.',
+          'Agendar o checamento de e-mails para horários específicos do dia e silenciar notificações durante o bloco de foco.'
+        ],
+        correct: 3,
+        explanation: 'O Trabalho Profundo exige a eliminação de fragmentações na atenção. Definir blocos de tempo isolados e silenciar notificações previne a troca constante de contexto, permitindo hiperfoco e alta performance.'
+      },
+      {
+        id: 4,
+        question: 'Diante de um erro cometido em um projeto, a mente de um profissional ansioso pode gerar uma "distorção cognitiva", acreditando que o problema é uma catastrofização irreparável. Qual técnica ajuda a reestruturar esse pensamento de forma racional?',
+        options: [
+          'Aceitar o pensamento catastrófico como verdade absoluta e pedir demissão imediatamente.',
+          'Questionar o pensamento ansiogênico buscando evidências concretas sobre o impacto real e focando no plano de ação para correção.',
+          'Esconder o erro da equipe na esperança de que ninguém perceba a falha.',
+          'Culpar publicamente outros colegas pelo ocorrido para preservar a própria imagem.'
         ],
         correct: 1,
-        explanation: 'A comunicação transparente com o tutor é o caminho profissional mais saudável e seguro.'
+        explanation: 'A Reestruturação Cognitiva combate vieses de catastrofização substituindo suposições por fatos. Analisar o erro objetivamente e construir uma solução prática reduz a ansiedade e restaura o senso de controle.'
+      },
+      {
+        id: 5,
+        question: 'O acrônimo S.T.O.P. representa uma pausa consciente no meio da rotina para recuperar a clareza e o equilíbrio emocional. O que significa a letra "O" nessa metodologia de Mindfulness?',
+        options: [
+          'Observar os pensamentos, emoções e sensações corporais sem julgamento imediato.',
+          'Omitir os sentimentos negativos até o fim da semana.',
+          'Optimizar o tempo eliminando o horário de almoço.',
+          'Organizar a mesa de trabalho descartando papéis antigos.'
+        ],
+        correct: 0,
+        explanation: 'No método S.T.O.P. (Stop, Take a breath, Observe, Proceed), o passo Observe orienta o indivíduo a tomar consciência de seus estados internos (pensamentos, emoções, tensão muscular) com curiosidade e sem auto-julgamento.'
+      },
+      {
+        id: 6,
+        question: 'Para manter a saúde mental e prevenir o esgotamento no ambiente de trabalho, o estabelecimento de limites saudáveis é indispensável. Qual postura reflete o estabelecimento de uma fronteira profissional assertiva?',
+        options: [
+          'Responder mensagens de trabalho no aplicativo pessoal de mensagens às 23 horas de um domingo.',
+          'Aceitar todas as solicitações de última hora recebidas, mesmo quando impossibilitam o cumprimento dos prazos já acordados.',
+          'Desligar o telefone corporativo durante o horário de expediente normal sem avisar a equipe.',
+          'Comunicar com clareza a capacidade atual de entregas, renegociar prazos com a liderança e respeitar os horários de descanso.'
+        ],
+        correct: 3,
+        explanation: 'Ter assertividade emocional significa alinhar expectativas e prioridades de forma transparente com a equipe. Dizer "não" fundamentado ou renegociar prazos protege a qualidade das entregas e a saúde mental do profissional.'
+      },
+      {
+        id: 7,
+        question: 'O estresse é uma reação biológica do organismo que pode ser dividida entre "eustresse" e "distresse". Qual a principal característica do eustresse?',
+        options: [
+          'É o estágio final de esgotamento físico que exige afastamento médico imediato.',
+          'Trata-se do sentimento constante de pânico acompanhado de insônia crônica.',
+          'É a forma saudável e positiva de estresse, que mobiliza energia, melhora o foco e motiva a resolução de desafios.',
+          'É a incapacidade total de sentir qualquer tipo de emoção durante reuniões de trabalho.'
+        ],
+        correct: 2,
+        explanation: 'O Eustresse (estresse positivo) é o nível moderado de ativação necessário para nos manter alertas, motivados e engajados na superação de metas e desafios do dia a dia, diferindo do estresse crônico nocivo (distresse).'
       }
     ]
   },
