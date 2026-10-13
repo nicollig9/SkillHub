@@ -1078,38 +1078,140 @@ export const COURSES: Course[] = [
     trackId: 'trilha-3',
     trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
     category: 'Tecnologia da Informação',
-    targetAudienceType: ['ESTAGIARIO', 'ESTUDANTE'],
+    targetAudienceType: ['ESTAGIARIO', 'ESTUDANTE', 'JOVEM_APRENDIZ'],
     title: 'Inteligência Artificial e Automação no Dia a Dia de Trabalho',
-    subtitle: 'Como utilizar IA generativa (Gemini/ChatGPT) com segurança, prompts eficazes e ética profissional',
+    subtitle: 'Capacitar profissionais a integrar ferramentas de Inteligência Artificial Generativa e automações simples nas suas rotinas de trabalho, otimizando o tempo, eliminando tarefas repetitivas e aumentando a produtividade com responsabilidade, ética e segurança de dados.',
     hours: 12,
     equivalentHours: 12,
     modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Jovens que desejam turbinar sua produtividade com tecnologia moderna',
-    prerequisites: 'Navegação básica na web.',
-    badgeName: 'Inovador em IA & Produtividade',
+    targetAudience: 'Profissionais, aprendizes, estagiários e estudantes que buscam aplicar IA generativa e automação no fluxo de trabalho corporativo',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Especialista em IA & Automação Corporativa',
     badgeCategory: 'Ferramentas de Escritório',
     badgeIcon: 'Cpu',
     accentColor: '#3B82F6',
-    level: 'Avançado',
+    level: 'Intermediário',
     learningObjectives: [
-      'Escrever prompts estruturados para resumir textos longos e gerar rascunhos de relatórios.',
-      'Compreender os riscos de vazamento de dados corporativos confidenciais ao usar ferramentas públicas de IA.',
-      'Revisar criticamente saídas geradas por IA para evitar informações incorretas.'
+      'Compreender os fundamentos da IA Generativa e dominar Engenharia de Prompts (Prompt Engineering) com técnicas de Few-Shot e Chain of Thought.',
+      'Acelerar a produção, síntese e revisão de documentos corporativos, e-mails, relatórios e análises de dados com assistentes de IA.',
+      'Construir automações No-Code com gatilhos (triggers) e ações em plataformas como Zapier e Make para eliminar tarefas repetitivas.',
+      'Aplicar boas práticas de governança, conformidade com a LGPD, proteção contra vazamento de dados confidenciais e validação de alucinações da IA.'
     ],
     modules: [
       {
-        id: 'ia-mod-1',
+        id: 'ia-prod-mod-1',
         number: 1,
-        title: 'MÓDULO 1: Engenharia de Prompts e Ética Corporativa',
-        summary: 'Regras de ouro: nunca colar dados sigilosos/senhas em chats de IA e sempre conferir os resultados.',
-        estimatedMinutes: 35,
+        title: 'MÓDULO 1: Introdução à IA Generativa no Ambiente Corporativo',
+        summary: 'Compreender os fundamentos da IA e entender como transformar LLMs (Large Language Models) em assistentes virtuais de trabalho.',
+        estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1.1 Segurança e LGPD na Era da IA',
+              subheading: '1. Conceitos Fundamentais e Mapeamento de Oportunidades',
               body: [
-                'A IA é um co-piloto e assistente. A responsabilidade final pelo trabalho entregue é sempre do profissional humano.',
-                'Dados sigilosos de clientes, senhas e informações financeiras internas da empresa jamais devem ser colados em modelos públicos de IA.'
+                'O que é IA Generativa: Diferença entre algoritmos tradicionais (baseados em regras e estatística descritiva) e modelos generativos treinados em grandes volumes de dados capazes de criar novo conteúdo em texto, imagem, áudio e código.',
+                'Principais Ferramentas do Mercado: Visão geral e casos de uso de plataformas como ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google), Microsoft Copilot e Perplexity.',
+                'Mapeamento de Tarefas: Identificação de gargalos operacionais no dia a dia corporativo (resumo de e-mails extensos, primeiro rascunho de relatórios, ideação de apresentações e análise exploratória de dados).'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'IA como Copiloto',
+                text: 'A IA não substitui o profissional humano: ela atua como um assistente que reduz drasticamente o trabalho braçal e operacional, liberando tempo para pensamento crítico e estratégia.'
+              }
+            },
+            {
+              subheading: '2. Engenharia de Prompt para Profissionais (Prompt Engineering)',
+              body: [
+                'A Estrutura do Prompt Perfeito: Criação de comandos de alta eficácia estruturados em cinco blocos: Papel/Persona (quem a IA representa), Contexto (cenário empresarial), Tarefa Clara (o que fazer), Formato de Saída (tabela, tópicos, tom executivo) e Restrições (o que não fazer).',
+                'Técnicas Avançadas: Few-Shot Prompting (fornecer exemplos práticos do resultado esperado no próprio comando) e Chain of Thought (divisão de problemas complexos em etapas de raciocínio lógico).',
+                'Refinamento Iterativo: O diálogo iterativo com a IA permite ajustar gradualmente o tom, concisão, profundidade e formatação da resposta.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'ia-prod-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: Produção de Conteúdo, Análise de Dados e Resumos com IA',
+        summary: 'Aplicar a IA para acelerar a criação de documentos, apresentações e o processamento de grandes volumes de informação.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Redação e Síntese de Informações',
+              body: [
+                'Geração e Revisão de Documentos: Redação e aprimoramento de e-mails, relatórios executivos, atas de reunião e propostas comerciais com rapidez e clareza.',
+                'Síntese de Grandes Volumes de Dados: Leitura, extração de pontos-chave e resumos estruturados de PDFs extensos, artigos técnicos e pesquisas de mercado.',
+                'Adaptação de Linguagem: Transformação de textos densos ou excessivamente técnicos em linguagem executiva acessível para clientes ou diretores.'
+              ]
+            },
+            {
+              subheading: '2. Análise de Dados e Apoio à Tomada de Decisão',
+              body: [
+                'IA para Planilhas e Tabelas: Criação e correção de fórmulas complexas de Excel e Google Sheets a partir de descrições em texto simples.',
+                'Análise Preditiva e Brainstorming: Utilização de assistentes de IA para geração de ideias, análise de cenários de risco e levantamento de hipóteses de negócios.'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Validação Humana Obrigatória',
+                text: 'Sempre confira os cálculos e dados antes de repassá-los para gestores ou clientes; a responsabilidade técnica pelas informações é sempre humana.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'ia-prod-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Automação de Processos e Fluxos de Trabalho (Workflows)',
+        summary: 'Conectar aplicativos e criar rotinas automáticas sem a necessidade de saber programar (No-Code).',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Introdução à Automação No-Code',
+              body: [
+                'O que são Ferramentas de Integração: Conceito fundamental de gatilhos (triggers - o evento que inicia o fluxo) e ações (actions - a execução automática) usando plataformas No-Code como Zapier e Make (Integromat).',
+                'Conectando Aplicativos do Dia a Dia: Integração entre e-mails (Gmail/Outlook), formulários (Google Forms/Typeform), planilhas e aplicativos de comunicação de equipe (Slack/Microsoft Teams).'
+              ]
+            },
+            {
+              subheading: '2. Casos Práticos de Automação com IA',
+              body: [
+                'Triagem de E-mails e Leads: Envio automático de dados de formulários para planilhas, geração de resumo executivo via IA e notificação instantânea da equipe no canal corporativo.',
+                'Agendamento e Lembretes Automáticos: Criação de fluxos que atualizam o status de tarefas em gerenciadores de projetos (Trello, Asana, Notion) a partir de respostas e interações de clientes.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'ia-prod-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Ética, Segurança da Informação e Privacidade de Dados',
+        summary: 'Garantir o uso seguro e responsável das tecnologias de IA sem comprometer o sigilo da empresa.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Segurança de Dados Corporativos e LGPD',
+              body: [
+                'Vazamento de Informações Confidenciais: Riscos e penalidades ao inserir dados sensíveis, segredos industriais ou dados pessoais de colaboradores e clientes (LGPD) em IAs públicas.',
+                'Configurações de Privacidade: Como desativar nas configurações das ferramentas o treinamento de modelos com seus dados (opt-out de telemetria).',
+                'Verificação de Fatos e Alucinações: Identificação e correção de alucinações (respostas incorretas apresentadas com convicção) antes do envio de relatórios e documentos.'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Atenção à LGPD',
+                text: 'Nunca insira dados pessoais de clientes (como CPFs, dados bancários ou prontuários) em plataformas públicas de IA. Anonimize todas as informações sensíveis.'
+              }
+            },
+            {
+              subheading: '2. O Futuro do Trabalho e Mentalidade de Aprendizagem Contínua',
+              body: [
+                'Complementaridade Humano + IA: A IA atua como copiloto de produtividade que potencializa as habilidades humanas exclusivas: pensamento crítico, empatia, criatividade e discernimento ético.',
+                'Boas Práticas de Governança: Proposição e adoção de diretrizes claras de uso de inteligência artificial em equipes corporativas.'
               ]
             }
           ]
@@ -1120,15 +1222,87 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'O que NUNCA deve ser inserido em ferramentas públicas de Inteligência Artificial no trabalho?',
+        question: 'O que significa o conceito de "Alucinação" em modelos de Inteligência Artificial Generativa?',
         options: [
-          'Dúvidas sobre regras ortográficas da língua portuguesa.',
-          'Dados sigilosos de clientes, CPFs, senhas corporativas e relatórios financeiros confidenciais.',
-          'Pedidos de sugestões de ideias para títulos de apresentação.',
-          'Dúvidas de fórmulas de Excel.'
+          'Quando o modelo gera informações falsas ou inventadas com aparência de verdade.',
+          'Quando o computador esquenta e precisa ser desligado.',
+          'Quando a IA recusa-se a responder por falta de créditos na conta.',
+          'Quando o sistema operacional trava ao abrir uma planilha pesada.'
+        ],
+        correct: 0,
+        explanation: 'Alucinação é a geração de dados incorretos ou fictícios que parecem convincentes, exigindo sempre a validação humana.'
+      },
+      {
+        id: 2,
+        question: 'Ao criar um prompt eficiente para a IA, qual estrutura traz o resultado mais preciso?',
+        options: [
+          'Digitar apenas palavras-chave soltas sem pontuação.',
+          'Fornecer o papel (persona), o contexto, a tarefa clara, o formato de saída e os limites.',
+          'Enviar o comando em letras maiúsculas para exigir prioridade na resposta.',
+          'Escrever em outro idioma e traduzir três vezes antes de enviar.'
         ],
         correct: 1,
-        explanation: 'A privacidade e a LGPD exigem sigilo rigoroso sobre dados corporativos e dados pessoais de clientes.'
+        explanation: 'Um bom prompt precisa de estrutura: Persona + Contexto + Tarefa + Formato + Restrições.'
+      },
+      {
+        id: 3,
+        question: 'Qual das seguintes condutas respeita a Lei Geral de Proteção de Dados (LGPD) ao utilizar IAs públicas?',
+        options: [
+          'Inserir a lista completa de CPFs e salários dos funcionários para criar gráficos.',
+          'Digitar cartões de crédito de clientes para testar o sistema de cobrança.',
+          'Anonimizar ou remover dados sensíveis e pessoais antes de colar o texto na ferramenta.',
+          'Compartilhar senhas de acesso bancário para a IA fazer conciliação automática.'
+        ],
+        correct: 2,
+        explanation: 'A LGPD exige a proteção de dados pessoais (PII). A anonimização garante a segurança das informações corporativas e de clientes.'
+      },
+      {
+        id: 4,
+        question: 'Em ferramentas de automação No-Code (como Zapier ou Make), o que é um "Gatilho" (Trigger)?',
+        options: [
+          'A linguagem de programação usada para criar o site.',
+          'O botão de desligar o servidor principal da empresa.',
+          'O evento inicial que dispara a execução de uma sequência de ações automáticas.',
+          'O relatório mensal impresso em papel pelo setor administrativo.'
+        ],
+        correct: 2,
+        explanation: 'O gatilho é a condição de início (ex: "quando um novo e-mail chegar") que aciona o fluxo automatizado.'
+      },
+      {
+        id: 5,
+        question: 'Qual é o principal objetivo de utilizar a IA como um "Copiloto" no dia a dia corporativo?',
+        options: [
+          'Substituir 100% dos funcionários humanos e fechar o escritório físico.',
+          'Assumir tarefas operacionais e repetitivas, liberando tempo para análise crítica e estratégia.',
+          'Deixar a IA tomar decisões financeiras sem nenhuma supervisão humana.',
+          'Evitar reuniões presenciais e responder e-mails com frases aleatórias.'
+        ],
+        correct: 1,
+        explanation: 'O papel da IA no trabalho é aumentar a produtividade humana, atuando como assistente para acelerar o trabalho braçal de dados.'
+      },
+      {
+        id: 6,
+        question: 'Se um profissional precisa de uma fórmula de Excel para somar valores com múltiplos critérios, como a IA pode ajudar?',
+        options: [
+          'Traduzindo o objetivo do usuário em linguagem natural diretamente para a sintaxe da função (ex: SOMASES).',
+          'Instalando uma versão pirata do pacote Office no computador.',
+          'Excluindo as colunas com valores zerados da planilha original.',
+          'Comprando uma licença nova do software na loja oficial.'
+        ],
+        correct: 0,
+        explanation: 'A IA converte intenções em linguagem comum em sintaxe lógica de programação ou fórmulas de planilhas.'
+      },
+      {
+        id: 7,
+        question: 'Qual das opções abaixo descreve a técnica de Few-Shot Prompting na Engenharia de Prompt?',
+        options: [
+          'Fazer uma única pergunta curta sem nenhum detalhe.',
+          'Desligar o roteador de internet durante o envio da mensagem.',
+          'Incluir alguns exemplos do resultado esperado dentro do próprio comando enviado à IA.',
+          'Solicitar que a IA responda utilizando apenas uma palavra.'
+        ],
+        correct: 2,
+        explanation: 'Few-shot prompting consiste em dar exemplos práticos no prompt para que o modelo entenda exatamente o padrão de resposta desejado.'
       }
     ]
   },
@@ -2382,7 +2556,8 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
-  // 11. INFORMÁTICA & SEGURANÇA DIGITAL
+  // =========================================================================
+  // 11. INTELIGÊNCIA ARTIFICIAL E AUTOMAÇÃO NO DIA A DIA DE TRABALHO
   // =========================================================================
   {
     id: 'curso-informatica-seguranca',
@@ -2390,36 +2565,139 @@ export const COURSES: Course[] = [
     trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
     category: 'Tecnologia da Informação',
     targetAudienceType: 'TODOS',
-    title: 'Informática Básica, Nuvem e Segurança da Informação',
-    subtitle: 'Navegação segura, senhas fortes, Google Drive/OneDrive e proteção contra phishing',
-    hours: 10,
-    equivalentHours: 10,
+    title: 'Inteligência Artificial e Automação no Dia a Dia de Trabalho',
+    subtitle: 'Capacitar profissionais a integrar ferramentas de Inteligência Artificial Generativa e automações simples nas suas rotinas de trabalho, otimizando o tempo, eliminando tarefas repetitivas e aumentando a produtividade com responsabilidade, ética e segurança de dados.',
+    hours: 12,
+    equivalentHours: 12,
     modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Estudantes e aprendizes iniciando o uso de computadores corporativos',
-    prerequisites: 'Nenhum.',
-    badgeName: 'Segurança Digital & Nuvem',
+    targetAudience: 'Profissionais, aprendizes, estagiários e estudantes que buscam aplicar IA generativa e automação no fluxo de trabalho corporativo',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Especialista em IA & Automação Corporativa',
     badgeCategory: 'Ferramentas de Escritório',
-    badgeIcon: 'Shield',
+    badgeIcon: 'Cpu',
     accentColor: '#3B82F6',
     level: 'Intermediário',
     learningObjectives: [
-      'Criar senhas fortes e gerenciar autenticação em dois fatores.',
-      'Identificar e-mails de phishing e links maliciosos.',
-      'Organizar pastas e permissões de compartilhamento no Google Drive e OneDrive.'
+      'Compreender os fundamentos da IA Generativa e dominar Engenharia de Prompts (Prompt Engineering) com técnicas de Few-Shot e Chain of Thought.',
+      'Acelerar a produção, síntese e revisão de documentos corporativos, e-mails, relatórios e análises de dados com assistentes de IA.',
+      'Construir automações No-Code com gatilhos (triggers) e ações em plataformas como Zapier e Make para eliminar tarefas repetitivas.',
+      'Aplicar boas práticas de governança, conformidade com a LGPD, proteção contra vazamento de dados confidenciais e validação de alucinações da IA.'
     ],
     modules: [
       {
-        id: 'inf-mod-1',
+        id: 'ia-auto-mod-1',
         number: 1,
-        title: 'MÓDULO 1: Proteção de Senhas e Prevenção a Fraudes',
-        summary: 'Como manter o computador da empresa seguro e evitar infecções por malware.',
-        estimatedMinutes: 30,
+        title: 'MÓDULO 1: Introdução à IA Generativa no Ambiente Corporativo',
+        summary: 'Compreender os fundamentos da IA e entender como transformar LLMs (Large Language Models) em assistentes virtuais de trabalho.',
+        estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1.1 Criando Senhas Inquebráveis',
+              subheading: '1. Conceitos Fundamentais e Mapeamento de Oportunidades',
               body: [
-                'Combine letras maiúsculas, minúsculas, números e caracteres especiais. Nunca utilize "123456" ou sua data de aniversário.'
+                'O que é IA Generativa: Diferença entre algoritmos tradicionais (baseados em regras e estatística descritiva) e modelos generativos treinados em grandes volumes de dados capazes de criar novo conteúdo em texto, imagem, áudio e código.',
+                'Principais Ferramentas do Mercado: Visão geral e casos de uso de plataformas como ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google), Microsoft Copilot e Perplexity.',
+                'Mapeamento de Tarefas: Identificação de gargalos operacionais no dia a dia corporativo (resumo de e-mails extensos, primeiro rascunho de relatórios, ideação de apresentações e análise exploratória de dados).'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'IA como Copiloto',
+                text: 'A IA não substitui o profissional humano: ela atua como um assistente que reduz drasticamente o trabalho braçal e operacional, liberando tempo para pensamento crítico e estratégia.'
+              }
+            },
+            {
+              subheading: '2. Engenharia de Prompt para Profissionais (Prompt Engineering)',
+              body: [
+                'A Estrutura do Prompt Perfeito: Criação de comandos de alta eficácia estruturados em cinco blocos: Papel/Persona (quem a IA representa), Contexto (cenário empresarial), Tarefa Clara (o que fazer), Formato de Saída (tabela, tópicos, tom executivo) e Restrições (o que não fazer).',
+                'Técnicas Avançadas: Few-Shot Prompting (fornecer exemplos práticos do resultado esperado no próprio comando) e Chain of Thought (divisão de problemas complexos em etapas de raciocínio lógico).',
+                'Refinamento Iterativo: O diálogo iterativo com a IA permite ajustar gradualmente o tom, concisão, profundidade e formatação da resposta.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'ia-auto-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: Produção de Conteúdo, Análise de Dados e Resumos com IA',
+        summary: 'Aplicar a IA para acelerar a criação de documentos, apresentações e o processamento de grandes volumes de informação.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Redação e Síntese de Informações',
+              body: [
+                'Geração e Revisão de Documentos: Redação e aprimoramento de e-mails, relatórios executivos, atas de reunião e propostas comerciais com rapidez e clareza.',
+                'Síntese de Grandes Volumes de Dados: Leitura, extração de pontos-chave e resumos estruturados de PDFs extensos, artigos técnicos e pesquisas de mercado.',
+                'Adaptação de Linguagem: Transformação de textos densos ou excessivamente técnicos em linguagem executiva acessível para clientes ou diretores.'
+              ]
+            },
+            {
+              subheading: '2. Análise de Dados e Apoio à Tomada de Decisão',
+              body: [
+                'IA para Planilhas e Tabelas: Criação e correção de fórmulas complexas de Excel e Google Sheets a partir de descrições em texto simples.',
+                'Análise Preditiva e Brainstorming: Utilização de assistentes de IA para geração de ideias, análise de cenários de risco e levantamento de hipóteses de negócios.'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Validação Humana Obrigatória',
+                text: 'Sempre confira os cálculos e dados antes de repassá-los para gestores ou clientes; a responsabilidade técnica pelas informações é sempre humana.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'ia-auto-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Automação de Processos e Fluxos de Trabalho (Workflows)',
+        summary: 'Conectar aplicativos e criar rotinas automáticas sem a necessidade de saber programar (No-Code).',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Introdução à Automação No-Code',
+              body: [
+                'O que são Ferramentas de Integração: Conceito fundamental de gatilhos (triggers - o evento que inicia o fluxo) e ações (actions - a execução automática) usando plataformas No-Code como Zapier e Make (Integromat).',
+                'Conectando Aplicativos do Dia a Dia: Integração entre e-mails (Gmail/Outlook), formulários (Google Forms/Typeform), planilhas e aplicativos de comunicação de equipe (Slack/Microsoft Teams).'
+              ]
+            },
+            {
+              subheading: '2. Casos Práticos de Automação com IA',
+              body: [
+                'Triagem de E-mails e Leads: Envio automático de dados de formulários para planilhas, geração de resumo executivo via IA e notificação instantânea da equipe no canal corporativo.',
+                'Agendamento e Lembretes Automáticos: Criação de fluxos que atualizam o status de tarefas em gerenciadores de projetos (Trello, Asana, Notion) a partir de respostas e interações de clientes.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'ia-auto-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Ética, Segurança da Informação e Privacidade de Dados',
+        summary: 'Garantir o uso seguro e responsável das tecnologias de IA sem comprometer o sigilo da empresa.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Segurança de Dados Corporativos e LGPD',
+              body: [
+                'Vazamento de Informações Confidenciais: Riscos e penalidades ao inserir dados sensíveis, segredos industriais ou dados pessoais de colaboradores e clientes (LGPD) em IAs públicas.',
+                'Configurações de Privacidade: Como desativar nas configurações das ferramentas o treinamento de modelos com seus dados (opt-out de telemetria).',
+                'Verificação de Fatos e Alucinações: Identificação e correção de alucinações (respostas incorretas apresentadas com convicção) antes do envio de relatórios e documentos.'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Atenção à LGPD',
+                text: 'Nunca insira dados pessoais de clientes (como CPFs, dados bancários ou prontuários) em plataformas públicas de IA. Anonimize todas as informações sensíveis.'
+              }
+            },
+            {
+              subheading: '2. O Futuro do Trabalho e Mentalidade de Aprendizagem Contínua',
+              body: [
+                'Complementaridade Humano + IA: A IA atua como copiloto de produtividade que potencializa as habilidades humanas exclusivas: pensamento crítico, empatia, criatividade e discernimento ético.',
+                'Boas Práticas de Governança: Proposição e adoção de diretrizes claras de uso de inteligência artificial em equipes corporativas.'
               ]
             }
           ]
@@ -2430,15 +2708,87 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'Se você receber um e-mail suspeito pedindo sua senha corporativa, o que deve fazer?',
+        question: 'O que significa o conceito de "Alucinação" em modelos de Inteligência Artificial Generativa?',
         options: [
-          'Responder imediatamente com a senha.',
-          'Não clicar em nenhum link e alertar o time de TI da empresa.',
-          'Encaminhar para todos os colegas de trabalho.',
-          'Ignorar e apagar sem avisar ninguém.'
+          'Quando o modelo gera informações falsas ou inventadas com aparência de verdade.',
+          'Quando o computador esquenta e precisa ser desligado.',
+          'Quando a IA recusa-se a responder por falta de créditos na conta.',
+          'Quando o sistema operacional trava ao abrir uma planilha pesada.'
+        ],
+        correct: 0,
+        explanation: 'Alucinação é a geração de dados incorretos ou fictícios que parecem convincentes, exigindo sempre a validação humana.'
+      },
+      {
+        id: 2,
+        question: 'Ao criar um prompt eficiente para a IA, qual estrutura traz o resultado mais preciso?',
+        options: [
+          'Digitar apenas palavras-chave soltas sem pontuação.',
+          'Fornecer o papel (persona), o contexto, a tarefa clara, o formato de saída e os limites.',
+          'Enviar o comando em letras maiúsculas para exigir prioridade na resposta.',
+          'Escrever em outro idioma e traduzir três vezes antes de enviar.'
         ],
         correct: 1,
-        explanation: 'Nunca compartilhe senhas por e-mail e sempre notifique o departamento de segurança da informação.'
+        explanation: 'Um bom prompt precisa de estrutura: Persona + Contexto + Tarefa + Formato + Restrições.'
+      },
+      {
+        id: 3,
+        question: 'Qual das seguintes condutas respeita a Lei Geral de Proteção de Dados (LGPD) ao utilizar IAs públicas?',
+        options: [
+          'Inserir a lista completa de CPFs e salários dos funcionários para criar gráficos.',
+          'Digitar cartões de crédito de clientes para testar o sistema de cobrança.',
+          'Anonimizar ou remover dados sensíveis e pessoais antes de colar o texto na ferramenta.',
+          'Compartilhar senhas de acesso bancário para a IA fazer conciliação automática.'
+        ],
+        correct: 2,
+        explanation: 'A LGPD exige a proteção de dados pessoais (PII). A anonimização garante a segurança das informações corporativas e de clientes.'
+      },
+      {
+        id: 4,
+        question: 'Em ferramentas de automação No-Code (como Zapier ou Make), o que é um "Gatilho" (Trigger)?',
+        options: [
+          'A linguagem de programação usada para criar o site.',
+          'O botão de desligar o servidor principal da empresa.',
+          'O evento inicial que dispara a execução de uma sequência de ações automáticas.',
+          'O relatório mensal impresso em papel pelo setor administrativo.'
+        ],
+        correct: 2,
+        explanation: 'O gatilho é a condição de início (ex: "quando um novo e-mail chegar") que aciona o fluxo automatizado.'
+      },
+      {
+        id: 5,
+        question: 'Qual é o principal objetivo de utilizar a IA como um "Copiloto" no dia a dia corporativo?',
+        options: [
+          'Substituir 100% dos funcionários humanos e fechar o escritório físico.',
+          'Assumir tarefas operacionais e repetitivas, liberando tempo para análise crítica e estratégia.',
+          'Deixar a IA tomar decisões financeiras sem nenhuma supervisão humana.',
+          'Evitar reuniões presenciais e responder e-mails com frases aleatórias.'
+        ],
+        correct: 1,
+        explanation: 'O papel da IA no trabalho é aumentar a produtividade humana, atuando como assistente para acelerar o trabalho braçal de dados.'
+      },
+      {
+        id: 6,
+        question: 'Se um profissional precisa de uma fórmula de Excel para somar valores com múltiplos critérios, como a IA pode ajudar?',
+        options: [
+          'Traduzindo o objetivo do usuário em linguagem natural diretamente para a sintaxe da função (ex: SOMASES).',
+          'Instalando uma versão pirata do pacote Office no computador.',
+          'Excluindo as colunas com valores zerados da planilha original.',
+          'Comprando uma licença nova do software na loja oficial.'
+        ],
+        correct: 0,
+        explanation: 'A IA converte intenções em linguagem comum em sintaxe lógica de programação ou fórmulas de planilhas.'
+      },
+      {
+        id: 7,
+        question: 'Qual das opções abaixo descreve a técnica de Few-Shot Prompting na Engenharia de Prompt?',
+        options: [
+          'Fazer uma única pergunta curta sem nenhum detalhe.',
+          'Desligar o roteador de internet durante o envio da mensagem.',
+          'Incluir alguns exemplos do resultado esperado dentro do próprio comando enviado à IA.',
+          'Solicitar que a IA responda utilizando apenas uma palavra.'
+        ],
+        correct: 2,
+        explanation: 'Few-shot prompting consiste em dar exemplos práticos no prompt para que o modelo entenda exatamente o padrão de resposta desejado.'
       }
     ]
   },
