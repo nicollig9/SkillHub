@@ -5,9 +5,9 @@ export const TRACKS: Track[] = [
     id: 'trilha-1',
     name: '1. Entrada no Mercado & Primeiro Emprego',
     category: 'Desenvolvimento Pessoal e Legislação',
-    description: 'Trilha fundamental para quem quer conquistar a primeira vaga formal: direitos da Lei 10.097, orçamento do primeiro salário e equilíbrio emocional no trabalho.',
+    description: 'Trilha fundamental para quem quer conquistar a primeira vaga formal: privacidade e conformidade com a LGPD, orçamento do primeiro salário e postura profissional em processos seletivos.',
     targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO'],
-    hoursTotal: 36,
+    hoursTotal: 34,
     coursesCount: 3,
     courseIds: ['curso-jovem-aprendiz-avancado', 'curso-curriculo-plataformas', 'curso-postura-entrevistas'],
     badgeReward: 'Embaixador do Primeiro Emprego',
@@ -18,11 +18,11 @@ export const TRACKS: Track[] = [
     id: 'trilha-2',
     name: '2. Soft Skills, Postura & Comunicação Corporativa',
     category: 'Desenvolvimento Pessoal',
-    description: 'Aprenda a se comunicar com clareza em e-mails e reuniões, trabalhar em equipe, lidar com pressão e construir uma postura profissional ética.',
+    description: 'Aprenda a se comunicar com clareza em e-mails e reuniões, trabalhar em equipe, praticar comunicação não-violenta e construir inteligência emocional no trabalho.',
     targetAudienceType: 'TODOS',
-    hoursTotal: 30,
-    coursesCount: 3,
-    courseIds: ['curso-comunicacao-corporativa', 'curso-atendimento-publico', 'curso-saude-mental-trabalho'],
+    hoursTotal: 48,
+    coursesCount: 4,
+    courseIds: ['curso-comunicacao-corporativa', 'curso-atendimento-publico', 'curso-saude-mental-trabalho', 'curso-comunicacao-nao-violenta'],
     badgeReward: 'Mestre em Comunicação e Soft Skills',
     icon: 'Sparkles',
     accentColor: '#EC4899'
@@ -31,11 +31,11 @@ export const TRACKS: Track[] = [
     id: 'trilha-3',
     name: '3. Tecnologia, Informática & Produtividade com IA',
     category: 'Tecnologia da Informação',
-    description: 'Domine o pacote Office (Excel e Word), noções de inteligência artificial aplicada ao trabalho administrativo e segurança digital na empresa.',
+    description: 'Domine o pacote Office (Excel para Escritório) e noções de inteligência artificial generativa e automação aplicadas ao fluxo de trabalho corporativo.',
     targetAudienceType: ['ESTAGIARIO', 'ESTUDANTE', 'JOVEM_APRENDIZ'],
-    hoursTotal: 36,
-    coursesCount: 3,
-    courseIds: ['curso-excel-basico-avancado', 'curso-ia-produtividade', 'curso-informatica-seguranca'],
+    hoursTotal: 24,
+    coursesCount: 2,
+    courseIds: ['curso-excel-basico-avancado', 'curso-ia-produtividade'],
     badgeReward: 'Especialista em Produtividade Digital',
     icon: 'Laptop',
     accentColor: '#3B82F6'
@@ -44,9 +44,9 @@ export const TRACKS: Track[] = [
     id: 'trilha-4',
     name: '4. Rotinas Administrativas & Gestão Empresarial',
     category: 'Administração e Negócios',
-    description: 'Organização de arquivos e fluxos, suporte a departamentos de RH e financeiro, redação de atas e atendimento profissional.',
+    description: 'Organização de arquivos e fluxos, suporte a departamentos, padronização de processos e produtividade ágil no escritório.',
     targetAudienceType: ['JOVEM_APRENDIZ', 'ESTAGIARIO'],
-    hoursTotal: 25,
+    hoursTotal: 22,
     coursesCount: 2,
     courseIds: ['curso-rotinas-administrativas', 'curso-gestao-tempo'],
     badgeReward: 'Gestor de Rotinas Administrativas',
@@ -70,7 +70,7 @@ export const TRACKS: Track[] = [
 
 export const COURSES: Course[] = [
   // =========================================================================
-  // 1. JORNADA DO JOVEM APRENDIZ & ESTAGIÁRIO (AVANÇADO)
+  // 1. LGPD, PRIVACIDADE E SEGURANÇA DIGITAL CORPORATIVA
   // =========================================================================
   {
     id: 'curso-jovem-aprendiz-avancado',
@@ -78,223 +78,223 @@ export const COURSES: Course[] = [
     trackName: 'TRILHA 1: Entrada no Mercado & Primeiro Emprego',
     category: 'Legislação e Cidadania',
     targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO'],
-    title: 'Jornada do Jovem Aprendiz & Estagiário (Módulo Avançado)',
-    subtitle: 'Direitos, Legislação Trabalhista, Matriz Comparativa, Análise de Holerite e Prevenção de Fraudes',
+    title: 'LGPD, Privacidade e Segurança Digital Corporativa',
+    subtitle: 'Capacitar profissionais a compreender a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018), aplicando seus princípios e bases legais na rotina de trabalho, mitigando riscos de vazamento de informações e adotando protocolos práticos de segurança digital corporativa.',
     hours: 12,
     equivalentHours: 12,
     modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Jovens de 14 a 24 anos em busca da primeira oportunidade de trabalho',
+    targetAudience: 'Jovens aprendizes, estagiários e profissionais em ambientes corporativos buscando conformidade com a LGPD e segurança da informação',
     prerequisites: 'Nenhum pré-requisito.',
-    badgeName: 'Direitos & Legislação',
+    badgeName: 'Especialista em LGPD & Dados',
     badgeCategory: 'Trabalho',
-    badgeIcon: 'Scale',
+    badgeIcon: 'ShieldCheck',
     accentColor: '#8B5CF6',
-    level: 'Avançado',
+    level: 'Intermediário',
     learningObjectives: [
-      'Compreender as bases legais da Lei da Aprendizagem (Lei nº 10.097/2000) e da Lei do Estágio (Lei nº 11.788/2008).',
-      'Diferenciar com clareza contratos de trabalho formais (CLT), programa de aprendizagem e estágio remunerado.',
-      'Analisar holerites e demonstrativos de pagamento, entendendo descontos legais (VT, INSS) e benefícios (FGTS 2%, VR).',
-      'Reconhecer deveres acadêmicos e profissionais para a manutenção segura do contrato de trabalho.',
-      'Proteger-se contra fraudes, golpes de falsas vagas de emprego e cobranças indevidas de taxas ou cursos.'
+      'Compreender os conceitos fundamentais da LGPD (Lei nº 13.709/18), diferenciando Dado Pessoal de Dado Pessoal Sensível e identificando os agentes de tratamento.',
+      'Aplicar as principais bases legais para o tratamento de dados (Consentimento, Legítimo Interesse, Execução de Contratos e Cumprimento de Obrigação Legal).',
+      'Implementar rotinas de segurança da informação, controle de acesso baseado em funções (RBAC/Menor Privilégio) e descarte seguro de dados.',
+      'Atuar com rapidez no Plano de Resposta a Incidentes (PRI) e incorporar a cultura de Privacy by Design e prevenção a phishing.'
     ],
     modules: [
       {
-        id: 'mod-1',
+        id: 'lgpd-corp-mod-1',
         number: 1,
-        title: 'MÓDULO 1: Fundamentos da Lei do Aprendiz (Lei nº 10.097/2000)',
-        summary: 'Origem da política pública, o papel das entidades formadoras, regras de jornada de trabalho e direitos fundamentais.',
+        title: 'MÓDULO 1: Fundamentos da LGPD e Conceitos Chave',
+        summary: 'Compreender o escopo da lei, a quem ela se aplica e os papéis dos agentes de tratamento.',
         estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1.1 O que é o Programa de Aprendizagem?',
+              subheading: '1. Conceitos Fundamentais da Lei',
               body: [
-                'A Lei do Aprendiz foi formulada como uma política pública de inclusão social e formação profissional voltada para jovens entre 14 e 24 anos incompletos (sem limite de idade para pessoas com deficiência).',
-                'A premissa central é a formação técnico-profissional metódica: a empresa contratante atua em parceria com uma Entidade Formadora (Sistema S - SENAI/SENAC/SENAT, CIEE, etc.) para oferecer conhecimento teórico alinhado à prática supervisionada na empresa.'
+                'Dado Pessoal vs. Dado Pessoal Sensível: Diferenciação entre dados comuns (nome, CPF, e-mail) e dados sensíveis (origem racial, convicção religiosa, saúde, biometria).',
+                'Agentes de Tratamento: Papéis do Controlador (quem toma as decisões), Operador (quem executa o tratamento) e o Encarregado/DPO (Data Protection Officer).',
+                'Titular dos Dados: Direitos de acesso, correção, eliminação e revogação do consentimento.'
+              ]
+            },
+            {
+              subheading: '2. Princípios da Proteção de Dados',
+              body: [
+                'Finalidade e Adequação: Coletar apenas o estritamente necessário para um propósito legítimo e informado.',
+                'Necessidade e Transparência: Minimização de dados e garantia de informações claras ao titular.'
               ],
-              visualType: 'triangle',
-              asciiDiagram: `┌─────────────────────────────────────────────────────────┐
-│              TRIÂNGULO DA APRENDIZAGEM                  │
-│                                                         │
-│                   [ ESTUDANTE ]                         │
-│                    /         \\                          │
-│                   /           \\                         │
-│                  /             \\                        │
-│     [ EMPRESA CONTRATANTE ] <---> [ ENTIDADE FORMADORA ]│
-└─────────────────────────────────────────────────────────┘`,
               highlightBox: {
                 type: 'law',
-                title: 'Marco Legal Art. 428 CLT',
-                text: 'Contrato de aprendizagem é o contrato de trabalho especial, ajustado por escrito e por prazo determinado, em que o empregador se compromete a assegurar ao maior de 14 e menor de 24 anos formação técnico-profissional metódica.'
+                title: 'Princípio da Necessidade (Minimização)',
+                text: 'A organização só deve coletar os dados estritamente necessários para a realização de suas finalidades, abrangendo apenas dados pertinentes e proporcionais.'
               }
-            },
-            {
-              subheading: '1.2 Regras de Carga Horária e Jornada',
-              body: [
-                'Estudantes do Ensino Fundamental e Médio: A jornada máxima é de 6 horas diárias (30 horas semanais). É expressamente proibida a realização de horas extras ou regime de compensação de jornada.',
-                'Jovens que Concluíram o Ensino Médio: A jornada pode chegar a 8 horas diárias (40 horas semanais), desde que computadas as horas de formação teórica da entidade formadora.',
-                'Proibição de Trabalho Noturno: Para menores de 18 anos, é vedado por lei constitucional o trabalho entre 22h e 5h, assim como atividades em locais perigosos, insalubres ou penosos.'
-              ],
-              visualType: 'work-hours',
-              highlightBox: {
-                type: 'warning',
-                title: 'Atenção aos Limites de Horário',
-                text: 'Nunca aceite propostas de Jovem Aprendiz com jornadas acima de 6h se você ainda estiver no Ensino Fundamental ou Médio. A prioridade legal absoluta é o seu rendimento escolar.'
-              }
-            },
-            {
-              subheading: '1.3 Direitos Trabalhistas Garantidos',
-              body: [
-                'Registro em CTPS (Carteira de Trabalho Digital): Contrato especial de trabalho por tempo determinado com validade máxima de até 2 anos.',
-                'Remuneração Mínima Garantida: Salário Mínimo Hora nacional ou piso regional/estadual estabelecido por convenção coletiva.',
-                'FGTS com Alíquota Especial: Alíquota reduzida de 2% (diferente dos 8% de contratos CLT regulares). Valor recolhido diretamente pela empresa.',
-                'Férias Coincidentes: 30 dias de recesso obrigatoriamente coincidentes com o período de férias escolares para estudantes menores de 18 anos.',
-                '13º Salário e Vale-Transporte: Garantidos integralmente nos termos da legislação federal trabalhista.'
-              ]
             }
           ]
         }
       },
       {
-        id: 'mod-2',
+        id: 'lgpd-corp-mod-2',
         number: 2,
-        title: 'MÓDULO 2: Lei do Estágio (Lei nº 11.788/2008)',
-        summary: 'Termo de Compromisso de Estágio (TCE), interveniência da instituição de ensino, bolsa-auxílio e recesso remunerado.',
-        estimatedMinutes: 40,
+        title: 'MÓDULO 2: Bases Legais e Ciclo de Vida dos Dados',
+        summary: 'Aprender a justificar a coleta de dados de acordo com a legislação e gerenciar o fluxo das informações.',
+        estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '2.1 Definição e Natureza do Estágio',
+              subheading: '1. As Bases Legais para o Tratamento de Dados',
               body: [
-                'O estágio é ato educativo escolar supervisionado, desenvolvido no ambiente de trabalho, que visa à preparação para o trabalho produtivo de educandos que estejam frequentando o ensino regular.',
-                'Não Cria Vínculo Empregatício: O estagiário não é empregado CLT e não tem desconto de INSS automático nem recolhimento de FGTS, mas possui direito a Bolsa-Auxílio e Auxílio-Transporte em estágios não obrigatórios.'
-              ],
-              highlightBox: {
-                type: 'law',
-                title: 'Termo de Compromisso de Estágio (TCE)',
-                text: 'O estágio só é válido quando formalizado por um Termo de Compromisso assinado por três partes: Aluno (ou responsável se menor), Empresa Concedente e Instituição de Ensino.'
-              }
+                'Consentimento: Como obter e registrar a autorização do titular de forma livre, informada e inequívoca.',
+                'Legítimo Interesse: Aplicação, limites e elaboração do teste de proporcionalidade (LIA - Legitimate Interest Assessment).',
+                'Cumprimento de Obrigação Legal e Execução de Contratos: Tratar dados para emissão de notas fiscais, contratos de trabalho e obrigações trabalhistas.'
+              ]
             },
             {
-              subheading: '2.2 Carga Horária e Redução em Período de Provas',
+              subheading: '2. Ciclo de Vida e Descarte Seguro',
               body: [
-                'Carga Horária Máxima: 4 horas diárias (20h semanais) para educação especial e fundamental, ou 6 horas diárias (30h semanais) para ensino médio, técnico e superior.',
-                'Garantia Legal em Semanas de Prova: Se a instituição de ensino adotar verificações periódicas de aprendizagem, a carga horária do estágio será reduzida pelo menos à metade para garantir o estudo do aluno (Art. 10, § 2º da Lei 11.788/08).'
+                'Mapeamento de Dados (Data Mapping): Identificar de onde o dado vem, onde é armazenado, quem tem acesso e para onde é enviado.',
+                'Política de Retenção e Descarte: Métodos seguros para exclusão definitiva de dados digitais e destruição de documentos físicos.'
               ]
             }
           ]
         }
       },
       {
-        id: 'mod-3',
+        id: 'lgpd-corp-mod-3',
         number: 3,
-        title: 'MÓDULO 3: Análise Prática de Holerite e Prevenção de Golpes',
-        summary: 'Cálculo de proventos, descontos legais (VT até 6%, INSS) e identificação de anúncios abusivos de falsas vagas.',
+        title: 'MÓDULO 3: Segurança da Informação e Mitigação de Riscos',
+        summary: 'Implementar controles técnicos e administrativos no ambiente de trabalho para prevenir incidentes.',
         estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '3.1 Como Interpretar seu Contracheque',
+              subheading: '1. Controles de Acesso e Uso de Dispositivos',
               body: [
-                'Salário Bruto: O valor acordado no contrato antes de qualquer desconto.',
-                'Desconto de Vale-Transporte: A lei autoriza o desconto de até 6% do salário-base, ou o valor real das passagens caso seja menor.',
-                'Desconto de INSS: Aprendizes contribuem para a Previdência Social conforme a tabela progressiva (alíquota inicial de 7,5%), garantindo tempo de aposentadoria e auxílio-doença.'
+                'Controle de Acesso Baseado em Funções (RBAC): Garantir que colaboradores vejam apenas os dados estritamente necessários para a sua função (Princípio do Menor Privilégio).',
+                'Política de Mídia Removível e Dispositivos Móveis (BYOD): Riscos do uso de pendrives, celulares pessoais e redes Wi-Fi públicas no trabalho.'
               ],
               highlightBox: {
-                type: 'calc',
-                title: 'Exemplo de Cálculo de Salário Líquido',
-                text: 'Salário Bruto: R$ 1.100,00 | (-) Desconto INSS 7,5%: R$ 82,50 | (-) Desconto VT 6%: R$ 66,00 | (=) Salário Líquido na Conta: R$ 951,50 | (+) FGTS 2% depositado pela empresa: R$ 22,00'
+                type: 'warning',
+                title: 'Princípio do Menor Privilégio',
+                text: 'Para evitar que colaboradores visualizem arquivos confidenciais que não pertencem ao seu escopo, o acesso deve ser restrito por função e senhas nunca devem ser compartilhadas.'
               }
             },
             {
-              subheading: '3.2 Escudo Anti-Golpes: Como Detectar Vagas Falsas',
+              subheading: '2. Criptografia e Armazenamento Seguro',
               body: [
-                'Cobrança de Taxa: Nenhuma empresa idônea ou programa de aprendizagem cobra valor de matrícula, taxa de processo seletivo ou apostila.',
-                'Promessa de Vaga Garantida Condicionada a Curso: Desconfie de mensagens que afirmam que você foi selecionado para uma vaga, mas que deve comprar um curso na recepção para começar.',
-                'Exigência de Dados Bancários ou Senhas: Nunca forneça fotos de cartões bancários, senhas ou códigos de SMS para recrutadores.'
-              ],
-              visualType: 'scam-shield',
-              highlightBox: {
-                type: 'warning',
-                title: 'Regra de Ouro SkillHub',
-                text: 'O SkillHub valida previamente o CNPJ de todas as empresas cadastradas e monitora termos abusivos para que você se candidate com 100% de segurança.'
-              }
+                'Uso de Criptografia: Proteção de arquivos confidenciais em trânsito (e-mails) e em repouso (servidores e nuvem).',
+                'Anonimização e Pseudonimização: Técnicas para desvincular o dado da identidade do titular.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'lgpd-corp-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Gestão de Incidentes e Resposta a Vazamentos',
+        summary: 'Saber como agir em casos de suspeita ou confirmação de incidentes de segurança.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Plano de Resposta a Incidentes (PRI)',
+              body: [
+                'Identificação e Contenção: Passos imediatos ao detectar a perda de um dispositivo corporativo ou o envio de dados para o destinatário errado.',
+                'Notificação à ANPD e aos Titulares: Prazos, gravidade do incidente e comunicação transparente.'
+              ]
+            },
+            {
+              subheading: '2. Governança e Cultura de Privacidade',
+              body: [
+                'Treinamento Contínuo: Conscientização contra Engenharia Social (Phishing) no ambiente corporativo.',
+                'Privacy by Design e Privacy by Default: Incorporar a privacidade e a proteção de dados desde a fase inicial de concepção de um projeto, sistema ou produto.'
+              ]
             }
           ]
         }
       }
     ],
-    caseStudies: [
-      {
-        id: 'caso-1',
-        title: 'Horas Extras em Época de Fechamento de Mês',
-        character: 'Gabriel, 16 anos, Jovem Aprendiz Administrativo',
-        scenario: 'O supervisor de Gabriel pede que ele fique até as 19h (duas horas a mais do seu horário de 6h) durante 3 dias para ajudar no fechamento de inventário de uma fábrica no CIC.',
-        criticalAnalysis: 'A Lei nº 10.097/2000 veda terminantemente a realização de horas extras para jovens aprendizes. A carga diária de 6h não pode ser ultrapassada em hipótese alguma.',
-        keyTakeaways: [
-          'Jovem Aprendiz não pode fazer hora extra nem banco de horas.',
-          'O supervisor comete infração trabalhista e a empresa pode ser multada pelo Ministério do Trabalho.',
-          'Gabriel deve recusar educadamente explicando a restrição contratual e informar o tutor da entidade formadora.'
-        ],
-        badgeRelevance: 'Comprova conhecimento da jornada legal e segurança no ambiente profissional.',
-        interactiveOptions: {
-          question: 'O que Gabriel deve fazer nessa situação?',
-          choices: [
-            { text: 'Aceitar e receber as horas extras no holerite.', correct: false, feedback: 'Incorreto. A lei proíbe horas extras para aprendizes, mesmo que sejam pagas.' },
-            { text: 'Explicar cordialmente que seu contrato de aprendiz proíbe horas extras e que seu horário regular é de 6h diárias.', correct: true, feedback: 'Correto! A recusa informada e educada protege tanto o jovem quanto a empresa.' },
-            { text: 'Faltar no trabalho no dia seguinte sem avisar.', correct: false, feedback: 'Incorreto. Faltas injustificadas geram advertência e desconto salarial.' }
-          ]
-        }
-      }
-    ],
+    caseStudies: [],
     quiz: [
       {
         id: 1,
-        question: 'Qual a jornada máxima permitida para o Jovem Aprendiz que ainda cursa o Ensino Fundamental ou Médio?',
+        question: 'Uma empresa de saúde armazena informações sobre o histórico de exames e o tipo sanguíneo de seus pacientes. Segundo a LGPD, como esses dados são classificados?',
         options: [
-          '4 horas diárias.',
-          '6 horas diárias (30 horas semanais), sem possibilidade de horas extras.',
-          '8 horas diárias mais 2 horas extras.',
-          'Não há limite legal se a empresa pagar adicional.'
+          'Dados Públicos sem restrição de uso.',
+          'Dados Pessoais Comuns de livre comercialização.',
+          'Dados Pessoais Sensíveis.',
+          'Dados Anônimos de domínio público.'
         ],
-        correct: 1,
-        explanation: 'Para estudantes que não concluíram o ensino médio, o teto legal estrito é de 6 horas diárias, preservando o rendimento escolar.'
+        correct: 2,
+        explanation: 'Dados sobre a saúde do indivíduo (como histórico de exames e tipo sanguíneo) são classificados expressamente pela LGPD como Dados Pessoais Sensíveis, devido ao potencial discriminatório em caso de vazamento.'
       },
       {
         id: 2,
-        question: 'Qual a alíquota de FGTS recolhida pela empresa para contratos de Jovem Aprendiz (Lei 10.097)?',
+        question: 'Qual é a função do Encarregado pelo Tratamento de Dados Pessoais (também conhecido como DPO - Data Protection Officer) dentro de uma organização?',
         options: [
-          '8% do salário bruto.',
-          'Isento (0%).',
-          '2% do salário bruto recolhido integralmente pelo empregador.',
-          '5% descontado do jovem.'
+          'Atuar como canal de comunicação entre o controlador, os titulares dos dados e a Autoridade Nacional de Proteção de Dados (ANPD).',
+          'Apagar todos os bancos de dados do servidor ao final de cada mês.',
+          'Decidir sozinho os salários de todos os diretores da empresa.',
+          'Vender relatórios com contatos de clientes para empresas parceiras.'
         ],
-        correct: 2,
-        explanation: 'A alíquota de FGTS da Lei do Aprendiz é especial e reduzida para 2%, custeada pela empresa.'
+        correct: 0,
+        explanation: 'O DPO (Encarregado) é o elo estratégico de ligação e intermediação entre a empresa (Controlador), os titulares dos dados e o órgão fiscalizador (ANPD).'
       },
       {
         id: 3,
-        question: 'Durante a semana de provas da faculdade ou colégio, o que a Lei do Estágio (Lei 11.788/08) garante ao estagiário?',
+        question: 'O setor de Recursos Humanos precisa manter o CPF e os dados bancários dos funcionários armazenados para realizar o pagamento do salário mensal. Qual é a base legal da LGPD que justifica esse tratamento sem a necessidade de solicitar consentimento individual?',
         options: [
-          'Folga remunerada a semana inteira.',
-          'Redução da carga horária de estágio pelo menos à metade para viabilizar os estudos.',
-          'Aumento da bolsa para compra de livros.',
-          'Nenhum direito específico.'
+          'Proteção ao Crédito.',
+          'Tutela da Saúde.',
+          'Realização de Pesquisas Acadêmicas.',
+          'Execução de Contrato ou Obrigação Legal.'
         ],
-        correct: 1,
-        explanation: 'O Art. 10 § 2º da Lei 11.788 assegura redução de no mínimo 50% da jornada em períodos avaliativos oficiais.'
+        correct: 3,
+        explanation: 'A coleta e o uso de dados para pagamento de salários e cumprimento de obrigações trabalhistas/fiscais dispensam consentimento, pois estão amparados pelas bases de Execução de Contrato e Cumprimento de Obrigação Legal.'
       },
       {
         id: 4,
-        question: 'Se uma empresa cobrar R$ 100,00 de "taxa de cadastro ou material didático" para uma entrevista de Jovem Aprendiz, qual é a conduta correta?',
+        question: 'Um colaborador do setor de Vendas enviou por engano uma planilha contendo nomes, e-mails e telefones de 500 clientes para um fornecedor externo não autorizado. Como esse evento deve ser classificado de acordo com as normas de segurança corporativa?',
         options: [
-          'Pagar imediatamente para garantir a vaga.',
-          'Denunciar a prática abusiva, pois é proibida a cobrança de qualquer taxa do candidato.',
-          'Pedir desconto no valor.',
-          'Assinar promissória.'
+          'Uma atualização de cadastro de rotina sem importância.',
+          'Um procedimento padrão de marketing direto.',
+          'Uma melhoria na infraestrutura da rede de internet.',
+          'Um incidente de segurança com vazamento de dados pessoais.'
+        ],
+        correct: 3,
+        explanation: 'O envio indevido de informações a terceiros não autorizados caracteriza um incidente de segurança, exigindo contenção imediata e avaliação de risco de impacto aos titulares.'
+      },
+      {
+        id: 5,
+        question: 'O princípio da LGPD que estabelece que a coleta de dados deve ser limitada ao mínimo necessário para a realização de suas finalidades, abrangendo apenas dados pertinentes e proporcionais, é chamado de:',
+        options: [
+          'Princípio da Necessidade (ou Minimização de Dados).',
+          'Princípio da Livre Mídia.',
+          'Princípio da Lucratividade.',
+          'Princípio do Lucro Cessante.'
+        ],
+        correct: 0,
+        explanation: 'O Princípio da Necessidade (minimização) determina que a organização só deve coletar os dados estritamente fundamentais para aquela operação, evitando excessos.'
+      },
+      {
+        id: 6,
+        question: 'Para evitar que colaboradores visualizem pastas com salários e contratos de diretoria que não pertencem ao seu escopo de trabalho, a empresa deve adotar qual prática de segurança?',
+        options: [
+          'Compartilhamento de senhas no mural do escritório.',
+          'Princípio do Menor Privilégio (Controle de Acesso Restrito por Função).',
+          'Desligamento do sistema de antivírus.',
+          'Instalação de redes Wi-Fi abertas para convidados.'
         ],
         correct: 1,
-        explanation: 'Cobrança de taxas de seleção ou condicionamento a cursos pagos é fraude trabalhista proibida por lei.'
+        explanation: 'O Princípio do Menor Privilégio restringe o acesso aos arquivos apenas para os usuários que realmente precisam das informações para desempenhar suas funções operacionais.'
+      },
+      {
+        id: 7,
+        question: 'O que significa a abordagem de segurança conhecida como Privacy by Design?',
+        options: [
+          'Criar telas bonitas e coloridas nos sites de compra.',
+          'Contratar designers gráficos para desenhar o logotipo da empresa.',
+          'Pensar e incorporar a privacidade e a proteção de dados desde a fase inicial de concepção de um projeto, sistema ou produto.',
+          'Deixar para pensar na proteção de dados apenas após o vazamento ocorrer.'
+        ],
+        correct: 2,
+        explanation: 'Privacy by Design é a metodologia que prevê a privacidade como um pilar estrutural do desenvolvimento de qualquer projeto ou tecnologia, desde a sua ideia inicial.'
       }
     ]
   },
@@ -615,7 +615,7 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
-  // 3. EQUILÍBRIO EMOCIONAL, ANSIEDADE E FOCO NO TRABALHO
+  // 3. POSTURA PROFISSIONAL E TÉCNICAS PARA ENTREVISTAS DE EMPREGO
   // =========================================================================
   {
     id: 'curso-postura-entrevistas',
@@ -623,189 +623,75 @@ export const COURSES: Course[] = [
     trackName: 'TRILHA 1: Entrada no Mercado & Primeiro Emprego',
     category: 'Desenvolvimento Pessoal',
     targetAudienceType: ['PRIMEIRO_EMPREGO', 'JOVEM_APRENDIZ', 'ESTUDANTE'],
-    title: 'Equilíbrio Emocional, Ansiedade e Foco no Trabalho',
-    subtitle: 'Capacitar o profissional a identificar gatilhos de estresse e ansiedade, aplicar técnicas de autorregulação e mindfulness, e construir rotina mentalmente saudável.',
-    hours: 12,
-    equivalentHours: 12,
+    title: 'Postura Profissional e Técnicas para Entrevistas de Emprego',
+    subtitle: 'Comportamento corporativo, dinâmicas de grupo, vestimenta adequada, comunicação assertiva e preparação para perguntas difíceis de recrutadores',
+    hours: 10,
+    equivalentHours: 10,
     modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Jovens aprendizes, estagiários e profissionais em início de carreira buscando produtividade e saúde mental',
+    targetAudience: 'Jovens aprendizes, estagiários e estudantes participando de processos seletivos e entrevistas de emprego',
     prerequisites: 'Nenhum pré-requisito.',
-    badgeName: 'Equilíbrio & Foco no Trabalho',
-    badgeCategory: 'Saúde Mental & Carreira',
-    badgeIcon: 'HeartHandshake',
+    badgeName: 'Destaque em Entrevistas',
+    badgeCategory: 'Atitude Profissional',
+    badgeIcon: 'UserCheck',
     accentColor: '#8B5CF6',
     level: 'Iniciante',
     learningObjectives: [
-      'Identificar o mecanismo biológico do estresse no trabalho, diferenciando Eustresse (positivo) e Distresse (negativo).',
-      'Mapear gatilhos individuais internos (perfeccionismo, síndrome do impostor) e externos (pressões, reuniões e demandas).',
-      'Aplicar técnicas de autorregulação fisiológica como Respiração Quadrada (Box Breathing), Técnica 4-7-8 e Reestruturação Cognitiva.',
-      'Implementar o conceito de Deep Work (Trabalho Profundo) e a pausa estratégica com o método S.T.O.P. de Mindfulness Corporativo.',
-      'Estabelecer fronteiras e desconexão digital no expediente, prevenindo precocemente os sinais da Síndrome de Burnout.'
+      'Preparar respostas autênticas e estruturadas para as perguntas mais frequentes de recrutadores de RH.',
+      'Desenvolver linguagem corporal confiante, contato visual, pontualidade e apresentação pessoal adequada.',
+      'Posicionar-se estrategicamente em dinâmicas de grupo com espírito de equipe e assertividade.',
+      'Elaborar perguntas inteligentes ao entrevistador no encerramento da conversa e realizar acompanhamento pós-entrevista.'
     ],
     modules: [
       {
-        id: 'emo-mod-1',
+        id: 'pos-mod-1',
         number: 1,
-        title: 'MÓDULO 1: Inteligência Emocional e Mapeamento de Gatilhos',
-        summary: 'Autoconhecimento no ambiente corporativo, mecanismo do estresse (eustresse vs. distresse) e mapeamento de gatilhos internos e externos.',
-        estimatedMinutes: 45,
+        title: 'MÓDULO 1: Preparação, Pontualidade e Apresentação Pessoal',
+        summary: 'Pesquisa prévia sobre a empresa, pontualidade britânica, vestimenta adequada e controle do nervosismo.',
+        estimatedMinutes: 40,
         content: {
           sections: [
             {
-              subheading: '1. O Mecanismo do Estresse no Trabalho',
+              subheading: '1.1 A Regra dos 15 Minutos de Antecedência e Pesquisa Prévia',
               body: [
-                'O primeiro passo para o equilíbrio emocional é o autoconhecimento. O ambiente corporativo expõe os profissionais a pressões constantes, prazos curtos e conflitos interpessoais. Entender como o corpo e a mente reagem a esses estímulos é fundamental para evitar a exaustão.',
-                'O estresse é uma resposta biológica natural de preservação. No entanto, quando ativado de forma crônica no escritório (reação de "luta ou fuga"), ele libera cortisol e adrenalina continuamente, prejudicando o raciocínio lógico e a tomada de decisões.',
-                '• Estresse Positivo (Eustresse): O nível de ativação saudável e equilibrado que gera motivação, foco e impulso para cumprir prazos.',
-                '• Estresse Negativo (Distresse): A sobrecarga contínua que gera paralisia, irritabilidade, esquecimentos e exaustão física.'
-              ],
-              highlightBox: {
-                type: 'info',
-                title: 'Eustresse vs. Distresse',
-                text: 'O eustresse é o nível produtivo de energia que nos move. O perigo é a sobrecarga constante sem descanso, que descamba para o distresse crônico.'
-              }
-            },
-            {
-              subheading: '2. Mapeamento de Gatilhos Individuais',
-              body: [
-                'Cada profissional reage de forma diferente aos estímulos do trabalho. O mapeamento consiste em identificar as situações específicas que desencadeiam picos de ansiedade:',
-                '• Gatilhos Internos: Perfeccionismo extremo, medo de errar, síndrome do impostor e necessidade contínua de aprovação alheia.',
-                '• Gatilhos Externos: E-mails de cobrança, reuniões de última hora, sobrecarga de demandas e comunicação agressiva de terceiros.'
-              ],
-              asciiDiagram: `┌────────────────────────────────────────────────────────┐
-│           MAPEAMENTO DE GATILHOS CORPORATIVOS          │
-├────────────────────────────────────────────────────────┤
-│ GATILHOS INTERNOS:                                     │
-│ • Perfeccionismo ──► Medo de errar ──► Procrastinação  │
-│ • Síndrome do Impostor ──► Insegurança contínua        │
-├────────────────────────────────────────────────────────┤
-│ GATILHOS EXTERNOS:                                     │
-│ • Demandas urgentes ──► Sobrecarga ──► Desorganização  │
-│ • Cobranças e prazos ──► Reação de Luta ou Fuga        │
-└────────────────────────────────────────────────────────┘`
-            }
-          ]
-        }
-      },
-      {
-        id: 'emo-mod-2',
-        number: 2,
-        title: 'MÓDULO 2: Técnicas de Autorregulação e Gestão da Ansiedade',
-        summary: 'Exercícios práticos de respiração para ativação parassimpática (Box Breathing e 4-7-8) e reestruturação cognitiva contra a catastrofização.',
-        estimatedMinutes: 45,
-        content: {
-          sections: [
-            {
-              subheading: '1. Técnicas Respiratórias para Redução Ansiolítica',
-              body: [
-                'A ansiedade manifesta-se quando a mente antecipa cenários futuros catastróficos. A autorregulação emocional reúne ferramentas práticas para trazer a atenção de volta ao presente e acalmar o sistema nervoso autônomo.',
-                'A respiração é a ponte direta para ativar o sistema nervoso parassimpático, desacelerando os batimentos cardíacos:',
-                '• Respiração Quadrada (Box Breathing): Inspirar em 4 segundos, reter o ar por 4 segundos, expirar em 4 segundos e manter os pulmões vazios por 4 segundos. Ideal para fazer antes de reuniões decisivas ou apresentações.',
-                '• Técnica 4-7-8: Inspirar pelo nariz em 4 segundos, reter o ar por 7 segundos e soltar o ar lentamente pela boca durante 8 segundos.'
-              ],
-              highlightBox: {
-                type: 'calc',
-                title: 'Respiração Quadrada (Box Breathing)',
-                text: 'Inspire em 4s ──► Segure em 4s ──► Expire em 4s ──► Pause em 4s. Pratique 4 rodadas para normalizar batimentos e clarear o raciocínio.'
-              }
-            },
-            {
-              subheading: '2. Reestruturação Cognitiva',
-              body: [
-                'Diante de uma crise de ansiedade ou de um erro no projeto, a mente costuma criar distorções cognitivas (catastrofização). A reestruturação é o ato de questionar o pensamento ansiogênico com fatos concretos:',
-                '• Pensamento Ansiogênico: "Apresentei o relatório com um dado incorreto, serei demitido imediatamente."',
-                '• Questionamento Racional: "O dado foi corrigido a tempo? Qual é a probabilidade real de demissão por esse fato isolado? Qual o plano de ação prático agora para alinhar com o gestor?"'
-              ],
-              highlightBox: {
-                type: 'warning',
-                title: 'Fatos vs. Suposições',
-                text: 'Não tome pensamentos catastróficos como certezas. Busque fatos observáveis e estruture um plano de resolução em vez de alimentar o pânico.'
-              }
-            }
-          ]
-        }
-      },
-      {
-        id: 'emo-mod-3',
-        number: 3,
-        title: 'MÓDULO 3: Foco Profundo (Deep Work) e Atenção Plena',
-        summary: 'Metodologia de Trabalho Profundo (Deep Work) vs. Trabalho Superficial (Shallow Work) e aplicação do método S.T.O.P. de mindfulness no trabalho.',
-        estimatedMinutes: 45,
-        content: {
-          sections: [
-            {
-              subheading: '1. O Estado de Flow e o Trabalho Profundo (Deep Work)',
-              body: [
-                'A oscilação emocional corrói a capacidade de concentração. Em um ambiente repleto de notificações, manter o foco em tarefas complexas exige estratégias deliberadas de proteção mental.',
-                'O conceito de Deep Work (Trabalho Profundo), desenvolvido por Cal Newport, refere-se à capacidade de focar sem distrações em uma tarefa cognitivamente exigente.',
-                '• Trabalho Superficial (Shallow Work): Tarefas mecânicas e operacionais (responder e-mails rápidos, organizar pastas) que exigem pouco esforço mental, mas consomem o dia.',
-                '• Construção de Rituais de Foco: Eliminação de abas desnecessárias, bloqueio de notificações e definição de metas claras para o bloco de trabalho focado.'
+                'Calcule seu trajeto com antecedência e chegue 15 minutos antes do horário marcado para demonstrar pontualidade e comprometimento.',
+                'Pesquise a fundo sobre a empresa contratante: setor de atuação, produtos, cultura corporativa e notícias recentes.'
               ]
             },
             {
-              subheading: '2. Aplicação Prática do Mindfulness Corporativo (Método S.T.O.P.)',
+              subheading: '1.2 Vestimenta e Comunicação Não-Verbal',
               body: [
-                'Atenção plena (Mindfulness) não significa "esvaziar a mente", mas observar os pensamentos e emoções sem julgamento imediato, ancorando-se na atividade presente.',
-                'A Pausa Estratégica (Método S.T.O.P.):',
-                '• S (Stop): Pare o que está fazendo por instantes.',
-                '• T (Take a breath): Tome uma respiração profunda e lenta.',
-                '• O (Observe): Observe seus pensamentos, suas emoções e as sensações do seu corpo com curiosidade.',
-                '• P (Proceed): Prossiga com clareza, intenção e tranquilidade.'
-              ],
-              asciiDiagram: `┌────────────────────────────────────────────────────────┐
-│               MÉTODO S.T.O.P. DE MINDFULNESS           │
-├────────────────────────────────────────────────────────┤
-│ [S] STOP: Pare imediatamente o que está fazendo        │
-│ [T] TAKE A BREATH: Respire consciente e profundamente  │
-│ [O] OBSERVE: Observe mente, emoções e corpo sem julgar │
-│ [P] PROCEED: Prossiga com foco, calma e intenção clara │
-└────────────────────────────────────────────────────────┘`
+                'Vista-se de maneira profissional e compatível com a cultura da empresa.',
+                'Mantenha postura ereta, contato visual cordial, escuta atenta e aperto de mão firme.'
+              ]
             }
           ]
         }
       },
       {
-        id: 'emo-mod-4',
-        number: 4,
-        title: 'MÓDULO 4: Limites Saudáveis, Comunicação e Prevenção do Burnout',
-        summary: 'Fronteiras profissionais, desconexão digital no expediente, comunicação assertiva e identificação dos sinais precoces e avançados de Burnout.',
-        estimatedMinutes: 45,
+        id: 'pos-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: Dominando Perguntas Clássicas e Dinâmicas de Grupo',
+        summary: 'Como estruturar respostas para "Conte sobre você", pontos fortes, oportunidades de melhoria e atuação em equipe.',
+        estimatedMinutes: 40,
         content: {
           sections: [
             {
-              subheading: '1. Estabelecimento de Fronteiras e Desconexão Digital',
+              subheading: '2.1 Estrutura da Resposta "Conte sobre você"',
               body: [
-                'O equilíbrio emocional sustentável depende da capacidade de estabelecer fronteiras claras entre a vida profissional e a vida pessoal, evitando o esgotamento extremo (Burnout).',
-                'A hiperconectividade cria a falsa sensação de que tudo precisa ser respondido imediatamente.',
-                '• Desconexão do Expediente: Definir um horário claro para encerrar a checagem de mensagens corporativas no celular pessoal.',
-                '• Gestão de Expectativas: Comunicar à equipe os prazos reais de resposta e entrega, sem assumir compromissos inalcançáveis por medo de dizer "não".'
+                'Use o roteiro: Presente (o que está estudando/fazendo) -> Conquistas e Competências -> Futuro (por que busca essa oportunidade).'
               ],
               highlightBox: {
                 type: 'info',
-                title: 'Comunicação Assertiva',
-                text: 'Dizer "não" fundamentado com alternativas e prazos viáveis é sinal de maturidade profissional e respeito pela qualidade do trabalho.'
+                title: 'Exemplo Prático',
+                text: 'Demonstre interesse genuíno conectando suas habilidades atuais aos objetivos da vaga pretendida.'
               }
             },
             {
-              subheading: '2. Sinais de Alerta do Burnout',
+              subheading: '2.2 Dinâmicas de Grupo e Pontos de Melhoria',
               body: [
-                'A Síndrome de Burnout é o estresse crônico não gerenciado no ambiente de trabalho. Reconhecer os sinais iniciais evita o colapso físico e emocional:',
-                '• Estágio Inicial: Entusiasmo excessivo com negligência de necessidades básicas (sono, alimentação); sensação constante de falta de tempo e ansiedade aos domingos.',
-                '• Estágio Avançado: Exaustão física e mental diária; cinismo, desconexão emocional com o trabalho e queda brusca de produtividade.'
-              ],
-              asciiDiagram: `┌────────────────────────────────────────────────────────┐
-│             ESTÁGIOS DA SÍNDROME DE BURNOUT            │
-├────────────────────────────────────────────────────────┤
-│ ESTÁGIO INICIAL:                                       │
-│ • Entusiasmo desmedido sem descanso                    │
-│ • Negligência com sono e alimentação                   │
-│ • Ansiedade aos domingos e falta de tempo              │
-├────────────────────────────────────────────────────────┤
-│ ESTÁGIO AVANÇADO:                                      │
-│ • Exaustão física e mental diária                      │
-│ • Cinismo, frieza e distanciamento da equipe           │
-│ • Queda drástica de produtividade e esgotamento        │
-└────────────────────────────────────────────────────────┘`
+                'Em dinâmicas, mostre colaboração, escuta ativa e liderança compartilhada sem tentar diminuir os colegas.',
+                'Ao falar de pontos de melhoria, cite um aspecto real e explique o que está fazendo ativamente para aprimorá-lo.'
+              ]
             }
           ]
         }
@@ -815,151 +701,223 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'Durante um dia de alta demanda no escritório, um colaborador percebe que sua respiração está acelerada e que não consegue se concentrar nas tarefas devido ao nervosismo. Qual técnica de autorregulação fisiológica é mais indicada para reativar a calma do sistema nervoso de forma rápida?',
+        question: 'Qual a conduta recomendada ao responder sobre seus pontos a melhorar em uma entrevista?',
         options: [
-          'Ingerir bebidas estimulantes com alto teor de cafeína para acelerar o ritmo de trabalho.',
-          'Ignorar os sinais do corpo e continuar digitando em velocidade máxima sem fazer pausas.',
-          'Aplicar a técnica de Respiração Quadrada (Box Breathing), alternando inspiração, retenção, expiração e pausa em tempos iguais.',
-          'Reclamar abertamente sobre a sobrecarga com os colegas de equipe durante o horário de pico.'
+          'Dizer que é perfeccionista demais ou que não tem nenhum defeito.',
+          'Citar uma oportunidade de melhoria real e explicar o que tem feito ativamente para desenvolvê-la.',
+          'Falar mal de professores da escola ou colegas anteriores.',
+          'Ficar em silêncio.'
         ],
-        correct: 2,
-        explanation: 'A técnica de Respiração Quadrada (Box Breathing) reduz diretamente os níveis de excitação fisiológica provocados pela ansiedade, desacelerando a frequência cardíaca e ativando o sistema nervoso parassimpático para recuperar o controle consciente.'
+        correct: 1,
+        explanation: 'Demonstrar autoconhecimento e atitude ativa de aprendizado é o que os recrutadores mais valorizam.'
       },
       {
         id: 2,
-        question: 'A Síndrome de Burnout foi reconhecida como uma condição ocupacional resultante do estresse crônico no ambiente de trabalho. Qual das opções abaixo apresenta um sintoma característico dessa síndrome em seu estágio avançado?',
+        question: 'Qual é a melhor forma de responder à pergunta "Conte-me sobre você" em uma entrevista?',
         options: [
-          'Sensação diária de exaustão física/mental acompanhada de atitudes de cinismo e desapego ao trabalho.',
-          'Aumento da criatividade e engajamento constante em novos projetos da empresa.',
-          'Capacidade de manter o foco ininterrupto por 12 horas consecutivas sem apresentar fadiga.',
-          'Facilidade em desligar-se das responsabilidades profissionais no exato momento em que encerra o expediente.'
+          'Contar toda a sua infância detalhadamente.',
+          'Seguir o roteiro: Presente (estudos/rotina) -> Habilidades desenvolvidas -> Por que tem interesse na vaga.',
+          'Dizer apenas seu nome e idade e esperar a próxima pergunta.',
+          'Reclamar do trajeto de transporte público até a entrevista.'
         ],
-        correct: 0,
-        explanation: 'O Burnout é caracterizado pela tríade: exaustão emocional profunda, despersonalização/cinismo (desapego frio em relação às tarefas e colegas) e queda da percepção de eficácia profissional.'
+        correct: 1,
+        explanation: 'Estruturar a resposta com foco na trajetória acadêmica e profissional atual demonstra clareza e objetividade.'
       },
       {
         id: 3,
-        question: 'O conceito de Deep Work (Trabalho Profundo) exige eliminar distrações para focar em tarefas cognitivamente complexas. Qual ação prática contribui diretamente para a criação de um ambiente favorável ao Deep Work?',
+        question: 'Por que é fundamental pesquisar sobre a empresa antes da entrevista?',
         options: [
-          'Deixar os alertas sonoros do e-mail e do chat corporativo ativados na tela principal.',
-          'Alternar a atenção a cada 5 minutos entre a escrita de um relatório e a navegação em redes sociais.',
-          'Realizar chamadas de vídeo sem roteiro prévio enquanto tenta revisar planilhas complexas.',
-          'Agendar o checamento de e-mails para horários específicos do dia e silenciar notificações durante o bloco de foco.'
+          'Para fingir que já trabalhou lá.',
+          'Para entender o negócio, alinhar suas respostas à cultura da empresa e fazer perguntas relevantes.',
+          'Para saber o salário de todos os diretores.',
+          'Não é necessário pesquisar sobre a empresa.'
         ],
-        correct: 3,
-        explanation: 'O Trabalho Profundo exige a eliminação de fragmentações na atenção. Definir blocos de tempo isolados e silenciar notificações previne a troca constante de contexto, permitindo hiperfoco e alta performance.'
+        correct: 1,
+        explanation: 'Demonstrar conhecimento sobre os produtos, serviços e valores da empresa prova interesse real e proatividade.'
       },
       {
         id: 4,
-        question: 'Diante de um erro cometido em um projeto, a mente de um profissional ansioso pode gerar uma "distorção cognitiva", acreditando que o problema é uma catastrofização irreparável. Qual técnica ajuda a reestruturar esse pensamento de forma racional?',
+        question: 'Durante uma dinâmica de grupo com outros candidatos, qual comportamento é mais valorizado pelos avaliadores?',
         options: [
-          'Aceitar o pensamento catastrófico como verdade absoluta e pedir demissão imediatamente.',
-          'Questionar o pensamento ansiogênico buscando evidências concretas sobre o impacto real e focando no plano de ação para correção.',
-          'Esconder o erro da equipe na esperança de que ninguém perceba a falha.',
-          'Culpar publicamente outros colegas pelo ocorrido para preservar a própria imagem.'
+          'Falar mais alto que todos para impor suas ideias sozinho.',
+          'Colaborar com o grupo, praticar escuta ativa e ajudar a construir a solução em equipe.',
+          'Permanecer calado e deixar os outros resolverem tudo.',
+          'Criticar as opiniões dos concorrentes para se destacar.'
         ],
         correct: 1,
-        explanation: 'A Reestruturação Cognitiva combate vieses de catastrofização substituindo suposições por fatos. Analisar o erro objetivamente e construir uma solução prática reduz a ansiedade e restaura o senso de controle.'
+        explanation: 'O trabalho em equipe, a escuta atenta e o espírito colaborativo são as competências mais observadas em dinâmicas.'
       },
       {
         id: 5,
-        question: 'O acrônimo S.T.O.P. representa uma pausa consciente no meio da rotina para recuperar a clareza e o equilíbrio emocional. O que significa a letra "O" nessa metodologia de Mindfulness?',
+        question: 'Com quanta antecedência é recomendado chegar ao local da entrevista presencial?',
         options: [
-          'Observar os pensamentos, emoções e sensações corporais sem julgamento imediato.',
-          'Omitir os sentimentos negativos até o fim da semana.',
-          'Optimizar o tempo eliminando o horário de almoço.',
-          'Organizar a mesa de trabalho descartando papéis antigos.'
+          'Exatamente no minuto marcado.',
+          'Cerca de 10 a 15 minutos antes do horário agendado.',
+          'Uma hora e meia antes.',
+          '15 minutos após o horário combinado.'
         ],
-        correct: 0,
-        explanation: 'No método S.T.O.P. (Stop, Take a breath, Observe, Proceed), o passo Observe orienta o indivíduo a tomar consciência de seus estados internos (pensamentos, emoções, tensão muscular) com curiosidade e sem auto-julgamento.'
+        correct: 1,
+        explanation: 'Chegar de 10 a 15 minutos antes previne imprevistos de trânsito e demonstra pontualidade e respeito.'
       },
       {
         id: 6,
-        question: 'Para manter a saúde mental e prevenir o esgotamento no ambiente de trabalho, o estabelecimento de limites saudáveis é indispensável. Qual postura reflete o estabelecimento de uma fronteira profissional assertiva?',
+        question: 'Quando o entrevistador pergunta no final "Você tem alguma dúvida?", qual é a melhor postura?',
         options: [
-          'Responder mensagens de trabalho no aplicativo pessoal de mensagens às 23 horas de um domingo.',
-          'Aceitar todas as solicitações de última hora recebidas, mesmo quando impossibilitam o cumprimento dos prazos já acordados.',
-          'Desligar o telefone corporativo durante o horário de expediente normal sem avisar a equipe.',
-          'Comunicar com clareza a capacidade atual de entregas, renegociar prazos com a liderança e respeitar os horários de descanso.'
+          'Dizer que não tem nenhuma dúvida e que quer ir embora rápido.',
+          'Fazer perguntas inteligentes sobre os próximos passos, a rotina da equipe ou os desafios da vaga.',
+          'Perguntar logo se pode faltar na primeira semana.',
+          'Pedir para o recrutador avaliar seu desempenho imediatamente.'
         ],
-        correct: 3,
-        explanation: 'Ter assertividade emocional significa alinhar expectativas e prioridades de forma transparente com a equipe. Dizer "não" fundamentado ou renegociar prazos protege a qualidade das entregas e a saúde mental do profissional.'
+        correct: 1,
+        explanation: 'Fazer perguntas pertinentes demonstra engajamento, curiosidade profissional e interesse na oportunidade.'
       },
       {
         id: 7,
-        question: 'O estresse é uma reação biológica do organismo que pode ser dividida entre "eustresse" e "distresse". Qual a principal característica do eustresse?',
+        question: 'Qual aspecto da comunicação não-verbal transmite segurança e profissionalismo?',
         options: [
-          'É o estágio final de esgotamento físico que exige afastamento médico imediato.',
-          'Trata-se do sentimento constante de pânico acompanhado de insônia crônica.',
-          'É a forma saudável e positiva de estresse, que mobiliza energia, melhora o foco e motiva a resolução de desafios.',
-          'É a incapacidade total de sentir qualquer tipo de emoção durante reuniões de trabalho.'
+          'Olhar para o chão ou checar o celular durante a conversa.',
+          'Manter postura ereta, contato visual cordial e escuta atenta.',
+          'Cruzar os braços com cara fechada durante toda a entrevista.',
+          'Falar muito baixo de modo que o entrevistador não consiga ouvir.'
         ],
-        correct: 2,
-        explanation: 'O Eustresse (estresse positivo) é o nível moderado de ativação necessário para nos manter alertas, motivados e engajados na superação de metas e desafios do dia a dia, diferindo do estresse crônico nocivo (distresse).'
+        correct: 1,
+        explanation: 'Contato visual, postura aberta e atenção ao interlocutor transmitem confiança, cordialidade e respeito.'
       }
     ]
   },
 
   // =========================================================================
-  // 4. MICROSOFT EXCEL & PLANILHAS INTELIGENTES
+  // 4. MICROSOFT EXCEL & PLANILHAS ELETRÔNICAS PARA ESCRITÓRIO
   // =========================================================================
   {
     id: 'curso-excel-basico-avancado',
     trackId: 'trilha-3',
     trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
     category: 'Tecnologia da Informação',
-    targetAudienceType: ['ESTAGIARIO', 'ESTUDANTE', 'JOVEM_APRENDIZ'],
+    targetAudienceType: ['PRIMEIRO_EMPREGO', 'JOVEM_APRENDIZ', 'ESTUDANTE'],
     title: 'Microsoft Excel & Planilhas Eletrônicas para Escritório',
-    subtitle: 'Fórmulas essenciais (SOMA, MÉDIA, SE, PROCV), formatação de tabelas, gráficos gerenciais e atalhos rápidos',
-    hours: 16,
-    equivalentHours: 16,
+    subtitle: 'Capacitar profissionais a dominar o uso de planilhas eletrônicas aplicadas às rotinas administrativas de escritório, automatizando cruzamentos de dados, análise de relatórios, controle financeiro e apresentações executivas.',
+    hours: 12,
+    equivalentHours: 12,
     modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Estudantes e aprendizes atuando em apoio administrativo e operacional',
-    prerequisites: 'Noções básicas de uso do computador.',
+    targetAudience: 'Jovens aprendizes, estagiários e assistentes administrativos que buscam dominar cruzamento de dados, automação com fórmulas e relatórios gerenciais no Excel',
+    prerequisites: 'Noções básicas de informática ou pacote Office.',
     badgeName: 'Excel & Ferramentas de Escritório',
     badgeCategory: 'Ferramentas de Escritório',
-    badgeIcon: 'Briefcase',
+    badgeIcon: 'FileSpreadsheet',
     accentColor: '#10B981',
     level: 'Intermediário',
     learningObjectives: [
-      'Navegar com destreza pelas células, linhas, colunas e abas do Microsoft Excel e Google Planilhas.',
-      'Escrever fórmulas matemáticas básicas e funções essenciais como =SOMA(), =MÉDIA(), =SE() e =PROCV().',
-      'Aplicar formatação condicional visual para destacar status (ex: Pendente / Concluído).',
-      'Construir gráficos de colunas e setores para apresentação de relatórios à chefia.'
+      'Padronizar bases de dados corporativas usando Texto para Colunas, funções de texto (=ARRUMAR, =MAIÚSCULA), remoção de duplicatas e validação de dados.',
+      'Dominar o cruzamento de dados entre tabelas com PROCV e PROCX, eliminando erros com a função SEERRO.',
+      'Aplicar consolidação condicional de dados e múltiplos critérios com SOMASES, CONT.SES e MÉDIASES, além de calcular prazos com funções de data.',
+      'Construir Tabelas Dinâmicas (Pivot Tables) do zero, sumarizando e agrupando grandes volumes de dados por períodos.',
+      'Criar painéis executivos e relatórios gerenciais interativos utilizando Segmentação de Dados (Slicers) e Gráficos Dinâmicos.'
     ],
     modules: [
       {
-        id: 'exc-mod-1',
+        id: 'exc-esc-mod-1',
         number: 1,
-        title: 'MÓDULO 1: Estrutura de Células e Operações Básicas',
-        summary: 'Conceito de células (A1, B2), inserção de dados, tipos de dados (texto, número, moeda, data) e auto-preenchimento.',
+        title: 'MÓDULO 1: Organização de Dados e Padronização de Planilhas',
+        summary: 'No ambiente corporativo, a maioria dos erros de cálculo ocorre devido a bases de dados desorganizadas, com textos mal formatados ou entradas inconsistentes.',
         estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1.1 O Sinal de Igual (=) e as Quatro Operações',
+              subheading: '1. Importação e Limpeza de Dados',
               body: [
-                'Toda fórmula no Excel deve começar obrigatoriamente com o sinal de igual (=).',
-                'Operadores aritméticos: Adição (+), Subtração (-), Multiplicação (*) e Divisão (/).',
-                'Exemplo: =A1*B1 calcula o preço unitário multiplicado pela quantidade em estoque.'
+                'No ambiente corporativo, a maioria dos erros de cálculo ocorre devido a bases de dados desorganizadas, com textos mal formatados ou entradas inconsistentes.',
+                'Conversão de Texto para Colunas: Separar dados exportados de sistemas ERP/CRM (como nomes completos, datas e códigos separados por vírgula ou tabulação).',
+                'Funções de Texto Essenciais:',
+                '• =ARRUMAR(): Remove espaços sobressalentes no início, meio ou fim do texto, evitando falhas em buscas.',
+                '• =MAIÚSCULA(), =MINÚSCULA() e =PRI.MAIÚSCULA(): Padronização de nomes de clientes, produtos e cadastros em formatos homogêneos.',
+                'Remoção de Duplicadas e Validação de Dados: Criar listas suspensas (menus de seleção) para restringir o que o usuário pode digitar em uma célula, prevenindo erros de digitação e inconsistências no banco de dados.'
+              ]
+            },
+            {
+              subheading: '2. Formatação Condicional Aplicada',
+              body: [
+                'Destaques Automáticos: Destacar em vermelho contas a vencer, metas não atingidas ou estoques baixos de forma visual e dinâmica.',
+                'Escalas de Cor e Conjuntos de Ícones: Visualização rápida de desempenho e alertas em relatórios gerenciais sem a necessidade de ler linha por linha.'
               ]
             }
           ]
         }
       },
       {
-        id: 'exc-mod-2',
+        id: 'exc-esc-mod-2',
         number: 2,
-        title: 'MÓDULO 2: Funções Lógicas e de Busca (=SE, =PROCV, =CONT.SE)',
-        summary: 'Como automatizar decisões em planilhas e localizar dados em grandes tabelas de produtos ou clientes.',
-        estimatedMinutes: 50,
+        title: 'MÓDULO 2: Cruzamento de Dados e Buscas Avançadas',
+        summary: 'A habilidade mais cobrada em processos seletivos e no dia a dia de escritórios é a capacidade de relacionar informações de tabelas diferentes.',
+        estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '2.1 A Função Lógica =SE()',
+              subheading: '1. A Família de Buscas (PROCV e PROCX)',
               body: [
-                'A função =SE(teste_lógico; valor_se_verdadeiro; valor_se_falso) permite que a planilha tome decisões automáticas.',
-                'Exemplo: =SE(C2>=70; "Aprovado"; "Em Revisão") classifica alunos com base na nota de corte.'
+                'PROCV (Procura Vertical): Buscar informações em outras tabelas com base em um código identificador (ex: buscar o preço ou descrição de um produto a partir do seu SKU ou matrícula).',
+                'Sintaxe: =PROCV(valor_procurado; matriz_tabela; número_índice_coluna; [procurar_intervalo])',
+                '• O parâmetro [procurar_intervalo] deve ser configurado como FALSO (ou 0) para garantir a busca exata.',
+                'PROCX (A Evolução da Busca): Como utilizar a função moderna que substitui o PROCV, permitindo buscas para a esquerda, sem necessidade de contar colunas e com tratamento automático de valores não encontrados.'
+              ]
+            },
+            {
+              subheading: '2. Tratamento de Erros de Busca',
+              body: [
+                'Função SEERRO: Evitar que a planilha exiba poluição visual como #N/D ou #VALOR! quando uma informação não for encontrada na base.',
+                'Exemplo Prático: =SEERRO(PROCV(A2; Clientes!A:D; 2; FALSO); \\"Código não encontrado\\")'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'exc-esc-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Consolidação, Estatística e Soma Condicional',
+        summary: 'Aprender a somar, contar e calcular médias apenas quando determinadas condições do negócio forem atendidas.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Funções Condicionais Compostas',
+              body: [
+                'SOMASE e SOMASES: Somar valores com base em um ou múltiplos critérios simultâneos (ex: somar o total de vendas realizado apenas na região \\"Sul\\" durante o mês de \\"Agosto\\").',
+                'CONT.SE e CONT.SES: Contar a quantidade de ocorrências que atendem a regras específicas (ex: quantos chamados de suporte continuam com status \\"Aberto\\").',
+                'MÉDIASE e MÉDIASES: Obter a média ponderada de faturamento por segmento de cliente ou por filial.'
+              ]
+            },
+            {
+              subheading: '2. Trabalhando com Datas e Prazos Corporativos',
+              body: [
+                'Funções de Data (DIA, MÊS, ANO, HOJE): Automatizar o cálculo de dias de atraso de faturas e controle de vencimentos.',
+                'DIATRABALHO e NETWORKDAYS: Calcular prazos úteis de projetos descontando finais de semana e feriados nacionais de forma precisa.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'exc-esc-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Tabelas Dinâmicas e Relatórios Gerenciais',
+        summary: 'A ferramenta definitiva para resumir milhares de linhas de dados em segundos.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Construção de Tabelas Dinâmicas (Pivot Tables)',
+              body: [
+                'Estruturação da Fonte de Dados: Requisitos fundamentais para transformar uma lista comum em uma Tabela Dinâmica funcional (cabeçalhos únicos, sem células mescladas e sem linhas em branco intercaladas).',
+                'Campos e Áreas: Domínio dos quadrantes Linhas, Colunas, Valores e Filtros para organizar os dados com movimentos de arrastar e soltar.',
+                'Agrupamentos Temporais: Agrupar datas por Mês, Trimestre ou Ano para análise rápida de evolução de faturamento ao longo do tempo.'
+              ]
+            },
+            {
+              subheading: '2. Segmentação de Dados e Painéis (Dashboards)',
+              body: [
+                'Segmentadores de Dados (Filtros Visuais / Slicers): Criar botões interativos e elegantes para filtrar relatórios com apenas um clique.',
+                'Gráficos Dinâmicos: Conectar gráficos interativos à Tabela Dinâmica para criar apresentações executivas e painéis de controle (Dashboards) para reuniões de diretoria.'
               ]
             }
           ]
@@ -970,59 +928,233 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'Com qual caractere deve iniciar qualquer fórmula ou cálculo no Microsoft Excel?',
+        question: 'Um analista administrativo precisa buscar o salário de um funcionário em uma tabela usando o número da sua matrícula como referência. A matriz possui a matrícula na Coluna A e o salário na Coluna C. Qual das opções representa uma busca configurada corretamente com PROCV para retornar o valor exato?',
         options: [
-          'Com o sinal de soma (+)',
-          'Com o sinal de igual (=)',
-          'Com o arroba (@)',
-          'Com uma barra (/)'
+          '=PROCV(A1:C100; A2; 3; \\"Exato\\")',
+          '=PROCV(A2; A1:C100; 1; VERDADEIRO)',
+          '=PROCV(A2; A1:C100; 3; FALSO)',
+          '=PROCV(3; A1:C100; A2; FALSO)'
+        ],
+        correct: 2,
+        explanation: 'Na função =PROCV(A2; A1:C100; 3; FALSO), o parâmetro A2 é o valor procurado, A1:C100 é o intervalo, 3 representa a coluna do salário (Coluna C) e FALSO garante a busca exata do código.'
+      },
+      {
+        id: 2,
+        question: 'Ao utilizar a função PROCV, caso o código procurado não exista na tabela de destino, o Excel retorna o erro #N/D. Qual função deve ser envelopada ao redor do PROCV para substituir esse código de erro por uma mensagem amigável como \\"Não Cadastrado\\"?',
+        options: [
+          '=SEERRO()',
+          '=SE.ERRO.TEXTO()',
+          '=LIMPAR.ERRO()',
+          '=CORRIGIR()'
+        ],
+        correct: 0,
+        explanation: 'A função =SEERRO(valor; valor_se_erro) avalia uma fórmula e, caso retorne qualquer erro (como #N/D, #VALOR!), exibe o texto amigável definido pelo usuário.'
+      },
+      {
+        id: 3,
+        question: 'Um assistente financeiro precisa somar o valor total de notas fiscais que pertencem exclusivamente ao fornecedor \\"Papelaria Silva\\" e que tenham o status de \\"Pendente\\". Qual função do Excel permite realizar a soma com mais de um critério simultâneo?',
+        options: [
+          '=SOMASE()',
+          '=SOMA.VARIAS()',
+          '=CONT.SES()',
+          '=SOMASES()'
+        ],
+        correct: 3,
+        explanation: 'Enquanto o SOMASE suporta apenas uma condição, a função SOMASES é projetada para somar valores aplicando múltiplos critérios simultâneos (Fornecedor + Status).'
+      },
+      {
+        id: 4,
+        question: 'Para evitar que colaboradores digitem nomes de departamentos de forma errada na planilha (como \\"RH\\", \\"R.H.\\" ou \\"Recursos Humanos\\"), qual recurso do Excel deve ser configurado na célula para limitar a digitação a uma lista pré-definida?',
+        options: [
+          'Formatação Condicional.',
+          'Validação de Dados.',
+          'Filtro Avançado.',
+          'Texto para Colunas.'
         ],
         correct: 1,
-        explanation: 'O sinal de igual (=) instrui o software a calcular a expressão seguinte.'
+        explanation: 'A Validação de Dados (localizada na guia Dados) permite criar restrições e listas suspensas (dropdowns), padronizando a inserção de dados na planilha.'
+      },
+      {
+        id: 5,
+        question: 'Qual é a principal vantagem operacional ao utilizar a Tabela Dinâmica (Pivot Table) para analisar grandes volumes de dados no escritório?',
+        options: [
+          'Ela digita automaticamente os dados que estão faltando na planilha.',
+          'Ela impede que o arquivo do Excel seja apagado do computador.',
+          'Ela permite resumir, agrupar e cruzar milhares de linhas de informações em poucos segundos sem a necessidade de escrever fórmulas complexas.',
+          'Ela substitui completamente o uso do sistema operacional Windows.'
+        ],
+        correct: 2,
+        explanation: 'A Tabela Dinâmica é a ferramenta mais eficiente para análise de dados, permitindo reestruturar relatórios, somar e agrupar dados dinamicamente com movimentos de arrastar e soltar.'
+      },
+      {
+        id: 6,
+        question: 'Uma equipe de compras importou um relatório onde os nomes dos clientes vieram com espaços extras no meio e no final das frases (ex: \\" João Silva \\"). Qual função de texto do Excel limpa automaticamente esses espaços desnecessários?',
+        options: [
+          '=LIMPAR.ESPAÇO()',
+          '=ARRUMAR()',
+          '=CONCATENAR()',
+          '=REMOVER.TEXTO()'
+        ],
+        correct: 1,
+        explanation: 'A função =ARRUMAR() elimina todos os espaços extras de uma cadeia de texto, deixando apenas o espaço simples entre as palavras.'
+      },
+      {
+        id: 7,
+        question: 'Em um painel interativo (Dashboard) feito no Excel, qual recurso permite adicionar botões visuais para filtrar dados de uma Tabela Dinâmica com apenas um clique?',
+        options: [
+          'Tabela de Dispersão.',
+          'Mala Direta.',
+          'Segmentação de Dados (Slicer).',
+          'Macro de Gravação.'
+        ],
+        correct: 2,
+        explanation: 'A Segmentação de Dados (Slicer) cria botões visuais e interativos que filtram relatórios e gráficos dinâmicos de maneira rápida e prática.'
       }
     ]
   },
 
   // =========================================================================
-  // 5. INTELIGÊNCIA ARTIFICIAL E PRODUTIVIDADE
+  // 5. INTELIGÊNCIA ARTIFICIAL E AUTOMAÇÃO NO DIA A DIA DE TRABALHO
   // =========================================================================
   {
     id: 'curso-ia-produtividade',
     trackId: 'trilha-3',
     trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
     category: 'Tecnologia da Informação',
-    targetAudienceType: ['ESTAGIARIO', 'ESTUDANTE'],
+    targetAudienceType: ['ESTAGIARIO', 'ESTUDANTE', 'JOVEM_APRENDIZ'],
     title: 'Inteligência Artificial e Automação no Dia a Dia de Trabalho',
-    subtitle: 'Como utilizar IA generativa (Gemini/ChatGPT) com segurança, prompts eficazes e ética profissional',
+    subtitle: 'Capacitar profissionais a integrar ferramentas de Inteligência Artificial Generativa e automações simples nas suas rotinas de trabalho, otimizando o tempo, eliminando tarefas repetitivas e aumentando a produtividade com responsabilidade, ética e segurança de dados.',
     hours: 12,
     equivalentHours: 12,
     modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Jovens que desejam turbinar sua produtividade com tecnologia moderna',
-    prerequisites: 'Navegação básica na web.',
-    badgeName: 'Inovador em IA & Produtividade',
+    targetAudience: 'Profissionais, aprendizes, estagiários e estudantes que buscam aplicar IA generativa e automação no fluxo de trabalho corporativo',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Especialista em IA & Automação Corporativa',
     badgeCategory: 'Ferramentas de Escritório',
     badgeIcon: 'Cpu',
     accentColor: '#3B82F6',
-    level: 'Avançado',
+    level: 'Intermediário',
     learningObjectives: [
-      'Escrever prompts estruturados para resumir textos longos e gerar rascunhos de relatórios.',
-      'Compreender os riscos de vazamento de dados corporativos confidenciais ao usar ferramentas públicas de IA.',
-      'Revisar criticamente saídas geradas por IA para evitar informações incorretas.'
+      'Compreender os fundamentos da IA Generativa e dominar Engenharia de Prompts (Prompt Engineering) com técnicas de Few-Shot e Chain of Thought.',
+      'Acelerar a produção, síntese e revisão de documentos corporativos, e-mails, relatórios e análises de dados com assistentes de IA.',
+      'Construir automações No-Code com gatilhos (triggers) e ações em plataformas como Zapier e Make para eliminar tarefas repetitivas.',
+      'Aplicar boas práticas de governança, conformidade com a LGPD, proteção contra vazamento de dados confidenciais e validação de alucinações da IA.'
     ],
     modules: [
       {
-        id: 'ia-mod-1',
+        id: 'ia-prod-mod-1',
         number: 1,
-        title: 'MÓDULO 1: Engenharia de Prompts e Ética Corporativa',
-        summary: 'Regras de ouro: nunca colar dados sigilosos/senhas em chats de IA e sempre conferir os resultados.',
-        estimatedMinutes: 35,
+        title: 'MÓDULO 1: Introdução à IA Generativa no Ambiente Corporativo',
+        summary: 'Compreender os fundamentos da IA e entender como transformar LLMs (Large Language Models) em assistentes virtuais de trabalho.',
+        estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1.1 Segurança e LGPD na Era da IA',
+              subheading: '1. Conceitos Fundamentais e Mapeamento de Oportunidades',
               body: [
-                'A IA é um co-piloto e assistente. A responsabilidade final pelo trabalho entregue é sempre do profissional humano.',
-                'Dados sigilosos de clientes, senhas e informações financeiras internas da empresa jamais devem ser colados em modelos públicos de IA.'
+                'O que é IA Generativa: Diferença entre algoritmos tradicionais (baseados em regras e estatística descritiva) e modelos generativos treinados em grandes volumes de dados capazes de criar novo conteúdo em texto, imagem, áudio e código.',
+                'Principais Ferramentas do Mercado: Visão geral e casos de uso de plataformas como ChatGPT (OpenAI), Claude (Anthropic), Gemini (Google), Microsoft Copilot e Perplexity.',
+                'Mapeamento de Tarefas: Identificação de gargalos operacionais no dia a dia corporativo (resumo de e-mails extensos, primeiro rascunho de relatórios, ideação de apresentações e análise exploratória de dados).'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'IA como Copiloto',
+                text: 'A IA não substitui o profissional humano: ela atua como um assistente que reduz drasticamente o trabalho braçal e operacional, liberando tempo para pensamento crítico e estratégia.'
+              }
+            },
+            {
+              subheading: '2. Engenharia de Prompt para Profissionais (Prompt Engineering)',
+              body: [
+                'A Estrutura do Prompt Perfeito: Criação de comandos de alta eficácia estruturados em cinco blocos: Papel/Persona (quem a IA representa), Contexto (cenário empresarial), Tarefa Clara (o que fazer), Formato de Saída (tabela, tópicos, tom executivo) e Restrições (o que não fazer).',
+                'Técnicas Avançadas: Few-Shot Prompting (fornecer exemplos práticos do resultado esperado no próprio comando) e Chain of Thought (divisão de problemas complexos em etapas de raciocínio lógico).',
+                'Refinamento Iterativo: O diálogo iterativo com a IA permite ajustar gradualmente o tom, concisão, profundidade e formatação da resposta.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'ia-prod-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: Produção de Conteúdo, Análise de Dados e Resumos com IA',
+        summary: 'Aplicar a IA para acelerar a criação de documentos, apresentações e o processamento de grandes volumes de informação.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Redação e Síntese de Informações',
+              body: [
+                'Geração e Revisão de Documentos: Redação e aprimoramento de e-mails, relatórios executivos, atas de reunião e propostas comerciais com rapidez e clareza.',
+                'Síntese de Grandes Volumes de Dados: Leitura, extração de pontos-chave e resumos estruturados de PDFs extensos, artigos técnicos e pesquisas de mercado.',
+                'Adaptação de Linguagem: Transformação de textos densos ou excessivamente técnicos em linguagem executiva acessível para clientes ou diretores.'
+              ]
+            },
+            {
+              subheading: '2. Análise de Dados e Apoio à Tomada de Decisão',
+              body: [
+                'IA para Planilhas e Tabelas: Criação e correção de fórmulas complexas de Excel e Google Sheets a partir de descrições em texto simples.',
+                'Análise Preditiva e Brainstorming: Utilização de assistentes de IA para geração de ideias, análise de cenários de risco e levantamento de hipóteses de negócios.'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Validação Humana Obrigatória',
+                text: 'Sempre confira os cálculos e dados antes de repassá-los para gestores ou clientes; a responsabilidade técnica pelas informações é sempre humana.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'ia-prod-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Automação de Processos e Fluxos de Trabalho (Workflows)',
+        summary: 'Conectar aplicativos e criar rotinas automáticas sem a necessidade de saber programar (No-Code).',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Introdução à Automação No-Code',
+              body: [
+                'O que são Ferramentas de Integração: Conceito fundamental de gatilhos (triggers - o evento que inicia o fluxo) e ações (actions - a execução automática) usando plataformas No-Code como Zapier e Make (Integromat).',
+                'Conectando Aplicativos do Dia a Dia: Integração entre e-mails (Gmail/Outlook), formulários (Google Forms/Typeform), planilhas e aplicativos de comunicação de equipe (Slack/Microsoft Teams).'
+              ]
+            },
+            {
+              subheading: '2. Casos Práticos de Automação com IA',
+              body: [
+                'Triagem de E-mails e Leads: Envio automático de dados de formulários para planilhas, geração de resumo executivo via IA e notificação instantânea da equipe no canal corporativo.',
+                'Agendamento e Lembretes Automáticos: Criação de fluxos que atualizam o status de tarefas em gerenciadores de projetos (Trello, Asana, Notion) a partir de respostas e interações de clientes.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'ia-prod-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Ética, Segurança da Informação e Privacidade de Dados',
+        summary: 'Garantir o uso seguro e responsável das tecnologias de IA sem comprometer o sigilo da empresa.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Segurança de Dados Corporativos e LGPD',
+              body: [
+                'Vazamento de Informações Confidenciais: Riscos e penalidades ao inserir dados sensíveis, segredos industriais ou dados pessoais de colaboradores e clientes (LGPD) em IAs públicas.',
+                'Configurações de Privacidade: Como desativar nas configurações das ferramentas o treinamento de modelos com seus dados (opt-out de telemetria).',
+                'Verificação de Fatos e Alucinações: Identificação e correção de alucinações (respostas incorretas apresentadas com convicção) antes do envio de relatórios e documentos.'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Atenção à LGPD',
+                text: 'Nunca insira dados pessoais de clientes (como CPFs, dados bancários ou prontuários) em plataformas públicas de IA. Anonimize todas as informações sensíveis.'
+              }
+            },
+            {
+              subheading: '2. O Futuro do Trabalho e Mentalidade de Aprendizagem Contínua',
+              body: [
+                'Complementaridade Humano + IA: A IA atua como copiloto de produtividade que potencializa as habilidades humanas exclusivas: pensamento crítico, empatia, criatividade e discernimento ético.',
+                'Boas Práticas de Governança: Proposição e adoção de diretrizes claras de uso de inteligência artificial em equipes corporativas.'
               ]
             }
           ]
@@ -1033,58 +1165,217 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'O que NUNCA deve ser inserido em ferramentas públicas de Inteligência Artificial no trabalho?',
+        question: 'O que significa o conceito de "Alucinação" em modelos de Inteligência Artificial Generativa?',
         options: [
-          'Dúvidas sobre regras ortográficas da língua portuguesa.',
-          'Dados sigilosos de clientes, CPFs, senhas corporativas e relatórios financeiros confidenciais.',
-          'Pedidos de sugestões de ideias para títulos de apresentação.',
-          'Dúvidas de fórmulas de Excel.'
+          'Quando o modelo gera informações falsas ou inventadas com aparência de verdade.',
+          'Quando o computador esquenta e precisa ser desligado.',
+          'Quando a IA recusa-se a responder por falta de créditos na conta.',
+          'Quando o sistema operacional trava ao abrir uma planilha pesada.'
+        ],
+        correct: 0,
+        explanation: 'Alucinação é a geração de dados incorretos ou fictícios que parecem convincentes, exigindo sempre a validação humana.'
+      },
+      {
+        id: 2,
+        question: 'Ao criar um prompt eficiente para a IA, qual estrutura traz o resultado mais preciso?',
+        options: [
+          'Digitar apenas palavras-chave soltas sem pontuação.',
+          'Fornecer o papel (persona), o contexto, a tarefa clara, o formato de saída e os limites.',
+          'Enviar o comando em letras maiúsculas para exigir prioridade na resposta.',
+          'Escrever em outro idioma e traduzir três vezes antes de enviar.'
         ],
         correct: 1,
-        explanation: 'A privacidade e a LGPD exigem sigilo rigoroso sobre dados corporativos e dados pessoais de clientes.'
+        explanation: 'Um bom prompt precisa de estrutura: Persona + Contexto + Tarefa + Formato + Restrições.'
+      },
+      {
+        id: 3,
+        question: 'Qual das seguintes condutas respeita a Lei Geral de Proteção de Dados (LGPD) ao utilizar IAs públicas?',
+        options: [
+          'Inserir a lista completa de CPFs e salários dos funcionários para criar gráficos.',
+          'Digitar cartões de crédito de clientes para testar o sistema de cobrança.',
+          'Anonimizar ou remover dados sensíveis e pessoais antes de colar o texto na ferramenta.',
+          'Compartilhar senhas de acesso bancário para a IA fazer conciliação automática.'
+        ],
+        correct: 2,
+        explanation: 'A LGPD exige a proteção de dados pessoais (PII). A anonimização garante a segurança das informações corporativas e de clientes.'
+      },
+      {
+        id: 4,
+        question: 'Em ferramentas de automação No-Code (como Zapier ou Make), o que é um "Gatilho" (Trigger)?',
+        options: [
+          'A linguagem de programação usada para criar o site.',
+          'O botão de desligar o servidor principal da empresa.',
+          'O evento inicial que dispara a execução de uma sequência de ações automáticas.',
+          'O relatório mensal impresso em papel pelo setor administrativo.'
+        ],
+        correct: 2,
+        explanation: 'O gatilho é a condição de início (ex: "quando um novo e-mail chegar") que aciona o fluxo automatizado.'
+      },
+      {
+        id: 5,
+        question: 'Qual é o principal objetivo de utilizar a IA como um "Copiloto" no dia a dia corporativo?',
+        options: [
+          'Substituir 100% dos funcionários humanos e fechar o escritório físico.',
+          'Assumir tarefas operacionais e repetitivas, liberando tempo para análise crítica e estratégia.',
+          'Deixar a IA tomar decisões financeiras sem nenhuma supervisão humana.',
+          'Evitar reuniões presenciais e responder e-mails com frases aleatórias.'
+        ],
+        correct: 1,
+        explanation: 'O papel da IA no trabalho é aumentar a produtividade humana, atuando como assistente para acelerar o trabalho braçal de dados.'
+      },
+      {
+        id: 6,
+        question: 'Se um profissional precisa de uma fórmula de Excel para somar valores com múltiplos critérios, como a IA pode ajudar?',
+        options: [
+          'Traduzindo o objetivo do usuário em linguagem natural diretamente para a sintaxe da função (ex: SOMASES).',
+          'Instalando uma versão pirata do pacote Office no computador.',
+          'Excluindo as colunas com valores zerados da planilha original.',
+          'Comprando uma licença nova do software na loja oficial.'
+        ],
+        correct: 0,
+        explanation: 'A IA converte intenções em linguagem comum em sintaxe lógica de programação ou fórmulas de planilhas.'
+      },
+      {
+        id: 7,
+        question: 'Qual das opções abaixo descreve a técnica de Few-Shot Prompting na Engenharia de Prompt?',
+        options: [
+          'Fazer uma única pergunta curta sem nenhum detalhe.',
+          'Desligar o roteador de internet durante o envio da mensagem.',
+          'Incluir alguns exemplos do resultado esperado dentro do próprio comando enviado à IA.',
+          'Solicitar que a IA responda utilizando apenas uma palavra.'
+        ],
+        correct: 2,
+        explanation: 'Few-shot prompting consiste em dar exemplos práticos no prompt para que o modelo entenda exatamente o padrão de resposta desejado.'
       }
     ]
   },
 
   // =========================================================================
-  // 6. ROTINAS ADMINISTRATIVAS & GESTÃO DOCUMENTAL
+  // 6. ROTINAS ADMINISTRATIVAS E ORGANIZAÇÃO DE PROCESSOS DE ESCRITÓRIO
   // =========================================================================
   {
     id: 'curso-rotinas-administrativas',
     trackId: 'trilha-4',
     trackName: 'TRILHA 4: Rotinas Administrativas & Gestão Empresarial',
     category: 'Administração e Negócios',
-    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTAGIARIO'],
+    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTAGIARIO', 'PRIMEIRO_EMPREGO'],
     title: 'Rotinas Administrativas e Organização de Processos de Escritório',
-    subtitle: 'Gestão documental física e digital, fluxos de compras, suporte a RH e controles de estoque',
-    hours: 15,
-    equivalentHours: 15,
+    subtitle: 'Capacitar profissionais a gerenciar com eficiência o fluxo de rotinas administrativas, organizar arquivos e documentos corporativos, padronizar processos de trabalho e otimizar a comunicação interna e o atendimento no ambiente de escritório.',
+    hours: 12,
+    equivalentHours: 12,
     modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Aprendizes e estagiários de apoio administrativo',
-    prerequisites: 'Nenhum.',
+    targetAudience: 'Jovens aprendizes, estagiários e assistentes administrativos que buscam dominar a gestão de documentos, padronização de rotinas e processos de apoio no escritório',
+    prerequisites: 'Nenhum pré-requisito.',
     badgeName: 'Especialista em Rotinas Administrativas',
-    badgeCategory: 'Ferramentas de Escritório',
+    badgeCategory: 'Rotinas Administrativas',
     badgeIcon: 'Building',
     accentColor: '#F59E0B',
     level: 'Intermediário',
     learningObjectives: [
-      'Organizar pastas e arquivos digitais em nuvem seguindo nomenclatura padronizada.',
-      'Controlar recebimento de notas fiscais e encaminhamento a departamentos contábeis.',
-      'Conhecer o fluxo de admissão de pessoal e conferência básica de documentos.'
+      'Compreender o papel do assistente administrativo e criar rotinas estruturadas com listas de verificação (checklists) diárias e semanais.',
+      'Aplicar técnicas de atendimento profissional presencial e telefônico e redigir documentos corporativos claros (e-mails, memorandos, atas).',
+      'Gerenciar arquivos físicos e digitais (GED) com métodos alfabético, cronológico e numérico, além de controlar estoque mínimo e ponto de pedido.',
+      'Mapear fluxos de trabalho (Workflow), identificar gargalos operacionais, elaborar Procedimentos Operacionais Padrão (POP) e aplicar a metodologia 5S.',
+      'Prestar suporte operacional a rotinas financeiras (conferência de notas e gestão do fundo fixo de caixa) e logística de viagens e reuniões executivas.'
     ],
     modules: [
       {
-        id: 'rot-mod-1',
+        id: 'rot-adm-mod-1',
         number: 1,
-        title: 'MÓDULO 1: Organização Documental e Métodos de Arquivamento',
-        summary: 'Critérios alfabético, cronológico e numérico para arquivamento rápido e sem perda de documentos.',
-        estimatedMinutes: 40,
+        title: 'MÓDULO 1: Visão Geral das Rotinas Administrativas e Atendimento',
+        summary: 'Entender o papel estratégico do suporte administrativo no funcionamento operacional de uma empresa.',
+        estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1.1 Gestão de Arquivos Digitais',
+              subheading: '1. O Papel do Assistente/Analista Administrativo',
               body: [
-                'Nomes de arquivos padronizados (ex: AAAA-MM-DD_Relatorio_Financeiro.pdf) evitam retrabalho e agilizam buscas em equipe.'
+                'O suporte administrativo é o pilar que sustenta o funcionamento operacional de todos os departamentos de uma organização.',
+                'Competências Chave: Organização metódica, proatividade, pontualidade rigorosa e confidencialidade ética no manuseio de dados e documentos corporativos.',
+                'Mapeamento de Rotinas Diárias: Criação de listas de verificação (checklists) diárias, semanais e mensais para garantir o cumprimento pontual de prazos e obrigações sem acúmulo de tarefas ou retrabalho.'
+              ]
+            },
+            {
+              subheading: '2. Comunicação Institucional e Atendimento',
+              body: [
+                'Atendimento Presencial e Telefônico: Técnicas de recepção profissional, postura acolhedora e condução de chamadas corporativas com clareza e padrão institucional.',
+                'Redação Empresarial Básica: Estruturação de e-mails corporativos, memorandos, comunicados internos e atas de reunião limpos, objetivos e sem ambiguidades.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'rot-adm-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: Gestão de Documentos, Arquivos e Controle de Estoque',
+        summary: 'Garantir o rastreamento, a segurança e a integridade das informações físicas e digitais da organização.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Gestão Documental e Gestão Eletrônica de Documentos (GED)',
+              body: [
+                'Tipos de Documentos: Identificação e arquivamento correto de notas fiscais, contratos, comprovantes de pagamento e registros admissionais de colaboradores.',
+                'Métodos de Arquivamento: Organização eficiente baseada em critérios alfabético, numérico, temático e cronológico para localização instantânea.',
+                'Padronização Digital: Estrutura lógica de pastas em servidores de rede ou na nuvem (Google Drive, OneDrive) e regras padronizadas de nomenclatura de arquivos (ex: AAAA_MM_Tipo_Identificador.pdf).'
+              ]
+            },
+            {
+              subheading: '2. Controle do Material de Escritório e Suprimentos',
+              body: [
+                'Inventário de Estoque: Registro e controle de entrada e saída de insumos de escritório (papel, cartuchos, materiais de escrita e itens de copa).',
+                'Ponto de Pedido (Estoque Mínimo): Estabelecer cotas mínimas que acionam a reposição antes do desabastecimento, evitando compras emergenciais a custos elevados.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'rot-adm-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Mapeamento, Padronização e Melhoria de Processos',
+        summary: 'Substituir o trabalho improvisado por procedimentos claros que garantam a qualidade e a agilidade das entregas.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Mapeamento de Fluxos de Trabalho (Workflow)',
+              body: [
+                'Identificação de Gargalos: Reconhecer etapas lentas, retrabalhos, burocracias desnecessárias ou acúmulo de tarefas que atrasam as operações do escritório.',
+                'Criação de Fluxogramas: Representação gráfica das etapas de um processo para facilitar o alinhamento da equipe e o treinamento rápido de novos colaboradores.'
+              ]
+            },
+            {
+              subheading: '2. Procedimento Operacional Padrão (POP) e 5S',
+              body: [
+                'Elaboração de POPs: Manuais simples que descrevem passo a passo a execução padronizada de tarefas recorrentes (ex: fluxo de compras, reembolso e cadastro de fornecedores).',
+                'Metodologia 5S no Escritório: Aplicação prática dos sensos de Utilização (descarte do inútil), Organização (um lugar para cada coisa), Limpeza (ambiente impecável), Padronização (normas visuais) e Disciplina (manutenção dos hábitos).'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'rot-adm-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Gestão Financeira Básica e Serviços de Apoio no Escritório',
+        summary: 'Apoiar os setores de Contabilidade e Financeiro no controle de fluxo de caixa e obrigações operacionais.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Noções de Contas a Pagar e Contas a Receber',
+              body: [
+                'Conferência Documental: Checagem minuciosa de notas fiscais, boletos, pedidos de compra e dados cadastrais antes do encaminhamento para liquidação.',
+                'Fundo Fixo de Caixa (Caixinha): Gestão responsável de pequenos recursos em espécie para despesas imediatas do dia a dia (correios, cópias, chaves e transportes) com prestação de contas rigorosa.'
+              ]
+            },
+            {
+              subheading: '2. Organização de Viagens e Eventos Corporativos',
+              body: [
+                'Agendamento e Logística: Cotação, reserva e controle de itinerários de passagens aéreas/terrestres, hospedagens e transporte para executivos.',
+                'Suporte a Reuniões e Atas: Preparação de salas, testes prévios de equipamentos e redação de atas formais contendo decisões, responsáveis e prazos.'
               ]
             }
           ]
@@ -1095,15 +1386,87 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'Qual a melhor prática para nomear arquivos digitais em uma rede compartilhada da empresa?',
+        question: 'Uma empresa percebeu que novos colaboradores levam semanas para aprender a emitir relatórios de compras porque não há um material instrucional. Qual documento administrativo deve ser elaborado para descrever, passo a passo, a forma padronizada de executar essa tarefa?',
         options: [
-          'documento_final_agora_vai_2.docx',
-          '2026-09-15_Ata_Reuniao_Diretoria_v1.pdf',
-          'asdfg.xlsx',
-          'novo(1).pdf'
+          'Procedimento Operacional Padrão (POP).',
+          'Balanço Patrimonial.',
+          'Organograma Executivo.',
+          'Contrato Social.'
+        ],
+        correct: 0,
+        explanation: 'O Procedimento Operacional Padrão (POP) é o documento formal que instrui e padroniza a execução de rotinas, garantindo que o trabalho seja feito com a mesma qualidade por qualquer profissional.'
+      },
+      {
+        id: 2,
+        question: 'Ao organizar os arquivos digitais do setor financeiro no servidor corporativo, um assistente precisa garantir que qualquer membro da equipe encontre rapidamente os documentos. Qual prática representa a melhor forma de padronização de arquivos?',
+        options: [
+          'Salvar todos os arquivos na área de trabalho (Desktop) do computador sem pastas.',
+          'Adotar uma estrutura lógica de pastas organizadas por Ano/Mês e aplicar uma regra clara de nomenclatura (ex: 2026_08_NF_FornecedorX.pdf).',
+          'Nomear os arquivos apenas com códigos numéricos aleatórios como 123.pdf ou documento1.pdf.',
+          'Apagar todos os arquivos do mês anterior para economizar espaço no disco rígido.'
         ],
         correct: 1,
-        explanation: 'Padrão com data (ISO), assunto claro e versão garante rastreabilidade e organização de equipe.'
+        explanation: 'A padronização de arquivos por meio de pastas hierárquicas e regras claras de nomenclatura facilita a busca, evita duplicidade de versões e garante a continuidade do trabalho na equipe.'
+      },
+      {
+        id: 3,
+        question: 'O que define o conceito de "Estoque Mínimo" ou "Ponto de Pedido" na gestão de materiais de escritório?',
+        options: [
+          'A quantidade máxima de materiais que cabe fisicamente dentro do almoxarifado.',
+          'O nível limite do estoque que, ao ser atingido, indica a necessidade imediata de emitir um novo pedido de compra para evitar o desabastecimento.',
+          'O descarte diário de canetas e papéis que não foram utilizados no expediente.',
+          'O valor total em dinheiro gasto com material de escritório no final do ano.'
+        ],
+        correct: 1,
+        explanation: 'O Ponto de Pedido é o gatilho de segurança que aciona o setor de compras quando o estoque atinge determinado nível, considerando o tempo que o fornecedor leva para entregar.'
+      },
+      {
+        id: 4,
+        question: 'Durante o atendimento telefônico corporativo de um cliente que se encontra irritado com o atraso de uma entrega, qual deve ser a postura do profissional de suporte administrativo?',
+        options: [
+          'Interromper o cliente, desligar o telefone na cara dele e bloquear o número.',
+          'Manter a calma, escutar com atenção e empatia, anotar os dados relevantes da reclamação e encaminhar a solução ao setor responsável dentro do prazo informado.',
+          'Transferir a ligação imediatamente para qualquer colega da sala sem explicar o motivo do contato.',
+          'Responder no mesmo tom de voz agressivo para demonstrar autoridade.'
+        ],
+        correct: 1,
+        explanation: 'O atendimento profissional exige escuta ativa, inteligência emocional e resolução focada no problema, mantendo a postura institucional sem absorver a agressividade do cliente.'
+      },
+      {
+        id: 5,
+        question: 'O fundo fixo de caixa (ou "caixinha") no escritório é um recurso financeiro destinado a qual tipo de operação?',
+        options: [
+          'Pagamento dos salários de todos os diretores da empresa no final do mês.',
+          'Compra de novas máquinas e equipamentos pesados para a fábrica.',
+          'Cobertura de pequenas despesas imediatas e esporádicas do dia a dia do escritório (ex: taxas de correio, cópias, chaves).',
+          'Investimento em ações na bolsa de valores.'
+        ],
+        correct: 2,
+        explanation: 'O Fundo Fixo de Caixa é mantido em espécie ou em conta rápida para cobrir pequenos gastos operacionais e corriqueiros que não justificam a abertura de um processo formal de pagamento via fatura/boleto.'
+      },
+      {
+        id: 6,
+        question: 'Um analista mapeou o fluxo de aprovação de notas fiscais e descobriu que a nota fica parada por até 5 dias na mesa de um gestor apenas aguardando uma assinatura simples. No mapeamento de processos, esse atraso é classificado como:',
+        options: [
+          'Gargalo do processo.',
+          'Ponto de excelência.',
+          'Metodologia 5S.',
+          'Atendimento personalizado.'
+        ],
+        correct: 0,
+        explanation: 'Gargalo é a etapa do processo onde o fluxo de trabalho é retido ou desacelerado, reduzindo a eficiência global de toda a cadeia operacional.'
+      },
+      {
+        id: 7,
+        question: 'Qual das alternativas apresenta um elemento indispensável na elaboração de uma Ata de Reunião profissional?',
+        options: [
+          'Opiniões pessoais do redator sobre a roupas dos participantes.',
+          'Data, horário, lista de presentes, principais tópicos discutidos e os encaminhamentos/prazos definidos com seus respectivos responsáveis.',
+          'Transcrição de piadas e conversas informais ocorridas antes do início da reunião.',
+          'Apenas a assinatura do presidente da empresa, sem necessidade de anotar o que foi discutido.'
+        ],
+        correct: 1,
+        explanation: 'A ata deve ser um registro objetivo e factual que documenta as decisões tomadas, ações a serem executadas, prazos e responsáveis definidos durante a reunião.'
       }
     ]
   },
@@ -1397,7 +1760,7 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
-  // 8. EQUILÍBRIO EMOCIONAL E SAÚDE MENTAL
+  // 8. EQUILÍBRIO EMOCIONAL, ANSIEDADE E FOCO NO TRABALHO
   // =========================================================================
   {
     id: 'curso-saude-mental-trabalho',
@@ -1406,36 +1769,187 @@ export const COURSES: Course[] = [
     category: 'Desenvolvimento Pessoal',
     targetAudienceType: 'TODOS',
     title: 'Equilíbrio Emocional, Ansiedade e Foco no Trabalho',
-    subtitle: 'Gestão de estresse, comunicação não-violenta, adaptação ao primeiro ambiente corporativo e acolhimento',
-    hours: 10,
-    equivalentHours: 10,
+    subtitle: 'Capacitar o profissional a identificar gatilhos de estresse e ansiedade no ambiente corporativo, aplicar técnicas de autorregulação emocional e mindfulness, manter o foco em tarefas complexas e construir uma rotina de trabalho mentalmente saudável e sustentável.',
+    hours: 12,
+    equivalentHours: 12,
     modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Estudantes e aprendizes em transição para o mercado',
-    prerequisites: 'Nenhum.',
-    badgeName: 'Inteligência Emocional',
-    badgeCategory: 'Saúde Mental',
+    targetAudience: 'Estudantes, aprendizes e profissionais em transição ou atuação no mercado de trabalho',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Equilíbrio Emocional & Foco',
+    badgeCategory: 'Saúde Mental & Carreira',
     badgeIcon: 'HeartPulse',
     accentColor: '#EC4899',
     level: 'Iniciante',
     learningObjectives: [
-      'Identificar gatilhos de ansiedade no primeiro emprego e desenvolver técnicas de respiração e foco.',
-      'Saber comunicar limites e pedir ajuda quando sobrecarregado com tarefas da escola e do trabalho.',
-      'Identificar ambientes acolhedores e canais de apoio psicossocial.'
+      'Identificar o mecanismo biológico do estresse no trabalho, compreendendo as diferenças entre Eustresse (positivo) e Distresse (negativo).',
+      'Mapear gatilhos individuais internos (perfeccionismo, síndrome do impostor) e externos (pressões, reuniões e cobranças).',
+      'Aplicar técnicas de autorregulação fisiológica e respiratória como Respiração Quadrada (Box Breathing) e Técnica 4-7-8.',
+      'Praticar a reestruturação cognitiva contra a catastrofização, focando em fatos e planos de ação práticos.',
+      'Implementar o Trabalho Profundo (Deep Work) e a pausa estratégica com o método S.T.O.P. de Mindfulness Corporativo.',
+      'Estabelecer fronteiras e desconexão digital no expediente, prevenindo precocemente os sinais e estágios da Síndrome de Burnout.'
     ],
     modules: [
       {
         id: 'sau-mod-1',
         number: 1,
-        title: 'MÓDULO 1: Transição da Escola para o Trabalho com Saúde Mental',
-        summary: 'Como lidar com o medo do erro, cobranças de prazos e convivência com equipes.',
-        estimatedMinutes: 30,
+        title: 'MÓDULO 1: Inteligência Emocional e Mapeamento de Gatilhos',
+        summary: 'O primeiro passo para o equilíbrio emocional é o autoconhecimento. O ambiente corporativo expõe os profissionais a pressões constantes, prazos curtos e conflitos interpessoais. Entender como o corpo e a mente reagem a esses estímulos é fundamental para evitar a exaustão.',
+        estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1.1 O erro como oportunidade de aprendizado',
+              subheading: '1. O Mecanismo do Estresse no Trabalho',
               body: [
-                'O aprendiz está na empresa prioritariamente para aprender. Não tenha vergonha de fazer perguntas ao seu mentor quando tiver dúvidas sobre um procedimento.'
+                'O primeiro passo para o equilíbrio emocional é o autoconhecimento. O ambiente corporativo expõe os profissionais a pressões constantes, prazos curtos e conflitos interpessoais. Entender como o corpo e a mente reagem a esses estímulos é fundamental para evitar a exaustão.',
+                'O estresse é uma resposta biológica natural de preservação. No entanto, quando ativado de forma crônica no escritório (reação de "luta ou fuga"), ele libera cortisol e adrenalina continuamente, prejudicando o raciocínio lógico e a tomada de decisões.',
+                '• Estresse Positivo (Eustresse): O nível de ativação saudável que gera motivação, foco e impulso para cumprir prazos.',
+                '• Estresse Negativo (Distresse): A sobrecarga contínua que gera paralisia, irritabilidade, esquecimentos e exaustão física.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Eustresse vs. Distresse',
+                text: 'O eustresse é o nível produtivo de energia que nos move. O perigo é a sobrecarga constante sem descanso, que descamba para o distresse crônico.'
+              }
+            },
+            {
+              subheading: '2. Mapeamento de Gatilhos Individuais',
+              body: [
+                'Cada profissional reage de forma diferente aos estímulos do trabalho. O mapeamento consiste em identificar as situações específicas que desencadeiam picos de ansiedade:',
+                '• Gatilhos Internos: Perfeccionismo extremo, medo de errar, síndrome do impostor e necessidade contínua de aprovação.',
+                '• Gatilhos Externos: E-mails de cobrança, reuniões de última hora, sobrecarga de demandas e comunicação agressiva de terceiros.'
+              ],
+              asciiDiagram: `┌────────────────────────────────────────────────────────┐
+│           MAPEAMENTO DE GATILHOS CORPORATIVOS          │
+├────────────────────────────────────────────────────────┤
+│ GATILHOS INTERNOS:                                     │
+│ • Perfeccionismo ──► Medo de errar ──► Procrastinação  │
+│ • Síndrome do Impostor ──► Insegurança contínua        │
+├────────────────────────────────────────────────────────┤
+│ GATILHOS EXTERNOS:                                     │
+│ • Demandas urgentes ──► Sobrecarga ──► Desorganização  │
+│ • Cobranças e prazos ──► Reação de Luta ou Fuga        │
+└────────────────────────────────────────────────────────┘`
+            }
+          ]
+        }
+      },
+      {
+        id: 'sau-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: Técnicas de Autorregulação e Gestão da Ansiedade',
+        summary: 'A ansiedade manifesta-se quando a mente antecipa cenários futuros catastróficos. A autorregulação emocional reúne ferramentas práticas para trazer a atenção de volta ao presente e acalmar o sistema nervoso autônomo.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Técnicas Respiratórias para Redução Ansiolítica',
+              body: [
+                'A ansiedade manifesta-se quando a mente antecipa cenários futuros catastróficos. A autorregulação emocional reúne ferramentas práticas para trazer a atenção de volta ao presente e acalmar o sistema nervoso autônomo.',
+                'A respiração é a ponte direta para ativar o sistema nervoso parassimpático, desacelerando os batimentos cardíacos:',
+                '• Respiração Quadrada (Box Breathing): Inspirar em 4 segundos, reter o ar por 4 segundos, expirar em 4 segundos e manter os pulmões vazios por 4 segundos. Ideal para fazer antes de reuniões decisivas.',
+                '• Técnica 4-7-8: Inspirar em 4 segundos, reter o ar por 7 segundos e soltar o ar lentamente pela boca durante 8 segundos.'
+              ],
+              highlightBox: {
+                type: 'calc',
+                title: 'Respiração Quadrada (Box Breathing)',
+                text: 'Inspire em 4s ──► Segure em 4s ──► Expire em 4s ──► Pause em 4s. Pratique rodadas conscientes para normalizar batimentos e clarear o raciocínio.'
+              }
+            },
+            {
+              subheading: '2. Reestruturação Cognitiva',
+              body: [
+                'Diante de uma crise de ansiedade ou de um erro no projeto, a mente costuma criar distorções cognitivas (catastrofização). A reestruturação é o ato de questionar o pensamento ansiogênico com fatos concretos:',
+                '• Pensamento Ansiogênico: "Apresentei o relatório com um dado incorreto, serei demitido imediatamente."',
+                '• Questionamento Racional: "O dado foi corrigido a tempo? Qual é a probabilidade real de demissão por esse fato isolado? Qual o plano de ação prático agora?"'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Fatos vs. Suposições',
+                text: 'Não tome pensamentos catastróficos como certezas. Busque fatos observáveis e estruture um plano de resolução prático em vez de alimentar o pânico.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'sau-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Foco Profundo (Deep Work) e Atenção Plena',
+        summary: 'A oscilação emocional corrói a capacidade de concentração. Em um ambiente repleto de notificações, manter o foco em tarefas complexas exige estratégias deliberadas de proteção mental.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. O Estado de Flow e o Trabalho Profundo (Deep Work)',
+              body: [
+                'O conceito de Deep Work (Trabalho Profundo), desenvolvido por Cal Newport, refere-se à capacidade de focar sem distrações em uma tarefa cognitivamente exigente.',
+                '• Trabalho Superficial (Shallow Work): Tarefas mecânicas e operacionais (responder e-mails rápidos, organizar pastas) que exigem pouco esforço mental, mas consomem o dia.',
+                '• Construção de Rituais de Foco: Eliminação de abas desnecessárias, bloqueio de notificações e definição de metas claras para o bloco de trabalho focado.'
               ]
+            },
+            {
+              subheading: '2. Aplicação Prática do Mindfulness Corporativo',
+              body: [
+                'Atenção plena (Mindfulness) não significa "esvaziar a mente", mas observar os pensamentos e emoções sem julgamento imediato, ancorando-se na atividade presente.',
+                'A Pausa Estratégica (Método STOP):',
+                '• S (Stop): Pare o que está fazendo.',
+                '• T (Take a breath): Tome uma respiração profunda.',
+                '• O (Observe): Observe seus pensamentos e o seu corpo.',
+                '• P (Proceed): Prossiga com clareza e intenção.'
+              ],
+              asciiDiagram: `┌────────────────────────────────────────────────────────┐
+│               MÉTODO S.T.O.P. DE MINDFULNESS           │
+├────────────────────────────────────────────────────────┤
+│ [S] STOP: Pare imediatamente o que está fazendo        │
+│ [T] TAKE A BREATH: Respire consciente e profundamente  │
+│ [O] OBSERVE: Observe mente, emoções e corpo sem julgar │
+│ [P] PROCEED: Prossiga com foco, calma e intenção clara │
+└────────────────────────────────────────────────────────┘`
+            }
+          ]
+        }
+      },
+      {
+        id: 'sau-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Limites Saudáveis, Comunicação e Prevenção do Burnout',
+        summary: 'O equilíbrio emocional sustentável depende da capacidade de estabelecer fronteiras claras entre a vida profissional e a vida pessoal, evitando o esgotamento extremo (Burnout).',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Estabelecimento de Fronteiras e Desconexão Digital',
+              body: [
+                'A hiperconectividade cria a falsa sensação de que tudo precisa ser respondido imediatamente.',
+                '• Desconexão do Expediente: Definir um horário claro para encerrar a checagem de mensagens corporativas no celular pessoal.',
+                '• Gestão de Expectativas: Comunicar à equipe os prazos reais de resposta e entrega, sem assumir compromissos inalcançáveis por medo de dizer "não".'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Comunicação Assertiva',
+                text: 'Dizer "não" fundamentado com alternativas e prazos viáveis é sinal de maturidade profissional e respeito pela qualidade do trabalho.'
+              }
+            },
+            {
+              subheading: '2. Sinais de Alerta do Burnout',
+              body: [
+                'A Síndrome de Burnout é o estresse crônico não gerenciado no ambiente de trabalho. Reconhecer os sinais iniciais evita o colapso físico e emocional:',
+                '• Estágio Inicial: Entusiasmo excessivo com negligência de necessidades básicas (sono, alimentação); sensação constante de falta de tempo e ansiedade aos domingos.',
+                '• Estágio Avançado: Exaustão física e mental diária; cinismo, desconexão emocional com o trabalho e queda brusca de produtividade.'
+              ],
+              asciiDiagram: `┌────────────────────────────────────────────────────────┐
+│             ESTÁGIOS DA SÍNDROME DE BURNOUT            │
+├────────────────────────────────────────────────────────┤
+│ ESTÁGIO INICIAL:                                       │
+│ • Entusiasmo desmedido sem descanso                    │
+│ • Negligência com sono e alimentação                   │
+│ • Ansiedade aos domingos e falta de tempo              │
+├────────────────────────────────────────────────────────┤
+│ ESTÁGIO AVANÇADO:                                      │
+│ • Exaustão física e mental diária                      │
+│ • Cinismo, frieza e distanciamento da equipe           │
+│ • Queda drástica de produtividade e esgotamento        │
+└────────────────────────────────────────────────────────┘`
             }
           ]
         }
@@ -1445,58 +1959,225 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'O que fazer ao se sentir sobrecarregado ou em dúvida sobre uma tarefa no trabalho?',
+        question: 'Durante um dia de alta demanda no escritório, um colaborador percebe que sua respiração está acelerada e que não consegue se concentrar nas tarefas devido ao nervosismo. Qual técnica de autorregulação fisiológica é mais indicada para reativar a calma do sistema nervoso de forma rápida?',
         options: [
-          'Esconder o problema e faltar no dia seguinte.',
-          'Conversar abertamente com seu gestor/tutor, pedir orientação e alinhar prioridades.',
-          'Pedir demissão imediatamente sem avisar ninguém.',
-          'Fazer a tarefa de qualquer jeito sem ler as instruções.'
+          'Ingerir bebidas estimulantes com alto teor de cafeína para acelerar o ritmo de trabalho.',
+          'Ignorar os sinais do corpo e continuar digitando em velocidade máxima sem fazer pausas.',
+          'Aplicar a técnica de Respiração Quadrada (Box Breathing), alternando inspiração, retenção, expiração e pausa em tempos iguais.',
+          'Reclamar abertamente sobre a sobrecarga com os colegas de equipe durante o horário de pico.'
+        ],
+        correct: 2,
+        explanation: 'A técnica de Respiração Quadrada (Box Breathing) reduz diretamente os níveis de excitação fisiológica provocados pela ansiedade, desacelerando a frequência cardíaca e ativando o sistema nervoso parassimpático para recuperar o controle consciente.'
+      },
+      {
+        id: 2,
+        question: 'A Síndrome de Burnout foi reconhecida como uma condição ocupacional resultante do estresse crônico no ambiente de trabalho. Qual das opções abaixo apresenta um sintoma característico dessa síndrome em seu estágio avançado?',
+        options: [
+          'Sensação diária de exaustão física/mental acompanhada de atitudes de cinismo e desapego ao trabalho.',
+          'Aumento da criatividade e engajamento constante em novos projetos da empresa.',
+          'Capacidade de manter o foco ininterrupto por 12 horas consecutivas sem apresentar fadiga.',
+          'Facilidade em desligar-se das responsabilidades profissionais no exato momento em que encerra o expediente.'
+        ],
+        correct: 0,
+        explanation: 'O Burnout é caracterizado pela tríade: exaustão emocional profunda, despersonalização/cinismo (desapego frio em relação às tarefas e colegas) e queda da percepção de eficácia profissional.'
+      },
+      {
+        id: 3,
+        question: 'O conceito de Deep Work (Trabalho Profundo) exige eliminar distrações para focar em tarefas cognitivamente complexas. Qual ação prática contribui diretamente para a criação de um ambiente favorável ao Deep Work?',
+        options: [
+          'Deixar os alertas sonoros do e-mail e do chat corporativo ativados na tela principal.',
+          'Alternar a atenção a cada 5 minutos entre a escrita de um relatório e a navegação em redes sociais.',
+          'Realizar chamadas de vídeo sem roteiro prévio enquanto tenta revisar planilhas complexas.',
+          'Agendar o checamento de e-mails para horários específicos do dia e silenciar notificações durante o bloco de foco.'
+        ],
+        correct: 3,
+        explanation: 'O Trabalho Profundo exige a eliminação de fragmentações na atenção. Definir blocos de tempo isolados e silenciar notificações previne a troca constante de contexto, permitindo hiperfoco e alta performance.'
+      },
+      {
+        id: 4,
+        question: 'Diante de um erro cometido em um projeto, a mente de um profissional ansioso pode gerar uma "distorção cognitiva", acreditando que o problema é uma catastrofização irreparável. Qual técnica ajuda a reestruturar esse pensamento de forma racional?',
+        options: [
+          'Aceitar o pensamento catastrófico como verdade absoluta e pedir demissão imediatamente.',
+          'Questionar o pensamento ansiogênico buscando evidências concretas sobre o impacto real e focando no plano de ação para correção.',
+          'Esconder o erro da equipe na esperança de que ninguém perceba a falha.',
+          'Culpar publicamente outros colegas pelo ocorrido para preservar a própria imagem.'
         ],
         correct: 1,
-        explanation: 'A comunicação transparente com o tutor é o caminho profissional mais saudável e seguro.'
+        explanation: 'A Reestruturação Cognitiva combate vieses de catastrofização substituindo suposições por fatos. Analisar o erro objetivamente e construir uma solução prática reduz a ansiedade e restaura o senso de controle.'
+      },
+      {
+        id: 5,
+        question: 'O acrônimo S.T.O.P. representa uma pausa consciente no meio da rotina para recuperar a clareza e o equilíbrio emocional. O que significa a letra "O" nessa metodologia de Mindfulness?',
+        options: [
+          'Observar os pensamentos, emoções e sensações corporais sem julgamento imediato.',
+          'Omitir os sentimentos negativos até o fim da semana.',
+          'Optimizar o tempo eliminando o horário de almoço.',
+          'Organizar a mesa de trabalho descartando papéis antigos.'
+        ],
+        correct: 0,
+        explanation: 'No método S.T.O.P. (Stop, Take a breath, Observe, Proceed), o passo Observe orienta o indivíduo a tomar consciência de seus estados internos (pensamentos, emoções, tensão muscular) com curiosidade e sem auto-julgamento.'
+      },
+      {
+        id: 6,
+        question: 'Para manter a saúde mental e prevenir o esgotamento no ambiente de trabalho, o estabelecimento de limites saudáveis é indispensável. Qual postura reflete o estabelecimento de uma fronteira profissional assertiva?',
+        options: [
+          'Responder mensagens de trabalho no aplicativo pessoal de mensagens às 23 horas de um domingo.',
+          'Aceitar todas as solicitações de última hora recebidas, mesmo quando impossibilitam o cumprimento dos prazos já acordados.',
+          'Desligar o telefone corporativo durante o horário de expediente normal sem avisar a equipe.',
+          'Comunicar com clareza a capacidade atual de entregas, renegociar prazos com a liderança e respeitar os horários de descanso.'
+        ],
+        correct: 3,
+        explanation: 'Ter assertividade emocional significa alinhar expectativas e prioridades de forma transparente com a equipe. Dizer "não" fundamentado ou renegociar prazos protege a qualidade das entregas e a saúde mental do profissional.'
+      },
+      {
+        id: 7,
+        question: 'O estresse é uma reação biológica do organismo que pode ser dividida entre "eustresse" e "distresse". Qual a principal característica do eustresse?',
+        options: [
+          'É o estágio final de esgotamento físico que exige afastamento médico imediato.',
+          'Trata-se do sentimento constante de pânico acompanhado de insônia crônica.',
+          'É a forma saudável e positiva de estresse, que mobiliza energia, melhora o foco e motiva a resolução de desafios.',
+          'É a incapacidade total de sentir qualquer tipo de emoção durante reuniões de trabalho.'
+        ],
+        correct: 2,
+        explanation: 'O Eustresse (estresse positivo) é o nível moderado de ativação necessário para nos manter alertas, motivados e engajados na superação de metas e desafios do dia a dia, diferindo do estresse crônico nocivo (distresse).'
       }
     ]
   },
 
   // =========================================================================
-  // 9. COMUNICAÇÃO ESCRITA & E-MAILS CORPORATIVOS
+  // 9. COMUNICAÇÃO ESCRITA, E-MAILS E REDAÇÃO CORPORATIVA
   // =========================================================================
   {
     id: 'curso-comunicacao-corporativa',
     trackId: 'trilha-2',
     trackName: 'TRILHA 2: Soft Skills, Postura & Comunicação Corporativa',
     category: 'Desenvolvimento Pessoal',
-    targetAudienceType: 'TODOS',
-    title: 'Comunicação Escrita, Emails e Redação Corporativa',
-    subtitle: 'Norma culta sem formalismo excessivo, clareza em mensagens eletrônicas, Slack/Teams e relatórios',
-    hours: 10,
-    equivalentHours: 10,
+    targetAudienceType: ['PRIMEIRO_EMPREGO', 'JOVEM_APRENDIZ', 'ESTUDANTE'],
+    title: 'Comunicação Escrita, E-mails e Redação Corporativa',
+    subtitle: 'Capacitar profissionais a redigir mensagens corporativas claras, concisas e assertivas, dominando a estrutura de e-mails profissionais, relatórios executivos e comunicados internos, prevenindo ruídos de comunicação e fortalecendo a imagem institucional.',
+    hours: 12,
+    equivalentHours: 12,
     modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Estudantes, aprendizes e estagiários',
-    prerequisites: 'Nenhum.',
-    badgeName: 'Comunicação Corporativa',
-    badgeCategory: 'Atitude Profissional',
+    targetAudience: 'Jovens aprendizes, estagiários e profissionais em início de carreira buscando clareza, concisão e profissionalismo na escrita corporativa',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Comunicação Escrita & E-mails',
+    badgeCategory: 'Comunicação Corporativa',
     badgeIcon: 'Mail',
     accentColor: '#EC4899',
-    level: 'Intermediário',
+    level: 'Iniciante',
     learningObjectives: [
-      'Redigir e-mails profissionais com assunto claro, saudação adequada e despedida cordial.',
-      'Evitar gírias e abreviações de internet em comunicações formais da empresa.',
-      'Aprender a elaborar atas de reuniões e resumos de atividades.'
+      'Dominar a técnica da Pirâmide Invertida na escrita profissional, transmitindo informações prioritárias com clareza, objetividade e sem prolixidade.',
+      'Aplicar regras gramaticais essenciais e pontuação estratégica no dia a dia corporativo (há vs. a, anexo vs. em anexo, crase e concordância).',
+      'Construir e-mails profissionais de alta performance com linhas de assunto eficazes, uso correto de Para/Cc/Cco e chamadas para ação (CTA) claras com prazos.',
+      'Elaborar relatórios executivos, memorandos objetivos, comunicados gerais e atas de reunião com foco em decisões e planos de ação.',
+      'Adotar boas práticas de comunicação escrita em canais instantâneos (Slack, Teams, WhatsApp), gerenciar mensagens difíceis e respeitar limites de horário.'
     ],
     modules: [
       {
-        id: 'com-mod-1',
+        id: 'com-corp-mod-1',
         number: 1,
-        title: 'MÓDULO 1: A Arte da Redação no Ambiente de Trabalho',
-        summary: 'Estrutura padrão de e-mails corporativos e mensagens de chat profissional.',
-        estimatedMinutes: 30,
+        title: 'MÓDULO 1: Fundamentos da Redação Corporativa e Clareza Textual',
+        summary: 'A comunicação escrita no ambiente de trabalho deve ser focada em transmitir a mensagem com o menor gasto de tempo possível do leitor, sem perder o profissionalismo.',
+        estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1.1 Anatomia do Email Profissional',
+              subheading: '1. Princípios da Comunicação Direta e Objetiva',
               body: [
-                'Todo e-mail deve ter: Assunto objetivo, Vocativo profissional ("Prezado Carlos," / "Olá equipe,"), Corpo conciso e Fechamento com Assinatura.'
+                'A comunicação escrita no ambiente de trabalho deve ser focada em transmitir a mensagem com o menor gasto de tempo possível do leitor, sem perder o profissionalismo.',
+                'A Regra da Pirâmide Invertida: Posicionar a informação mais importante (a conclusão, decisão ou solicitação principal) logo no primeiro parágrafo do texto, garantindo compreensão instantânea.',
+                'Eliminação de Vícios e Pleonasmos: Substituir formulações prolixas e arcaicas (\"Venho por meio deste informar que...\") por construções diretas e dinâmicas (\"Informamos que...\").',
+                'Adequação ao Tom da Empresa: Equilibrar a comunicação entre o formalismo excessivo (linguagem engessada e arcaica) e a informalidade inadequada (gírias, abreviações e emojis excessivos).'
+              ]
+            },
+            {
+              subheading: '2. Gramática Aplicada ao Cotidiano de Escritório',
+              body: [
+                'Pontuação Estratégica: Emprego consciente de vírgulas, dois-pontos e ponto e vírgula para estruturar ideias em tópicos (bullet points) de fácil escaneamento visual.',
+                'Erros Gramaticais Frequentes no Trabalho:',
+                '• Há vs. A: \"Há\" para tempo decorrido (\"Trabalho aqui há dois anos\") e \"a\" para tempo futuro ou distância (\"A reunião será daqui a pouco\").',
+                '• A fim de vs. Afim: \"A fim de\" indica finalidade/objetivo; \"afim\" indica semelhança/afinidade.',
+                '• Anexo vs. Em anexo: O adjetivo \"anexo\" concorda com o substantivo (\"Seguem anexos os relatórios\"); a locução \"em anexo\" é invariável (\"Seguem em anexo os relatórios\").',
+                '• Regras de Crase: Uso correto antes de palavras femininas e em locuções prepositivas de tempo/lugar.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'com-corp-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: Estruturação de E-mails Profissionais Eficientes',
+        summary: 'O e-mail continua sendo o canal oficial de registros e tomadas de decisão nas empresas.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Anatomia de um E-mail de Alta Performance',
+              body: [
+                'Assunto Efetivo (Subject Line): Criação de linhas de assunto objetivas e contextuais que garantem abertura e priorização imediata (ex: [APROVAÇÃO] Relatório de Vendas - Agosto/2026).',
+                'Saudação e Fechamento: Fórmulas adequadas de início (Prezado(a), Olá, Bom dia) e encerramento (Atenciosamente, Cordialmente) alinhadas à hierarquia e proximidade corporativa.',
+                'Uso Correto dos Campos de Envio:',
+                '• Para: Destinatários principais diretamente responsáveis pela ação solicitada.',
+                '• Cc (Com Cópia): Pessoas que precisam apenas se manter informadas sobre o andamento do assunto.',
+                '• Cco (Cópia Oculta): Envio para listas amplas com preservação de privacidade dos e-mails ou comunicação discreta sem expor contatos aos demais.'
+              ]
+            },
+            {
+              subheading: '2. Chamada para Ação (Call to Action - CTA) e Prazos',
+              body: [
+                'Clareza nos Próximos Passos: Deixar explícito quem deve executar cada tarefa e até qual data e horário limite.',
+                'Técnica de Destaque Visual: Aplicação estratégica de negritos, numerações e espaçamentos para facilitar a leitura rápida em telas de celulares e computadores.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'com-corp-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Redação de Documentos Executivos e Técnicos',
+        summary: 'Para além do e-mail, o profissional precisa dominar a escrita de documentos formais para registro de processos e reuniões.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Elaboração de Relatórios e Memorandos',
+              body: [
+                'Estrutura Básica de Relatórios: Contextualização do problema, Diagnóstico com dados quantitativos, Conclusão lógica e Recomendações práticas.',
+                'Transformação de Dados em Narrativa (Data Storytelling): Como traduzir tabelas numéricas complexas e gráficos em parágrafos simples e explicativos para a liderança executiva.'
+              ]
+            },
+            {
+              subheading: '2. Atas de Reunião e Comunicados Internos',
+              body: [
+                'Atas Objetivas: Registro sintético e factual estruturado em: Lista de Presentes, Principais Tópicos Discutidos e Plano de Ação (O quê + Quem + Quando).',
+                'Comunicados Gerais: Redação institucional para toda a empresa com linguagem clara, acolhedora, precisa e sem margem para interpretações ambíguas.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'com-corp-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Comunicação Escrita em Situações Críticas e Canais Instantâneos',
+        summary: 'Como gerenciar conflitos por escrito e utilizar ferramentas como Slack, Microsoft Teams e WhatsApp Corporativo sem perder o tom profissional.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Gestão de Mensagens Difíceis e Assertivas',
+              body: [
+                'Tratamento de Reclamações e Erros: Respostas a clientes ou gestores assumindo responsabilidades com profissionalismo, empatia e propostas focadas na resolução ágil do problema.',
+                'Atrasos e Pedidos de Adiamento: Como solicitar novas datas e horários de forma transparente, fundamentada em fatos e com compromisso renovado de entrega.'
+              ]
+            },
+            {
+              subheading: '2. Etiqueta nas Ferramentas de Mensagem Instantânea',
+              body: [
+                'A Regra do Parágrafo Único: Evitar o envio fragmentado de múltiplas mensagens curtas (\"Oi\", \"Tudo bem?\", \"Pode falar?\"). Reúna saudação, contexto da dúvida e solicitação em um único texto completo e fluido.',
+                'Limites de Horário e Desconexão: Respeito à jornada de trabalho e ao descanso dos colegas ao agendar envios fora do expediente convencional.'
               ]
             }
           ]
@@ -1507,120 +2188,221 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'Qual o formato correto de assunto para um e-mail de envio de relatório?',
+        question: 'Um analista precisa enviar um e-mail urgente para a equipe solicitando a validação de um orçamento até o final do dia. Qual das alternativas apresenta a \"Linha de Assunto\" mais adequada segundo as boas práticas de redação corporativa?',
         options: [
-          'oi olha ai',
-          '[Relatório] Acompanhamento Semanal de Vagas - Setembro/2026',
-          'URGENTE VEJA ISSO',
-          'Deixar o assunto em branco'
+          'Aviso importante favor ler urgente!!!',
+          'Orçamento',
+          '[AÇÃO NECESSÁRIA] Validação do Orçamento do Projeto X - Prazo: 18h',
+          'Oi pessoal, tudo bem? Dêem uma olhada nisso aqui quando der.'
+        ],
+        correct: 2,
+        explanation: 'A alternativa C utiliza a tag visual [AÇÃO NECESSÁRIA], indica o assunto exato do e-mail e define o prazo limite (18h), permitindo que o leitor priorize a mensagem imediatamente.'
+      },
+      {
+        id: 2,
+        question: 'Ao redigir um e-mail anexando um relatório financeiro, qual das frases abaixo está gramaticalmente correta para indicar a presença do documento?',
+        options: [
+          'Seguem em anexo os relatórios financeiros do mês de julho.',
+          'Segue em anexos os relatórios financeiros do mês de julho.',
+          'Seguem em anexas as relatórios financeiros do mês de julho.',
+          'Segue anexos os relatórios financeiros do mês de julho.'
+        ],
+        correct: 0,
+        explanation: 'A expressão \"em anexo\" é invariável (permanece \"em anexo\" no singular ou plural). Como o sujeito \"os relatórios\" está no plural, o verbo concorda no plural: \"Seguem em anexo os relatórios...\".'
+      },
+      {
+        id: 3,
+        question: 'A aplicação da técnica da \"Pirâmide Invertida\" na escrita de um e-mail corporativo exige qual estrutura de organização do texto?',
+        options: [
+          'Iniciar o e-mail com histórias longas e detalhes históricos antes de chegar ao ponto principal.',
+          'Colocar a informação mais relevante, a conclusão ou a solicitação principal logo no primeiro parágrafo do texto.',
+          'Escrever todo o conteúdo no campo de assunto do e-mail para economizar espaço no corpo da mensagem.',
+          'Ocultar a intenção do e-mail até a última linha para gerar suspense no leitor.'
         ],
         correct: 1,
-        explanation: 'Um assunto contextualizado e claro permite ao leitor identificar imediatamente o teor do documento.'
+        explanation: 'A Pirâmide Invertida é uma técnica jornalística e corporativa que posiciona a ideia principal no topo do texto, respeitando o tempo do leitor e garantindo que o objetivo da mensagem seja compreendido rapidamente.'
+      },
+      {
+        id: 4,
+        question: 'No uso corporativo de e-mails, para que serve o campo \"Cco\" (Cópia Oculta)?',
+        options: [
+          'Para enviar mensagens que devem ser apagadas automaticamente em 24 horas.',
+          'Para incluir destinatários que devem responder obrigatoriamente a todos da lista.',
+          'Para enviar um e-mail a múltiplos destinatários garantindo a privacidade de seus endereços ou para informar alguém de forma discreta sem expor seu e-mail aos demais.',
+          'Para sinalizar que o e-mail contém vírus ou arquivos corrompidos.'
+        ],
+        correct: 2,
+        explanation: 'O campo Cco (Cópia Oculta) oculta os endereços dos destinatários, sendo essencial para manter a privacidade em envios em massa e evitar o vazamento de contatos.'
+      },
+      {
+        id: 5,
+        question: 'Ao utilizar aplicativos de comunicação instantânea corporativa (como Microsoft Teams, Slack ou WhatsApp), qual comportamento reflete uma boa etiqueta de comunicação escrita?',
+        options: [
+          'Enviar dez mensagens consecutivas contendo apenas uma palavra em cada uma delas (ex: \"Oi\", \"Tudo bem?\", \"Preciso\", \"De\", \"Uma\", \"Ajuda\").',
+          'Agrupar a saudação, o contexto e a dúvida/solicitação em uma única mensagem clara e completa.',
+          'Enviar áudios de 10 minutos para explicar tarefas simples que poderiam ser descritas em duas linhas de texto.',
+          'Utilizar caixa alta (letras maiúsculas) em todo o texto para garantir que as pessoas leiam mais rápido.'
+        ],
+        correct: 1,
+        explanation: 'Agrupar a mensagem completa evita notificações fragmentadas e permite que o interlocutor entenda o contexto e responda de forma ágil e estruturada.'
+      },
+      {
+        id: 6,
+        question: 'Em um comunicado oficial sobre a alteração do horário de funcionamento do escritório, a redação deve focar prioritariamente em qual característica textual?',
+        options: [
+          'Objetividade, precisão das informações e ausência de ambiguidades nos horários e datas indicados.',
+          'Uso abundante de metáforas, poesias e figuras de linguagem para tornar a leitura divertida.',
+          'Uso de jargões técnicos complexos que apenas a diretoria consegue entender.',
+          'Escrita informal com abreviações da internet como \"vc\", \"tbm\" e \"pq\".'
+        ],
+        correct: 0,
+        explanation: 'Comunicados oficiais exigem clareza absoluta, exatidão de datas e horários e ausência de ambiguidades para evitar mal-entendidos operacionais na equipe.'
+      },
+      {
+        id: 7,
+        question: 'Um profissional precisa solicitar a prorrogação de um prazo de entrega ao seu gestor de forma assertiva. Qual estrutura de mensagem representa a melhor abordagem escrita?',
+        options: [
+          'Não vou conseguir entregar no prazo porque estou com muitos problemas pessoais. Depois eu entrego.',
+          'Conforme acompanhado, identificamos uma complexidade extra na etapa Y. Proponho o envio da entrega ajustada para a próxima terça-feira às 14h, mantendo a qualidade do projeto.',
+          'Fingir que esqueceu o prazo e só responder se o gestor cobrar no dia seguinte.',
+          'Enviar o relatório incompleto e com erros na data do prazo original sem avisar nada.'
+        ],
+        correct: 1,
+        explanation: 'A alternativa B é profissional e assertiva: apresenta a justificativa baseada em fatos, demonstra compromisso com a qualidade e propõe uma nova data e hora concretas para a entrega.'
       }
     ]
   },
 
   // =========================================================================
-  // 10. ATENDIMENTO AO PÚBLICO E RELACIONAMENTO
+  // 10. PLANEJAMENTO FINANCEIRO, ORÇAMENTO 50-30-20 E RESERVA DE EMERGÊNCIA
   // =========================================================================
   {
     id: 'curso-atendimento-publico',
     trackId: 'trilha-2',
     trackName: 'TRILHA 2: Soft Skills, Postura & Comunicação Corporativa',
     category: 'Desenvolvimento Pessoal',
-    targetAudienceType: ['JOVEM_APRENDIZ', 'PRIMEIRO_EMPREGO'],
-    title: 'Atendimento ao Público e Técnicas de Relacionamento',
-    subtitle: 'Excelência no atendimento telefônico, presencial e por chat, escuta ativa e resolução de dúvidas',
-    hours: 8,
-    equivalentHours: 8,
+    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO'],
+    title: 'Planejamento Financeiro, Orçamento 50-30-20 e Reserva de Emergência',
+    subtitle: 'Capacitar o participante a organizar suas finanças pessoais, construir um orçamento sustentável através da regra 50-30-20, eliminar dívidas de forma estratégica e estruturar uma reserva de emergência segura e de liquidez imediata.',
+    hours: 12,
+    equivalentHours: 12,
     modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Aprendizes em funções de recepção, atendimento ao cliente e suporte',
-    prerequisites: 'Nenhum.',
-    badgeName: 'Excelência em Atendimento',
-    badgeCategory: 'Atitude Profissional',
-    badgeIcon: 'Headphones',
-    accentColor: '#EC4899',
-    level: 'Iniciante',
-    learningObjectives: [
-      'Atender chamadas telefônicas com cordialidade e padrão corporativo.',
-      'Praticar escuta ativa para entender o problema do cliente antes de responder.',
-      'Lidar com reclamações com empatia e tranquilidade.'
-    ],
-    modules: [
-      {
-        id: 'ate-mod-1',
-        number: 1,
-        title: 'MÓDULO 1: Princípios do Atendimento Humanizado',
-        summary: 'Saudação acolhedora, empatia e clareza na transmissão de informações.',
-        estimatedMinutes: 30,
-        content: {
-          sections: [
-            {
-              subheading: '1.1 Abertura do Atendimento',
-              body: [
-                'Sempre cumprimente com energia positiva: "Bom dia! Meu nome é Lucas, em que posso ajudar hoje?". Anote o nome do cliente e use-o com respeito durante a conversa.'
-              ]
-            }
-          ]
-        }
-      }
-    ],
-    caseStudies: [],
-    quiz: [
-      {
-        id: 1,
-        question: 'Qual a primeira atitude ao atender um cliente que está chateado com uma demora?',
-        options: [
-          'Interrompê-lo e dizer que a culpa não é sua.',
-          'Ouvir atentamente com empatia, demonstrar que compreende a frustração e buscar resolver o problema.',
-          'Desligar o telefone.',
-          'Rir da situação.'
-        ],
-        correct: 1,
-        explanation: 'A escuta empática desarma a tensão e permite focar na solução rápida do problema.'
-      }
-    ]
-  },
-
-  // =========================================================================
-  // 11. INFORMÁTICA & SEGURANÇA DIGITAL
-  // =========================================================================
-  {
-    id: 'curso-informatica-seguranca',
-    trackId: 'trilha-3',
-    trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
-    category: 'Tecnologia da Informação',
-    targetAudienceType: 'TODOS',
-    title: 'Informática Básica, Nuvem e Segurança da Informação',
-    subtitle: 'Navegação segura, senhas fortes, Google Drive/OneDrive e proteção contra phishing',
-    hours: 10,
-    equivalentHours: 10,
-    modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Estudantes e aprendizes iniciando o uso de computadores corporativos',
-    prerequisites: 'Nenhum.',
-    badgeName: 'Segurança Digital & Nuvem',
-    badgeCategory: 'Ferramentas de Escritório',
-    badgeIcon: 'Shield',
-    accentColor: '#3B82F6',
+    targetAudience: 'Jovens aprendizes, estagiários e estudantes que buscam organizar suas finanças pessoais, quitar dívidas e criar sua primeira reserva de emergência',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Mestre do Orçamento & Reserva',
+    badgeCategory: 'Finanças Pessoais',
+    badgeIcon: 'PiggyBank',
+    accentColor: '#F59E0B',
     level: 'Intermediário',
     learningObjectives: [
-      'Criar senhas fortes e gerenciar autenticação em dois fatores.',
-      'Identificar e-mails de phishing e links maliciosos.',
-      'Organizar pastas e permissões de compartilhamento no Google Drive e OneDrive.'
+      'Realizar um diagnóstico financeiro completo (raio-X financeiro), mapeando ativos, passivos, gastos fixos, variáveis e despesas invisíveis.',
+      'Aplicar o método de orçamento 50-30-20 (50% Necessidades, 30% Desejos e 20% Prioridades Financeiras) e adotar o princípio de \"pague-se primeiro\".',
+      'Mapear dívidas pelo Custo Efetivo Total (CET) e aplicar estratégias de quitação acelerada (Método Avalanche vs. Método Bola de Neve).',
+      'Calcular a Reserva de Emergência ideal com base na modalidade de trabalho (3 a 6 meses para CLT e 6 a 12 meses para autônomos).',
+      'Selecionar produtos de renda fixa seguros e com liquidez diária (Tesouro Selic e CDBs 100% do CDI) para alocação da reserva de emergência.'
     ],
     modules: [
       {
-        id: 'inf-mod-1',
+        id: 'fin-orc-mod-1',
         number: 1,
-        title: 'MÓDULO 1: Proteção de Senhas e Prevenção a Fraudes',
-        summary: 'Como manter o computador da empresa seguro e evitar infecções por malware.',
-        estimatedMinutes: 30,
+        title: 'MÓDULO 1: Diagnóstico Financeiro e Mapeamento de Gastos',
+        summary: 'Compreender a real situação das finanças pessoais antes de tomar decisões de investimento ou corte de despesas.',
+        estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1.1 Criando Senhas Inquebráveis',
+              subheading: '1. Raio-X das Finanças Pessoais',
               body: [
-                'Combine letras maiúsculas, minúsculas, números e caracteres especiais. Nunca utilize "123456" ou sua data de aniversário.'
+                'Compreender a real situação das finanças pessoais antes de tomar decisões de investimento ou corte de despesas.',
+                'Levantamento de Ativos e Passivos: Entender a diferença entre o que gera receita e coloca dinheiro no bolso (ativos) e o que gera despesas e consome recursos (passivos).',
+                'Mapeamento de Gastos Fixos vs. Variáveis: Classificação clara entre contas essenciais e previsíveis (aluguel, condomínio, internet) e consumos sazonais ou supérfluos que oscilam mês a mês.',
+                'Categorização de Gastos: Identificação minuciosa dos chamados \"gastos invisíveis\" ou \"pequenos ralos financeiros\" (pequenos cafezinhos, taxas bancárias não percebidas e compras por impulso no dia a dia).'
+              ]
+            },
+            {
+              subheading: '2. Planilhas e Aplicativos de Controle',
+              body: [
+                'Ferramentas de Acompanhamento: Utilização de cadernos, planilhas organizadas ou aplicativos de gestão financeira para o registro sistemático de todas as entradas e saídas.',
+                'Análise de Fluxo de Caixa: Apuração do saldo mensal real para identificar com clareza se a conta fecha no positivo (superávit), no zero a zero ou no negativo (déficit financeiro).'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'fin-orc-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: O Método de Orçamento 50-30-20',
+        summary: 'Uma metodologia prática e visual para distribuir a renda líquida mensal em categorias equilibradas.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. A Divisão Percentual da Renda Líquida',
+              body: [
+                '50% — Necessidades Essenciais: Moradia, alimentação, saúde, transporte, energia, água e educação básica. Gastos vitais para a sobrevivência e manutenção da vida diária.',
+                '30% — Desejos Pessoais: Lazer, passeios, viagens, assinaturas de streaming, hobbies e vestuário não essencial. Gastos que proporcionam qualidade de vida presente.',
+                '20% — Prioridades Financeiras: Quitação de dívidas de juros altos, construção de reservas financeiras e investimentos de longo prazo para garantir tranquilidade futura.'
+              ]
+            },
+            {
+              subheading: '2. Ajustes e Flexibilidade',
+              body: [
+                'Customização da Metodologia: Adaptando os percentuais para diferentes realidades de renda (ex: 60-20-20 para orçamentos em fases mais apertadas ou inícios de carreira).',
+                'Disciplina e Hábitos: Como manter a constância nos aportes das prioridades financeiras logo no início do mês aplicando o princípio \"pague-se primeiro\" (investir assim que o salário cai, antes de gastar o restante).'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'fin-orc-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Gestão de Dívidas e Estratégias de Quitação',
+        summary: 'Eliminar passivos que cobram juros altos para liberar margem no orçamento.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Mapeamento e Priorização de Débitos',
+              body: [
+                'Custo Efetivo Total (CET): Compreender quais dívidas são as mais perigosas e onerosas (cartão de crédito rotativo, cheque especial e empréstimos pessoais com juros compostos explosivos).',
+                'Método Bola de Neve: Quitar primeiro as dívidas de menor valor absoluto para gerar vitórias rápidas e motivação psicológica consistente.',
+                'Método Avalanche: Quitar prioritariamente as dívidas com as maiores taxas de juros nominais, economizando o máximo de dinheiro em juros ao longo do tempo.'
+              ]
+            },
+            {
+              subheading: '2. Renegociação e Proteção do Score',
+              body: [
+                'Estratégias de Negociação: Como pleitear descontos em feirões de renegociação (ex: Serasa Limpa Nome) e trocar dívidas caras por linhas de crédito mais baratas (como crédito consignado).',
+                'Uso Consciente do Cartão de Crédito: Transformar o cartão em um aliado operacional de pontuação e organização de fluxo, e nunca em uma extensão ilusória da renda mensal.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'fin-orc-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Estruturação da Reserva de Emergência',
+        summary: 'Criar a base de segurança que protege o orçamento contra imprevistos sem necessidade de recorrer a empréstimos.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Cálculo do Tamanho Ideal da Reserva',
+              body: [
+                'Meses de Custo de Vida: Definir o tamanho da reserva com base na estabilidade da fonte de renda:',
+                '• CLT e Servidores Públicos: De 3 a 6 meses do custo de vida essencial.',
+                '• Autônomos e Profissionais Liberais: De 6 a 12 meses do custo de vida essencial, absorvendo períodos de volatilidade de faturamento.'
+              ]
+            },
+            {
+              subheading: '2. Onde Guardar a Reserva de Emergência',
+              body: [
+                'Critérios Inegociáveis: Altíssima segurança do capital, baixíssima volatilidade e Liquidez Diária (resgate imediato em D+0 ou D+1).',
+                'Opções Adequadas: Tesouro Selic (título público federal), CDBs de liquidez diária com 100% do CDI garantidos pelo FGC e contas remuneradas de instituições consolidadas.',
+                'O que Evitar para a Reserva: Ações, fundos imobiliários, criptomoedas e caderneta de poupança (devido à perda de rendimento em saques antes do aniversário de 30 dias).'
               ]
             }
           ]
@@ -1631,21 +2413,93 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'Se você receber um e-mail suspeito pedindo sua senha corporativa, o que deve fazer?',
+        question: 'De acordo com a metodologia de orçamento 50-30-20, como deve ser distribuída a renda líquida mensal de uma pessoa?',
         options: [
-          'Responder imediatamente com a senha.',
-          'Não clicar em nenhum link e alertar o time de TI da empresa.',
-          'Encaminhar para todos os colegas de trabalho.',
-          'Ignorar e apagar sem avisar ninguém.'
+          '50% para Lazer, 30% para Moradia e 20% para Alimentação.',
+          '50% para Prioridades Financeiras, 30% para Necessidades Essenciais e 20% para Desejos Pessoais.',
+          '50% para Necessidades Essenciais, 30% para Desejos Pessoais e 20% para Prioridades Financeiras/Investimentos.',
+          '50% para Imprevistos, 30% para Compras Parceladas e 20% para Contas de Luz e Água.'
+        ],
+        correct: 2,
+        explanation: 'O método 50-30-20 destina 50% para as Necessidades Essenciais (sobrevivência e manutenção), 30% para Desejos Pessoais (estilo de vida e lazer) e 20% para Prioridades Financeiras (quitação de dívidas e investimentos).'
+      },
+      {
+        id: 2,
+        question: 'Um profissional autônomo com renda variável deseja calcular o tamanho ideal da sua Reserva de Emergência. Considerando a maior oscilação da sua atividade profissional, quantos meses do seu custo de vida essencial são recomendados para essa reserva?',
+        options: [
+          'De 6 a 12 meses.',
+          'Apenas 1 mês.',
+          'Exatamente 24 meses do salário bruto.',
+          'Não é necessário manter reserva quando se é autônomo.'
+        ],
+        correct: 0,
+        explanation: 'Para autônomos e profissionais liberais, cuja renda é oscilante e imprevisível, recomenda-se uma reserva mais robusta (de 6 a 12 meses do custo de vida essencial) para absorver períodos de baixa atividade.'
+      },
+      {
+        id: 3,
+        question: 'Qual das seguintes opções apresenta as características fundamentais que uma aplicação financeira DEVE ter para servir como destino da Reserva de Emergência?',
+        options: [
+          'Altíssimo risco, alta volatilidade e resgate bloqueado por 5 anos.',
+          'Garantia de ganhos na Bolsa de Valores com rendimento diário de 10%.',
+          'Baixa liquidez com cobrança de multa em caso de saque antecipado.',
+          'Altíssima segurança, baixíssima volatilidade e liquidez diária (possibilidade de resgate imediato).'
+        ],
+        correct: 3,
+        explanation: 'A reserva de emergência exige segurança (não perder o capital) e liquidez diária (dinheiro disponível no momento em que a emergência acontece). O foco desse montante é proteção, não rentabilidade agressiva.'
+      },
+      {
+        id: 4,
+        question: 'Na gestão de dívidas, qual é a principal vantagem da estratégia conhecida como \"Método Avalanche\"?',
+        options: [
+          'Pagar primeiro as dívidas com as menores taxas de juros para acumulá-las no final.',
+          'Priorizar a quitação das dívidas que possuem as maiores taxas de juros, reduzindo ao máximo o montante total pago em juros ao longo do tempo.',
+          'Ignorar as dívidas bancárias e pagar apenas as contas de consumo básico.',
+          'Consolidar todas as dívidas em uma única parcela parcelada em 120 vezes.'
         ],
         correct: 1,
-        explanation: 'Nunca compartilhe senhas por e-mail e sempre notifique o departamento de segurança da informação.'
+        explanation: 'O Método Avalanche ataca primeiro os débitos com juros mais caros (como cartão de crédito e cheque especial), sendo matematicamente a forma mais barata de quitar dívidas.'
+      },
+      {
+        id: 5,
+        question: 'Ao analisar o orçamento mensal, onde se enquadra o pagamento de despesas como aluguel, conta de luz, supermercado e transporte para o trabalho?',
+        options: [
+          'Desejos Pessoais (30%).',
+          'Prioridades Financeiras (20%).',
+          'Necessidades Essenciais (50%).',
+          'Gastos Superficiais Não Categorizados.'
+        ],
+        correct: 2,
+        explanation: 'Despesas ligadas à moradia, alimentação básica, saúde e transporte constituem a base de sobrevivência e enquadram-se nos 50% de Necessidades Essenciais.'
+      },
+      {
+        id: 6,
+        question: 'O conceito de \"Pague-se Primeiro\" no planejamento financeiro significa:',
+        options: [
+          'Separar o valor destinado às Prioridades Financeiras/Investimentos assim que a renda entra na conta, antes de efetuar os demais gastos.',
+          'Gastar todo o salário com lazer na primeira semana do mês e pagar as contas com o limite do cartão.',
+          'Pagar adiantado a fatura do cartão de crédito do mês seguinte.',
+          'Comprar produtos importados à vista antes de cotar preços.'
+        ],
+        correct: 0,
+        explanation: 'O hábito de \"pague-se primeiro\" consiste em priorizar o seu futuro financeiro transferindo o percentual de investimentos/poupança logo no dia do pagamento, tratando os aportes como um compromisso fixo.'
+      },
+      {
+        id: 7,
+        question: 'Qual das seguintes alternativas representa um produto financeiro adequado e seguro para a alocação da Reserva de Emergência?',
+        options: [
+          'Ações de empresas de tecnologia na Bolsa de Valores.',
+          'Criptomoedas de alto risco.',
+          'Tesouro Selic ou CDB de Liquidez Diária de instituição financeira sólida.',
+          'Fundos Imobiliários fechados sem liquidez.'
+        ],
+        correct: 2,
+        explanation: 'O Tesouro Selic e os CDBs de liquidez diária possuem risco baixíssimo, acompanham a taxa básica de juros e permitem o resgate imediato sem perdas do valor principal investido.'
       }
     ]
   },
 
   // =========================================================================
-  // 12. GESTÃO DO TEMPO & PRODUTIVIDADE
+  // 11. PRODUTIVIDADE ÁGIL E ORGANIZAÇÃO DE DEMANDAS
   // =========================================================================
   {
     id: 'curso-gestao-tempo',
@@ -1707,47 +2561,139 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
-  // 13. COMUNICAÇÃO NÃO-VIOLENTA (CNV) E EMPATIA
+  // 12. COMUNICAÇÃO NÃO-VIOLENTA (CNV) E EMPATIA NO TRABALHO
   // =========================================================================
   {
     id: 'curso-comunicacao-nao-violenta',
     trackId: 'trilha-2',
     trackName: 'TRILHA 2: Soft Skills, Postura & Comunicação Corporativa',
     category: 'Desenvolvimento Pessoal',
-    targetAudienceType: 'TODOS',
+    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO'],
     title: 'Comunicação Não-Violenta (CNV) e Empatia no Trabalho',
-    subtitle: 'Os 4 pilares da CNV (Observação, Sentimento, Necessidade e Pedido) para relacionamentos saudáveis no primeiro emprego',
-    hours: 8,
-    equivalentHours: 8,
-    modality: 'EAD 100% Gratuito',
-    targetAudience: 'Jovens aprendizes, estagiários e estudantes',
-    prerequisites: 'Nenhum.',
-    badgeName: 'CNV & Empatia',
-    badgeCategory: 'Atitude Profissional',
+    subtitle: 'Capacitar profissionais a aplicar os princípios da Comunicação Não-Violenta (CNV) no ambiente corporativo, transformando conflitos em colaboração, aprimorando a escuta ativa e fortalecendo a empatia e a clareza nas relações de trabalho.',
+    hours: 12,
+    equivalentHours: 12,
+    modality: 'EAD 100% Gratuito (Escola Virtual)',
+    targetAudience: 'Jovens aprendizes, estagiários e profissionais que buscam aprimorar suas relações interpessoais, transformar conflitos em cooperação e desenvolver postura empática no trabalho',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'CNV & Empatia no Trabalho',
+    badgeCategory: 'Comunicação & Relacionamento',
     badgeIcon: 'HeartHandshake',
     accentColor: '#EC4899',
-    level: 'Iniciante',
+    level: 'Intermediário',
     learningObjectives: [
-      'Identificar fatos objetivos sem misturar com julgamentos ou suposições.',
-      'Reconhecer necessidades humanas básicas por trás de feedbacks difíceis.',
-      'Formular pedidos claros e acionáveis em vez de exigências no trabalho.'
+      'Dominar os 4 pilares da Comunicação Não-Violenta sistematizados por Marshall Rosenberg: Observação, Sentimento, Necessidade e Pedido.',
+      'Diferenciar fatos objetivos e observações puras de avaliações, rótulos e julgamentos pessoais no ambiente profissional.',
+      'Praticar a escuta ativa e empática, desarmando comunicações agressivas e entendendo críticas como expressões de necessidades não atendidas.',
+      'Estruturar feedbacks empáticos orientados ao desenvolvimento mútuo e receber feedbacks difíceis sem adotar postura defensiva.',
+      'Estabelecer limites com assertividade, diferenciando agressividade e passividade e dominando a arte do \\"não\\" fundamentado.'
     ],
     modules: [
       {
         id: 'cnv-mod-1',
         number: 1,
-        title: 'MÓDULO 1: Os 4 Passos da Comunicação Não-Violenta',
-        summary: 'Aprenda a fórmula prática de Marshall Rosenberg para se comunicar sem gerar brigas ou defensividade.',
-        estimatedMinutes: 30,
+        title: 'MÓDULO 1: Os 4 Pilares da Comunicação Não-Violenta (CNV)',
+        summary: 'A Comunicação Não-Violenta, sistematizada por Marshall Rosenberg, é uma abordagem prática para criar conexões autênticas e resolver divergências sem agressividade ou submissão.',
+        estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1.1 A Fórmula dos 4 Passos',
+              subheading: '1. Observação sem Julgamento vs. Avaliação',
               body: [
-                '1. Observação: Relate o fato concreto sem adjetivos acusatórios (ex: "Ontem a planilha não foi preenchida").',
-                '2. Sentimento: Diga como se sente de forma honesta (ex: "Fiquei preocupado com o prazo do cliente").',
-                '3. Necessidade: Explique a necessidade por trás (ex: "Porque nossa equipe precisa de previsibilidade").',
-                '4. Pedido: Faça um pedido concreto e realizável (ex: "Você poderia me avisar até as 14h se houver atraso?").'
+                'A maioria dos conflitos corporativos começa quando misturamos fatos concretos com interpretações pessoais.',
+                'Observação Pura: Descrever apenas o que pode ser visto ou ouvido, sem adjetivos ou julgamentos de valor (ex: \\"Você entregou o relatório dois dias após o prazo combinado\\").',
+                'Avaliação/Julgamento: Adicionar interpretações ou rótulos à situação (ex: \\"Você é descompromissado com os prazos do projeto\\").'
+              ]
+            },
+            {
+              subheading: '2. Sentimentos, Necessidades e Pedidos Claros',
+              body: [
+                'Identificação de Sentimentos: Reconhecer como nos sentimos diante de um fato (ex: frustrado, preocupado, inseguro), sem culpar o outro por essa emoção.',
+                'Mapeamento de Necessidades: Compreender qual necessidade humana fundamental não está sendo atendida (ex: clareza, previsibilidade, respeito, cooperação).',
+                'Formulação de Pedidos Concretos: Fazer solicitações claras, factíveis e afirmativas em vez de exigências vagas (ex: \\"Podemos alinhar o status deste projeto diariamente às 09h por 5 minutos?\\").'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'cnv-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: Escuta Ativa, Empatia e Desarmamento de Conflitos',
+        summary: 'Comunicar-se bem exige escutar na mesma proporção em que se fala. A escuta empática desarma a defensiva e estabelece confiança mútua.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. A Escuta Empática no Ambiente Corporativo',
+              body: [
+                'Escutar de forma empática não significa concordar passivamente com tudo, mas demonstrar que a perspectiva do outro foi verdadeiramente compreendida.',
+                'Os Obstáculos da Escuta: Evitar o hábito de dar conselhos não solicitados, minimizar o sentimento alheio (\\"Isso não é nada\\") ou interromper para contar uma experiência própria.',
+                'Parafrasear e Validar: Reorganizar com suas próprias palavras o que o outro disse para confirmar o entendimento (ex: \\"Entendo que você está preocupado com o prazo porque precisa desses dados para a reunião do conselho?\\").'
+              ]
+            },
+            {
+              subheading: '2. Desarmando Comunicações Agressivas',
+              body: [
+                'Quando um colega ou cliente se expressa com raiva ou ironia, a reação automática costuma ser o ataque ou a esquiva.',
+                'Tradução da Agressividade: Enxergar críticas e ataques como \\"expressões trágicas\\" de necessidades não atendidas no trabalho.',
+                'Manutenção do Foco nos Fatos: Responder ao conteúdo real da demanda sem reagir ao tom emocionalmente carregado do interlocutor.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'cnv-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Feedback Empático e Alinhamento de Expectativas',
+        summary: 'Dar e receber feedback é essencial para o crescimento profissional, mas exige técnica para evitar que o momento seja percebido como uma punição.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Estruturação do Feedback no Modelo CNV',
+              body: [
+                'Substituir termos vagos ou acusações por uma narrativa focada em desenvolvimento e cooperação:',
+                '• [1. Observação do Fato] ──► \\"Na reunião de ontem, você interrompeu o cliente três vezes...\\"',
+                '• [2. Expressão de Impacto] ──► \\"...fiquei preocupado com a imagem de alinhamento da equipe...\\"',
+                '• [3. Necessidade Corporativa] ──► \\"...pois precisamos transmitir total escuta e profissionalismo.\\"',
+                '• [4. Pedido Concreto] ──► \\"Podemos combinar de anotar as dúvidas e apresentá-las ao final?\\"'
+              ]
+            },
+            {
+              subheading: '2. Recebendo Feedbacks Difíceis sem Defensiva',
+              body: [
+                'Separar Identidade de Comportamento: Entender que um feedback pontual sobre uma tarefa não define sua competência profissional como um todo.',
+                'Investigação Curiosa: Fazer perguntas esclarecedoras para extrair fatos concretos do feedback recebido, mesmo quando ele vier de forma vaga.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'cnv-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Estabelecimento de Limites com Assertividade e Respeito',
+        summary: 'Ser empático não significa aceitar sobrecarga de trabalho ou comportamentos inadequados. A CNV oferece ferramentas para impor limites firmes com educação.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. A Diferença entre Agressividade, Passividade e Assertividade',
+              body: [
+                'Passividade: Calar-se diante de excessos, acumulando ressentimento e ansiedade.',
+                'Agressividade: Impor vontades por meio de intimidação, sarcasmo ou elevação do tom de voz.',
+                'Assertividade (CNV): Expressar limites com clareza, mantendo o respeito por si mesmo e pelo interlocutor.'
+              ]
+            },
+            {
+              subheading: '2. A Arte do \\"Não\\" Fundamentado',
+              body: [
+                'Como recusar demandas extras sem gerar atritos desnecessários na equipe:',
+                '• Acolher a Necessidade do Outro: Demonstrar compreensão sobre a urgência do pedido.',
+                '• Apresentar a Realidade de Forma Objetiva: Explicar a prioridade atual e os limites de capacidade com base em dados de agenda.',
+                '• Oferecer Alternativas Construtivas: Propor novos prazos ou redistribuição de tarefas em vez de uma simples recusa fechada.'
               ]
             }
           ]
@@ -1758,205 +2704,87 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'Qual é o primeiro passo da Comunicação Não-Violenta (CNV)?',
+        question: 'Durante uma reunião de equipe, um colaborador deseja fazer uma crítica construtiva sobre o atraso recorrente de um colega na entrega de planilhas. Qual das frases abaixo representa uma \\"Observação Pura\\" segundo os conceitos da CNV?',
         options: [
-          'Exigir que a outra pessoa peça desculpas imediatamente.',
-          'Observar fatos concretos sem misturar com julgamentos ou críticas pessoais.',
-          'Reclamar com o chefe da empresa.',
-          'Ficar em silêncio e não responder.'
+          'Você é uma pessoa totalmente desorganizada com os horários da equipe.',
+          'Você claramente não se importa com o impacto do seu atraso no meu trabalho.',
+          'Sua falta de compromisso com a empresa está prejudicando a todos nós.',
+          'Percebi que as últimas três planilhas foram enviadas após o horário limite combinado na segunda-feira.'
+        ],
+        correct: 3,
+        explanation: 'A opção D descreve um fato mensurável e objetivo (envio de três planilhas após o horário) sem adicionar rótulos morais ou adjetivos julgadores, caracterizando a Observação Pura no modelo da CNV.'
+      },
+      {
+        id: 2,
+        question: 'O segundo componente da Comunicação Não-Violenta refere-se à identificação dos \\"Sentimentos\\". Qual das alternativas apresenta a correta nomeação de um sentimento genuíno sem embutir um julgamento velado sobre a outra pessoa?',
+        options: [
+          'Sinto-me apreensivo e sobrecarregado com o volume de entregas desta semana.',
+          'Sinto que você está tentando me sabotar diante da liderança.',
+          'Sinto-me completamente ignorado por você nesta sala.',
+          'Sinto que a equipe é incompetente para gerenciar este projeto.'
+        ],
+        correct: 0,
+        explanation: '\\"Apreensivo\\" e \\"sobrecarregado\\" são sentimentos legítimos e focados na própria experiência do indivíduo. As demais opções usam a expressão \\"Sinto que...\\" para mascarar julgamentos sobre os outros (\\"sinto que você me ignora\\", \\"sinto que são incompetentes\\").'
+      },
+      {
+        id: 3,
+        question: 'A escuta empática é uma habilidade central na CNV. Quando um colega desabafa sobre uma dificuldade no trabalho, qual atitude caracteriza uma verdadeira escuta empática?',
+        options: [
+          'Interromper imediatamente para contar uma história pessoal mais difícil que ocorreu com você.',
+          'Escutar com atenção total, validando os sentimentos expostos e confirmando o entendimento sem julgamentos imediatos.',
+          'Oferecer soluções prontas antes mesmo de o colega terminar de explicar o que está sentindo.',
+          'Minimizar o problema dizendo que o colega está exagerando e que a situação não é importante.'
         ],
         correct: 1,
-        explanation: 'Observar fatos objetivos sem julgar evita que o interlocutor entre em modo de defesa.'
-      }
-    ]
-  },
-
-  // =========================================================================
-  // 14. EXCEL PARA INICIANTES
-  // =========================================================================
-  {
-    id: 'curso-excel-iniciante',
-    trackId: 'trilha-3',
-    trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
-    category: 'Tecnologia da Informação',
-    targetAudienceType: 'TODOS',
-    title: 'Excel do Zero: Primeiras Planilhas, Fórmulas Básicas e Gráficos',
-    subtitle: 'Navegação em células, formatação de dados, fórmulas essenciais (SOMA, MÉDIA, MÁXIMO) e criação de gráficos simples',
-    hours: 10,
-    equivalentHours: 10,
-    modality: 'EAD 100% Gratuito',
-    targetAudience: 'Estudantes que nunca utilizaram planilhas ou querem reforçar a base',
-    prerequisites: 'Nenhum.',
-    badgeName: 'Excel Fundamentos',
-    badgeCategory: 'Ferramentas de Escritório',
-    badgeIcon: 'FileSpreadsheet',
-    accentColor: '#10B981',
-    level: 'Iniciante',
-    learningObjectives: [
-      'Entender linhas, colunas, células e referências no Excel e Google Planilhas.',
-      'Utilizar operadores matemáticos (+, -, *, /) e funções básicas como =SOMA() e =MÉDIA().',
-      'Formatar tabelas com moeda (R$), porcentagem (%) e criar gráficos de colunas.'
-    ],
-    modules: [
+        explanation: 'A escuta empática exige presença e acolhimento. Ela foca em compreender a perspectiva do interlocutor e parafrasear sua mensagem, evitando conselhos precipitados, interrupções ou minimização de dores.'
+      },
       {
-        id: 'exc-ini-mod-1',
-        number: 1,
-        title: 'MÓDULO 1: Estrutura da Planilha e Primeiras Fórmulas',
-        summary: 'Domine a interface do Excel e aprenda como o sinal de igual (=) inicia qualquer cálculo inteligente.',
-        estimatedMinutes: 30,
-        content: {
-          sections: [
-            {
-              subheading: '1.1 O Segredo do Sinal de Igual',
-              body: [
-                'No Excel, toda fórmula começa com "=". Para somar os valores das células A1 até A10, usamos =SOMA(A1:A10).',
-                'Para calcular uma média aritmética, basta digitar =MÉDIA(B2:B8).'
-              ]
-            }
-          ]
-        }
-      }
-    ],
-    caseStudies: [],
-    quiz: [
-      {
-        id: 1,
-        question: 'Qual caractere obrigatório deve iniciar qualquer fórmula no Excel ou Planilhas?',
+        id: 4,
+        question: 'Um gestor precisa solicitar a um liderado que revise um relatório antes de enviá-lo ao diretor. Como essa solicitação deve ser estruturada para ser considerada um \\"Pedido Concreto e Afirmativo\\" no modelo da CNV?',
         options: [
-          'O símbolo de arroba (@)',
-          'O sinal de igual (=)',
-          'O ponto de exclamação (!)',
-          'As aspas duplas (")'
+          'Preciso que você pare de ser desatento quando produz os relatórios da área.',
+          'Espero que você melhore a qualidade do seu trabalho o mais rápido possível.',
+          'Você poderia reexaminar os números da seção 3 e me enviar a versão atualizada até às 15h?',
+          'Tente não cometer os mesmos erros de sempre na apresentação de hoje.'
         ],
-        correct: 1,
-        explanation: 'O sinal de igual (=) avisa o Excel que o texto seguinte é uma instrução de cálculo ou função.'
-      }
-    ]
-  },
-
-  // =========================================================================
-  // 15. LGPD, PRIVACIDADE E SEGURANÇA DIGITAL
-  // =========================================================================
-  {
-    id: 'curso-lgpd-seguranca-dados',
-    trackId: 'trilha-3',
-    trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
-    category: 'Tecnologia da Informação',
-    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTAGIARIO'],
-    title: 'LGPD, Privacidade e Segurança Digital Corporativa',
-    subtitle: 'Lei Geral de Proteção de Dados (Lei nº 13.709/18), proteção de dados de menores, phishing e sigilo de senhas',
-    hours: 14,
-    equivalentHours: 14,
-    modality: 'EAD 100% Gratuito',
-    targetAudience: 'Jovens aprendizes e estagiários em ambientes corporativos informatizados',
-    prerequisites: 'Noções básicas de informática.',
-    badgeName: 'Especialista em LGPD & Dados',
-    badgeCategory: 'Trabalho',
-    badgeIcon: 'ShieldCheck',
-    accentColor: '#8B5CF6',
-    level: 'Avançado',
-    learningObjectives: [
-      'Compreender o conceito de Dado Pessoal e Dado Pessoal Sensível segundo a LGPD.',
-      'Saber como tratar dados de clientes e colegas de trabalho sem infringir a lei.',
-      'Identificar ataques de engenharia social, phishing e manter autenticação em 2 fatores ativa.'
-    ],
-    modules: [
+        correct: 2,
+        explanation: 'Um Pedido Concreto e Afirmativo indica com clareza a ação esperada (reexaminar a seção 3), estabelece um prazo viável (até às 15h) e foca no que deve ser feito, e não no que deve ser evitado.'
+      },
       {
-        id: 'lgpd-mod-1',
-        number: 1,
-        title: 'MÓDULO 1: Fundamentos da LGPD e Responsabilidade no Trabalho',
-        summary: 'Conheça as principais obrigações que todo colaborador deve seguir ao lidar com dados de terceiros.',
-        estimatedMinutes: 35,
-        content: {
-          sections: [
-            {
-              subheading: '1.1 O que é Dado Pessoal?',
-              body: [
-                'Qualquer informação relacionada a pessoa natural identificada ou identificável (CPF, e-mail, telefone, biometria).',
-                'Compartilhar listas de clientes em grupos não autorizados de WhatsApp é infração grave com penalidades para a empresa e o colaborador.'
-              ]
-            }
-          ]
-        }
-      }
-    ],
-    caseStudies: [],
-    quiz: [
-      {
-        id: 1,
-        question: 'O que o colaborador deve fazer ao receber um e-mail suspeito solicitando senhas internas da empresa?',
+        id: 5,
+        question: 'No contexto da CNV, como as expressões de raiva, agressividade ou ironia do interlocutor devem ser interpretadas para evitar reações defensivas?',
         options: [
-          'Enviar a senha imediatamente para não ser demitido.',
-          'Nunca fornecer senhas e reportar imediatamente à equipe de TI/Segurança da Informação.',
-          'Encaminhar o e-mail para todos os seus colegas de sala.',
-          'Clicar em todos os links para verificar se é verdade.'
+          'Como demonstrações trágicas de necessidades e frustrações que não estão sendo atendidas.',
+          'Como um ataque pessoal direto que exige uma resposta agressiva imediata para impor respeito.',
+          'Como provas definitivas de que a pessoa é incapaz de trabalhar em equipe.',
+          'Como um sinal claro de que você deve se calar e aceitar qualquer tipo de tratamento.'
         ],
-        correct: 1,
-        explanation: 'Golpes de phishing visam roubar credenciais corporativas. Nunca compartilhe senhas e reporte o incidente.'
-      }
-    ]
-  },
-
-  // =========================================================================
-  // 16. PLANEJAMENTO E MATEMÁTICA FINANCEIRA
-  // =========================================================================
-  {
-    id: 'curso-planejamento-orcamento',
-    trackId: 'trilha-5',
-    trackName: 'TRILHA 5: Educação Financeira & Cidadania no Trabalho',
-    category: 'Desenvolvimento Pessoal',
-    targetAudienceType: 'TODOS',
-    title: 'Planejamento Financeiro, Orçamento 50-30-20 e Reserva de Emergência',
-    subtitle: 'Método 50-30-20 na prática, cálculo de juros simples vs compostos e construção da primeira reserva financeira',
-    hours: 12,
-    equivalentHours: 12,
-    modality: 'EAD 100% Gratuito',
-    targetAudience: 'Jovens que recebem bolsa-auxílio ou salário de aprendiz',
-    prerequisites: 'Nenhum.',
-    badgeName: 'Mestre do Orçamento',
-    badgeCategory: 'Finanças',
-    badgeIcon: 'PiggyBank',
-    accentColor: '#F59E0B',
-    level: 'Intermediário',
-    learningObjectives: [
-      'Dividir o salário mensal segundo a regra 50% (Necessidades), 30% (Desejos) e 20% (Futuro).',
-      'Evitar o endividamento em cartões de crédito e juros rotativos abusivos.',
-      'Calcular o valor ideal da Reserva de Emergência (3 a 6 meses de custos fixos).'
-    ],
-    modules: [
+        correct: 0,
+        explanation: 'Marshall Rosenberg ensina que toda agressividade é a manifestação indireta e ineficiente de uma necessidade humana não atendida (ex: necessidade de apoio, clareza ou consideração). Reconhecer isso evita a postura defensiva.'
+      },
       {
-        id: 'fin-mod-1',
-        number: 1,
-        title: 'MÓDULO 1: A Regra 50-30-20 Aplicada à Realidade do Jovem',
-        summary: 'Como administrar uma bolsa de R$ 900 a R$ 1.500 sem ficar no vermelho.',
-        estimatedMinutes: 30,
-        content: {
-          sections: [
-            {
-              subheading: '1.1 Divisão dos Potes Financeiros',
-              body: [
-                '50% para Gastos Essenciais: Passagens, materiais escolares, auxílio nas contas de casa.',
-                '30% para Lazer e Estilo de Vida: Saídas com amigos, assinaturas, passeios.',
-                '20% para o Futuro: Guardar em conta rendendo 100% do CDI para formar a reserva de emergência.'
-              ]
-            }
-          ]
-        }
-      }
-    ],
-    caseStudies: [],
-    quiz: [
-      {
-        id: 1,
-        question: 'Segundo a regra 50-30-20, qual porcentagem da sua renda deve ser direcionada para economias e reserva do futuro?',
+        id: 6,
+        question: 'Ao aplicar o feedback estruturado no modelo CNV, qual é a sequência correta dos quatro componentes que devem guiar a conversa?',
         options: [
-          '0% (gastar tudo no mesmo dia)',
-          '20% da renda líquida',
-          '90% da renda líquida',
-          '100% da renda líquida'
+          'Julgamento, Punição, Exigência e Encerramento.',
+          'Sentimento, Desculpa, Solução e Cobrança.',
+          'Observação, Sentimento, Necessidade e Pedido.',
+          'Avaliação, Diagnóstico, Comparação e Ordem.'
         ],
-        correct: 1,
-        explanation: 'Destinar 20% para a reserva garante estabilidade financeira e autonomia para o jovem.'
+        correct: 2,
+        explanation: 'A estrutura metodológica da CNV é composta estritamente pela sequência: 1. Observação (fatos), 2. Sentimento (emoções suscitadas), 3. Necessidade (valores/desejos fundamentais) e 4. Pedido (solicitação viável).'
+      },
+      {
+        id: 7,
+        question: 'Um profissional é solicitado a assumir um novo projeto de última hora, mas sua agenda já está 100% comprometida com entregas prioritárias. Como dizer \\"não\\" de forma assertiva e alinhada à CNV?',
+        options: [
+          'Acolher a necessidade da demanda, apresentar os prazos já assumidos e propor uma reavaliação de prioridades ou prazos com a liderança.',
+          'Aceitar a demanda imediatamente, mesmo sabendo que não conseguirá entregar dentro do prazo.',
+          'Recusar de forma ríspida dizendo que não é pago para fazer o trabalho dos outros.',
+          'Ignorar as mensagens de solicitação e fingir que não recebeu o e-mail corporativo.'
+        ],
+        correct: 0,
+        explanation: 'Dizer \\"não\\" de forma empática e assertiva envolve reconhecer a importância da solicitação, expor a realidade da capacidade de entregas com fatos concretos da agenda e negociar alternativas com o solicitante.'
       }
     ]
   }

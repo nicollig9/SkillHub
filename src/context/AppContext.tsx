@@ -167,8 +167,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       document.documentElement.setAttribute('data-theme', initialTheme);
       if (initialTheme === 'dark') {
         document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
       } else {
         document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
       }
     } catch {
       // ignore
@@ -231,8 +233,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       document.documentElement.setAttribute('data-theme', next);
       if (next === 'dark') {
         document.documentElement.classList.add('dark');
+        document.documentElement.classList.remove('light');
       } else {
         document.documentElement.classList.remove('dark');
+        document.documentElement.classList.add('light');
       }
       showToast('Tema Alterado', `Modo ${next === 'dark' ? 'Escuro' : 'Claro'} ativado!`, 'info');
       return next;
