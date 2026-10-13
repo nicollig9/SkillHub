@@ -1139,37 +1139,124 @@ export const COURSES: Course[] = [
     trackId: 'trilha-4',
     trackName: 'TRILHA 4: Rotinas Administrativas & Gestão Empresarial',
     category: 'Administração e Negócios',
-    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTAGIARIO'],
+    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTAGIARIO', 'PRIMEIRO_EMPREGO'],
     title: 'Rotinas Administrativas e Organização de Processos de Escritório',
-    subtitle: 'Gestão documental física e digital, fluxos de compras, suporte a RH e controles de estoque',
-    hours: 15,
-    equivalentHours: 15,
+    subtitle: 'Capacitar profissionais a gerenciar com eficiência o fluxo de rotinas administrativas, organizar arquivos e documentos corporativos, padronizar processos de trabalho e otimizar a comunicação interna e o atendimento no ambiente de escritório.',
+    hours: 12,
+    equivalentHours: 12,
     modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Aprendizes e estagiários de apoio administrativo',
-    prerequisites: 'Nenhum.',
+    targetAudience: 'Jovens aprendizes, estagiários e assistentes administrativos que buscam dominar a gestão de documentos, padronização de rotinas e processos de apoio no escritório',
+    prerequisites: 'Nenhum pré-requisito.',
     badgeName: 'Especialista em Rotinas Administrativas',
-    badgeCategory: 'Ferramentas de Escritório',
+    badgeCategory: 'Rotinas Administrativas',
     badgeIcon: 'Building',
     accentColor: '#F59E0B',
     level: 'Intermediário',
     learningObjectives: [
-      'Organizar pastas e arquivos digitais em nuvem seguindo nomenclatura padronizada.',
-      'Controlar recebimento de notas fiscais e encaminhamento a departamentos contábeis.',
-      'Conhecer o fluxo de admissão de pessoal e conferência básica de documentos.'
+      'Compreender o papel do assistente administrativo e criar rotinas estruturadas com listas de verificação (checklists) diárias e semanais.',
+      'Aplicar técnicas de atendimento profissional presencial e telefônico e redigir documentos corporativos claros (e-mails, memorandos, atas).',
+      'Gerenciar arquivos físicos e digitais (GED) com métodos alfabético, cronológico e numérico, além de controlar estoque mínimo e ponto de pedido.',
+      'Mapear fluxos de trabalho (Workflow), identificar gargalos operacionais, elaborar Procedimentos Operacionais Padrão (POP) e aplicar a metodologia 5S.',
+      'Prestar suporte operacional a rotinas financeiras (conferência de notas e gestão do fundo fixo de caixa) e logística de viagens e reuniões executivas.'
     ],
     modules: [
       {
-        id: 'rot-mod-1',
+        id: 'rot-adm-mod-1',
         number: 1,
-        title: 'MÓDULO 1: Organização Documental e Métodos de Arquivamento',
-        summary: 'Critérios alfabético, cronológico e numérico para arquivamento rápido e sem perda de documentos.',
-        estimatedMinutes: 40,
+        title: 'MÓDULO 1: Visão Geral das Rotinas Administrativas e Atendimento',
+        summary: 'Entender o papel estratégico do suporte administrativo no funcionamento operacional de uma empresa.',
+        estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1.1 Gestão de Arquivos Digitais',
+              subheading: '1. O Papel do Assistente/Analista Administrativo',
               body: [
-                'Nomes de arquivos padronizados (ex: AAAA-MM-DD_Relatorio_Financeiro.pdf) evitam retrabalho e agilizam buscas em equipe.'
+                'O suporte administrativo é o pilar que sustenta o funcionamento operacional de todos os departamentos de uma organização.',
+                'Competências Chave: Organização metódica, proatividade, pontualidade rigorosa e confidencialidade ética no manuseio de dados e documentos corporativos.',
+                'Mapeamento de Rotinas Diárias: Criação de listas de verificação (checklists) diárias, semanais e mensais para garantir o cumprimento pontual de prazos e obrigações sem acúmulo de tarefas ou retrabalho.'
+              ]
+            },
+            {
+              subheading: '2. Comunicação Institucional e Atendimento',
+              body: [
+                'Atendimento Presencial e Telefônico: Técnicas de recepção profissional, postura acolhedora e condução de chamadas corporativas com clareza e padrão institucional.',
+                'Redação Empresarial Básica: Estruturação de e-mails corporativos, memorandos, comunicados internos e atas de reunião limpos, objetivos e sem ambiguidades.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'rot-adm-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: Gestão de Documentos, Arquivos e Controle de Estoque',
+        summary: 'Garantir o rastreamento, a segurança e a integridade das informações físicas e digitais da organização.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Gestão Documental e Gestão Eletrônica de Documentos (GED)',
+              body: [
+                'Tipos de Documentos: Identificação e arquivamento correto de notas fiscais, contratos, comprovantes de pagamento e registros admissionais de colaboradores.',
+                'Métodos de Arquivamento: Organização eficiente baseada em critérios alfabético, numérico, temático e cronológico para localização instantânea.',
+                'Padronização Digital: Estrutura lógica de pastas em servidores de rede ou na nuvem (Google Drive, OneDrive) e regras padronizadas de nomenclatura de arquivos (ex: AAAA_MM_Tipo_Identificador.pdf).'
+              ]
+            },
+            {
+              subheading: '2. Controle do Material de Escritório e Suprimentos',
+              body: [
+                'Inventário de Estoque: Registro e controle de entrada e saída de insumos de escritório (papel, cartuchos, materiais de escrita e itens de copa).',
+                'Ponto de Pedido (Estoque Mínimo): Estabelecer cotas mínimas que acionam a reposição antes do desabastecimento, evitando compras emergenciais a custos elevados.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'rot-adm-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Mapeamento, Padronização e Melhoria de Processos',
+        summary: 'Substituir o trabalho improvisado por procedimentos claros que garantam a qualidade e a agilidade das entregas.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Mapeamento de Fluxos de Trabalho (Workflow)',
+              body: [
+                'Identificação de Gargalos: Reconhecer etapas lentas, retrabalhos, burocracias desnecessárias ou acúmulo de tarefas que atrasam as operações do escritório.',
+                'Criação de Fluxogramas: Representação gráfica das etapas de um processo para facilitar o alinhamento da equipe e o treinamento rápido de novos colaboradores.'
+              ]
+            },
+            {
+              subheading: '2. Procedimento Operacional Padrão (POP) e 5S',
+              body: [
+                'Elaboração de POPs: Manuais simples que descrevem passo a passo a execução padronizada de tarefas recorrentes (ex: fluxo de compras, reembolso e cadastro de fornecedores).',
+                'Metodologia 5S no Escritório: Aplicação prática dos sensos de Utilização (descarte do inútil), Organização (um lugar para cada coisa), Limpeza (ambiente impecável), Padronização (normas visuais) e Disciplina (manutenção dos hábitos).'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'rot-adm-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Gestão Financeira Básica e Serviços de Apoio no Escritório',
+        summary: 'Apoiar os setores de Contabilidade e Financeiro no controle de fluxo de caixa e obrigações operacionais.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Noções de Contas a Pagar e Contas a Receber',
+              body: [
+                'Conferência Documental: Checagem minuciosa de notas fiscais, boletos, pedidos de compra e dados cadastrais antes do encaminhamento para liquidação.',
+                'Fundo Fixo de Caixa (Caixinha): Gestão responsável de pequenos recursos em espécie para despesas imediatas do dia a dia (correios, cópias, chaves e transportes) com prestação de contas rigorosa.'
+              ]
+            },
+            {
+              subheading: '2. Organização de Viagens e Eventos Corporativos',
+              body: [
+                'Agendamento e Logística: Cotação, reserva e controle de itinerários de passagens aéreas/terrestres, hospedagens e transporte para executivos.',
+                'Suporte a Reuniões e Atas: Preparação de salas, testes prévios de equipamentos e redação de atas formais contendo decisões, responsáveis e prazos.'
               ]
             }
           ]
@@ -1180,15 +1267,87 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'Qual a melhor prática para nomear arquivos digitais em uma rede compartilhada da empresa?',
+        question: 'Uma empresa percebeu que novos colaboradores levam semanas para aprender a emitir relatórios de compras porque não há um material instrucional. Qual documento administrativo deve ser elaborado para descrever, passo a passo, a forma padronizada de executar essa tarefa?',
         options: [
-          'documento_final_agora_vai_2.docx',
-          '2026-09-15_Ata_Reuniao_Diretoria_v1.pdf',
-          'asdfg.xlsx',
-          'novo(1).pdf'
+          'Procedimento Operacional Padrão (POP).',
+          'Balanço Patrimonial.',
+          'Organograma Executivo.',
+          'Contrato Social.'
+        ],
+        correct: 0,
+        explanation: 'O Procedimento Operacional Padrão (POP) é o documento formal que instrui e padroniza a execução de rotinas, garantindo que o trabalho seja feito com a mesma qualidade por qualquer profissional.'
+      },
+      {
+        id: 2,
+        question: 'Ao organizar os arquivos digitais do setor financeiro no servidor corporativo, um assistente precisa garantir que qualquer membro da equipe encontre rapidamente os documentos. Qual prática representa a melhor forma de padronização de arquivos?',
+        options: [
+          'Salvar todos os arquivos na área de trabalho (Desktop) do computador sem pastas.',
+          'Adotar uma estrutura lógica de pastas organizadas por Ano/Mês e aplicar uma regra clara de nomenclatura (ex: 2026_08_NF_FornecedorX.pdf).',
+          'Nomear os arquivos apenas com códigos numéricos aleatórios como 123.pdf ou documento1.pdf.',
+          'Apagar todos os arquivos do mês anterior para economizar espaço no disco rígido.'
         ],
         correct: 1,
-        explanation: 'Padrão com data (ISO), assunto claro e versão garante rastreabilidade e organização de equipe.'
+        explanation: 'A padronização de arquivos por meio de pastas hierárquicas e regras claras de nomenclatura facilita a busca, evita duplicidade de versões e garante a continuidade do trabalho na equipe.'
+      },
+      {
+        id: 3,
+        question: 'O que define o conceito de "Estoque Mínimo" ou "Ponto de Pedido" na gestão de materiais de escritório?',
+        options: [
+          'A quantidade máxima de materiais que cabe fisicamente dentro do almoxarifado.',
+          'O nível limite do estoque que, ao ser atingido, indica a necessidade imediata de emitir um novo pedido de compra para evitar o desabastecimento.',
+          'O descarte diário de canetas e papéis que não foram utilizados no expediente.',
+          'O valor total em dinheiro gasto com material de escritório no final do ano.'
+        ],
+        correct: 1,
+        explanation: 'O Ponto de Pedido é o gatilho de segurança que aciona o setor de compras quando o estoque atinge determinado nível, considerando o tempo que o fornecedor leva para entregar.'
+      },
+      {
+        id: 4,
+        question: 'Durante o atendimento telefônico corporativo de um cliente que se encontra irritado com o atraso de uma entrega, qual deve ser a postura do profissional de suporte administrativo?',
+        options: [
+          'Interromper o cliente, desligar o telefone na cara dele e bloquear o número.',
+          'Manter a calma, escutar com atenção e empatia, anotar os dados relevantes da reclamação e encaminhar a solução ao setor responsável dentro do prazo informado.',
+          'Transferir a ligação imediatamente para qualquer colega da sala sem explicar o motivo do contato.',
+          'Responder no mesmo tom de voz agressivo para demonstrar autoridade.'
+        ],
+        correct: 1,
+        explanation: 'O atendimento profissional exige escuta ativa, inteligência emocional e resolução focada no problema, mantendo a postura institucional sem absorver a agressividade do cliente.'
+      },
+      {
+        id: 5,
+        question: 'O fundo fixo de caixa (ou "caixinha") no escritório é um recurso financeiro destinado a qual tipo de operação?',
+        options: [
+          'Pagamento dos salários de todos os diretores da empresa no final do mês.',
+          'Compra de novas máquinas e equipamentos pesados para a fábrica.',
+          'Cobertura de pequenas despesas imediatas e esporádicas do dia a dia do escritório (ex: taxas de correio, cópias, chaves).',
+          'Investimento em ações na bolsa de valores.'
+        ],
+        correct: 2,
+        explanation: 'O Fundo Fixo de Caixa é mantido em espécie ou em conta rápida para cobrir pequenos gastos operacionais e corriqueiros que não justificam a abertura de um processo formal de pagamento via fatura/boleto.'
+      },
+      {
+        id: 6,
+        question: 'Um analista mapeou o fluxo de aprovação de notas fiscais e descobriu que a nota fica parada por até 5 dias na mesa de um gestor apenas aguardando uma assinatura simples. No mapeamento de processos, esse atraso é classificado como:',
+        options: [
+          'Gargalo do processo.',
+          'Ponto de excelência.',
+          'Metodologia 5S.',
+          'Atendimento personalizado.'
+        ],
+        correct: 0,
+        explanation: 'Gargalo é a etapa do processo onde o fluxo de trabalho é retido ou desacelerado, reduzindo a eficiência global de toda a cadeia operacional.'
+      },
+      {
+        id: 7,
+        question: 'Qual das alternativas apresenta um elemento indispensável na elaboração de uma Ata de Reunião profissional?',
+        options: [
+          'Opiniões pessoais do redator sobre a roupas dos participantes.',
+          'Data, horário, lista de presentes, principais tópicos discutidos e os encaminhamentos/prazos definidos com seus respectivos responsáveis.',
+          'Transcrição de piadas e conversas informais ocorridas antes do início da reunião.',
+          'Apenas a assinatura do presidente da empresa, sem necessidade de anotar o que foi discutido.'
+        ],
+        correct: 1,
+        explanation: 'A ata deve ser um registro objetivo e factual que documenta as decisões tomadas, ações a serem executadas, prazos e responsáveis definidos durante a reunião.'
       }
     ]
   },
@@ -2431,45 +2590,131 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
-  // 14. EXCEL PARA INICIANTES
+  // 14. ROTINAS ADMINISTRATIVAS & GESTÃO DOCUMENTAL
   // =========================================================================
   {
     id: 'curso-excel-iniciante',
-    trackId: 'trilha-3',
-    trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
-    category: 'Tecnologia da Informação',
-    targetAudienceType: 'TODOS',
-    title: 'Excel do Zero: Primeiras Planilhas, Fórmulas Básicas e Gráficos',
-    subtitle: 'Navegação em células, formatação de dados, fórmulas essenciais (SOMA, MÉDIA, MÁXIMO) e criação de gráficos simples',
-    hours: 10,
-    equivalentHours: 10,
-    modality: 'EAD 100% Gratuito',
-    targetAudience: 'Estudantes que nunca utilizaram planilhas ou querem reforçar a base',
-    prerequisites: 'Nenhum.',
-    badgeName: 'Excel Fundamentos',
-    badgeCategory: 'Ferramentas de Escritório',
-    badgeIcon: 'FileSpreadsheet',
-    accentColor: '#10B981',
-    level: 'Iniciante',
+    trackId: 'trilha-4',
+    trackName: 'TRILHA 4: Rotinas Administrativas & Gestão Empresarial',
+    category: 'Administração e Negócios',
+    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTAGIARIO', 'PRIMEIRO_EMPREGO'],
+    title: 'Rotinas Administrativas e Organização de Processos de Escritório',
+    subtitle: 'Capacitar profissionais a gerenciar com eficiência o fluxo de rotinas administrativas, organizar arquivos e documentos corporativos, padronizar processos de trabalho e otimizar a comunicação interna e o atendimento no ambiente de escritório.',
+    hours: 12,
+    equivalentHours: 12,
+    modality: 'EAD 100% Gratuito (Escola Virtual)',
+    targetAudience: 'Jovens aprendizes, estagiários e assistentes administrativos que buscam dominar a gestão de documentos, padronização de rotinas e processos de apoio no escritório',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Especialista em Rotinas Administrativas',
+    badgeCategory: 'Rotinas Administrativas',
+    badgeIcon: 'Building',
+    accentColor: '#F59E0B',
+    level: 'Intermediário',
     learningObjectives: [
-      'Entender linhas, colunas, células e referências no Excel e Google Planilhas.',
-      'Utilizar operadores matemáticos (+, -, *, /) e funções básicas como =SOMA() e =MÉDIA().',
-      'Formatar tabelas com moeda (R$), porcentagem (%) e criar gráficos de colunas.'
+      'Compreender o papel do assistente administrativo e criar rotinas estruturadas com listas de verificação (checklists) diárias e semanais.',
+      'Aplicar técnicas de atendimento profissional presencial e telefônico e redigir documentos corporativos claros (e-mails, memorandos, atas).',
+      'Gerenciar arquivos físicos e digitais (GED) com métodos alfabético, cronológico e numérico, além de controlar estoque mínimo e ponto de pedido.',
+      'Mapear fluxos de trabalho (Workflow), identificar gargalos operacionais, elaborar Procedimentos Operacionais Padrão (POP) e aplicar a metodologia 5S.',
+      'Prestar suporte operacional a rotinas financeiras (conferência de notas e gestão do fundo fixo de caixa) e logística de viagens e reuniões executivas.'
     ],
     modules: [
       {
-        id: 'exc-ini-mod-1',
+        id: 'rot-ini-mod-1',
         number: 1,
-        title: 'MÓDULO 1: Estrutura da Planilha e Primeiras Fórmulas',
-        summary: 'Domine a interface do Excel e aprenda como o sinal de igual (=) inicia qualquer cálculo inteligente.',
-        estimatedMinutes: 30,
+        title: 'MÓDULO 1: Visão Geral das Rotinas Administrativas e Atendimento',
+        summary: 'Entender o papel estratégico do suporte administrativo no funcionamento operacional de uma empresa.',
+        estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1.1 O Segredo do Sinal de Igual',
+              subheading: '1. O Papel do Assistente/Analista Administrativo',
               body: [
-                'No Excel, toda fórmula começa com "=". Para somar os valores das células A1 até A10, usamos =SOMA(A1:A10).',
-                'Para calcular uma média aritmética, basta digitar =MÉDIA(B2:B8).'
+                'O suporte administrativo é o pilar que sustenta o funcionamento operacional de todos os departamentos de uma organização.',
+                'Competências Chave: Organização metódica, proatividade, pontualidade rigorosa e confidencialidade ética no manuseio de dados e documentos corporativos.',
+                'Mapeamento de Rotinas Diárias: Criação de listas de verificação (checklists) diárias, semanais e mensais para garantir o cumprimento pontual de prazos e obrigações sem acúmulo de tarefas ou retrabalho.'
+              ]
+            },
+            {
+              subheading: '2. Comunicação Institucional e Atendimento',
+              body: [
+                'Atendimento Presencial e Telefônico: Técnicas de recepção profissional, postura acolhedora e condução de chamadas corporativas com clareza e padrão institucional.',
+                'Redação Empresarial Básica: Estruturação de e-mails corporativos, memorandos, comunicados internos e atas de reunião limpos, objetivos e sem ambiguidades.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'rot-ini-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: Gestão de Documentos, Arquivos e Controle de Estoque',
+        summary: 'Garantir o rastreamento, a segurança e a integridade das informações físicas e digitais da organização.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Gestão Documental e Gestão Eletrônica de Documentos (GED)',
+              body: [
+                'Tipos de Documentos: Identificação e arquivamento correto de notas fiscais, contratos, comprovantes de pagamento e registros admissionais de colaboradores.',
+                'Métodos de Arquivamento: Organização eficiente baseada em critérios alfabético, numérico, temático e cronológico para localização instantânea.',
+                'Padronização Digital: Estrutura lógica de pastas em servidores de rede ou na nuvem (Google Drive, OneDrive) e regras padronizadas de nomenclatura de arquivos (ex: AAAA_MM_Tipo_Identificador.pdf).'
+              ]
+            },
+            {
+              subheading: '2. Controle do Material de Escritório e Suprimentos',
+              body: [
+                'Inventário de Estoque: Registro e controle de entrada e saída de insumos de escritório (papel, cartuchos, materiais de escrita e itens de copa).',
+                'Ponto de Pedido (Estoque Mínimo): Estabelecer cotas mínimas que acionam a reposição antes do desabastecimento, evitando compras emergenciais a custos elevados.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'rot-ini-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Mapeamento, Padronização e Melhoria de Processos',
+        summary: 'Substituir o trabalho improvisado por procedimentos claros que garantam a qualidade e a agilidade das entregas.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Mapeamento de Fluxos de Trabalho (Workflow)',
+              body: [
+                'Identificação de Gargalos: Reconhecer etapas lentas, retrabalhos, burocracias desnecessárias ou acúmulo de tarefas que atrasam as operações do escritório.',
+                'Criação de Fluxogramas: Representação gráfica das etapas de um processo para facilitar o alinhamento da equipe e o treinamento rápido de novos colaboradores.'
+              ]
+            },
+            {
+              subheading: '2. Procedimento Operacional Padrão (POP) e 5S',
+              body: [
+                'Elaboração de POPs: Manuais simples que descrevem passo a passo a execução padronizada de tarefas recorrentes (ex: fluxo de compras, reembolso e cadastro de fornecedores).',
+                'Metodologia 5S no Escritório: Aplicação prática dos sensos de Utilização (descarte do inútil), Organização (um lugar para cada coisa), Limpeza (ambiente impecável), Padronização (normas visuais) e Disciplina (manutenção dos hábitos).'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'rot-ini-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Gestão Financeira Básica e Serviços de Apoio no Escritório',
+        summary: 'Apoiar os setores de Contabilidade e Financeiro no controle de fluxo de caixa e obrigações operacionais.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Noções de Contas a Pagar e Contas a Receber',
+              body: [
+                'Conferência Documental: Checagem minuciosa de notas fiscais, boletos, pedidos de compra e dados cadastrais antes do encaminhamento para liquidação.',
+                'Fundo Fixo de Caixa (Caixinha): Gestão responsável de pequenos recursos em espécie para despesas imediatas do dia a dia (correios, cópias, chaves e transportes) com prestação de contas rigorosa.'
+              ]
+            },
+            {
+              subheading: '2. Organização de Viagens e Eventos Corporativos',
+              body: [
+                'Agendamento e Logística: Cotação, reserva e controle de itinerários de passagens aéreas/terrestres, hospedagens e transporte para executivos.',
+                'Suporte a Reuniões e Atas: Preparação de salas, testes prévios de equipamentos e redação de atas formais contendo decisões, responsáveis e prazos.'
               ]
             }
           ]
@@ -2480,15 +2725,87 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'Qual caractere obrigatório deve iniciar qualquer fórmula no Excel ou Planilhas?',
+        question: 'Uma empresa percebeu que novos colaboradores levam semanas para aprender a emitir relatórios de compras porque não há um material instrucional. Qual documento administrativo deve ser elaborado para descrever, passo a passo, a forma padronizada de executar essa tarefa?',
         options: [
-          'O símbolo de arroba (@)',
-          'O sinal de igual (=)',
-          'O ponto de exclamação (!)',
-          'As aspas duplas (")'
+          'Procedimento Operacional Padrão (POP).',
+          'Balanço Patrimonial.',
+          'Organograma Executivo.',
+          'Contrato Social.'
+        ],
+        correct: 0,
+        explanation: 'O Procedimento Operacional Padrão (POP) é o documento formal que instrui e padroniza a execução de rotinas, garantindo que o trabalho seja feito com a mesma qualidade por qualquer profissional.'
+      },
+      {
+        id: 2,
+        question: 'Ao organizar os arquivos digitais do setor financeiro no servidor corporativo, um assistente precisa garantir que qualquer membro da equipe encontre rapidamente os documentos. Qual prática representa a melhor forma de padronização de arquivos?',
+        options: [
+          'Salvar todos os arquivos na área de trabalho (Desktop) do computador sem pastas.',
+          'Adotar uma estrutura lógica de pastas organizadas por Ano/Mês e aplicar uma regra clara de nomenclatura (ex: 2026_08_NF_FornecedorX.pdf).',
+          'Nomear os arquivos apenas com códigos numéricos aleatórios como 123.pdf ou documento1.pdf.',
+          'Apagar todos os arquivos do mês anterior para economizar espaço no disco rígido.'
         ],
         correct: 1,
-        explanation: 'O sinal de igual (=) avisa o Excel que o texto seguinte é uma instrução de cálculo ou função.'
+        explanation: 'A padronização de arquivos por meio de pastas hierárquicas e regras claras de nomenclatura facilita a busca, evita duplicidade de versões e garante a continuidade do trabalho na equipe.'
+      },
+      {
+        id: 3,
+        question: 'O que define o conceito de "Estoque Mínimo" ou "Ponto de Pedido" na gestão de materiais de escritório?',
+        options: [
+          'A quantidade máxima de materiais que cabe fisicamente dentro do almoxarifado.',
+          'O nível limite do estoque que, ao ser atingido, indica a necessidade imediata de emitir um novo pedido de compra para evitar o desabastecimento.',
+          'O descarte diário de canetas e papéis que não foram utilizados no expediente.',
+          'O valor total em dinheiro gasto com material de escritório no final do ano.'
+        ],
+        correct: 1,
+        explanation: 'O Ponto de Pedido é o gatilho de segurança que aciona o setor de compras quando o estoque atinge determinado nível, considerando o tempo que o fornecedor leva para entregar.'
+      },
+      {
+        id: 4,
+        question: 'Durante o atendimento telefônico corporativo de um cliente que se encontra irritado com o atraso de uma entrega, qual deve ser a postura do profissional de suporte administrativo?',
+        options: [
+          'Interromper o cliente, desligar o telefone na cara dele e bloquear o número.',
+          'Manter a calma, escutar com atenção e empatia, anotar os dados relevantes da reclamação e encaminhar a solução ao setor responsável dentro do prazo informado.',
+          'Transferir a ligação imediatamente para qualquer colega da sala sem explicar o motivo do contato.',
+          'Responder no mesmo tom de voz agressivo para demonstrar autoridade.'
+        ],
+        correct: 1,
+        explanation: 'O atendimento profissional exige escuta ativa, inteligência emocional e resolução focada no problema, mantendo a postura institucional sem absorver a agressividade do cliente.'
+      },
+      {
+        id: 5,
+        question: 'O fundo fixo de caixa (ou "caixinha") no escritório é um recurso financeiro destinado a qual tipo de operação?',
+        options: [
+          'Pagamento dos salários de todos os diretores da empresa no final do mês.',
+          'Compra de novas máquinas e equipamentos pesados para a fábrica.',
+          'Cobertura de pequenas despesas imediatas e esporádicas do dia a dia do escritório (ex: taxas de correio, cópias, chaves).',
+          'Investimento em ações na bolsa de valores.'
+        ],
+        correct: 2,
+        explanation: 'O Fundo Fixo de Caixa é mantido em espécie ou em conta rápida para cobrir pequenos gastos operacionais e corriqueiros que não justificam a abertura de um processo formal de pagamento via fatura/boleto.'
+      },
+      {
+        id: 6,
+        question: 'Um analista mapeou o fluxo de aprovação de notas fiscais e descobriu que a nota fica parada por até 5 dias na mesa de um gestor apenas aguardando uma assinatura simples. No mapeamento de processos, esse atraso é classificado como:',
+        options: [
+          'Gargalo do processo.',
+          'Ponto de excelência.',
+          'Metodologia 5S.',
+          'Atendimento personalizado.'
+        ],
+        correct: 0,
+        explanation: 'Gargalo é a etapa do processo onde o fluxo de trabalho é retido ou desacelerado, reduzindo a eficiência global de toda a cadeia operacional.'
+      },
+      {
+        id: 7,
+        question: 'Qual das alternativas apresenta um elemento indispensável na elaboração de uma Ata de Reunião profissional?',
+        options: [
+          'Opiniões pessoais do redator sobre a roupas dos participantes.',
+          'Data, horário, lista de presentes, principais tópicos discutidos e os encaminhamentos/prazos definidos com seus respectivos responsáveis.',
+          'Transcrição de piadas e conversas informais ocorridas antes do início da reunião.',
+          'Apenas a assinatura do presidente da empresa, sem necessidade de anotar o que foi discutido.'
+        ],
+        correct: 1,
+        explanation: 'A ata deve ser um registro objetivo e factual que documenta as decisões tomadas, ações a serem executadas, prazos e responsáveis definidos durante a reunião.'
       }
     ]
   },
