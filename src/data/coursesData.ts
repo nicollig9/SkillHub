@@ -2157,159 +2157,135 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
-  // 10. INFORMÁTICA BÁSICA, NUVEM E SEGURANÇA DA INFORMAÇÃO
+  // 10. PLANEJAMENTO FINANCEIRO, ORÇAMENTO 50-30-20 E RESERVA DE EMERGÊNCIA
   // =========================================================================
   {
     id: 'curso-atendimento-publico',
     trackId: 'trilha-2',
     trackName: 'TRILHA 2: Soft Skills, Postura & Comunicação Corporativa',
-    category: 'Tecnologia da Informação',
+    category: 'Desenvolvimento Pessoal',
     targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO'],
-    title: 'Informática Básica, Nuvem e Segurança da Informação',
-    subtitle: 'Capacitar o participante a operar sistemas operacionais de forma eficiente, utilizar serviços de armazenamento e produtividade em nuvem e adotar práticas essenciais de segurança da informação para proteger dados pessoais e corporativos contra ameaças cibernéticas.',
+    title: 'Planejamento Financeiro, Orçamento 50-30-20 e Reserva de Emergência',
+    subtitle: 'Capacitar o participante a organizar suas finanças pessoais, construir um orçamento sustentável através da regra 50-30-20, eliminar dívidas de forma estratégica e estruturar uma reserva de emergência segura e de liquidez imediata.',
     hours: 12,
     equivalentHours: 12,
     modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Estudantes, jovens aprendizes e profissionais iniciantes que buscam dominar o sistema operacional, colaboração em nuvem e segurança de dados',
+    targetAudience: 'Jovens aprendizes, estagiários e estudantes que buscam organizar suas finanças pessoais, quitar dívidas e criar sua primeira reserva de emergência',
     prerequisites: 'Nenhum pré-requisito (Nível Absoluto Zero).',
-    badgeName: 'Informática & Segurança Digital',
-    badgeCategory: 'Tecnologia & Segurança',
-    badgeIcon: 'ShieldCheck',
-    accentColor: '#3B82F6',
+    badgeName: 'Mestre do Orçamento & Reserva',
+    badgeCategory: 'Finanças Pessoais',
+    badgeIcon: 'PiggyBank',
+    accentColor: '#F59E0B',
     level: 'Iniciante',
     learningObjectives: [
-      'Compreender a diferença entre hardware e software e dominar atalhos universais de teclado e navegação no sistema operacional.',
-      'Organizar pastas e arquivos de forma profissional, identificando extensões (.pdf, .docx, .xlsx, .zip) e gerenciando a lixeira com segurança.',
-      'Dominar técnicas avançadas de pesquisa no Google e operar serviços em nuvem (Google Drive e OneDrive) com controle de permissões e edição colaborativa.',
-      'Mapear ameaças cibernéticas cotidianas (Phishing, Ransomware, Spyware e Cavalos de Troia) e aplicar defesas essenciais com senhas fortes e 2FA/MFA.',
-      'Aplicar a Regra 3-2-1 de Backup e adotar práticas de privacidade e conformidade com a LGPD no dia a dia corporativo.'
+      'Realizar um diagnóstico financeiro completo (raio-X financeiro), mapeando ativos, passivos, gastos fixos, variáveis e despesas invisíveis.',
+      'Aplicar o método de orçamento 50-30-20 (50% Necessidades, 30% Desejos e 20% Prioridades Financeiras) e adotar o princípio de \"pague-se primeiro\".',
+      'Mapear dívidas pelo Custo Efetivo Total (CET) e aplicar estratégias de quitação acelerada (Método Avalanche vs. Método Bola de Neve).',
+      'Calcular a Reserva de Emergência ideal com base na modalidade de trabalho (3 a 6 meses para CLT e 6 a 12 meses para autônomos).',
+      'Selecionar produtos de renda fixa seguros e com liquidez diária (Tesouro Selic e CDBs 100% do CDI) para alocação da reserva de emergência.'
     ],
     modules: [
       {
-        id: 'inf-base-mod-1',
+        id: 'fin-orc-mod-1',
         number: 1,
-        title: 'MÓDULO 1: Fundamentos de Informática e Sistemas Operacionais',
-        summary: 'Compreender a estrutura de um computador e dominar a navegação eficiente pelo sistema operacional.',
+        title: 'MÓDULO 1: Diagnóstico Financeiro e Mapeamento de Gastos',
+        summary: 'Compreender a real situação das finanças pessoais antes de tomar decisões de investimento ou corte de despesas.',
         estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1. Hardware, Software e Estrutura Lógica',
+              subheading: '1. Raio-X das Finanças Pessoais',
               body: [
-                'Hardware vs. Software: O hardware representa a parte física do computador — todos os componentes que você pode tocar (como processador, memória RAM, placa-mãe, teclado, mouse e unidade de armazenamento SSD/HD). O software é a parte lógica e intangível — programas, aplicativos, rotinas e o próprio sistema operacional que instruem o hardware a executar as tarefas desejadas.',
-                'Sistemas Operacionais (Windows e Linux): O sistema operacional é o software mestre que gerencia os recursos de hardware e disponibiliza a interface gráfica para o usuário interagir com a máquina de forma simples e intuitiva.',
-                'Atalhos Universais de Teclado: Conhecer os atalhos de teclado multiplica a velocidade e a agilidade nas rotinas diárias de escritório:',
-                '• Ctrl + C: Copiar o item ou texto selecionado para a área de transferência.',
-                '• Ctrl + V: Colar o item copiado no local selecionado.',
-                '• Ctrl + X: Recortar (remover o item de sua posição e mantê-lo pronto para colar em outro local).',
-                '• Ctrl + Z: Desfazer a última ação executada.',
-                '• Alt + Tab: Alternar instantaneamente entre janelas e programas abertos na tela.',
-                '• Windows + E: Abrir o Explorador de Arquivos para localizar documentos rapidamente.',
-                '• Windows + L: Bloquear imediatamente o computador ao se ausentar da mesa de trabalho (hábito indispensável de segurança corporativa).'
+                'Compreender a real situação das finanças pessoais antes de tomar decisões de investimento ou corte de despesas.',
+                'Levantamento de Ativos e Passivos: Entender a diferença entre o que gera receita e coloca dinheiro no bolso (ativos) e o que gera despesas e consome recursos (passivos).',
+                'Mapeamento de Gastos Fixos vs. Variáveis: Classificação clara entre contas essenciais e previsíveis (aluguel, condomínio, internet) e consumos sazonais ou supérfluos que oscilam mês a mês.',
+                'Categorização de Gastos: Identificação minuciosa dos chamados \"gastos invisíveis\" ou \"pequenos ralos financeiros\" (pequenos cafezinhos, taxas bancárias não percebidas e compras por impulso no dia a dia).'
               ]
             },
             {
-              subheading: '2. Organização de Arquivos e Armazenamento',
+              subheading: '2. Planilhas e Aplicativos de Controle',
               body: [
-                'Estrutura de Pastas e Diretórios: Uma máquina organizada reflete diretamente no profissionalismo do colaborador. Crie uma hierarquia lógica dividida por departamentos, projetos, anos ou clientes. Evite salvar tudo desordenadamente na Área de Trabalho e adote nomes descritivos e sem caracteres especiais para facilitar a busca.',
-                'Extensões de Arquivos Frequentes: As extensões indicam o formato do arquivo e o aplicativo compatível para abri-lo:',
-                '• .pdf (Portable Document Format): Documento visual padronizado e protegido contra alterações diretas, perfeito para propostas, contratos e manuais.',
-                '• .docx: Documentos editáveis de texto gerados pelo Microsoft Word ou editores compatíveis.',
-                '• .xlsx: Planilhas eletrônicas de cálculo geradas pelo Microsoft Excel.',
-                '• .png e .jpeg: Formatos de imagem estática para gráficos, banners e fotografias.',
-                '• .zip e .rar: Arquivos compactados que agrupam múltiplos documentos e reduzem o peso total para transferências por e-mail ou nuvem.',
-                'Gerenciamento de Espaço e Lixeira: Quando você deleta um arquivo comum, ele não desaparece de imediato: ele vai para a Lixeira, permitindo restauração caso a exclusão tenha sido um equívoco. Esvazie a lixeira com critério quando precisar liberar espaço físico em disco.'
+                'Ferramentas de Acompanhamento: Utilização de cadernos, planilhas organizadas ou aplicativos de gestão financeira para o registro sistemático de todas as entradas e saídas.',
+                'Análise de Fluxo de Caixa: Apuração do saldo mensal real para identificar com clareza se a conta fecha no positivo (superávit), no zero a zero ou no negativo (déficit financeiro).'
               ]
             }
           ]
         }
       },
       {
-        id: 'inf-base-mod-2',
+        id: 'fin-orc-mod-2',
         number: 2,
-        title: 'MÓDULO 2: Navegação na Web e Serviços de Produtividade em Nuvem',
-        summary: 'Aprender a explorar a internet de forma rápida e utilizar plataformas de colaboração em tempo real.',
+        title: 'MÓDULO 2: O Método de Orçamento 50-30-20',
+        summary: 'Uma metodologia prática e visual para distribuir a renda líquida mensal em categorias equilibradas.',
         estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1. Navegadores e Pesquisa Eficiente',
+              subheading: '1. A Divisão Percentual da Renda Líquida',
               body: [
-                'Navegadores (Browsers): Ferramentas como Google Chrome, Microsoft Edge e Mozilla Firefox são as portas de entrada para a rede mundial de computadores. Dominar recursos como favoritos organizados em pastas, histórico de navegação, abas agrupadas e atalhos de nova guia otimiza drasticamente as pesquisas.',
-                'Modo Anônimo: Permite abrir sessões temporárias sem guardar histórico, senhas ou cookies de rastreamento na máquina, útil para testar visualizações limpas de sites ou acessar serviços de maneira temporária.',
-                'Técnicas de Busca Avançada no Google:',
-                '• Aspas duplas (\"termo exato\"): Retorna páginas contendo a frase exatamente como foi escrita (ex: \"política de segurança da informação\").',
-                '• Sinal de hífen (-termo): Exclui páginas que contenham a palavra indesejada (ex: contrato estagio -advocacia).',
-                '• Operador filetype: Localiza diretamente arquivos no formato desejado (ex: manual de instrucoes filetype:pdf).'
+                '50% — Necessidades Essenciais: Moradia, alimentação, saúde, transporte, energia, água e educação básica. Gastos vitais para a sobrevivência e manutenção da vida diária.',
+                '30% — Desejos Pessoais: Lazer, passeios, viagens, assinaturas de streaming, hobbies e vestuário não essencial. Gastos que proporcionam qualidade de vida presente.',
+                '20% — Prioridades Financeiras: Quitação de dívidas de juros altos, construção de reservas financeiras e investimentos de longo prazo para garantir tranquilidade futura.'
               ]
             },
             {
-              subheading: '2. Ecossistemas em Nuvem (Google Workspace e Microsoft 365)',
+              subheading: '2. Ajustes e Flexibilidade',
               body: [
-                'O que é Computação em Nuvem (Cloud Computing): Consiste no fornecimento de serviços de TI — incluindo servidores, bancos de dados, armazenamento e ferramentas de produtividade — através da internet. Com a nuvem, você não depende de salvar seus arquivos no HD físico da máquina da empresa: tudo fica sincronizado online e acessível com segurança de qualquer dispositivo.',
-                'Armazenamento e Compartilhamento com Segurança: Serviços como Google Drive e Microsoft OneDrive permitem centralizar documentos institucionais com níveis rigorosos de permissão:',
-                '• Apenas Leitura (Visualizador): A pessoa tem permissão para visualizar o documento na tela e fazer download, sem poder alterar ou apagar nenhuma parte do conteúdo.',
-                '• Comentador: O usuário pode inserir notas explicativas e sugerir alterações pontuais sem editar o texto original.',
-                '• Editor: Permissão máxima concedida para redigir, formatar, reestruturar ou excluir arquivos da pasta compartilhada.',
-                'Edição Colaborativa em Tempo Real: Equipes inteiras podem trabalhar em conjunto no mesmo arquivo simultaneamente, acompanhando cursores coloridos de colegas e recuperando versões antigas a qualquer instante pelo histórico de revisões.'
+                'Customização da Metodologia: Adaptando os percentuais para diferentes realidades de renda (ex: 60-20-20 para orçamentos em fases mais apertadas ou inícios de carreira).',
+                'Disciplina e Hábitos: Como manter a constância nos aportes das prioridades financeiras logo no início do mês aplicando o princípio \"pague-se primeiro\" (investir assim que o salário cai, antes de gastar o restante).'
               ]
             }
           ]
         }
       },
       {
-        id: 'inf-base-mod-3',
+        id: 'fin-orc-mod-3',
         number: 3,
-        title: 'MÓDULO 3: Segurança da Informação e Proteção de Dados',
-        summary: 'Desenvolver uma postura preventiva contra os golpes digitais mais comuns do mercado.',
+        title: 'MÓDULO 3: Gestão de Dívidas e Estratégias de Quitação',
+        summary: 'Eliminar passivos que cobram juros altos para liberar margem no orçamento.',
         estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1. Mapeamento de Ameaças Digitais',
+              subheading: '1. Mapeamento e Priorização de Débitos',
               body: [
-                'Engenharia Social e Phishing: Phishing é a tentativa de fraude eletrônica em que criminosos simulam mensagens legítimas de bancos, gestores ou fornecedores via e-mail, SMS ou WhatsApp, induzindo o usuário a clicar em links clonados para roubar senhas corporativas ou dados confidenciais.',
-                'Tipos de Malware (Softwares Maliciosos):',
-                '• Vírus: Programa nocivo capaz de se auto-replicar e infectar arquivos legítimos no sistema operacional.',
-                '• Ransomware: Uma das maiores ameaças corporativas globais. Criptografa (bloqueia) os arquivos e bancos de dados do computador e exige o pagamento de um resgate financeiro (geralmente em criptomoedas) para liberar as chaves de descriptografia.',
-                '• Spyware: Software espião instalado de forma oculta que monitora atividades, navegação e teclas digitadas (keylogger) para roubar credenciais.',
-                '• Trojan (Cavalo de Tróia): Programa aparentemente inofensivo ou útil que, quando executado, abre portas de comunicação clandestinas para cibercriminosos controlarem o computador.'
+                'Custo Efetivo Total (CET): Compreender quais dívidas são as mais perigosas e onerosas (cartão de crédito rotativo, cheque especial e empréstimos pessoais com juros compostos explosivos).',
+                'Método Bola de Neve: Quitar primeiro as dívidas de menor valor absoluto para gerar vitórias rápidas e motivação psicológica consistente.',
+                'Método Avalanche: Quitar prioritariamente as dívidas com as maiores taxas de juros nominais, economizando o máximo de dinheiro em juros ao longo do tempo.'
               ]
             },
             {
-              subheading: '2. Mecanismos de Defesa Pessoal e Corporativa',
+              subheading: '2. Renegociação e Proteção do Score',
               body: [
-                'Gestão de Senhas Fortes: Crie senhas complexas contendo pelo menos 12 caracteres com mistura de letras maiúsculas, minúsculas, números e caracteres especiais. Jamais reutilize a mesma senha entre sistemas corporativos e redes sociais e adote gerenciadores de senhas confiáveis.',
-                'Autenticação em Duas Etapas (2FA/MFA): Cria uma camada extra fundamental de proteção. Mesmo que sua senha seja descoberta, o criminoso não conseguirá acessar a conta sem informar o código de verificação temporário gerado no aplicativo autenticador do seu celular (Google Authenticator ou Microsoft Authenticator).',
-                'Redes Wi-Fi Públicas e HTTPS: Evite acessar sistemas internos ou realizar transações bancárias conectado a redes Wi-Fi públicas e desprotegidas. Sempre confira a presença do protocolo seguro HTTPS e o ícone de cadeado na barra de endereços do navegador.'
+                'Estratégias de Negociação: Como pleitear descontos em feirões de renegociação (ex: Serasa Limpa Nome) e trocar dívidas caras por linhas de crédito mais baratas (como crédito consignado).',
+                'Uso Consciente do Cartão de Crédito: Transformar o cartão em um aliado operacional de pontuação e organização de fluxo, e nunca em uma extensão ilusória da renda mensal.'
               ]
             }
           ]
         }
       },
       {
-        id: 'inf-base-mod-4',
+        id: 'fin-orc-mod-4',
         number: 4,
-        title: 'MÓDULO 4: Rotinas de Proteção e Lei Geral de Proteção de Dados (LGPD)',
-        summary: 'Garantir a continuidade das atividades e o cumprimento das normas legais de privacidade.',
+        title: 'MÓDULO 4: Estruturação da Reserva de Emergência',
+        summary: 'Criar a base de segurança que protege o orçamento contra imprevistos sem necessidade de recorrer a empréstimos.',
         estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1. Estratégias de Backup (Cópia de Segurança)',
+              subheading: '1. Cálculo do Tamanho Ideal da Reserva',
               body: [
-                'A Regra de Ouro 3-2-1 de Backup: É a metodologia padrão adotada por especialistas para assegurar que nenhum dado vital seja perdido por falha de hardware, furto ou ataque cibernético:',
-                '• 3 Cópias no total: O arquivo de trabalho principal + 2 cópias de segurança adicionais.',
-                '• 2 Mídias diferentes: Armazenamento em suportes físicos distintos (ex: disco interno do computador e um HD externo dedicado ou servidor).',
-                '• 1 Cópia externa (Off-site): Pelo menos uma cópia mantida fora das dependências da empresa (em nuvem segura como OneDrive ou Google Drive), protegendo os dados caso ocorra um desastre físico ou infecção por ransomware na rede local.',
-                'Automação de Backups: Configure rotinas automáticas de sincronização no sistema para evitar o risco de esquecimento humano.'
+                'Meses de Custo de Vida: Definir o tamanho da reserva com base na estabilidade da fonte de renda:',
+                '• CLT e Servidores Públicos: De 3 a 6 meses do custo de vida essencial.',
+                '• Autônomos e Profissionais Liberais: De 6 a 12 meses do custo de vida essencial, absorvendo períodos de volatilidade de faturamento.'
               ]
             },
             {
-              subheading: '2. Boas Práticas de Privacidade e LGPD no Dia a Dia',
+              subheading: '2. Onde Guardar a Reserva de Emergência',
               body: [
-                'Privacidade no Ambiente Digital: Revise periodicamente permissões cedidas a softwares e extensões de navegadores, restringindo acessos desnecessários à câmera, microfone e leitura de dados confidenciais.',
-                'Fundamentos da LGPD (Lei Geral de Proteção de Dados - Lei nº 13.709/2018): Todo dado pessoal (como CPF, RG, telefone, e-mail e endereço) de clientes, funcionários e fornecedores deve ser tratado com responsabilidade, ética e sigilo. Jamais compartilhe planilhas ou cadastros de clientes em grupos não autorizados de WhatsApp ou e-mails pessoais, evitando sanções legais para você e para a organização.'
+                'Critérios Inegociáveis: Altíssima segurança do capital, baixíssima volatilidade e Liquidez Diária (resgate imediato em D+0 ou D+1).',
+                'Opções Adequadas: Tesouro Selic (título público federal), CDBs de liquidez diária com 100% do CDI garantidos pelo FGC e contas remuneradas de instituições consolidadas.',
+                'O que Evitar para a Reserva: Ações, fundos imobiliários, criptomoedas e caderneta de poupança (devido à perda de rendimento em saques antes do aniversário de 30 dias).'
               ]
             }
           ]
@@ -2320,87 +2296,87 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'Um profissional recebeu um e-mail parecendo ser do seu banco, informando sobre o bloqueio da conta e solicitando que ele clique em um link para digitar sua senha e reativar o acesso. Trata-se de uma tentativa de golpe conhecida como:',
+        question: 'De acordo com a metodologia de orçamento 50-30-20, como deve ser distribuída a renda líquida mensal de uma pessoa?',
         options: [
-          'Phishing.',
-          'Defragmentação de disco.',
-          'Backup em nuvem.',
-          'Atualização de firmware.'
+          '50% para Lazer, 30% para Moradia e 20% para Alimentação.',
+          '50% para Prioridades Financeiras, 30% para Necessidades Essenciais e 20% para Desejos Pessoais.',
+          '50% para Necessidades Essenciais, 30% para Desejos Pessoais e 20% para Prioridades Financeiras/Investimentos.',
+          '50% para Imprevistos, 30% para Compras Parceladas e 20% para Contas de Luz e Água.'
         ],
-        correct: 0,
-        explanation: 'Phishing é uma técnica de engenharia social onde golpistas se passam por instituições confiáveis (bancos, empresas, órgãos governamentais) para enganar o usuário e induzi-lo a fornecer dados confidenciais.'
+        correct: 2,
+        explanation: 'O método 50-30-20 destina 50% para as Necessidades Essenciais (sobrevivência e manutenção), 30% para Desejos Pessoais (estilo de vida e lazer) e 20% para Prioridades Financeiras (quitação de dívidas e investimentos).'
       },
       {
         id: 2,
-        question: 'Para reforçar a segurança de uma conta corporativa de e-mail contra acessos não autorizados, qual das opções representa a prática recomendada de proteção adicional?',
+        question: 'Um profissional autônomo com renda variável deseja calcular o tamanho ideal da sua Reserva de Emergência. Considerando a maior oscilação da sua atividade profissional, quantos meses do seu custo de vida essencial são recomendados para essa reserva?',
         options: [
-          'Utilizar a mesma senha simples em todos os sites da internet.',
-          'Anotar a senha em um bloco de notas colado no monitor do computador.',
-          'Habilitar a Autenticação em Duas Etapas (2FA) utilizando um aplicativo autenticador.',
-          'Compartilhar a senha com todos os colegas de equipe para facilitar o trabalho.'
+          'De 6 a 12 meses.',
+          'Apenas 1 mês.',
+          'Exatamente 24 meses do salário bruto.',
+          'Não é necessário manter reserva quando se é autônomo.'
         ],
-        correct: 2,
-        explanation: 'A Autenticação em Duas Etapas (2FA) adiciona uma camada de proteção física/digital além da senha, exigindo um código temporário gerado no celular para confirmar a identidade.'
+        correct: 0,
+        explanation: 'Para autônomos e profissionais liberais, cuja renda é oscilante e imprevisível, recomenda-se uma reserva mais robusta (de 6 a 12 meses do custo de vida essencial) para absorver períodos de baixa atividade.'
       },
       {
         id: 3,
-        question: 'Na rotina de trabalho em equipe utilizando serviços de armazenamento em nuvem (como Google Drive ou OneDrive), qual é a vantagem de definir uma permissão como \'Apenas Leitura\' ao compartilhar um arquivo com um parceiro externo?',
+        question: 'Qual das seguintes opções apresenta as características fundamentais que uma aplicação financeira DEVE ter para servir como destino da Reserva de Emergência?',
         options: [
-          'Permitir que a pessoa apague permanentemente o arquivo original.',
-          'Garantir que o destinatário consiga visualizar o documento sem a possibilidade de alterar seu conteúdo original.',
-          'Fazer com que o arquivo seja impresso automaticamente na impressora do destinatário.',
-          'Bloquear completamente o acesso da pessoa ao link compartilhado.'
+          'Altíssimo risco, alta volatilidade e resgate bloqueado por 5 anos.',
+          'Garantia de ganhos na Bolsa de Valores com rendimento diário de 10%.',
+          'Baixa liquidez com cobrança de multa em caso de saque antecipado.',
+          'Altíssima segurança, baixíssima volatilidade e liquidez diária (possibilidade de resgate imediato).'
         ],
-        correct: 1,
-        explanation: 'A permissão de Apenas Leitura (ou Visualizador) garante a transparência da informação sem colocar em risco a integridade do arquivo original contra edições ou exclusões indevidas.'
+        correct: 3,
+        explanation: 'A reserva de emergência exige segurança (não perder o capital) e liquidez diária (dinheiro disponível no momento em que a emergência acontece). O foco desse montante é proteção, não rentabilidade agressiva.'
       },
       {
         id: 4,
-        question: 'Qual atalho universal de teclado nos sistemas operacionais é utilizado para alternar rapidamente entre as janelas e programas abertos na tela?',
+        question: 'Na gestão de dívidas, qual é a principal vantagem da estratégia conhecida como \"Método Avalanche\"?',
         options: [
-          'Ctrl + P',
-          'Alt + Tab',
-          'Ctrl + S',
-          'Windows + L'
+          'Pagar primeiro as dívidas com as menores taxas de juros para acumulá-las no final.',
+          'Priorizar a quitação das dívidas que possuem as maiores taxas de juros, reduzindo ao máximo o montante total pago em juros ao longo do tempo.',
+          'Ignorar as dívidas bancárias e pagar apenas as contas de consumo básico.',
+          'Consolidar todas as dívidas em uma única parcela parcelada em 120 vezes.'
         ],
         correct: 1,
-        explanation: 'O atalho Alt + Tab é o padrão nos sistemas operacionais para navegar e alternar a visualização entre diferentes aplicativos abertos na área de trabalho.'
+        explanation: 'O Método Avalanche ataca primeiro os débitos com juros mais caros (como cartão de crédito e cheque especial), sendo matematicamente a forma mais barata de quitar dívidas.'
       },
       {
         id: 5,
-        question: 'A estratégia de proteção de dados conhecida como \'Regra 3-2-1 de Backup\' recomenda qual das seguintes estruturas para garantir que informações críticas não sejam perdidas?',
+        question: 'Ao analisar o orçamento mensal, onde se enquadra o pagamento de despesas como aluguel, conta de luz, supermercado e transporte para o trabalho?',
         options: [
-          'Guardar 3 cópias dos dados, em 2 mídias diferentes, com 1 cópia armazenada em um local externo (como a nuvem).',
-          'Fazer backup a cada 3 dias, durante 2 meses, usando 1 pendrive usado.',
-          'Salvar 3 arquivos na mesma pasta, em 2 computadores iguais, sem senha.',
-          'Enviar 3 e-mails para você mesmo com 2 anexos em 1 dia.'
+          'Desejos Pessoais (30%).',
+          'Prioridades Financeiras (20%).',
+          'Necessidades Essenciais (50%).',
+          'Gastos Superficiais Não Categorizados.'
         ],
-        correct: 0,
-        explanation: 'A Regra 3-2-1 é o padrão de ouro da segurança da informação: ter 3 cópias no total (1 primária + 2 backups), em 2 tipos de mídias diferentes (ex: HD externo e nuvem), com 1 cópia mantida fora da empresa/residência (nuvem).'
+        correct: 2,
+        explanation: 'Despesas ligadas à moradia, alimentação básica, saúde e transporte constituem a base de sobrevivência e enquadram-se nos 50% de Necessidades Essenciais.'
       },
       {
         id: 6,
-        question: 'Um tipo nocivo de software malicioso que criptografa (bloqueia) os arquivos de um computador e exige o pagamento de um \'resgate\' financeiro para liberar o acesso aos dados é chamado de:',
+        question: 'O conceito de \"Pague-se Primeiro\" no planejamento financeiro significa:',
         options: [
-          'Antivírus.',
-          'Ransomware.',
-          'Sistema Operacional.',
-          'Processador.'
+          'Separar o valor destinado às Prioridades Financeiras/Investimentos assim que a renda entra na conta, antes de efetuar os demais gastos.',
+          'Gastar todo o salário com lazer na primeira semana do mês e pagar as contas com o limite do cartão.',
+          'Pagar adiantado a fatura do cartão de crédito do mês seguinte.',
+          'Comprar produtos importados à vista antes de cotar preços.'
         ],
-        correct: 1,
-        explanation: 'O Ransomware é uma ameaça cibersegurança grave que \'sequestra\' dados por meio de criptografia forte, cobrando pagamentos (geralmente em criptomoedas) para a suposta devolução das chaves de acesso.'
+        correct: 0,
+        explanation: 'O hábito de \"pague-se primeiro\" consiste em priorizar o seu futuro financeiro transferindo o percentual de investimentos/poupança logo no dia do pagamento, tratando os aportes como um compromisso fixo.'
       },
       {
         id: 7,
-        question: 'Para encontrar no Google exatamente um arquivo em formato PDF contendo um manual de instruções, sem exibir páginas com textos genéricos, qual expressão de busca utiliza o operador correto?',
+        question: 'Qual das seguintes alternativas representa um produto financeiro adequado e seguro para a alocação da Reserva de Emergência?',
         options: [
-          'manual de instrucoes filetype:pdf',
-          'manual + instrucoes + site',
-          'buscar manual formato texto',
-          'pdf.manual.com'
+          'Ações de empresas de tecnologia na Bolsa de Valores.',
+          'Criptomoedas de alto risco.',
+          'Tesouro Selic ou CDB de Liquidez Diária de instituição financeira sólida.',
+          'Fundos Imobiliários fechados sem liquidez.'
         ],
-        correct: 0,
-        explanation: 'O operador filetype:pdf filtra a pesquisa do Google para retornar exclusivamente arquivos com a extensão .pdf, tornando a busca por manuais, livros e relatórios muito mais precisa.'
+        correct: 2,
+        explanation: 'O Tesouro Selic e os CDBs de liquidez diária possuem risco baixíssimo, acompanham a taxa básica de juros e permitem o resgate imediato sem perdas do valor principal investido.'
       }
     ]
   },
@@ -3043,46 +3019,135 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
-  // 16. PLANEJAMENTO E MATEMÁTICA FINANCEIRA
+  // 16. PLANEJAMENTO E MATEMÁTICA FINANCEIRA, ORÇAMENTO 50-30-20 E RESERVA DE EMERGÊNCIA
   // =========================================================================
   {
     id: 'curso-planejamento-orcamento',
     trackId: 'trilha-5',
-    trackName: 'TRILHA 5: Educação Financeira & Cidadania no Trabalho',
+    trackName: 'TRILHA 5: Gestão do Tempo, Foco & Produtividade',
     category: 'Desenvolvimento Pessoal',
-    targetAudienceType: 'TODOS',
+    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO'],
     title: 'Planejamento Financeiro, Orçamento 50-30-20 e Reserva de Emergência',
-    subtitle: 'Método 50-30-20 na prática, cálculo de juros simples vs compostos e construção da primeira reserva financeira',
+    subtitle: 'Capacitar o participante a organizar suas finanças pessoais, construir um orçamento sustentável através da regra 50-30-20, eliminar dívidas de forma estratégica e estruturar uma reserva de emergência segura e de liquidez imediata.',
     hours: 12,
     equivalentHours: 12,
-    modality: 'EAD 100% Gratuito',
-    targetAudience: 'Jovens que recebem bolsa-auxílio ou salário de aprendiz',
-    prerequisites: 'Nenhum.',
-    badgeName: 'Mestre do Orçamento',
-    badgeCategory: 'Finanças',
+    modality: 'EAD 100% Gratuito (Escola Virtual)',
+    targetAudience: 'Jovens aprendizes, estagiários e estudantes que buscam organizar suas finanças pessoais, quitar dívidas e criar sua primeira reserva de emergência',
+    prerequisites: 'Nenhum pré-requisito (Nível Absoluto Zero).',
+    badgeName: 'Mestre do Orçamento & Reserva',
+    badgeCategory: 'Finanças Pessoais',
     badgeIcon: 'PiggyBank',
     accentColor: '#F59E0B',
-    level: 'Intermediário',
+    level: 'Iniciante',
     learningObjectives: [
-      'Dividir o salário mensal segundo a regra 50% (Necessidades), 30% (Desejos) e 20% (Futuro).',
-      'Evitar o endividamento em cartões de crédito e juros rotativos abusivos.',
-      'Calcular o valor ideal da Reserva de Emergência (3 a 6 meses de custos fixos).'
+      'Realizar um diagnóstico financeiro completo (raio-X financeiro), mapeando ativos, passivos, gastos fixos, variáveis e despesas invisíveis.',
+      'Aplicar o método de orçamento 50-30-20 (50% Necessidades, 30% Desejos e 20% Prioridades Financeiras) e adotar o princípio de \"pague-se primeiro\".',
+      'Mapear dívidas pelo Custo Efetivo Total (CET) e aplicar estratégias de quitação acelerada (Método Avalanche vs. Método Bola de Neve).',
+      'Calcular a Reserva de Emergência ideal com base na modalidade de trabalho (3 a 6 meses para CLT e 6 a 12 meses para autônomos).',
+      'Selecionar produtos de renda fixa seguros e com liquidez diária (Tesouro Selic e CDBs 100% do CDI) para alocação da reserva de emergência.'
     ],
     modules: [
       {
-        id: 'fin-mod-1',
+        id: 'fin-plan-mod-1',
         number: 1,
-        title: 'MÓDULO 1: A Regra 50-30-20 Aplicada à Realidade do Jovem',
-        summary: 'Como administrar uma bolsa de R$ 900 a R$ 1.500 sem ficar no vermelho.',
-        estimatedMinutes: 30,
+        title: 'MÓDULO 1: Diagnóstico Financeiro e Mapeamento de Gastos',
+        summary: 'Compreender a real situação das finanças pessoais antes de tomar decisões de investimento ou corte de despesas.',
+        estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1.1 Divisão dos Potes Financeiros',
+              subheading: '1. Raio-X das Finanças Pessoais',
               body: [
-                '50% para Gastos Essenciais: Passagens, materiais escolares, auxílio nas contas de casa.',
-                '30% para Lazer e Estilo de Vida: Saídas com amigos, assinaturas, passeios.',
-                '20% para o Futuro: Guardar em conta rendendo 100% do CDI para formar a reserva de emergência.'
+                'Compreender a real situação das finanças pessoais antes de tomar decisões de investimento ou corte de despesas.',
+                'Levantamento de Ativos e Passivos: Entender a diferença entre o que gera receita e coloca dinheiro no bolso (ativos) e o que gera despesas e consome recursos (passivos).',
+                'Mapeamento de Gastos Fixos vs. Variáveis: Classificação clara entre contas essenciais e previsíveis (aluguel, condomínio, internet) e consumos sazonais ou supérfluos que oscilam mês a mês.',
+                'Categorização de Gastos: Identificação minuciosa dos chamados \"gastos invisíveis\" ou \"pequenos ralos financeiros\" (pequenos cafezinhos, taxas bancárias não percebidas e compras por impulso no dia a dia).'
+              ]
+            },
+            {
+              subheading: '2. Planilhas e Aplicativos de Controle',
+              body: [
+                'Ferramentas de Acompanhamento: Utilização de cadernos, planilhas organizadas ou aplicativos de gestão financeira para o registro sistemático de todas as entradas e saídas.',
+                'Análise de Fluxo de Caixa: Apuração do saldo mensal real para identificar com clareza se a conta fecha no positivo (superávit), no zero a zero ou no negativo (déficit financeiro).'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'fin-plan-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: O Método de Orçamento 50-30-20',
+        summary: 'Uma metodologia prática e visual para distribuir a renda líquida mensal em categorias equilibradas.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. A Divisão Percentual da Renda Líquida',
+              body: [
+                '50% — Necessidades Essenciais: Moradia, alimentação, saúde, transporte, energia, água e educação básica. Gastos vitais para a sobrevivência e manutenção da vida diária.',
+                '30% — Desejos Pessoais: Lazer, passeios, viagens, assinaturas de streaming, hobbies e vestuário não essencial. Gastos que proporcionam qualidade de vida presente.',
+                '20% — Prioridades Financeiras: Quitação de dívidas de juros altos, construção de reservas financeiras e investimentos de longo prazo para garantir tranquilidade futura.'
+              ]
+            },
+            {
+              subheading: '2. Ajustes e Flexibilidade',
+              body: [
+                'Customização da Metodologia: Adaptando os percentuais para diferentes realidades de renda (ex: 60-20-20 para orçamentos em fases mais apertadas ou inícios de carreira).',
+                'Disciplina e Hábitos: Como manter a constância nos aportes das prioridades financeiras logo no início do mês aplicando o princípio \"pague-se primeiro\" (investir assim que o salário cai, antes de gastar o restante).'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'fin-plan-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Gestão de Dívidas e Estratégias de Quitação',
+        summary: 'Eliminar passivos que cobram juros altos para liberar margem no orçamento.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Mapeamento e Priorização de Débitos',
+              body: [
+                'Custo Efetivo Total (CET): Compreender quais dívidas são as mais perigosas e onerosas (cartão de crédito rotativo, cheque especial e empréstimos pessoais com juros compostos explosivos).',
+                'Método Bola de Neve: Quitar primeiro as dívidas de menor valor absoluto para gerar vitórias rápidas e motivação psicológica consistente.',
+                'Método Avalanche: Quitar prioritariamente as dívidas com as maiores taxas de juros nominais, economizando o máximo de dinheiro em juros ao longo do tempo.'
+              ]
+            },
+            {
+              subheading: '2. Renegociação e Proteção do Score',
+              body: [
+                'Estratégias de Negociação: Como pleitear descontos em feirões de renegociação (ex: Serasa Limpa Nome) e trocar dívidas caras por linhas de crédito mais baratas (como crédito consignado).',
+                'Uso Consciente do Cartão de Crédito: Transformar o cartão em um aliado operacional de pontuação e organização de fluxo, e nunca em uma extensão ilusória da renda mensal.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'fin-plan-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Estruturação da Reserva de Emergência',
+        summary: 'Criar a base de segurança que protege o orçamento contra imprevistos sem necessidade de recorrer a empréstimos.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Cálculo do Tamanho Ideal da Reserva',
+              body: [
+                'Meses de Custo de Vida: Definir o tamanho da reserva com base na estabilidade da fonte de renda:',
+                '• CLT e Servidores Públicos: De 3 a 6 meses do custo de vida essencial.',
+                '• Autônomos e Profissionais Liberais: De 6 a 12 meses do custo de vida essencial, absorvendo períodos de volatilidade de faturamento.'
+              ]
+            },
+            {
+              subheading: '2. Onde Guardar a Reserva de Emergência',
+              body: [
+                'Critérios Inegociáveis: Altíssima segurança do capital, baixíssima volatilidade e Liquidez Diária (resgate imediato em D+0 ou D+1).',
+                'Opções Adequadas: Tesouro Selic (título público federal), CDBs de liquidez diária com 100% do CDI garantidos pelo FGC e contas remuneradas de instituições consolidadas.',
+                'O que Evitar para a Reserva: Ações, fundos imobiliários, criptomoedas e caderneta de poupança (devido à perda de rendimento em saques antes do aniversário de 30 dias).'
               ]
             }
           ]
@@ -3093,15 +3158,87 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'Segundo a regra 50-30-20, qual porcentagem da sua renda deve ser direcionada para economias e reserva do futuro?',
+        question: 'De acordo com a metodologia de orçamento 50-30-20, como deve ser distribuída a renda líquida mensal de uma pessoa?',
         options: [
-          '0% (gastar tudo no mesmo dia)',
-          '20% da renda líquida',
-          '90% da renda líquida',
-          '100% da renda líquida'
+          '50% para Lazer, 30% para Moradia e 20% para Alimentação.',
+          '50% para Prioridades Financeiras, 30% para Necessidades Essenciais e 20% para Desejos Pessoais.',
+          '50% para Necessidades Essenciais, 30% para Desejos Pessoais e 20% para Prioridades Financeiras/Investimentos.',
+          '50% para Imprevistos, 30% para Compras Parceladas e 20% para Contas de Luz e Água.'
+        ],
+        correct: 2,
+        explanation: 'O método 50-30-20 destina 50% para as Necessidades Essenciais (sobrevivência e manutenção), 30% para Desejos Pessoais (estilo de vida e lazer) e 20% para Prioridades Financeiras (quitação de dívidas e investimentos).'
+      },
+      {
+        id: 2,
+        question: 'Um profissional autônomo com renda variável deseja calcular o tamanho ideal da sua Reserva de Emergência. Considerando a maior oscilação da sua atividade profissional, quantos meses do seu custo de vida essencial são recomendados para essa reserva?',
+        options: [
+          'De 6 a 12 meses.',
+          'Apenas 1 mês.',
+          'Exatamente 24 meses do salário bruto.',
+          'Não é necessário manter reserva quando se é autônomo.'
+        ],
+        correct: 0,
+        explanation: 'Para autônomos e profissionais liberais, cuja renda é oscilante e imprevisível, recomenda-se uma reserva mais robusta (de 6 a 12 meses do custo de vida essencial) para absorver períodos de baixa atividade.'
+      },
+      {
+        id: 3,
+        question: 'Qual das seguintes opções apresenta as características fundamentais que uma aplicação financeira DEVE ter para servir como destino da Reserva de Emergência?',
+        options: [
+          'Altíssimo risco, alta volatilidade e resgate bloqueado por 5 anos.',
+          'Garantia de ganhos na Bolsa de Valores com rendimento diário de 10%.',
+          'Baixa liquidez com cobrança de multa em caso de saque antecipado.',
+          'Altíssima segurança, baixíssima volatilidade e liquidez diária (possibilidade de resgate imediato).'
+        ],
+        correct: 3,
+        explanation: 'A reserva de emergência exige segurança (não perder o capital) e liquidez diária (dinheiro disponível no momento em que a emergência acontece). O foco desse montante é proteção, não rentabilidade agressiva.'
+      },
+      {
+        id: 4,
+        question: 'Na gestão de dívidas, qual é a principal vantagem da estratégia conhecida como \"Método Avalanche\"?',
+        options: [
+          'Pagar primeiro as dívidas com as menores taxas de juros para acumulá-las no final.',
+          'Priorizar a quitação das dívidas que possuem as maiores taxas de juros, reduzindo ao máximo o montante total pago em juros ao longo do tempo.',
+          'Ignorar as dívidas bancárias e pagar apenas as contas de consumo básico.',
+          'Consolidar todas as dívidas em uma única parcela parcelada em 120 vezes.'
         ],
         correct: 1,
-        explanation: 'Destinar 20% para a reserva garante estabilidade financeira e autonomia para o jovem.'
+        explanation: 'O Método Avalanche ataca primeiro os débitos com juros mais caros (como cartão de crédito e cheque especial), sendo matematicamente a forma mais barata de quitar dívidas.'
+      },
+      {
+        id: 5,
+        question: 'Ao analisar o orçamento mensal, onde se enquadra o pagamento de despesas como aluguel, conta de luz, supermercado e transporte para o trabalho?',
+        options: [
+          'Desejos Pessoais (30%).',
+          'Prioridades Financeiras (20%).',
+          'Necessidades Essenciais (50%).',
+          'Gastos Superficiais Não Categorizados.'
+        ],
+        correct: 2,
+        explanation: 'Despesas ligadas à moradia, alimentação básica, saúde e transporte constituem a base de sobrevivência e enquadram-se nos 50% de Necessidades Essenciais.'
+      },
+      {
+        id: 6,
+        question: 'O conceito de \"Pague-se Primeiro\" no planejamento financeiro significa:',
+        options: [
+          'Separar o valor destinado às Prioridades Financeiras/Investimentos assim que a renda entra na conta, antes de efetuar os demais gastos.',
+          'Gastar todo o salário com lazer na primeira semana do mês e pagar as contas com o limite do cartão.',
+          'Pagar adiantado a fatura do cartão de crédito do mês seguinte.',
+          'Comprar produtos importados à vista antes de cotar preços.'
+        ],
+        correct: 0,
+        explanation: 'O hábito de \"pague-se primeiro\" consiste em priorizar o seu futuro financeiro transferindo o percentual de investimentos/poupança logo no dia do pagamento, tratando os aportes como um compromisso fixo.'
+      },
+      {
+        id: 7,
+        question: 'Qual das seguintes alternativas representa um produto financeiro adequado e seguro para a alocação da Reserva de Emergência?',
+        options: [
+          'Ações de empresas de tecnologia na Bolsa de Valores.',
+          'Criptomoedas de alto risco.',
+          'Tesouro Selic ou CDB de Liquidez Diária de instituição financeira sólida.',
+          'Fundos Imobiliários fechados sem liquidez.'
+        ],
+        correct: 2,
+        explanation: 'O Tesouro Selic e os CDBs de liquidez diária possuem risco baixíssimo, acompanham a taxa básica de juros e permitem o resgate imediato sem perdas do valor principal investido.'
       }
     ]
   }
