@@ -1743,44 +1743,159 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
-  // 10. ATENDIMENTO AO PÚBLICO E RELACIONAMENTO
+  // 10. INFORMÁTICA BÁSICA, NUVEM E SEGURANÇA DA INFORMAÇÃO
   // =========================================================================
   {
     id: 'curso-atendimento-publico',
     trackId: 'trilha-2',
     trackName: 'TRILHA 2: Soft Skills, Postura & Comunicação Corporativa',
-    category: 'Desenvolvimento Pessoal',
-    targetAudienceType: ['JOVEM_APRENDIZ', 'PRIMEIRO_EMPREGO'],
-    title: 'Atendimento ao Público e Técnicas de Relacionamento',
-    subtitle: 'Excelência no atendimento telefônico, presencial e por chat, escuta ativa e resolução de dúvidas',
-    hours: 8,
-    equivalentHours: 8,
+    category: 'Tecnologia da Informação',
+    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO'],
+    title: 'Informática Básica, Nuvem e Segurança da Informação',
+    subtitle: 'Capacitar o participante a operar sistemas operacionais de forma eficiente, utilizar serviços de armazenamento e produtividade em nuvem e adotar práticas essenciais de segurança da informação para proteger dados pessoais e corporativos contra ameaças cibernéticas.',
+    hours: 12,
+    equivalentHours: 12,
     modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Aprendizes em funções de recepção, atendimento ao cliente e suporte',
-    prerequisites: 'Nenhum.',
-    badgeName: 'Excelência em Atendimento',
-    badgeCategory: 'Atitude Profissional',
-    badgeIcon: 'Headphones',
-    accentColor: '#EC4899',
+    targetAudience: 'Estudantes, jovens aprendizes e profissionais iniciantes que buscam dominar o sistema operacional, colaboração em nuvem e segurança de dados',
+    prerequisites: 'Nenhum pré-requisito (Nível Absoluto Zero).',
+    badgeName: 'Informática & Segurança Digital',
+    badgeCategory: 'Tecnologia & Segurança',
+    badgeIcon: 'ShieldCheck',
+    accentColor: '#3B82F6',
     level: 'Iniciante',
     learningObjectives: [
-      'Atender chamadas telefônicas com cordialidade e padrão corporativo.',
-      'Praticar escuta ativa para entender o problema do cliente antes de responder.',
-      'Lidar com reclamações com empatia e tranquilidade.'
+      'Compreender a diferença entre hardware e software e dominar atalhos universais de teclado e navegação no sistema operacional.',
+      'Organizar pastas e arquivos de forma profissional, identificando extensões (.pdf, .docx, .xlsx, .zip) e gerenciando a lixeira com segurança.',
+      'Dominar técnicas avançadas de pesquisa no Google e operar serviços em nuvem (Google Drive e OneDrive) com controle de permissões e edição colaborativa.',
+      'Mapear ameaças cibernéticas cotidianas (Phishing, Ransomware, Spyware e Cavalos de Troia) e aplicar defesas essenciais com senhas fortes e 2FA/MFA.',
+      'Aplicar a Regra 3-2-1 de Backup e adotar práticas de privacidade e conformidade com a LGPD no dia a dia corporativo.'
     ],
     modules: [
       {
-        id: 'ate-mod-1',
+        id: 'inf-base-mod-1',
         number: 1,
-        title: 'MÓDULO 1: Princípios do Atendimento Humanizado',
-        summary: 'Saudação acolhedora, empatia e clareza na transmissão de informações.',
-        estimatedMinutes: 30,
+        title: 'MÓDULO 1: Fundamentos de Informática e Sistemas Operacionais',
+        summary: 'Compreender a estrutura de um computador e dominar a navegação eficiente pelo sistema operacional.',
+        estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1.1 Abertura do Atendimento',
+              subheading: '1. Hardware, Software e Estrutura Lógica',
               body: [
-                'Sempre cumprimente com energia positiva: "Bom dia! Meu nome é Lucas, em que posso ajudar hoje?". Anote o nome do cliente e use-o com respeito durante a conversa.'
+                'Hardware vs. Software: O hardware representa a parte física do computador — todos os componentes que você pode tocar (como processador, memória RAM, placa-mãe, teclado, mouse e unidade de armazenamento SSD/HD). O software é a parte lógica e intangível — programas, aplicativos, rotinas e o próprio sistema operacional que instruem o hardware a executar as tarefas desejadas.',
+                'Sistemas Operacionais (Windows e Linux): O sistema operacional é o software mestre que gerencia os recursos de hardware e disponibiliza a interface gráfica para o usuário interagir com a máquina de forma simples e intuitiva.',
+                'Atalhos Universais de Teclado: Conhecer os atalhos de teclado multiplica a velocidade e a agilidade nas rotinas diárias de escritório:',
+                '• Ctrl + C: Copiar o item ou texto selecionado para a área de transferência.',
+                '• Ctrl + V: Colar o item copiado no local selecionado.',
+                '• Ctrl + X: Recortar (remover o item de sua posição e mantê-lo pronto para colar em outro local).',
+                '• Ctrl + Z: Desfazer a última ação executada.',
+                '• Alt + Tab: Alternar instantaneamente entre janelas e programas abertos na tela.',
+                '• Windows + E: Abrir o Explorador de Arquivos para localizar documentos rapidamente.',
+                '• Windows + L: Bloquear imediatamente o computador ao se ausentar da mesa de trabalho (hábito indispensável de segurança corporativa).'
+              ]
+            },
+            {
+              subheading: '2. Organização de Arquivos e Armazenamento',
+              body: [
+                'Estrutura de Pastas e Diretórios: Uma máquina organizada reflete diretamente no profissionalismo do colaborador. Crie uma hierarquia lógica dividida por departamentos, projetos, anos ou clientes. Evite salvar tudo desordenadamente na Área de Trabalho e adote nomes descritivos e sem caracteres especiais para facilitar a busca.',
+                'Extensões de Arquivos Frequentes: As extensões indicam o formato do arquivo e o aplicativo compatível para abri-lo:',
+                '• .pdf (Portable Document Format): Documento visual padronizado e protegido contra alterações diretas, perfeito para propostas, contratos e manuais.',
+                '• .docx: Documentos editáveis de texto gerados pelo Microsoft Word ou editores compatíveis.',
+                '• .xlsx: Planilhas eletrônicas de cálculo geradas pelo Microsoft Excel.',
+                '• .png e .jpeg: Formatos de imagem estática para gráficos, banners e fotografias.',
+                '• .zip e .rar: Arquivos compactados que agrupam múltiplos documentos e reduzem o peso total para transferências por e-mail ou nuvem.',
+                'Gerenciamento de Espaço e Lixeira: Quando você deleta um arquivo comum, ele não desaparece de imediato: ele vai para a Lixeira, permitindo restauração caso a exclusão tenha sido um equívoco. Esvazie a lixeira com critério quando precisar liberar espaço físico em disco.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'inf-base-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: Navegação na Web e Serviços de Produtividade em Nuvem',
+        summary: 'Aprender a explorar a internet de forma rápida e utilizar plataformas de colaboração em tempo real.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Navegadores e Pesquisa Eficiente',
+              body: [
+                'Navegadores (Browsers): Ferramentas como Google Chrome, Microsoft Edge e Mozilla Firefox são as portas de entrada para a rede mundial de computadores. Dominar recursos como favoritos organizados em pastas, histórico de navegação, abas agrupadas e atalhos de nova guia otimiza drasticamente as pesquisas.',
+                'Modo Anônimo: Permite abrir sessões temporárias sem guardar histórico, senhas ou cookies de rastreamento na máquina, útil para testar visualizações limpas de sites ou acessar serviços de maneira temporária.',
+                'Técnicas de Busca Avançada no Google:',
+                '• Aspas duplas (\"termo exato\"): Retorna páginas contendo a frase exatamente como foi escrita (ex: \"política de segurança da informação\").',
+                '• Sinal de hífen (-termo): Exclui páginas que contenham a palavra indesejada (ex: contrato estagio -advocacia).',
+                '• Operador filetype: Localiza diretamente arquivos no formato desejado (ex: manual de instrucoes filetype:pdf).'
+              ]
+            },
+            {
+              subheading: '2. Ecossistemas em Nuvem (Google Workspace e Microsoft 365)',
+              body: [
+                'O que é Computação em Nuvem (Cloud Computing): Consiste no fornecimento de serviços de TI — incluindo servidores, bancos de dados, armazenamento e ferramentas de produtividade — através da internet. Com a nuvem, você não depende de salvar seus arquivos no HD físico da máquina da empresa: tudo fica sincronizado online e acessível com segurança de qualquer dispositivo.',
+                'Armazenamento e Compartilhamento com Segurança: Serviços como Google Drive e Microsoft OneDrive permitem centralizar documentos institucionais com níveis rigorosos de permissão:',
+                '• Apenas Leitura (Visualizador): A pessoa tem permissão para visualizar o documento na tela e fazer download, sem poder alterar ou apagar nenhuma parte do conteúdo.',
+                '• Comentador: O usuário pode inserir notas explicativas e sugerir alterações pontuais sem editar o texto original.',
+                '• Editor: Permissão máxima concedida para redigir, formatar, reestruturar ou excluir arquivos da pasta compartilhada.',
+                'Edição Colaborativa em Tempo Real: Equipes inteiras podem trabalhar em conjunto no mesmo arquivo simultaneamente, acompanhando cursores coloridos de colegas e recuperando versões antigas a qualquer instante pelo histórico de revisões.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'inf-base-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Segurança da Informação e Proteção de Dados',
+        summary: 'Desenvolver uma postura preventiva contra os golpes digitais mais comuns do mercado.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Mapeamento de Ameaças Digitais',
+              body: [
+                'Engenharia Social e Phishing: Phishing é a tentativa de fraude eletrônica em que criminosos simulam mensagens legítimas de bancos, gestores ou fornecedores via e-mail, SMS ou WhatsApp, induzindo o usuário a clicar em links clonados para roubar senhas corporativas ou dados confidenciais.',
+                'Tipos de Malware (Softwares Maliciosos):',
+                '• Vírus: Programa nocivo capaz de se auto-replicar e infectar arquivos legítimos no sistema operacional.',
+                '• Ransomware: Uma das maiores ameaças corporativas globais. Criptografa (bloqueia) os arquivos e bancos de dados do computador e exige o pagamento de um resgate financeiro (geralmente em criptomoedas) para liberar as chaves de descriptografia.',
+                '• Spyware: Software espião instalado de forma oculta que monitora atividades, navegação e teclas digitadas (keylogger) para roubar credenciais.',
+                '• Trojan (Cavalo de Tróia): Programa aparentemente inofensivo ou útil que, quando executado, abre portas de comunicação clandestinas para cibercriminosos controlarem o computador.'
+              ]
+            },
+            {
+              subheading: '2. Mecanismos de Defesa Pessoal e Corporativa',
+              body: [
+                'Gestão de Senhas Fortes: Crie senhas complexas contendo pelo menos 12 caracteres com mistura de letras maiúsculas, minúsculas, números e caracteres especiais. Jamais reutilize a mesma senha entre sistemas corporativos e redes sociais e adote gerenciadores de senhas confiáveis.',
+                'Autenticação em Duas Etapas (2FA/MFA): Cria uma camada extra fundamental de proteção. Mesmo que sua senha seja descoberta, o criminoso não conseguirá acessar a conta sem informar o código de verificação temporário gerado no aplicativo autenticador do seu celular (Google Authenticator ou Microsoft Authenticator).',
+                'Redes Wi-Fi Públicas e HTTPS: Evite acessar sistemas internos ou realizar transações bancárias conectado a redes Wi-Fi públicas e desprotegidas. Sempre confira a presença do protocolo seguro HTTPS e o ícone de cadeado na barra de endereços do navegador.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'inf-base-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Rotinas de Proteção e Lei Geral de Proteção de Dados (LGPD)',
+        summary: 'Garantir a continuidade das atividades e o cumprimento das normas legais de privacidade.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Estratégias de Backup (Cópia de Segurança)',
+              body: [
+                'A Regra de Ouro 3-2-1 de Backup: É a metodologia padrão adotada por especialistas para assegurar que nenhum dado vital seja perdido por falha de hardware, furto ou ataque cibernético:',
+                '• 3 Cópias no total: O arquivo de trabalho principal + 2 cópias de segurança adicionais.',
+                '• 2 Mídias diferentes: Armazenamento em suportes físicos distintos (ex: disco interno do computador e um HD externo dedicado ou servidor).',
+                '• 1 Cópia externa (Off-site): Pelo menos uma cópia mantida fora das dependências da empresa (em nuvem segura como OneDrive ou Google Drive), protegendo os dados caso ocorra um desastre físico ou infecção por ransomware na rede local.',
+                'Automação de Backups: Configure rotinas automáticas de sincronização no sistema para evitar o risco de esquecimento humano.'
+              ]
+            },
+            {
+              subheading: '2. Boas Práticas de Privacidade e LGPD no Dia a Dia',
+              body: [
+                'Privacidade no Ambiente Digital: Revise periodicamente permissões cedidas a softwares e extensões de navegadores, restringindo acessos desnecessários à câmera, microfone e leitura de dados confidenciais.',
+                'Fundamentos da LGPD (Lei Geral de Proteção de Dados - Lei nº 13.709/2018): Todo dado pessoal (como CPF, RG, telefone, e-mail e endereço) de clientes, funcionários e fornecedores deve ser tratado com responsabilidade, ética e sigilo. Jamais compartilhe planilhas ou cadastros de clientes em grupos não autorizados de WhatsApp ou e-mails pessoais, evitando sanções legais para você e para a organização.'
               ]
             }
           ]
@@ -1791,15 +1906,87 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'Qual a primeira atitude ao atender um cliente que está chateado com uma demora?',
+        question: 'Um profissional recebeu um e-mail parecendo ser do seu banco, informando sobre o bloqueio da conta e solicitando que ele clique em um link para digitar sua senha e reativar o acesso. Trata-se de uma tentativa de golpe conhecida como:',
         options: [
-          'Interrompê-lo e dizer que a culpa não é sua.',
-          'Ouvir atentamente com empatia, demonstrar que compreende a frustração e buscar resolver o problema.',
-          'Desligar o telefone.',
-          'Rir da situação.'
+          'Phishing.',
+          'Defragmentação de disco.',
+          'Backup em nuvem.',
+          'Atualização de firmware.'
+        ],
+        correct: 0,
+        explanation: 'Phishing é uma técnica de engenharia social onde golpistas se passam por instituições confiáveis (bancos, empresas, órgãos governamentais) para enganar o usuário e induzi-lo a fornecer dados confidenciais.'
+      },
+      {
+        id: 2,
+        question: 'Para reforçar a segurança de uma conta corporativa de e-mail contra acessos não autorizados, qual das opções representa a prática recomendada de proteção adicional?',
+        options: [
+          'Utilizar a mesma senha simples em todos os sites da internet.',
+          'Anotar a senha em um bloco de notas colado no monitor do computador.',
+          'Habilitar a Autenticação em Duas Etapas (2FA) utilizando um aplicativo autenticador.',
+          'Compartilhar a senha com todos os colegas de equipe para facilitar o trabalho.'
+        ],
+        correct: 2,
+        explanation: 'A Autenticação em Duas Etapas (2FA) adiciona uma camada de proteção física/digital além da senha, exigindo um código temporário gerado no celular para confirmar a identidade.'
+      },
+      {
+        id: 3,
+        question: 'Na rotina de trabalho em equipe utilizando serviços de armazenamento em nuvem (como Google Drive ou OneDrive), qual é a vantagem de definir uma permissão como \'Apenas Leitura\' ao compartilhar um arquivo com um parceiro externo?',
+        options: [
+          'Permitir que a pessoa apague permanentemente o arquivo original.',
+          'Garantir que o destinatário consiga visualizar o documento sem a possibilidade de alterar seu conteúdo original.',
+          'Fazer com que o arquivo seja impresso automaticamente na impressora do destinatário.',
+          'Bloquear completamente o acesso da pessoa ao link compartilhado.'
         ],
         correct: 1,
-        explanation: 'A escuta empática desarma a tensão e permite focar na solução rápida do problema.'
+        explanation: 'A permissão de Apenas Leitura (ou Visualizador) garante a transparência da informação sem colocar em risco a integridade do arquivo original contra edições ou exclusões indevidas.'
+      },
+      {
+        id: 4,
+        question: 'Qual atalho universal de teclado nos sistemas operacionais é utilizado para alternar rapidamente entre as janelas e programas abertos na tela?',
+        options: [
+          'Ctrl + P',
+          'Alt + Tab',
+          'Ctrl + S',
+          'Windows + L'
+        ],
+        correct: 1,
+        explanation: 'O atalho Alt + Tab é o padrão nos sistemas operacionais para navegar e alternar a visualização entre diferentes aplicativos abertos na área de trabalho.'
+      },
+      {
+        id: 5,
+        question: 'A estratégia de proteção de dados conhecida como \'Regra 3-2-1 de Backup\' recomenda qual das seguintes estruturas para garantir que informações críticas não sejam perdidas?',
+        options: [
+          'Guardar 3 cópias dos dados, em 2 mídias diferentes, com 1 cópia armazenada em um local externo (como a nuvem).',
+          'Fazer backup a cada 3 dias, durante 2 meses, usando 1 pendrive usado.',
+          'Salvar 3 arquivos na mesma pasta, em 2 computadores iguais, sem senha.',
+          'Enviar 3 e-mails para você mesmo com 2 anexos em 1 dia.'
+        ],
+        correct: 0,
+        explanation: 'A Regra 3-2-1 é o padrão de ouro da segurança da informação: ter 3 cópias no total (1 primária + 2 backups), em 2 tipos de mídias diferentes (ex: HD externo e nuvem), com 1 cópia mantida fora da empresa/residência (nuvem).'
+      },
+      {
+        id: 6,
+        question: 'Um tipo nocivo de software malicioso que criptografa (bloqueia) os arquivos de um computador e exige o pagamento de um \'resgate\' financeiro para liberar o acesso aos dados é chamado de:',
+        options: [
+          'Antivírus.',
+          'Ransomware.',
+          'Sistema Operacional.',
+          'Processador.'
+        ],
+        correct: 1,
+        explanation: 'O Ransomware é uma ameaça cibersegurança grave que \'sequestra\' dados por meio de criptografia forte, cobrando pagamentos (geralmente em criptomoedas) para a suposta devolução das chaves de acesso.'
+      },
+      {
+        id: 7,
+        question: 'Para encontrar no Google exatamente um arquivo em formato PDF contendo um manual de instruções, sem exibir páginas com textos genéricos, qual expressão de busca utiliza o operador correto?',
+        options: [
+          'manual de instrucoes filetype:pdf',
+          'manual + instrucoes + site',
+          'buscar manual formato texto',
+          'pdf.manual.com'
+        ],
+        correct: 0,
+        explanation: 'O operador filetype:pdf filtra a pesquisa do Google para retornar exclusivamente arquivos com a extensão .pdf, tornando a busca por manuais, livros e relatórios muito mais precisa.'
       }
     ]
   },
