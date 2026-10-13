@@ -615,7 +615,7 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
-  // 3. EXCEL DO ZERO: PRIMEIRAS PLANILHAS, FÓRMULAS BÁSICAS E GRÁFICOS
+  // 3. MICROSOFT EXCEL & PLANILHAS ELETRÔNICAS PARA ESCRITÓRIO
   // =========================================================================
   {
     id: 'curso-postura-entrevistas',
@@ -623,188 +623,130 @@ export const COURSES: Course[] = [
     trackName: 'TRILHA 1: Entrada no Mercado & Primeiro Emprego',
     category: 'Tecnologia da Informação',
     targetAudienceType: ['PRIMEIRO_EMPREGO', 'JOVEM_APRENDIZ', 'ESTUDANTE'],
-    title: 'Excel do Zero: Primeiras Planilhas, Fórmulas Básicas e Gráficos',
-    subtitle: 'Capacitar o estudante ou profissional a dominar as funcionalidades essenciais do Microsoft Excel, construindo planilhas organizadas do zero, utilizando fórmulas e funções matemáticas básicas e criando gráficos visuais para apresentações e relatórios de trabalho.',
+    title: 'Microsoft Excel & Planilhas Eletrônicas para Escritório',
+    subtitle: 'Capacitar profissionais a dominar o uso de planilhas eletrônicas aplicadas às rotinas administrativas de escritório, automatizando cruzamentos de dados, análise de relatórios, controle financeiro e apresentações executivas.',
     hours: 12,
     equivalentHours: 12,
     modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Estudantes e profissionais iniciantes que desejam dominar planilhas, fórmulas básicas e criação de relatórios visuais',
-    prerequisites: 'Nenhum pré-requisito (Nível Absoluto Zero).',
-    badgeName: 'Excel do Zero',
+    targetAudience: 'Jovens aprendizes, estagiários e assistentes administrativos que buscam dominar cruzamento de dados, automação com fórmulas e relatórios gerenciais no Excel',
+    prerequisites: 'Noções básicas de informática ou pacote Office.',
+    badgeName: 'Excel & Ferramentas de Escritório',
     badgeCategory: 'Ferramentas de Escritório',
     badgeIcon: 'FileSpreadsheet',
     accentColor: '#10B981',
-    level: 'Iniciante',
+    level: 'Intermediário',
     learningObjectives: [
-      'Aprender a navegar na interface do Excel e entender sua lógica espacial de células, linhas e colunas.',
-      'Inserir, editar e formatar dados (texto, números, datas e moedas), além de utilizar a alça de preenchimento automático.',
-      'Dominar operadores matemáticos (+, -, *, /, %) e compreender a diferença entre referências relativas e absolutas ($).',
-      'Aplicar funções nativas essenciais do mundo corporativo: =SOMA(), =MÉDIA(), =MÁXIMO(), =MÍNIMO(), CONT.VALORES, CONT.NÚM e a condicional =SE().',
-      'Criar e personalizar gráficos visuais de colunas, linhas e pizza para relatórios, além de preparar planilhas para impressão e PDF.'
+      'Padronizar bases de dados corporativas usando Texto para Colunas, funções de texto (=ARRUMAR, =MAIÚSCULA), remoção de duplicatas e validação de dados.',
+      'Dominar o cruzamento de dados entre tabelas com PROCV e PROCX, eliminando erros com a função SEERRO.',
+      'Aplicar consolidação condicional de dados e múltiplos critérios com SOMASES, CONT.SES e MÉDIASES, além de calcular prazos com funções de data.',
+      'Construir Tabelas Dinâmicas (Pivot Tables) do zero, sumarizando e agrupando grandes volumes de dados por períodos.',
+      'Criar painéis executivos e relatórios gerenciais interativos utilizando Segmentação de Dados (Slicers) e Gráficos Dinâmicos.'
     ],
     modules: [
       {
-        id: 'exc-zero-mod-1',
+        id: 'exc-esc-mod-1',
         number: 1,
-        title: 'MÓDULO 1: Primeiros Passos e Estrutura da Planilha',
-        summary: 'Aprender a navegar na interface do Excel e entender sua lógica espacial de células, linhas e colunas.',
+        title: 'MÓDULO 1: Organização de Dados e Padronização de Planilhas',
+        summary: 'No ambiente corporativo, a maioria dos erros de cálculo ocorre devido a bases de dados desorganizadas, com textos mal formatados ou entradas inconsistentes.',
         estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1. Interface, Conceitos e Navegação',
+              subheading: '1. Importação e Limpeza de Dados',
               body: [
-                'Linhas, Colunas e Células: Entendendo o sistema de coordenadas (ex: a célula A1 é a interseção da Coluna A com a Linha 1).',
-                'Barra de Fórmulas e Caixa de Nome: Onde visualizar e editar o conteúdo exato de cada célula.',
-                'Inserção e Formatação de Dados: Diferença entre texto, números, datas e valores monetários (Moeda e Contábil).',
-                'Ajuste de Células: Largura de colunas, altura de linhas, mesclagem e quebra automática de texto.'
-              ],
-              highlightBox: {
-                type: 'info',
-                title: 'Interface e Coordenadas',
-                text: 'A célula A1 é o encontro da Coluna A com a Linha 1. A Caixa de Nome mostra a seleção e a Barra de Fórmulas exibe o conteúdo exato digitado.'
-              }
-            },
-            {
-              subheading: '2. Organização e Estética de Dados',
-              body: [
-                'Estilização Básica: Bordas, preenchimento de cor e alinhamento de texto para garantir clareza visual e padronização.',
-                'Autopreenchimento (Alça de Preenchimento): Arrastar o "quadradinho verde" no canto inferior direito para criar sequências automáticas (dias da semana, meses, números sequenciais).'
-              ],
-              asciiDiagram: `┌────────────────────────────────────────────────────────┐
-│             ESTRUTURA DA GRADE DO EXCEL                │
-├───────┬──────────────┬──────────────┬──────────────────┤
-│       │   Coluna A   │   Coluna B   │     Coluna C     │
-├───────┼──────────────┼──────────────┼──────────────────┤
-│ Linha 1│  [ Célula A1]│  [ Célula B1]│  [ Célula C1 ]   │
-│ Linha 2│  [ Célula A2]│  [ Célula B2]│  [ Célula C2 ]■ ◄─ Alça de
-│ Linha 3│  [ Célula A3]│  [ Célula B3]│  [ Célula C3 ]   Preenchimento
-└───────┴──────────────┴──────────────┴──────────────────┘`
-            }
-          ]
-        }
-      },
-      {
-        id: 'exc-zero-mod-2',
-        number: 2,
-        title: 'MÓDULO 2: Fórmulas Matemáticas Básicas e Operadores',
-        summary: 'Compreender que toda fórmula no Excel começa com o sinal de igual (=) e aprender a realizar cálculos do dia a dia.',
-        estimatedMinutes: 45,
-        content: {
-          sections: [
-            {
-              subheading: '1. Operadores Aritméticos Fundamentais',
-              body: [
-                'Compreender que toda fórmula no Excel começa com o sinal de igual (=) e aprender a realizar cálculos do dia a dia.',
-                '• Adição (+): =A1+B1',
-                '• Subtração (-): =A1-B1',
-                '• Multiplicação (*): =A1*B1',
-                '• Divisão (/): =A1/B1',
-                '• Porcentagem (%): Calculando descontos, margens de lucro e taxas.',
-                '• Precedência de Operações: O Excel respeita estritamente a ordem matemática, executando multiplicações e divisões antes de somas e subtrações.'
-              ],
-              highlightBox: {
-                type: 'calc',
-                title: 'O Sinal de Igual (=)',
-                text: 'Toda fórmula no Excel deve começar obrigatoriamente com o sinal de igual (=) para que o programa reconheça que um cálculo deve ser realizado.'
-              }
-            },
-            {
-              subheading: '2. Referências Relativas vs. Referências Absolutas (O Cifrão $)',
-              body: [
-                'Referência Relativa (A1): Ao copiar uma fórmula para a linha de baixo, o Excel ajusta as células automaticamente (A2, A3).',
-                'Referência Absoluta ($A$1): Usar a tecla F4 para travar uma célula específica com o símbolo de cifrão ($), ideal para multiplicar várias linhas por uma mesma taxa de imposto ou cotação do dólar.'
-              ],
-              asciiDiagram: `┌────────────────────────────────────────────────────────┐
-│         REFERÊNCIAS RELATIVAS VS. ABSOLUTAS ($)        │
-├────────────────────────────────────────────────────────┤
-│ RELATIVA (=A1*B1):                                     │
-│ • Linha 1: =A1 * B1                                    │
-│ • Linha 2 (ao arrastar): =A2 * B2 (ajuste automático)  │
-├────────────────────────────────────────────────────────┤
-│ ABSOLUTA (=A1*$C$1 com F4):                            │
-│ • Linha 1: =A1 * $C$1 (fixa a célula C1)               │
-│ • Linha 2 (ao arrastar): =A2 * $C$1 (C1 permanece fixo)│
-└────────────────────────────────────────────────────────┘`
-            }
-          ]
-        }
-      },
-      {
-        id: 'exc-zero-mod-3',
-        number: 3,
-        title: 'MÓDULO 3: As Funções Mais Usadas no Mundo Corporativo',
-        summary: 'Substituir fórmulas manuais longas por funções nativas do Excel que automatizam cálculos.',
-        estimatedMinutes: 45,
-        content: {
-          sections: [
-            {
-              subheading: '1. Funções Estatísticas e de Soma',
-              body: [
-                'Substituir fórmulas manuais longas por funções nativas do Excel que automatizam cálculos:',
-                '• SOMA: =SOMA(A1:A10) para somar um intervalo completo de células.',
-                '• MÉDIA: =MÉDIA(A1:A10) para calcular o valor médio de um grupo de dados.',
-                '• MÁXIMO e MÍNIMO: Identificar rapidamente o maior e o menor valor de uma lista de vendas ou custos.',
-                '• CONT.VALORES e CONT.NÚM: Contar a quantidade de itens cadastrados em uma tabela.'
-              ],
-              highlightBox: {
-                type: 'info',
-                title: 'Intervalos com Dois Pontos (:)',
-                text: 'A função =SOMA(A1:A5) utiliza os dois pontos (:) para indicar o intervalo contínuo da célula A1 até a célula A5 de forma rápida e eficiente.'
-              }
-            },
-            {
-              subheading: '2. Introdução à Lógica: A Função SE',
-              body: [
-                'Sintaxe da Função SE: =SE(teste_lógico; valor_se_verdadeiro; valor_se_falso)',
-                'Exemplo Prático Escolar: =SE(B2>=7; "Aprovado"; "Reprovado") para notas escolares.',
-                'Exemplo Prático Corporativo: =SE(C2>1000; "Meta Atingida"; "Abaixo da Meta") para vendas, ou =SE(B2>=5000; "Bônus"; "Sem Bônus") para comissões.'
-              ],
-              asciiDiagram: `┌────────────────────────────────────────────────────────┐
-│             ESTRUTURA DA FUNÇÃO LÓGICA =SE             │
-├────────────────────────────────────────────────────────┤
-│ Sintaxe: =SE( Teste Lógico ; Valor Verdadeiro ; Falso )│
-│                                                        │
-│                  ┌──────────────────┐                  │
-│                  │  B2 >= 5000 ?    │                  │
-│                  └────────┬─────────┘                  │
-│             SIM /         │         \\ NÃO              │
-│          Verdadeiro       │        Falso               │
-│               ▼           │          ▼                 │
-│         ["Bônus"]         │    ["Sem Bônus"]           │
-└───────────────────────────┴────────────────────────────┘`
-            }
-          ]
-        }
-      },
-      {
-        id: 'exc-zero-mod-4',
-        number: 4,
-        title: 'MÓDULO 4: Visualização de Dados (Gráficos) e Impressão',
-        summary: 'Transformar tabelas de números em gráficos visuais de fácil leitura para reuniões e apresentações.',
-        estimatedMinutes: 45,
-        content: {
-          sections: [
-            {
-              subheading: '1. Seleção e Criação de Gráficos Básicos',
-              body: [
-                'Transformar tabelas de números em gráficos visuais de fácil leitura para reuniões e apresentações.',
-                '• Gráfico de Colunas/Barras: Ideal para comparar categorias (ex: Vendas por Vendedor ou Gastos por Mês).',
-                '• Gráfico de Linhas: Perfeito para mostrar evolução ao longo do tempo (ex: Crescimento do Salário ou Inflação nos 12 meses do ano).',
-                '• Gráfico de Pizza/Rosca: Recomendado para mostrar a proporção de um todo (ex: Distribuição do Orçamento 50/30/20).'
+                'No ambiente corporativo, a maioria dos erros de cálculo ocorre devido a bases de dados desorganizadas, com textos mal formatados ou entradas inconsistentes.',
+                'Conversão de Texto para Colunas: Separar dados exportados de sistemas ERP/CRM (como nomes completos, datas e códigos separados por vírgula ou tabulação).',
+                'Funções de Texto Essenciais:',
+                '• =ARRUMAR(): Remove espaços sobressalentes no início, meio ou fim do texto, evitando falhas em buscas.',
+                '• =MAIÚSCULA(), =MINÚSCULA() e =PRI.MAIÚSCULA(): Padronização de nomes de clientes, produtos e cadastros em formatos homogêneos.',
+                'Remoção de Duplicadas e Validação de Dados: Criar listas suspensas (menus de seleção) para restringir o que o usuário pode digitar em uma célula, prevenindo erros de digitação e inconsistências no banco de dados.'
               ]
             },
             {
-              subheading: '2. Edição de Gráficos e Preparação para Impressão/PDF',
+              subheading: '2. Formatação Condicional Aplicada',
               body: [
-                'Personalização: Alterar títulos, legendas, rótulos de dados e cores dos gráficos.',
-                'Configuração de Página: Ajustar área de impressão, orientação (Retrato/Paisagem) e exportar a planilha como arquivo PDF.'
-              ],
-              highlightBox: {
-                type: 'info',
-                title: 'Gráfico Ideal',
-                text: 'O gráfico de linhas é o modelo visual padrão para demonstrar séries temporais e tendências contínuas ao longo do tempo (meses, trimestres ou anos).'
-              }
+                'Destaques Automáticos: Destacar em vermelho contas a vencer, metas não atingidas ou estoques baixos de forma visual e dinâmica.',
+                'Escalas de Cor e Conjuntos de Ícones: Visualização rápida de desempenho e alertas em relatórios gerenciais sem a necessidade de ler linha por linha.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'exc-esc-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: Cruzamento de Dados e Buscas Avançadas',
+        summary: 'A habilidade mais cobrada em processos seletivos e no dia a dia de escritórios é a capacidade de relacionar informações de tabelas diferentes.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. A Família de Buscas (PROCV e PROCX)',
+              body: [
+                'PROCV (Procura Vertical): Buscar informações em outras tabelas com base em um código identificador (ex: buscar o preço ou descrição de um produto a partir do seu SKU ou matrícula).',
+                'Sintaxe: =PROCV(valor_procurado; matriz_tabela; número_índice_coluna; [procurar_intervalo])',
+                '• O parâmetro [procurar_intervalo] deve ser configurado como FALSO (ou 0) para garantir a busca exata.',
+                'PROCX (A Evolução da Busca): Como utilizar a função moderna que substitui o PROCV, permitindo buscas para a esquerda, sem necessidade de contar colunas e com tratamento automático de valores não encontrados.'
+              ]
+            },
+            {
+              subheading: '2. Tratamento de Erros de Busca',
+              body: [
+                'Função SEERRO: Evitar que a planilha exiba poluição visual como #N/D ou #VALOR! quando uma informação não for encontrada na base.',
+                'Exemplo Prático: =SEERRO(PROCV(A2; Clientes!A:D; 2; FALSO); \"Código não encontrado\")'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'exc-esc-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Consolidação, Estatística e Soma Condicional',
+        summary: 'Aprender a somar, contar e calcular médias apenas quando determinadas condições do negócio forem atendidas.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Funções Condicionais Compostas',
+              body: [
+                'SOMASE e SOMASES: Somar valores com base em um ou múltiplos critérios simultâneos (ex: somar o total de vendas realizado apenas na região \"Sul\" durante o mês de \"Agosto\").',
+                'CONT.SE e CONT.SES: Contar a quantidade de ocorrências que atendem a regras específicas (ex: quantos chamados de suporte continuam com status \"Aberto\").',
+                'MÉDIASE e MÉDIASES: Obter a média ponderada de faturamento por segmento de cliente ou por filial.'
+              ]
+            },
+            {
+              subheading: '2. Trabalhando com Datas e Prazos Corporativos',
+              body: [
+                'Funções de Data (DIA, MÊS, ANO, HOJE): Automatizar o cálculo de dias de atraso de faturas e controle de vencimentos.',
+                'DIATRABALHO e NETWORKDAYS: Calcular prazos úteis de projetos descontando finais de semana e feriados nacionais de forma precisa.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'exc-esc-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Tabelas Dinâmicas e Relatórios Gerenciais',
+        summary: 'A ferramenta definitiva para resumir milhares de linhas de dados em segundos.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Construção de Tabelas Dinâmicas (Pivot Tables)',
+              body: [
+                'Estruturação da Fonte de Dados: Requisitos fundamentais para transformar uma lista comum em uma Tabela Dinâmica funcional (cabeçalhos únicos, sem células mescladas e sem linhas em branco intercaladas).',
+                'Campos e Áreas: Domínio dos quadrantes Linhas, Colunas, Valores e Filtros para organizar os dados com movimentos de arrastar e soltar.',
+                'Agrupamentos Temporais: Agrupar datas por Mês, Trimestre ou Ano para análise rápida de evolução de faturamento ao longo do tempo.'
+              ]
+            },
+            {
+              subheading: '2. Segmentação de Dados e Painéis (Dashboards)',
+              body: [
+                'Segmentadores de Dados (Filtros Visuais / Slicers): Criar botões interativos e elegantes para filtrar relatórios com apenas um clique.',
+                'Gráficos Dinâmicos: Conectar gráficos interativos à Tabela Dinâmica para criar apresentações executivas e painéis de controle (Dashboards) para reuniões de diretoria.'
+              ]
             }
           ]
         }
@@ -814,151 +756,223 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'Ao abrir uma planilha no Excel, um usuário precisa somar os valores das células A1, A2, A3, A4 e A5. Qual é a forma correta e mais eficiente de escrever essa função?',
+        question: 'Um analista administrativo precisa buscar o salário de um funcionário em uma tabela usando o número da sua matrícula como referência. A matriz possui a matrícula na Coluna A e o salário na Coluna C. Qual das opções representa uma busca configurada corretamente com PROCV para retornar o valor exato?',
         options: [
-          '=SOMAR(A1+A5)',
-          'SOMA(A1 ao A5)',
-          '=SOMA(A1:A5)',
-          'A1 + A2 + A3 + A4 + A5 ='
+          '=PROCV(A1:C100; A2; 3; \"Exato\")',
+          '=PROCV(A2; A1:C100; 1; VERDADEIRO)',
+          '=PROCV(A2; A1:C100; 3; FALSO)',
+          '=PROCV(3; A1:C100; A2; FALSO)'
         ],
         correct: 2,
-        explanation: 'A função =SOMA(A1:A5) utiliza os dois pontos (:) para indicar o intervalo contínuo da célula A1 até a célula A5 de forma rápida e correta.'
+        explanation: 'Na função =PROCV(A2; A1:C100; 3; FALSO), o parâmetro A2 é o valor procurado, A1:C100 é o intervalo, 3 representa a coluna do salário (Coluna C) e FALSO garante a busca exata do código.'
       },
       {
         id: 2,
-        question: 'Um colaborador precisa calcular o imposto de 10% sobre várias vendas. O valor da alíquota do imposto está fixo na célula C1. Ao arrastar a fórmula para as demais linhas, ele precisa garantir que a referência à célula C1 não se mova. O que ele deve fazer na fórmula?',
+        question: 'Ao utilizar a função PROCV, caso o código procurado não exista na tabela de destino, o Excel retorna o erro #N/D. Qual função deve ser envelopada ao redor do PROCV para substituir esse código de erro por uma mensagem amigável como \"Não Cadastrado\"?',
         options: [
-          'Escrever o nome da célula em letras maiúsculas como C1!.',
-          'Adicionar o sinal de $, transformando a célula em $C$1 (travamento de célula).',
-          'Colocar a célula entre aspas duplas, ficando "C1".',
-          'Colocar um ponto e vírgula antes do nome da célula, ficando ;C1.'
+          '=SEERRO()',
+          '=SE.ERRO.TEXTO()',
+          '=LIMPAR.ERRO()',
+          '=CORRIGIR()'
         ],
-        correct: 1,
-        explanation: 'O símbolo de cifrão ($) é utilizado no Excel para criar referências absolutas. O atalho de teclado para travar uma célula é a tecla F4, transformando C1 em $C$1.'
+        correct: 0,
+        explanation: 'A função =SEERRO(valor; valor_se_erro) avalia uma fórmula e, caso retorne qualquer erro (como #N/D, #VALOR!), exibe o texto amigável definido pelo usuário.'
       },
       {
         id: 3,
-        question: 'Toda fórmula ou função no Microsoft Excel deve obrigatoriamente começar com qual caractere para que o programa reconheça que um cálculo deve ser realizado?',
+        question: 'Um assistente financeiro precisa somar o valor total de notas fiscais que pertencem exclusivamente ao fornecedor \"Papelaria Silva\" e que tenham o status de \"Pendente\". Qual função do Excel permite realizar a soma com mais de um critério simultâneo?',
         options: [
-          'O sinal de mais (+)',
-          'O símbolo de arroba (@)',
-          'O parêntese aberto (()',
-          'O sinal de igual (=)'
+          '=SOMASE()',
+          '=SOMA.VARIAS()',
+          '=CONT.SES()',
+          '=SOMASES()'
         ],
         correct: 3,
-        explanation: 'Sem o sinal de igual (=) no início, o Excel interpreta o conteúdo digitado como simples texto ou valor numérico estático, e não como um cálculo.'
+        explanation: 'Enquanto o SOMASE suporta apenas uma condição, a função SOMASES é projetada para somar valores aplicando múltiplos critérios simultâneos (Fornecedor + Status).'
       },
       {
         id: 4,
-        question: 'Uma empresa de vendas quer classificar o desempenho de seus vendedores. Se o valor total de vendas na célula B2 for maior ou igual a 5000, o Excel deve exibir "Bônus", caso contrário, deve exibir "Sem Bônus". Qual é a sintaxe correta da função SE para esse caso?',
+        question: 'Para evitar que colaboradores digitem nomes de departamentos de forma errada na planilha (como \"RH\", \"R.H.\" ou \"Recursos Humanos\"), qual recurso do Excel deve ser configurado na célula para limitar a digitação a uma lista pré-definida?',
         options: [
-          '=SE("Bônus" >= 5000; B2)',
-          '=SE(B2>=5000; "Bônus"; "Sem Bônus")',
-          '=SE(B2=5000; "Bônus"; SE "Sem Bônus")',
-          '=VERIFICAR(B2>=5000 então "Bônus")'
+          'Formatação Condicional.',
+          'Validação de Dados.',
+          'Filtro Avançado.',
+          'Texto para Colunas.'
         ],
         correct: 1,
-        explanation: 'A função SE exige a estrutura =SE(teste_lógico; valor_se_verdadeiro; valor_se_falso). Os textos que serão exibidos devem estar entre aspas duplas.'
+        explanation: 'A Validação de Dados (localizada na guia Dados) permite criar restrições e listas suspensas (dropdowns), padronizando a inserção de dados na planilha.'
       },
       {
         id: 5,
-        question: 'Qual tipo de gráfico no Excel é o mais recomendado para demonstrar a evolução de um faturamento ao longo dos 12 meses do ano?',
+        question: 'Qual é a principal vantagem operacional ao utilizar a Tabela Dinâmica (Pivot Table) para analisar grandes volumes de dados no escritório?',
         options: [
-          'Gráfico de Pizza.',
-          'Gráfico de Dispersão de Radar.',
-          'Gráfico de Linhas.',
-          'Gráfico de Superfície 3D.'
+          'Ela digita automaticamente os dados que estão faltando na planilha.',
+          'Ela impede que o arquivo do Excel seja apagado do computador.',
+          'Ela permite resumir, agrupar e cruzar milhares de linhas de informações em poucos segundos sem a necessidade de escrever fórmulas complexas.',
+          'Ela substitui completamente o uso do sistema operacional Windows.'
         ],
         correct: 2,
-        explanation: 'O gráfico de linhas é o modelo visual padrão para demonstrar séries temporais e tendências contínuas ao longo do tempo (meses, trimestres ou anos).'
+        explanation: 'A Tabela Dinâmica é a ferramenta mais eficiente para análise de dados, permitindo reestruturar relatórios, somar e agrupar dados dinamicamente com movimentos de arrastar e soltar.'
       },
       {
         id: 6,
-        question: 'Para que serve a "Alça de Preenchimento" (pequeno quadrado verde no canto inferior direito de uma célula selecionada) no Excel?',
+        question: 'Uma equipe de compras importou um relatório onde os nomes dos clientes vieram com espaços extras no meio e no final das frases (ex: \" João Silva \"). Qual função de texto do Excel limpa automaticamente esses espaços desnecessários?',
         options: [
-          'Para copiar fórmulas ou continuar sequências lógicas (como dias da semana ou datas) arrastando para as células vizinhas.',
-          'Para excluir o conteúdo da célula de forma permanente.',
-          'Para alterar a cor da fonte do texto selecionado.',
-          'Para salvar o arquivo automaticamente na nuvem.'
+          '=LIMPAR.ESPAÇO()',
+          '=ARRUMAR()',
+          '=CONCATENAR()',
+          '=REMOVER.TEXTO()'
         ],
-        correct: 0,
-        explanation: 'A alça de preenchimento é um recurso de produtividade do Excel que replica fórmulas ajustando suas referências ou completa padrões automaticamente.'
+        correct: 1,
+        explanation: 'A função =ARRUMAR() elimina todos os espaços extras de uma cadeia de texto, deixando apenas o espaço simples entre as palavras.'
       },
       {
         id: 7,
-        question: 'Qual é o resultado da fórmula matemática =10 + 2 * 5 quando digitada no Excel?',
+        question: 'Em um painel interativo (Dashboard) feito no Excel, qual recurso permite adicionar botões visuais para filtrar dados de uma Tabela Dinâmica com apenas um clique?',
         options: [
-          '60 (pois ele soma 10+2=12 e depois multiplica por 5).',
-          'O Excel exibirá uma mensagem de erro de sintaxe.',
-          '100 (pois ele eleva os números ao quadrado).',
-          '20 (pois o Excel respeita a ordem das operações, fazendo primeiro a multiplicação 2*5=10 e depois somando 10).'
+          'Tabela de Dispersão.',
+          'Mala Direta.',
+          'Segmentação de Dados (Slicer).',
+          'Macro de Gravação.'
         ],
-        correct: 3,
-        explanation: 'O Excel segue estritamente a ordem de precedência matemática universal: multiplicações e divisões são executadas antes de somas e subtrações. Portanto, 2*5=10, e 10+10=20.'
+        correct: 2,
+        explanation: 'A Segmentação de Dados (Slicer) cria botões visuais e interativos que filtram relatórios e gráficos dinâmicos de maneira rápida e prática.'
       }
     ]
   },
 
-  // =========================================================================
-  // 4. MICROSOFT EXCEL & PLANILHAS INTELIGENTES
+// =========================================================================
+  // 4. MICROSOFT EXCEL & PLANILHAS ELETRÔNICAS PARA ESCRITÓRIO
   // =========================================================================
   {
     id: 'curso-excel-basico-avancado',
     trackId: 'trilha-3',
     trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
     category: 'Tecnologia da Informação',
-    targetAudienceType: ['ESTAGIARIO', 'ESTUDANTE', 'JOVEM_APRENDIZ'],
+    targetAudienceType: ['PRIMEIRO_EMPREGO', 'JOVEM_APRENDIZ', 'ESTUDANTE'],
     title: 'Microsoft Excel & Planilhas Eletrônicas para Escritório',
-    subtitle: 'Fórmulas essenciais (SOMA, MÉDIA, SE, PROCV), formatação de tabelas, gráficos gerenciais e atalhos rápidos',
-    hours: 16,
-    equivalentHours: 16,
+    subtitle: 'Capacitar profissionais a dominar o uso de planilhas eletrônicas aplicadas às rotinas administrativas de escritório, automatizando cruzamentos de dados, análise de relatórios, controle financeiro e apresentações executivas.',
+    hours: 12,
+    equivalentHours: 12,
     modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Estudantes e aprendizes atuando em apoio administrativo e operacional',
-    prerequisites: 'Noções básicas de uso do computador.',
+    targetAudience: 'Jovens aprendizes, estagiários e assistentes administrativos que buscam dominar cruzamento de dados, automação com fórmulas e relatórios gerenciais no Excel',
+    prerequisites: 'Noções básicas de informática ou pacote Office.',
     badgeName: 'Excel & Ferramentas de Escritório',
     badgeCategory: 'Ferramentas de Escritório',
-    badgeIcon: 'Briefcase',
+    badgeIcon: 'FileSpreadsheet',
     accentColor: '#10B981',
     level: 'Intermediário',
     learningObjectives: [
-      'Navegar com destreza pelas células, linhas, colunas e abas do Microsoft Excel e Google Planilhas.',
-      'Escrever fórmulas matemáticas básicas e funções essenciais como =SOMA(), =MÉDIA(), =SE() e =PROCV().',
-      'Aplicar formatação condicional visual para destacar status (ex: Pendente / Concluído).',
-      'Construir gráficos de colunas e setores para apresentação de relatórios à chefia.'
+      'Padronizar bases de dados corporativas usando Texto para Colunas, funções de texto (=ARRUMAR, =MAIÚSCULA), remoção de duplicatas e validação de dados.',
+      'Dominar o cruzamento de dados entre tabelas com PROCV e PROCX, eliminando erros com a função SEERRO.',
+      'Aplicar consolidação condicional de dados e múltiplos critérios com SOMASES, CONT.SES e MÉDIASES, além de calcular prazos com funções de data.',
+      'Construir Tabelas Dinâmicas (Pivot Tables) do zero, sumarizando e agrupando grandes volumes de dados por períodos.',
+      'Criar painéis executivos e relatórios gerenciais interativos utilizando Segmentação de Dados (Slicers) e Gráficos Dinâmicos.'
     ],
     modules: [
       {
-        id: 'exc-mod-1',
+        id: 'exc-esc-mod-1',
         number: 1,
-        title: 'MÓDULO 1: Estrutura de Células e Operações Básicas',
-        summary: 'Conceito de células (A1, B2), inserção de dados, tipos de dados (texto, número, moeda, data) e auto-preenchimento.',
+        title: 'MÓDULO 1: Organização de Dados e Padronização de Planilhas',
+        summary: 'No ambiente corporativo, a maioria dos erros de cálculo ocorre devido a bases de dados desorganizadas, com textos mal formatados ou entradas inconsistentes.',
         estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1.1 O Sinal de Igual (=) e as Quatro Operações',
+              subheading: '1. Importação e Limpeza de Dados',
               body: [
-                'Toda fórmula no Excel deve começar obrigatoriamente com o sinal de igual (=).',
-                'Operadores aritméticos: Adição (+), Subtração (-), Multiplicação (*) e Divisão (/).',
-                'Exemplo: =A1*B1 calcula o preço unitário multiplicado pela quantidade em estoque.'
+                'No ambiente corporativo, a maioria dos erros de cálculo ocorre devido a bases de dados desorganizadas, com textos mal formatados ou entradas inconsistentes.',
+                'Conversão de Texto para Colunas: Separar dados exportados de sistemas ERP/CRM (como nomes completos, datas e códigos separados por vírgula ou tabulação).',
+                'Funções de Texto Essenciais:',
+                '• =ARRUMAR(): Remove espaços sobressalentes no início, meio ou fim do texto, evitando falhas em buscas.',
+                '• =MAIÚSCULA(), =MINÚSCULA() e =PRI.MAIÚSCULA(): Padronização de nomes de clientes, produtos e cadastros em formatos homogêneos.',
+                'Remoção de Duplicadas e Validação de Dados: Criar listas suspensas (menus de seleção) para restringir o que o usuário pode digitar em uma célula, prevenindo erros de digitação e inconsistências no banco de dados.'
+              ]
+            },
+            {
+              subheading: '2. Formatação Condicional Aplicada',
+              body: [
+                'Destaques Automáticos: Destacar em vermelho contas a vencer, metas não atingidas ou estoques baixos de forma visual e dinâmica.',
+                'Escalas de Cor e Conjuntos de Ícones: Visualização rápida de desempenho e alertas em relatórios gerenciais sem a necessidade de ler linha por linha.'
               ]
             }
           ]
         }
       },
       {
-        id: 'exc-mod-2',
+        id: 'exc-esc-mod-2',
         number: 2,
-        title: 'MÓDULO 2: Funções Lógicas e de Busca (=SE, =PROCV, =CONT.SE)',
-        summary: 'Como automatizar decisões em planilhas e localizar dados em grandes tabelas de produtos ou clientes.',
-        estimatedMinutes: 50,
+        title: 'MÓDULO 2: Cruzamento de Dados e Buscas Avançadas',
+        summary: 'A habilidade mais cobrada em processos seletivos e no dia a dia de escritórios é a capacidade de relacionar informações de tabelas diferentes.',
+        estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '2.1 A Função Lógica =SE()',
+              subheading: '1. A Família de Buscas (PROCV e PROCX)',
               body: [
-                'A função =SE(teste_lógico; valor_se_verdadeiro; valor_se_falso) permite que a planilha tome decisões automáticas.',
-                'Exemplo: =SE(C2>=70; "Aprovado"; "Em Revisão") classifica alunos com base na nota de corte.'
+                'PROCV (Procura Vertical): Buscar informações em outras tabelas com base em um código identificador (ex: buscar o preço ou descrição de um produto a partir do seu SKU ou matrícula).',
+                'Sintaxe: =PROCV(valor_procurado; matriz_tabela; número_índice_coluna; [procurar_intervalo])',
+                '• O parâmetro [procurar_intervalo] deve ser configurado como FALSO (ou 0) para garantir a busca exata.',
+                'PROCX (A Evolução da Busca): Como utilizar a função moderna que substitui o PROCV, permitindo buscas para a esquerda, sem necessidade de contar colunas e com tratamento automático de valores não encontrados.'
+              ]
+            },
+            {
+              subheading: '2. Tratamento de Erros de Busca',
+              body: [
+                'Função SEERRO: Evitar que a planilha exiba poluição visual como #N/D ou #VALOR! quando uma informação não for encontrada na base.',
+                'Exemplo Prático: =SEERRO(PROCV(A2; Clientes!A:D; 2; FALSO); \\"Código não encontrado\\")'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'exc-esc-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Consolidação, Estatística e Soma Condicional',
+        summary: 'Aprender a somar, contar e calcular médias apenas quando determinadas condições do negócio forem atendidas.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Funções Condicionais Compostas',
+              body: [
+                'SOMASE e SOMASES: Somar valores com base em um ou múltiplos critérios simultâneos (ex: somar o total de vendas realizado apenas na região \\"Sul\\" durante o mês de \\"Agosto\\").',
+                'CONT.SE e CONT.SES: Contar a quantidade de ocorrências que atendem a regras específicas (ex: quantos chamados de suporte continuam com status \\"Aberto\\").',
+                'MÉDIASE e MÉDIASES: Obter a média ponderada de faturamento por segmento de cliente ou por filial.'
+              ]
+            },
+            {
+              subheading: '2. Trabalhando com Datas e Prazos Corporativos',
+              body: [
+                'Funções de Data (DIA, MÊS, ANO, HOJE): Automatizar o cálculo de dias de atraso de faturas e controle de vencimentos.',
+                'DIATRABALHO e NETWORKDAYS: Calcular prazos úteis de projetos descontando finais de semana e feriados nacionais de forma precisa.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'exc-esc-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Tabelas Dinâmicas e Relatórios Gerenciais',
+        summary: 'A ferramenta definitiva para resumir milhares de linhas de dados em segundos.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Construção de Tabelas Dinâmicas (Pivot Tables)',
+              body: [
+                'Estruturação da Fonte de Dados: Requisitos fundamentais para transformar uma lista comum em uma Tabela Dinâmica funcional (cabeçalhos únicos, sem células mescladas e sem linhas em branco intercaladas).',
+                'Campos e Áreas: Domínio dos quadrantes Linhas, Colunas, Valores e Filtros para organizar os dados com movimentos de arrastar e soltar.',
+                'Agrupamentos Temporais: Agrupar datas por Mês, Trimestre ou Ano para análise rápida de evolução de faturamento ao longo do tempo.'
+              ]
+            },
+            {
+              subheading: '2. Segmentação de Dados e Painéis (Dashboards)',
+              body: [
+                'Segmentadores de Dados (Filtros Visuais / Slicers): Criar botões interativos e elegantes para filtrar relatórios com apenas um clique.',
+                'Gráficos Dinâmicos: Conectar gráficos interativos à Tabela Dinâmica para criar apresentações executivas e painéis de controle (Dashboards) para reuniões de diretoria.'
               ]
             }
           ]
@@ -969,15 +983,87 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'Com qual caractere deve iniciar qualquer fórmula ou cálculo no Microsoft Excel?',
+        question: 'Um analista administrativo precisa buscar o salário de um funcionário em uma tabela usando o número da sua matrícula como referência. A matriz possui a matrícula na Coluna A e o salário na Coluna C. Qual das opções representa uma busca configurada corretamente com PROCV para retornar o valor exato?',
         options: [
-          'Com o sinal de soma (+)',
-          'Com o sinal de igual (=)',
-          'Com o arroba (@)',
-          'Com uma barra (/)'
+          '=PROCV(A1:C100; A2; 3; \\"Exato\\")',
+          '=PROCV(A2; A1:C100; 1; VERDADEIRO)',
+          '=PROCV(A2; A1:C100; 3; FALSO)',
+          '=PROCV(3; A1:C100; A2; FALSO)'
+        ],
+        correct: 2,
+        explanation: 'Na função =PROCV(A2; A1:C100; 3; FALSO), o parâmetro A2 é o valor procurado, A1:C100 é o intervalo, 3 representa a coluna do salário (Coluna C) e FALSO garante a busca exata do código.'
+      },
+      {
+        id: 2,
+        question: 'Ao utilizar a função PROCV, caso o código procurado não exista na tabela de destino, o Excel retorna o erro #N/D. Qual função deve ser envelopada ao redor do PROCV para substituir esse código de erro por uma mensagem amigável como \\"Não Cadastrado\\"?',
+        options: [
+          '=SEERRO()',
+          '=SE.ERRO.TEXTO()',
+          '=LIMPAR.ERRO()',
+          '=CORRIGIR()'
+        ],
+        correct: 0,
+        explanation: 'A função =SEERRO(valor; valor_se_erro) avalia uma fórmula e, caso retorne qualquer erro (como #N/D, #VALOR!), exibe o texto amigável definido pelo usuário.'
+      },
+      {
+        id: 3,
+        question: 'Um assistente financeiro precisa somar o valor total de notas fiscais que pertencem exclusivamente ao fornecedor \\"Papelaria Silva\\" e que tenham o status de \\"Pendente\\". Qual função do Excel permite realizar a soma com mais de um critério simultâneo?',
+        options: [
+          '=SOMASE()',
+          '=SOMA.VARIAS()',
+          '=CONT.SES()',
+          '=SOMASES()'
+        ],
+        correct: 3,
+        explanation: 'Enquanto o SOMASE suporta apenas uma condição, a função SOMASES é projetada para somar valores aplicando múltiplos critérios simultâneos (Fornecedor + Status).'
+      },
+      {
+        id: 4,
+        question: 'Para evitar que colaboradores digitem nomes de departamentos de forma errada na planilha (como \\"RH\\", \\"R.H.\\" ou \\"Recursos Humanos\\"), qual recurso do Excel deve ser configurado na célula para limitar a digitação a uma lista pré-definida?',
+        options: [
+          'Formatação Condicional.',
+          'Validação de Dados.',
+          'Filtro Avançado.',
+          'Texto para Colunas.'
         ],
         correct: 1,
-        explanation: 'O sinal de igual (=) instrui o software a calcular a expressão seguinte.'
+        explanation: 'A Validação de Dados (localizada na guia Dados) permite criar restrições e listas suspensas (dropdowns), padronizando a inserção de dados na planilha.'
+      },
+      {
+        id: 5,
+        question: 'Qual é a principal vantagem operacional ao utilizar a Tabela Dinâmica (Pivot Table) para analisar grandes volumes de dados no escritório?',
+        options: [
+          'Ela digita automaticamente os dados que estão faltando na planilha.',
+          'Ela impede que o arquivo do Excel seja apagado do computador.',
+          'Ela permite resumir, agrupar e cruzar milhares de linhas de informações em poucos segundos sem a necessidade de escrever fórmulas complexas.',
+          'Ela substitui completamente o uso do sistema operacional Windows.'
+        ],
+        correct: 2,
+        explanation: 'A Tabela Dinâmica é a ferramenta mais eficiente para análise de dados, permitindo reestruturar relatórios, somar e agrupar dados dinamicamente com movimentos de arrastar e soltar.'
+      },
+      {
+        id: 6,
+        question: 'Uma equipe de compras importou um relatório onde os nomes dos clientes vieram com espaços extras no meio e no final das frases (ex: \\" João Silva \\"). Qual função de texto do Excel limpa automaticamente esses espaços desnecessários?',
+        options: [
+          '=LIMPAR.ESPAÇO()',
+          '=ARRUMAR()',
+          '=CONCATENAR()',
+          '=REMOVER.TEXTO()'
+        ],
+        correct: 1,
+        explanation: 'A função =ARRUMAR() elimina todos os espaços extras de uma cadeia de texto, deixando apenas o espaço simples entre as palavras.'
+      },
+      {
+        id: 7,
+        question: 'Em um painel interativo (Dashboard) feito no Excel, qual recurso permite adicionar botões visuais para filtrar dados de uma Tabela Dinâmica com apenas um clique?',
+        options: [
+          'Tabela de Dispersão.',
+          'Mala Direta.',
+          'Segmentação de Dados (Slicer).',
+          'Macro de Gravação.'
+        ],
+        correct: 2,
+        explanation: 'A Segmentação de Dados (Slicer) cria botões visuais e interativos que filtram relatórios e gráficos dinâmicos de maneira rápida e prática.'
       }
     ]
   },
