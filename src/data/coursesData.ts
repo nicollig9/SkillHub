@@ -20,9 +20,9 @@ export const TRACKS: Track[] = [
     category: 'Desenvolvimento Pessoal',
     description: 'Aprenda a se comunicar com clareza em e-mails e reuniões, trabalhar em equipe, lidar com pressão e construir uma postura profissional ética.',
     targetAudienceType: 'TODOS',
-    hoursTotal: 30,
-    coursesCount: 3,
-    courseIds: ['curso-comunicacao-corporativa', 'curso-atendimento-publico', 'curso-saude-mental-trabalho'],
+    hoursTotal: 46,
+    coursesCount: 4,
+    courseIds: ['curso-comunicacao-corporativa', 'curso-atendimento-publico', 'curso-saude-mental-trabalho', 'curso-comunicacao-nao-violenta'],
     badgeReward: 'Mestre em Comunicação e Soft Skills',
     icon: 'Sparkles',
     accentColor: '#EC4899'
@@ -2115,48 +2115,140 @@ export const COURSES: Course[] = [
     ]
   },
 
-  // =========================================================================
-  // 13. COMUNICAÇÃO NÃO-VIOLENTA (CNV) E EMPATIA
+// =========================================================================
+  // 13. COMUNICAÇÃO NÃO-VIOLENTA (CNV) E EMPATIA NO TRABALHO
   // =========================================================================
   {
     id: 'curso-comunicacao-nao-violenta',
     trackId: 'trilha-2',
     trackName: 'TRILHA 2: Soft Skills, Postura & Comunicação Corporativa',
     category: 'Desenvolvimento Pessoal',
-    targetAudienceType: 'TODOS',
+    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO'],
     title: 'Comunicação Não-Violenta (CNV) e Empatia no Trabalho',
-    subtitle: 'Os 4 pilares da CNV (Observação, Sentimento, Necessidade e Pedido) para relacionamentos saudáveis no primeiro emprego',
-    hours: 8,
-    equivalentHours: 8,
-    modality: 'EAD 100% Gratuito',
-    targetAudience: 'Jovens aprendizes, estagiários e estudantes',
-    prerequisites: 'Nenhum.',
-    badgeName: 'CNV & Empatia',
-    badgeCategory: 'Atitude Profissional',
+    subtitle: 'Capacitar profissionais a aplicar os princípios da Comunicação Não-Violenta (CNV) no ambiente corporativo, transformando conflitos em colaboração, aprimorando a escuta ativa e fortalecendo a empatia e a clareza nas relações de trabalho.',
+    hours: 12,
+    equivalentHours: 12,
+    modality: 'EAD 100% Gratuito (Escola Virtual)',
+    targetAudience: 'Jovens aprendizes, estagiários e profissionais que buscam aprimorar suas relações interpessoais, transformar conflitos em cooperação e desenvolver postura empática no trabalho',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'CNV & Empatia no Trabalho',
+    badgeCategory: 'Comunicação & Relacionamento',
     badgeIcon: 'HeartHandshake',
     accentColor: '#EC4899',
-    level: 'Iniciante',
+    level: 'Intermediário',
     learningObjectives: [
-      'Identificar fatos objetivos sem misturar com julgamentos ou suposições.',
-      'Reconhecer necessidades humanas básicas por trás de feedbacks difíceis.',
-      'Formular pedidos claros e acionáveis em vez de exigências no trabalho.'
+      'Dominar os 4 pilares da Comunicação Não-Violenta sistematizados por Marshall Rosenberg: Observação, Sentimento, Necessidade e Pedido.',
+      'Diferenciar fatos objetivos e observações puras de avaliações, rótulos e julgamentos pessoais no ambiente profissional.',
+      'Praticar a escuta ativa e empática, desarmando comunicações agressivas e entendendo críticas como expressões de necessidades não atendidas.',
+      'Estruturar feedbacks empáticos orientados ao desenvolvimento mútuo e receber feedbacks difíceis sem adotar postura defensiva.',
+      'Estabelecer limites com assertividade, diferenciando agressividade e passividade e dominando a arte do \\"não\\" fundamentado.'
     ],
     modules: [
       {
         id: 'cnv-mod-1',
         number: 1,
-        title: 'MÓDULO 1: Os 4 Passos da Comunicação Não-Violenta',
-        summary: 'Aprenda a fórmula prática de Marshall Rosenberg para se comunicar sem gerar brigas ou defensividade.',
-        estimatedMinutes: 30,
+        title: 'MÓDULO 1: Os 4 Pilares da Comunicação Não-Violenta (CNV)',
+        summary: 'A Comunicação Não-Violenta, sistematizada por Marshall Rosenberg, é uma abordagem prática para criar conexões autênticas e resolver divergências sem agressividade ou submissão.',
+        estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1.1 A Fórmula dos 4 Passos',
+              subheading: '1. Observação sem Julgamento vs. Avaliação',
               body: [
-                '1. Observação: Relate o fato concreto sem adjetivos acusatórios (ex: "Ontem a planilha não foi preenchida").',
-                '2. Sentimento: Diga como se sente de forma honesta (ex: "Fiquei preocupado com o prazo do cliente").',
-                '3. Necessidade: Explique a necessidade por trás (ex: "Porque nossa equipe precisa de previsibilidade").',
-                '4. Pedido: Faça um pedido concreto e realizável (ex: "Você poderia me avisar até as 14h se houver atraso?").'
+                'A maioria dos conflitos corporativos começa quando misturamos fatos concretos com interpretações pessoais.',
+                'Observação Pura: Descrever apenas o que pode ser visto ou ouvido, sem adjetivos ou julgamentos de valor (ex: \\"Você entregou o relatório dois dias após o prazo combinado\\").',
+                'Avaliação/Julgamento: Adicionar interpretações ou rótulos à situação (ex: \\"Você é descompromissado com os prazos do projeto\\").'
+              ]
+            },
+            {
+              subheading: '2. Sentimentos, Necessidades e Pedidos Claros',
+              body: [
+                'Identificação de Sentimentos: Reconhecer como nos sentimos diante de um fato (ex: frustrado, preocupado, inseguro), sem culpar o outro por essa emoção.',
+                'Mapeamento de Necessidades: Compreender qual necessidade humana fundamental não está sendo atendida (ex: clareza, previsibilidade, respeito, cooperação).',
+                'Formulação de Pedidos Concretos: Fazer solicitações claras, factíveis e afirmativas em vez de exigências vagas (ex: \\"Podemos alinhar o status deste projeto diariamente às 09h por 5 minutos?\\").'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'cnv-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: Escuta Ativa, Empatia e Desarmamento de Conflitos',
+        summary: 'Comunicar-se bem exige escutar na mesma proporção em que se fala. A escuta empática desarma a defensiva e estabelece confiança mútua.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. A Escuta Empática no Ambiente Corporativo',
+              body: [
+                'Escutar de forma empática não significa concordar passivamente com tudo, mas demonstrar que a perspectiva do outro foi verdadeiramente compreendida.',
+                'Os Obstáculos da Escuta: Evitar o hábito de dar conselhos não solicitados, minimizar o sentimento alheio (\\"Isso não é nada\\") ou interromper para contar uma experiência própria.',
+                'Parafrasear e Validar: Reorganizar com suas próprias palavras o que o outro disse para confirmar o entendimento (ex: \\"Entendo que você está preocupado com o prazo porque precisa desses dados para a reunião do conselho?\\").'
+              ]
+            },
+            {
+              subheading: '2. Desarmando Comunicações Agressivas',
+              body: [
+                'Quando um colega ou cliente se expressa com raiva ou ironia, a reação automática costuma ser o ataque ou a esquiva.',
+                'Tradução da Agressividade: Enxergar críticas e ataques como \\"expressões trágicas\\" de necessidades não atendidas no trabalho.',
+                'Manutenção do Foco nos Fatos: Responder ao conteúdo real da demanda sem reagir ao tom emocionalmente carregado do interlocutor.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'cnv-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Feedback Empático e Alinhamento de Expectativas',
+        summary: 'Dar e receber feedback é essencial para o crescimento profissional, mas exige técnica para evitar que o momento seja percebido como uma punição.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Estruturação do Feedback no Modelo CNV',
+              body: [
+                'Substituir termos vagos ou acusações por uma narrativa focada em desenvolvimento e cooperação:',
+                '• [1. Observação do Fato] ──► \\"Na reunião de ontem, você interrompeu o cliente três vezes...\\"',
+                '• [2. Expressão de Impacto] ──► \\"...fiquei preocupado com a imagem de alinhamento da equipe...\\"',
+                '• [3. Necessidade Corporativa] ──► \\"...pois precisamos transmitir total escuta e profissionalismo.\\"',
+                '• [4. Pedido Concreto] ──► \\"Podemos combinar de anotar as dúvidas e apresentá-las ao final?\\"'
+              ]
+            },
+            {
+              subheading: '2. Recebendo Feedbacks Difíceis sem Defensiva',
+              body: [
+                'Separar Identidade de Comportamento: Entender que um feedback pontual sobre uma tarefa não define sua competência profissional como um todo.',
+                'Investigação Curiosa: Fazer perguntas esclarecedoras para extrair fatos concretos do feedback recebido, mesmo quando ele vier de forma vaga.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'cnv-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Estabelecimento de Limites com Assertividade e Respeito',
+        summary: 'Ser empático não significa aceitar sobrecarga de trabalho ou comportamentos inadequados. A CNV oferece ferramentas para impor limites firmes com educação.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. A Diferença entre Agressividade, Passividade e Assertividade',
+              body: [
+                'Passividade: Calar-se diante de excessos, acumulando ressentimento e ansiedade.',
+                'Agressividade: Impor vontades por meio de intimidação, sarcasmo ou elevação do tom de voz.',
+                'Assertividade (CNV): Expressar limites com clareza, mantendo o respeito por si mesmo e pelo interlocutor.'
+              ]
+            },
+            {
+              subheading: '2. A Arte do \\"Não\\" Fundamentado',
+              body: [
+                'Como recusar demandas extras sem gerar atritos desnecessários na equipe:',
+                '• Acolher a Necessidade do Outro: Demonstrar compreensão sobre a urgência do pedido.',
+                '• Apresentar a Realidade de Forma Objetiva: Explicar a prioridade atual e os limites de capacidade com base em dados de agenda.',
+                '• Oferecer Alternativas Construtivas: Propor novos prazos ou redistribuição de tarefas em vez de uma simples recusa fechada.'
               ]
             }
           ]
@@ -2167,15 +2259,87 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'Qual é o primeiro passo da Comunicação Não-Violenta (CNV)?',
+        question: 'Durante uma reunião de equipe, um colaborador deseja fazer uma crítica construtiva sobre o atraso recorrente de um colega na entrega de planilhas. Qual das frases abaixo representa uma \\"Observação Pura\\" segundo os conceitos da CNV?',
         options: [
-          'Exigir que a outra pessoa peça desculpas imediatamente.',
-          'Observar fatos concretos sem misturar com julgamentos ou críticas pessoais.',
-          'Reclamar com o chefe da empresa.',
-          'Ficar em silêncio e não responder.'
+          'Você é uma pessoa totalmente desorganizada com os horários da equipe.',
+          'Você claramente não se importa com o impacto do seu atraso no meu trabalho.',
+          'Sua falta de compromisso com a empresa está prejudicando a todos nós.',
+          'Percebi que as últimas três planilhas foram enviadas após o horário limite combinado na segunda-feira.'
+        ],
+        correct: 3,
+        explanation: 'A opção D descreve um fato mensurável e objetivo (envio de três planilhas após o horário) sem adicionar rótulos morais ou adjetivos julgadores, caracterizando a Observação Pura no modelo da CNV.'
+      },
+      {
+        id: 2,
+        question: 'O segundo componente da Comunicação Não-Violenta refere-se à identificação dos \\"Sentimentos\\". Qual das alternativas apresenta a correta nomeação de um sentimento genuíno sem embutir um julgamento velado sobre a outra pessoa?',
+        options: [
+          'Sinto-me apreensivo e sobrecarregado com o volume de entregas desta semana.',
+          'Sinto que você está tentando me sabotar diante da liderança.',
+          'Sinto-me completamente ignorado por você nesta sala.',
+          'Sinto que a equipe é incompetente para gerenciar este projeto.'
+        ],
+        correct: 0,
+        explanation: '\\"Apreensivo\\" e \\"sobrecarregado\\" são sentimentos legítimos e focados na própria experiência do indivíduo. As demais opções usam a expressão \\"Sinto que...\\" para mascarar julgamentos sobre os outros (\\"sinto que você me ignora\\", \\"sinto que são incompetentes\\").'
+      },
+      {
+        id: 3,
+        question: 'A escuta empática é uma habilidade central na CNV. Quando um colega desabafa sobre uma dificuldade no trabalho, qual atitude caracteriza uma verdadeira escuta empática?',
+        options: [
+          'Interromper imediatamente para contar uma história pessoal mais difícil que ocorreu com você.',
+          'Escutar com atenção total, validando os sentimentos expostos e confirmando o entendimento sem julgamentos imediatos.',
+          'Oferecer soluções prontas antes mesmo de o colega terminar de explicar o que está sentindo.',
+          'Minimizar o problema dizendo que o colega está exagerando e que a situação não é importante.'
         ],
         correct: 1,
-        explanation: 'Observar fatos objetivos sem julgar evita que o interlocutor entre em modo de defesa.'
+        explanation: 'A escuta empática exige presença e acolhimento. Ela foca em compreender a perspectiva do interlocutor e parafrasear sua mensagem, evitando conselhos precipitados, interrupções ou minimização de dores.'
+      },
+      {
+        id: 4,
+        question: 'Um gestor precisa solicitar a um liderado que revise um relatório antes de enviá-lo ao diretor. Como essa solicitação deve ser estruturada para ser considerada um \\"Pedido Concreto e Afirmativo\\" no modelo da CNV?',
+        options: [
+          'Preciso que você pare de ser desatento quando produz os relatórios da área.',
+          'Espero que você melhore a qualidade do seu trabalho o mais rápido possível.',
+          'Você poderia reexaminar os números da seção 3 e me enviar a versão atualizada até às 15h?',
+          'Tente não cometer os mesmos erros de sempre na apresentação de hoje.'
+        ],
+        correct: 2,
+        explanation: 'Um Pedido Concreto e Afirmativo indica com clareza a ação esperada (reexaminar a seção 3), estabelece um prazo viável (até às 15h) e foca no que deve ser feito, e não no que deve ser evitado.'
+      },
+      {
+        id: 5,
+        question: 'No contexto da CNV, como as expressões de raiva, agressividade ou ironia do interlocutor devem ser interpretadas para evitar reações defensivas?',
+        options: [
+          'Como demonstrações trágicas de necessidades e frustrações que não estão sendo atendidas.',
+          'Como um ataque pessoal direto que exige uma resposta agressiva imediata para impor respeito.',
+          'Como provas definitivas de que a pessoa é incapaz de trabalhar em equipe.',
+          'Como um sinal claro de que você deve se calar e aceitar qualquer tipo de tratamento.'
+        ],
+        correct: 0,
+        explanation: 'Marshall Rosenberg ensina que toda agressividade é a manifestação indireta e ineficiente de uma necessidade humana não atendida (ex: necessidade de apoio, clareza ou consideração). Reconhecer isso evita a postura defensiva.'
+      },
+      {
+        id: 6,
+        question: 'Ao aplicar o feedback estruturado no modelo CNV, qual é a sequência correta dos quatro componentes que devem guiar a conversa?',
+        options: [
+          'Julgamento, Punição, Exigência e Encerramento.',
+          'Sentimento, Desculpa, Solução e Cobrança.',
+          'Observação, Sentimento, Necessidade e Pedido.',
+          'Avaliação, Diagnóstico, Comparação e Ordem.'
+        ],
+        correct: 2,
+        explanation: 'A estrutura metodológica da CNV é composta estritamente pela sequência: 1. Observação (fatos), 2. Sentimento (emoções suscitadas), 3. Necessidade (valores/desejos fundamentais) e 4. Pedido (solicitação viável).'
+      },
+      {
+        id: 7,
+        question: 'Um profissional é solicitado a assumir um novo projeto de última hora, mas sua agenda já está 100% comprometida com entregas prioritárias. Como dizer \\"não\\" de forma assertiva e alinhada à CNV?',
+        options: [
+          'Acolher a necessidade da demanda, apresentar os prazos já assumidos e propor uma reavaliação de prioridades ou prazos com a liderança.',
+          'Aceitar a demanda imediatamente, mesmo sabendo que não conseguirá entregar dentro do prazo.',
+          'Recusar de forma ríspida dizendo que não é pago para fazer o trabalho dos outros.',
+          'Ignorar as mensagens de solicitação e fingir que não recebeu o e-mail corporativo.'
+        ],
+        correct: 0,
+        explanation: 'Dizer \\"não\\" de forma empática e assertiva envolve reconhecer a importância da solicitação, expor a realidade da capacidade de entregas com fatos concretos da agenda e negociar alternativas com o solicitante.'
       }
     ]
   },
