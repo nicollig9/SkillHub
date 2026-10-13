@@ -615,137 +615,139 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
-  // 3. MICROSOFT EXCEL & PLANILHAS ELETRÔNICAS PARA ESCRITÓRIO
+  // 3. COMUNICAÇÃO ESCRITA, E-MAILS E REDAÇÃO CORPORATIVA
   // =========================================================================
   {
     id: 'curso-postura-entrevistas',
     trackId: 'trilha-1',
     trackName: 'TRILHA 1: Entrada no Mercado & Primeiro Emprego',
-    category: 'Tecnologia da Informação',
+    category: 'Desenvolvimento Pessoal',
     targetAudienceType: ['PRIMEIRO_EMPREGO', 'JOVEM_APRENDIZ', 'ESTUDANTE'],
-    title: 'Microsoft Excel & Planilhas Eletrônicas para Escritório',
-    subtitle: 'Capacitar profissionais a dominar o uso de planilhas eletrônicas aplicadas às rotinas administrativas de escritório, automatizando cruzamentos de dados, análise de relatórios, controle financeiro e apresentações executivas.',
+    title: 'Comunicação Escrita, E-mails e Redação Corporativa',
+    subtitle: 'Capacitar profissionais a redigir mensagens corporativas claras, concisas e assertivas, dominando a estrutura de e-mails profissionais, relatórios executivos e comunicados internos, prevenindo ruídos de comunicação e fortalecendo a imagem institucional.',
     hours: 12,
     equivalentHours: 12,
     modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Jovens aprendizes, estagiários e assistentes administrativos que buscam dominar cruzamento de dados, automação com fórmulas e relatórios gerenciais no Excel',
-    prerequisites: 'Noções básicas de informática ou pacote Office.',
-    badgeName: 'Excel & Ferramentas de Escritório',
-    badgeCategory: 'Ferramentas de Escritório',
-    badgeIcon: 'FileSpreadsheet',
-    accentColor: '#10B981',
-    level: 'Intermediário',
+    targetAudience: 'Jovens aprendizes, estagiários e profissionais em início de carreira buscando clareza, concisão e profissionalismo na escrita corporativa',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Comunicação Escrita & E-mails',
+    badgeCategory: 'Comunicação Corporativa',
+    badgeIcon: 'Mail',
+    accentColor: '#EC4899',
+    level: 'Iniciante',
     learningObjectives: [
-      'Padronizar bases de dados corporativas usando Texto para Colunas, funções de texto (=ARRUMAR, =MAIÚSCULA), remoção de duplicatas e validação de dados.',
-      'Dominar o cruzamento de dados entre tabelas com PROCV e PROCX, eliminando erros com a função SEERRO.',
-      'Aplicar consolidação condicional de dados e múltiplos critérios com SOMASES, CONT.SES e MÉDIASES, além de calcular prazos com funções de data.',
-      'Construir Tabelas Dinâmicas (Pivot Tables) do zero, sumarizando e agrupando grandes volumes de dados por períodos.',
-      'Criar painéis executivos e relatórios gerenciais interativos utilizando Segmentação de Dados (Slicers) e Gráficos Dinâmicos.'
+      'Dominar a técnica da Pirâmide Invertida na escrita profissional, transmitindo informações prioritárias com clareza, objetividade e sem prolixidade.',
+      'Aplicar regras gramaticais essenciais e pontuação estratégica no dia a dia corporativo (há vs. a, anexo vs. em anexo, crase e concordância).',
+      'Construir e-mails profissionais de alta performance com linhas de assunto eficazes, uso correto de Para/Cc/Cco e chamadas para ação (CTA) claras com prazos.',
+      'Elaborar relatórios executivos, memorandos objetivos, comunicados gerais e atas de reunião com foco em decisões e planos de ação.',
+      'Adotar boas práticas de comunicação escrita em canais instantâneos (Slack, Teams, WhatsApp), gerenciar mensagens difíceis e respeitar limites de horário.'
     ],
     modules: [
       {
-        id: 'exc-esc-mod-1',
+        id: 'com-esc-mod-1',
         number: 1,
-        title: 'MÓDULO 1: Organização de Dados e Padronização de Planilhas',
-        summary: 'No ambiente corporativo, a maioria dos erros de cálculo ocorre devido a bases de dados desorganizadas, com textos mal formatados ou entradas inconsistentes.',
+        title: 'MÓDULO 1: Fundamentos da Redação Corporativa e Clareza Textual',
+        summary: 'A comunicação escrita no ambiente de trabalho deve ser focada em transmitir a mensagem com o menor gasto de tempo possível do leitor, sem perder o profissionalismo.',
         estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1. Importação e Limpeza de Dados',
+              subheading: '1. Princípios da Comunicação Direta e Objetiva',
               body: [
-                'No ambiente corporativo, a maioria dos erros de cálculo ocorre devido a bases de dados desorganizadas, com textos mal formatados ou entradas inconsistentes.',
-                'Conversão de Texto para Colunas: Separar dados exportados de sistemas ERP/CRM (como nomes completos, datas e códigos separados por vírgula ou tabulação).',
-                'Funções de Texto Essenciais:',
-                '• =ARRUMAR(): Remove espaços sobressalentes no início, meio ou fim do texto, evitando falhas em buscas.',
-                '• =MAIÚSCULA(), =MINÚSCULA() e =PRI.MAIÚSCULA(): Padronização de nomes de clientes, produtos e cadastros em formatos homogêneos.',
-                'Remoção de Duplicadas e Validação de Dados: Criar listas suspensas (menus de seleção) para restringir o que o usuário pode digitar em uma célula, prevenindo erros de digitação e inconsistências no banco de dados.'
+                'A comunicação escrita no ambiente de trabalho deve ser focada em transmitir a mensagem com o menor gasto de tempo possível do leitor, sem perder o profissionalismo.',
+                'A Regra da Pirâmide Invertida: Posicionar a informação mais importante (a conclusão, decisão ou solicitação principal) logo no primeiro parágrafo do texto, garantindo compreensão instantânea.',
+                'Eliminação de Vícios e Pleonasmos: Substituir formulações prolixas e arcaicas (\"Venho por meio deste informar que...\") por construções diretas e dinâmicas (\"Informamos que...\").',
+                'Adequação ao Tom da Empresa: Equilibrar a comunicação entre o formalismo excessivo (linguagem engessada e arcaica) e a informalidade inadequada (gírias, abreviações e emojis excessivos).'
               ]
             },
             {
-              subheading: '2. Formatação Condicional Aplicada',
+              subheading: '2. Gramática Aplicada ao Cotidiano de Escritório',
               body: [
-                'Destaques Automáticos: Destacar em vermelho contas a vencer, metas não atingidas ou estoques baixos de forma visual e dinâmica.',
-                'Escalas de Cor e Conjuntos de Ícones: Visualização rápida de desempenho e alertas em relatórios gerenciais sem a necessidade de ler linha por linha.'
+                'Pontuação Estratégica: Emprego consciente de vírgulas, dois-pontos e ponto e vírgula para estruturar ideias em tópicos (bullet points) de fácil escaneamento visual.',
+                'Erros Gramaticais Frequentes no Trabalho:',
+                '• Há vs. A: \"Há\" para tempo decorrido (\"Trabalho aqui há dois anos\") e \"a\" para tempo futuro ou distância (\"A reunião será daqui a pouco\").',
+                '• A fim de vs. Afim: \"A fim de\" indica finalidade/objetivo; \"afim\" indica semelhança/afinidade.',
+                '• Anexo vs. Em anexo: O adjetivo \"anexo\" concorda com o substantivo (\"Seguem anexos os relatórios\"); a locução \"em anexo\" é invariável (\"Seguem em anexo os relatórios\").',
+                '• Regras de Crase: Uso correto antes de palavras femininas e em locuções prepositivas de tempo/lugar.'
               ]
             }
           ]
         }
       },
       {
-        id: 'exc-esc-mod-2',
+        id: 'com-esc-mod-2',
         number: 2,
-        title: 'MÓDULO 2: Cruzamento de Dados e Buscas Avançadas',
-        summary: 'A habilidade mais cobrada em processos seletivos e no dia a dia de escritórios é a capacidade de relacionar informações de tabelas diferentes.',
+        title: 'MÓDULO 2: Estruturação de E-mails Profissionais Eficientes',
+        summary: 'O e-mail continua sendo o canal oficial de registros e tomadas de decisão nas empresas.',
         estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1. A Família de Buscas (PROCV e PROCX)',
+              subheading: '1. Anatomia de um E-mail de Alta Performance',
               body: [
-                'PROCV (Procura Vertical): Buscar informações em outras tabelas com base em um código identificador (ex: buscar o preço ou descrição de um produto a partir do seu SKU ou matrícula).',
-                'Sintaxe: =PROCV(valor_procurado; matriz_tabela; número_índice_coluna; [procurar_intervalo])',
-                '• O parâmetro [procurar_intervalo] deve ser configurado como FALSO (ou 0) para garantir a busca exata.',
-                'PROCX (A Evolução da Busca): Como utilizar a função moderna que substitui o PROCV, permitindo buscas para a esquerda, sem necessidade de contar colunas e com tratamento automático de valores não encontrados.'
+                'Assunto Efetivo (Subject Line): Criação de linhas de assunto objetivas e contextuais que garantem abertura e priorização imediata (ex: [APROVAÇÃO] Relatório de Vendas - Agosto/2026).',
+                'Saudação e Fechamento: Fórmulas adequadas de início (Prezado(a), Olá, Bom dia) e encerramento (Atenciosamente, Cordialmente) alinhadas à hierarquia e proximidade corporativa.',
+                'Uso Correto dos Campos de Envio:',
+                '• Para: Destinatários principais diretamente responsáveis pela ação solicitada.',
+                '• Cc (Com Cópia): Pessoas que precisam apenas se manter informadas sobre o andamento do assunto.',
+                '• Cco (Cópia Oculta): Envio para listas amplas com preservação de privacidade dos e-mails ou comunicação discreta sem expor contatos aos demais.'
               ]
             },
             {
-              subheading: '2. Tratamento de Erros de Busca',
+              subheading: '2. Chamada para Ação (Call to Action - CTA) e Prazos',
               body: [
-                'Função SEERRO: Evitar que a planilha exiba poluição visual como #N/D ou #VALOR! quando uma informação não for encontrada na base.',
-                'Exemplo Prático: =SEERRO(PROCV(A2; Clientes!A:D; 2; FALSO); \"Código não encontrado\")'
+                'Clareza nos Próximos Passos: Deixar explícito quem deve executar cada tarefa e até qual data e horário limite.',
+                'Técnica de Destaque Visual: Aplicação estratégica de negritos, numerações e espaçamentos para facilitar a leitura rápida em telas de celulares e computadores.'
               ]
             }
           ]
         }
       },
       {
-        id: 'exc-esc-mod-3',
+        id: 'com-esc-mod-3',
         number: 3,
-        title: 'MÓDULO 3: Consolidação, Estatística e Soma Condicional',
-        summary: 'Aprender a somar, contar e calcular médias apenas quando determinadas condições do negócio forem atendidas.',
+        title: 'MÓDULO 3: Redação de Documentos Executivos e Técnicos',
+        summary: 'Para além do e-mail, o profissional precisa dominar a escrita de documentos formais para registro de processos e reuniões.',
         estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1. Funções Condicionais Compostas',
+              subheading: '1. Elaboração de Relatórios e Memorandos',
               body: [
-                'SOMASE e SOMASES: Somar valores com base em um ou múltiplos critérios simultâneos (ex: somar o total de vendas realizado apenas na região \"Sul\" durante o mês de \"Agosto\").',
-                'CONT.SE e CONT.SES: Contar a quantidade de ocorrências que atendem a regras específicas (ex: quantos chamados de suporte continuam com status \"Aberto\").',
-                'MÉDIASE e MÉDIASES: Obter a média ponderada de faturamento por segmento de cliente ou por filial.'
+                'Estrutura Básica de Relatórios: Contextualização do problema, Diagnóstico com dados quantitativos, Conclusão lógica e Recomendações práticas.',
+                'Transformação de Dados em Narrativa (Data Storytelling): Como traduzir tabelas numéricas complexas e gráficos em parágrafos simples e explicativos para a liderança executiva.'
               ]
             },
             {
-              subheading: '2. Trabalhando com Datas e Prazos Corporativos',
+              subheading: '2. Atas de Reunião e Comunicados Internos',
               body: [
-                'Funções de Data (DIA, MÊS, ANO, HOJE): Automatizar o cálculo de dias de atraso de faturas e controle de vencimentos.',
-                'DIATRABALHO e NETWORKDAYS: Calcular prazos úteis de projetos descontando finais de semana e feriados nacionais de forma precisa.'
+                'Atas Objetivas: Registro sintético e factual estruturado em: Lista de Presentes, Principais Tópicos Discutidos e Plano de Ação (O quê + Quem + Quando).',
+                'Comunicados Gerais: Redação institucional para toda a empresa com linguagem clara, acolhedora, precisa e sem margem para interpretações ambíguas.'
               ]
             }
           ]
         }
       },
       {
-        id: 'exc-esc-mod-4',
+        id: 'com-esc-mod-4',
         number: 4,
-        title: 'MÓDULO 4: Tabelas Dinâmicas e Relatórios Gerenciais',
-        summary: 'A ferramenta definitiva para resumir milhares de linhas de dados em segundos.',
+        title: 'MÓDULO 4: Comunicação Escrita em Situações Críticas e Canais Instantâneos',
+        summary: 'Como gerenciar conflitos por escrito e utilizar ferramentas como Slack, Microsoft Teams e WhatsApp Corporativo sem perder o tom profissional.',
         estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1. Construção de Tabelas Dinâmicas (Pivot Tables)',
+              subheading: '1. Gestão de Mensagens Difíceis e Assertivas',
               body: [
-                'Estruturação da Fonte de Dados: Requisitos fundamentais para transformar uma lista comum em uma Tabela Dinâmica funcional (cabeçalhos únicos, sem células mescladas e sem linhas em branco intercaladas).',
-                'Campos e Áreas: Domínio dos quadrantes Linhas, Colunas, Valores e Filtros para organizar os dados com movimentos de arrastar e soltar.',
-                'Agrupamentos Temporais: Agrupar datas por Mês, Trimestre ou Ano para análise rápida de evolução de faturamento ao longo do tempo.'
+                'Tratamento de Reclamações e Erros: Respostas a clientes ou gestores assumindo responsabilidades com profissionalismo, empatia e propostas focadas na resolução ágil do problema.',
+                'Atrasos e Pedidos de Adiamento: Como solicitar novas datas e horários de forma transparente, fundamentada em fatos e com compromisso renovado de entrega.'
               ]
             },
             {
-              subheading: '2. Segmentação de Dados e Painéis (Dashboards)',
+              subheading: '2. Etiqueta nas Ferramentas de Mensagem Instantânea',
               body: [
-                'Segmentadores de Dados (Filtros Visuais / Slicers): Criar botões interativos e elegantes para filtrar relatórios com apenas um clique.',
-                'Gráficos Dinâmicos: Conectar gráficos interativos à Tabela Dinâmica para criar apresentações executivas e painéis de controle (Dashboards) para reuniões de diretoria.'
+                'A Regra do Parágrafo Único: Evitar o envio fragmentado de múltiplas mensagens curtas (\"Oi\", \"Tudo bem?\", \"Pode falar?\"). Reúna saudação, contexto da dúvida e solicitação em um único texto completo e fluido.',
+                'Limites de Horário e Desconexão: Respeito à jornada de trabalho e ao descanso dos colegas ao agendar envios fora do expediente convencional.'
               ]
             }
           ]
@@ -756,87 +758,87 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'Um analista administrativo precisa buscar o salário de um funcionário em uma tabela usando o número da sua matrícula como referência. A matriz possui a matrícula na Coluna A e o salário na Coluna C. Qual das opções representa uma busca configurada corretamente com PROCV para retornar o valor exato?',
+        question: 'Um analista precisa enviar um e-mail urgente para a equipe solicitando a validação de um orçamento até o final do dia. Qual das alternativas apresenta a \"Linha de Assunto\" mais adequada segundo as boas práticas de redação corporativa?',
         options: [
-          '=PROCV(A1:C100; A2; 3; \"Exato\")',
-          '=PROCV(A2; A1:C100; 1; VERDADEIRO)',
-          '=PROCV(A2; A1:C100; 3; FALSO)',
-          '=PROCV(3; A1:C100; A2; FALSO)'
+          'Aviso importante favor ler urgente!!!',
+          'Orçamento',
+          '[AÇÃO NECESSÁRIA] Validação do Orçamento do Projeto X - Prazo: 18h',
+          'Oi pessoal, tudo bem? Dêem uma olhada nisso aqui quando der.'
         ],
         correct: 2,
-        explanation: 'Na função =PROCV(A2; A1:C100; 3; FALSO), o parâmetro A2 é o valor procurado, A1:C100 é o intervalo, 3 representa a coluna do salário (Coluna C) e FALSO garante a busca exata do código.'
+        explanation: 'A alternativa C utiliza a tag visual [AÇÃO NECESSÁRIA], indica o assunto exato do e-mail e define o prazo limite (18h), permitindo que o leitor priorize a mensagem imediatamente.'
       },
       {
         id: 2,
-        question: 'Ao utilizar a função PROCV, caso o código procurado não exista na tabela de destino, o Excel retorna o erro #N/D. Qual função deve ser envelopada ao redor do PROCV para substituir esse código de erro por uma mensagem amigável como \"Não Cadastrado\"?',
+        question: 'Ao redigir um e-mail anexando um relatório financeiro, qual das frases abaixo está gramaticalmente correta para indicar a presença do documento?',
         options: [
-          '=SEERRO()',
-          '=SE.ERRO.TEXTO()',
-          '=LIMPAR.ERRO()',
-          '=CORRIGIR()'
+          'Seguem em anexo os relatórios financeiros do mês de julho.',
+          'Segue em anexos os relatórios financeiros do mês de julho.',
+          'Seguem em anexas as relatórios financeiros do mês de julho.',
+          'Segue anexos os relatórios financeiros do mês de julho.'
         ],
         correct: 0,
-        explanation: 'A função =SEERRO(valor; valor_se_erro) avalia uma fórmula e, caso retorne qualquer erro (como #N/D, #VALOR!), exibe o texto amigável definido pelo usuário.'
+        explanation: 'A expressão \"em anexo\" é invariável (permanece \"em anexo\" no singular ou plural). Como o sujeito \"os relatórios\" está no plural, o verbo concorda no plural: \"Seguem em anexo os relatórios...\".'
       },
       {
         id: 3,
-        question: 'Um assistente financeiro precisa somar o valor total de notas fiscais que pertencem exclusivamente ao fornecedor \"Papelaria Silva\" e que tenham o status de \"Pendente\". Qual função do Excel permite realizar a soma com mais de um critério simultâneo?',
+        question: 'A aplicação da técnica da \"Pirâmide Invertida\" na escrita de um e-mail corporativo exige qual estrutura de organização do texto?',
         options: [
-          '=SOMASE()',
-          '=SOMA.VARIAS()',
-          '=CONT.SES()',
-          '=SOMASES()'
+          'Iniciar o e-mail com histórias longas e detalhes históricos antes de chegar ao ponto principal.',
+          'Colocar a informação mais relevante, a conclusão ou a solicitação principal logo no primeiro parágrafo do texto.',
+          'Escrever todo o conteúdo no campo de assunto do e-mail para economizar espaço no corpo da mensagem.',
+          'Ocultar a intenção do e-mail até a última linha para gerar suspense no leitor.'
         ],
-        correct: 3,
-        explanation: 'Enquanto o SOMASE suporta apenas uma condição, a função SOMASES é projetada para somar valores aplicando múltiplos critérios simultâneos (Fornecedor + Status).'
+        correct: 1,
+        explanation: 'A Pirâmide Invertida é uma técnica jornalística e corporativa que posiciona a ideia principal no topo do texto, respeitando o tempo do leitor e garantindo que o objetivo da mensagem seja compreendido rapidamente.'
       },
       {
         id: 4,
-        question: 'Para evitar que colaboradores digitem nomes de departamentos de forma errada na planilha (como \"RH\", \"R.H.\" ou \"Recursos Humanos\"), qual recurso do Excel deve ser configurado na célula para limitar a digitação a uma lista pré-definida?',
+        question: 'No uso corporativo de e-mails, para que serve o campo \"Cco\" (Cópia Oculta)?',
         options: [
-          'Formatação Condicional.',
-          'Validação de Dados.',
-          'Filtro Avançado.',
-          'Texto para Colunas.'
+          'Para enviar mensagens que devem ser apagadas automaticamente em 24 horas.',
+          'Para incluir destinatários que devem responder obrigatoriamente a todos da lista.',
+          'Para enviar um e-mail a múltiplos destinatários garantindo a privacidade de seus endereços ou para informar alguém de forma discreta sem expor seu e-mail aos demais.',
+          'Para sinalizar que o e-mail contém vírus ou arquivos corrompidos.'
         ],
-        correct: 1,
-        explanation: 'A Validação de Dados (localizada na guia Dados) permite criar restrições e listas suspensas (dropdowns), padronizando a inserção de dados na planilha.'
+        correct: 2,
+        explanation: 'O campo Cco (Cópia Oculta) oculta os endereços dos destinatários, sendo essencial para manter a privacidade em envios em massa e evitar o vazamento de contatos.'
       },
       {
         id: 5,
-        question: 'Qual é a principal vantagem operacional ao utilizar a Tabela Dinâmica (Pivot Table) para analisar grandes volumes de dados no escritório?',
+        question: 'Ao utilizar aplicativos de comunicação instantânea corporativa (como Microsoft Teams, Slack ou WhatsApp), qual comportamento reflete uma boa etiqueta de comunicação escrita?',
         options: [
-          'Ela digita automaticamente os dados que estão faltando na planilha.',
-          'Ela impede que o arquivo do Excel seja apagado do computador.',
-          'Ela permite resumir, agrupar e cruzar milhares de linhas de informações em poucos segundos sem a necessidade de escrever fórmulas complexas.',
-          'Ela substitui completamente o uso do sistema operacional Windows.'
+          'Enviar dez mensagens consecutivas contendo apenas uma palavra em cada uma delas (ex: \"Oi\", \"Tudo bem?\", \"Preciso\", \"De\", \"Uma\", \"Ajuda\").',
+          'Agrupar a saudação, o contexto e a dúvida/solicitação em uma única mensagem clara e completa.',
+          'Enviar áudios de 10 minutos para explicar tarefas simples que poderiam ser descritas em duas linhas de texto.',
+          'Utilizar caixa alta (letras maiúsculas) em todo o texto para garantir que as pessoas leiam mais rápido.'
         ],
-        correct: 2,
-        explanation: 'A Tabela Dinâmica é a ferramenta mais eficiente para análise de dados, permitindo reestruturar relatórios, somar e agrupar dados dinamicamente com movimentos de arrastar e soltar.'
+        correct: 1,
+        explanation: 'Agrupar a mensagem completa evita notificações fragmentadas e permite que o interlocutor entenda o contexto e responda de forma ágil e estruturada.'
       },
       {
         id: 6,
-        question: 'Uma equipe de compras importou um relatório onde os nomes dos clientes vieram com espaços extras no meio e no final das frases (ex: \" João Silva \"). Qual função de texto do Excel limpa automaticamente esses espaços desnecessários?',
+        question: 'Em um comunicado oficial sobre a alteração do horário de funcionamento do escritório, a redação deve focar prioritariamente em qual característica textual?',
         options: [
-          '=LIMPAR.ESPAÇO()',
-          '=ARRUMAR()',
-          '=CONCATENAR()',
-          '=REMOVER.TEXTO()'
+          'Objetividade, precisão das informações e ausência de ambiguidades nos horários e datas indicados.',
+          'Uso abundante de metáforas, poesias e figuras de linguagem para tornar a leitura divertida.',
+          'Uso de jargões técnicos complexos que apenas a diretoria consegue entender.',
+          'Escrita informal com abreviações da internet como \"vc\", \"tbm\" e \"pq\".'
         ],
-        correct: 1,
-        explanation: 'A função =ARRUMAR() elimina todos os espaços extras de uma cadeia de texto, deixando apenas o espaço simples entre as palavras.'
+        correct: 0,
+        explanation: 'Comunicados oficiais exigem clareza absoluta, exatidão de datas e horários e ausência de ambiguidades para evitar mal-entendidos operacionais na equipe.'
       },
       {
         id: 7,
-        question: 'Em um painel interativo (Dashboard) feito no Excel, qual recurso permite adicionar botões visuais para filtrar dados de uma Tabela Dinâmica com apenas um clique?',
+        question: 'Um profissional precisa solicitar a prorrogação de um prazo de entrega ao seu gestor de forma assertiva. Qual estrutura de mensagem representa a melhor abordagem escrita?',
         options: [
-          'Tabela de Dispersão.',
-          'Mala Direta.',
-          'Segmentação de Dados (Slicer).',
-          'Macro de Gravação.'
+          'Não vou conseguir entregar no prazo porque estou com muitos problemas pessoais. Depois eu entrego.',
+          'Conforme acompanhado, identificamos uma complexidade extra na etapa Y. Proponho o envio da entrega ajustada para a próxima terça-feira às 14h, mantendo a qualidade do projeto.',
+          'Fingir que esqueceu o prazo e só responder se o gestor cobrar no dia seguinte.',
+          'Enviar o relatório incompleto e com erros na data do prazo original sem avisar nada.'
         ],
-        correct: 2,
-        explanation: 'A Segmentação de Dados (Slicer) cria botões visuais e interativos que filtram relatórios e gráficos dinâmicos de maneira rápida e prática.'
+        correct: 1,
+        explanation: 'A alternativa B é profissional e assertiva: apresenta a justificativa baseada em fatos, demonstra compromisso com a qualidade e propõe uma nova data e hora concretas para a entrega.'
       }
     ]
   },
@@ -1926,44 +1928,139 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
-  // 9. COMUNICAÇÃO ESCRITA & E-MAILS CORPORATIVOS
+  // 9. COMUNICAÇÃO ESCRITA, E-MAILS E REDAÇÃO CORPORATIVA
   // =========================================================================
   {
     id: 'curso-comunicacao-corporativa',
     trackId: 'trilha-2',
     trackName: 'TRILHA 2: Soft Skills, Postura & Comunicação Corporativa',
     category: 'Desenvolvimento Pessoal',
-    targetAudienceType: 'TODOS',
-    title: 'Comunicação Escrita, Emails e Redação Corporativa',
-    subtitle: 'Norma culta sem formalismo excessivo, clareza em mensagens eletrônicas, Slack/Teams e relatórios',
-    hours: 10,
-    equivalentHours: 10,
+    targetAudienceType: ['PRIMEIRO_EMPREGO', 'JOVEM_APRENDIZ', 'ESTUDANTE'],
+    title: 'Comunicação Escrita, E-mails e Redação Corporativa',
+    subtitle: 'Capacitar profissionais a redigir mensagens corporativas claras, concisas e assertivas, dominando a estrutura de e-mails profissionais, relatórios executivos e comunicados internos, prevenindo ruídos de comunicação e fortalecendo a imagem institucional.',
+    hours: 12,
+    equivalentHours: 12,
     modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Estudantes, aprendizes e estagiários',
-    prerequisites: 'Nenhum.',
-    badgeName: 'Comunicação Corporativa',
-    badgeCategory: 'Atitude Profissional',
+    targetAudience: 'Jovens aprendizes, estagiários e profissionais em início de carreira buscando clareza, concisão e profissionalismo na escrita corporativa',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Comunicação Escrita & E-mails',
+    badgeCategory: 'Comunicação Corporativa',
     badgeIcon: 'Mail',
     accentColor: '#EC4899',
-    level: 'Intermediário',
+    level: 'Iniciante',
     learningObjectives: [
-      'Redigir e-mails profissionais com assunto claro, saudação adequada e despedida cordial.',
-      'Evitar gírias e abreviações de internet em comunicações formais da empresa.',
-      'Aprender a elaborar atas de reuniões e resumos de atividades.'
+      'Dominar a técnica da Pirâmide Invertida na escrita profissional, transmitindo informações prioritárias com clareza, objetividade e sem prolixidade.',
+      'Aplicar regras gramaticais essenciais e pontuação estratégica no dia a dia corporativo (há vs. a, anexo vs. em anexo, crase e concordância).',
+      'Construir e-mails profissionais de alta performance com linhas de assunto eficazes, uso correto de Para/Cc/Cco e chamadas para ação (CTA) claras com prazos.',
+      'Elaborar relatórios executivos, memorandos objetivos, comunicados gerais e atas de reunião com foco em decisões e planos de ação.',
+      'Adotar boas práticas de comunicação escrita em canais instantâneos (Slack, Teams, WhatsApp), gerenciar mensagens difíceis e respeitar limites de horário.'
     ],
     modules: [
       {
-        id: 'com-mod-1',
+        id: 'com-corp-mod-1',
         number: 1,
-        title: 'MÓDULO 1: A Arte da Redação no Ambiente de Trabalho',
-        summary: 'Estrutura padrão de e-mails corporativos e mensagens de chat profissional.',
-        estimatedMinutes: 30,
+        title: 'MÓDULO 1: Fundamentos da Redação Corporativa e Clareza Textual',
+        summary: 'A comunicação escrita no ambiente de trabalho deve ser focada em transmitir a mensagem com o menor gasto de tempo possível do leitor, sem perder o profissionalismo.',
+        estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1.1 Anatomia do Email Profissional',
+              subheading: '1. Princípios da Comunicação Direta e Objetiva',
               body: [
-                'Todo e-mail deve ter: Assunto objetivo, Vocativo profissional ("Prezado Carlos," / "Olá equipe,"), Corpo conciso e Fechamento com Assinatura.'
+                'A comunicação escrita no ambiente de trabalho deve ser focada em transmitir a mensagem com o menor gasto de tempo possível do leitor, sem perder o profissionalismo.',
+                'A Regra da Pirâmide Invertida: Posicionar a informação mais importante (a conclusão, decisão ou solicitação principal) logo no primeiro parágrafo do texto, garantindo compreensão instantânea.',
+                'Eliminação de Vícios e Pleonasmos: Substituir formulações prolixas e arcaicas (\"Venho por meio deste informar que...\") por construções diretas e dinâmicas (\"Informamos que...\").',
+                'Adequação ao Tom da Empresa: Equilibrar a comunicação entre o formalismo excessivo (linguagem engessada e arcaica) e a informalidade inadequada (gírias, abreviações e emojis excessivos).'
+              ]
+            },
+            {
+              subheading: '2. Gramática Aplicada ao Cotidiano de Escritório',
+              body: [
+                'Pontuação Estratégica: Emprego consciente de vírgulas, dois-pontos e ponto e vírgula para estruturar ideias em tópicos (bullet points) de fácil escaneamento visual.',
+                'Erros Gramaticais Frequentes no Trabalho:',
+                '• Há vs. A: \"Há\" para tempo decorrido (\"Trabalho aqui há dois anos\") e \"a\" para tempo futuro ou distância (\"A reunião será daqui a pouco\").',
+                '• A fim de vs. Afim: \"A fim de\" indica finalidade/objetivo; \"afim\" indica semelhança/afinidade.',
+                '• Anexo vs. Em anexo: O adjetivo \"anexo\" concorda com o substantivo (\"Seguem anexos os relatórios\"); a locução \"em anexo\" é invariável (\"Seguem em anexo os relatórios\").',
+                '• Regras de Crase: Uso correto antes de palavras femininas e em locuções prepositivas de tempo/lugar.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'com-corp-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: Estruturação de E-mails Profissionais Eficientes',
+        summary: 'O e-mail continua sendo o canal oficial de registros e tomadas de decisão nas empresas.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Anatomia de um E-mail de Alta Performance',
+              body: [
+                'Assunto Efetivo (Subject Line): Criação de linhas de assunto objetivas e contextuais que garantem abertura e priorização imediata (ex: [APROVAÇÃO] Relatório de Vendas - Agosto/2026).',
+                'Saudação e Fechamento: Fórmulas adequadas de início (Prezado(a), Olá, Bom dia) e encerramento (Atenciosamente, Cordialmente) alinhadas à hierarquia e proximidade corporativa.',
+                'Uso Correto dos Campos de Envio:',
+                '• Para: Destinatários principais diretamente responsáveis pela ação solicitada.',
+                '• Cc (Com Cópia): Pessoas que precisam apenas se manter informadas sobre o andamento do assunto.',
+                '• Cco (Cópia Oculta): Envio para listas amplas com preservação de privacidade dos e-mails ou comunicação discreta sem expor contatos aos demais.'
+              ]
+            },
+            {
+              subheading: '2. Chamada para Ação (Call to Action - CTA) e Prazos',
+              body: [
+                'Clareza nos Próximos Passos: Deixar explícito quem deve executar cada tarefa e até qual data e horário limite.',
+                'Técnica de Destaque Visual: Aplicação estratégica de negritos, numerações e espaçamentos para facilitar a leitura rápida em telas de celulares e computadores.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'com-corp-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Redação de Documentos Executivos e Técnicos',
+        summary: 'Para além do e-mail, o profissional precisa dominar a escrita de documentos formais para registro de processos e reuniões.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Elaboração de Relatórios e Memorandos',
+              body: [
+                'Estrutura Básica de Relatórios: Contextualização do problema, Diagnóstico com dados quantitativos, Conclusão lógica e Recomendações práticas.',
+                'Transformação de Dados em Narrativa (Data Storytelling): Como traduzir tabelas numéricas complexas e gráficos em parágrafos simples e explicativos para a liderança executiva.'
+              ]
+            },
+            {
+              subheading: '2. Atas de Reunião e Comunicados Internos',
+              body: [
+                'Atas Objetivas: Registro sintético e factual estruturado em: Lista de Presentes, Principais Tópicos Discutidos e Plano de Ação (O quê + Quem + Quando).',
+                'Comunicados Gerais: Redação institucional para toda a empresa com linguagem clara, acolhedora, precisa e sem margem para interpretações ambíguas.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'com-corp-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Comunicação Escrita em Situações Críticas e Canais Instantâneos',
+        summary: 'Como gerenciar conflitos por escrito e utilizar ferramentas como Slack, Microsoft Teams e WhatsApp Corporativo sem perder o tom profissional.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Gestão de Mensagens Difíceis e Assertivas',
+              body: [
+                'Tratamento de Reclamações e Erros: Respostas a clientes ou gestores assumindo responsabilidades com profissionalismo, empatia e propostas focadas na resolução ágil do problema.',
+                'Atrasos e Pedidos de Adiamento: Como solicitar novas datas e horários de forma transparente, fundamentada em fatos e com compromisso renovado de entrega.'
+              ]
+            },
+            {
+              subheading: '2. Etiqueta nas Ferramentas de Mensagem Instantânea',
+              body: [
+                'A Regra do Parágrafo Único: Evitar o envio fragmentado de múltiplas mensagens curtas (\"Oi\", \"Tudo bem?\", \"Pode falar?\"). Reúna saudação, contexto da dúvida e solicitação em um único texto completo e fluido.',
+                'Limites de Horário e Desconexão: Respeito à jornada de trabalho e ao descanso dos colegas ao agendar envios fora do expediente convencional.'
               ]
             }
           ]
@@ -1974,15 +2071,87 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'Qual o formato correto de assunto para um e-mail de envio de relatório?',
+        question: 'Um analista precisa enviar um e-mail urgente para a equipe solicitando a validação de um orçamento até o final do dia. Qual das alternativas apresenta a \"Linha de Assunto\" mais adequada segundo as boas práticas de redação corporativa?',
         options: [
-          'oi olha ai',
-          '[Relatório] Acompanhamento Semanal de Vagas - Setembro/2026',
-          'URGENTE VEJA ISSO',
-          'Deixar o assunto em branco'
+          'Aviso importante favor ler urgente!!!',
+          'Orçamento',
+          '[AÇÃO NECESSÁRIA] Validação do Orçamento do Projeto X - Prazo: 18h',
+          'Oi pessoal, tudo bem? Dêem uma olhada nisso aqui quando der.'
+        ],
+        correct: 2,
+        explanation: 'A alternativa C utiliza a tag visual [AÇÃO NECESSÁRIA], indica o assunto exato do e-mail e define o prazo limite (18h), permitindo que o leitor priorize a mensagem imediatamente.'
+      },
+      {
+        id: 2,
+        question: 'Ao redigir um e-mail anexando um relatório financeiro, qual das frases abaixo está gramaticalmente correta para indicar a presença do documento?',
+        options: [
+          'Seguem em anexo os relatórios financeiros do mês de julho.',
+          'Segue em anexos os relatórios financeiros do mês de julho.',
+          'Seguem em anexas as relatórios financeiros do mês de julho.',
+          'Segue anexos os relatórios financeiros do mês de julho.'
+        ],
+        correct: 0,
+        explanation: 'A expressão \"em anexo\" é invariável (permanece \"em anexo\" no singular ou plural). Como o sujeito \"os relatórios\" está no plural, o verbo concorda no plural: \"Seguem em anexo os relatórios...\".'
+      },
+      {
+        id: 3,
+        question: 'A aplicação da técnica da \"Pirâmide Invertida\" na escrita de um e-mail corporativo exige qual estrutura de organização do texto?',
+        options: [
+          'Iniciar o e-mail com histórias longas e detalhes históricos antes de chegar ao ponto principal.',
+          'Colocar a informação mais relevante, a conclusão ou a solicitação principal logo no primeiro parágrafo do texto.',
+          'Escrever todo o conteúdo no campo de assunto do e-mail para economizar espaço no corpo da mensagem.',
+          'Ocultar a intenção do e-mail até a última linha para gerar suspense no leitor.'
         ],
         correct: 1,
-        explanation: 'Um assunto contextualizado e claro permite ao leitor identificar imediatamente o teor do documento.'
+        explanation: 'A Pirâmide Invertida é uma técnica jornalística e corporativa que posiciona a ideia principal no topo do texto, respeitando o tempo do leitor e garantindo que o objetivo da mensagem seja compreendido rapidamente.'
+      },
+      {
+        id: 4,
+        question: 'No uso corporativo de e-mails, para que serve o campo \"Cco\" (Cópia Oculta)?',
+        options: [
+          'Para enviar mensagens que devem ser apagadas automaticamente em 24 horas.',
+          'Para incluir destinatários que devem responder obrigatoriamente a todos da lista.',
+          'Para enviar um e-mail a múltiplos destinatários garantindo a privacidade de seus endereços ou para informar alguém de forma discreta sem expor seu e-mail aos demais.',
+          'Para sinalizar que o e-mail contém vírus ou arquivos corrompidos.'
+        ],
+        correct: 2,
+        explanation: 'O campo Cco (Cópia Oculta) oculta os endereços dos destinatários, sendo essencial para manter a privacidade em envios em massa e evitar o vazamento de contatos.'
+      },
+      {
+        id: 5,
+        question: 'Ao utilizar aplicativos de comunicação instantânea corporativa (como Microsoft Teams, Slack ou WhatsApp), qual comportamento reflete uma boa etiqueta de comunicação escrita?',
+        options: [
+          'Enviar dez mensagens consecutivas contendo apenas uma palavra em cada uma delas (ex: \"Oi\", \"Tudo bem?\", \"Preciso\", \"De\", \"Uma\", \"Ajuda\").',
+          'Agrupar a saudação, o contexto e a dúvida/solicitação em uma única mensagem clara e completa.',
+          'Enviar áudios de 10 minutos para explicar tarefas simples que poderiam ser descritas em duas linhas de texto.',
+          'Utilizar caixa alta (letras maiúsculas) em todo o texto para garantir que as pessoas leiam mais rápido.'
+        ],
+        correct: 1,
+        explanation: 'Agrupar a mensagem completa evita notificações fragmentadas e permite que o interlocutor entenda o contexto e responda de forma ágil e estruturada.'
+      },
+      {
+        id: 6,
+        question: 'Em um comunicado oficial sobre a alteração do horário de funcionamento do escritório, a redação deve focar prioritariamente em qual característica textual?',
+        options: [
+          'Objetividade, precisão das informações e ausência de ambiguidades nos horários e datas indicados.',
+          'Uso abundante de metáforas, poesias e figuras de linguagem para tornar a leitura divertida.',
+          'Uso de jargões técnicos complexos que apenas a diretoria consegue entender.',
+          'Escrita informal com abreviações da internet como \"vc\", \"tbm\" e \"pq\".'
+        ],
+        correct: 0,
+        explanation: 'Comunicados oficiais exigem clareza absoluta, exatidão de datas e horários e ausência de ambiguidades para evitar mal-entendidos operacionais na equipe.'
+      },
+      {
+        id: 7,
+        question: 'Um profissional precisa solicitar a prorrogação de um prazo de entrega ao seu gestor de forma assertiva. Qual estrutura de mensagem representa a melhor abordagem escrita?',
+        options: [
+          'Não vou conseguir entregar no prazo porque estou com muitos problemas pessoais. Depois eu entrego.',
+          'Conforme acompanhado, identificamos uma complexidade extra na etapa Y. Proponho o envio da entrega ajustada para a próxima terça-feira às 14h, mantendo a qualidade do projeto.',
+          'Fingir que esqueceu o prazo e só responder se o gestor cobrar no dia seguinte.',
+          'Enviar o relatório incompleto e com erros na data do prazo original sem avisar nada.'
+        ],
+        correct: 1,
+        explanation: 'A alternativa B é profissional e assertiva: apresenta a justificativa baseada em fatos, demonstra compromisso com a qualidade e propõe uma nova data e hora concretas para a entrega.'
       }
     ]
   },
