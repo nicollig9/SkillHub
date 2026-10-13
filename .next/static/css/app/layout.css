@@ -1399,6 +1399,9 @@ video {
 .border-\[\#F59E0B\]\/50 {
   border-color: rgb(245 158 11 / 0.5);
 }
+.border-\[var\(--card-border\)\] {
+  border-color: var(--card-border);
+}
 .border-amber-300 {
   --tw-border-opacity: 1;
   border-color: rgb(252 211 77 / var(--tw-border-opacity, 1));
@@ -1562,8 +1565,11 @@ video {
 .border-violet-300\/15 {
   border-color: rgb(196 181 253 / 0.15);
 }
-.border-violet-300\/20 {
-  border-color: rgb(196 181 253 / 0.2);
+.border-violet-300\/25 {
+  border-color: rgb(196 181 253 / 0.25);
+}
+.border-violet-300\/30 {
+  border-color: rgb(196 181 253 / 0.3);
 }
 .border-violet-400\/40 {
   border-color: rgb(167 139 250 / 0.4);
@@ -1603,10 +1609,6 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(15 13 30 / var(--tw-bg-opacity, 1));
 }
-.bg-\[\#0c0a16\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(12 10 22 / var(--tw-bg-opacity, 1));
-}
 .bg-\[\#0f0c1b\] {
   --tw-bg-opacity: 1;
   background-color: rgb(15 12 27 / var(--tw-bg-opacity, 1));
@@ -1638,10 +1640,6 @@ video {
 .bg-\[\#140A23\] {
   --tw-bg-opacity: 1;
   background-color: rgb(20 10 35 / var(--tw-bg-opacity, 1));
-}
-.bg-\[\#141020\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(20 16 32 / var(--tw-bg-opacity, 1));
 }
 .bg-\[\#150524\] {
   --tw-bg-opacity: 1;
@@ -1707,9 +1705,6 @@ video {
 .bg-\[\#18132b\] {
   --tw-bg-opacity: 1;
   background-color: rgb(24 19 43 / var(--tw-bg-opacity, 1));
-}
-.bg-\[\#18132b\]\/60 {
-  background-color: rgb(24 19 43 / 0.6);
 }
 .bg-\[\#190D2E\] {
   --tw-bg-opacity: 1;
@@ -1856,6 +1851,9 @@ video {
 }
 .bg-\[var\(--background\)\] {
   background-color: var(--background);
+}
+.bg-\[var\(--card-bg\)\] {
+  background-color: var(--card-bg);
 }
 .bg-amber-400 {
   --tw-bg-opacity: 1;
@@ -2043,6 +2041,10 @@ video {
 .bg-slate-950\/90 {
   background-color: rgb(2 6 23 / 0.9);
 }
+.bg-violet-100 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(237 233 254 / var(--tw-bg-opacity, 1));
+}
 .bg-violet-300\/\[0\.06\] {
   background-color: rgb(196 181 253 / 0.06);
 }
@@ -2069,8 +2071,8 @@ video {
 .bg-yellow-400\/30 {
   background-color: rgb(250 204 21 / 0.3);
 }
-.bg-\[radial-gradient\(ellipse_at_top\2c rgba\(124\2c 58\2c 237\2c 0\.20\)\2c transparent_58\%\)\] {
-  background-image: radial-gradient(ellipse at top,rgba(124,58,237,0.20),transparent 58%);
+.bg-\[radial-gradient\(ellipse_at_top\2c rgba\(124\2c 58\2c 237\2c 0\.15\)\2c transparent_58\%\)\] {
+  background-image: radial-gradient(ellipse at top,rgba(124,58,237,0.15),transparent 58%);
 }
 .bg-gradient-to-b {
   background-image: linear-gradient(to bottom, var(--tw-gradient-stops));
@@ -2979,16 +2981,16 @@ video {
   --tw-text-opacity: 1;
   color: rgb(71 85 105 / var(--tw-text-opacity, 1));
 }
+.text-slate-700 {
+  --tw-text-opacity: 1;
+  color: rgb(51 65 85 / var(--tw-text-opacity, 1));
+}
 .text-slate-950 {
   --tw-text-opacity: 1;
   color: rgb(2 6 23 / var(--tw-text-opacity, 1));
 }
 .text-transparent {
   color: transparent;
-}
-.text-violet-100 {
-  --tw-text-opacity: 1;
-  color: rgb(237 233 254 / var(--tw-text-opacity, 1));
 }
 .text-violet-200 {
   --tw-text-opacity: 1;
@@ -2998,9 +3000,17 @@ video {
   --tw-text-opacity: 1;
   color: rgb(196 181 253 / var(--tw-text-opacity, 1));
 }
-.text-violet-400 {
+.text-violet-500 {
   --tw-text-opacity: 1;
-  color: rgb(167 139 250 / var(--tw-text-opacity, 1));
+  color: rgb(139 92 246 / var(--tw-text-opacity, 1));
+}
+.text-violet-600 {
+  --tw-text-opacity: 1;
+  color: rgb(124 58 237 / var(--tw-text-opacity, 1));
+}
+.text-violet-700 {
+  --tw-text-opacity: 1;
+  color: rgb(109 40 217 / var(--tw-text-opacity, 1));
 }
 .text-white {
   --tw-text-opacity: 1;
@@ -3105,10 +3115,6 @@ video {
 }
 .shadow-black\/15 {
   --tw-shadow-color: rgb(0 0 0 / 0.15);
-  --tw-shadow: var(--tw-shadow-colored);
-}
-.shadow-black\/20 {
-  --tw-shadow-color: rgb(0 0 0 / 0.2);
   --tw-shadow: var(--tw-shadow-colored);
 }
 .shadow-emerald-500\/30 {
@@ -3325,7 +3331,7 @@ video {
 /* ==========================================================================
    TEMA CLARO (LIGHT THEME) - PALETA LIMPA, LUMINOSA E COM ALTO CONTRASTE
    ========================================================================== */
-[data-theme="light"], .light {
+[data-theme="light"], .light, html[data-theme="light"], html.light {
   --background: #F8FAFC;
   --foreground: #0F172A;
   --card-bg: #FFFFFF;
@@ -3389,236 +3395,444 @@ body {
 }
 
 /* ==========================================================================
-   REGRAS ESPECÍFICAS DE CONTRASTE E LEGIBILIDADE NO MODO CLARO
+   REGRAS MASTER DO MODO CLARO (GARANTIA TOTAL DE NENHUM QUADRADO ESCURO)
    ========================================================================== */
-[data-theme="light"] body,
-[data-theme="light"] main {
+
+/* 1. FUNDO GERAL DA PÁGINA */
+:is([data-theme="light"], .light) body,
+:is([data-theme="light"], .light) main {
   background-color: #F8FAFC !important;
   color: #0F172A !important;
 }
 
-/* 1. Containers escuros transformados em superfícies brancas / suaves */
-[data-theme="light"] .bg-\[\#0C0717\],
-[data-theme="light"] .bg-\[\#090D16\],
-[data-theme="light"] .bg-\[\#0D0618\],
-[data-theme="light"] .bg-\[\#0D1117\] {
-  background-color: #F8FAFC !important;
+/* 2. TODOS OS CARDS, BOXES E SUPERFÍCIES ESCURAS (HEXADECIMAIS E TAILWIND)
+      Transformam-se em branco puro (#FFFFFF) com borda suave (#E2E8F0) e sombra sutil */
+:is([data-theme="light"], .light) :is(
+  .bg-\[\#0c0a16\],
+  .bg-\[\#0D0618\],
+  .bg-\[\#0f0c1b\],
+  .bg-\[\#0F0D1E\],
+  .bg-\[\#10061D\],
+  .bg-\[\#120722\],
+  .bg-\[\#130722\],
+  .bg-\[\#140625\],
+  .bg-\[\#140726\],
+  .bg-\[\#140824\],
+  .bg-\[\#140A23\],
+  .bg-\[\#141020\],
+  .bg-\[\#150524\],
+  .bg-\[\#150926\],
+  .bg-\[\#15092A\],
+  .bg-\[\#150B25\],
+  .bg-\[\#160728\],
+  .bg-\[\#160A25\],
+  .bg-\[\#17092A\],
+  .bg-\[\#17092B\],
+  .bg-\[\#170C2B\],
+  .bg-\[\#18092E\],
+  .bg-\[\#180A2B\],
+  .bg-\[\#180A2D\],
+  .bg-\[\#180C2C\],
+  .bg-\[\#18132b\],
+  .bg-\[\#190D2E\],
+  .bg-\[\#1A0B2E\],
+  .bg-\[\#1B0D30\],
+  .bg-\[\#1C0A33\],
+  .bg-\[\#1C0D33\],
+  .bg-\[\#1C0E33\],
+  .bg-\[\#1C0F32\],
+  .bg-\[\#1D0933\],
+  .bg-\[\#1d0b36\],
+  .bg-\[\#1E0F38\],
+  .bg-\[\#1F0E34\],
+  .bg-\[\#1F0E38\],
+  .bg-\[\#220E3A\],
+  .bg-\[\#220E3D\],
+  .bg-\[\#24103D\],
+  .bg-\[\#24103E\],
+  .bg-\[\#241042\],
+  .bg-\[\#24123E\],
+  .bg-\[\#241306\],
+  .bg-\[\#250B3E\],
+  .bg-\[\#250F44\],
+  .bg-\[\#25123E\],
+  .bg-\[\#261509\],
+  .bg-\[\#281347\],
+  .bg-\[\#2A114D\],
+  .bg-\[\#2A154A\],
+  .bg-\[\#2D164E\],
+  .bg-\[\#2E1254\],
+  .bg-\[\#2e1354\],
+  .bg-\[\#2F1352\],
+  .bg-\[\#311554\],
+  .bg-\[\#341858\],
+  .bg-\[\#341b09\],
+  .bg-\[\#35135A\],
+  .bg-\[\#351859\],
+  .bg-\[\#381B5E\],
+  .bg-\[\#3C1A6E\],
+  .bg-\[\#3E1674\],
+  .bg-\[\#521C7E\],
+  [class*="bg-[#0"],
+  [class*="bg-[#1"],
+  [class*="bg-[#2"],
+  [class*="bg-[#3"],
+  [class*="bg-[#521C7E]"],
+  .bg-slate-950,
+  .bg-slate-900,
+  .bg-slate-800,
+  .bg-purple-950,
+  .bg-purple-900,
+  .bg-purple-800,
+  .bg-indigo-950,
+  .bg-indigo-900,
+  .bg-emerald-950,
+  [class*="bg-slate-9"],
+  [class*="bg-slate-8"],
+  [class*="bg-indigo-9"],
+  [class*="bg-purple-9"]
+):not(button):not(a):not(.btn):not([class*="from-[#6D28D9]"]):not([class*="from-violet-"]):not([class*="bg-violet-"]):not([class*="bg-[#7C3AED]"]):not([class*="from-[#F59E0B]"]):not([class*="from-[#D97706]"]):not([class*="from-amber-"]) {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  background-image: none !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.05) !important;
 }
 
-[data-theme="light"] .bg-\[\#170C2B\],
-[data-theme="light"] .bg-\[\#160A25\],
-[data-theme="light"] .bg-\[\#1C0730\],
-[data-theme="light"] .bg-\[\#150524\],
-[data-theme="light"] .bg-\[\#150524\]\/90,
-[data-theme="light"] .bg-\[\#150524\]\/80,
-[data-theme="light"] .bg-\[\#10061D\],
-[data-theme="light"] .bg-\[\#140824\],
-[data-theme="light"] .bg-\[\#140824\]\/90,
-[data-theme="light"] .bg-\[\#17092A\],
-[data-theme="light"] .bg-\[\#1C0D33\],
-[data-theme="light"] .bg-\[\#1C0D33\]\/90,
-[data-theme="light"] .bg-\[\#110520\],
-[data-theme="light"] .bg-\[\#250B3E\],
-[data-theme="light"] .bg-\[\#24123E\],
-[data-theme="light"] .bg-\[\#15092A\],
-[data-theme="light"] .bg-\[\#120722\],
-[data-theme="light"] .bg-\[\#18092E\],
-[data-theme="light"] .bg-\[\#1A0B2E\],
-[data-theme="light"] .bg-\[\#1E0F36\],
-[data-theme="light"] .bg-\[\#2A0E47\],
-[data-theme="light"] .bg-\[\#2E1254\],
-[data-theme="light"] .bg-\[\#120B20\],
-[data-theme="light"] .bg-\[\#160B29\],
-[data-theme="light"] [class*="bg-gradient-to-b from-[#1C0D33]"] {
+/* 3. GRADIENTES ESCUROS EM CARDS/CONTAINERS QUE NÃO SÃO BOTÕES */
+:is([data-theme="light"], .light) :is(
+  [class*="from-[#0]"],
+  [class*="from-[#1]"],
+  [class*="from-[#2]"],
+  [class*="from-[#3]"],
+  [class*="from-[#4C1D95]"],
+  [class*="from-[#521C7E]"],
+  [class*="from-indigo-950"],
+  [class*="from-emerald-950"],
+  [class*="from-purple-950"],
+  [class*="from-purple-900"],
+  [class*="from-slate-950"],
+  [class*="from-slate-900"]
+):not(button):not(a):not(.btn):not([class*="bg-violet-"]):not([class*="from-[#6D28D9]"]):not([class*="from-[#F59E0B]"]):not([class*="from-[#D97706]"]) {
+  background-image: none !important;
   background: #FFFFFF !important;
   background-color: #FFFFFF !important;
   border-color: #E2E8F0 !important;
-  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.06) !important;
 }
 
-/* 2. Banners ganham degradê suave e luminoso no modo claro */
-[data-theme="light"] [class*="bg-gradient-to-r from-[#22103B]"],
-[data-theme="light"] [class*="bg-gradient-to-r from-[#200E3D]"],
-[data-theme="light"] [class*="bg-gradient-to-r from-[#1C0730]"],
-[data-theme="light"] [class*="bg-gradient-to-br from-[#1C0730]"] {
+/* 4. BANNERS DE DESTAQUE (HERO / APRESENTAÇÃO) GANHAM DEGRADÊ LUMINOSO SUAVE */
+:is([data-theme="light"], .light) :is(
+  [class*="bg-gradient-to-r from-[#22103B]"],
+  [class*="bg-gradient-to-r from-[#200E3D]"],
+  [class*="bg-gradient-to-r from-[#1C0730]"],
+  [class*="bg-gradient-to-br from-[#1C0730]"],
+  [class*="from-indigo-950 via-slate-900"],
+  [class*="from-emerald-950 via-slate-900"]
+) {
   background: linear-gradient(135deg, #FAF5FF 0%, #F3E8FF 50%, #EDE9FE 100%) !important;
   border-color: #D8B4FE !important;
   box-shadow: 0 6px 20px rgba(124, 58, 237, 0.08) !important;
 }
 
-[data-theme="light"] [class*="bg-gradient-to-r from-[#22103B]"] h1,
-[data-theme="light"] [class*="bg-gradient-to-r from-[#22103B]"] h2,
-[data-theme="light"] [class*="bg-gradient-to-r from-[#200E3D]"] h1,
-[data-theme="light"] [class*="bg-gradient-to-r from-[#200E3D]"] h2,
-[data-theme="light"] [class*="bg-gradient-to-r from-[#1C0730]"] h1,
-[data-theme="light"] [class*="bg-gradient-to-r from-[#1C0730]"] h2,
-[data-theme="light"] [class*="bg-gradient-to-br from-[#1C0730]"] h1,
-[data-theme="light"] [class*="bg-gradient-to-br from-[#1C0730]"] h2 {
+:is([data-theme="light"], .light) :is(
+  [class*="bg-gradient-to-r from-[#22103B]"],
+  [class*="bg-gradient-to-r from-[#200E3D]"],
+  [class*="bg-gradient-to-r from-[#1C0730]"],
+  [class*="bg-gradient-to-br from-[#1C0730]"],
+  [class*="from-indigo-950 via-slate-900"],
+  [class*="from-emerald-950 via-slate-900"]
+) :is(h1, h2, h3, h4) {
   color: #3B0764 !important;
 }
 
-[data-theme="light"] [class*="bg-gradient-to-r from-[#22103B]"] p,
-[data-theme="light"] [class*="bg-gradient-to-r from-[#200E3D]"] p,
-[data-theme="light"] [class*="bg-gradient-to-r from-[#1C0730]"] p,
-[data-theme="light"] [class*="bg-gradient-to-br from-[#1C0730]"] p {
+:is([data-theme="light"], .light) :is(
+  [class*="bg-gradient-to-r from-[#22103B]"],
+  [class*="bg-gradient-to-r from-[#200E3D]"],
+  [class*="bg-gradient-to-r from-[#1C0730]"],
+  [class*="bg-gradient-to-br from-[#1C0730]"],
+  [class*="from-indigo-950 via-slate-900"],
+  [class*="from-emerald-950 via-slate-900"]
+) :is(p, span:not(button *)) {
   color: #475569 !important;
 }
 
-[data-theme="light"] [class*="bg-gradient-to-r from-[#22103B]"] .inline-flex,
-[data-theme="light"] [class*="bg-gradient-to-r from-[#200E3D]"] .inline-flex {
-  background-color: #FFFFFF !important;
-  border-color: #C084FC !important;
-  color: #6D28D9 !important;
+/* 5. CABEÇALHO GLOBAL (HEADER) NO TEMA CLARO */
+:is([data-theme="light"], .light) header {
+  background: #FFFFFF !important;
+  background-image: none !important;
+  border-bottom: 1px solid #E2E8F0 !important;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05) !important;
 }
 
-/* 3. CORREÇÃO DE TEXTOS BRANCOS DENTRO DE CARDS NO TEMA CLARO */
-[data-theme="light"] main h1.text-white,
-[data-theme="light"] main h2.text-white,
-[data-theme="light"] main h3.text-white,
-[data-theme="light"] main h4.text-white,
-[data-theme="light"] main h5.text-white,
-[data-theme="light"] main p.text-white,
-[data-theme="light"] main div.text-white:not(button *):not(.btn *):not([class*="from-purple-"] *):not([class*="bg-purple-"] *),
-[data-theme="light"] main span.text-white:not(button *):not(.btn *):not([class*="from-purple-"] *):not([class*="bg-purple-"] *),
-[data-theme="light"] main strong.text-white:not(button *):not(.btn *):not([class*="from-purple-"] *):not([class*="bg-purple-"] *) {
+:is([data-theme="light"], .light) header h1 {
   color: #1E1B4B !important;
 }
 
-/* Títulos de cursos e vagas em hover */
-[data-theme="light"] .group:hover .group-hover\:text-\[\#FDE68A\] {
-  color: #6D28D9 !important;
+:is([data-theme="light"], .light) header p {
+  color: #64748B !important;
 }
 
-/* Métrica em destaque (ex: números 0, 1, 2, 10h) */
-[data-theme="light"] .text-3xl.font-black.text-white {
-  color: #3B0764 !important;
-}
-
-/* 4. Textos secundários, subtítulos e metadados que eram roxos bem claros */
-[data-theme="light"] main .text-purple-100,
-[data-theme="light"] main .text-purple-200,
-[data-theme="light"] main .text-purple-300,
-[data-theme="light"] main .text-purple-200\/80,
-[data-theme="light"] main .text-purple-300\/80 {
+:is([data-theme="light"], .light) header button.text-purple-200,
+:is([data-theme="light"], .light) header button.text-purple-300 {
   color: #475569 !important;
 }
 
-/* 5. Pílulas e tags secundárias dentro de cards */
-[data-theme="light"] .bg-\[\#24123E\],
-[data-theme="light"] .bg-\[\#2E1254\],
-[data-theme="light"] .bg-\[\#17092A\] {
-  background-color: #F3E8FF !important;
-  color: #6D28D9 !important;
-  border-color: #DDD6FE !important;
-}
-
-/* 6. Inputs, selects e textareas claros */
-[data-theme="light"] input,
-[data-theme="light"] select,
-[data-theme="light"] textarea {
-  background-color: #FFFFFF !important;
-  color: #0F172A !important;
-  border: 1.5px solid #CBD5E1 !important;
-}
-
-[data-theme="light"] input:focus,
-[data-theme="light"] select:focus,
-[data-theme="light"] textarea:focus {
-  border-color: #7C3AED !important;
-  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15) !important;
-}
-
-/* 7. Botões inativos ou de filtro em tema claro */
-[data-theme="light"] button.bg-\[\#18092E\],
-[data-theme="light"] button.bg-\[\#10061D\],
-[data-theme="light"] button.bg-\[\#24123E\] {
+:is([data-theme="light"], .light) header .bg-\[\#140726\]\/80,
+:is([data-theme="light"], .light) header .bg-\[\#17092A\],
+:is([data-theme="light"], .light) header .bg-\[\#1C0D33\]\/90 {
   background-color: #F1F5F9 !important;
   border-color: #CBD5E1 !important;
-  color: #475569 !important;
+  color: #334155 !important;
 }
 
-[data-theme="light"] button.bg-\[\#18092E\]:hover,
-[data-theme="light"] button.bg-\[\#10061D\]:hover,
-[data-theme="light"] button.bg-\[\#24123E\]:hover {
-  background-color: #E2E8F0 !important;
-  color: #1E1B4B !important;
-}
-
-/* 8. BOTÕES PRINCIPAIS E COLORIDOS PRESERVAM O TEXTO BRANCO PURO */
-[data-theme="light"] button[class*="from-[#6D28D9]"],
-[data-theme="light"] button[class*="from-purple-600"],
-[data-theme="light"] button[class*="from-[#521C7E]"],
-[data-theme="light"] button[class*="bg-purple-600"],
-[data-theme="light"] button[class*="bg-[#7C3AED]"],
-[data-theme="light"] button.btn-purple-brand,
-[data-theme="light"] .btn-primary,
-[data-theme="light"] .btn-coral {
-  color: #FFFFFF !important;
-}
-
-[data-theme="light"] button[class*="from-[#6D28D9]"] *,
-[data-theme="light"] button[class*="from-purple-600"] *,
-[data-theme="light"] button[class*="from-[#521C7E]"] *,
-[data-theme="light"] button[class*="bg-purple-600"] *,
-[data-theme="light"] button[class*="bg-[#7C3AED]"] *,
-[data-theme="light"] button.btn-purple-brand *,
-[data-theme="light"] .btn-primary *,
-[data-theme="light"] .btn-coral * {
-  color: #FFFFFF !important;
-}
-
-/* Botões com gradiente âmbar */
-[data-theme="light"] button[class*="from-amber-400"],
-[data-theme="light"] button[class*="from-[#F59E0B]"] {
-  color: #0F172A !important;
-}
-
-/* 9. CABEÇALHO GLOBAL: Mantém o degradê imperial e a nitidez */
-[data-theme="light"] header {
-  background: linear-gradient(135deg, #3B0764 0%, #4C1D95 50%, #6D28D9 100%) !important;
-}
-
-[data-theme="light"] header h1,
-[data-theme="light"] header .text-white {
-  color: #FFFFFF !important;
-}
-
-[data-theme="light"] header .text-purple-200,
-[data-theme="light"] header .text-purple-300 {
-  color: #EDE9FE !important;
-}
-
-[data-theme="light"] header button.text-purple-200 {
-  color: #EDE9FE !important;
-}
-
-[data-theme="light"] header button.text-purple-200:hover {
-  color: #FFFFFF !important;
-}
-
-/* 10. GAVETA LATERAL (SIDEBAR) NO TEMA CLARO */
-[data-theme="light"] aside {
+/* 6. GAVETA LATERAL (SIDEBAR) NO TEMA CLARO */
+:is([data-theme="light"], .light) aside {
+  background: #FFFFFF !important;
   background-color: #FFFFFF !important;
   border-color: #E2E8F0 !important;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
 }
 
-[data-theme="light"] aside .text-white {
+:is([data-theme="light"], .light) aside :is(h1, h2, h3, h4, span.text-white) {
   color: #1E1B4B !important;
 }
 
-[data-theme="light"] aside .text-purple-300 {
+:is([data-theme="light"], .light) aside .text-purple-300,
+:is([data-theme="light"], .light) aside .text-purple-200 {
+  color: #475569 !important;
+}
+
+:is([data-theme="light"], .light) aside button:hover {
+  background-color: #F1F5F9 !important;
+}
+
+:is([data-theme="light"], .light) aside .bg-\[\#24123E\],
+:is([data-theme="light"], .light) aside .bg-\[\#220E3A\] {
+  background-color: #F1F5F9 !important;
+  border-color: #CBD5E1 !important;
+  color: #6D28D9 !important;
+}
+
+/* 7. RODAPÉ GLOBAL (FOOTER) NO TEMA CLARO */
+:is([data-theme="light"], .light) footer {
+  background: #FFFFFF !important;
+  background-color: #FFFFFF !important;
+  border-top: 1px solid #E2E8F0 !important;
+  color: #475569 !important;
+}
+
+:is([data-theme="light"], .light) footer :is(h1, h2, h3, .text-white, .text-slate-200) {
+  color: #1E1B4B !important;
+}
+
+:is([data-theme="light"], .light) footer .text-slate-400,
+:is([data-theme="light"], .light) footer .text-slate-500 {
   color: #64748B !important;
 }
 
-[data-theme="light"] aside .bg-\[\#24123E\] {
-  background-color: #F1F5F9 !important;
-  border-color: #CBD5E1 !important;
-  color: #4C1D95 !important;
+:is([data-theme="light"], .light) footer a {
+  color: #64748B !important;
 }
 
-[data-theme="light"] aside button:hover {
+:is([data-theme="light"], .light) footer a:hover {
+  color: #6D28D9 !important;
+}
+
+/* 8. CONTRASTE DE TEXTOS DENTRO DE CARDS E CONTEÚDOS */
+:is([data-theme="light"], .light) main :is(h1, h2, h3, h4, h5, h6).text-white,
+:is([data-theme="light"], .light) section :is(h1, h2, h3, h4, h5, h6).text-white,
+:is([data-theme="light"], .light) article :is(h1, h2, h3, h4, h5, h6).text-white,
+:is([data-theme="light"], .light) div[role="dialog"] :is(h1, h2, h3, h4, h5, h6).text-white {
+  color: #1E1B4B !important;
+}
+
+:is([data-theme="light"], .light) main :is(p, span, strong, label).text-white:not(button *):not(.btn *):not(a.bg-violet-600 *):not([class*="from-purple-"] *):not([class*="bg-purple-"] *):not([class*="from-violet-"] *):not([class*="bg-violet-"] *) {
+  color: #1E1B4B !important;
+}
+
+:is([data-theme="light"], .light) main :is(
+  .text-slate-200,
+  .text-slate-300,
+  .text-slate-400,
+  .text-purple-100,
+  .text-purple-200,
+  .text-purple-300,
+  .text-purple-400,
+  .text-purple-200\/80,
+  .text-purple-300\/80,
+  .text-indigo-200,
+  .text-indigo-300,
+  .text-\[\#DDD6FE\],
+  .text-\[\#D8B4FE\]
+):not(button *):not(.btn *):not([class*="from-[#6D28D9]"] *):not([class*="from-violet-"] *) {
+  color: #475569 !important;
+}
+
+/* Títulos de cursos e vagas em hover */
+:is([data-theme="light"], .light) .group:hover .group-hover\:text-\[\#FDE68A\] {
+  color: #6D28D9 !important;
+}
+
+/* Métricas em destaque */
+:is([data-theme="light"], .light) .text-3xl.font-black.text-white,
+:is([data-theme="light"], .light) .text-3xl.font-extrabold.text-white,
+:is([data-theme="light"], .light) .text-2xl.font-black.text-white {
+  color: #3B0764 !important;
+}
+
+/* 9. PÍLULAS, CHIPS E TAGS SECUNDÁRIAS DENTRO DE CARDS */
+:is([data-theme="light"], .light) :is(
+  span.bg-\[\#24123E\],
+  span.bg-\[\#2E1254\],
+  span.bg-\[\#17092A\],
+  span.bg-\[\#250B3E\],
+  span.bg-\[\#24103D\],
+  span.bg-\[\#220E3D\],
+  span.bg-\[\#200E3D\],
+  span.bg-\[\#160A25\],
+  span.bg-\[\#0f0c1b\],
+  div.bg-\[\#24123E\],
+  div.bg-\[\#2E1254\]
+):not(button) {
+  background-color: #F3E8FF !important;
+  color: #6D28D9 !important;
+  border-color: #DDD6FE !important;
+}
+
+/* 10. INPUTS, SELECTS E TEXTAREAS NO TEMA CLARO */
+:is([data-theme="light"], .light) :is(input, select, textarea) {
+  background-color: #FFFFFF !important;
+  color: #0F172A !important;
+  border: 1.5px solid #CBD5E1 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+}
+
+:is([data-theme="light"], .light) :is(input, select, textarea):focus {
+  border-color: #7C3AED !important;
+  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15) !important;
+}
+
+:is([data-theme="light"], .light) ::-moz-placeholder {
+  color: #94A3B8 !important;
+}
+
+:is([data-theme="light"], .light) ::placeholder {
+  color: #94A3B8 !important;
+}
+
+/* 11. BOTÕES INATIVOS OU DE FILTRO NO TEMA CLARO */
+:is([data-theme="light"], .light) button:is(
+  .bg-\[\#18092E\],
+  .bg-\[\#10061D\],
+  .bg-\[\#24123E\],
+  .bg-slate-900,
+  .bg-slate-950,
+  [class*="bg-slate-9"],
+  [class*="bg-slate-8"]
+):not([class*="from-"]):not(.btn-primary):not(.btn-purple-brand) {
+  background-color: #F1F5F9 !important;
+  border: 1px solid #CBD5E1 !important;
+  color: #475569 !important;
+}
+
+:is([data-theme="light"], .light) button:is(
+  .bg-\[\#18092E\],
+  .bg-\[\#10061D\],
+  .bg-\[\#24123E\],
+  .bg-slate-900,
+  .bg-slate-950,
+  [class*="bg-slate-9"],
+  [class*="bg-slate-8"]
+):not([class*="from-"]):hover {
+  background-color: #E2E8F0 !important;
+  color: #1E1B4B !important;
+}
+
+/* 12. BOTÕES PRINCIPAIS E COLORIDOS PRESERVAM SUAS CORES E TEXTO BRANCO PURO */
+:is([data-theme="light"], .light) :is(
+  button[class*="from-[#6D28D9]"],
+  button[class*="from-violet-"],
+  button[class*="bg-violet-"],
+  button[class*="from-purple-600"],
+  button[class*="bg-purple-600"],
+  button[class*="bg-[#7C3AED]"],
+  button[class*="bg-indigo-600"],
+  button[class*="bg-emerald-600"],
+  button.btn-purple-brand,
+  button.btn-primary,
+  button.btn-coral,
+  a[class*="from-[#6D28D9]"],
+  a[class*="from-violet-"],
+  a[class*="bg-violet-"],
+  a.btn-primary
+) {
+  color: #FFFFFF !important;
+}
+
+:is([data-theme="light"], .light) :is(
+  button[class*="from-[#6D28D9]"],
+  button[class*="from-violet-"],
+  button[class*="bg-violet-"],
+  button[class*="from-purple-600"],
+  button[class*="bg-purple-600"],
+  button[class*="bg-[#7C3AED]"],
+  button[class*="bg-indigo-600"],
+  button[class*="bg-emerald-600"],
+  button.btn-purple-brand,
+  button.btn-primary,
+  button.btn-coral,
+  a[class*="from-[#6D28D9]"],
+  a[class*="from-violet-"],
+  a[class*="bg-violet-"],
+  a.btn-primary
+) * {
+  color: #FFFFFF !important;
+}
+
+/* Botões com gradiente âmbar mantêm texto escuro para contraste */
+:is([data-theme="light"], .light) :is(
+  button[class*="from-amber-400"],
+  button[class*="from-[#F59E0B]"],
+  button[class*="from-[#D97706]"],
+  a[class*="from-amber-400"],
+  a[class*="from-[#F59E0B]"],
+  a[class*="from-[#D97706]"]
+) {
+  color: #1A0B2E !important;
+  font-weight: 800 !important;
+}
+
+:is([data-theme="light"], .light) :is(
+  button[class*="from-amber-400"],
+  button[class*="from-[#F59E0B]"],
+  button[class*="from-[#D97706]"],
+  a[class*="from-amber-400"],
+  a[class*="from-[#F59E0B]"],
+  a[class*="from-[#D97706]"]
+) * {
+  color: #1A0B2E !important;
+}
+
+/* 13. PRE E CÓDIGO NO TEMA CLARO */
+:is([data-theme="light"], .light) pre,
+:is([data-theme="light"], .light) code {
   background-color: #F8FAFC !important;
+  color: #4C1D95 !important;
+  border-color: #E2E8F0 !important;
+}
+
+/* 14. TABELAS NO TEMA CLARO */
+:is([data-theme="light"], .light) table tr {
+  border-color: #E2E8F0 !important;
+}
+
+:is([data-theme="light"], .light) table thead tr {
+  background-color: #F8FAFC !important;
+  color: #475569 !important;
+}
+
+:is([data-theme="light"], .light) table tbody tr:hover {
+  background-color: #F1F5F9 !important;
 }
 
 .selection\:bg-purple-600 *::-moz-selection {
@@ -3786,8 +4000,8 @@ body {
   border-color: rgb(196 181 253 / 0.3);
 }
 
-.hover\:border-violet-300\/50:hover {
-  border-color: rgb(196 181 253 / 0.5);
+.hover\:border-violet-300\/60:hover {
+  border-color: rgb(196 181 253 / 0.6);
 }
 
 .hover\:border-violet-400\/40:hover {
@@ -3943,6 +4157,10 @@ body {
   background-color: rgb(196 181 253 / 0.06);
 }
 
+.hover\:bg-violet-300\/\[0\.08\]:hover {
+  background-color: rgb(196 181 253 / 0.08);
+}
+
 .hover\:bg-violet-500:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(139 92 246 / var(--tw-bg-opacity, 1));
@@ -4081,6 +4299,11 @@ body {
 .hover\:text-violet-200:hover {
   --tw-text-opacity: 1;
   color: rgb(221 214 254 / var(--tw-text-opacity, 1));
+}
+
+.hover\:text-violet-600:hover {
+  --tw-text-opacity: 1;
+  color: rgb(124 58 237 / var(--tw-text-opacity, 1));
 }
 
 .hover\:text-white:hover {
@@ -4552,6 +4775,48 @@ body {
 
   .xl\:grid-cols-\[minmax\(220px\2c 1\.5fr\)_repeat\(3\2c minmax\(150px\2c 1fr\)\)\] {
     grid-template-columns: minmax(220px,1.5fr) repeat(3,minmax(150px,1fr));
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+
+  .dark\:bg-violet-300\/\[0\.07\] {
+    background-color: rgb(196 181 253 / 0.07);
+  }
+
+  .dark\:text-slate-300 {
+    --tw-text-opacity: 1;
+    color: rgb(203 213 225 / var(--tw-text-opacity, 1));
+  }
+
+  .dark\:text-slate-400 {
+    --tw-text-opacity: 1;
+    color: rgb(148 163 184 / var(--tw-text-opacity, 1));
+  }
+
+  .dark\:text-violet-100 {
+    --tw-text-opacity: 1;
+    color: rgb(237 233 254 / var(--tw-text-opacity, 1));
+  }
+
+  .dark\:text-violet-200 {
+    --tw-text-opacity: 1;
+    color: rgb(221 214 254 / var(--tw-text-opacity, 1));
+  }
+
+  .dark\:text-violet-300 {
+    --tw-text-opacity: 1;
+    color: rgb(196 181 253 / var(--tw-text-opacity, 1));
+  }
+
+  .dark\:text-violet-400 {
+    --tw-text-opacity: 1;
+    color: rgb(167 139 250 / var(--tw-text-opacity, 1));
+  }
+
+  .dark\:hover\:text-violet-200:hover {
+    --tw-text-opacity: 1;
+    color: rgb(221 214 254 / var(--tw-text-opacity, 1));
   }
 }
 

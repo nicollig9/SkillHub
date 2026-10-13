@@ -1,4 +1,4 @@
-// File: C:\Users\lucasbarros\Downloads\SkillHub-main\SkillHub-main\skillhub novo\src\app\layout.tsx
+// File: C:\Users\nicolisilva\SkillHub\src\app\layout.tsx
 import * as entry from '../../../src/app/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
