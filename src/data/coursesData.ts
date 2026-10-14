@@ -24,11 +24,12 @@ export const TRACKS: Track[] = [
     id: 'trilha-2',
     name: '2. Soft Skills, Postura & Comunicação Corporativa',
     category: 'Desenvolvimento Pessoal',
-    description: 'Aprenda a se comunicar com clareza em e-mails e reuniões, trabalhar em equipe, desenvolver inteligência relacional e empatia no trabalho.',
+    description: 'Aprenda inteligência emocional no trabalho, comunicação interpessoal, escuta ativa, comunicação não-violenta e resiliência profissional.',
     targetAudienceType: 'TODOS',
-    hoursTotal: 60,
-    coursesCount: 5,
+    hoursTotal: 72,
+    coursesCount: 6,
     courseIds: [
+      'curso-inteligencia-emocional-trabalho',
       'curso-soft-skills-comunicacao-interpessoal',
       'curso-comunicacao-corporativa',
       'curso-atendimento-publico',
@@ -98,6 +99,206 @@ export const TRACKS: Track[] = [
 ];
 
 export const COURSES: Course[] = [
+  // =========================================================================
+  // CURSO 8: INTELIGÊNCIA EMOCIONAL NO TRABALHO
+  // =========================================================================
+  {
+    id: 'curso-inteligencia-emocional-trabalho',
+    trackId: 'trilha-2',
+    trackName: 'TRILHA 2: Soft Skills, Postura & Comunicação Corporativa',
+    category: 'Desenvolvimento Pessoal',
+    targetAudienceType: 'TODOS',
+    title: 'Inteligência Emocional no Trabalho',
+    subtitle: 'Mapeamento de gatilhos, o sequestro da amígdala e técnica da pausa, postura reativa vs. responsiva, gestão madura de feedbacks e resiliência.',
+    hours: 12,
+    equivalentHours: 12,
+    modality: 'EAD 100% Gratuito (Escola Virtual)',
+    targetAudience: 'Jovens aprendizes, estagiários e colaboradores que buscam desenvolver autorregulação emocional, resiliência e maturidade profissional.',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Mestre em Inteligência Emocional',
+    badgeCategory: 'Saúde Mental',
+    badgeIcon: 'Sparkles',
+    accentColor: '#EC4899',
+    level: 'Iniciante',
+    learningObjectives: [
+      'Mapear e identificar gatilhos emocionais específicos no ambiente corporativo para prevenir comportamentos impulsivos.',
+      'Compreender o sequestro da amígdala e aplicar a técnica da pausa de 5 segundos para recuperar o raciocínio lógico em momentos de estresse.',
+      'Diferenciar a postura reativa da postura responsiva, escolhendo conscientemente condutas construtivas.',
+      'Receber e processar feedbacks de melhoria com maturidade, resiliência e foco no aprimoramento contínuo.'
+    ],
+    modules: [
+      {
+        id: 'ie-mod-1',
+        number: 1,
+        title: 'MÓDULO 1: Os Pilares Internos',
+        summary: 'Identifique seus gatilhos emocionais, entenda o mecanismo biológico do estresse agudo e pratique a técnica da pausa de 5 segundos.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Mapeamento de Gatilhos e Autoconhecimento',
+              body: [
+                'A inteligência emocional começa pela identificação dos próprios gatilhos — situações específicas (como críticas em público ou prazos apertados) que despertam emoções intensas de ansiedade ou raiva.',
+                'Reconhecer e nomear a emoção no momento em que ela surge é a primeira ferramenta para impedir comportamentos impulsivos e desproporcionais no trabalho.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Nomear para Acalmar',
+                text: 'Identificar conscientemente a emoção ("estou sentindo frustração com esse prazo") ativa o córtex pré-frontal e diminui a intensidade da reação impulsiva.'
+              }
+            },
+            {
+              subheading: '2. O Sequestro da Amígdala e a Técnica da Pausa',
+              body: [
+                'Diante de um estresse agudo, a amígdala cortical no cérebro assume o comando instintivo, gerando reações de luta ou fuga antes que a mente lógica (o córtex pré-frontal) processe os fatos.',
+                'Aplicar a técnica da pausa de 5 segundos — respirando fundo antes de responder a uma provocação — permite recuperar o raciocínio lógico e agir de maneira equilibrada e profissional.'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'A Regra dos 5 Segundos',
+                text: 'Em momentos de raiva ou choque, pause e respire profundamente por 5 segundos antes de falar ou enviar qualquer e-mail corporativo.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'ie-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: O Espelho Social',
+        summary: 'Transite da reação impulsiva para a resposta consciente, encare feedbacks como diagnóstico de tarefas e cultive resiliência sustentável.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Posição Reativa vs. Posição Responsiva',
+              body: [
+                'Profissionais reativos agem sem filtro, sendo guiados por instintos do momento e culpando fatores externos por seus erros.',
+                'Já o profissional responsivo analisa a situação, avalia as consequências de cada opção e escolhe conscientemente a melhor conduta para resolver o problema, preservando suas relações de trabalho.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Reação vs. Resposta',
+                text: 'Reagir é automático e guiado pelo impulso; responder é uma escolha consciente pautada pela ética e pelo profissionalismo.'
+              }
+            },
+            {
+              subheading: '2. Gestão Madura de Feedbacks e Resiliência',
+              body: [
+                'Feedbacks de melhoria devem ser enxergados como diagnósticos valiosos sobre a execução de uma tarefa, e não como ataques pessoais à dignidade do indivíduo.',
+                'A resiliência é a capacidade de absorver críticas construtivas, reerguer-se após falhas operacionais e aplicar os novos aprendizados para evoluir continuamente.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Feedback é Diagnóstico',
+                text: 'Separe sua identidade pessoal da tarefa executada: um ajuste técnico apontado pelo gestor é a chave para o seu aperfeiçoamento contínuo.'
+              }
+            }
+          ]
+        }
+      }
+    ],
+    caseStudies: [
+      {
+        id: 'caso-inteligenciaemocional-1',
+        title: 'Maturidade Emocional e Resposta Consciente em Reunião de Alinhamento',
+        character: 'Larissa, Aprendiz de Departamento Pessoal',
+        scenario: 'Larissa recebeu uma crítica pública sobre um relatório divergente durante a reunião geral de equipe, sentindo vontade imediata de rebater agressivamente.',
+        criticalAnalysis: 'Larissa aplicou a pausa de 5 segundos, compreendeu que o erro era na fórmula da planilha e não no seu valor como profissional, anotou as correções com calma e apresentou o documento corrigido 20 minutos depois.',
+        keyTakeaways: [
+          'A pausa estratégica impede rompantes que prejudicam a reputação corporativa.',
+          'Encarar o erro como oportunidade de aprendizado demonstra maturidade e liderança.'
+        ],
+        badgeRelevance: 'Comprova excelência em inteligência emocional, estabilidade sob pressão e atitude responsiva.'
+      }
+    ],
+    quiz: [
+      {
+        id: 1,
+        question: 'A fundação da Inteligência Emocional madura está baseada em:',
+        options: [
+          'Velocidade de memorização de relatórios.',
+          'Mapeamento e Autoconhecimento dos "gatilhos" emocionais.',
+          'Vontade de sorrir repetidamente sempre, falsamente.',
+          'Decorar livros poéticos antigos europeus longos.'
+        ],
+        correct: 1,
+        explanation: 'Conhecer suas próprias reações emocionais permite antecipar gatilhos de estresse e agir com autocontrole nas reuniões difíceis.'
+      },
+      {
+        id: 2,
+        question: 'A técnica da "Pausa" em picos de nervosismo corporativos:',
+        options: [
+          'Diminui oxigênio no cérebro perigosamente.',
+          'Permite à porção lógica (neocórtex) retomar a racionalidade, freando instintos de briga.',
+          'Causa pânico total na gerência opressora dura e central.',
+          'Exige uso de medicação sintética.'
+        ],
+        correct: 1,
+        explanation: 'Interromper a reação por 5 segundos dá tempo ao córtex pré-frontal para assumir o controle do cérebro no lugar dos impulsos primitivos.'
+      },
+      {
+        id: 3,
+        question: 'Empatia é essencialmente diferente de Simpatia porque:',
+        options: [
+          'Você compreende e mergulha no problema pela ótica do colega ferido.',
+          'É enviar cartões florais de apoio aos domingos tristes noturnos.',
+          'Dizer "eu te avisei bem antes".',
+          'Transferir dinheiro diretamente todo mês para confortar.'
+        ],
+        correct: 0,
+        explanation: 'A empatia exige enxergar a situação sob a perspectiva do outro, ao passo que a simpatia é apenas lamentar o problema superficialmente.'
+      },
+      {
+        id: 4,
+        question: 'Como tratar o Feedback de melhoria:',
+        options: [
+          'Aceitá-lo como diagnóstico da ação profissional, e não como ofensa ao ser humano.',
+          'Rebate hostilmente e bater na mesa com fúria cega rígida.',
+          'Entrar em crise infindável triste de semanas de choro contínuo e longo paralisado.',
+          'Omitir os erros da contabilidade ofendida perigosa frágil pesada tensa obscura.'
+        ],
+        correct: 0,
+        explanation: 'Feedbacks maduros devem ser encarados como oportunidades pontuais de ajustes na tarefa técnica, sem levar para o lado pessoal.'
+      },
+      {
+        id: 5,
+        question: 'O que é o "Sequestro da Amígdala" no ambiente corporativo tenso de crise aguda?',
+        options: [
+          'Uma doença na garganta inflamada dos operadores que falam excessivamente de tarde fria.',
+          'Quando a emoção instintiva de defesa bruta sobrepõe o raciocínio lógico no cérebro e gera uma atitude agressiva impulsiva irremediável rude tola grossa e mal-educada contra a chefia sênior direta e imediata e forte superior pesada séria densa.',
+          'O rapto físico de arquivos trancados em baús analógicos nas docas escuras industriais longas e periféricas grandes sujas.',
+          'A redução do salário na folha contábil do mês descontado irregular.'
+        ],
+        correct: 1,
+        explanation: 'O sequestro da amígdala ocorre quando a parte emocional do cérebro bloqueia o pensamento racional, provocando rompantes explosivos prejudiciais à carreira.'
+      },
+      {
+        id: 6,
+        question: 'Um profissional "Reativo" difere do profissional "Responsivo" pois:',
+        options: [
+          'O responsivo respira e escolhe a melhor atitude racional analítica prudente sólida sábia e polida, o reativo age por instinto imediato cru irracional infantil e raivoso imaturo e frágil e fraco tolo bobo impulsivo volátil inconstante.',
+          'O responsivo responde emails longos e chatos e cheios de fórmulas obscuras de noite chuvosa; o reativo apaga computadores alheios vizinhos físicos.',
+          'O reativo usa cores berrantes chamativas vibrantes exóticas chocantes na gravata larga social estampada extravagante clássica formal arcaica esquisita.',
+          'Ambos são rigorosamente iguais perante o código de ética penal e legal brasileiro vigente e aplicado rígido severo duro punitivo contundente coercitivo.'
+        ],
+        correct: 0,
+        explanation: 'Profissionais responsivos analisam o cenário antes de agir, enquanto profissionais reativos explodem e reagem de imediato sem medir consequências.'
+      },
+      {
+        id: 7,
+        question: 'Uma pessoa resiliente na corporação consegue:',
+        options: [
+          'Fingir plenamente que não se importa dolorosamente intensamente com os graves problemas urgentes catastróficos.',
+          'Levantar rapidamente e aprender sólidas maduras contínuas valiosas reais práticas técnicas e puras lições preciosas após tombos dolorosos intensos falhas graves fracassos ruins feios vergonhosos intensos densos de projetos vitais centrais analíticos cancelados duros caros onerosos pesados obscuros perdidos falidos caídos, não perdendo a força e foco final contínuo tenaz resiliente firme mental calmo e pacífico e seguro.',
+          'Agredir psicologicamente quem a feriu nas longas horas caladas e sombrias densas da madrugada no chat anônimo invisível furtivo falso corporativo vazio oco noturno obscuro longo distante fechado anônimo.',
+          'Pedir demissão no primeiro obstáculo denso pequeno.'
+        ],
+        correct: 1,
+        explanation: 'A resiliência é a habilidade de absorver o impacto das falhas do dia a dia, reerguer-se com aprendizado e continuar focado nos objetivos.'
+      }
+    ]
+  },
   // =========================================================================
   // CURSO 7: GESTÃO DO TEMPO E PRODUTIVIDADE
   // =========================================================================
