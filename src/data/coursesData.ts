@@ -43,11 +43,12 @@ export const TRACKS: Track[] = [
     id: 'trilha-3',
     name: '3. Tecnologia, Informática & Produtividade com IA',
     category: 'Tecnologia da Informação',
-    description: 'Domine informática básica, nuvem, pacote Office (Excel do Zero e Avançado), noções de inteligência artificial generativa e governança de dados com LGPD.',
+    description: 'Domine planilhas eletrônicas (SOMA, MÉDIA, PROCV), ferramentas digitais em nuvem, pacote Office, IA generativa e governança de dados com LGPD.',
     targetAudienceType: ['ESTAGIARIO', 'ESTUDANTE', 'JOVEM_APRENDIZ'],
-    hoursTotal: 58,
-    coursesCount: 5,
+    hoursTotal: 70,
+    coursesCount: 6,
     courseIds: [
+      'curso-hard-skills-excel-ferramentas-digitais',
       'curso-excel-iniciante',
       'curso-excel-basico-avancado',
       'curso-ia-produtividade',
@@ -94,6 +95,207 @@ export const TRACKS: Track[] = [
 ];
 
 export const COURSES: Course[] = [
+  // =========================================================================
+  // CURSO 4: HARD SKILLS (EXCEL E FERRAMENTAS DIGITAIS)
+  // =========================================================================
+  {
+    id: 'curso-hard-skills-excel-ferramentas-digitais',
+    trackId: 'trilha-3',
+    trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
+    category: 'Tecnologia da Informação',
+    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO', 'ESTAGIARIO'],
+    title: 'Hard Skills (Excel e Ferramentas Digitais)',
+    subtitle: 'Operações e fórmulas essenciais de planilhas (SOMA, MÉDIA, PROCV), formatação condicional, ecossistema nuvem e agilidade com atalhos de teclado.',
+    hours: 12,
+    equivalentHours: 12,
+    modality: 'EAD 100% Gratuito (Escola Virtual)',
+    targetAudience: 'Jovens aprendizes, estagiários e colaboradores que buscam dominar planilhas eletrônicas e ferramentas digitais em nuvem no dia a dia corporativo.',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Mestre em Ferramentas Digitais',
+    badgeCategory: 'Ferramentas de Escritório',
+    badgeIcon: 'Laptop',
+    accentColor: '#3B82F6',
+    level: 'Iniciante',
+    learningObjectives: [
+      'Dominar o uso prático de funções essenciais em planilhas eletrônicas como SOMA, MÉDIA e PROCV para automação de cálculos e cruzamento de dados.',
+      'Construir painéis visuais eficientes com formatação condicional para destacar metas e indicadores de alerta.',
+      'Operar plataformas colaborativas em nuvem (Google Workspace e Microsoft 365) com rigor na gestão de permissões de acesso.',
+      'Elevar a agilidade e produtividade diária no computador utilizando atalhos essenciais de teclado.'
+    ],
+    modules: [
+      {
+        id: 'hard-skills-mod-1',
+        number: 1,
+        title: 'MÓDULO 1: O Domínio das Planilhas',
+        summary: 'Aprenda operações com fórmulas essenciais (SOMA, MÉDIA e PROCV) e visualização de dados com formatação condicional.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Operações e Fórmulas Essenciais',
+              body: [
+                'O Microsoft Excel e o Google Planilhas são indispensáveis na rotina corporativa.',
+                'O uso de funções como SOMA() e MÉDIA() automatiza cálculos repetitivos de conjuntos de dados.',
+                'Já a função PROCV() permite realizar buscas verticais em tabelas extensas utilizando um valor de referência, agilizando o cruzamento de informações financeiras, cadastrais ou de estoque em segundos.'
+              ],
+              highlightBox: {
+                type: 'calc',
+                title: 'Funções Mais Usadas no Escritório',
+                text: '=SOMA(A1:A50) totaliza valores; =MÉDIA(B1:B20) calcula o valor médio; =PROCV(chave, tabela, coluna, FALSO) busca informações relacionadas com exatidão.'
+              }
+            },
+            {
+              subheading: '2. Formatação Condicional e Visualização',
+              body: [
+                'A Formatação Condicional altera automaticamente o visual de uma célula (como cor de fundo ou do texto) com base em regras pré-definidas.',
+                'É amplamente utilizada por gestores para criar painéis e dashboards visuais, destacando instantaneamente metas atingidas (em verde) ou valores em alerta (em vermelho), facilitando a tomada de decisão ágil.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Dashboards e Indicadores Visuais',
+                text: 'A formatação condicional permite identificar rapidamente tendências, desvios ou gargalos sem precisar ler linha por linha da planilha.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'hard-skills-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: O Ecossistema Nuvem',
+        summary: 'Colaboração em tempo real, segurança de permissões de arquivos compartilhados e ganho de velocidade com atalhos de teclado.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Trabalho Colaborativo em Nuvem',
+              body: [
+                'Plataformas como Google Workspace e Microsoft 365 transformaram o trabalho em equipe.',
+                'Documentos salvos na nuvem permitem edição simultânea por múltiplos usuários, histórico de versões para recuperação de conteúdos e controle rígido de permissões de acesso (visualização, comentário ou edição), garantindo segurança e fluidez aos projetos.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Segurança no Compartilhamento',
+                text: 'Ao compartilhar documentos corporativos na nuvem, defina com rigor os níveis de acesso (leitor, comentarista ou editor) para resguardar a integridade dos dados.'
+              }
+            },
+            {
+              subheading: '2. Agilidade com Atalhos de Teclado',
+              body: [
+                'Dominar atalhos essenciais do sistema operacional e de programas do escritório (como Ctrl+C, Ctrl+V, Ctrl+Z, Ctrl+F e combinações de navegação) reduz drasticamente a dependência do mouse.',
+                'A fluência no uso do teclado economiza tempo precioso ao longo das tarefas operacionais do dia a dia.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Ganho de Tempo Real',
+                text: 'Combinar atalhos de teclado para navegação, cópia e busca transforma a produtividade do usuário nas rotinas de escritório.'
+              }
+            }
+          ]
+        }
+      }
+    ],
+    caseStudies: [
+      {
+        id: 'caso-hardskills-1',
+        title: 'Automatização e Cruzamento de Dados no Suporte Operacional',
+        character: 'Lucas, Aprendiz de Controladoria',
+        scenario: 'Lucas precisava verificar manualmente centenas de pedidos contra uma tabela de clientes para validar se os descontos concedidos estavam corretos.',
+        criticalAnalysis: 'Em vez de buscar um por um, Lucas aplicou a fórmula PROCV() para puxar os limites autorizados e configurou Formatação Condicional para destacar em vermelho os valores divergentes.',
+        keyTakeaways: [
+          'O PROCV automatiza o cruzamento de bases distintas sem margem para erro humano.',
+          'Destaques visuais agilizam a conferência dos gestores na tomada de decisão.'
+        ],
+        badgeRelevance: 'Comprova competência técnica prática em ferramentas de escritório e automação de planilhas.'
+      }
+    ],
+    quiz: [
+      {
+        id: 1,
+        question: 'Vantagem do PROCV no Excel:',
+        options: [
+          'Mudar cores das células.',
+          'Somar todas colunas.',
+          'Buscar uma informação numa lista usando uma referência.',
+          'Criar gráficos 3D.'
+        ],
+        correct: 2,
+        explanation: 'O PROCV busca verticalmente um valor numa coluna de uma tabela e retorna dados de uma coluna correspondente na mesma linha.'
+      },
+      {
+        id: 2,
+        question: 'O trabalho em nuvem é caracterizado por:',
+        options: [
+          'Salvar em pen-drives.',
+          'Impedir edição múltipla.',
+          'Facilitar edição simultânea e backup automático.',
+          'Apenas fotos institucionais.'
+        ],
+        correct: 2,
+        explanation: 'A tecnologia em nuvem permite colaboração em tempo real e garante salvamento contínuo das alterações na rede.'
+      },
+      {
+        id: 3,
+        question: 'A formatação condicional ajuda o gestor a:',
+        options: [
+          'Enxergar indicadores positivos/alerta visualmente e rápido.',
+          'Apagar resultados ruins.',
+          'Exportar para e-mail.',
+          'Trancar a planilha.'
+        ],
+        correct: 0,
+        explanation: 'Formatar condicionalmente altera a cor de fundo das células conforme regras estipuladas, agilizando a leitura analítica dos gestores.'
+      },
+      {
+        id: 4,
+        question: 'Ao compartilhar um link de documento em nuvem, deve-se:',
+        options: [
+          'Dar acesso total a todos.',
+          'Ajustar rigorosamente as permissões (leitura ou edição).',
+          'Postar abertamente.',
+          'Imprimir fisicamente.'
+        ],
+        correct: 1,
+        explanation: 'O gerenciamento de acessos garante a segurança das informações evitando que pessoas não autorizadas alterem arquivos vitais.'
+      },
+      {
+        id: 5,
+        question: 'Para que serve a função SOMA() no Excel?',
+        options: [
+          'Calcular o total acumulado de um intervalo numérico.',
+          'Pintar células.',
+          'Pesquisar textos.',
+          'Apagar o arquivo.'
+        ],
+        correct: 0,
+        explanation: 'A função SOMA() automatiza a adição de extensas colunas e linhas de valores financeiros sem a necessidade de somar manualmente.'
+      },
+      {
+        id: 6,
+        question: 'A função MÉDIA() é útil para:',
+        options: [
+          'Descobrir o valor central/médio de um lote de dados (ex: satisfação).',
+          'Transformar números em letras.',
+          'Centralizar o texto na célula.',
+          'Formatar a data.'
+        ],
+        correct: 0,
+        explanation: 'A função MÉDIA() calcula a média aritmética do intervalo selecionado, facilitando a análise de indicadores gerenciais.'
+      },
+      {
+        id: 7,
+        question: 'O uso de atalhos de teclado (ex: Ctrl+C, Ctrl+V) resulta em:',
+        options: [
+          'Ganho expressivo de tempo operando o computador em tarefas diárias.',
+          'Quebra do sistema operacional.',
+          'Lentidão da nuvem.',
+          'Maior incidência de vírus.'
+        ],
+        correct: 0,
+        explanation: 'Dominar atalhos reduz a dependência exclusiva do mouse e eleva exponencialmente a velocidade nas tarefas de digitação e edição.'
+      }
+    ]
+  },
   // =========================================================================
   // CURSO 3: SOFT SKILLS E COMUNICAÇÃO INTERPESSOAL
   // =========================================================================
