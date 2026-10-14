@@ -43,11 +43,12 @@ export const TRACKS: Track[] = [
     id: 'trilha-3',
     name: '3. Tecnologia, Informática & Produtividade com IA',
     category: 'Tecnologia da Informação',
-    description: 'Domine IA generativa prática (engenharia de prompt e copilotos), planilhas eletrônicas, ecossistema nuvem, pacote Office e segurança com LGPD.',
+    description: 'Domine NotebookLM (IA ancorada em fontes e podcasts), IA generativa prática, planilhas, ecossistema nuvem e governança com LGPD.',
     targetAudienceType: ['ESTAGIARIO', 'ESTUDANTE', 'JOVEM_APRENDIZ'],
-    hoursTotal: 82,
-    coursesCount: 7,
+    hoursTotal: 94,
+    coursesCount: 8,
     courseIds: [
+      'curso-produtividade-notebooklm',
       'curso-inteligencia-artificial-pratica',
       'curso-hard-skills-excel-ferramentas-digitais',
       'curso-excel-iniciante',
@@ -96,6 +97,208 @@ export const TRACKS: Track[] = [
 ];
 
 export const COURSES: Course[] = [
+  // =========================================================================
+  // CURSO 6: PRODUTIVIDADE COM NOTEBOOKLM
+  // =========================================================================
+  {
+    id: 'curso-produtividade-notebooklm',
+    trackId: 'trilha-3',
+    trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
+    category: 'Tecnologia da Informação',
+    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO', 'ESTAGIARIO'],
+    title: 'Produtividade com NotebookLM',
+    subtitle: 'IA baseada em fontes próprias, técnica de ancoramento (grounding), rastreabilidade com citações diretas, guias de estudo e Audio Overview (podcasts).',
+    hours: 12,
+    equivalentHours: 12,
+    modality: 'EAD 100% Gratuito (Escola Virtual)',
+    targetAudience: 'Estudantes, jovens aprendizes, estagiários e analistas que precisam absorver grandes volumes de documentos, manuais e apostilas com agilidade e confiabilidade.',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Especialista em NotebookLM',
+    badgeCategory: 'Ferramentas de Escritório',
+    badgeIcon: 'BookOpen',
+    accentColor: '#3B82F6',
+    level: 'Iniciante',
+    learningObjectives: [
+      'Compreender o princípio do ancoramento (grounding) no NotebookLM, restringindo as respostas da IA exclusivamente aos documentos fornecidos.',
+      'Utilizar citações diretas clicáveis para auditar, rastrear e validar a procedência exata das informações nos PDFs e textos originais.',
+      'Gerar automaticamente guias de estudo, cronogramas, FAQs e relatórios executivos a partir de múltiplos arquivos.',
+      'Aproveitar o recurso Audio Overview para transformar materiais densos em podcasts explicativos acessíveis para estudo em qualquer lugar.'
+    ],
+    modules: [
+      {
+        id: 'notebooklm-mod-1',
+        number: 1,
+        title: 'MÓDULO 1: IA Baseada em Suas Fontes',
+        summary: 'Entenda como o NotebookLM ancora suas respostas unicamente nos documentos carregados e utilize citações diretas para auditoria.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Ancoramento (Grounding)',
+              body: [
+                'O NotebookLM (ferramenta do Google) diferencia-se de IAs genéricas por trabalhar com a técnica de ancoramento restrito.',
+                'Ao fazer o upload de seus próprios arquivos (PDFs, documentos do Google, planilhas ou textos), a ferramenta responde perguntas baseando-se exclusivamente nos seus dados fornecidos.',
+                'Isso reduz drasticamente a ocorrência de alucinações e garante conformidade com as regras e manuais internos da empresa.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'O Poder do Ancoramento',
+                text: 'Ao restringir as respostas ao material enviado, a IA não busca respostas aleatórias na internet e evita a disseminação de dados não homologados.'
+              }
+            },
+            {
+              subheading: '2. Rastreabilidade e Citações Diretas',
+              body: [
+                'Todas as respostas geradas pelo NotebookLM acompanham citações numéricas interativas.',
+                'Ao clicar em uma citação, a plataforma direciona o usuário imediatamente para a página e o parágrafo exatos do documento original de onde a informação foi extraída.',
+                'Essa funcionalidade permite auditoria instantânea dos dados e validação rápida em processos de compliance e auditoria.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Auditoria com Um Clique',
+                text: 'As citações diretas garantem que toda afirmação possa ser comprovada imediatamente na página e linha do documento original de referência.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'notebooklm-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: Formatos Multimodais de Estudo',
+        summary: 'Gere materiais de apoio automáticos (FAQs, resumos, linhas do tempo) e converta apostilas em discussões de podcast com o Audio Overview.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Geração de Guias de Estudo e MOCs',
+              body: [
+                'A partir das fontes carregadas, a plataforma permite gerar com um único clique guias de estudo estruturados, FAQs com as dúvidas mais prováveis, linhas do tempo e relatórios executivos.',
+                'Isso transforma bases brutas de dados em materiais organizados para treinamentos e consultas rápidas da equipe.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Materiais de Apoio Imediatos',
+                text: 'Crie apostilas didáticas, glossários de termos técnicos e perguntas frequentes a partir de documentos complexos em segundos.'
+              }
+            },
+            {
+              subheading: '2. Audio Overview (Podcasts Automáticos)',
+              body: [
+                'O recurso Audio Overview converte documentos de texto em um debate em áudio entre dois apresentadores virtuais em formato de podcast.',
+                'Essa inovação oferece acessibilidade e flexibilidade, permitindo absorver conteúdos densos de manuais ou artigos enquanto o profissional se desloca no trânsito ou realiza tarefas físicas rotineiras.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Estudo Dinâmico em Qualquer Lugar',
+                text: 'O formato de debate em áudio torna o aprendizado envolvente e prático, ideal para conciliar a rotina de deslocamento com a absorção de conhecimento.'
+              }
+            }
+          ]
+        }
+      }
+    ],
+    caseStudies: [
+      {
+        id: 'caso-notebooklm-1',
+        title: 'Centralização de Normas e Onboarding Ágil de Novos Contratados',
+        character: 'Camila, Aprendiz de Recursos Humanos',
+        scenario: 'Camila precisava capacitar novos aprendizes sobre as políticas internas da empresa reunidas em mais de 10 manuais e regulamentos diferentes.',
+        criticalAnalysis: 'Ela consolidou os manuais no NotebookLM, gerou um FAQ com as dúvidas recorrentes e compartilhou o Audio Overview para os novatos escutarem no caminho de volta para casa.',
+        keyTakeaways: [
+          'Unificar fontes garante que todas as respostas venham da documentação oficial da empresa.',
+          'Formatos alternativos como áudio facilitam a retenção do conteúdo sem sobrecarregar a leitura.'
+        ],
+        badgeRelevance: 'Comprova domínio em organização do conhecimento, síntese multimodal e aprendizagem ágil.'
+      }
+    ],
+    quiz: [
+      {
+        id: 1,
+        question: 'O diferencial do NotebookLM é:',
+        options: [
+          'Busca aleatória na web.',
+          'Resposta ancorada apenas nos documentos que você fez upload.',
+          'Gráficos 3D superiores.',
+          'Correção via webcam.'
+        ],
+        correct: 1,
+        explanation: 'O NotebookLM usa o princípio do ancoramento (grounding), limitando suas análises única e exclusivamente às fontes enviadas pelo próprio usuário.'
+      },
+      {
+        id: 2,
+        question: 'Para que servem as "citações diretas" (marcadores)?',
+        options: [
+          'Estética da interface.',
+          'Apontar falhas de upload.',
+          'Validar a resposta mostrando a página e parágrafo exatos no PDF original.',
+          'Convidar amigos.'
+        ],
+        correct: 2,
+        explanation: 'As citações clicáveis trazem rastreabilidade total, permitindo conferir no documento original o trecho exato que originou a afirmação.'
+      },
+      {
+        id: 3,
+        question: 'Ao usar manuais pesados, você pode gerar rapidamente:',
+        options: [
+          'FAQs e Guias de Estudo resumidos.',
+          'Redação infantil.',
+          'Planilhas automáticas que invadem servidores.',
+          'Relatórios deletados.'
+        ],
+        correct: 0,
+        explanation: 'A plataforma transforma volumes densos de texto em materiais de apoio estruturados para revisão rápida de matérias e regulamentos.'
+      },
+      {
+        id: 4,
+        question: 'O formato "Audio Overview" cria:',
+        options: [
+          'Melodias clássicas.',
+          'Alertas sonoros de tela inativa.',
+          'Um "podcast" gerado a partir do seu PDF, excelente para consumir no trânsito.',
+          'Sons de pássaros aleatórios.'
+        ],
+        correct: 2,
+        explanation: 'O Audio Overview gera um diálogo em áudio entre dois apresentadores virtuais debatendo os tópicos dos documentos carregados.'
+      },
+      {
+        id: 5,
+        question: 'Por que a técnica de "Grounding" (ancoramento) torna os dados mais seguros para o ambiente corporativo?',
+        options: [
+          'Por amarrar o computador na mesa com cabos de aço rígidos.',
+          'Por forçar a inteligência a não buscar no Google, restringindo as respostas apenas aos dados controlados enviados pela própria companhia.',
+          'Porque diminui a bateria gasta na execução do programa interno.',
+          'Por utilizar senhas alfanuméricas criptografadas curtas.'
+        ],
+        correct: 1,
+        explanation: 'Ao vedar buscas externas abertas na web, a ferramenta impede a contaminação da análise com informações não homologadas pela empresa.'
+      },
+      {
+        id: 6,
+        question: 'Como as Notas Salvas ajudam o analista diário?',
+        options: [
+          'Fixam os aprendizados e excertos-chave extraídos para compor um painel lateral de consulta ágil sem reabrir os longos PDFs primários e brutos.',
+          'Enviam músicas para a caixa postal.',
+          'Desligam a iluminação noturna do escritório remoto online.',
+          'Formatam o disco rígido liberando mais de 50GB diários.'
+        ],
+        correct: 0,
+        explanation: 'O painel de notas serve como um acervo de memórias rápidas extraídas das conversas para montagem de relatórios consolidados.'
+      },
+      {
+        id: 7,
+        question: 'Em um contexto universitário, a ferramenta é ideal para:',
+        options: [
+          'Burlar o sistema de notas do MEC diretamente.',
+          'Organizar apostilas extensas de vários professores numa única base coerente de perguntas e respostas focadas na avaliação final acadêmica analítica.',
+          'Desenhar logos coloridos para repúblicas estudantis noturnas festivas.',
+          'Apagar e-mails institucionais do portal do aluno matriculado na faculdade de Letras.'
+        ],
+        correct: 1,
+        explanation: 'Unificar múltiplos arquivos numa só base de dados facilita a revisão para provas e o estudo cruzado de bibliografias extensas.'
+      }
+    ]
+  },
   // =========================================================================
   // CURSO 5: INTELIGÊNCIA ARTIFICIAL PRÁTICA
   // =========================================================================
