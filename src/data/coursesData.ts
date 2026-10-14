@@ -7,9 +7,9 @@ export const TRACKS: Track[] = [
     category: 'Desenvolvimento Pessoal e Legislação',
     description: 'Trilha fundamental para quem quer conquistar a primeira vaga formal: privacidade e conformidade com a LGPD, orçamento do primeiro salário e postura profissional em processos seletivos.',
     targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO'],
-    hoursTotal: 34,
-    coursesCount: 3,
-    courseIds: ['curso-jovem-aprendiz-avancado', 'curso-curriculo-plataformas', 'curso-postura-entrevistas'],
+    hoursTotal: 46,
+    coursesCount: 4,
+    courseIds: ['curso-jovem-aprendiz-avancado', 'curso-curriculo-plataformas', 'curso-postura-entrevistas', 'curso-preparacao-entrevistas-processos-seletivos'],
     badgeReward: 'Embaixador do Primeiro Emprego',
     icon: 'GraduationCap',
     accentColor: '#8B5CF6'
@@ -782,6 +782,216 @@ export const COURSES: Course[] = [
         ],
         correct: 1,
         explanation: 'Contato visual, postura aberta e atenção ao interlocutor transmitem confiança, cordialidade e respeito.'
+      }
+    ]
+  },
+
+  // =========================================================================
+  // PREPARAÇÃO PARA ENTREVISTAS E PROCESSOS SELETIVOS
+  // =========================================================================
+  {
+    id: 'curso-preparacao-entrevistas-processos-seletivos',
+    trackId: 'trilha-1',
+    trackName: 'TRILHA 1: Entrada no Mercado & Primeiro Emprego',
+    category: 'Desenvolvimento Pessoal',
+    targetAudienceType: ['PRIMEIRO_EMPREGO', 'JOVEM_APRENDIZ', 'ESTUDANTE'],
+    title: 'Preparação para Entrevistas e Processos Seletivos',
+    subtitle: 'Estruturação de currículo campeão, pitch pessoal de 1 a 2 minutos, técnica STAR para respostas comportamentais e atitude colaborativa em dinâmicas de grupo',
+    hours: 12,
+    equivalentHours: 12,
+    modality: 'EAD 100% Gratuito (Escola Virtual)',
+    targetAudience: 'Jovens aprendizes, estagiários e estudantes participando de processos seletivos e entrevistas de emprego',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Aprovado em Entrevistas',
+    badgeCategory: 'Atitude Profissional',
+    badgeIcon: 'UserCheck',
+    accentColor: '#8B5CF6',
+    level: 'Iniciante',
+    learningObjectives: [
+      'Estruturar um currículo profissional limpo, objetivo e direcionado para a vaga pretendida sem excessos decorativos.',
+      'Construir e praticar um pitch pessoal assertivo de 1 a 2 minutos com clareza, energia e poder de síntese.',
+      'Dominar a técnica STAR (Situação, Tarefa, Ação, Resultado) para estruturar respostas a perguntas comportamentais com fatos concretos.',
+      'Desenvolver postura colaborativa, escuta ativa e controle emocional em dinâmicas de grupo e entrevistas online.'
+    ],
+    modules: [
+      {
+        id: 'prep-mod-1',
+        number: 1,
+        title: 'MÓDULO 1: A Base do Candidato',
+        summary: 'Estruturação de um currículo campeão sem dados desnecessários e domínio do pitch pessoal de 1 a 2 minutos.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Estruturação de um Currículo Campeão',
+              body: [
+                'O currículo é o seu primeiro cartão de visitas no mercado de trabalho. Ele deve ser limpo, claro e objetivo. Inicie sempre com seus dados de contato atualizados (nome, telefone, e-mail e LinkedIn). Logo em seguida, defina um objetivo profissional específico para a vaga desejada. Destaque sua formação acadêmica, projetos relevantes desenvolvidos e cursos extracurriculares.',
+                'É expressamente proibido inserir informações falsas ou dados irrelevantes (como números de documentos pessoais ou endereço completo). Lembre-se: recrutadores levam poucos segundos na primeira triagem, por isso o visual precisa ser organizado e sem excessos decorativos.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Regra de Ouro da Triagem',
+                text: 'Recrutadores dedicam poucos segundos na triagem inicial. Um layout limpo, objetivo e em formato PDF garante que seus pontos fortes sejam visualizados imediatamente.'
+              },
+              asciiDiagram: `┌────────────────────────────────────────────────────────┐
+│             ESTRUTURA DO CURRÍCULO CAMPEÃO             │
+├────────────────────────────────────────────────────────┤
+│ [1. Cabeçalho]      Nome completo, E-mail, Fone/WhatsApp│
+│ [2. Objetivo]       Cargo pretendido claro e específico │
+│ [3. Formação]       Escolaridade atual e instituição   │
+│ [4. Competências]   Habilidades técnicas e soft skills  │
+│ [5. Cursos Extras]  Certificados e capacitações recentes│
+└────────────────────────────────────────────────────────┘`
+            },
+            {
+              subheading: '2. O Pitch Pessoal',
+              body: [
+                'O Pitch Pessoal é a sua apresentação oral resumida, com duração de 1 a 2 minutos, utilizada no início das entrevistas ou dinâmicas.',
+                'Ele deve responder de forma concatenada a três perguntas essenciais: quem é você profissionalmente, quais são suas principais conquistas/aprendizados e por que você tem um interesse autêntico na oportunidade.',
+                'Um bom pitch conecta seu histórico com as necessidades da empresa, demonstrando clareza de pensamento, energia e poder de síntese, evitando leituras decoradas ou biografias longas desde a infância.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Roteiro de 3 Etapas do Pitch',
+                text: '1. Quem você é profissionalmente -> 2. Principais aprendizados e projetos -> 3. Motivação autêntica pela empresa.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'prep-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: O Momento da Avaliação',
+        summary: 'Metodologia STAR para perguntas comportamentais, conduta em dinâmicas de grupo e entrevistas online.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. A Técnica STAR nas Entrevistas',
+              body: [
+                'Diante de perguntas comportamentais (ex: "Conte-me sobre uma situação em que você lidou com um desafio"), utilize a estrutura STAR:',
+                '• Situação: Contextualize o cenário inicial e o momento do desafio.',
+                '• Tarefa: Explique qual era a sua responsabilidade ou o problema a ser superado.',
+                '• Ação: Detalhe exatamente o que você fez, quais ferramentas usou e como agiu.',
+                '• Resultado: Apresente o desfecho quantitativo ou qualitativo alcançado.',
+                'Essa metodologia impede respostas vagas ou genéricas, provando suas competências através de fatos concretos.'
+              ],
+              asciiDiagram: `┌────────────────────────────────────────────────────────┐
+│                   A METODOLOGIA S.T.A.R.                │
+├────────────────────────────────────────────────────────┤
+│ [S] Situação   ► Contexto inicial e cenário do desafio │
+│ [T] Tarefa     ► Sua responsabilidade e objetivo       │
+│ [A] Ação       ► O que VOCÊ fez detalhadamente         │
+│ [R] Resultado  ► Desfecho quantitativo e aprendizado   │
+└────────────────────────────────────────────────────────┘`,
+              highlightBox: {
+                type: 'info',
+                title: 'Fatos vs. Suposições',
+                text: 'A técnica STAR elimina o "eu costumo fazer" e comprova competências através de fatos reais vividos na escola, cursos ou trabalhos anteriores.'
+              }
+            },
+            {
+              subheading: '2. Comportamento e Dinâmicas de Grupo',
+              body: [
+                'As dinâmicas de grupo não buscam quem fala mais alto ou quem lidera à força, mas sim a capacidade de trabalho em equipe, inteligência social e resolução colaborativa de problemas.',
+                'A atitude esperada envolve praticar a escuta ativa, dar espaço para os colegas exporem suas ideias, construir soluções a partir dos pontos do grupo e manter a calma sob pressão. O foco deve ser sempre o objetivo coletivo proposto pelo avaliador.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Preparação para Entrevistas Online',
+                text: 'Ambiente calmo, teste antecipado de áudio/vídeo e postura ereta comunicam profissionalismo, energia e respeito ao tempo do recrutador.'
+              }
+            }
+          ]
+        }
+      }
+    ],
+    caseStudies: [],
+    quiz: [
+      {
+        id: 1,
+        question: 'Qual a principal função do Pitch Pessoal em uma entrevista?',
+        options: [
+          'Ler o currículo em voz alta.',
+          'Apresentar perfil, habilidades e motivação sucintamente.',
+          'Discutir benefícios logo de início.',
+          'Narrar a vida desde a infância.'
+        ],
+        correct: 1,
+        explanation: 'O pitch pessoal é uma apresentação rápida e estratégica criada para sintetizar em até dois minutos quem você é profissionalmente, suas maiores competências e a motivação para ocupar a vaga.'
+      },
+      {
+        id: 2,
+        question: 'O que é a técnica STAR?',
+        options: [
+          'Um teste de informática.',
+          'Uma fórmula matemática.',
+          'Estrutura (Situação, Tarefa, Ação, Resultado) para respostas comportamentais.',
+          'Um software de RH.'
+        ],
+        correct: 2,
+        explanation: 'A metodologia STAR auxilia o candidato a organizar seu raciocínio ao narrar experiências passadas de forma lógica e objetiva.'
+      },
+      {
+        id: 3,
+        question: 'Durante uma dinâmica de grupo, a atitude esperada é:',
+        options: [
+          'Ficar em silêncio.',
+          'Interromper os colegas.',
+          'Colaborar ativamente e ouvir o grupo.',
+          'Ignorar a equipe.'
+        ],
+        correct: 2,
+        explanation: 'Dinâmicas coletivas medem a capacidade de trabalho em equipe, empatia e comunicação colaborativa.'
+      },
+      {
+        id: 4,
+        question: 'Sobre os "pontos a melhorar", o que o recrutador espera ouvir?',
+        options: [
+          'Que não possui fraquezas.',
+          'Respostas genéricas como "sou perfeccionista".',
+          'Um ponto real e as ações que já toma para resolvê-lo.',
+          'Recusa em responder.'
+        ],
+        correct: 2,
+        explanation: 'Demonstrar autoconhecimento genuíno e mostrar proatividade em se aperfeiçoar é o comportamento esperado pelos avaliadores.'
+      },
+      {
+        id: 5,
+        question: 'Para uma entrevista online, qual preparação é fundamental?',
+        options: [
+          'Ligar na hora sem testar nada.',
+          'Testar conexão, câmera e áudio previamente em local calmo.',
+          'Usar um fundo muito bagunçado.',
+          'Ficar de pijama.'
+        ],
+        correct: 1,
+        explanation: 'A preparação antecipada evita imprevistos técnicos e passa uma imagem imediata de responsabilidade e profissionalismo.'
+      },
+      {
+        id: 6,
+        question: 'O que a linguagem corporal transmite ao entrevistador?',
+        options: [
+          'Absolutamente nada.',
+          'Confiança, interesse e energia.',
+          'Sono e preguiça.',
+          'Apenas sua altura.'
+        ],
+        correct: 1,
+        explanation: 'A comunicação não verbal (postura, olhar fixo e expressões faciais) complementa e reforça a veracidade da fala.'
+      },
+      {
+        id: 7,
+        question: 'Quando o recrutador pergunta se você tem dúvidas, você deve:',
+        options: [
+          'Dizer que não quer saber de nada.',
+          'Perguntar sobre férias no primeiro dia.',
+          'Fazer perguntas inteligentes sobre os desafios da vaga e cultura da empresa.',
+          'Sair da sala sem se despedir.'
+        ],
+        correct: 2,
+        explanation: 'Fazer perguntas relevantes demonstra interesse genuíno, curiosidade intelectual e pesquisa prévia sobre a empresa.'
       }
     ]
   },
