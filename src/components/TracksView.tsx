@@ -415,6 +415,21 @@ export default function TracksView() {
                       </div>
                     </div>
 
+                    {/* Fluxo Visual Sequencial (Etapa 1 ➔ Etapa 2 ➔ Etapa 3) */}
+                    <div className="flex items-center gap-2 overflow-x-auto pb-1 pt-0.5 no-scrollbar">
+                      {steps.map((s, i) => (
+                        <React.Fragment key={s.stepNumber}>
+                          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#100A1D] border border-[#2D1B4E] text-xs shrink-0">
+                            <span className="font-extrabold text-purple-300">Etapa #{s.stepNumber}</span>
+                            <span className="text-zinc-300 font-medium truncate max-w-[180px]">{s.title}</span>
+                          </div>
+                          {i < steps.length - 1 && (
+                            <span className="text-purple-400/80 font-black text-sm shrink-0 px-0.5">➔</span>
+                          )}
+                        </React.Fragment>
+                      ))}
+                    </div>
+
                     {/* Timeline de Etapas */}
                     <div className="space-y-4">
                       {steps.map((step, idx) => {
