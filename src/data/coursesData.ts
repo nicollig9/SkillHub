@@ -5,11 +5,12 @@ export const TRACKS: Track[] = [
     id: 'trilha-1',
     name: '1. Entrada no Mercado & Primeiro Emprego',
     category: 'Desenvolvimento Pessoal e Legislação',
-    description: 'Trilha fundamental para quem quer conquistar a primeira vaga formal: direitos da Lei 10.097, currículo vencedor, orçamento inicial e técnicas comprovadas para entrevistas.',
+    description: 'Trilha fundamental para quem quer conquistar a primeira vaga formal: ética e etiqueta corporativa, direitos da Lei 10.097, currículo vencedor e técnicas de entrevista.',
     targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO'],
-    hoursTotal: 58,
-    coursesCount: 5,
+    hoursTotal: 70,
+    coursesCount: 6,
     courseIds: [
+      'curso-etica-etiqueta-corporativa',
       'curso-jovem-aprendiz-avancado',
       'curso-curriculo-plataformas',
       'curso-orcamento-primeiro-salario',
@@ -99,6 +100,210 @@ export const TRACKS: Track[] = [
 ];
 
 export const COURSES: Course[] = [
+  // =========================================================================
+  // CURSO 9: ÉTICA E ETIQUETA CORPORATIVA (PRESENCIAL E DIGITAL)
+  // =========================================================================
+  {
+    id: 'curso-etica-etiqueta-corporativa',
+    trackId: 'trilha-1',
+    trackName: 'TRILHA 1: Entrada no Mercado & Primeiro Emprego',
+    category: 'Desenvolvimento Pessoal',
+    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO', 'ESTAGIARIO'],
+    title: 'Ética e Etiqueta Corporativa (Presencial e Digital)',
+    subtitle: 'Adequação de vestuário (dress code), pontualidade, etiqueta em videochamadas (home office), WhatsApp corporativo e direito à desconexão.',
+    hours: 12,
+    equivalentHours: 12,
+    modality: 'EAD 100% Gratuito (Escola Virtual)',
+    targetAudience: 'Jovens aprendizes, estagiários e profissionais em início de carreira buscando aprimorar sua postura profissional presencial e remota.',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Profissional de Alta Postura & Ética',
+    badgeCategory: 'Atitude Profissional',
+    badgeIcon: 'Sparkles',
+    accentColor: '#8B5CF6',
+    level: 'Iniciante',
+    learningObjectives: [
+      'Compreender e respeitar o código de vestimenta (dress code) alinhado à cultura corporativa e aos diferentes segmentos de mercado.',
+      'Cultivar pontualidade e rigor no cumprimento de compromissos como pilar de credibilidade profissional.',
+      'Aplicar as melhores práticas de etiqueta em videochamadas e reuniões de home office (iluminação frontal, enquadramento e uso do microfone no mudo).',
+      'Utilizar canais de comunicação corporativa como WhatsApp com bom senso, respeitando o direito à desconexão e a privacidade dos colegas.'
+    ],
+    modules: [
+      {
+        id: 'etica-etiqueta-mod-1',
+        number: 1,
+        title: 'MÓDULO 1: Comportamento Presencial',
+        summary: 'Diretrizes de vestuário corporativo (dress code) para diferentes segmentos de mercado e o valor inegociável da pontualidade.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Adequação de Vestuário (Dress Code)',
+              body: [
+                'O modo de se vestir comunica respeito pela cultura da empresa e pelos clientes.',
+                'O dress code varia desde o formal (terno, gravata ou alfaiataria) até o casual (jeans e camiseta), dependendo do segmento.',
+                'Errar para menos (vestir-se com desleixo) passa imagem de amadorismo; errar para mais (excesso de formalidade em startups) demonstra falta de poder de observação.',
+                'Vista-se com bom senso alinhado ao ambiente corporativo.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Dress Code e Imagem Pessoal',
+                text: 'Observe discretamente como os líderes e colegas de referência se vestem nos primeiros dias e alinhe seu vestuário ao padrão da organização.'
+              }
+            },
+            {
+              subheading: '2. Pontualidade e Compromisso',
+              body: [
+                'Chegar no horário certo a reuniões e cumprir prazos acordados é a base da credibilidade profissional.',
+                'Atrasos recorrentes demonstram desrespeito com o tempo alheio.',
+                'Caso ocorra um imprevisto inevitável, avise antecipadamente com uma justificativa plausível e o novo horário previsto de chegada.'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Pontualidade é Credibilidade',
+                text: 'Planeje trajetos prevendo imprevistos no trânsito; chegar com 5 a 10 minutos de antecedência transmite zelo e serenidade.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'etica-etiqueta-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: O Novo Paradigma Remoto (Home Office)',
+        summary: 'Etiqueta em reuniões virtuais (câmera, iluminação e microfone) e uso responsável do WhatsApp corporativo respeitando o descanso da equipe.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Etiqueta em Videochamadas',
+              body: [
+                'Reuniões virtuais exigem os mesmos cuidados do ambiente presencial.',
+                'Mantenha a câmera ligada quando solicitado para transmitir transparência, garanta um fundo limpo e organizado, atente-se para a iluminação frontal do seu rosto e mantenha o microfone no Mute sempre que não estiver falando, evitando que barulhos domésticos interrompam a apresentação.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Iluminação Frontal e Enquadramento',
+                text: 'A luz deve incidir na frente do seu rosto (nunca atrás de você, criando silhuetas escuras); mantenha a câmera na altura dos olhos e fundo profissional.'
+              }
+            },
+            {
+              subheading: '2. WhatsApp Corporativo e Direito à Desconexão',
+              body: [
+                'O aplicativo de mensagens deve ser utilizado com parcimônia para tratar de assuntos profissionais.',
+                'Evite enviar demandas fora do expediente de trabalho ou nos fins de semana, respeitando o direito à desconexão dos colegas.',
+                'Assuntos complexos ou delicados devem ser tratados por e-mail oficial ou reuniões agendadas, e não por áudios longos no chat pessoal.'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Direito à Desconexão',
+                text: 'Demandas enviadas em fins de semana geram ansiedade e quebram a barreira saudável entre vida pessoal e profissional dos colaboradores.'
+              }
+            }
+          ]
+        }
+      }
+    ],
+    caseStudies: [
+      {
+        id: 'caso-eticaetiqueta-1',
+        title: 'Postura Profissional em Reunião Híbrida com Diretoria',
+        character: 'Vinícius, Jovem Aprendiz Administrativo em Regime Híbrido',
+        scenario: 'Vinícius participou de uma videochamada executiva importante trabalhando de casa e enfrentou barulho de obras na vizinhança.',
+        criticalAnalysis: 'Ele manteve o microfone no mudo, ativou o cancelamento de ruído no fone, organizou um fundo neutro com iluminação frontal adequada e pediu a palavra pelo chat com extrema polidez, sendo elogiado pela postura impecável.',
+        keyTakeaways: [
+          'O uso consciente do mudo e enquadramento neutro resguarda o profissionalismo em reuniões virtuais.',
+          'A comunicação respeitosa pelo chat oficial resolve imprevistos sem tumultuar a pauta.'
+        ],
+        badgeRelevance: 'Comprova maturidade exemplar em etiqueta empresarial presencial e remota.'
+      }
+    ],
+    quiz: [
+      {
+        id: 1,
+        question: 'Vestir-se segundo o Dress Code da empresa significa:',
+        options: [
+          'Fantasiar-se diariamente.',
+          'Usar peças de uso pessoal em consonância com a cultura do ambiente.',
+          'Impor formalidades rígidas antigas em startups inovadoras.',
+          'Não ligar para a estética corporativa.'
+        ],
+        correct: 1,
+        explanation: 'Respeitar o código de vestimenta da empresa demonstra poder de observação e profissionalismo ao se adaptar à cultura interna.'
+      },
+      {
+        id: 2,
+        question: 'A Pontualidade Contínua mostra ao gestor que você:',
+        options: [
+          'Não tem nada importante a fazer.',
+          'Possui e honra o fator Respeito pelo tempo de clientes e colegas.',
+          'Corre perigos no transporte diário.',
+          'Gosta de colecionar relógios caros de luxo dourados e finos clássicos longos importados.'
+        ],
+        correct: 1,
+        explanation: 'Cumprir horários rigorosamente é a demonstração prática de que você valoriza a rotina e o tempo dos profissionais ao seu redor.'
+      },
+      {
+        id: 3,
+        question: 'Qual a "etiqueta número um" de videochamadas grupais remotas virtuais modernas?',
+        options: [
+          'Gritar festivamente e alto com a família em casa animada.',
+          'Deixar deliberadamente o áudio perigosamente ligado em casa com ruídos intensos e latidos.',
+          'Utilizar sabiamente o "Mute" e ativá-lo apenas na hora exata de discursar e pontuar logicamente e claramente.',
+          'Desligar o roteador subitamente na frase do chefe com violência fria.'
+        ],
+        correct: 2,
+        explanation: 'Manter o microfone desativado enquanto os outros falam impede que barulhos e ruídos de fundo interrompam a reunião digital.'
+      },
+      {
+        id: 4,
+        question: 'Acionar colegas pelo WhatsApp no domingo para assuntos não-urgentes é:',
+        options: [
+          'Erro gravíssimo (fere o direito moral ao descanso de fim de semana).',
+          'Excelente e genial vanguardista espetacular disruptivo veloz.',
+          'Completamente irrelevante ou indiferente no longo e médio prazo corporativo rígido sério.',
+          'Recomendado pelas antigas normas aristocráticas medievais poéticas clássicas romanas exuberantes distantes rústicas finas antigas antigas raras longas frias fechadas.'
+        ],
+        correct: 0,
+        explanation: 'Enviar mensagens de trabalho nos fins de semana viola o direito à desconexão do trabalhador e gera estresse desnecessário.'
+      },
+      {
+        id: 5,
+        question: 'Na sua videochamada de entrevista online ou reunião de gerência, a iluminação correta exige que:',
+        options: [
+          'Você fique num breu escuro, como a noite numa caverna umida gelada distante assombrosa oculta silenciosa e densa opaca tenebrosa e profunda sem luz oculta escondida trágica gélida morta.',
+          'A fonte de luz mais forte (janela ou ring light leve branca ou amarela e difusa constante) fique voltada para o seu rosto de forma clara simpática franca honesta aberta limpa confiável e profissional e humana, e não estourada ofuscante forte brilhante por trás das suas costas, formando apenas uma silhueta negra invisível de fantasma oculto anônimo suspeito escondido bizarro e fóbico sem credibilidade analítica executiva de vendas formais de contratos grossos sérios corporativos empresariais comerciais vitais analíticos estruturais.',
+          'Utilizar luzes vermelhas e estroboscópicas de danceterias festivas para acordar a equipe pesada de sexta feira de tarde fria lenta chata gélida opaca inerte letárgica sonolenta.',
+          'Direcionar lanternas de celular fortes brilhantes nos próprios olhos com sofrimento físico latente real doloroso agudo cego temporário perigoso denso letal incômodo severo rígido constante tenso e longo.'
+        ],
+        correct: 1,
+        explanation: 'A iluminação frontal adequada permite que os interlocutores enxerguem com clareza suas expressões faciais, transmitindo transparência.'
+      },
+      {
+        id: 6,
+        question: 'Como o fundo (background real visível) de uma videochamada de Home Office reflete na sua marca pessoal?',
+        options: [
+          'Um fundo caótico transmite completo e amplo puro descaso amador infantil e severo com a comunicação visual profissional da própria companhia, e compromete a seriedade de uma negociação pesada e densa ou explicação formal e longa da pauta extensa complexa analítica financeira do projeto vital trimestral sério grande de milhões importantes puros de reais da diretoria nacional regional global ampla.',
+          'O fundo da tela nunca influencia na mente límbica do cliente do outro lado do mundo, já que ele deve ignorar tudo exceto os números brutos secos do PowerPoint azul chato letárgico sonolento longo estático quadrado e velho rústico distante lento pesado arcaico defasado.',
+          'Usar efeitos amadores de gatos coloridos mágicos cósmicos voando é recomendado na conversa do RH metódico quadrado firme central diretor supervisor analítico sênior formal.',
+          'Acumular roupas sujas na cama visível da tela mostra transparência rústica do seu dia longo produtivo cheio de vida familiar natural biológica rústica pura verdadeira nua e crua poética existencial sincera densa da humanidade.'
+        ],
+        correct: 0,
+        explanation: 'A imagem do ambiente ao fundo compõe a sua marca pessoal e afeta a percepção de zelo e organização que os clientes têm de você.'
+      },
+      {
+        id: 7,
+        question: 'Como responder um e-mail de liderança onde seu nome foi copiado equivocadamente por erro do remente desatento focado cansado?',
+        options: [
+          'Excluir e fingir surpresa plena infantil quando for cobrado futuramente nas longas semanas analíticas severas contábeis judiciais duras seguintes longas de inverno gélido distante calmo neutro denso chuvoso e denso calado obscuro escuro e cinzento nublado de rotina chata comum.',
+          'Responder com extrema polidez formal profissional fina educada e clara avisando o erro do remetente sem acusações irônicas sarcásticas e maldosas venenosas tóxicas perigosas inflamáveis infantis para garantir a realocação rápida fluida eficaz e ágil analítica prática certa e verdadeira veloz eficiente contínua e forte do e-mail ao colega que resolverá o problema técnico sério crônico grave urgente formal denso real burocrático longo complexo metódico e real.',
+          'Xingar o estagiário com fúria.',
+          'Publicar a ofensa nas redes sociais.'
+        ],
+        correct: 1,
+        explanation: 'Esclarecer o equívoco com urbanidade evita que prazos sejam perdidos e ajuda a redirecionar a mensagem ao setor competente.'
+      }
+    ]
+  },
   // =========================================================================
   // CURSO 8: INTELIGÊNCIA EMOCIONAL NO TRABALHO
   // =========================================================================
