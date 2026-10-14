@@ -67,11 +67,12 @@ export const TRACKS: Track[] = [
     id: 'trilha-4',
     name: '4. Rotinas Administrativas & Gestão Empresarial',
     category: 'Administração e Negócios',
-    description: 'Comunicação empresarial, atendimento telefônico, redação de atas, organização de arquivos e processos de escritório com produtividade ágil.',
+    description: 'Resolução criativa de problemas (Cinco Porquês e pensamento lateral), rotinas administrativas, atas, gestão documental e processos ágeis de escritório.',
     targetAudienceType: ['JOVEM_APRENDIZ', 'ESTAGIARIO'],
-    hoursTotal: 34,
-    coursesCount: 3,
+    hoursTotal: 46,
+    coursesCount: 4,
     courseIds: [
+      'curso-resolucao-criativa-problemas-adaptacao',
       'curso-rotinas-praticas-profissionalizantes',
       'curso-rotinas-administrativas',
       'curso-gestao-tempo'
@@ -100,6 +101,208 @@ export const TRACKS: Track[] = [
 ];
 
 export const COURSES: Course[] = [
+  // =========================================================================
+  // CURSO 10: RESOLUÇÃO CRIATIVA DE PROBLEMAS E ADAPTAÇÃO
+  // =========================================================================
+  {
+    id: 'curso-resolucao-criativa-problemas-adaptacao',
+    trackId: 'trilha-4',
+    trackName: 'TRILHA 4: Rotinas Administrativas & Gestão Empresarial',
+    category: 'Administração e Negócios',
+    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO', 'ESTAGIARIO'],
+    title: 'Resolução Criativa de Problemas e Adaptação',
+    subtitle: 'A técnica dos Cinco Porquês (Toyota), causa-raiz, postura de solução vs. reclamação, brainstorming sem filtro e pensamento lateral.',
+    hours: 12,
+    equivalentHours: 12,
+    modality: 'EAD 100% Gratuito (Escola Virtual)',
+    targetAudience: 'Jovens aprendizes, estagiários e colaboradores que buscam desenvolver raciocínio crítico, capacidade de resolução e adaptabilidade corporativa.',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Solucionador Criativo de Problemas',
+    badgeCategory: 'Trabalho',
+    badgeIcon: 'Briefcase',
+    accentColor: '#F59E0B',
+    level: 'Iniciante',
+    learningObjectives: [
+      'Aplicar a técnica dos Cinco Porquês da metodologia Toyota/Lean para identificar a causa-raiz de falhas operacionais e evitar correções superficiais.',
+      'Adotar uma postura focada em soluções, apresentando à liderança alternativas viáveis ao reportar obstáculos.',
+      'Conduzir e participar de sessões de Brainstorming separando a geração livre de ideias da fase posterior de análise de viabilidade técnica.',
+      'Desenvolver pensamento lateral e adaptabilidade para contornar desafios imprevistos sob novos ângulos e perspectivas.'
+    ],
+    modules: [
+      {
+        id: 'resolucao-mod-1',
+        number: 1,
+        title: 'MÓDULO 1: O Caos Estruturado',
+        summary: 'Investigação profunda de causa-raiz com a técnica dos Cinco Porquês e transformação de reclamações passivas em propostas proativas de solução.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. A Técnica dos Cinco Porquês (Toyota)',
+              body: [
+                'Desenvolvida na metodologia Lean/Toyota, a técnica dos "Cinco Porquês" busca investigar a causa-raiz de um problema perguntando "por quê?" sucessivamente (geralmente cinco vezes) diante de uma falha.',
+                'Esse aprofundamento impede que a equipe tome decisões superficiais baseadas apenas em sintomas aparentes, tratando diretamente o motivo originário que causou o incidente no processo.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Da Causa Aparente à Causa-Raiz',
+                text: 'Perguntar "por quê?" de forma encadeada revela que falhas de operação quase sempre decorrem de gargalos de comunicação ou falta de padronização nos processos.'
+              }
+            },
+            {
+              subheading: '2. Postura de Solução vs. Reclamação',
+              body: [
+                'No ambiente corporativo, reportar um problema à liderança sem apresentar alternativas gera gargalos e retrabalho.',
+                'A conduta madura exige que, ao identificar um obstáculo, o profissional traga a descrição clara do problema acompanhada de pelo menos duas sugestões viáveis de solução.',
+                'Isso demonstra proatividade, visão analítica e capacidade de decisão.'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Não traga apenas a dor, traga o remédio',
+                text: 'Apresentar problemas com duas opções de solução viáveis economiza o tempo da liderança e posiciona você como um colaborador estratégico.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'resolucao-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: Pensamento Lateral e Inovação',
+        summary: 'Metodologia de brainstorming livre de pré-julgamentos e aplicação do pensamento lateral para encontrar saídas inovadoras em situações de crise.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Brainstorming sem Filtro Inicial',
+              body: [
+                'A geração de ideias inovadoras requer a separação entre a fase de criação e a fase de crítica.',
+                'Em uma sessão de Brainstorming (tempestade de ideias), deve-se permitir a livre expressão de propostas sem julgamentos precoces.',
+                'Ideias aparentemente irreais na primeira etapa podem conter o germe da inovação quando lapidadas posteriormente na fase de viabilidade técnica e financeira.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Separe Ideação de Crítica',
+                text: 'Criticar ideias logo no início mata a criatividade da equipe; registre todas as sugestões livremente e avalie a viabilidade prática em uma etapa posterior.'
+              }
+            },
+            {
+              subheading: '2. Pensamento Lateral e Adaptabilidade',
+              body: [
+                'O pensamento lateral consiste em fugir de abordagens lógicas tradicionais e sequenciais para encarar desafios por ângulos inéditos.',
+                'Mudar a perspectiva diante de um imprevisto permite encontrar saídas criativas e eficientes em cenários de crise, desenvolvendo a adaptabilidade como um diferencial competitivo de carreira.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Flexibilidade e Inovação',
+                text: 'Quando o plano A falha, olhar a situação por um ângulo não convencional descobre oportunidades onde os outros enxergam apenas bloqueios.'
+              }
+            }
+          ]
+        }
+      }
+    ],
+    caseStudies: [
+      {
+        id: 'caso-resolucaocriativa-1',
+        title: 'Aplicação dos Cinco Porquês para Solucionar Atrasos na Emissão de Notas',
+        character: 'Thiago, Jovem Aprendiz de Faturamento',
+        scenario: 'Notas fiscais estavam saindo com atraso de até dois dias, gerando reclamações dos clientes e multas contratuais.',
+        criticalAnalysis: 'Thiago aplicou os Cinco Porquês com sua supervisora e descobriu que o atraso não era no sistema contábil, mas na falta de validação do CNPJ pelo setor de cadastros. Com uma checagem preventiva em formulário unificado, o prazo foi normalizado.',
+        keyTakeaways: [
+          'Investigar a raiz do problema evita retrabalho e gastos com soluções ineficazes.',
+          'A curiosidade analítica combinada à colaboração resolve gargalos complexos.'
+        ],
+        badgeRelevance: 'Comprova alta capacidade de resolução de problemas, raciocínio analítico e mentalidade de melhoria contínua.'
+      }
+    ],
+    quiz: [
+      {
+        id: 1,
+        question: 'O Método "Cinco Porquês" (Toyota) serve para:',
+        options: [
+          'Repetir futilidades sem parar e com ruído vazio.',
+          'Encontrar o núcleo invisível da causa-raiz de um incidente falho e não apenas sintomas.',
+          'Irritar colegas perguntando bobagens banais pessoais obscuras e chatas ruidosas frias distantes raras isoladas particulares impertinentes inadequadas.',
+          'Decorar fórmulas em japonês clássico ancestral épico histórico cultural distante milenar medieval lendário antigo mítico distante oriental.'
+        ],
+        correct: 1,
+        explanation: 'A técnica da Toyota investiga consecutivamente a causa do problema anterior até atingir o motivo originário real da falha.'
+      },
+      {
+        id: 2,
+        question: 'Ao relatar um problema à liderança, você deve:',
+        options: [
+          'Fazer intrigas no café longo vazando o fracasso lento e obscuro letárgico opaco triste feio ruidoso ruidoso denso de rotina suja obscura imunda pesada fétida ruidosa fria fechada densa amarga medonha e vexatória triste amarga fétida tóxica triste de corredor vazio longo distante sujo.',
+          'Berrar e causar pânico caótico desastroso caótico infernal ruidoso histérico nervoso de pavor ansioso e letárgico e agressivo nervoso tenso assustado apavorante horroroso.',
+          'Apresentar os fatos reais exatos acompanhados de possíveis esboços de resolução madura e lógica prática focada.',
+          'Fugir silenciosamente secretamente apavorado de pânico irracional covarde rápido sumido mudo opaco escondido furtivo.'
+        ],
+        correct: 2,
+        explanation: 'Levar ao gestor o diagnóstico da falha acompanhado de planos de ação demonstra maturidade profissional e visão de solução.'
+      },
+      {
+        id: 3,
+        question: 'Brainstorming maduro (Tempestade de Ideias) exige que:',
+        options: [
+          'Se julgue ferozmente e rapidamente as ideias arriscadas criativas coloridas inovadoras raras e distantes no início do tempo de reunião ruidosa agressiva perigosa.',
+          'Se permita a fluidez livre de ideias soltas e inovadoras, postergando a avaliação lógica técnica e viabilidade orçamentária rigorosa exata para outra etapa analítica densa.',
+          'Apenas o CEO decida com centralização soberana forte distante calada e fria pesada ditatorial e solene fria distante fechada.',
+          'Chova fisicamente forte gélido do lado de fora obscuro e tempestuoso e caótico chuvoso úmido escuro longo torrencial.'
+        ],
+        correct: 1,
+        explanation: 'Separar a fase de geração de ideias da fase de crítica evita que propostas inovadoras sejam descartadas precocemente.'
+      },
+      {
+        id: 4,
+        question: 'Ao ver problemas diários como quebra-cabeças, você desenvolve a Soft Skill da:',
+        options: [
+          'Adaptabilidade analítica criativa focada resiliente.',
+          'Irritabilidade profunda sombria e violenta.',
+          'Intolerância cruel exata.',
+          'Apatia.'
+        ],
+        correct: 0,
+        explanation: 'Encarar imprevistos e crises como desafios a serem solucionados fortalece a capacidade de adaptação e resiliência do colaborador.'
+      },
+      {
+        id: 5,
+        question: 'Como o "pensamento lateral" se difere do modelo tradicional analítico robótico burocrático engessado frio?',
+        options: [
+          'Ele ignora totalmente as planilhas financeiras obrigatórias e quebra as regras da comissão de valores contábeis judiciais duras perigosas ríspidas secas chatas obscuras pesadas e frias lentas ruidosas.',
+          'Ele explora abordagens oblíquas criativas indiretas e não convencionais livres que encontram saídas geniais em caminhos não desenhados na cartilha rotineira maçante chata lenta de repetição quadrada tradicional antiga velha rústica repetitiva.',
+          'Ele só atua andando de lado físico e cômico no longo e distante e frio e solene tapete do imenso longo salão central do velho prédio administrativo sujo.',
+          'Proíbe qualquer solução digital.'
+        ],
+        correct: 1,
+        explanation: 'O pensamento lateral busca caminhos indiretos e criativos fora do padrão óbvio para contornar bloqueios complexos.'
+      },
+      {
+        id: 6,
+        question: 'A cultura de "não me traga só o problema sem uma ideia", erradica:',
+        options: [
+          'A criatividade mágica.',
+          'O "reclamão de corredor", que é o profissional imaturo que gasta mais saliva queixando-se sem agir, corroendo de forma perigosa venenosa ruidosa sombria densa e opaca tóxica o clima corporativo de equipe cansada sob enorme rigorosa intensa profunda constante severa grave pressão financeira severa mensal dura.',
+          'Os lucros da empresa nacional multinacional sólida madura centenária.',
+          'As horas livres folgadas.'
+        ],
+        correct: 1,
+        explanation: 'Exigir sugestões atreladas às reclamações transforma lamúrias passivas em atitudes ativas focadas em resolução.'
+      },
+      {
+        id: 7,
+        question: 'Por que ideias "irreais" devem ser anotadas sem risos jocosos e maldosos cruéis críticos tóxicos venenosos na fase inicial do Brainstorming engajado inovador livre expansivo?',
+        options: [
+          'Porque a ideia louca extrema arriscada excêntrica criativa utópica pode perfeitamente conter o embrião genético genial formidável fantástico do conceito mágico revolucionário central da inovação se apenas a lapidarmos na viabilidade prática posterior com calma analítica focada.',
+          'Por obrigação poética artística folclórica colorida vibrante e pura.',
+          'Porque atrasam as planilhas contábeis duras e precisas secas lentas longas cruéis exatas.',
+          'Para humilhar velozmente lentamente e gradualmente as pessoas caladas tímidas fóbicas amedrontadas isoladas tímidas obscuras lentas e silenciosas assustadas pálidas lentas da sala amarela distante suja calada triste isolada fria pálida.'
+        ],
+        correct: 0,
+        explanation: 'Ideias aparentemente absurdas costumam carregar o germe da inovação que, quando lapidado e ajustado, gera grandes diferenciais competitivos.'
+      }
+    ]
+  },
   // =========================================================================
   // CURSO 9: ÉTICA E ETIQUETA CORPORATIVA (PRESENCIAL E DIGITAL)
   // =========================================================================
