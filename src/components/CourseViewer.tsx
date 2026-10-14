@@ -31,8 +31,63 @@ import {
   Download,
   Lightbulb,
   Share2,
-  ExternalLink
+  ExternalLink,
+  Brain,
+  Bot,
+  Shield,
+  Target,
+  MessageSquare,
+  Table
 } from 'lucide-react';
+
+const getSectionIcon = (heading: string) => {
+  const h = heading.toLowerCase();
+  if (h.includes('flow') || h.includes('mente') || h.includes('cognitiv') || h.includes('emocion') || h.includes('ansiedade') || h.includes('psicol')) {
+    return Brain;
+  }
+  if (h.includes('deep work') || h.includes('leitura') || h.includes('conceito') || h.includes('fundamento') || h.includes('livro')) {
+    return BookOpen;
+  }
+  if (h.includes('mindfulness') || h.includes('atenção') || h.includes('respiração') || h.includes('saúde') || h.includes('bem-estar')) {
+    return Sparkles;
+  }
+  if (h.includes('prática') || h.includes('aplicação') || h.includes('estratég') || h.includes('metodolog') || h.includes('meta')) {
+    return Target;
+  }
+  if (h.includes('comunicação') || h.includes('feedback') || h.includes('reunião') || h.includes('relacionamento') || h.includes('escuta') || h.includes('conversa')) {
+    return MessageSquare;
+  }
+  if (h.includes('excel') || h.includes('planilha') || h.includes('fórmula') || h.includes('dado') || h.includes('dashboard') || h.includes('tabela')) {
+    return Table;
+  }
+  if (h.includes('lei') || h.includes('legisla') || h.includes('direito') || h.includes('dever') || h.includes('juríd') || h.includes('lgpd') || h.includes('clt') || h.includes('contrato')) {
+    return Scale;
+  }
+  if (h.includes('tempo') || h.includes('produtiv') || h.includes('pomodoro') || h.includes('prazo') || h.includes('urgênc') || h.includes('hora')) {
+    return Clock;
+  }
+  if (h.includes('nuvem') || h.includes('segurança') || h.includes('informática') || h.includes('senha') || h.includes('fraude') || h.includes('phishing')) {
+    return Shield;
+  }
+  if (h.includes('inteligência artificial') || h.includes(' ia ') || h.includes('prompt') || h.includes('notebooklm') || h.includes('bot') || h.includes('copiloto')) {
+    return Bot;
+  }
+  return Layers;
+};
+
+const parseHeading = (subheading: string, defaultIdx: number) => {
+  const match = subheading.match(/^(\d+)[\.\-\:]?\s*(.*)$/);
+  if (match) {
+    return {
+      topicNumber: match[1],
+      title: match[2].trim()
+    };
+  }
+  return {
+    topicNumber: String(defaultIdx + 1),
+    title: subheading.trim()
+  };
+};
 
 export default function CourseViewer() {
   const { 
@@ -495,12 +550,13 @@ export default function CourseViewer() {
       )}
 
       {/* ===================================================== */}
-      {/* MODO LEITURA DO MÓDULO SELECIONADO                    */}
+      {/* MODO LEITURA DO MÓDULO SELECIONADO (PLAYER EAD)       */}
       {/* ===================================================== */}
       {activeTab === 'MODULES' && isReadingMode && (
-        <div className="w-full space-y-5">
+        <div className="w-full space-y-6 animate-fadeIn">
+          
           {/* Barra Superior de Navegação no Modo Leitura */}
-          <div className="w-full bg-[#140E24] border border-[#2D1B4E]/60 rounded-2xl p-4 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="w-full bg-[#140E24] border border-[#2D1B4E]/70 rounded-2xl p-4 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-3">
             <button
               type="button"
               onClick={() => setIsReadingMode(false)}
@@ -510,260 +566,400 @@ export default function CourseViewer() {
               <span>Voltar para Todos os Módulos</span>
             </button>
 
-            {/* Dropdown seletor rápido */}
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-zinc-400 font-bold hidden sm:inline">Módulo Atual:</span>
+            {/* Dropdown seletor rápido do módulo */}
+            <div className="flex items-center gap-2.5">
+              <span className="text-xs text-zinc-400 font-bold hidden sm:inline">Navegar Módulos:</span>
               <select
                 value={activeModuleIndex}
                 onChange={(e) => setActiveModuleIndex(Number(e.target.value))}
-                className="bg-[#0D0818] border border-[#2D1B4E] text-white text-xs font-bold rounded-xl px-3 py-1.5 focus:outline-none focus:border-[#8B5CF6]"
+                className="bg-[#0D0818] border border-[#2D1B4E] text-white text-xs font-bold rounded-xl px-3 py-2 focus:outline-none focus:border-[#8B5CF6] cursor-pointer"
               >
                 {course.modules.map((m, mIdx) => (
                   <option key={m.id} value={mIdx}>
-                    Módulo {m.number}: {m.title.replace(/MÓDULO \d+: /, '')} {completedList.includes(m.id) ? '✓' : ''}
+                    Módulo {String(m.number).padStart(2, '0')}: {m.title.replace(/MÓDULO \d+: /, '')} {completedList.includes(m.id) ? '✓' : ''}
                   </option>
                 ))}
               </select>
             </div>
           </div>
 
-          {/* Module Content Viewer */}
-          <div className="w-full bg-[#110E1B] border border-[#2D1B4E]/60 rounded-3xl p-6 lg:p-8 space-y-6 shadow-2xl">
-            <div className="border-b border-[#2D1B4E]/60 pb-4">
-              <div className="flex items-center gap-2 text-purple-300 font-bold text-xs uppercase mb-1">
-                <span>Módulo {currentModule.number} de {course.modules.length}</span>
+          {/* Card Principal do Conteúdo do Módulo */}
+          <div className="w-full bg-[#110E1B] border border-[#2D1B4E]/70 rounded-3xl p-6 lg:p-9 space-y-8 shadow-2xl">
+            
+            {/* Cabeçalho do Módulo (Destaque para MÓDULO X DE Y) */}
+            <div className="border-b border-[#2D1B4E]/60 pb-6 space-y-3">
+              <div className="flex flex-wrap items-center justify-between gap-3">
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="bg-purple-950/80 text-purple-300 border border-purple-500/40 text-xs font-black tracking-wider uppercase px-3.5 py-1 rounded-full shadow-sm">
+                    MÓDULO {currentModule.number} DE {course.modules.length}
+                  </span>
+
+                  <span className="inline-flex items-center gap-1.5 bg-[#171126] border border-[#2D1B4E] text-zinc-300 text-xs font-semibold px-2.5 py-0.5 rounded-md">
+                    <Clock className="w-3.5 h-3.5 text-zinc-400" />
+                    <span>~{currentModule.estimatedMinutes || 45} min de leitura</span>
+                  </span>
+
+                  <span className="inline-flex items-center gap-1.5 bg-[#171126] border border-[#2D1B4E] text-zinc-300 text-xs font-semibold px-2.5 py-0.5 rounded-md">
+                    <BookOpen className="w-3.5 h-3.5 text-purple-400" />
+                    <span>{currentModule.content.sections.length} Tópicos Teóricos</span>
+                  </span>
+                </div>
+
+                {completedList.includes(currentModule.id) ? (
+                  <span className="bg-emerald-950/60 text-emerald-300 border border-emerald-500/30 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5">
+                    <Check className="w-3.5 h-3.5 stroke-[3]" />
+                    <span>Módulo Concluído</span>
+                  </span>
+                ) : (
+                  <span className="bg-amber-950/60 text-amber-300 border border-amber-500/30 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5">
+                    <Clock className="w-3.5 h-3.5" />
+                    <span>Em Andamento</span>
+                  </span>
+                )}
               </div>
-              <h2 className="text-xl lg:text-2xl font-black text-white">
-                {currentModule.title}
-              </h2>
-              <p className="text-xs sm:text-sm text-zinc-300 mt-1">
+
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight">
+                {currentModule.title.replace(/MÓDULO \d+: /, '')}
+              </h1>
+
+              <p className="text-sm sm:text-base text-zinc-300 leading-relaxed font-normal">
                 {currentModule.summary}
               </p>
             </div>
 
-            {/* Content Sections */}
+            {/* Sub-Cards para cada Seção Teórica */}
             <div className="space-y-6">
-              {currentModule.content.sections.map((section, sIdx) => (
-                <div key={sIdx} className="space-y-3.5">
-                  <h3 className="text-base font-bold text-white border-l-4 border-purple-500 pl-3">
-                    {section.subheading}
-                  </h3>
+              {currentModule.content.sections.map((section, sIdx) => {
+                const { topicNumber, title: cleanHeading } = parseHeading(section.subheading, sIdx);
+                const SectionIcon = getSectionIcon(section.subheading);
 
-                  <div className="space-y-2 text-xs lg:text-sm text-zinc-300 leading-relaxed">
-                    {section.body.map((paragraph, pIdx) => (
-                      <p key={pIdx}>{paragraph}</p>
-                    ))}
+                // Detecta se a seção aborda Flow / Deep Work para aplicar os 2 cards paralelos solicitados
+                const isFlowOrComparativeSection = 
+                  section.subheading.toLowerCase().includes('flow') ||
+                  section.subheading.toLowerCase().includes('deep work') ||
+                  section.body.some((p) => p.toLowerCase().includes('shallow work') || p.toLowerCase().includes('trabalho superficial'));
+
+                return (
+                  <div
+                    key={sIdx}
+                    className="bg-[#160F28]/90 border border-[#2D1B4E]/70 hover:border-purple-500/40 rounded-2xl p-5 sm:p-7 shadow-xl space-y-5 transition-all"
+                  >
+                    {/* Topo do Sub-Card da Seção */}
+                    <div className="flex items-center gap-3 border-b border-[#2D1B4E]/50 pb-4">
+                      <span className="w-8 h-8 rounded-xl bg-purple-950/90 border border-purple-500/40 text-purple-300 text-sm font-black flex items-center justify-center shrink-0 shadow-sm">
+                        {topicNumber}
+                      </span>
+                      <div className="flex items-center gap-2.5">
+                        <SectionIcon className="w-5 h-5 text-purple-400 shrink-0" />
+                        <h2 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                          {cleanHeading}
+                        </h2>
+                      </div>
+                    </div>
+
+                    {/* Conteúdo Teórico da Seção */}
+                    {isFlowOrComparativeSection ? (
+                      /* Layout Especial com 2 Cards Paralelos (Shallow Work vs Deep Work) */
+                      <div className="space-y-4">
+                        {section.body.length > 0 && (
+                          <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
+                            {section.body[0].replace(/^[-•]\s*/, '').trim()}
+                          </p>
+                        )}
+
+                        {/* Grid com 2 Cards Paralelos e Idênticos */}
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+                          
+                          {/* Card 1: Trabalho Superficial (Shallow Work) */}
+                          <div className="bg-[#120B20] border border-[#2D1B4E] rounded-xl p-4 sm:p-5 space-y-2.5 flex flex-col justify-between">
+                            <div className="flex items-center gap-2 text-white font-bold text-sm">
+                              <div className="w-8 h-8 rounded-lg bg-[#1F1535] border border-[#2D1B4E] flex items-center justify-center text-zinc-400 shrink-0">
+                                <Layers className="w-4 h-4" />
+                              </div>
+                              <span>Trabalho Superficial (Shallow Work)</span>
+                            </div>
+                            <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
+                              Tarefas mecânicas e operacionais (responder e-mails rápidos, organizar pastas) que exigem pouco esforço mental, mas consomem o dia todo sem gerar valor duradouro.
+                            </p>
+                          </div>
+
+                          {/* Card 2: Ritual de Trabalho Profundo (Foco) */}
+                          <div className="bg-[#120B20] border border-purple-500/40 rounded-xl p-4 sm:p-5 space-y-2.5 flex flex-col justify-between">
+                            <div className="flex items-center gap-2 text-white font-bold text-sm">
+                              <div className="w-8 h-8 rounded-lg bg-purple-950/70 border border-purple-500/30 flex items-center justify-center text-purple-300 shrink-0">
+                                <Brain className="w-4 h-4 text-purple-300" />
+                              </div>
+                              <span>Ritual de Trabalho Profundo (Foco)</span>
+                            </div>
+                            <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
+                              Eliminação de abas desnecessárias, bloqueio de notificações no celular e definição de metas claras para blocos ininterruptos de concentração extrema.
+                            </p>
+                          </div>
+
+                        </div>
+
+                        {/* Parágrafos subsequentes se houver */}
+                        {section.body.length > 3 && (
+                          <div className="space-y-3 pt-2">
+                            {section.body.slice(3).map((p, pIdx) => (
+                              <p key={pIdx} className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
+                                {p}
+                              </p>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      /* Layout Padrão em Sub-Cards com Itens e Parágrafos Neutros */
+                      <div className="space-y-3.5">
+                        {section.body.map((paragraph, pIdx) => {
+                          const trimmed = paragraph.trim();
+                          const colonIdx = trimmed.indexOf(':');
+                          const isItem = (paragraph.startsWith('  ') || paragraph.startsWith('- ') || paragraph.startsWith('• ')) && colonIdx > 0 && colonIdx < 50;
+
+                          if (isItem) {
+                            const itemTitle = trimmed.substring(0, colonIdx).replace(/^[-•]\s*/, '').trim();
+                            const itemDesc = trimmed.substring(colonIdx + 1).trim();
+
+                            return (
+                              <div
+                                key={pIdx}
+                                className="bg-[#120B20] border border-[#2D1B4E]/80 rounded-xl p-4 flex items-start gap-3 transition-all hover:border-purple-500/30"
+                              >
+                                <div className="w-6 h-6 rounded-lg bg-purple-950/70 border border-purple-500/30 flex items-center justify-center text-purple-300 shrink-0 mt-0.5">
+                                  <Check className="w-3.5 h-3.5 stroke-[2.5]" />
+                                </div>
+                                <div className="space-y-1">
+                                  <div className="text-xs sm:text-sm font-bold text-white">
+                                    {itemTitle}
+                                  </div>
+                                  <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
+                                    {itemDesc}
+                                  </p>
+                                </div>
+                              </div>
+                            );
+                          }
+
+                          return (
+                            <p key={pIdx} className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
+                              {paragraph}
+                            </p>
+                          );
+                        })}
+                      </div>
+                    )}
+
+                    {/* Visual 1: Triângulo da Aprendizagem */}
+                    {section.visualType === 'triangle' && (
+                      <div className="my-6 bg-[#0E091A] border border-[#2D1B4E] rounded-2xl p-5 shadow-inner">
+                        <div className="text-xs font-bold text-zinc-300 uppercase tracking-wider mb-3 flex items-center justify-between">
+                          <span>📐 Diagrama do Triângulo da Aprendizagem (Lei nº 10.097/00)</span>
+                          <span className="text-[10px] bg-[#171126] text-purple-300 px-2 py-0.5 rounded-full border border-purple-500/20">Interativo</span>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-3 text-center">
+                          <div className="bg-[#140E24] border border-[#2D1B4E] rounded-xl p-3.5">
+                            <div className="w-10 h-10 mx-auto rounded-full bg-[#1F1535] text-purple-300 flex items-center justify-center font-bold mb-2">
+                              <User className="w-5 h-5" />
+                            </div>
+                            <div className="text-xs font-bold text-white">1. Estudante (Aprendiz)</div>
+                            <div className="text-[11px] text-zinc-400 mt-1">
+                              14 a 24 anos matriculado no ensino regular.
+                            </div>
+                          </div>
+
+                          <div className="bg-[#140E24] border border-[#2D1B4E] rounded-xl p-3.5">
+                            <div className="w-10 h-10 mx-auto rounded-full bg-[#1F1535] text-purple-300 flex items-center justify-center font-bold mb-2">
+                              <Building className="w-5 h-5" />
+                            </div>
+                            <div className="text-xs font-bold text-white">2. Empresa Contratante</div>
+                            <div className="text-[11px] text-zinc-400 mt-1">
+                              Prática supervisionada, CTPS, FGTS 2% e salário.
+                            </div>
+                          </div>
+
+                          <div className="bg-[#140E24] border border-[#2D1B4E] rounded-xl p-3.5">
+                            <div className="w-10 h-10 mx-auto rounded-full bg-[#1F1535] text-purple-300 flex items-center justify-center font-bold mb-2">
+                              <GraduationCap className="w-5 h-5" />
+                            </div>
+                            <div className="text-xs font-bold text-white">3. Entidade Formadora</div>
+                            <div className="text-[11px] text-zinc-400 mt-1">
+                              Sistema S (SENAI, SENAC), CIEE e escolas técnicas.
+                            </div>
+                          </div>
+                        </div>
+
+                        {section.asciiDiagram && (
+                          <pre className="bg-[#0A0514] p-3.5 rounded-xl text-purple-300 font-mono text-[11px] overflow-x-auto border border-[#2D1B4E]">
+                            {section.asciiDiagram}
+                          </pre>
+                        )}
+                      </div>
+                    )}
+
+                    {/* Visual 2: Work Hours Rules */}
+                    {section.visualType === 'work-hours' && (
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 my-4">
+                        <div className="bg-[#140E24] border border-[#2D1B4E] rounded-2xl p-4">
+                          <div className="text-xs font-bold text-zinc-300 mb-1 flex items-center gap-1.5">
+                            <Clock className="w-4 h-4 text-purple-400" />
+                            <span>Ensino Fundamental &amp; Médio</span>
+                          </div>
+                          <div className="text-2xl font-black text-white">Máximo 6h / dia</div>
+                          <div className="text-[11px] text-zinc-400 mt-1">
+                            30h semanais. Vedada a compensação e prorrogação (horas extras).
+                          </div>
+                        </div>
+
+                        <div className="bg-[#140E24] border border-emerald-500/30 rounded-2xl p-4">
+                          <div className="text-xs font-bold text-emerald-300 mb-1 flex items-center gap-1.5">
+                            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
+                            <span>Ensino Médio Concluído</span>
+                          </div>
+                          <div className="text-2xl font-black text-white">Até 8h / dia</div>
+                          <div className="text-[11px] text-zinc-400 mt-1">
+                            40h semanais, desde que computadas as horas teóricas.
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Visual 3: Comparison Table */}
+                    {section.visualType === 'comparison-table' && (
+                      <div className="my-6 bg-[#0E091A] border border-[#2D1B4E] rounded-2xl p-4 overflow-x-auto shadow-xl">
+                        <div className="text-xs font-bold text-zinc-300 uppercase tracking-wider mb-3">
+                          ⚖️ Matriz Comparativa: Jovem Aprendiz vs Estagiário
+                        </div>
+                        <table className="w-full text-left text-xs border-collapse">
+                          <thead>
+                            <tr className="border-b border-[#2D1B4E] bg-[#140E24] text-zinc-300">
+                              <th className="p-3 font-bold">Critério Legislação</th>
+                              <th className="p-3 font-bold text-white">Jovem Aprendiz (Lei 10.097/00)</th>
+                              <th className="p-3 font-bold text-purple-300">Estagiário (Lei 11.788/08)</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-[#1D1130] text-zinc-300">
+                            <tr className="hover:bg-white/5">
+                              <td className="p-3 font-semibold text-white">Faixa Etária</td>
+                              <td className="p-3">14 a 24 anos incompletos (sem teto para PcD)</td>
+                              <td className="p-3">A partir de 16 anos (sem teto de idade)</td>
+                            </tr>
+                            <tr className="hover:bg-white/5">
+                              <td className="p-3 font-semibold text-white">Vínculo Empregatício</td>
+                              <td className="p-3 text-emerald-400 font-semibold">Sim (CLT Especial com CTPS)</td>
+                              <td className="p-3 text-purple-300 font-semibold">Não (Ato Educativo - Termo TCE)</td>
+                            </tr>
+                            <tr className="hover:bg-white/5">
+                              <td className="p-3 font-semibold text-white">FGTS</td>
+                              <td className="p-3 text-emerald-400 font-bold">Alíquota especial de 2% (paga pela empresa)</td>
+                              <td className="p-3 text-zinc-400">Isento (não há recolhimento de FGTS)</td>
+                            </tr>
+                            <tr className="hover:bg-white/5">
+                              <td className="p-3 font-semibold text-white">13º Salário</td>
+                              <td className="p-3 text-emerald-400 font-bold">Assegurado integralmente por lei</td>
+                              <td className="p-3 text-zinc-400">Não aplicável</td>
+                            </tr>
+                            <tr className="hover:bg-white/5">
+                              <td className="p-3 font-semibold text-white">Semana de Provas</td>
+                              <td className="p-3">Garantia de frequência escolar</td>
+                              <td className="p-3 text-purple-300 font-bold">Redução obrigatória da jornada em 50%</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    )}
+
+                    {/* Visual 4: Demonstrativo de Holerite */}
+                    {section.visualType === 'holerite' && (
+                      <div className="my-6 bg-[#0E091A] border border-[#2D1B4E] rounded-2xl p-4">
+                        <div className="text-xs font-bold text-zinc-300 uppercase tracking-wider mb-3 flex items-center justify-between">
+                          <span>💵 Demonstrativo de Pagamento (Holerite Modelo 120h)</span>
+                          <button
+                            onClick={() => setCurrentView('HOLERITE')}
+                            className="text-[11px] text-purple-400 hover:text-white underline font-bold flex items-center gap-1 cursor-pointer"
+                          >
+                            Abrir Calculadora Completa <ArrowRight className="w-3 h-3" />
+                          </button>
+                        </div>
+
+                        <div className="bg-[#140E24] border border-[#2D1B4E] rounded-xl p-4 font-mono text-xs">
+                          <div className="border-b border-[#2D1B4E]/60 pb-2 mb-3 flex justify-between text-zinc-400 font-sans">
+                            <div><strong>EMPRESA:</strong> TECNOLOGIA &amp; SERVIÇOS CURITIBA LTDA</div>
+                            <div><strong>MÊS:</strong> SETEMBRO/2026</div>
+                          </div>
+
+                          <div className="grid grid-cols-12 gap-2 text-zinc-400 font-sans font-bold border-b border-[#2D1B4E] pb-1.5 mb-2">
+                            <div className="col-span-6">Descrição da Rubrica</div>
+                            <div className="col-span-3 text-right">Proventos (+)</div>
+                            <div className="col-span-3 text-right">Descontos (-)</div>
+                          </div>
+
+                          <div className="space-y-1.5 text-zinc-300">
+                            <div className="grid grid-cols-12 gap-2">
+                              <div className="col-span-6">Salário Base (Aprendizagem 120h)</div>
+                              <div className="col-span-3 text-right text-emerald-400 font-bold">R$ 1.120,00</div>
+                              <div className="col-span-3 text-right">-</div>
+                            </div>
+                            <div className="grid grid-cols-12 gap-2">
+                              <div className="col-span-6">Vale-Transporte (Desc. Máx. 6%)</div>
+                              <div className="col-span-3 text-right">-</div>
+                              <div className="col-span-3 text-right text-rose-400">R$ 67,20</div>
+                            </div>
+                            <div className="grid grid-cols-12 gap-2">
+                              <div className="col-span-6">INSS (Alíquota Faixa Inicial 7,5%)</div>
+                              <div className="col-span-3 text-right">-</div>
+                              <div className="col-span-3 text-right text-rose-400">R$ 84,00</div>
+                            </div>
+                          </div>
+
+                          <div className="border-t border-[#2D1B4E] pt-3 mt-3 grid grid-cols-12 gap-2 font-sans font-bold">
+                            <div className="col-span-6 text-zinc-400">TOTAIS:</div>
+                            <div className="col-span-3 text-right text-emerald-400">R$ 1.120,00</div>
+                            <div className="col-span-3 text-right text-rose-400">R$ 151,20</div>
+                          </div>
+
+                          <div className="mt-3 bg-[#171126] border border-[#2D1B4E] rounded-xl p-3.5 flex flex-col sm:flex-row justify-between items-center gap-2 font-sans">
+                            <div>
+                              <div className="text-xs text-zinc-400 font-bold">VALOR LÍQUIDO A RECEBER:</div>
+                              <div className="text-xl font-black text-white">R$ 968,80</div>
+                            </div>
+                            <div className="text-right sm:text-right text-xs">
+                              <span className="text-zinc-400">Depósito FGTS (2% Patronal): </span>
+                              <strong className="text-emerald-400">R$ 22,40</strong>
+                              <div className="text-[10px] text-zinc-500">(Depositado pela empresa sem desconto)</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Highlight Box */}
+                    {section.highlightBox && (
+                      <div
+                        className={`p-4 rounded-2xl border text-xs leading-relaxed ${
+                          section.highlightBox.type === 'warning'
+                            ? 'bg-amber-950/40 border-amber-500/40 text-amber-200'
+                            : section.highlightBox.type === 'law'
+                            ? 'bg-[#171126] border-purple-500/40 text-zinc-200'
+                            : section.highlightBox.type === 'calc'
+                            ? 'bg-emerald-950/40 border-emerald-500/40 text-emerald-200'
+                            : 'bg-[#140E24] border-[#2D1B4E] text-zinc-200'
+                        }`}
+                      >
+                        <div className="font-bold text-sm mb-1 flex items-center gap-1.5 text-white">
+                          {section.highlightBox.type === 'warning' && <AlertTriangle className="w-4 h-4 text-amber-400" />}
+                          {section.highlightBox.type === 'law' && <Scale className="w-4 h-4 text-purple-300" />}
+                          {section.highlightBox.type === 'calc' && <DollarSign className="w-4 h-4 text-emerald-400" />}
+                          {section.highlightBox.type === 'info' && <Info className="w-4 h-4 text-purple-300" />}
+                          <span>{section.highlightBox.title}</span>
+                        </div>
+                        <p className="text-zinc-300">{section.highlightBox.text}</p>
+                      </div>
+                    )}
                   </div>
-
-                  {/* Visual 1: Triângulo da Aprendizagem */}
-                  {section.visualType === 'triangle' && (
-                    <div className="my-6 bg-[#0E091A] border border-[#2D1B4E] rounded-2xl p-5 shadow-inner">
-                      <div className="text-xs font-bold text-zinc-300 uppercase tracking-wider mb-3 flex items-center justify-between">
-                        <span>📐 Diagrama do Triângulo da Aprendizagem (Lei nº 10.097/00)</span>
-                        <span className="text-[10px] bg-[#171126] text-purple-300 px-2 py-0.5 rounded-full border border-purple-500/20">Interativo</span>
-                      </div>
-
-                      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-3 text-center">
-                        <div className="bg-[#140E24] border border-[#2D1B4E] rounded-xl p-3.5">
-                          <div className="w-10 h-10 mx-auto rounded-full bg-[#1F1535] text-purple-300 flex items-center justify-center font-bold mb-2">
-                            <User className="w-5 h-5" />
-                          </div>
-                          <div className="text-xs font-bold text-white">1. Estudante (Aprendiz)</div>
-                          <div className="text-[11px] text-zinc-400 mt-1">
-                            14 a 24 anos matriculado no ensino regular.
-                          </div>
-                        </div>
-
-                        <div className="bg-[#140E24] border border-[#2D1B4E] rounded-xl p-3.5">
-                          <div className="w-10 h-10 mx-auto rounded-full bg-[#1F1535] text-purple-300 flex items-center justify-center font-bold mb-2">
-                            <Building className="w-5 h-5" />
-                          </div>
-                          <div className="text-xs font-bold text-white">2. Empresa Contratante</div>
-                          <div className="text-[11px] text-zinc-400 mt-1">
-                            Prática supervisionada, CTPS, FGTS 2% e salário.
-                          </div>
-                        </div>
-
-                        <div className="bg-[#140E24] border border-[#2D1B4E] rounded-xl p-3.5">
-                          <div className="w-10 h-10 mx-auto rounded-full bg-[#1F1535] text-purple-300 flex items-center justify-center font-bold mb-2">
-                            <GraduationCap className="w-5 h-5" />
-                          </div>
-                          <div className="text-xs font-bold text-white">3. Entidade Formadora</div>
-                          <div className="text-[11px] text-zinc-400 mt-1">
-                            Sistema S (SENAI, SENAC), CIEE e escolas técnicas.
-                          </div>
-                        </div>
-                      </div>
-
-                      {section.asciiDiagram && (
-                        <pre className="bg-[#0A0514] p-3.5 rounded-xl text-purple-300 font-mono text-[11px] overflow-x-auto border border-[#2D1B4E]">
-                          {section.asciiDiagram}
-                        </pre>
-                      )}
-                    </div>
-                  )}
-
-                  {/* Visual 2: Work Hours Rules */}
-                  {section.visualType === 'work-hours' && (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 my-4">
-                      <div className="bg-[#140E24] border border-[#2D1B4E] rounded-2xl p-4">
-                        <div className="text-xs font-bold text-zinc-300 mb-1 flex items-center gap-1.5">
-                          <Clock className="w-4 h-4 text-purple-400" />
-                          <span>Ensino Fundamental &amp; Médio</span>
-                        </div>
-                        <div className="text-2xl font-black text-white">Máximo 6h / dia</div>
-                        <div className="text-[11px] text-zinc-400 mt-1">
-                          30h semanais. Vedada a compensação e prorrogação (horas extras).
-                        </div>
-                      </div>
-
-                      <div className="bg-[#140E24] border border-emerald-500/30 rounded-2xl p-4">
-                        <div className="text-xs font-bold text-emerald-300 mb-1 flex items-center gap-1.5">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                          <span>Ensino Médio Concluído</span>
-                        </div>
-                        <div className="text-2xl font-black text-white">Até 8h / dia</div>
-                        <div className="text-[11px] text-zinc-400 mt-1">
-                          40h semanais, desde que computadas as horas teóricas.
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Visual 3: Comparison Table */}
-                  {section.visualType === 'comparison-table' && (
-                    <div className="my-6 bg-[#0E091A] border border-[#2D1B4E] rounded-2xl p-4 overflow-x-auto shadow-xl">
-                      <div className="text-xs font-bold text-zinc-300 uppercase tracking-wider mb-3">
-                        ⚖️ Matriz Comparativa: Jovem Aprendiz vs Estagiário
-                      </div>
-                      <table className="w-full text-left text-xs border-collapse">
-                        <thead>
-                          <tr className="border-b border-[#2D1B4E] bg-[#140E24] text-zinc-300">
-                            <th className="p-3 font-bold">Critério Legislação</th>
-                            <th className="p-3 font-bold text-white">Jovem Aprendiz (Lei 10.097/00)</th>
-                            <th className="p-3 font-bold text-purple-300">Estagiário (Lei 11.788/08)</th>
-                          </tr>
-                        </thead>
-                        <tbody className="divide-y divide-[#1D1130] text-zinc-300">
-                          <tr className="hover:bg-white/5">
-                            <td className="p-3 font-semibold text-white">Faixa Etária</td>
-                            <td className="p-3">14 a 24 anos incompletos (sem teto para PcD)</td>
-                            <td className="p-3">A partir de 16 anos (sem teto de idade)</td>
-                          </tr>
-                          <tr className="hover:bg-white/5">
-                            <td className="p-3 font-semibold text-white">Vínculo Empregatício</td>
-                            <td className="p-3 text-emerald-400 font-semibold">Sim (CLT Especial com CTPS)</td>
-                            <td className="p-3 text-purple-300 font-semibold">Não (Ato Educativo - Termo TCE)</td>
-                          </tr>
-                          <tr className="hover:bg-white/5">
-                            <td className="p-3 font-semibold text-white">FGTS</td>
-                            <td className="p-3 text-emerald-400 font-bold">Alíquota especial de 2% (paga pela empresa)</td>
-                            <td className="p-3 text-zinc-400">Isento (não há recolhimento de FGTS)</td>
-                          </tr>
-                          <tr className="hover:bg-white/5">
-                            <td className="p-3 font-semibold text-white">13º Salário</td>
-                            <td className="p-3 text-emerald-400 font-bold">Assegurado integralmente por lei</td>
-                            <td className="p-3 text-zinc-400">Não aplicável</td>
-                          </tr>
-                          <tr className="hover:bg-white/5">
-                            <td className="p-3 font-semibold text-white">Semana de Provas</td>
-                            <td className="p-3">Garantia de frequência escolar</td>
-                            <td className="p-3 text-purple-300 font-bold">Redução obrigatória da jornada em 50%</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  )}
-
-                  {/* Visual 4: Demonstrativo de Holerite */}
-                  {section.visualType === 'holerite' && (
-                    <div className="my-6 bg-[#0E091A] border border-[#2D1B4E] rounded-2xl p-4">
-                      <div className="text-xs font-bold text-zinc-300 uppercase tracking-wider mb-3 flex items-center justify-between">
-                        <span>💵 Demonstrativo de Pagamento (Holerite Modelo 120h)</span>
-                        <button
-                          onClick={() => setCurrentView('HOLERITE')}
-                          className="text-[11px] text-purple-400 hover:text-white underline font-bold flex items-center gap-1 cursor-pointer"
-                        >
-                          Abrir Calculadora Completa <ArrowRight className="w-3 h-3" />
-                        </button>
-                      </div>
-
-                      <div className="bg-[#140E24] border border-[#2D1B4E] rounded-xl p-4 font-mono text-xs">
-                        <div className="border-b border-[#2D1B4E]/60 pb-2 mb-3 flex justify-between text-zinc-400 font-sans">
-                          <div><strong>EMPRESA:</strong> TECNOLOGIA &amp; SERVIÇOS CURITIBA LTDA</div>
-                          <div><strong>MÊS:</strong> SETEMBRO/2026</div>
-                        </div>
-
-                        <div className="grid grid-cols-12 gap-2 text-zinc-400 font-sans font-bold border-b border-[#2D1B4E] pb-1.5 mb-2">
-                          <div className="col-span-6">Descrição da Rubrica</div>
-                          <div className="col-span-3 text-right">Proventos (+)</div>
-                          <div className="col-span-3 text-right">Descontos (-)</div>
-                        </div>
-
-                        <div className="space-y-1.5 text-zinc-300">
-                          <div className="grid grid-cols-12 gap-2">
-                            <div className="col-span-6">Salário Base (Aprendizagem 120h)</div>
-                            <div className="col-span-3 text-right text-emerald-400 font-bold">R$ 1.120,00</div>
-                            <div className="col-span-3 text-right">-</div>
-                          </div>
-                          <div className="grid grid-cols-12 gap-2">
-                            <div className="col-span-6">Vale-Transporte (Desc. Máx. 6%)</div>
-                            <div className="col-span-3 text-right">-</div>
-                            <div className="col-span-3 text-right text-rose-400">R$ 67,20</div>
-                          </div>
-                          <div className="grid grid-cols-12 gap-2">
-                            <div className="col-span-6">INSS (Alíquota Faixa Inicial 7,5%)</div>
-                            <div className="col-span-3 text-right">-</div>
-                            <div className="col-span-3 text-right text-rose-400">R$ 84,00</div>
-                          </div>
-                        </div>
-
-                        <div className="border-t border-[#2D1B4E] pt-3 mt-3 grid grid-cols-12 gap-2 font-sans font-bold">
-                          <div className="col-span-6 text-zinc-400">TOTAIS:</div>
-                          <div className="col-span-3 text-right text-emerald-400">R$ 1.120,00</div>
-                          <div className="col-span-3 text-right text-rose-400">R$ 151,20</div>
-                        </div>
-
-                        <div className="mt-3 bg-[#171126] border border-[#2D1B4E] rounded-xl p-3.5 flex flex-col sm:flex-row justify-between items-center gap-2 font-sans">
-                          <div>
-                            <div className="text-xs text-zinc-400 font-bold">VALOR LÍQUIDO A RECEBER:</div>
-                            <div className="text-xl font-black text-white">R$ 968,80</div>
-                          </div>
-                          <div className="text-right sm:text-right text-xs">
-                            <span className="text-zinc-400">Depósito FGTS (2% Patronal): </span>
-                            <strong className="text-emerald-400">R$ 22,40</strong>
-                            <div className="text-[10px] text-zinc-500">(Depositado pela empresa sem desconto)</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-
-                  {/* Highlight Box */}
-                  {section.highlightBox && (
-                    <div
-                      className={`p-4 rounded-2xl border text-xs leading-relaxed ${
-                        section.highlightBox.type === 'warning'
-                          ? 'bg-amber-950/40 border-amber-500/40 text-amber-200'
-                          : section.highlightBox.type === 'law'
-                          ? 'bg-[#171126] border-purple-500/40 text-zinc-200'
-                          : section.highlightBox.type === 'calc'
-                          ? 'bg-emerald-950/40 border-emerald-500/40 text-emerald-200'
-                          : 'bg-[#140E24] border-[#2D1B4E] text-zinc-200'
-                      }`}
-                    >
-                      <div className="font-bold text-sm mb-1 flex items-center gap-1.5 text-white">
-                        {section.highlightBox.type === 'warning' && <AlertTriangle className="w-4 h-4 text-amber-400" />}
-                        {section.highlightBox.type === 'law' && <Scale className="w-4 h-4 text-purple-300" />}
-                        {section.highlightBox.type === 'calc' && <DollarSign className="w-4 h-4 text-emerald-400" />}
-                        {section.highlightBox.type === 'info' && <Info className="w-4 h-4 text-purple-300" />}
-                        <span>{section.highlightBox.title}</span>
-                      </div>
-                      <p className="text-zinc-300">{section.highlightBox.text}</p>
-                    </div>
-                  )}
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* Nav Controls */}
