@@ -82,11 +82,12 @@ export const TRACKS: Track[] = [
     id: 'trilha-5',
     name: '5. Gestão do Tempo, Foco & Educação Financeira',
     category: 'Desenvolvimento Pessoal',
-    description: 'Capacitar estudantes e jovens profissionais a conciliar a rotina acadêmica com o trabalho, aplicando técnicas de planejamento semanal e finanças pessoais com o método 50-30-20.',
+    description: 'Capacitar estudantes e jovens profissionais a conciliar a rotina acadêmica com o trabalho, aplicando Matriz de Eisenhower, Técnica Pomodoro e o método 50-30-20.',
     targetAudienceType: 'TODOS',
-    hoursTotal: 24,
-    coursesCount: 2,
+    hoursTotal: 36,
+    coursesCount: 3,
     courseIds: [
+      'curso-gestao-tempo-produtividade-iniciante',
       'curso-financas-pessoais',
       'curso-planejamento-orcamento'
     ],
@@ -97,6 +98,206 @@ export const TRACKS: Track[] = [
 ];
 
 export const COURSES: Course[] = [
+  // =========================================================================
+  // CURSO 7: GESTÃO DO TEMPO E PRODUTIVIDADE
+  // =========================================================================
+  {
+    id: 'curso-gestao-tempo-produtividade-iniciante',
+    trackId: 'trilha-5',
+    trackName: 'TRILHA 5: Gestão do Tempo, Foco & Educação Financeira',
+    category: 'Desenvolvimento Pessoal',
+    targetAudienceType: 'TODOS',
+    title: 'Gestão do Tempo e Produtividade',
+    subtitle: 'A Matriz de Eisenhower (Urgente vs. Importante), planejamento preventivo, o mito da multitarefa, resíduo atencional e a Técnica Pomodoro.',
+    hours: 12,
+    equivalentHours: 12,
+    modality: 'EAD 100% Gratuito (Escola Virtual)',
+    targetAudience: 'Estudantes, estagiários, jovens aprendizes e profissionais que precisam conciliar múltiplas demandas com foco e sem esgotamento mental.',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Mestre em Foco e Produtividade',
+    badgeCategory: 'Atitude Profissional',
+    badgeIcon: 'Clock',
+    accentColor: '#10B981',
+    level: 'Iniciante',
+    learningObjectives: [
+      'Classificar tarefas diárias pela Matriz de Eisenhower distinguindo o que é Urgente do que é Importante.',
+      'Atuar no Quadrante 2 (Importante e Não Urgente) através do planejamento preventivo para evitar crises de prazos.',
+      'Compreender os prejuízos do resíduo atencional e abandonar o mito da multitarefa cognitiva.',
+      'Aplicar os ciclos de foco absoluto e pausas restauradoras da Técnica Pomodoro sem distrações de telas.'
+    ],
+    modules: [
+      {
+        id: 'gestao-tempo-mod-1',
+        number: 1,
+        title: 'MÓDULO 1: A Matriz de Eisenhower',
+        summary: 'Aprenda a distinguir Urgência de Importância e utilize o planejamento preventivo para priorizar o que gera valor a longo prazo.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Distinção entre Urgente e Importante',
+              body: [
+                'A Matriz de Eisenhower organiza as tarefas diárias em quatro quadrantes baseados em dois eixos: Urgência (exige atenção imediata) e Importância (contribui para metas de longo prazo).',
+                'A divisão orienta a ação: 1) Urgente e Importante: Faça imediatamente; 2) Importante, mas Não Urgente: Agende para realizar com qualidade; 3) Urgente, mas Não Importante: Delegue a terceiros sempre que possível; 4) Não Urgente e Não Importante: Elimine, pois trata-se de distração pura.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Os 4 Quadrantes da Matriz',
+                text: 'Q1 (Faça agora) | Q2 (Agende e planeje) | Q3 (Delegue se puder) | Q4 (Elimine distrações).'
+              }
+            },
+            {
+              subheading: '2. Planejamento Preventivo',
+              body: [
+                'A chave para a produtividade sustentável é gastar a maior parte do tempo no Quadrante 2 (Importante/Não Urgente).',
+                'Planejar projetos com antecedência, estudar e cuidar do ambiente evita que tarefas importantes se transformem em urgências caóticas na véspera dos prazos.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Trabalho no Quadrante 2',
+                text: 'Investir tempo em planejamento preventivo reduz o estresse diário e elimina a sensação de estar apenas "apagando incêndios".'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'gestao-tempo-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: O Foco Absoluto',
+        summary: 'Entenda os efeitos do resíduo atencional no cérebro e domine a Técnica Pomodoro para manter concentração máxima.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. O Mito da Multitarefa e Resíduo Atencional',
+              body: [
+                'O cérebro humano não processa duas tarefas complexas simultaneamente; ele apenas alterna rapidamente o foco entre elas.',
+                'Essa alternância gera o chamado "resíduo atencional" — parte da sua capacidade cognitiva permanece presa na tarefa anterior, reduzindo a qualidade do trabalho e aumentando os erros em planilhas ou relatórios.'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Custo da Troca de Contexto',
+                text: 'Cada checagem rápida no celular ou troca de abas deixa resíduo atencional, custando minutos preciosos para retomar o estado de fluxo mental profundo.'
+              }
+            },
+            {
+              subheading: '2. A Técnica Pomodoro',
+              body: [
+                'Desenvolvida para manter o foco sustentável, a Técnica Pomodoro consiste em trabalhar com 100% de concentração em um único objetivo por 25 minutos (um "Pomodoro"), seguidos por 5 minutos de pausa total longe das telas.',
+                'Após quatro ciclos completados, faz-se uma pausa mais longa (de 15 a 30 minutos), evitando o esgotamento mental ao fim do dia.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Descanso de Verdade',
+                text: 'Durante os 5 minutos de pausa, afaste-se do computador e do celular: beba água, alongue-se e descanse a visão para oxigenar a mente.'
+              }
+            }
+          ]
+        }
+      }
+    ],
+    caseStudies: [
+      {
+        id: 'caso-gestaotempo-1',
+        title: 'Superando a Procrastinação e Eliminando Ladrões de Tempo',
+        character: 'Rodrigo, Aprendiz de Controladoria e Estudante Noturno',
+        scenario: 'Rodrigo vivia sobrecarregado entregando relatórios no último minuto e com erros de digitação por tentar responder mensagens enquanto calculava planilhas.',
+        criticalAnalysis: 'Rodrigo implementou a Matriz de Eisenhower para agendar suas análises em blocos de Pomodoro de 25 minutos com celular em modo foco, eliminando retrabalhos e saindo pontualmente para a faculdade.',
+        keyTakeaways: [
+          'Monotarefa focada produz o dobro na metade do tempo.',
+          'Pausas programadas longe de telas renovam a clareza analítica.'
+        ],
+        badgeRelevance: 'Comprova alta maturidade de autogestão, disciplina pessoal e eficiência operacional.'
+      }
+    ],
+    quiz: [
+      {
+        id: 1,
+        question: 'O propósito da Matriz de Eisenhower foca em:',
+        options: [
+          'Misturar tudo numa bandeja.',
+          'Classificar e separar "Importante" de "Urgente".',
+          'Medir o tempo de almoço.',
+          'Cancelar todos e-mails logo cedo.'
+        ],
+        correct: 1,
+        explanation: 'A Matriz de Eisenhower ajuda o profissional a categorizar suas demandas entre importância e urgência para priorizar o que traz valor real.'
+      },
+      {
+        id: 2,
+        question: 'Algo "Não Urgente" e "Não Importante", deve ser tratado como:',
+        options: [
+          'Feito imediatamente.',
+          'Agendado.',
+          'Delegado à gerência central.',
+          'Eliminado, pois são apenas distrações puras.'
+        ],
+        correct: 3,
+        explanation: 'Atividades que não agregam valor nem possuem urgência são ladrões de tempo que devem ser cortados da rotina.'
+      },
+      {
+        id: 3,
+        question: 'A "Multitarefa" extrema reflete que:',
+        options: [
+          'O cérebro processa tudo triplo mais rápido.',
+          'Acarreta "resíduo atencional", destruindo o rendimento.',
+          'Melhora finanças cerebrais.',
+          'Facilita processos de demissão.'
+        ],
+        correct: 1,
+        explanation: 'Alternar o foco entre várias tarefas complexas deixa rastros de atenção na tarefa anterior, reduzindo drasticamente a capacidade cognitiva.'
+      },
+      {
+        id: 4,
+        question: 'A aplicação da Técnica Pomodoro consiste em:',
+        options: [
+          '25 minutos de foco absoluto seguidos de 5 minutos de pausa.',
+          'Dormir 25 minutos e trabalhar 5.',
+          'Comer tomates sem parar.',
+          'Abandonar relógios no trabalho e agir por intuição.'
+        ],
+        correct: 0,
+        explanation: 'A técnica Pomodoro divide a jornada em blocos ininterruptos de trabalho concentrado intercalados com pequenas pausas para oxigenar a mente.'
+      },
+      {
+        id: 5,
+        question: 'O que significa "delegar" tarefas urgentes mas não importantes?',
+        options: [
+          'Transferir a burocracia mecânica de menor impacto direto para níveis de suporte adequados, liberando seu foco analítico denso central.',
+          'Jogar a culpa nas outras pessoas do time lateral vizinho distante.',
+          'Excluir o projeto inteiro sem avisar ninguém da cadeia de chefia superior direta formal.',
+          'Pagar para um robô invisível realizar clandestinamente.'
+        ],
+        correct: 0,
+        explanation: 'Passar tarefas operacionais secundárias para a equipe de apoio permite ao analista focar nas decisões de alto impacto do setor.'
+      },
+      {
+        id: 6,
+        question: 'Como o "resíduo atencional" afeta a entrega de um relatório?',
+        options: [
+          'Ele melhora as cores das células financeiras.',
+          'Parte do seu cérebro fica presa na aba do Whatsapp que acabou de fechar, reduzindo a capacidade intelectual de focar nos cálculos vitais, causando erros bobos estruturais graves operacionais básicos.',
+          'Ele aumenta o seu salário bruto.',
+          'Não causa impacto algum em jovens.'
+        ],
+        correct: 1,
+        explanation: 'O cérebro leva minutos para recuperar o estado de imersão total após cada interrupção rápida em redes ou chats de mensagens.'
+      },
+      {
+        id: 7,
+        question: 'O principal erro ao usar o Pomodoro é:',
+        options: [
+          'Usar o período de pausa (5 minutos) para entrar nas redes sociais no celular em vez de descansar a visão da tela.',
+          'Escolher tomates maduros.',
+          'Desligar o computador a cada vinte minutos.',
+          'Trabalhar escutando Mozart clássico baixo.'
+        ],
+        correct: 0,
+        explanation: 'O descanso deve ser usado para despressurizar os olhos e a mente da luz das telas, e não para consumir dopamina rápida em redes virtuais.'
+      }
+    ]
+  },
   // =========================================================================
   // CURSO 6: PRODUTIVIDADE COM NOTEBOOKLM
   // =========================================================================
