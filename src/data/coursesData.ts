@@ -1,102 +1,331 @@
 import { Course, Track } from '@/types';
 
 export const TRACKS: Track[] = [
+  // =========================================================================
+  // 🟢 TRILHAS NÍVEL INICIANTE
+  // =========================================================================
   {
-    id: 'trilha-1',
-    name: '1. Entrada no Mercado & Primeiro Emprego',
-    category: 'Desenvolvimento Pessoal e Legislação',
-    description: 'Trilha fundamental para quem quer conquistar a primeira vaga formal: ética e etiqueta corporativa, direitos da Lei 10.097, currículo vencedor e técnicas de entrevista.',
-    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO'],
-    hoursTotal: 70,
-    coursesCount: 6,
-    courseIds: [
-      'curso-etica-etiqueta-corporativa',
-      'curso-jovem-aprendiz-avancado',
-      'curso-curriculo-plataformas',
-      'curso-orcamento-primeiro-salario',
-      'curso-postura-entrevistas',
-      'curso-preparacao-entrevistas-processos-seletivos'
-    ],
-    badgeReward: 'Embaixador do Primeiro Emprego',
-    icon: 'GraduationCap',
-    accentColor: '#8B5CF6'
-  },
-  {
-    id: 'trilha-2',
-    name: '2. Soft Skills, Postura & Comunicação Corporativa',
+    id: 'trilha-embaixador-primeiro-emprego',
+    name: 'Formação Embaixador do Primeiro Emprego',
+    level: 'Iniciante',
     category: 'Desenvolvimento Pessoal',
-    description: 'Aprenda inteligência emocional no trabalho, comunicação interpessoal, escuta ativa, comunicação não-violenta e resiliência profissional.',
-    targetAudienceType: 'TODOS',
-    hoursTotal: 72,
-    coursesCount: 6,
-    courseIds: [
-      'curso-inteligencia-emocional-trabalho',
-      'curso-soft-skills-comunicacao-interpessoal',
-      'curso-comunicacao-corporativa',
-      'curso-atendimento-publico',
-      'curso-saude-mental-trabalho',
-      'curso-comunicacao-nao-violenta'
-    ],
-    badgeReward: 'Mestre em Comunicação e Soft Skills',
-    icon: 'Sparkles',
-    accentColor: '#EC4899'
-  },
-  {
-    id: 'trilha-3',
-    name: '3. Tecnologia, Informática & Produtividade com IA',
-    category: 'Tecnologia da Informação',
-    description: 'Domine NotebookLM (IA ancorada em fontes e podcasts), IA generativa prática, planilhas, ecossistema nuvem e governança com LGPD.',
-    targetAudienceType: ['ESTAGIARIO', 'ESTUDANTE', 'JOVEM_APRENDIZ'],
-    hoursTotal: 94,
-    coursesCount: 8,
-    courseIds: [
-      'curso-produtividade-notebooklm',
-      'curso-inteligencia-artificial-pratica',
-      'curso-hard-skills-excel-ferramentas-digitais',
-      'curso-excel-iniciante',
-      'curso-excel-basico-avancado',
-      'curso-ia-produtividade',
-      'curso-informatica-seguranca',
-      'curso-lgpd-seguranca-dados'
-    ],
-    badgeReward: 'Especialista em Produtividade Digital',
-    icon: 'Laptop',
-    accentColor: '#3B82F6'
-  },
-  {
-    id: 'trilha-4',
-    name: '4. Rotinas Administrativas & Gestão Empresarial',
-    category: 'Administração e Negócios',
-    description: 'Resolução criativa de problemas (Cinco Porquês e pensamento lateral), rotinas administrativas, atas, gestão documental e processos ágeis de escritório.',
-    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTAGIARIO'],
-    hoursTotal: 46,
-    coursesCount: 4,
-    courseIds: [
-      'curso-resolucao-criativa-problemas-adaptacao',
-      'curso-rotinas-praticas-profissionalizantes',
-      'curso-rotinas-administrativas',
-      'curso-gestao-tempo'
-    ],
-    badgeReward: 'Gestor de Rotinas Administrativas',
-    icon: 'Briefcase',
-    accentColor: '#F59E0B'
-  },
-  {
-    id: 'trilha-5',
-    name: '5. Gestão do Tempo, Foco & Educação Financeira',
-    category: 'Desenvolvimento Pessoal',
-    description: 'Capacitar estudantes e jovens profissionais a conciliar a rotina acadêmica com o trabalho, aplicando Matriz de Eisenhower, Técnica Pomodoro e o método 50-30-20.',
+    description: 'Preparação acelerada para encarar processos seletivos e conquistar a primeira oportunidade formal.',
     targetAudienceType: 'TODOS',
     hoursTotal: 36,
     coursesCount: 3,
+    badgeReward: 'Embaixador do Primeiro Emprego',
+    icon: 'GraduationCap',
+    accentColor: '#10B981',
     courseIds: [
-      'curso-gestao-tempo-produtividade-iniciante',
-      'curso-financas-pessoais',
-      'curso-planejamento-orcamento'
+      'curso-preparacao-entrevistas-processos-seletivos',
+      'curso-soft-skills-comunicacao-interpessoal',
+      'curso-gestao-tempo-produtividade-iniciante'
     ],
-    badgeReward: 'Especialista em Gestão do Tempo & Finanças',
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Preparação para Entrevistas e Processos Seletivos',
+        subtitle: 'Currículo de impacto, ATS, postura em entrevistas e dinâmicas',
+        description: 'Construção da base do candidato, currículo otimizado e técnicas para se destacar diante de recrutadores.',
+        courseId: 'curso-preparacao-entrevistas-processos-seletivos',
+        hours: 12
+      },
+      {
+        stepNumber: 2,
+        title: 'Soft Skills e Comunicação Interpessoal',
+        subtitle: 'Escuta ativa, convivência corporativa e comunicação assertiva',
+        description: 'Desenvolvimento de postura profissional, empatia e alinhamento em equipes de trabalho.',
+        courseId: 'curso-soft-skills-comunicacao-interpessoal',
+        hours: 12
+      },
+      {
+        stepNumber: 3,
+        title: 'Gestão do Tempo e Produtividade',
+        subtitle: 'Matriz de Eisenhower, foco absoluto e rotina de estudos e trabalho',
+        description: 'Priorização de demandas, eliminação de distrações e organização da rotina para o dia a dia.',
+        courseId: 'curso-gestao-tempo-produtividade-iniciante',
+        hours: 12
+      }
+    ]
+  },
+  {
+    id: 'trilha-comunicacao-relacionamento',
+    name: 'Formação Comunicação & Relacionamento Profissional',
+    level: 'Iniciante',
+    category: 'Desenvolvimento Pessoal',
+    description: 'Desenvolvimento da expressão oral, escrita e convivência harmoniosa em ambientes corporativos.',
+    targetAudienceType: 'TODOS',
+    hoursTotal: 24,
+    coursesCount: 2,
+    badgeReward: 'Mestre em Comunicação Interpessoal',
+    icon: 'Sparkles',
+    accentColor: '#10B981',
+    courseIds: [
+      'curso-soft-skills-comunicacao-interpessoal',
+      'curso-rotinas-praticas-profissionalizantes'
+    ],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Soft Skills e Comunicação Interpessoal',
+        subtitle: 'Habilidades comportamentais e inteligência relacional',
+        description: 'Postura empática, quebra de ruídos na comunicação e convivência construtiva.',
+        courseId: 'curso-soft-skills-comunicacao-interpessoal',
+        hours: 12
+      },
+      {
+        stepNumber: 2,
+        title: 'Rotinas Administrativas (Comunicação e Atendimento)',
+        subtitle: 'Atendimento corporativo e postura institucional',
+        description: 'Comunicação empresarial formal, atendimento humanizado e relacionamento profissional.',
+        courseId: 'curso-rotinas-praticas-profissionalizantes',
+        hours: 12
+      }
+    ]
+  },
+
+  // =========================================================================
+  // 🟡 TRILHAS NÍVEL INTERMEDIÁRIO
+  // =========================================================================
+  {
+    id: 'trilha-gestor-rotinas-administrativas',
+    name: 'Formação Gestor de Rotinas Administrativas',
+    level: 'Intermediário',
+    category: 'Administração e Negócios',
+    description: 'Capacitação completa em rotinas de escritório, redação formal, gestão documental e LGPD.',
+    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTAGIARIO', 'PRIMEIRO_EMPREGO'],
+    hoursTotal: 36,
+    coursesCount: 3,
+    badgeReward: 'Especialista em Serviços Administrativos',
+    icon: 'Briefcase',
+    accentColor: '#F59E0B',
+    courseIds: [
+      'curso-rotinas-praticas-profissionalizantes',
+      'curso-lgpd-seguranca-dados',
+      'curso-hard-skills-excel-ferramentas-digitais'
+    ],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Rotinas Administrativas e Práticas Profissionalizantes',
+        subtitle: 'Comunicação empresarial, fluxos de documentos e rotinas de escritório',
+        description: 'Organização de processos internos, gestão de informação e atendimento corporativo.',
+        courseId: 'curso-rotinas-praticas-profissionalizantes',
+        hours: 12
+      },
+      {
+        stepNumber: 2,
+        title: 'Módulo LGPD e Confidencialidade',
+        subtitle: 'Segurança digital, privacidade e conformidade com a LGPD',
+        description: 'Tratamento de dados pessoais corporativos, princípios de sigilo e prevenção de incidentes de dados.',
+        courseId: 'curso-lgpd-seguranca-dados',
+        hours: 12
+      },
+      {
+        stepNumber: 3,
+        title: 'Hard Skills e Ferramentas Digitais (Nuvem e Workspace)',
+        subtitle: 'Google Workspace, nuvem e ferramentas digitais de escritório',
+        description: 'Uso profissional do ecossistema em nuvem, organização colaborativa de arquivos e produtividade.',
+        courseId: 'curso-hard-skills-excel-ferramentas-digitais',
+        hours: 12
+      }
+    ]
+  },
+  {
+    id: 'trilha-analista-dados-planilhas',
+    name: 'Formação Analista de Dados & Planilhas (Excel/Docs)',
+    level: 'Intermediário',
+    category: 'Tecnologia da Informação',
+    description: 'Domínio prático de planilhas eletrônicas para controle financeiro, cadastros e dashboards.',
+    targetAudienceType: ['ESTAGIARIO', 'JOVEM_APRENDIZ', 'PRIMEIRO_EMPREGO'],
+    hoursTotal: 24,
+    coursesCount: 2,
+    badgeReward: 'Especialista em Planilhas e Operações',
+    icon: 'Table',
+    accentColor: '#F59E0B',
+    courseIds: [
+      'curso-excel-iniciante',
+      'curso-excel-basico-avancado'
+    ],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Hard Skills (Fórmulas Básicas, SOMA e MÉDIA)',
+        subtitle: 'Excel do Zero: Primeiras Planilhas, Cálculos e Gráficos',
+        description: 'Estruturação da grade, tipos de dados, formatação profissional e funções matemáticas fundamentais.',
+        courseId: 'curso-excel-iniciante',
+        hours: 12
+      },
+      {
+        stepNumber: 2,
+        title: 'Hard Skills Avançado (PROCV e Formatação Condicional)',
+        subtitle: 'Microsoft Excel & Planilhas Eletrônicas para Escritório',
+        description: 'Tabelas dinâmicas, PROCV, funções lógicas SE e automação de relatórios visuais de apoio à tomada de decisão.',
+        courseId: 'curso-excel-basico-avancado',
+        hours: 12
+      }
+    ]
+  },
+  {
+    id: 'trilha-educacao-financeira-contracheque',
+    name: 'Formação Educação Financeira & Leitura de Contracheque',
+    level: 'Intermediário',
+    category: 'Desenvolvimento Pessoal',
+    description: 'Gestão do primeiro salário, economia pessoal e compreensão dos direitos e descontos no holerite.',
+    targetAudienceType: 'TODOS',
+    hoursTotal: 24,
+    coursesCount: 2,
+    badgeReward: 'Jovem Consciente & Gestor Financeiro',
     icon: 'DollarSign',
-    accentColor: '#10B981'
+    accentColor: '#F59E0B',
+    courseIds: [
+      'curso-planejamento-orcamento',
+      'curso-orcamento-primeiro-salario'
+    ],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Gestão Financeira e Método 50-30-20',
+        subtitle: 'Planejamento Financeiro, Orçamento e Reserva de Emergência',
+        description: 'Mapeamento de despesas, regra 50-30-20, controle de gastos impulsivos e estruturação da reserva financeira.',
+        courseId: 'curso-planejamento-orcamento',
+        hours: 12
+      },
+      {
+        stepNumber: 2,
+        title: 'Rotinas Financeiras, Holerite, INSS e VTs',
+        subtitle: 'Orçamento do Primeiro Salário e Leitura de Contracheque',
+        description: 'Compreensão de salário bruto vs. líquido, descontos obrigatórios (INSS, VT) e direitos do trabalhador.',
+        courseId: 'curso-orcamento-primeiro-salario',
+        hours: 12
+      }
+    ]
+  },
+
+  // =========================================================================
+  // 🔴 TRILHAS NÍVEL AVANÇADO
+  // =========================================================================
+  {
+    id: 'trilha-produtividade-ia-trabalho',
+    name: 'Formação Produtividade & Inteligência Artificial no Trabalho',
+    level: 'Avançado',
+    category: 'Tecnologia da Informação',
+    description: 'Uso de IAs gerativas como copilotos para criação de textos, relatórios e automação de escritório.',
+    targetAudienceType: ['ESTAGIARIO', 'JOVEM_APRENDIZ', 'PRIMEIRO_EMPREGO'],
+    hoursTotal: 24,
+    coursesCount: 2,
+    badgeReward: 'Especialista em Produtividade Digital com IA',
+    icon: 'Zap',
+    accentColor: '#F43F5E',
+    courseIds: [
+      'curso-inteligencia-artificial-pratica',
+      'curso-ia-produtividade'
+    ],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Inteligência Artificial Prática (Prompts e Copiloto)',
+        subtitle: 'Prompt Engineering e o conceito de copiloto inteligente',
+        description: 'Técnicas avançadas de formulação de prompts, mitigação de alucinações e uso da IA como acelerador de tarefas.',
+        courseId: 'curso-inteligencia-artificial-pratica',
+        hours: 12
+      },
+      {
+        stepNumber: 2,
+        title: 'Automação, Síntese e Tom de Voz',
+        subtitle: 'Inteligência Artificial e Automação no Dia a Dia de Trabalho',
+        description: 'Geração de minutas, relatórios executivos, resumos analíticos e fluxos integrados de trabalho.',
+        courseId: 'curso-ia-produtividade',
+        hours: 12
+      }
+    ]
+  },
+  {
+    id: 'trilha-pesquisa-conhecimento-notebooklm',
+    name: 'Formação Pesquisa & Gestão do Conhecimento com NotebookLM',
+    level: 'Avançado',
+    category: 'Tecnologia da Informação',
+    description: 'Criação de bases de conhecimento privadas ancoradas em documentos e produção de podcasts automáticos.',
+    targetAudienceType: ['ESTAGIARIO', 'JOVEM_APRENDIZ', 'PRIMEIRO_EMPREGO', 'ESTUDANTE'],
+    hoursTotal: 24,
+    coursesCount: 2,
+    badgeReward: 'Arquiteto de Conhecimento & IA de Fontes',
+    icon: 'BookOpen',
+    accentColor: '#F43F5E',
+    courseIds: [
+      'curso-produtividade-notebooklm'
+    ],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'NotebookLM: Ancoramento (Grounding) e Citações Diretas',
+        subtitle: 'IA Baseada Exclusivamente nas Suas Próprias Fontes',
+        description: 'Upload de documentos corporativos e auditoria instantânea com citações numéricas interativas.',
+        courseId: 'curso-produtividade-notebooklm',
+        hours: 12
+      },
+      {
+        stepNumber: 2,
+        title: 'Formatos Multimodais: FAQs, Guias de Estudo e Audio Overview',
+        subtitle: 'Geração de Podcasts Executivos e Material de Treinamento',
+        description: 'Criação de podcasts automáticos a duas vozes e sínteses executivas em linguagem natural.',
+        courseId: 'curso-produtividade-notebooklm',
+        hours: 12
+      }
+    ]
+  },
+  {
+    id: 'trilha-tecnologia-gestao-aprendiz-pro',
+    name: 'Formação Completa em Tecnologia & Gestão (Jovem Aprendiz Pró)',
+    level: 'Avançado',
+    category: 'Tecnologia da Informação',
+    description: 'Trilha master que combina gestão administrativa, hard skills e tecnologia moderna.',
+    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTAGIARIO', 'PRIMEIRO_EMPREGO'],
+    hoursTotal: 48,
+    coursesCount: 4,
+    badgeReward: 'Líder Aprendiz & Profissional do Futuro',
+    icon: 'Award',
+    accentColor: '#F43F5E',
+    courseIds: [
+      'curso-rotinas-praticas-profissionalizantes',
+      'curso-hard-skills-excel-ferramentas-digitais',
+      'curso-inteligencia-artificial-pratica',
+      'curso-produtividade-notebooklm'
+    ],
+    steps: [
+      {
+        stepNumber: 1,
+        title: 'Rotinas Administrativas e LGPD',
+        subtitle: 'Comunicação Empresarial, Sigilo e Privacidade de Dados',
+        description: 'Boas práticas corporativas de conformidade, redação institucional e atendimento de processos internos.',
+        courseId: 'curso-rotinas-praticas-profissionalizantes',
+        hours: 12
+      },
+      {
+        stepNumber: 2,
+        title: 'Hard Skills (Excel e Nuvem)',
+        subtitle: 'Planilhas Eletrônicas e Armazenamento Colaborativo em Nuvem',
+        description: 'Construção de planilhas dinâmicas, controle de operações e colaboração em tempo real no Google Workspace.',
+        courseId: 'curso-hard-skills-excel-ferramentas-digitais',
+        hours: 12
+      },
+      {
+        stepNumber: 3,
+        title: 'Inteligência Artificial Prática',
+        subtitle: 'Engenharia de Prompts e Copilotos Generativos',
+        description: 'Automação de redação de documentos e aceleração de rotinas administrativas com IA.',
+        courseId: 'curso-inteligencia-artificial-pratica',
+        hours: 12
+      },
+      {
+        stepNumber: 4,
+        title: 'Produtividade com NotebookLM',
+        subtitle: 'IA Ancorada em Fontes e Produção de Conteúdo Multimodal',
+        description: 'Domínio do NotebookLM para centralização de manuais, normas e geração de áudio explicativo.',
+        courseId: 'curso-produtividade-notebooklm',
+        hours: 12
+      }
+    ]
   }
 ];
 
