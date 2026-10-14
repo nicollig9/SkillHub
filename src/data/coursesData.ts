@@ -43,11 +43,12 @@ export const TRACKS: Track[] = [
     id: 'trilha-3',
     name: '3. Tecnologia, Informática & Produtividade com IA',
     category: 'Tecnologia da Informação',
-    description: 'Domine planilhas eletrônicas (SOMA, MÉDIA, PROCV), ferramentas digitais em nuvem, pacote Office, IA generativa e governança de dados com LGPD.',
+    description: 'Domine IA generativa prática (engenharia de prompt e copilotos), planilhas eletrônicas, ecossistema nuvem, pacote Office e segurança com LGPD.',
     targetAudienceType: ['ESTAGIARIO', 'ESTUDANTE', 'JOVEM_APRENDIZ'],
-    hoursTotal: 70,
-    coursesCount: 6,
+    hoursTotal: 82,
+    coursesCount: 7,
     courseIds: [
+      'curso-inteligencia-artificial-pratica',
       'curso-hard-skills-excel-ferramentas-digitais',
       'curso-excel-iniciante',
       'curso-excel-basico-avancado',
@@ -95,6 +96,208 @@ export const TRACKS: Track[] = [
 ];
 
 export const COURSES: Course[] = [
+  // =========================================================================
+  // CURSO 5: INTELIGÊNCIA ARTIFICIAL PRÁTICA
+  // =========================================================================
+  {
+    id: 'curso-inteligencia-artificial-pratica',
+    trackId: 'trilha-3',
+    trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
+    category: 'Tecnologia da Informação',
+    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO', 'ESTAGIARIO'],
+    title: 'Inteligência Artificial Prática',
+    subtitle: 'Prompt engineering (papel, contexto, formato), conceito de copiloto, mitigação de alucinações, síntese de leitura e adequação de tom de voz.',
+    hours: 12,
+    equivalentHours: 12,
+    modality: 'EAD 100% Gratuito (Escola Virtual)',
+    targetAudience: 'Jovens aprendizes, estagiários e profissionais em início de carreira buscando utilizar IA generativa como copiloto diário no trabalho.',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Copiloto de IA Corporativa',
+    badgeCategory: 'Trabalho',
+    badgeIcon: 'Sparkles',
+    accentColor: '#3B82F6',
+    level: 'Iniciante',
+    learningObjectives: [
+      'Dominar a engenharia de prompts definindo papel, contexto e formato de saída para obter respostas precisas e sem ambiguidades.',
+      'Compreender o conceito de copiloto e o risco de alucinações, exercendo supervisão e validação humana rigorosa.',
+      'Utilizar modelos generativos para otimizar a leitura, sintetizar relatórios extensos e extrair pontos acionáveis com agilidade.',
+      'Ajustar o tom de voz e revisar gramática e coesão em comunicados e e-mails corporativos formais.'
+    ],
+    modules: [
+      {
+        id: 'ia-pratica-mod-1',
+        number: 1,
+        title: 'MÓDULO 1: Prompt Engineering',
+        summary: 'Aprenda a estruturar prompts eficazes com papel, contexto e formato, além de compreender o papel da IA como copiloto e os riscos de alucinação.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Construção de Prompts Eficientes',
+              body: [
+                'A qualidade da resposta de um modelo de linguagem (como ChatGPT ou Gemini) depende diretamente da clareza da instrução enviada (prompt).',
+                'Um prompt bem estruturado deve conter três elementos fundamentais: o Papel atribuído à IA (ex: "Atue como um especialista em RH"), o Contexto detalhado do cenário e o Formato da Entrega desejado (ex: "em tópicos com tabela").',
+                'Isso elimina respostas vagas ou genéricas e garante entregas profissionais sob medida.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Tríade do Prompt Perfeito',
+                text: 'Papel (Quem é a IA?) + Contexto (Qual a situação?) + Formato de Saída (Como a resposta deve ser entregue: tabela, tópicos ou rascunho de e-mail).'
+              }
+            },
+            {
+              subheading: '2. O Conceito de Copiloto e Riscos de Alucinação',
+              body: [
+                'Ferramentas de IA devem ser tratadas como copilotos de trabalho que superam o bloqueio de tela em branco, e nunca como substitutos autônomos da análise humana.',
+                'Os modelos podem apresentar "alucinações" — fenômeno em que o sistema inventa fatos ou dados falsos com tom altamente persuasivo.',
+                'A revisão e validação humana de todo conteúdo gerado são etapas obrigatórias antes de qualquer envio corporativo.'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Atenção às Alucinações',
+                text: 'Nunca encaminhe ou assine um documento gerado por IA sem validação prévia; dados factuais e números devem ser sempre checados nas fontes oficiais.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'ia-pratica-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: Automação e Produtividade',
+        summary: 'Acelere a leitura de manuais e relatórios com resumos executivos e refine a comunicação escrita adaptando o tom de voz da mensagem.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Otimização de Leitura e Síntese',
+              body: [
+                'Utilizar a IA para resumir relatórios extensos, manuais normativos ou e-mails longos economiza horas de trabalho.',
+                'Solicite extrações específicas, como tópicos de decisão, listas de tarefas ou tabelas comparativas a partir do texto original, acelerando a absorção de conhecimento e facilitando a rotina de estudos e trabalho.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Leitura Acelerada com IA',
+                text: 'Peça resumos focados em ações práticas: "Extraia apenas os 5 pontos principais e as tarefas pendentes com seus prazos deste documento."'
+              }
+            },
+            {
+              subheading: '2. Adequação de Tom de Voz em Comunicação Comercial',
+              body: [
+                'Modelos gerativos ajudam a aperfeiçoar comunicados e rascunhos difíceis.',
+                'É possível solicitar ajustes finos no tom de voz de uma mensagem — tornando um e-mail mais formal, cordial, persuasivo ou sucinto — garantindo adequação perfeita à cultura da empresa e ao perfil do destinatário.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Revisão Ortográfica e Coesão',
+                text: 'Além do tom, a IA atua como revisor imediato, corrigindo vícios de linguagem, concordância e pontuação sem alterar o sentido do texto original.'
+              }
+            }
+          ]
+        }
+      }
+    ],
+    caseStudies: [
+      {
+        id: 'caso-iapratica-1',
+        title: 'Elaboração de Minuta e Validação Crítica de Dados',
+        character: 'Beatriz, Estagiária de Comunicação Institucional',
+        scenario: 'Beatriz precisava redigir um comunicado sobre a nova política de benefícios da empresa a partir de uma portaria técnica de 30 páginas.',
+        criticalAnalysis: 'Beatriz forneceu o texto à IA pedindo um rascunho em linguagem amigável, revisou linha por linha as datas e regras citadas para evitar alucinações, e obteve a aprovação imediata do RH.',
+        keyTakeaways: [
+          'A IA acelera a síntese e vence o bloqueio inicial de redação.',
+          'A validação humana criteriosa garante fidelidade e segurança corporativa.'
+        ],
+        badgeRelevance: 'Demonstra fluência no uso ético, seguro e produtivo de ferramentas de IA generativa.'
+      }
+    ],
+    quiz: [
+      {
+        id: 1,
+        question: 'Para criar um bom "Prompt" (comando) é essencial:',
+        options: [
+          'Usar frases muito curtas sem contexto.',
+          'Definir papel, contexto e formato de saída esperado.',
+          'Digitar apenas uma palavra.',
+          'Confiar no sistema cegamente.'
+        ],
+        correct: 1,
+        explanation: 'Quanto mais detalhadas forem as diretrizes passadas à IA no prompt, mais refinado e aderente à sua necessidade será o resultado do texto.'
+      },
+      {
+        id: 2,
+        question: 'Qual o cuidado máximo ao utilizar modelos de IA?',
+        options: [
+          'Sempre revisar, pois a IA pode criar informações incorretas (alucinações).',
+          'Assinar como autor exclusivo sem checar.',
+          'Enviar direto para o chefe sem ler.',
+          'Passar senhas de banco.'
+        ],
+        correct: 0,
+        explanation: 'Os modelos de linguagem geram palavras baseados em probabilidades estatísticas e podem inventar dados falsos, exigindo validação humana.'
+      },
+      {
+        id: 3,
+        question: 'Ao ler um manual de 80 páginas, a IA ajuda a:',
+        options: [
+          'Colorir as páginas.',
+          'Traduzir para linguagens mortas.',
+          'Sintetizar tópicos e extrair os pontos principais velozmente.',
+          'Deletar páginas difíceis.'
+        ],
+        correct: 2,
+        explanation: 'As IAs são excelentes aceleradoras de leitura ao condensar longos arquivos de texto em tópicos acionáveis imediatos.'
+      },
+      {
+        id: 4,
+        question: 'Usar a IA como "Copiloto" significa:',
+        options: [
+          'Deixar o trabalho autônomo sem supervisão.',
+          'Usá-la para vencer o bloqueio da página em branco em e-mails e ofícios.',
+          'Substituir todos os funcionários humanos.',
+          'Travar o sistema corporativo.'
+        ],
+        correct: 1,
+        explanation: 'O conceito de copiloto enfatiza que o sistema gera o rascunho inicial enquanto o profissional ajusta a versão final refinada.'
+      },
+      {
+        id: 5,
+        question: 'Ajustar o "Tom de Voz" no prompt garante que:',
+        options: [
+          'O texto saia com linguajar adequado para o ambiente corporativo formal.',
+          'A máquina fale em voz alta pelo microfone alto.',
+          'A formatação vire negrito automaticamente.',
+          'O e-mail fique ilegível propositalmente.'
+        ],
+        correct: 0,
+        explanation: 'Parametrizar a formalidade garante que o texto final esteja alinhado às exigências de polidez da cultura da empresa.'
+      },
+      {
+        id: 6,
+        question: 'Como a IA pode atuar como um revisor ortográfico e sintático?',
+        options: [
+          'Ela altera os dados numéricos financeiros do seu balanço anual.',
+          'Ela corrige pontuação, concordância e sugere melhorias de coesão no texto bruto.',
+          'Ela apenas traduz idiomas.',
+          'Ela exclui anexos dos e-mails enviados.'
+        ],
+        correct: 1,
+        explanation: 'A IA identifica deslizes gramaticais e reestrutura frases truncadas, elevando a clareza do comunicado enviado aos clientes.'
+      },
+      {
+        id: 7,
+        question: '"Alucinação" da Inteligência Artificial é:',
+        options: [
+          'Quando o monitor da tela começa a piscar luzes neon coloridas.',
+          'O fenômeno onde o modelo inventa com extrema convicção um dado ou fato irreal que não existe.',
+          'Apenas um erro gramatical simples na conjugação verbal.',
+          'O aumento da conta de luz na fatura do data center.'
+        ],
+        correct: 1,
+        explanation: 'Alucinação é a geração persuasiva de respostas falsas pelo modelo de linguagem, reforçando a importância do olhar crítico do usuário.'
+      }
+    ]
+  },
   // =========================================================================
   // CURSO 4: HARD SKILLS (EXCEL E FERRAMENTAS DIGITAIS)
   // =========================================================================
