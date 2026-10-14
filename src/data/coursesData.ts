@@ -5,11 +5,17 @@ export const TRACKS: Track[] = [
     id: 'trilha-1',
     name: '1. Entrada no Mercado & Primeiro Emprego',
     category: 'Desenvolvimento Pessoal e Legislação',
-    description: 'Trilha fundamental para quem quer conquistar a primeira vaga formal: privacidade e conformidade com a LGPD, orçamento do primeiro salário e postura profissional em processos seletivos.',
+    description: 'Trilha fundamental para quem quer conquistar a primeira vaga formal: direitos da Lei 10.097, currículo vencedor, orçamento inicial e técnicas comprovadas para entrevistas.',
     targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO'],
-    hoursTotal: 46,
-    coursesCount: 4,
-    courseIds: ['curso-jovem-aprendiz-avancado', 'curso-curriculo-plataformas', 'curso-postura-entrevistas', 'curso-preparacao-entrevistas-processos-seletivos'],
+    hoursTotal: 58,
+    coursesCount: 5,
+    courseIds: [
+      'curso-jovem-aprendiz-avancado',
+      'curso-curriculo-plataformas',
+      'curso-orcamento-primeiro-salario',
+      'curso-postura-entrevistas',
+      'curso-preparacao-entrevistas-processos-seletivos'
+    ],
     badgeReward: 'Embaixador do Primeiro Emprego',
     icon: 'GraduationCap',
     accentColor: '#8B5CF6'
@@ -22,7 +28,12 @@ export const TRACKS: Track[] = [
     targetAudienceType: 'TODOS',
     hoursTotal: 48,
     coursesCount: 4,
-    courseIds: ['curso-comunicacao-corporativa', 'curso-atendimento-publico', 'curso-saude-mental-trabalho', 'curso-comunicacao-nao-violenta'],
+    courseIds: [
+      'curso-comunicacao-corporativa',
+      'curso-atendimento-publico',
+      'curso-saude-mental-trabalho',
+      'curso-comunicacao-nao-violenta'
+    ],
     badgeReward: 'Mestre em Comunicação e Soft Skills',
     icon: 'Sparkles',
     accentColor: '#EC4899'
@@ -31,11 +42,17 @@ export const TRACKS: Track[] = [
     id: 'trilha-3',
     name: '3. Tecnologia, Informática & Produtividade com IA',
     category: 'Tecnologia da Informação',
-    description: 'Domine o pacote Office (Excel para Escritório) e noções de inteligência artificial generativa e automação aplicadas ao fluxo de trabalho corporativo.',
+    description: 'Domine informática básica, nuvem, pacote Office (Excel do Zero e Avançado), noções de inteligência artificial generativa e governança de dados com LGPD.',
     targetAudienceType: ['ESTAGIARIO', 'ESTUDANTE', 'JOVEM_APRENDIZ'],
-    hoursTotal: 24,
-    coursesCount: 2,
-    courseIds: ['curso-excel-basico-avancado', 'curso-ia-produtividade'],
+    hoursTotal: 58,
+    coursesCount: 5,
+    courseIds: [
+      'curso-excel-iniciante',
+      'curso-excel-basico-avancado',
+      'curso-ia-produtividade',
+      'curso-informatica-seguranca',
+      'curso-lgpd-seguranca-dados'
+    ],
     badgeReward: 'Especialista em Produtividade Digital',
     icon: 'Laptop',
     accentColor: '#3B82F6'
@@ -44,33 +61,40 @@ export const TRACKS: Track[] = [
     id: 'trilha-4',
     name: '4. Rotinas Administrativas & Gestão Empresarial',
     category: 'Administração e Negócios',
-    description: 'Organização de arquivos e fluxos, suporte a departamentos, padronização de processos e produtividade ágil no escritório.',
+    description: 'Comunicação empresarial, atendimento telefônico, redação de atas, organização de arquivos e processos de escritório com produtividade ágil.',
     targetAudienceType: ['JOVEM_APRENDIZ', 'ESTAGIARIO'],
-    hoursTotal: 22,
-    coursesCount: 2,
-    courseIds: ['curso-rotinas-administrativas', 'curso-gestao-tempo'],
+    hoursTotal: 34,
+    coursesCount: 3,
+    courseIds: [
+      'curso-rotinas-praticas-profissionalizantes',
+      'curso-rotinas-administrativas',
+      'curso-gestao-tempo'
+    ],
     badgeReward: 'Gestor de Rotinas Administrativas',
     icon: 'Briefcase',
     accentColor: '#F59E0B'
   },
   {
     id: 'trilha-5',
-    name: '5. Gestão do Tempo, Foco & Produtividade',
+    name: '5. Gestão do Tempo, Foco & Educação Financeira',
     category: 'Desenvolvimento Pessoal',
-    description: 'Capacitar estudantes e jovens profissionais a conciliar a rotina acadêmica com o ambiente de trabalho, aplicando técnicas de planejamento semanal, priorização e foco.',
+    description: 'Capacitar estudantes e jovens profissionais a conciliar a rotina acadêmica com o trabalho, aplicando técnicas de planejamento semanal e finanças pessoais com o método 50-30-20.',
     targetAudienceType: 'TODOS',
-    hoursTotal: 12,
-    coursesCount: 1,
-    courseIds: ['curso-financas-pessoais'],
-    badgeReward: 'Especialista em Gestão do Tempo',
-    icon: 'Clock',
-    accentColor: '#3B82F6'
+    hoursTotal: 24,
+    coursesCount: 2,
+    courseIds: [
+      'curso-financas-pessoais',
+      'curso-planejamento-orcamento'
+    ],
+    badgeReward: 'Especialista em Gestão do Tempo & Finanças',
+    icon: 'DollarSign',
+    accentColor: '#10B981'
   }
 ];
 
 export const COURSES: Course[] = [
   // =========================================================================
-  // 1. LGPD, PRIVACIDADE E SEGURANÇA DIGITAL CORPORATIVA
+  // 1. JORNADA DO JOVEM APRENDIZ & ESTAGIÁRIO (MÓDULO AVANÇADO)
   // =========================================================================
   {
     id: 'curso-jovem-aprendiz-avancado',
@@ -78,132 +102,308 @@ export const COURSES: Course[] = [
     trackName: 'TRILHA 1: Entrada no Mercado & Primeiro Emprego',
     category: 'Legislação e Cidadania',
     targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO'],
-    title: 'LGPD, Privacidade e Segurança Digital Corporativa',
-    subtitle: 'Capacitar profissionais a compreender a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018), aplicando seus princípios e bases legais na rotina de trabalho, mitigando riscos de vazamento de informações e adotando protocolos práticos de segurança digital corporativa.',
+    title: 'Jornada do Jovem Aprendiz & Estagiário (Módulo Avançado)',
+    subtitle: 'Direitos, Legislação Trabalhista, Matriz Comparativa, Análise de Holerite e Prevenção de Fraudes',
     hours: 12,
     equivalentHours: 12,
     modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Jovens aprendizes, estagiários e profissionais em ambientes corporativos buscando conformidade com a LGPD e segurança da informação',
+    targetAudience: 'Jovens de 14 a 24 anos em busca da primeira oportunidade de trabalho',
     prerequisites: 'Nenhum pré-requisito.',
-    badgeName: 'Especialista em LGPD & Dados',
+    badgeName: 'Direitos & Legislação',
     badgeCategory: 'Trabalho',
-    badgeIcon: 'ShieldCheck',
+    badgeIcon: 'Scale',
     accentColor: '#8B5CF6',
-    level: 'Intermediário',
+    level: 'Avançado',
     learningObjectives: [
-      'Compreender os conceitos fundamentais da LGPD (Lei nº 13.709/18), diferenciando Dado Pessoal de Dado Pessoal Sensível e identificando os agentes de tratamento.',
-      'Aplicar as principais bases legais para o tratamento de dados (Consentimento, Legítimo Interesse, Execução de Contratos e Cumprimento de Obrigação Legal).',
-      'Implementar rotinas de segurança da informação, controle de acesso baseado em funções (RBAC/Menor Privilégio) e descarte seguro de dados.',
-      'Atuar com rapidez no Plano de Resposta a Incidentes (PRI) e incorporar a cultura de Privacy by Design e prevenção a phishing.'
+      'Compreender as bases legais da Lei da Aprendizagem (Lei nº 10.097/2000) e da Lei do Estágio (Lei nº 11.788/2008).',
+      'Diferenciar com clareza contratos de trabalho formais (CLT), programa de aprendizagem e estágio remunerado.',
+      'Analisar holerites e demonstrativos de pagamento, entendendo descontos legais (VT, INSS) e benefícios (FGTS 2%, VR).',
+      'Reconhecer deveres acadêmicos e profissionais para a manutenção segura do contrato de trabalho.',
+      'Proteger-se contra fraudes, golpes de falsas vagas de emprego e cobranças indevidas de taxas ou cursos.'
     ],
     modules: [
       {
-        id: 'lgpd-corp-mod-1',
+        id: 'mod-1',
         number: 1,
-        title: 'MÓDULO 1: Fundamentos da LGPD e Conceitos Chave',
-        summary: 'Compreender o escopo da lei, a quem ela se aplica e os papéis dos agentes de tratamento.',
+        title: 'MÓDULO 1: Fundamentos da Lei do Aprendiz (Lei nº 10.097/2000)',
+        summary: 'Origem da política pública, o papel das entidades formadoras, regras de jornada de trabalho e direitos fundamentais.',
         estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1. Conceitos Fundamentais da Lei',
+              subheading: '1.1 O que é o Programa de Aprendizagem?',
               body: [
-                'Dado Pessoal vs. Dado Pessoal Sensível: Diferenciação entre dados comuns (nome, CPF, e-mail) e dados sensíveis (origem racial, convicção religiosa, saúde, biometria).',
-                'Agentes de Tratamento: Papéis do Controlador (quem toma as decisões), Operador (quem executa o tratamento) e o Encarregado/DPO (Data Protection Officer).',
-                'Titular dos Dados: Direitos de acesso, correção, eliminação e revogação do consentimento.'
-              ]
+                'A Lei do Aprendiz foi formulada como uma política pública de inclusão social e formação profissional voltada para jovens entre 14 e 24 anos incompletos (sem limite de idade para pessoas com deficiência).',
+                'A premissa central é a formação técnico-profissional metódica: a empresa contratante atua em parceria com uma Entidade Formadora (Sistema S - SENAI/SENAC/SENAT, CIEE, etc.) para oferecer conhecimento teórico alinhado à prática supervisionada na empresa.'
+              ],
+              visualType: 'triangle',
+              asciiDiagram: `┌─────────────────────────────────────────────────────────┐
+│              TRIÂNGULO DA APRENDIZAGEM                  │
+│                                                         │
+│                   [ ESTUDANTE ]                         │
+│                    /         \\                          │
+│                   /           \\                         │
+│                  /             \\                        │
+│     [ EMPRESA CONTRATANTE ] <---> [ ENTIDADE FORMADORA ]│
+└─────────────────────────────────────────────────────────┘`,
+              highlightBox: {
+                type: 'law',
+                title: 'Marco Legal Art. 428 CLT',
+                text: 'Contrato de aprendizagem é o contrato de trabalho especial, ajustado por escrito e por prazo determinado, em que o empregador se compromete a assegurar ao maior de 14 e menor de 24 anos formação técnico-profissional metódica.'
+              }
             },
             {
-              subheading: '2. Princípios da Proteção de Dados',
+              subheading: '1.2 Regras de Carga Horária e Jornada',
               body: [
-                'Finalidade e Adequação: Coletar apenas o estritamente necessário para um propósito legítimo e informado.',
-                'Necessidade e Transparência: Minimização de dados e garantia de informações claras ao titular.'
+                'Estudantes do Ensino Fundamental e Médio: A jornada máxima é de 6 horas diárias (30 horas semanais). É expressamente proibida a realização de horas extras ou regime de compensação de jornada.',
+                'Jovens que Concluíram o Ensino Médio: A jornada pode chegar a 8 horas diárias (40 horas semanais), desde que computadas as horas de formação teórica da entidade formadora.',
+                'Proibição de Trabalho Noturno: Para menores de 18 anos, é vedado por lei constitucional o trabalho entre 22h e 5h, assim como atividades em locais perigosos, insalubres ou penosos.'
+              ],
+              visualType: 'work-hours',
+              highlightBox: {
+                type: 'warning',
+                title: 'Atenção aos Limites de Horário',
+                text: 'Nunca aceite propostas de Jovem Aprendiz com jornadas acima de 6h se você ainda estiver no Ensino Fundamental ou Médio. A prioridade legal absoluta é o seu rendimento escolar.'
+              }
+            },
+            {
+              subheading: '1.3 Direitos Trabalhistas Garantidos',
+              body: [
+                'Registro em CTPS (Carteira de Trabalho Digital): Contrato especial de trabalho por tempo determinado com validade máxima de até 2 anos.',
+                'Remuneração Mínima Garantida: Salário Mínimo Hora nacional ou piso regional/estadual estabelecido por convenção coletiva.',
+                'FGTS com Alíquota Especial: Alíquota reduzida de 2% (diferente dos 8% de contratos CLT regulares). Valor recolhido diretamente pela empresa.',
+                'Férias Coincidentes: 30 dias de recesso obrigatoriamente coincidentes com o período de férias escolares para estudantes menores de 18 anos.',
+                '13º Salário e Vale-Transporte: Garantidos integralmente nos termos da legislação federal trabalhista.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'mod-2',
+        number: 2,
+        title: 'MÓDULO 2: Lei do Estágio (Lei nº 11.788/2008)',
+        summary: 'Termo de Compromisso de Estágio (TCE), interveniência da instituição de ensino, bolsa-auxílio e recesso remunerado.',
+        estimatedMinutes: 40,
+        content: {
+          sections: [
+            {
+              subheading: '2.1 Definição e Natureza do Estágio',
+              body: [
+                'O estágio é ato educativo escolar supervisionado, desenvolvido no ambiente de trabalho, que visa à preparação para o trabalho produtivo de educandos que estejam frequentando o ensino regular.',
+                'Não Cria Vínculo Empregatício: O estagiário não é empregado CLT e não tem desconto de INSS automático nem recolhimento de FGTS, mas possui direito a Bolsa-Auxílio e Auxílio-Transporte em estágios não obrigatórios.'
               ],
               highlightBox: {
                 type: 'law',
-                title: 'Princípio da Necessidade (Minimização)',
-                text: 'A organização só deve coletar os dados estritamente necessários para a realização de suas finalidades, abrangendo apenas dados pertinentes e proporcionais.'
+                title: 'Termo de Compromisso de Estágio (TCE)',
+                text: 'O estágio só é válido quando formalizado por um Termo de Compromisso assinado por três partes: Aluno (ou responsável se menor), Empresa Concedente e Instituição de Ensino.'
+              }
+            },
+            {
+              subheading: '2.2 Carga Horária e Redução em Período de Provas',
+              body: [
+                'Carga Horária Máxima: 4 horas diárias (20h semanais) para educação especial e fundamental, ou 6 horas diárias (30h semanais) para ensino médio, técnico e superior.',
+                'Garantia Legal em Semanas de Prova: Se a instituição de ensino adotar verificações periódicas de aprendizagem, a carga horária do estágio será reduzida pelo menos à metade para garantir o estudo do aluno (Art. 10, § 2º da Lei 11.788/08).'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Análise Prática de Holerite e Prevenção de Golpes',
+        summary: 'Cálculo de proventos, descontos legais (VT até 6%, INSS) e identificação de anúncios abusivos de falsas vagas.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '3.1 Como Interpretar seu Contracheque',
+              body: [
+                'Salário Bruto: O valor acordado no contrato antes de qualquer desconto.',
+                'Desconto de Vale-Transporte: A lei autoriza o desconto de até 6% do salário-base, ou o valor real das passagens caso seja menor.',
+                'Desconto de INSS: Aprendizes contribuem para a Previdência Social conforme a tabela progressiva (alíquota inicial de 7,5%), garantindo tempo de aposentadoria e auxílio-doença.'
+              ],
+              highlightBox: {
+                type: 'calc',
+                title: 'Exemplo de Cálculo de Salário Líquido',
+                text: 'Salário Bruto: R$ 1.100,00 | (-) Desconto INSS 7,5%: R$ 82,50 | (-) Desconto VT 6%: R$ 66,00 | (=) Salário Líquido na Conta: R$ 951,50 | (+) FGTS 2% depositado pela empresa: R$ 22,00'
+              }
+            },
+            {
+              subheading: '3.2 Escudo Anti-Golpes: Como Detectar Vagas Falsas',
+              body: [
+                'Cobrança de Taxa: Nenhuma empresa idônea ou programa de aprendizagem cobra valor de matrícula, taxa de processo seletivo ou apostila.',
+                'Promessa de Vaga Garantida Condicionada a Curso: Desconfie de mensagens que afirmam que você foi selecionado para uma vaga, mas que deve comprar um curso na recepção para começar.',
+                'Exigência de Dados Bancários ou Senhas: Nunca forneça fotos de cartões bancários, senhas ou códigos de SMS para recrutadores.'
+              ],
+              visualType: 'scam-shield',
+              highlightBox: {
+                type: 'warning',
+                title: 'Regra de Ouro SkillHub',
+                text: 'O SkillHub valida previamente o CNPJ de todas as empresas cadastradas e monitora termos abusivos para que você se candidate com 100% de segurança.'
               }
             }
           ]
         }
-      },
+      }
+    ],
+    caseStudies: [
       {
-        id: 'lgpd-corp-mod-2',
-        number: 2,
-        title: 'MÓDULO 2: Bases Legais e Ciclo de Vida dos Dados',
-        summary: 'Aprender a justificar a coleta de dados de acordo com a legislação e gerenciar o fluxo das informações.',
-        estimatedMinutes: 45,
-        content: {
-          sections: [
-            {
-              subheading: '1. As Bases Legais para o Tratamento de Dados',
-              body: [
-                'Consentimento: Como obter e registrar a autorização do titular de forma livre, informada e inequívoca.',
-                'Legítimo Interesse: Aplicação, limites e elaboração do teste de proporcionalidade (LIA - Legitimate Interest Assessment).',
-                'Cumprimento de Obrigação Legal e Execução de Contratos: Tratar dados para emissão de notas fiscais, contratos de trabalho e obrigações trabalhistas.'
-              ]
-            },
-            {
-              subheading: '2. Ciclo de Vida e Descarte Seguro',
-              body: [
-                'Mapeamento de Dados (Data Mapping): Identificar de onde o dado vem, onde é armazenado, quem tem acesso e para onde é enviado.',
-                'Política de Retenção e Descarte: Métodos seguros para exclusão definitiva de dados digitais e destruição de documentos físicos.'
-              ]
-            }
+        id: 'caso-1',
+        title: 'Horas Extras em Época de Fechamento de Mês',
+        character: 'Gabriel, 16 anos, Jovem Aprendiz Administrativo',
+        scenario: 'O supervisor de Gabriel pede que ele fique até as 19h (duas horas a mais do seu horário de 6h) durante 3 dias para ajudar no fechamento de inventário de uma fábrica no CIC.',
+        criticalAnalysis: 'A Lei nº 10.097/2000 veda terminantemente a realização de horas extras para jovens aprendizes. A carga diária de 6h não pode ser ultrapassada em hipótese alguma.',
+        keyTakeaways: [
+          'Jovem Aprendiz não pode fazer hora extra nem banco de horas.',
+          'O supervisor comete infração trabalhista e a empresa pode ser multada pelo Ministério do Trabalho.',
+          'Gabriel deve recusar educadamente explicando a restrição contratual e informar o tutor da entidade formadora.'
+        ],
+        badgeRelevance: 'Comprova conhecimento da jornada legal e segurança no ambiente profissional.',
+        interactiveOptions: {
+          question: 'O que Gabriel deve fazer nessa situação?',
+          choices: [
+            { text: 'Aceitar e receber as horas extras no holerite.', correct: false, feedback: 'Incorreto. A lei proíbe horas extras para aprendizes, mesmo que sejam pagas.' },
+            { text: 'Explicar cordialmente que seu contrato de aprendiz proíbe horas extras e que seu horário regular é de 6h diárias.', correct: true, feedback: 'Correto! A recusa informada e educada protege tanto o jovem quanto a empresa.' },
+            { text: 'Faltar no trabalho no dia seguinte sem avisar.', correct: false, feedback: 'Incorreto. Faltas injustificadas geram advertência e desconto salarial.' }
           ]
         }
+      }
+    ],
+    quiz: [
+      {
+        id: 1,
+        question: 'Qual a jornada máxima permitida para o Jovem Aprendiz que ainda cursa o Ensino Fundamental ou Médio?',
+        options: [
+          '4 horas diárias.',
+          '6 horas diárias (30 horas semanais), sem possibilidade de horas extras.',
+          '8 horas diárias mais 2 horas extras.',
+          'Não há limite legal se a empresa pagar adicional.'
+        ],
+        correct: 1,
+        explanation: 'Para estudantes que não concluíram o ensino médio, o teto legal estrito é de 6 horas diárias, preservando o rendimento escolar.'
       },
       {
-        id: 'lgpd-corp-mod-3',
-        number: 3,
-        title: 'MÓDULO 3: Segurança da Informação e Mitigação de Riscos',
-        summary: 'Implementar controles técnicos e administrativos no ambiente de trabalho para prevenir incidentes.',
-        estimatedMinutes: 45,
+        id: 2,
+        question: 'Qual a alíquota de FGTS recolhida pela empresa para contratos de Jovem Aprendiz (Lei 10.097)?',
+        options: [
+          '8% do salário bruto.',
+          'Isento (0%).',
+          '2% do salário bruto recolhido integralmente pelo empregador.',
+          '5% descontado do jovem.'
+        ],
+        correct: 2,
+        explanation: 'A alíquota de FGTS da Lei do Aprendiz é especial e reduzida para 2%, custeada pela empresa.'
+      },
+      {
+        id: 3,
+        question: 'Durante a semana de provas da faculdade ou colégio, o que a Lei do Estágio (Lei 11.788/08) garante ao estagiário?',
+        options: [
+          'Folga remunerada a semana inteira.',
+          'Redução da carga horária de estágio pelo menos à metade para viabilizar os estudos.',
+          'Aumento da bolsa para compra de livros.',
+          'Nenhum direito específico.'
+        ],
+        correct: 1,
+        explanation: 'O Art. 10 § 2º da Lei 11.788 assegura redução de no mínimo 50% da jornada em períodos avaliativos oficiais.'
+      },
+      {
+        id: 4,
+        question: 'Se uma empresa cobrar R$ 100,00 de "taxa de cadastro ou material didático" para uma entrevista de Jovem Aprendiz, qual é a conduta correta?',
+        options: [
+          'Pagar imediatamente para garantir a vaga.',
+          'Denunciar a prática abusiva, pois é proibida a cobrança de qualquer taxa do candidato.',
+          'Pedir desconto no valor.',
+          'Assinar promissória.'
+        ],
+        correct: 1,
+        explanation: 'Cobrança de taxas de seleção ou condicionamento a cursos pagos é fraude trabalhista proibida por lei.'
+      }
+    ]
+  },
+
+  // =========================================================================
+  // 2. ELABORAÇÃO DE CURRÍCULO CAMPEÃO E CADASTRO EM PLATAFORMAS
+  // =========================================================================
+  {
+    id: 'curso-curriculo-plataformas',
+    trackId: 'trilha-1',
+    trackName: 'TRILHA 1: Entrada no Mercado & Primeiro Emprego',
+    category: 'Desenvolvimento Pessoal',
+    targetAudienceType: ['PRIMEIRO_EMPREGO', 'JOVEM_APRENDIZ', 'ESTUDANTE'],
+    title: 'Elaboração de Currículo Campeão e Cadastro em Plataformas',
+    subtitle: 'Estruturação sem experiência prévia, LGPD de dados pessoais, palavras-chave e LinkedIn para jovens',
+    hours: 10,
+    equivalentHours: 10,
+    modality: 'EAD 100% Gratuito (Escola Virtual)',
+    targetAudience: 'Estudantes e jovens criando seu primeiro currículo profissional',
+    prerequisites: 'Nenhum.',
+    badgeName: 'Currículo Campeão',
+    badgeCategory: 'Trabalho',
+    badgeIcon: 'FileText',
+    accentColor: '#3B82F6',
+    level: 'Iniciante',
+    learningObjectives: [
+      'Montar um currículo objetivo e profissional mesmo sem experiência de carteira assinada.',
+      'Valorizar formação escolar, cursos livres, projetos de ciências, voluntariado e Badges digitais.',
+      'Compreender a proteção de dados pessoais (LGPD) no envio de currículos digitais.',
+      'Cadastrar-se com eficácia em plataformas de vagas em Curitiba e Região Metropolitana.'
+    ],
+    modules: [
+      {
+        id: 'cur-mod-1',
+        number: 1,
+        title: 'MÓDULO 1: Estrutura do Currículo de Alto Impacto sem Experiência',
+        summary: 'Cabeçalho limpo, objetivo direto, formação escolar, cursos complementares e projetos de destaque.',
+        estimatedMinutes: 40,
         content: {
           sections: [
             {
-              subheading: '1. Controles de Acesso e Uso de Dispositivos',
+              subheading: '1.1 A Estrutura Perfeita em 5 Blocos',
               body: [
-                'Controle de Acesso Baseado em Funções (RBAC): Garantir que colaboradores vejam apenas os dados estritamente necessários para a sua função (Princípio do Menor Privilégio).',
-                'Política de Mídia Removível e Dispositivos Móveis (BYOD): Riscos do uso de pendrives, celulares pessoais e redes Wi-Fi públicas no trabalho.'
+                'Bloco 1: Cabeçalho com Nome Completo, Bairro/Cidade (ex: Boqueirão, Curitiba/PR), Telefone WhatsApp e E-mail profissional limpo (ex: nome.sobrenome@email.com).',
+                'Bloco 2: Objetivo Profissional Claro (ex: "Jovem Aprendiz Administrativo" ou "Estágio em Suporte Técnico / TI"). Nunca use "A disposição da empresa".',
+                'Bloco 3: Formação Acadêmica: Escola/Colégio, Série ou Ano, Curso e Turno das aulas (Manhã, Tarde ou Noite).',
+                'Bloco 4: Cursos Complementares & Badges: Cursos do SkillHub com carga horária, temas e códigos verificadores.',
+                'Bloco 5: Informações Adicionais: Voluntariado, olimpíadas escolares, participação em grêmio estudantil ou feiras tecnológicas.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Exemplo de Objetivo Direto',
+                text: 'Recomendado: "Busco oportunidade como Jovem Aprendiz na área de Logística e Suprimentos para aplicar conhecimentos em controle de estoque e rotinas operacionais."'
+              }
+            },
+            {
+              subheading: '1.2 O que NUNCA colocar no currículo (LGPD & Segurança)',
+              body: [
+                'Número de CPF, RG ou Título de Eleitor: Devem ser informados somente no momento da admissão formal após ser aprovado.',
+                'Endereço com número de porta ou CEP residencial: Exponha apenas o Bairro e a Cidade para evitar exposição desnecessária.',
+                'Foto 3x4: Só inclua se a vaga solicitar expressamente (para funções artísticas ou recepção).',
+                'Pretensão salarial ou dados bancários: Totalmente inadequado na fase inicial de triagem.'
               ],
               highlightBox: {
                 type: 'warning',
-                title: 'Princípio do Menor Privilégio',
-                text: 'Para evitar que colaboradores visualizem arquivos confidenciais que não pertencem ao seu escopo, o acesso deve ser restrito por função e senhas nunca devem ser compartilhadas.'
+                title: 'Segurança da Informação',
+                text: 'Seu currículo circula por diversas caixas de e-mail. Proteger seus documentos evita fraudes e vazamento de identidade.'
               }
-            },
-            {
-              subheading: '2. Criptografia e Armazenamento Seguro',
-              body: [
-                'Uso de Criptografia: Proteção de arquivos confidenciais em trânsito (e-mails) e em repouso (servidores e nuvem).',
-                'Anonimização e Pseudonimização: Técnicas para desvincular o dado da identidade do titular.'
-              ]
             }
           ]
         }
       },
       {
-        id: 'lgpd-corp-mod-4',
-        number: 4,
-        title: 'MÓDULO 4: Gestão de Incidentes e Resposta a Vazamentos',
-        summary: 'Saber como agir em casos de suspeita ou confirmação de incidentes de segurança.',
-        estimatedMinutes: 45,
+        id: 'cur-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: Palavras-Chave e Robôs de Triagem (ATS)',
+        summary: 'Como os sistemas de RH filtram currículos automaticamente e como otimizar seu texto para ser chamado.',
+        estimatedMinutes: 35,
         content: {
           sections: [
             {
-              subheading: '1. Plano de Resposta a Incidentes (PRI)',
+              subheading: '2.1 Entendendo os Robôs de Seleção (ATS)',
               body: [
-                'Identificação e Contenção: Passos imediatos ao detectar a perda de um dispositivo corporativo ou o envio de dados para o destinatário errado.',
-                'Notificação à ANPD e aos Titulares: Prazos, gravidade do incidente e comunicação transparente.'
-              ]
-            },
-            {
-              subheading: '2. Governança e Cultura de Privacidade',
-              body: [
-                'Treinamento Contínuo: Conscientização contra Engenharia Social (Phishing) no ambiente corporativo.',
-                'Privacy by Design e Privacy by Default: Incorporar a privacidade e a proteção de dados desde a fase inicial de concepção de um projeto, sistema ou produto.'
+                'Grandes empresas de Curitiba usam softwares de recrutamento que buscam palavras-chave específicas no currículo.',
+                'Se a vaga pede "Excel", "Atendimento telefônico" ou "Rotinas de Arquivo", essas palavras devem constar textualmente na sua lista de competências e cursos.'
               ]
             }
           ]
@@ -214,96 +414,36 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'Uma empresa de saúde armazena informações sobre o histórico de exames e o tipo sanguíneo de seus pacientes. Segundo a LGPD, como esses dados são classificados?',
+        question: 'O que NÃO deve constar no currículo inicial de um jovem para preservar sua segurança conforme a LGPD?',
         options: [
-          'Dados Públicos sem restrição de uso.',
-          'Dados Pessoais Comuns de livre comercialização.',
-          'Dados Pessoais Sensíveis.',
-          'Dados Anônimos de domínio público.'
+          'Cursos livres e badges conquistadas no SkillHub.',
+          'Nome completo e bairro onde reside.',
+          'Número de CPF, RG, dados bancários e endereço com número de casa.',
+          'Objetivo profissional e turno escolar.'
         ],
         correct: 2,
-        explanation: 'Dados sobre a saúde do indivíduo (como histórico de exames e tipo sanguíneo) são classificados expressamente pela LGPD como Dados Pessoais Sensíveis, devido ao potencial discriminatório em caso de vazamento.'
+        explanation: 'Documentos sensíveis como CPF, RG e endereço com número não devem constar no currículo inicial.'
       },
       {
         id: 2,
-        question: 'Qual é a função do Encarregado pelo Tratamento de Dados Pessoais (também conhecido como DPO - Data Protection Officer) dentro de uma organização?',
+        question: 'Qual a forma mais adequada de redigir o Objetivo Profissional no currículo?',
         options: [
-          'Atuar como canal de comunicação entre o controlador, os titulares dos dados e a Autoridade Nacional de Proteção de Dados (ANPD).',
-          'Apagar todos os bancos de dados do servidor ao final de cada mês.',
-          'Decidir sozinho os salários de todos os diretores da empresa.',
-          'Vender relatórios com contatos de clientes para empresas parceiras.'
-        ],
-        correct: 0,
-        explanation: 'O DPO (Encarregado) é o elo estratégico de ligação e intermediação entre a empresa (Controlador), os titulares dos dados e o órgão fiscalizador (ANPD).'
-      },
-      {
-        id: 3,
-        question: 'O setor de Recursos Humanos precisa manter o CPF e os dados bancários dos funcionários armazenados para realizar o pagamento do salário mensal. Qual é a base legal da LGPD que justifica esse tratamento sem a necessidade de solicitar consentimento individual?',
-        options: [
-          'Proteção ao Crédito.',
-          'Tutela da Saúde.',
-          'Realização de Pesquisas Acadêmicas.',
-          'Execução de Contrato ou Obrigação Legal.'
-        ],
-        correct: 3,
-        explanation: 'A coleta e o uso de dados para pagamento de salários e cumprimento de obrigações trabalhistas/fiscais dispensam consentimento, pois estão amparados pelas bases de Execução de Contrato e Cumprimento de Obrigação Legal.'
-      },
-      {
-        id: 4,
-        question: 'Um colaborador do setor de Vendas enviou por engano uma planilha contendo nomes, e-mails e telefones de 500 clientes para um fornecedor externo não autorizado. Como esse evento deve ser classificado de acordo com as normas de segurança corporativa?',
-        options: [
-          'Uma atualização de cadastro de rotina sem importância.',
-          'Um procedimento padrão de marketing direto.',
-          'Uma melhoria na infraestrutura da rede de internet.',
-          'Um incidente de segurança com vazamento de dados pessoais.'
-        ],
-        correct: 3,
-        explanation: 'O envio indevido de informações a terceiros não autorizados caracteriza um incidente de segurança, exigindo contenção imediata e avaliação de risco de impacto aos titulares.'
-      },
-      {
-        id: 5,
-        question: 'O princípio da LGPD que estabelece que a coleta de dados deve ser limitada ao mínimo necessário para a realização de suas finalidades, abrangendo apenas dados pertinentes e proporcionais, é chamado de:',
-        options: [
-          'Princípio da Necessidade (ou Minimização de Dados).',
-          'Princípio da Livre Mídia.',
-          'Princípio da Lucratividade.',
-          'Princípio do Lucro Cessante.'
-        ],
-        correct: 0,
-        explanation: 'O Princípio da Necessidade (minimização) determina que a organização só deve coletar os dados estritamente fundamentais para aquela operação, evitando excessos.'
-      },
-      {
-        id: 6,
-        question: 'Para evitar que colaboradores visualizem pastas com salários e contratos de diretoria que não pertencem ao seu escopo de trabalho, a empresa deve adotar qual prática de segurança?',
-        options: [
-          'Compartilhamento de senhas no mural do escritório.',
-          'Princípio do Menor Privilégio (Controle de Acesso Restrito por Função).',
-          'Desligamento do sistema de antivírus.',
-          'Instalação de redes Wi-Fi abertas para convidados.'
+          '"Qualquer vaga que estiver disponível."',
+          '"Atuar como Jovem Aprendiz Administrativo aplicando conhecimentos em rotinas de escritório e planilhas."',
+          '"Ganhar dinheiro para comprar roupas."',
+          'Deixar o campo em branco.'
         ],
         correct: 1,
-        explanation: 'O Princípio do Menor Privilégio restringe o acesso aos arquivos apenas para os usuários que realmente precisam das informações para desempenhar suas funções operacionais.'
-      },
-      {
-        id: 7,
-        question: 'O que significa a abordagem de segurança conhecida como Privacy by Design?',
-        options: [
-          'Criar telas bonitas e coloridas nos sites de compra.',
-          'Contratar designers gráficos para desenhar o logotipo da empresa.',
-          'Pensar e incorporar a privacidade e a proteção de dados desde a fase inicial de concepção de um projeto, sistema ou produto.',
-          'Deixar para pensar na proteção de dados apenas após o vazamento ocorrer.'
-        ],
-        correct: 2,
-        explanation: 'Privacy by Design é a metodologia que prevê a privacidade como um pilar estrutural do desenvolvimento de qualquer projeto ou tecnologia, desde a sua ideia inicial.'
+        explanation: 'Um objetivo claro e alinhado à vaga pretendida facilita o trabalho do recrutador e demonstra foco.'
       }
     ]
   },
 
   // =========================================================================
-  // 2. ORÇAMENTO DO PRIMEIRO SALÁRIO
+  // 3. ORÇAMENTO DO PRIMEIRO SALÁRIO
   // =========================================================================
   {
-    id: 'curso-curriculo-plataformas',
+    id: 'curso-orcamento-primeiro-salario',
     trackId: 'trilha-1',
     trackName: 'TRILHA 1: Entrada no Mercado & Primeiro Emprego',
     category: 'Desenvolvimento Pessoal',
@@ -615,7 +755,7 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
-  // 3. POSTURA PROFISSIONAL E TÉCNICAS PARA ENTREVISTAS DE EMPREGO
+  // 4. POSTURA PROFISSIONAL E TÉCNICAS PARA ENTREVISTAS DE EMPREGO
   // =========================================================================
   {
     id: 'curso-postura-entrevistas',
@@ -787,7 +927,7 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
-  // PREPARAÇÃO PARA ENTREVISTAS E PROCESSOS SELETIVOS
+  // 5. PREPARAÇÃO PARA ENTREVISTAS E PROCESSOS SELETIVOS
   // =========================================================================
   {
     id: 'curso-preparacao-entrevistas-processos-seletivos',
@@ -997,7 +1137,70 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
-  // 4. MICROSOFT EXCEL & PLANILHAS ELETRÔNICAS PARA ESCRITÓRIO
+  // 6. EXCEL DO ZERO: PRIMEIRAS PLANILHAS, FÓRMULAS BÁSICAS E GRÁFICOS
+  // =========================================================================
+  {
+    id: 'curso-excel-iniciante',
+    trackId: 'trilha-3',
+    trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
+    category: 'Tecnologia da Informação',
+    targetAudienceType: 'TODOS',
+    title: 'Excel do Zero: Primeiras Planilhas, Fórmulas Básicas e Gráficos',
+    subtitle: 'Navegação em células, formatação de dados, fórmulas essenciais (SOMA, MÉDIA, MÁXIMO) e criação de gráficos simples',
+    hours: 10,
+    equivalentHours: 10,
+    modality: 'EAD 100% Gratuito',
+    targetAudience: 'Estudantes que nunca utilizaram planilhas ou querem reforçar a base',
+    prerequisites: 'Nenhum.',
+    badgeName: 'Excel Fundamentos',
+    badgeCategory: 'Ferramentas de Escritório',
+    badgeIcon: 'FileSpreadsheet',
+    accentColor: '#10B981',
+    level: 'Iniciante',
+    learningObjectives: [
+      'Entender linhas, colunas, células e referências no Excel e Google Planilhas.',
+      'Utilizar operadores matemáticos (+, -, *, /) e funções básicas como =SOMA() e =MÉDIA().',
+      'Formatar tabelas com moeda (R$), porcentagem (%) e criar gráficos de colunas.'
+    ],
+    modules: [
+      {
+        id: 'exc-ini-mod-1',
+        number: 1,
+        title: 'MÓDULO 1: Estrutura da Planilha e Primeiras Fórmulas',
+        summary: 'Domine a interface do Excel e aprenda como o sinal de igual (=) inicia qualquer cálculo inteligente.',
+        estimatedMinutes: 30,
+        content: {
+          sections: [
+            {
+              subheading: '1.1 O Segredo do Sinal de Igual',
+              body: [
+                'No Excel, toda fórmula começa com "=". Para somar os valores das células A1 até A10, usamos =SOMA(A1:A10).',
+                'Para calcular uma média aritmética, basta digitar =MÉDIA(B2:B8).'
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    caseStudies: [],
+    quiz: [
+      {
+        id: 1,
+        question: 'Qual caractere obrigatório deve iniciar qualquer fórmula no Excel ou Planilhas?',
+        options: [
+          'O símbolo de arroba (@)',
+          'O sinal de igual (=)',
+          'O ponto de exclamação (!)',
+          'As aspas duplas (")'
+        ],
+        correct: 1,
+        explanation: 'O sinal de igual (=) avisa o Excel que o texto seguinte é uma instrução de cálculo ou função.'
+      }
+    ]
+  },
+
+  // =========================================================================
+  // 7. MICROSOFT EXCEL & PLANILHAS ELETRÔNICAS PARA ESCRITÓRIO
   // =========================================================================
   {
     id: 'curso-excel-basico-avancado',
@@ -1224,7 +1427,7 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
-  // 5. INTELIGÊNCIA ARTIFICIAL E AUTOMAÇÃO NO DIA A DIA DE TRABALHO
+  // 8. INTELIGÊNCIA ARTIFICIAL E AUTOMAÇÃO NO DIA A DIA DE TRABALHO
   // =========================================================================
   {
     id: 'curso-ia-produtividade',
@@ -1461,7 +1664,504 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
-  // 6. ROTINAS ADMINISTRATIVAS E ORGANIZAÇÃO DE PROCESSOS DE ESCRITÓRIO
+  // 9. INFORMÁTICA BÁSICA, NUVEM E SEGURANÇA DA INFORMAÇÃO
+  // =========================================================================
+  {
+    id: 'curso-informatica-seguranca',
+    trackId: 'trilha-3',
+    trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
+    category: 'Tecnologia da Informação',
+    targetAudienceType: 'TODOS',
+    title: 'Informática Básica, Nuvem e Segurança da Informação',
+    subtitle: 'Navegação segura, senhas fortes, Google Drive/OneDrive e proteção contra phishing',
+    hours: 10,
+    equivalentHours: 10,
+    modality: 'EAD 100% Gratuito (Escola Virtual)',
+    targetAudience: 'Estudantes e aprendizes iniciando o uso de computadores corporativos',
+    prerequisites: 'Nenhum.',
+    badgeName: 'Segurança Digital & Nuvem',
+    badgeCategory: 'Ferramentas de Escritório',
+    badgeIcon: 'Shield',
+    accentColor: '#3B82F6',
+    level: 'Intermediário',
+    learningObjectives: [
+      'Criar senhas fortes e gerenciar autenticação em dois fatores.',
+      'Identificar e-mails de phishing e links maliciosos.',
+      'Organizar pastas e permissões de compartilhamento no Google Drive e OneDrive.'
+    ],
+    modules: [
+      {
+        id: 'inf-mod-1',
+        number: 1,
+        title: 'MÓDULO 1: Proteção de Senhas e Prevenção a Fraudes',
+        summary: 'Como manter o computador da empresa seguro e evitar infecções por malware.',
+        estimatedMinutes: 30,
+        content: {
+          sections: [
+            {
+              subheading: '1.1 Criando Senhas Inquebráveis',
+              body: [
+                'Combine letras maiúsculas, minúsculas, números e caracteres especiais. Nunca utilize "123456" ou sua data de aniversário.'
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    caseStudies: [],
+    quiz: [
+      {
+        id: 1,
+        question: 'Se você receber um e-mail suspeito pedindo sua senha corporativa, o que deve fazer?',
+        options: [
+          'Responder imediatamente com a senha.',
+          'Não clicar em nenhum link e alertar o time de TI da empresa.',
+          'Encaminhar para todos os colegas de trabalho.',
+          'Ignorar e apagar sem avisar ninguém.'
+        ],
+        correct: 1,
+        explanation: 'Nunca compartilhe senhas por e-mail e sempre notifique o departamento de segurança da informação.'
+      }
+    ]
+  },
+
+  // =========================================================================
+  // 10. LGPD, PRIVACIDADE E SEGURANÇA DIGITAL CORPORATIVA
+  // =========================================================================
+  {
+    id: 'curso-lgpd-seguranca-dados',
+    trackId: 'trilha-3',
+    trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
+    category: 'Legislação e Cidadania',
+    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO'],
+    title: 'LGPD, Privacidade e Segurança Digital Corporativa',
+    subtitle: 'Capacitar profissionais a compreender a Lei Geral de Proteção de Dados (LGPD - Lei nº 13.709/2018), aplicando seus princípios e bases legais na rotina de trabalho, mitigando riscos de vazamento de informações e adotando protocolos práticos de segurança digital corporativa.',
+    hours: 12,
+    equivalentHours: 12,
+    modality: 'EAD 100% Gratuito (Escola Virtual)',
+    targetAudience: 'Jovens aprendizes, estagiários e profissionais em ambientes corporativos buscando conformidade com a LGPD e segurança da informação',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Especialista em LGPD & Dados',
+    badgeCategory: 'Trabalho',
+    badgeIcon: 'ShieldCheck',
+    accentColor: '#8B5CF6',
+    level: 'Intermediário',
+    learningObjectives: [
+      'Compreender os conceitos fundamentais da LGPD (Lei nº 13.709/18), diferenciando Dado Pessoal de Dado Pessoal Sensível e identificando os agentes de tratamento.',
+      'Aplicar as principais bases legais para o tratamento de dados (Consentimento, Legítimo Interesse, Execução de Contratos e Cumprimento de Obrigação Legal).',
+      'Implementar rotinas de segurança da informação, controle de acesso baseado em funções (RBAC/Menor Privilégio) e descarte seguro de dados.',
+      'Atuar com rapidez no Plano de Resposta a Incidentes (PRI) e incorporar a cultura de Privacy by Design e prevenção a phishing.'
+    ],
+    modules: [
+      {
+        id: 'lgpd-corp-mod-1',
+        number: 1,
+        title: 'MÓDULO 1: Fundamentos da LGPD e Conceitos Chave',
+        summary: 'Compreender o escopo da lei, a quem ela se aplica e os papéis dos agentes de tratamento.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Conceitos Fundamentais da Lei',
+              body: [
+                'Dado Pessoal vs. Dado Pessoal Sensível: Diferenciação entre dados comuns (nome, CPF, e-mail) e dados sensíveis (origem racial, convicção religiosa, saúde, biometria).',
+                'Agentes de Tratamento: Papéis do Controlador (quem toma as decisões), Operador (quem executa o tratamento) e o Encarregado/DPO (Data Protection Officer).',
+                'Titular dos Dados: Direitos de acesso, correção, eliminação e revogação do consentimento.'
+              ]
+            },
+            {
+              subheading: '2. Princípios da Proteção de Dados',
+              body: [
+                'Finalidade e Adequação: Coletar apenas o estritamente necessário para um propósito legítimo e informado.',
+                'Necessidade e Transparência: Minimização de dados e garantia de informações claras ao titular.'
+              ],
+              highlightBox: {
+                type: 'law',
+                title: 'Princípio da Necessidade (Minimização)',
+                text: 'A organização só deve coletar os dados estritamente necessários para a realização de suas finalidades, abrangendo apenas dados pertinentes e proporcionais.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'lgpd-corp-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: Bases Legais e Ciclo de Vida dos Dados',
+        summary: 'Aprender a justificar a coleta de dados de acordo com a legislação e gerenciar o fluxo das informações.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. As Bases Legais para o Tratamento de Dados',
+              body: [
+                'Consentimento: Como obter e registrar a autorização do titular de forma livre, informada e inequívoca.',
+                'Legítimo Interesse: Aplicação, limites e elaboração do teste de proporcionalidade (LIA - Legitimate Interest Assessment).',
+                'Cumprimento de Obrigação Legal e Execução de Contratos: Tratar dados para emissão de notas fiscais, contratos de trabalho e obrigações trabalhistas.'
+              ]
+            },
+            {
+              subheading: '2. Ciclo de Vida e Descarte Seguro',
+              body: [
+                'Mapeamento de Dados (Data Mapping): Identificar de onde o dado vem, onde é armazenado, quem tem acesso e para onde é enviado.',
+                'Política de Retenção e Descarte: Métodos seguros para exclusão definitiva de dados digitais e destruição de documentos físicos.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'lgpd-corp-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Segurança da Informação e Mitigação de Riscos',
+        summary: 'Implementar controles técnicos e administrativos no ambiente de trabalho para prevenir incidentes.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Controles de Acesso e Uso de Dispositivos',
+              body: [
+                'Controle de Acesso Baseado em Funções (RBAC): Garantir que colaboradores vejam apenas os dados estritamente necessários para a sua função (Princípio do Menor Privilégio).',
+                'Política de Mídia Removível e Dispositivos Móveis (BYOD): Riscos do uso de pendrives, celulares pessoais e redes Wi-Fi públicas no trabalho.'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Princípio do Menor Privilégio',
+                text: 'Para evitar que colaboradores visualizem arquivos confidenciais que não pertencem ao seu escopo, o acesso deve ser restrito por função e senhas nunca devem ser compartilhadas.'
+              }
+            },
+            {
+              subheading: '2. Criptografia e Armazenamento Seguro',
+              body: [
+                'Uso de Criptografia: Proteção de arquivos confidenciais em trânsito (e-mails) e em repouso (servidores e nuvem).',
+                'Anonimização e Pseudonimização: Técnicas para desvincular o dado da identidade do titular.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'lgpd-corp-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Gestão de Incidentes e Resposta a Vazamentos',
+        summary: 'Saber como agir em casos de suspeita ou confirmação de incidentes de segurança.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Plano de Resposta a Incidentes (PRI)',
+              body: [
+                'Identificação e Contenção: Passos imediatos ao detectar a perda de um dispositivo corporativo ou o envio de dados para o destinatário errado.',
+                'Notificação à ANPD e aos Titulares: Prazos, gravidade do incidente e comunicação transparente.'
+              ]
+            },
+            {
+              subheading: '2. Governança e Cultura de Privacidade',
+              body: [
+                'Treinamento Contínuo: Conscientização contra Engenharia Social (Phishing) no ambiente corporativo.',
+                'Privacy by Design e Privacy by Default: Incorporar a privacidade e a proteção de dados desde a fase inicial de concepção de um projeto, sistema ou produto.'
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    caseStudies: [],
+    quiz: [
+      {
+        id: 1,
+        question: 'Uma empresa de saúde armazena informações sobre o histórico de exames e o tipo sanguíneo de seus pacientes. Segundo a LGPD, como esses dados são classificados?',
+        options: [
+          'Dados Públicos sem restrição de uso.',
+          'Dados Pessoais Comuns de livre comercialização.',
+          'Dados Pessoais Sensíveis.',
+          'Dados Anônimos de domínio público.'
+        ],
+        correct: 2,
+        explanation: 'Dados sobre a saúde do indivíduo (como histórico de exames e tipo sanguíneo) são classificados expressamente pela LGPD como Dados Pessoais Sensíveis, devido ao potencial discriminatório em caso de vazamento.'
+      },
+      {
+        id: 2,
+        question: 'Qual é a função do Encarregado pelo Tratamento de Dados Pessoais (também conhecido como DPO - Data Protection Officer) dentro de uma organização?',
+        options: [
+          'Atuar como canal de comunicação entre o controlador, os titulares dos dados e a Autoridade Nacional de Proteção de Dados (ANPD).',
+          'Apagar todos os bancos de dados do servidor ao final de cada mês.',
+          'Decidir sozinho os salários de todos os diretores da empresa.',
+          'Vender relatórios com contatos de clientes para empresas parceiras.'
+        ],
+        correct: 0,
+        explanation: 'O DPO (Encarregado) é o elo estratégico de ligação e intermediação entre a empresa (Controlador), os titulares dos dados e o órgão fiscalizador (ANPD).'
+      },
+      {
+        id: 3,
+        question: 'O setor de Recursos Humanos precisa manter o CPF e os dados bancários dos funcionários armazenados para realizar o pagamento do salário mensal. Qual é a base legal da LGPD que justifica esse tratamento sem a necessidade de solicitar consentimento individual?',
+        options: [
+          'Proteção ao Crédito.',
+          'Tutela da Saúde.',
+          'Realização de Pesquisas Acadêmicas.',
+          'Execução de Contrato ou Obrigação Legal.'
+        ],
+        correct: 3,
+        explanation: 'A coleta e o uso de dados para pagamento de salários e cumprimento de obrigações trabalhistas/fiscais dispensam consentimento, pois estão amparados pelas bases de Execução de Contrato e Cumprimento de Obrigação Legal.'
+      },
+      {
+        id: 4,
+        question: 'Um colaborador do setor de Vendas enviou por engano uma planilha contendo nomes, e-mails e telefones de 500 clientes para um fornecedor externo não autorizado. Como esse evento deve ser classificado de acordo com as normas de segurança corporativa?',
+        options: [
+          'Uma atualização de cadastro de rotina sem importância.',
+          'Um procedimento padrão de marketing direto.',
+          'Uma melhoria na infraestrutura da rede de internet.',
+          'Um incidente de segurança com vazamento de dados pessoais.'
+        ],
+        correct: 3,
+        explanation: 'O envio indevido de informações a terceiros não autorizados caracteriza um incidente de segurança, exigindo contenção imediata e avaliação de risco de impacto aos titulares.'
+      },
+      {
+        id: 5,
+        question: 'O princípio da LGPD que estabelece que a coleta de dados deve ser limitada ao mínimo necessário para a realização de suas finalidades, abrangendo apenas dados pertinentes e proporcionais, é chamado de:',
+        options: [
+          'Princípio da Necessidade (ou Minimização de Dados).',
+          'Princípio da Livre Mídia.',
+          'Princípio da Lucratividade.',
+          'Princípio do Lucro Cessante.'
+        ],
+        correct: 0,
+        explanation: 'O Princípio da Necessidade (minimização) determina que a organização só deve coletar os dados estritamente fundamentais para aquela operação, evitando excessos.'
+      },
+      {
+        id: 6,
+        question: 'Para evitar que colaboradores visualizem pastas com salários e contratos de diretoria que não pertencem ao seu escopo de trabalho, a empresa deve adotar qual prática de segurança?',
+        options: [
+          'Compartilhamento de senhas no mural do escritório.',
+          'Princípio do Menor Privilégio (Controle de Acesso Restrito por Função).',
+          'Desligamento do sistema de antivírus.',
+          'Instalação de redes Wi-Fi abertas para convidados.'
+        ],
+        correct: 1,
+        explanation: 'O Princípio do Menor Privilégio restringe o acesso aos arquivos apenas para os usuários que realmente precisam das informações para desempenhar suas funções operacionais.'
+      },
+      {
+        id: 7,
+        question: 'O que significa a abordagem de segurança conhecida como Privacy by Design?',
+        options: [
+          'Criar telas bonitas e coloridas nos sites de compra.',
+          'Contratar designers gráficos para desenhar o logotipo da empresa.',
+          'Pensar e incorporar a privacidade e a proteção de dados desde a fase inicial de concepção de um projeto, sistema ou produto.',
+          'Deixar para pensar na proteção de dados apenas após o vazamento ocorrer.'
+        ],
+        correct: 2,
+        explanation: 'Privacy by Design é a metodologia que prevê a privacidade como um pilar estrutural do desenvolvimento de qualquer projeto ou tecnologia, desde a sua ideia inicial.'
+      }
+    ]
+  },
+
+  // =========================================================================
+  // 11. ROTINAS ADMINISTRATIVAS E PRÁTICAS PROFISSIONALIZANTES
+  // =========================================================================
+  {
+    id: 'curso-rotinas-praticas-profissionalizantes',
+    trackId: 'trilha-4',
+    trackName: 'TRILHA 4: Rotinas Administrativas & Gestão Empresarial',
+    category: 'Administração e Negócios',
+    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTAGIARIO', 'PRIMEIRO_EMPREGO'],
+    title: 'Rotinas Administrativas e Práticas Profissionalizantes',
+    subtitle: 'Comunicação corporativa, atendimento telefônico com excelência, gestão documental, atas de reunião e conformidade com a LGPD no escritório.',
+    hours: 12,
+    equivalentHours: 12,
+    modality: 'EAD 100% Gratuito (Escola Virtual)',
+    targetAudience: 'Jovens aprendizes, estagiários e iniciantes no setor administrativo corporativo',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Assistente Administrativo Profissional',
+    badgeCategory: 'Trabalho',
+    badgeIcon: 'Briefcase',
+    accentColor: '#F59E0B',
+    level: 'Iniciante',
+    learningObjectives: [
+      'Dominar as normas de redação corporativa, e-mails claros e objetivos sem vícios de netiqueta (como uso indevido de caixa alta).',
+      'Aplicar padrões de excelência no atendimento telefônico e recepção corporativa, registrando recados com precisão.',
+      'Elaborar e compreender atas de reunião formais e organizar arquivos físicos e digitais com padrões lógicos.',
+      'Garantir sigilo e proteção de dados confidenciais na rotina administrativa segundo as diretrizes da LGPD.'
+    ],
+    modules: [
+      {
+        id: 'rot-prat-mod-1',
+        number: 1,
+        title: 'MÓDULO 1: Comunicação Empresarial',
+        summary: 'Aprenda regras essenciais de redação corporativa, netiqueta em e-mails e protocolos de atendimento telefônico receptivo e ativo.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Redação Corporativa',
+              body: [
+                'A comunicação escrita nas empresas exige clareza, objetividade e respeito às normas formais.',
+                'Ao enviar um e-mail, preencha sempre o campo "Assunto" de forma descritiva (ex: "Relatório Mensal de Estoque - Setembro").',
+                'Inicie com uma saudação adequada, mantenha o texto dividido em parágrafos curtos, revise antes de enviar e encerre com uma assinatura profissional.',
+                'Nunca utilize CAIXA ALTA no texto, pois na netiqueta corporativa isso equivale a gritar com o interlocutor.'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Atenção à Netiqueta',
+                text: 'Frases ou palavras inteiras em letras maiúsculas (CAIXA ALTA) transmitem agressividade e falta de polidez no ambiente corporativo.'
+              }
+            },
+            {
+              subheading: '2. Atendimento ao Cliente e Telefonia',
+              body: [
+                'O atendimento receptivo e ativo representa a imagem da instituição.',
+                'Ao atender chamadas telefônicas ou mensagens corporativas, diga o nome da empresa, cumprimente o interlocutor e identifique-se claramente (ex: "Empresa X, bom dia! Meu nome é Gabriel, como posso ajudar?").',
+                'Anote recados de forma precisa (nome, contato, assunto e horário) e encaminhe as solicitações ao setor correto sem deixar o cliente esperando sem retorno.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Padrão de Atendimento',
+                text: 'A identificação completa com saudação, empresa e nome gera profissionalismo imediato e orienta a conversa para uma solução ágil.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'rot-prat-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: Gestão da Informação e LGPD',
+        summary: 'Organização documental, registro de deliberações em atas de reunião e práticas obrigatórias de sigilo sob a LGPD.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Arquivos e Atas de Reunião',
+              body: [
+                'O controle documental garante o fluxo seguro de informações na empresa.',
+                'A Ata de Reunião é o documento formal que registra as presenças, os tópicos debatidos, as decisões tomadas e os prazos com seus respectivos responsáveis.',
+                'A organização física e digital de arquivos deve seguir padrões lógicos de nomenclatura para evitar extravios e retrabalho na busca por documentos antigos.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Propósito da Ata',
+                text: 'A Ata de Reunião resguarda decisões tomadas e define com clareza os responsáveis e prazos de cada compromisso acordado.'
+              }
+            },
+            {
+              subheading: '2. LGPD e Confidencialidade',
+              body: [
+                'A Lei Geral de Proteção de Dados (LGPD) estabelece regras para a coleta, armazenamento e tratamento de dados pessoais de clientes e colaboradores.',
+                'No ambiente administrativo, é dever do profissional manter o sigilo das informações, não compartilhar senhas corporativas, travar a tela do computador ao se ausentar e descartar papéis impressos com dados confidenciais em fragmentadoras apropriadas.'
+              ],
+              highlightBox: {
+                type: 'law',
+                title: 'Segurança e LGPD (Lei nº 13.709/18)',
+                text: 'Documentos e planilhas contendo dados pessoais devem ser mantidos em locais restritos e protegidos; senhas nunca devem ser expostas ou compartilhadas.'
+              }
+            }
+          ]
+        }
+      }
+    ],
+    caseStudies: [
+      {
+        id: 'caso-rotinas-1',
+        title: 'Atendimento e Sigilo em Situação de Pressão',
+        character: 'Gabriel, Jovem Aprendiz do setor administrativo',
+        scenario: 'Gabriel recebe uma ligação de um terceiro pedindo os dados de contato pessoais e o endereço de um funcionário da empresa com urgência.',
+        criticalAnalysis: 'Conforme a LGPD e as normas corporativas, dados de colaboradores são estritamente sigilosos e não podem ser repassados por telefone a terceiros sem autorização formal.',
+        keyTakeaways: [
+          'Nunca fornecer dados pessoais ou senhas por telefone ou e-mail.',
+          'Anotar o recado com identificação do solicitante e repassar ao superior ou DPO/RH.'
+        ],
+        badgeRelevance: 'Comprova postura ética e respeito rigoroso às normas de proteção de dados.'
+      }
+    ],
+    quiz: [
+      {
+        id: 1,
+        question: 'O que a escrita em CAIXA ALTA transmite?',
+        options: [
+          'Entusiasmo.',
+          'Agressividade (gritando).',
+          'Formatação padrão.',
+          'Profissionalismo.'
+        ],
+        correct: 1,
+        explanation: 'Na etiqueta digital corporativa (netiqueta), escrever frases inteiras em letras maiúsculas passa a impressão visual de grito e falta de polidez.'
+      },
+      {
+        id: 2,
+        question: 'Qual o propósito de uma Ata de Reunião?',
+        options: [
+          'Registrar decisões e compromissos firmados.',
+          'Divulgar festas.',
+          'Substituir contratos.',
+          'Marcar ponto.'
+        ],
+        correct: 0,
+        explanation: 'A Ata serve como o documento oficial de memória da empresa para resguardar o que foi decidido, os responsáveis e os prazos definidos numa reunião.'
+      },
+      {
+        id: 3,
+        question: 'Conduta correta no atendimento telefônico:',
+        options: [
+          'Falar apenas "Alô".',
+          'Saudação, nome da empresa e o próprio nome.',
+          'Transferir direto o ramal.',
+          'Passar dados confidenciais.'
+        ],
+        correct: 1,
+        explanation: 'A identificação completa no início do atendimento demonstra padrão de qualidade corporativo e facilita a comunicação desde o primeiro segundo.'
+      },
+      {
+        id: 4,
+        question: 'Segundo a LGPD:',
+        options: [
+          'Dados podem ser comentados na copa.',
+          'Documentos sigilosos devem ser guardados corretamente.',
+          'O aprendiz pode repassar contatos.',
+          'Senhas devem ficar nos monitores.'
+        ],
+        correct: 1,
+        explanation: 'A Lei Geral de Proteção de Dados (LGPD) exige segurança rigorosa no armazenamento de informações sensíveis e de dados pessoais de terceiros.'
+      },
+      {
+        id: 5,
+        question: 'O atendimento orientado à solução exige:',
+        options: [
+          'Ignorar o cliente.',
+          'Escuta atenta, empatia e direcionamento correto.',
+          'Culpar o sistema.',
+          'Desligar o telefone.'
+        ],
+        correct: 1,
+        explanation: 'Resolver problemas exige ouvir atentamente a demanda do cliente sem interrupções e dar o encaminhamento adequado com presteza.'
+      },
+      {
+        id: 6,
+        question: 'Como organizar a estação de trabalho?',
+        options: [
+          'Acumular papéis velhos.',
+          'Manter a mesa limpa e pastas identificadas.',
+          'Espalhar canetas pelo chão.',
+          'Deixar restos de comida na mesa.'
+        ],
+        correct: 1,
+        explanation: 'Um ambiente de trabalho limpo e padronizado reduz distrações, evita perdas de documentos vitais e agiliza as tarefas diárias.'
+      },
+      {
+        id: 7,
+        question: 'Planilhas de controle de fluxo de caixa servem para:',
+        options: [
+          'Gerar atrasos.',
+          'Garantir confiabilidade e auditabilidade dos processos administrativos.',
+          'Decorar o computador.',
+          'Fazer desenhos livres.'
+        ],
+        correct: 1,
+        explanation: 'O registro estruturado de saídas e entradas em planilhas financeiras permite conferência rigorosa e tomada de decisões seguras pelos gestores.'
+      }
+    ]
+  },
+
+  // =========================================================================
+  // 12. ROTINAS ADMINISTRATIVAS E ORGANIZAÇÃO DE PROCESSOS DE ESCRITÓRIO
   // =========================================================================
   {
     id: 'curso-rotinas-administrativas',
@@ -1682,7 +2382,69 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
-  // 7. GESTÃO DO TEMPO, FOCO E CONCILIAÇÃO ESCOLA X TRABALHO
+  // 13. PRODUTIVIDADE ÁGIL E ORGANIZAÇÃO DE DEMANDAS
+  // =========================================================================
+  {
+    id: 'curso-gestao-tempo',
+    trackId: 'trilha-4',
+    trackName: 'TRILHA 4: Rotinas Administrativas & Gestão Empresarial',
+    category: 'Desenvolvimento Pessoal',
+    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'ESTAGIARIO'],
+    title: 'Produtividade Ágil e Organização de Demandas',
+    subtitle: 'Técnicas de priorização, organização de fluxos operacionais e rotinas administrativas de alta performance',
+    hours: 10,
+    equivalentHours: 10,
+    modality: 'EAD 100% Gratuito (Escola Virtual)',
+    targetAudience: 'Jovens que precisam equilibrar estudos e rotina de trabalho',
+    prerequisites: 'Nenhum.',
+    badgeName: 'Mestre da Produtividade',
+    badgeCategory: 'Atitude Profissional',
+    badgeIcon: 'Clock',
+    accentColor: '#F59E0B',
+    level: 'Iniciante',
+    learningObjectives: [
+      'Classificar tarefas entre urgentes e importantes usando a Matriz de Eisenhower.',
+      'Utilizar a Técnica Pomodoro (25 minutos de foco + 5 de pausa) para estudar e trabalhar.',
+      'Organizar uma agenda semanal equilibrada para não atrasar trabalhos escolares.'
+    ],
+    modules: [
+      {
+        id: 'ges-mod-1',
+        number: 1,
+        title: 'MÓDULO 1: Matriz de Prioridades e Rotina Semanal',
+        summary: 'Como planejar a semana sem estresse e entregar todas as tarefas no prazo.',
+        estimatedMinutes: 30,
+        content: {
+          sections: [
+            {
+              subheading: '1.1 A Matriz de Eisenhower',
+              body: [
+                'Urgente e Importante: Faça agora. Importante mas Não Urgente: Agende na semana. Urgente mas Não Importante: Delegue ou resolva rápido. Nem Urgente nem Importante: Elimine.'
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    caseStudies: [],
+    quiz: [
+      {
+        id: 1,
+        question: 'O que preconiza a Técnica Pomodoro de produtividade?',
+        options: [
+          'Trabalhar 8 horas seguidas sem parar para almoçar.',
+          'Blocos de 25 minutos de foco total intercalados com 5 minutos de descanso.',
+          'Comer tomate antes de estudar.',
+          'Fazer 10 tarefas ao mesmo tempo.'
+        ],
+        correct: 1,
+        explanation: 'Os ciclos de foco com pausas curtas evitam a fadiga mental e aumentam a concentração.'
+      }
+    ]
+  },
+
+  // =========================================================================
+  // 14. GESTÃO DO TEMPO, FOCO E CONCILIAÇÃO ESCOLA X TRABALHO
   // =========================================================================
   {
     id: 'curso-financas-pessoais',
@@ -1970,7 +2732,232 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
-  // 8. EQUILÍBRIO EMOCIONAL, ANSIEDADE E FOCO NO TRABALHO
+  // 15. PLANEJAMENTO FINANCEIRO, ORÇAMENTO 50-30-20 E RESERVA DE EMERGÊNCIA
+  // =========================================================================
+  {
+    id: 'curso-planejamento-orcamento',
+    trackId: 'trilha-5',
+    trackName: 'TRILHA 5: Gestão do Tempo, Foco & Educação Financeira',
+    category: 'Desenvolvimento Pessoal',
+    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO'],
+    title: 'Planejamento Financeiro, Orçamento 50-30-20 e Reserva de Emergência',
+    subtitle: 'Capacitar o participante a organizar suas finanças pessoais, construir um orçamento sustentável através da regra 50-30-20, eliminar dívidas de forma estratégica e estruturar uma reserva de emergência segura e de liquidez imediata.',
+    hours: 12,
+    equivalentHours: 12,
+    modality: 'EAD 100% Gratuito (Escola Virtual)',
+    targetAudience: 'Jovens aprendizes, estagiários e estudantes que buscam organizar suas finanças pessoais, quitar dívidas e criar sua primeira reserva de emergência',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Mestre do Orçamento & Reserva',
+    badgeCategory: 'Finanças Pessoais',
+    badgeIcon: 'PiggyBank',
+    accentColor: '#F59E0B',
+    level: 'Intermediário',
+    learningObjectives: [
+      'Realizar um diagnóstico financeiro completo (raio-X financeiro), mapeando ativos, passivos, gastos fixos, variáveis e despesas invisíveis.',
+      'Aplicar o método de orçamento 50-30-20 (50% Necessidades, 30% Desejos e 20% Prioridades Financeiras) e adotar o princípio de \"pague-se primeiro\".',
+      'Mapear dívidas pelo Custo Efetivo Total (CET) e aplicar estratégias de quitação acelerada (Método Avalanche vs. Método Bola de Neve).',
+      'Calcular a Reserva de Emergência ideal com base na modalidade de trabalho (3 a 6 meses para CLT e 6 a 12 meses para autônomos).',
+      'Selecionar produtos de renda fixa seguros e com liquidez diária (Tesouro Selic e CDBs 100% do CDI) para alocação da reserva de emergência.'
+    ],
+    modules: [
+      {
+        id: 'fin-orc-mod-1',
+        number: 1,
+        title: 'MÓDULO 1: Diagnóstico Financeiro e Mapeamento de Gastos',
+        summary: 'Compreender a real situação das finanças pessoais antes de tomar decisões de investimento ou corte de despesas.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Raio-X das Finanças Pessoais',
+              body: [
+                'Compreender a real situação das finanças pessoais antes de tomar decisões de investimento ou corte de despesas.',
+                'Levantamento de Ativos e Passivos: Entender a diferença entre o que gera receita e coloca dinheiro no bolso (ativos) e o que gera despesas e consome recursos (passivos).',
+                'Mapeamento de Gastos Fixos vs. Variáveis: Classificação clara entre contas essenciais e previsíveis (aluguel, condomínio, internet) e consumos sazonais ou supérfluos que oscilam mês a mês.',
+                'Categorização de Gastos: Identificação minuciosa dos chamados \"gastos invisíveis\" ou \"pequenos ralos financeiros\" (pequenos cafezinhos, taxas bancárias não percebidas e compras por impulso no dia a dia).'
+              ]
+            },
+            {
+              subheading: '2. Planilhas e Aplicativos de Controle',
+              body: [
+                'Ferramentas de Acompanhamento: Utilização de cadernos, planilhas organizadas ou aplicativos de gestão financeira para o registro sistemático de todas as entradas e saídas.',
+                'Análise de Fluxo de Caixa: Apuração do saldo mensal real para identificar com clareza se a conta fecha no positivo (superávit), no zero a zero ou no negativo (déficit financeiro).'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'fin-orc-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: O Método de Orçamento 50-30-20',
+        summary: 'Uma metodologia prática e visual para distribuir a renda líquida mensal em categorias equilibradas.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. A Divisão Percentual da Renda Líquida',
+              body: [
+                '50% — Necessidades Essenciais: Moradia, alimentação, saúde, transporte, energia, água e educação básica. Gastos vitais para a sobrevivência e manutenção da vida diária.',
+                '30% — Desejos Pessoais: Lazer, passeios, viagens, assinaturas de streaming, hobbies e vestuário não essencial. Gastos que proporcionam qualidade de vida presente.',
+                '20% — Prioridades Financeiras: Quitação de dívidas de juros altos, construção de reservas financeiras e investimentos de longo prazo para garantir tranquilidade futura.'
+              ]
+            },
+            {
+              subheading: '2. Ajustes e Flexibilidade',
+              body: [
+                'Customização da Metodologia: Adaptando os percentuais para diferentes realidades de renda (ex: 60-20-20 para orçamentos em fases mais apertadas ou inícios de carreira).',
+                'Disciplina e Hábitos: Como manter a constância nos aportes das prioridades financeiras logo no início do mês aplicando o princípio \"pague-se primeiro\" (investir assim que o salário cai, antes de gastar o restante).'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'fin-orc-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Gestão de Dívidas e Estratégias de Quitação',
+        summary: 'Eliminar passivos que cobram juros altos para liberar margem no orçamento.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Mapeamento e Priorização de Débitos',
+              body: [
+                'Custo Efetivo Total (CET): Compreender quais dívidas são as mais perigosas e onerosas (cartão de crédito rotativo, cheque especial e empréstimos pessoais com juros compostos explosivos).',
+                'Método Bola de Neve: Quitar primeiro as dívidas de menor valor absoluto para gerar vitórias rápidas e motivação psicológica consistente.',
+                'Método Avalanche: Quitar prioritariamente as dívidas com as maiores taxas de juros nominais, economizando o máximo de dinheiro em juros ao longo do tempo.'
+              ]
+            },
+            {
+              subheading: '2. Renegociação e Proteção do Score',
+              body: [
+                'Estratégias de Negociação: Como pleitear descontos em feirões de renegociação (ex: Serasa Limpa Nome) e trocar dívidas caras por linhas de crédito mais baratas (como crédito consignado).',
+                'Uso Consciente do Cartão de Crédito: Transformar o cartão em um aliado operacional de pontuação e organização de fluxo, e nunca em uma extensão ilusória da renda mensal.'
+              ]
+            }
+          ]
+        }
+      },
+      {
+        id: 'fin-orc-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Estruturação da Reserva de Emergência',
+        summary: 'Criar a base de segurança que protege o orçamento contra imprevistos sem necessidade de recorrer a empréstimos.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Cálculo do Tamanho Ideal da Reserva',
+              body: [
+                'Meses de Custo de Vida: Definir o tamanho da reserva com base na estabilidade da fonte de renda:',
+                '• CLT e Servidores Públicos: De 3 a 6 meses do custo de vida essencial.',
+                '• Autônomos e Profissionais Liberais: De 6 a 12 meses do custo de vida essencial, absorvendo períodos de volatilidade de faturamento.'
+              ]
+            },
+            {
+              subheading: '2. Onde Guardar a Reserva de Emergência',
+              body: [
+                'Critérios Inegociáveis: Altíssima segurança do capital, baixíssima volatilidade e Liquidez Diária (resgate imediato em D+0 ou D+1).',
+                'Opções Adequadas: Tesouro Selic (título público federal), CDBs de liquidez diária com 100% do CDI garantidos pelo FGC e contas remuneradas de instituições consolidadas.',
+                'O que Evitar para a Reserva: Ações, fundos imobiliários, criptomoedas e caderneta de poupança (devido à perda de rendimento em saques antes do aniversário de 30 dias).'
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    caseStudies: [],
+    quiz: [
+      {
+        id: 1,
+        question: 'De acordo com a metodologia de orçamento 50-30-20, como deve ser distribuída a renda líquida mensal de uma pessoa?',
+        options: [
+          '50% para Lazer, 30% para Moradia e 20% para Alimentação.',
+          '50% para Prioridades Financeiras, 30% para Necessidades Essenciais e 20% para Desejos Pessoais.',
+          '50% para Necessidades Essenciais, 30% para Desejos Pessoais e 20% para Prioridades Financeiras/Investimentos.',
+          '50% para Imprevistos, 30% para Compras Parceladas e 20% para Contas de Luz e Água.'
+        ],
+        correct: 2,
+        explanation: 'O método 50-30-20 destina 50% para as Necessidades Essenciais (sobrevivência e manutenção), 30% para Desejos Pessoais (estilo de vida e lazer) e 20% para Prioridades Financeiras (quitação de dívidas e investimentos).'
+      },
+      {
+        id: 2,
+        question: 'Um profissional autônomo com renda variável deseja calcular o tamanho ideal da sua Reserva de Emergência. Considerando a maior oscilação da sua atividade profissional, quantos meses do seu custo de vida essencial são recomendados para essa reserva?',
+        options: [
+          'De 6 a 12 meses.',
+          'Apenas 1 mês.',
+          'Exatamente 24 meses do salário bruto.',
+          'Não é necessário manter reserva quando se é autônomo.'
+        ],
+        correct: 0,
+        explanation: 'Para autônomos e profissionais liberais, cuja renda é oscilante e imprevisível, recomenda-se uma reserva mais robusta (de 6 a 12 meses do custo de vida essencial) para absorver períodos de baixa atividade.'
+      },
+      {
+        id: 3,
+        question: 'Qual das seguintes opções apresenta as características fundamentais que uma aplicação financeira DEVE ter para servir como destino da Reserva de Emergência?',
+        options: [
+          'Altíssimo risco, alta volatilidade e resgate bloqueado por 5 anos.',
+          'Garantia de ganhos na Bolsa de Valores com rendimento diário de 10%.',
+          'Baixa liquidez com cobrança de multa em caso de saque antecipado.',
+          'Altíssima segurança, baixíssima volatilidade e liquidez diária (possibilidade de resgate imediato).'
+        ],
+        correct: 3,
+        explanation: 'A reserva de emergência exige segurança (não perder o capital) e liquidez diária (dinheiro disponível no momento em que a emergência acontece). O foco desse montante é proteção, não rentabilidade agressiva.'
+      },
+      {
+        id: 4,
+        question: 'Na gestão de dívidas, qual é a principal vantagem da estratégia conhecida como \"Método Avalanche\"?',
+        options: [
+          'Pagar primeiro as dívidas com as menores taxas de juros para acumulá-las no final.',
+          'Priorizar a quitação das dívidas que possuem as maiores taxas de juros, reduzindo ao máximo o montante total pago em juros ao longo do tempo.',
+          'Ignorar as dívidas bancárias e pagar apenas as contas de consumo básico.',
+          'Consolidar todas as dívidas em uma única parcela parcelada em 120 vezes.'
+        ],
+        correct: 1,
+        explanation: 'O Método Avalanche ataca primeiro os débitos com juros mais caros (como cartão de crédito e cheque especial), sendo matematicamente a forma mais barata de quitar dívidas.'
+      },
+      {
+        id: 5,
+        question: 'Ao analisar o orçamento mensal, onde se enquadra o pagamento de despesas como aluguel, conta de luz, supermercado e transporte para o trabalho?',
+        options: [
+          'Desejos Pessoais (30%).',
+          'Prioridades Financeiras (20%).',
+          'Necessidades Essenciais (50%).',
+          'Gastos Superficiais Não Categorizados.'
+        ],
+        correct: 2,
+        explanation: 'Despesas ligadas à moradia, alimentação básica, saúde e transporte constituem a base de sobrevivência e enquadram-se nos 50% de Necessidades Essenciais.'
+      },
+      {
+        id: 6,
+        question: 'O conceito de \"Pague-se Primeiro\" no planejamento financeiro significa:',
+        options: [
+          'Separar o valor destinado às Prioridades Financeiras/Investimentos assim que a renda entra na conta, antes de efetuar os demais gastos.',
+          'Gastar todo o salário com lazer na primeira semana do mês e pagar as contas com o limite do cartão.',
+          'Pagar adiantado a fatura do cartão de crédito do mês seguinte.',
+          'Comprar produtos importados à vista antes de cotar preços.'
+        ],
+        correct: 0,
+        explanation: 'O hábito de \"pague-se primeiro\" consiste em priorizar o seu futuro financeiro transferindo o percentual de investimentos/poupança logo no dia do pagamento, tratando os aportes como um compromisso fixo.'
+      },
+      {
+        id: 7,
+        question: 'Qual das seguintes alternativas representa um produto financeiro adequado e seguro para a alocação da Reserva de Emergência?',
+        options: [
+          'Ações de empresas de tecnologia na Bolsa de Valores.',
+          'Criptomoedas de alto risco.',
+          'Tesouro Selic ou CDB de Liquidez Diária de instituição financeira sólida.',
+          'Fundos Imobiliários fechados sem liquidez.'
+        ],
+        correct: 2,
+        explanation: 'O Tesouro Selic e os CDBs de liquidez diária possuem risco baixíssimo, acompanham a taxa básica de juros e permitem o resgate imediato sem perdas do valor principal investido.'
+      }
+    ]
+  },
+
+  // =========================================================================
+  // 16. EQUILÍBRIO EMOCIONAL, ANSIEDADE E FOCO NO TRABALHO
   // =========================================================================
   {
     id: 'curso-saude-mental-trabalho',
@@ -2255,7 +3242,7 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
-  // 9. COMUNICAÇÃO ESCRITA, E-MAILS E REDAÇÃO CORPORATIVA
+  // 17. COMUNICAÇÃO ESCRITA, E-MAILS E REDAÇÃO CORPORATIVA
   // =========================================================================
   {
     id: 'curso-comunicacao-corporativa',
@@ -2484,269 +3471,44 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
-  // 10. PLANEJAMENTO FINANCEIRO, ORÇAMENTO 50-30-20 E RESERVA DE EMERGÊNCIA
+  // 18. ATENDIMENTO AO PÚBLICO E TÉCNICAS DE RELACIONAMENTO
   // =========================================================================
   {
     id: 'curso-atendimento-publico',
     trackId: 'trilha-2',
     trackName: 'TRILHA 2: Soft Skills, Postura & Comunicação Corporativa',
     category: 'Desenvolvimento Pessoal',
-    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO'],
-    title: 'Planejamento Financeiro, Orçamento 50-30-20 e Reserva de Emergência',
-    subtitle: 'Capacitar o participante a organizar suas finanças pessoais, construir um orçamento sustentável através da regra 50-30-20, eliminar dívidas de forma estratégica e estruturar uma reserva de emergência segura e de liquidez imediata.',
-    hours: 12,
-    equivalentHours: 12,
+    targetAudienceType: ['JOVEM_APRENDIZ', 'PRIMEIRO_EMPREGO'],
+    title: 'Atendimento ao Público e Técnicas de Relacionamento',
+    subtitle: 'Excelência no atendimento telefônico, presencial e por chat, escuta ativa e resolução de dúvidas',
+    hours: 8,
+    equivalentHours: 8,
     modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Jovens aprendizes, estagiários e estudantes que buscam organizar suas finanças pessoais, quitar dívidas e criar sua primeira reserva de emergência',
-    prerequisites: 'Nenhum pré-requisito.',
-    badgeName: 'Mestre do Orçamento & Reserva',
-    badgeCategory: 'Finanças Pessoais',
-    badgeIcon: 'PiggyBank',
-    accentColor: '#F59E0B',
-    level: 'Intermediário',
-    learningObjectives: [
-      'Realizar um diagnóstico financeiro completo (raio-X financeiro), mapeando ativos, passivos, gastos fixos, variáveis e despesas invisíveis.',
-      'Aplicar o método de orçamento 50-30-20 (50% Necessidades, 30% Desejos e 20% Prioridades Financeiras) e adotar o princípio de \"pague-se primeiro\".',
-      'Mapear dívidas pelo Custo Efetivo Total (CET) e aplicar estratégias de quitação acelerada (Método Avalanche vs. Método Bola de Neve).',
-      'Calcular a Reserva de Emergência ideal com base na modalidade de trabalho (3 a 6 meses para CLT e 6 a 12 meses para autônomos).',
-      'Selecionar produtos de renda fixa seguros e com liquidez diária (Tesouro Selic e CDBs 100% do CDI) para alocação da reserva de emergência.'
-    ],
-    modules: [
-      {
-        id: 'fin-orc-mod-1',
-        number: 1,
-        title: 'MÓDULO 1: Diagnóstico Financeiro e Mapeamento de Gastos',
-        summary: 'Compreender a real situação das finanças pessoais antes de tomar decisões de investimento ou corte de despesas.',
-        estimatedMinutes: 45,
-        content: {
-          sections: [
-            {
-              subheading: '1. Raio-X das Finanças Pessoais',
-              body: [
-                'Compreender a real situação das finanças pessoais antes de tomar decisões de investimento ou corte de despesas.',
-                'Levantamento de Ativos e Passivos: Entender a diferença entre o que gera receita e coloca dinheiro no bolso (ativos) e o que gera despesas e consome recursos (passivos).',
-                'Mapeamento de Gastos Fixos vs. Variáveis: Classificação clara entre contas essenciais e previsíveis (aluguel, condomínio, internet) e consumos sazonais ou supérfluos que oscilam mês a mês.',
-                'Categorização de Gastos: Identificação minuciosa dos chamados \"gastos invisíveis\" ou \"pequenos ralos financeiros\" (pequenos cafezinhos, taxas bancárias não percebidas e compras por impulso no dia a dia).'
-              ]
-            },
-            {
-              subheading: '2. Planilhas e Aplicativos de Controle',
-              body: [
-                'Ferramentas de Acompanhamento: Utilização de cadernos, planilhas organizadas ou aplicativos de gestão financeira para o registro sistemático de todas as entradas e saídas.',
-                'Análise de Fluxo de Caixa: Apuração do saldo mensal real para identificar com clareza se a conta fecha no positivo (superávit), no zero a zero ou no negativo (déficit financeiro).'
-              ]
-            }
-          ]
-        }
-      },
-      {
-        id: 'fin-orc-mod-2',
-        number: 2,
-        title: 'MÓDULO 2: O Método de Orçamento 50-30-20',
-        summary: 'Uma metodologia prática e visual para distribuir a renda líquida mensal em categorias equilibradas.',
-        estimatedMinutes: 45,
-        content: {
-          sections: [
-            {
-              subheading: '1. A Divisão Percentual da Renda Líquida',
-              body: [
-                '50% — Necessidades Essenciais: Moradia, alimentação, saúde, transporte, energia, água e educação básica. Gastos vitais para a sobrevivência e manutenção da vida diária.',
-                '30% — Desejos Pessoais: Lazer, passeios, viagens, assinaturas de streaming, hobbies e vestuário não essencial. Gastos que proporcionam qualidade de vida presente.',
-                '20% — Prioridades Financeiras: Quitação de dívidas de juros altos, construção de reservas financeiras e investimentos de longo prazo para garantir tranquilidade futura.'
-              ]
-            },
-            {
-              subheading: '2. Ajustes e Flexibilidade',
-              body: [
-                'Customização da Metodologia: Adaptando os percentuais para diferentes realidades de renda (ex: 60-20-20 para orçamentos em fases mais apertadas ou inícios de carreira).',
-                'Disciplina e Hábitos: Como manter a constância nos aportes das prioridades financeiras logo no início do mês aplicando o princípio \"pague-se primeiro\" (investir assim que o salário cai, antes de gastar o restante).'
-              ]
-            }
-          ]
-        }
-      },
-      {
-        id: 'fin-orc-mod-3',
-        number: 3,
-        title: 'MÓDULO 3: Gestão de Dívidas e Estratégias de Quitação',
-        summary: 'Eliminar passivos que cobram juros altos para liberar margem no orçamento.',
-        estimatedMinutes: 45,
-        content: {
-          sections: [
-            {
-              subheading: '1. Mapeamento e Priorização de Débitos',
-              body: [
-                'Custo Efetivo Total (CET): Compreender quais dívidas são as mais perigosas e onerosas (cartão de crédito rotativo, cheque especial e empréstimos pessoais com juros compostos explosivos).',
-                'Método Bola de Neve: Quitar primeiro as dívidas de menor valor absoluto para gerar vitórias rápidas e motivação psicológica consistente.',
-                'Método Avalanche: Quitar prioritariamente as dívidas com as maiores taxas de juros nominais, economizando o máximo de dinheiro em juros ao longo do tempo.'
-              ]
-            },
-            {
-              subheading: '2. Renegociação e Proteção do Score',
-              body: [
-                'Estratégias de Negociação: Como pleitear descontos em feirões de renegociação (ex: Serasa Limpa Nome) e trocar dívidas caras por linhas de crédito mais baratas (como crédito consignado).',
-                'Uso Consciente do Cartão de Crédito: Transformar o cartão em um aliado operacional de pontuação e organização de fluxo, e nunca em uma extensão ilusória da renda mensal.'
-              ]
-            }
-          ]
-        }
-      },
-      {
-        id: 'fin-orc-mod-4',
-        number: 4,
-        title: 'MÓDULO 4: Estruturação da Reserva de Emergência',
-        summary: 'Criar a base de segurança que protege o orçamento contra imprevistos sem necessidade de recorrer a empréstimos.',
-        estimatedMinutes: 45,
-        content: {
-          sections: [
-            {
-              subheading: '1. Cálculo do Tamanho Ideal da Reserva',
-              body: [
-                'Meses de Custo de Vida: Definir o tamanho da reserva com base na estabilidade da fonte de renda:',
-                '• CLT e Servidores Públicos: De 3 a 6 meses do custo de vida essencial.',
-                '• Autônomos e Profissionais Liberais: De 6 a 12 meses do custo de vida essencial, absorvendo períodos de volatilidade de faturamento.'
-              ]
-            },
-            {
-              subheading: '2. Onde Guardar a Reserva de Emergência',
-              body: [
-                'Critérios Inegociáveis: Altíssima segurança do capital, baixíssima volatilidade e Liquidez Diária (resgate imediato em D+0 ou D+1).',
-                'Opções Adequadas: Tesouro Selic (título público federal), CDBs de liquidez diária com 100% do CDI garantidos pelo FGC e contas remuneradas de instituições consolidadas.',
-                'O que Evitar para a Reserva: Ações, fundos imobiliários, criptomoedas e caderneta de poupança (devido à perda de rendimento em saques antes do aniversário de 30 dias).'
-              ]
-            }
-          ]
-        }
-      }
-    ],
-    caseStudies: [],
-    quiz: [
-      {
-        id: 1,
-        question: 'De acordo com a metodologia de orçamento 50-30-20, como deve ser distribuída a renda líquida mensal de uma pessoa?',
-        options: [
-          '50% para Lazer, 30% para Moradia e 20% para Alimentação.',
-          '50% para Prioridades Financeiras, 30% para Necessidades Essenciais e 20% para Desejos Pessoais.',
-          '50% para Necessidades Essenciais, 30% para Desejos Pessoais e 20% para Prioridades Financeiras/Investimentos.',
-          '50% para Imprevistos, 30% para Compras Parceladas e 20% para Contas de Luz e Água.'
-        ],
-        correct: 2,
-        explanation: 'O método 50-30-20 destina 50% para as Necessidades Essenciais (sobrevivência e manutenção), 30% para Desejos Pessoais (estilo de vida e lazer) e 20% para Prioridades Financeiras (quitação de dívidas e investimentos).'
-      },
-      {
-        id: 2,
-        question: 'Um profissional autônomo com renda variável deseja calcular o tamanho ideal da sua Reserva de Emergência. Considerando a maior oscilação da sua atividade profissional, quantos meses do seu custo de vida essencial são recomendados para essa reserva?',
-        options: [
-          'De 6 a 12 meses.',
-          'Apenas 1 mês.',
-          'Exatamente 24 meses do salário bruto.',
-          'Não é necessário manter reserva quando se é autônomo.'
-        ],
-        correct: 0,
-        explanation: 'Para autônomos e profissionais liberais, cuja renda é oscilante e imprevisível, recomenda-se uma reserva mais robusta (de 6 a 12 meses do custo de vida essencial) para absorver períodos de baixa atividade.'
-      },
-      {
-        id: 3,
-        question: 'Qual das seguintes opções apresenta as características fundamentais que uma aplicação financeira DEVE ter para servir como destino da Reserva de Emergência?',
-        options: [
-          'Altíssimo risco, alta volatilidade e resgate bloqueado por 5 anos.',
-          'Garantia de ganhos na Bolsa de Valores com rendimento diário de 10%.',
-          'Baixa liquidez com cobrança de multa em caso de saque antecipado.',
-          'Altíssima segurança, baixíssima volatilidade e liquidez diária (possibilidade de resgate imediato).'
-        ],
-        correct: 3,
-        explanation: 'A reserva de emergência exige segurança (não perder o capital) e liquidez diária (dinheiro disponível no momento em que a emergência acontece). O foco desse montante é proteção, não rentabilidade agressiva.'
-      },
-      {
-        id: 4,
-        question: 'Na gestão de dívidas, qual é a principal vantagem da estratégia conhecida como \"Método Avalanche\"?',
-        options: [
-          'Pagar primeiro as dívidas com as menores taxas de juros para acumulá-las no final.',
-          'Priorizar a quitação das dívidas que possuem as maiores taxas de juros, reduzindo ao máximo o montante total pago em juros ao longo do tempo.',
-          'Ignorar as dívidas bancárias e pagar apenas as contas de consumo básico.',
-          'Consolidar todas as dívidas em uma única parcela parcelada em 120 vezes.'
-        ],
-        correct: 1,
-        explanation: 'O Método Avalanche ataca primeiro os débitos com juros mais caros (como cartão de crédito e cheque especial), sendo matematicamente a forma mais barata de quitar dívidas.'
-      },
-      {
-        id: 5,
-        question: 'Ao analisar o orçamento mensal, onde se enquadra o pagamento de despesas como aluguel, conta de luz, supermercado e transporte para o trabalho?',
-        options: [
-          'Desejos Pessoais (30%).',
-          'Prioridades Financeiras (20%).',
-          'Necessidades Essenciais (50%).',
-          'Gastos Superficiais Não Categorizados.'
-        ],
-        correct: 2,
-        explanation: 'Despesas ligadas à moradia, alimentação básica, saúde e transporte constituem a base de sobrevivência e enquadram-se nos 50% de Necessidades Essenciais.'
-      },
-      {
-        id: 6,
-        question: 'O conceito de \"Pague-se Primeiro\" no planejamento financeiro significa:',
-        options: [
-          'Separar o valor destinado às Prioridades Financeiras/Investimentos assim que a renda entra na conta, antes de efetuar os demais gastos.',
-          'Gastar todo o salário com lazer na primeira semana do mês e pagar as contas com o limite do cartão.',
-          'Pagar adiantado a fatura do cartão de crédito do mês seguinte.',
-          'Comprar produtos importados à vista antes de cotar preços.'
-        ],
-        correct: 0,
-        explanation: 'O hábito de \"pague-se primeiro\" consiste em priorizar o seu futuro financeiro transferindo o percentual de investimentos/poupança logo no dia do pagamento, tratando os aportes como um compromisso fixo.'
-      },
-      {
-        id: 7,
-        question: 'Qual das seguintes alternativas representa um produto financeiro adequado e seguro para a alocação da Reserva de Emergência?',
-        options: [
-          'Ações de empresas de tecnologia na Bolsa de Valores.',
-          'Criptomoedas de alto risco.',
-          'Tesouro Selic ou CDB de Liquidez Diária de instituição financeira sólida.',
-          'Fundos Imobiliários fechados sem liquidez.'
-        ],
-        correct: 2,
-        explanation: 'O Tesouro Selic e os CDBs de liquidez diária possuem risco baixíssimo, acompanham a taxa básica de juros e permitem o resgate imediato sem perdas do valor principal investido.'
-      }
-    ]
-  },
-
-  // =========================================================================
-  // 11. PRODUTIVIDADE ÁGIL E ORGANIZAÇÃO DE DEMANDAS
-  // =========================================================================
-  {
-    id: 'curso-gestao-tempo',
-    trackId: 'trilha-4',
-    trackName: 'TRILHA 4: Rotinas Administrativas & Gestão Empresarial',
-    category: 'Desenvolvimento Pessoal',
-    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'ESTAGIARIO'],
-    title: 'Produtividade Ágil e Organização de Demandas',
-    subtitle: 'Técnicas de priorização, organização de fluxos operacionais e rotinas administrativas de alta performance',
-    hours: 10,
-    equivalentHours: 10,
-    modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Jovens que precisam equilibrar estudos e rotina de trabalho',
+    targetAudience: 'Aprendizes em funções de recepção, atendimento ao cliente e suporte',
     prerequisites: 'Nenhum.',
-    badgeName: 'Mestre da Produtividade',
+    badgeName: 'Excelência em Atendimento',
     badgeCategory: 'Atitude Profissional',
-    badgeIcon: 'Clock',
-    accentColor: '#F59E0B',
+    badgeIcon: 'Headphones',
+    accentColor: '#EC4899',
     level: 'Iniciante',
     learningObjectives: [
-      'Classificar tarefas entre urgentes e importantes usando a Matriz de Eisenhower.',
-      'Utilizar a Técnica Pomodoro (25 minutos de foco + 5 de pausa) para estudar e trabalhar.',
-      'Organizar uma agenda semanal equilibrada para não atrasar trabalhos escolares.'
+      'Atender chamadas telefônicas com cordialidade e padrão corporativo.',
+      'Praticar escuta ativa para entender o problema do cliente antes de responder.',
+      'Lidar com reclamações com empatia e tranquilidade.'
     ],
     modules: [
       {
-        id: 'ges-mod-1',
+        id: 'ate-mod-1',
         number: 1,
-        title: 'MÓDULO 1: Matriz de Prioridades e Rotina Semanal',
-        summary: 'Como planejar a semana sem estresse e entregar todas as tarefas no prazo.',
+        title: 'MÓDULO 1: Princípios do Atendimento Humanizado',
+        summary: 'Saudação acolhedora, empatia e clareza na transmissão de informações.',
         estimatedMinutes: 30,
         content: {
           sections: [
             {
-              subheading: '1.1 A Matriz de Eisenhower',
+              subheading: '1.1 Abertura do Atendimento',
               body: [
-                'Urgente e Importante: Faça agora. Importante mas Não Urgente: Agende na semana. Urgente mas Não Importante: Delegue ou resolva rápido. Nem Urgente nem Importante: Elimine.'
+                'Sempre cumprimente com energia positiva: "Bom dia! Meu nome é Lucas, em que posso ajudar hoje?". Anote o nome do cliente e use-o com respeito durante a conversa.'
               ]
             }
           ]
@@ -2757,21 +3519,21 @@ export const COURSES: Course[] = [
     quiz: [
       {
         id: 1,
-        question: 'O que preconiza a Técnica Pomodoro de produtividade?',
+        question: 'Qual a primeira atitude ao atender um cliente que está chateado com uma demora?',
         options: [
-          'Trabalhar 8 horas seguidas sem parar para almoçar.',
-          'Blocos de 25 minutos de foco total intercalados com 5 minutos de descanso.',
-          'Comer tomate antes de estudar.',
-          'Fazer 10 tarefas ao mesmo tempo.'
+          'Interrompê-lo e dizer que a culpa não é sua.',
+          'Ouvir atentamente com empatia, demonstrar que compreende a frustração e buscar resolver o problema.',
+          'Desligar o telefone.',
+          'Rir da situação.'
         ],
         correct: 1,
-        explanation: 'Os ciclos de foco com pausas curtas evitam a fadiga mental e aumentam a concentração.'
+        explanation: 'A escuta empática desarma a tensão e permite focar na solução rápida do problema.'
       }
     ]
   },
 
   // =========================================================================
-  // 12. COMUNICAÇÃO NÃO-VIOLENTA (CNV) E EMPATIA NO TRABALHO
+  // 19. COMUNICAÇÃO NÃO-VIOLENTA (CNV) E EMPATIA NO TRABALHO
   // =========================================================================
   {
     id: 'curso-comunicacao-nao-violenta',
@@ -2998,4 +3760,5 @@ export const COURSES: Course[] = [
       }
     ]
   }
+
 ];
