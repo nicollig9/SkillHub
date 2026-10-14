@@ -927,7 +927,7 @@ export const COURSES: Course[] = [
     badgeCategory: 'Ferramentas de Escritório',
     badgeIcon: 'BookOpen',
     accentColor: '#3B82F6',
-    level: 'Iniciante',
+    level: 'Avançado',
     learningObjectives: [
       'Compreender o princípio do ancoramento (grounding) no NotebookLM, restringindo as respostas da IA exclusivamente aos documentos fornecidos.',
       'Utilizar citações diretas clicáveis para auditar, rastrear e validar a procedência exata das informações nos PDFs e textos originais.',
@@ -1129,7 +1129,7 @@ export const COURSES: Course[] = [
     badgeCategory: 'Trabalho',
     badgeIcon: 'Sparkles',
     accentColor: '#3B82F6',
-    level: 'Iniciante',
+    level: 'Avançado',
     learningObjectives: [
       'Dominar a engenharia de prompts definindo papel, contexto e formato de saída para obter respostas precisas e sem ambiguidades.',
       'Compreender o conceito de copiloto e o risco de alucinações, exercendo supervisão e validação humana rigorosa.',
@@ -1331,7 +1331,7 @@ export const COURSES: Course[] = [
     badgeCategory: 'Ferramentas de Escritório',
     badgeIcon: 'Laptop',
     accentColor: '#3B82F6',
-    level: 'Iniciante',
+    level: 'Intermediário',
     learningObjectives: [
       'Dominar o uso prático de funções essenciais em planilhas eletrônicas como SOMA, MÉDIA e PROCV para automação de cálculos e cruzamento de dados.',
       'Construir painéis visuais eficientes com formatação condicional para destacar metas e indicadores de alerta.',
@@ -3596,7 +3596,7 @@ export const COURSES: Course[] = [
     badgeCategory: 'Trabalho',
     badgeIcon: 'Briefcase',
     accentColor: '#F59E0B',
-    level: 'Iniciante',
+    level: 'Intermediário',
     learningObjectives: [
       'Dominar as normas de redação corporativa, e-mails claros e objetivos sem vícios de netiqueta (como uso indevido de caixa alta).',
       'Aplicar padrões de excelência no atendimento telefônico e recepção corporativa, registrando recados com precisão.',
