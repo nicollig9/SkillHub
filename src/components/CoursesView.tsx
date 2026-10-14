@@ -21,52 +21,93 @@ import {
   Target
 } from 'lucide-react';
 
-// Mapeamento dos motivos pedagógicos fornecidos para os cursos estruturados por níveis
+// Identificação oficial dos cursos numerados nos níveis
+const COURSE_LABELS: Record<string, string> = {
+  // Nível 1: Iniciante (Fundamentos & Adaptação)
+  'curso-orcamento-primeiro-salario': 'Curso 1',
+  'curso-saude-mental-trabalho': 'Curso 2',
+  'curso-financas-pessoais': 'Curso 3',
+  'curso-excel-iniciante': 'Curso 5',
+  'curso-informatica-seguranca': 'Curso 9',
+
+  // Nível 2: Intermediário (Prática Profissional & Rotinas)
+  'curso-comunicacao-nao-violenta': 'Curso 4',
+  'curso-excel-basico-avancado': 'Curso 6',
+  'curso-rotinas-administrativas': 'Curso 7',
+  'curso-comunicacao-corporativa': 'Curso 8',
+  'curso-planejamento-orcamento': 'Curso 10',
+
+  // Nível 3: Avançado (Tecnologia, Inovação & Compliance)
+  'curso-ia-produtividade': 'Curso 11',
+  'curso-lgpd-seguranca-dados': 'Curso 12',
+};
+
+// Mapeamento dos motivos e objetivos pedagógicos
 const COURSE_REASONS: Record<string, string> = {
-  // Nível Iniciante (Fundamentos & Primeiro Emprego)
-  'curso-preparacao-entrevistas-processos-seletivos': 'É a porta de entrada para quem busca a primeira vaga (elaboração de currículo e primeiros contatos com recrutadores).',
-  'curso-soft-skills-comunicacao-interpessoal': 'Ensina postura profissional básica, escuta ativa, convivência no ambiente de trabalho e comunicação sem conflitos.',
-  'curso-gestao-tempo-produtividade-iniciante': 'Essencial para organizar rotinas diárias de estudo e trabalho, priorizando tarefas com métodos visuais simples (Matriz de Eisenhower).',
-  'curso-etica-etiqueta-corporativa': 'Postura e etiqueta corporativa para novos ingressantes no mercado profissional presencial e remoto.',
-  'curso-inteligencia-emocional-trabalho': 'Mapeamento de gatilhos, autorregulação e resiliência essencial para a entrada profissional.',
+  // Nível 1
+  'curso-orcamento-primeiro-salario': 'Adaptação financeira inicial, mentalidade consciente sobre o salário líquido, impostos do contracheque e formação de hábitos de poupança.',
+  'curso-saude-mental-trabalho': 'Inteligência emocional de entrada, controle da ansiedade no primeiro emprego e foco para conciliar novas responsabilidades.',
+  'curso-financas-pessoais': 'Organização de rotina semanal, conciliação prática entre os horários escolares e a jornada de trabalho sem esgotamento mental.',
+  'curso-excel-iniciante': 'Primeiros passos em planilhas eletrônicas, interface básica, inserção de dados, primeiras fórmulas matemáticas e gráficos simples.',
+  'curso-informatica-seguranca': 'Conceitos fundamentais de informática, arquivos em nuvem, cuidados com senhas corporativas e prevenção a vírus e phishing.',
 
-  // Nível Intermediário (Prática Profissionalizante & Ferramentas)
-  'curso-rotinas-praticas-profissionalizantes': 'Exige compreensão de processos internos, redação técnica corporativa, atendimento formal e legislação (LGPD).',
-  'curso-hard-skills-excel-ferramentas-digitais': 'Envolve raciocínio lógico em planilhas (fórmulas como PROCV, SOMA, formatação condicional) e gestão de arquivos em nuvem.',
-  'curso-resolucao-criativa-problemas-adaptacao': 'Aplicação prática da metodologia dos Cinco Porquês da Toyota, causa-raiz e postura focada em soluções.',
+  // Nível 2
+  'curso-comunicacao-nao-violenta': 'Comunicação empática e sem conflitos no dia a dia do escritório, escuta ativa e mediação de divergências.',
+  'curso-excel-basico-avancado': 'Operações estruturadas de escritório, tabelas dinâmicas, PROCV, funções lógicas e padronização visual de dados.',
+  'curso-rotinas-administrativas': 'Organização e controle de processos internos, redação de atas formais, arquivos e atendimento telefônico institucional.',
+  'curso-comunicacao-corporativa': 'Redação técnica de e-mails, ofícios e relatórios formais com clareza, concisão e respeito à netiqueta corporativa.',
+  'curso-planejamento-orcamento': 'Planejamento financeiro prático pelo método 50-30-20, cálculo de juros e construção da reserva de emergência.',
 
-  // Nível Avançado (Inovação, Inteligência Artificial & Automação)
-  'curso-inteligencia-artificial-pratica': 'Exige senso crítico, técnicas de engenharia de prompt (papel, contexto, formato) e análise para evitar "alucinações" de IA.',
-  'curso-produtividade-notebooklm': 'Requer conhecimento em gestão de bases de conhecimento, análise de documentos em nuvem (grounding), validação por citações e produção de conteúdos multimodais.'
+  // Nível 3
+  'curso-ia-produtividade': 'Aplicação prática de Inteligência Artificial generativa, engenharia de prompts avançada e automação de fluxos operacionais.',
+  'curso-lgpd-seguranca-dados': 'Conformidade com a Lei Geral de Proteção de Dados (LGPD), classificação de dados sensíveis e segurança da informação corporativa.'
 };
 
 const LEVEL_DEFINITIONS = [
   {
     id: 'Iniciante',
-    badgeText: '🟢 Nível Iniciante',
-    title: 'Nível Iniciante (Fundamentos & Primeiro Emprego)',
-    description: 'Cursos de entrada, focados em comportamentos básicos, primeiros passos para o mercado de trabalho e organização pessoal.',
+    badgeText: '🟢 Nível 1: Iniciante',
+    title: 'Nível 1: Iniciante (Fundamentos & Adaptação)',
+    description: 'Cursos de entrada, focados na adaptação ao primeiro emprego, conceitos básicos de informática e primeiros passos na organização pessoal/financeira.',
     accentBorder: 'border-emerald-500/40',
     badgeClass: 'bg-emerald-950/70 text-emerald-300 border-emerald-500/40',
-    dotColor: 'bg-emerald-400'
+    dotColor: 'bg-emerald-400',
+    priorityOrder: [
+      'curso-orcamento-primeiro-salario',
+      'curso-saude-mental-trabalho',
+      'curso-financas-pessoais',
+      'curso-excel-iniciante',
+      'curso-informatica-seguranca'
+    ]
   },
   {
     id: 'Intermediário',
-    badgeText: '🟡 Nível Intermediário',
-    title: 'Nível Intermediário (Prática Profissionalizante & Ferramentas)',
-    description: 'Cursos para quem já domina o básico e precisa de ferramentas técnicas para executar rotinas administrativas e de escritório.',
+    badgeText: '🟡 Nível 2: Intermediário',
+    title: 'Nível 2: Intermediário (Prática Profissional & Rotinas)',
+    description: 'Cursos para aprimorar a atuação no dia a dia do escritório, comunicação corporativa e ferramentas de produtividade.',
     accentBorder: 'border-amber-500/40',
     badgeClass: 'bg-amber-950/70 text-amber-300 border-amber-500/40',
-    dotColor: 'bg-amber-400'
+    dotColor: 'bg-amber-400',
+    priorityOrder: [
+      'curso-comunicacao-nao-violenta',
+      'curso-excel-basico-avancado',
+      'curso-rotinas-administrativas',
+      'curso-comunicacao-corporativa',
+      'curso-planejamento-orcamento'
+    ]
   },
   {
     id: 'Avançado',
-    badgeText: '🔴 Nível Avançado',
-    title: 'Nível Avançado (Inovação, Inteligência Artificial & Automação)',
-    description: 'Cursos de diferenciação competitiva, indicados para quem quer se destacar usando tecnologias modernas de produtividade e IA.',
+    badgeText: '🔴 Nível 3: Avançado',
+    title: 'Nível 3: Avançado (Tecnologia, Inovação & Compliance)',
+    description: 'Cursos que exigem visão crítica, aplicação de tecnologias emergentes e regras de governança/privacidade.',
     accentBorder: 'border-rose-500/40',
     badgeClass: 'bg-rose-950/70 text-rose-300 border-rose-500/40',
-    dotColor: 'bg-rose-400'
+    dotColor: 'bg-rose-400',
+    priorityOrder: [
+      'curso-ia-produtividade',
+      'curso-lgpd-seguranca-dados'
+    ]
   }
 ];
 
@@ -98,7 +139,8 @@ export default function CoursesView() {
     const matchesSearch = 
       course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       course.subtitle.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      course.badgeName.toLowerCase().includes(searchQuery.toLowerCase());
+      course.badgeName.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (COURSE_LABELS[course.id] && COURSE_LABELS[course.id].toLowerCase().includes(searchQuery.toLowerCase()));
 
     // Filtro por categoria
     const matchesCategory = 
@@ -129,7 +171,7 @@ export default function CoursesView() {
             <div className="flex flex-wrap items-center gap-2">
               <div className="inline-flex items-center gap-2 bg-[#17092A] border border-[#7C3AED]/40 px-3 py-1 rounded-full text-xs font-bold text-[#DDD6FE]">
                 <GraduationCap className="w-3.5 h-3.5 text-[#F59E0B]" />
-                <span>Catálogo Oficial de Cursos</span>
+                <span>Trilha Formativa Oficial</span>
               </div>
               <span className="bg-[#250B3E]/90 text-purple-200 border border-purple-500/40 text-xs font-semibold px-2.5 py-0.5 rounded-full flex items-center gap-1">
                 <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
@@ -137,20 +179,20 @@ export default function CoursesView() {
               </span>
               <span className="bg-[#150524]/90 text-purple-200 border border-purple-500/30 text-xs font-semibold px-2.5 py-0.5 rounded-full flex items-center gap-1">
                 <Award className="w-3.5 h-3.5 text-[#D8B4FE]" />
-                Certificação com Badges Oficiais
+                Certificação por Competências
               </span>
             </div>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-              Aba de Cursos Disponíveis
+              Catálogo de Cursos por Níveis
             </h1>
             <p className="text-xs sm:text-sm text-purple-200 leading-relaxed">
-              Cursos gratuitos e práticos organizados por níveis de aprendizado para desenvolver as competências mais valorizadas pelas empresas.
+              Trilha progressiva estruturada em 3 níveis: <strong className="text-emerald-300">Nível 1 (Iniciante)</strong>, <strong className="text-amber-300">Nível 2 (Intermediário)</strong> e <strong className="text-rose-300">Nível 3 (Avançado)</strong> para acelerar sua carreira.
             </p>
           </div>
 
           <div className="bg-[#140824]/90 border border-[#7C3AED]/50 rounded-2xl p-4 text-center shrink-0 shadow-lg">
             <div className="text-2xl font-black text-[#FBBF24]">{filteredCourses.length}</div>
-            <div className="text-[11px] text-purple-200 mt-0.5">Cursos Filtrados</div>
+            <div className="text-[11px] text-purple-200 mt-0.5">Cursos Disponíveis</div>
           </div>
         </div>
 
@@ -158,20 +200,20 @@ export default function CoursesView() {
         <div className="flex flex-col lg:flex-row justify-between gap-6 relative z-10">
           <div className="space-y-3 max-w-3xl">
             <h2 className="text-xl lg:text-2xl font-black text-white tracking-tight leading-tight">
-              Para que servem os cursos da nossa plataforma?
+              Como funciona a progressão de aprendizado?
             </h2>
             <p className="text-sm sm:text-base text-purple-100 leading-relaxed font-medium">
-              Nossos cursos foram desenvolvidos para apoiar você em duas etapas fundamentais da sua jornada: o seu <strong className="text-[#FBBF24]">desenvolvimento pessoal</strong> — fortalecendo sua autoconfiança, inteligência emocional e comunicação — e a sua <strong className="text-white">preparação completa para o mercado de trabalho</strong>, qualificando você para conquistar oportunidades reais de Jovem Aprendiz, Estágio e Primeiro Emprego.
+              A trilha é dividida para acompanhar o seu amadurecimento profissional: desde a <strong className="text-emerald-300">adaptação ao primeiro emprego e noções básicas</strong>, passando pela <strong className="text-amber-300">prática diária de rotinas corporativas e planilhas</strong>, até a <strong className="text-rose-300">inovação com inteligência artificial e conformidade com a LGPD</strong>.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 text-xs text-purple-200 pt-2 border-t border-[#6E259F]/30">
               <div>
-                <span className="text-purple-300">Público Atendido:</span>{' '}
-                <strong className="text-white">Jovens Aprendizes, Estagiários e Primeiro Emprego</strong>
+                <span className="text-purple-300">Foco Principal:</span>{' '}
+                <strong className="text-white">Jovem Aprendiz, Estágio e Primeiro Emprego</strong>
               </div>
               <div>
                 <span className="text-purple-300">Metodologia:</span>{' '}
-                <strong className="text-white">Aulas Práticas, Simulações Reais e Casos do Cotidiano</strong>
+                <strong className="text-white">Casos Reais, Simulações Práticas e Avaliações com Feedback</strong>
               </div>
             </div>
           </div>
@@ -182,14 +224,14 @@ export default function CoursesView() {
               <GraduationCap className="w-8 h-8 text-[#DDD6FE]" />
             </div>
             <div>
-              <div className="text-xs font-bold text-white mb-0.5">Certificação Reconhecida</div>
-              <div className="text-xs text-purple-200 font-extrabold mb-1">Badges de Competência</div>
+              <div className="text-xs font-bold text-white mb-0.5">Certificação Oficial</div>
+              <div className="text-xs text-purple-200 font-extrabold mb-1">Badges por Nível</div>
               <div className="text-[11px] text-purple-300 leading-tight">
-                Cada curso concluído gera um Badge Oficial que comprova suas habilidades práticas perante as empresas parceiras.
+                Complete os cursos de cada nível para acumular badges comprovando suas habilidades técnicas e socioemocionais.
               </div>
             </div>
             <div className="mt-3 w-full bg-[#24103E] border border-purple-500/30 text-purple-200 text-[11px] font-bold py-1.5 px-3 rounded-xl flex items-center justify-center gap-1.5">
-              <span>{COURSES.length} Cursos Práticos Disponíveis</span>
+              <span>{COURSES.length} Cursos Cadastrados</span>
             </div>
           </div>
         </div>
@@ -208,7 +250,7 @@ export default function CoursesView() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Digite o nome do curso, módulo ou competência..."
+              placeholder="Pesquisar por Curso 1, Curso 11, nome, ferramenta..."
               className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl pl-10 pr-4 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-[#8B5CF6]"
             />
           </div>
@@ -285,16 +327,26 @@ export default function CoursesView() {
       </div>
 
       {/* Listagem de Cursos Agrupada por Níveis */}
-      <div className="w-full space-y-10">
+      <div className="w-full space-y-12">
         {LEVEL_DEFINITIONS.filter((def) => selectedLevel === 'TODOS' || selectedLevel === def.id).map((def) => {
           // Filtrar os cursos deste nível
-          const coursesInLevel = filteredCourses.filter((course) => (course.level || 'Iniciante') === def.id);
+          const rawCoursesInLevel = filteredCourses.filter((course) => (course.level || 'Iniciante') === def.id);
+
+          // Ordenação prioritária: cursos oficiais numerados solicitados aparecem primeiro na ordem exata (Curso 1, 2, 3...)
+          const priorityIndex = (id: string, list: string[]) => {
+            const idx = list.indexOf(id);
+            return idx === -1 ? 999 : idx;
+          };
+
+          const coursesInLevel = [...rawCoursesInLevel].sort(
+            (a, b) => priorityIndex(a.id, def.priorityOrder) - priorityIndex(b.id, def.priorityOrder)
+          );
 
           if (coursesInLevel.length === 0) {
             if (selectedLevel === def.id) {
               return (
                 <div key={def.id} className="text-center py-12 bg-[#170C2B] rounded-2xl border border-purple-950 p-6">
-                  <p className="text-sm text-purple-300">Nenhum curso encontrado neste nível com os filtros aplicados.</p>
+                  <p className="text-sm text-purple-300">Nenhum curso encontrado neste nível com os filtros selecionados.</p>
                 </div>
               );
             }
@@ -302,10 +354,10 @@ export default function CoursesView() {
           }
 
           return (
-            <section key={def.id} className="w-full space-y-4">
+            <section key={def.id} className="w-full space-y-5">
               
               {/* Header do Nível */}
-              <div className={`w-full bg-[#170C2B] border ${def.accentBorder} rounded-2xl p-5 shadow-lg flex flex-col md:flex-row md:items-center justify-between gap-3 relative overflow-hidden`}>
+              <div className={`w-full bg-[#170C2B] border ${def.accentBorder} rounded-2xl p-5 sm:p-6 shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-4 relative overflow-hidden`}>
                 <div className="space-y-1.5 max-w-3xl">
                   <div className="flex items-center gap-2">
                     <span className={`text-xs font-extrabold px-3 py-1 rounded-full border ${def.badgeClass}`}>
@@ -315,7 +367,7 @@ export default function CoursesView() {
                       {coursesInLevel.length} {coursesInLevel.length === 1 ? 'curso' : 'cursos'}
                     </span>
                   </div>
-                  <h2 className="text-lg sm:text-xl font-black text-white tracking-tight">
+                  <h2 className="text-lg sm:text-2xl font-black text-white tracking-tight">
                     {def.title}
                   </h2>
                   <p className="text-xs sm:text-sm text-purple-200/90 leading-relaxed font-medium">
@@ -325,7 +377,7 @@ export default function CoursesView() {
 
                 <div className="shrink-0 flex items-center gap-2 text-xs font-bold text-purple-300">
                   <span className="hidden sm:inline bg-[#10061D] px-3 py-1.5 rounded-xl border border-purple-500/20">
-                    Formação Progressiva
+                    Trilha Estruturada
                   </span>
                 </div>
               </div>
@@ -333,6 +385,7 @@ export default function CoursesView() {
               {/* Grid de Cursos do Nível */}
               <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {coursesInLevel.map((course) => {
+                  const courseLabel = COURSE_LABELS[course.id];
                   const pedagogicalReason = COURSE_REASONS[course.id];
 
                   return (
@@ -341,9 +394,14 @@ export default function CoursesView() {
                       className="bg-[#170C2B] border border-[#4C1D95]/40 hover:border-[#8B5CF6]/70 rounded-2xl p-5 sm:p-6 shadow-xl flex flex-col justify-between space-y-4 transition-all duration-200 hover:-translate-y-1 group relative"
                     >
                       <div className="space-y-3">
-                        {/* Header do Card com Nível de Dificuldade & Carga Horária */}
+                        {/* Header do Card com Tag Oficial do Curso, Categoria & Carga Horária */}
                         <div className="flex items-center justify-between gap-2">
                           <div className="flex items-center gap-1.5 flex-wrap">
+                            {courseLabel && (
+                              <span className="text-[11px] font-black bg-gradient-to-r from-amber-400 to-amber-500 text-slate-950 px-2.5 py-0.5 rounded-md shadow-sm">
+                                {courseLabel}
+                              </span>
+                            )}
                             <span className="text-[10px] font-bold bg-[#24123E] text-[#DDD6FE] border border-[#7C3AED]/30 px-2.5 py-0.5 rounded-md">
                               {course.category}
                             </span>
@@ -371,7 +429,7 @@ export default function CoursesView() {
                           <div className="bg-[#120722] border border-[#7C3AED]/30 rounded-xl p-3 text-[11px] leading-relaxed space-y-1">
                             <div className="font-extrabold text-[#FBBF24] flex items-center gap-1">
                               <Sparkles className="w-3 h-3 text-[#FBBF24]" />
-                              <span>Motivo &amp; Foco Pedagógico:</span>
+                              <span>Foco do Curso:</span>
                             </div>
                             <p className="text-purple-100/90 italic">
                               "{pedagogicalReason}"

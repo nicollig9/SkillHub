@@ -3067,7 +3067,7 @@ export const COURSES: Course[] = [
     badgeCategory: 'Ferramentas de Escritório',
     badgeIcon: 'Cpu',
     accentColor: '#3B82F6',
-    level: 'Intermediário',
+    level: 'Avançado',
     learningObjectives: [
       'Compreender os fundamentos da IA Generativa e dominar Engenharia de Prompts (Prompt Engineering) com técnicas de Few-Shot e Chain of Thought.',
       'Acelerar a produção, síntese e revisão de documentos corporativos, e-mails, relatórios e análises de dados com assistentes de IA.',
@@ -3304,7 +3304,7 @@ export const COURSES: Course[] = [
     badgeCategory: 'Ferramentas de Escritório',
     badgeIcon: 'Shield',
     accentColor: '#3B82F6',
-    level: 'Intermediário',
+    level: 'Iniciante',
     learningObjectives: [
       'Criar senhas fortes e gerenciar autenticação em dois fatores.',
       'Identificar e-mails de phishing e links maliciosos.',
@@ -3366,7 +3366,7 @@ export const COURSES: Course[] = [
     badgeCategory: 'Trabalho',
     badgeIcon: 'ShieldCheck',
     accentColor: '#8B5CF6',
-    level: 'Intermediário',
+    level: 'Avançado',
     learningObjectives: [
       'Compreender os conceitos fundamentais da LGPD (Lei nº 13.709/18), diferenciando Dado Pessoal de Dado Pessoal Sensível e identificando os agentes de tratamento.',
       'Aplicar as principais bases legais para o tratamento de dados (Consentimento, Legítimo Interesse, Execução de Contratos e Cumprimento de Obrigação Legal).',
@@ -4882,7 +4882,7 @@ export const COURSES: Course[] = [
     badgeCategory: 'Comunicação Corporativa',
     badgeIcon: 'Mail',
     accentColor: '#EC4899',
-    level: 'Iniciante',
+    level: 'Intermediário',
     learningObjectives: [
       'Dominar a técnica da Pirâmide Invertida na escrita profissional, transmitindo informações prioritárias com clareza, objetividade e sem prolixidade.',
       'Aplicar regras gramaticais essenciais e pontuação estratégica no dia a dia corporativo (há vs. a, anexo vs. em anexo, crase e concordância).',
