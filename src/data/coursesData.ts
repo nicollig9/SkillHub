@@ -24,11 +24,12 @@ export const TRACKS: Track[] = [
     id: 'trilha-2',
     name: '2. Soft Skills, Postura & Comunicação Corporativa',
     category: 'Desenvolvimento Pessoal',
-    description: 'Aprenda a se comunicar com clareza em e-mails e reuniões, trabalhar em equipe, praticar comunicação não-violenta e construir inteligência emocional no trabalho.',
+    description: 'Aprenda a se comunicar com clareza em e-mails e reuniões, trabalhar em equipe, desenvolver inteligência relacional e empatia no trabalho.',
     targetAudienceType: 'TODOS',
-    hoursTotal: 48,
-    coursesCount: 4,
+    hoursTotal: 60,
+    coursesCount: 5,
     courseIds: [
+      'curso-soft-skills-comunicacao-interpessoal',
       'curso-comunicacao-corporativa',
       'curso-atendimento-publico',
       'curso-saude-mental-trabalho',
@@ -93,6 +94,208 @@ export const TRACKS: Track[] = [
 ];
 
 export const COURSES: Course[] = [
+  // =========================================================================
+  // CURSO 3: SOFT SKILLS E COMUNICAÇÃO INTERPESSOAL
+  // =========================================================================
+  {
+    id: 'curso-soft-skills-comunicacao-interpessoal',
+    trackId: 'trilha-2',
+    trackName: 'TRILHA 2: Soft Skills, Postura & Comunicação Corporativa',
+    category: 'Desenvolvimento Pessoal',
+    targetAudienceType: 'TODOS',
+    title: 'Soft Skills e Comunicação Interpessoal',
+    subtitle: 'Habilidades comportamentais, escuta ativa, empatia, comunicação não-violenta (CNV) e inteligência relacional corporativa.',
+    hours: 12,
+    equivalentHours: 12,
+    modality: 'EAD 100% Gratuito (Escola Virtual)',
+    targetAudience: 'Jovens aprendizes, estagiários e colaboradores que buscam aprimorar suas relações interpessoais e inteligência emocional.',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Especialista em Soft Skills',
+    badgeCategory: 'Atitude Profissional',
+    badgeIcon: 'Sparkles',
+    accentColor: '#EC4899',
+    level: 'Iniciante',
+    learningObjectives: [
+      'Diferenciar Hard Skills de Soft Skills, reconhecendo a importância das competências comportamentais na contratação e crescimento profissional.',
+      'Desenvolver escuta ativa e empatia genuína nas interações corporativas cotidianas.',
+      'Aplicar os quatro pilares da Comunicação Não-Violenta (CNV): observação, sentimentos, necessidades e pedidos claros.',
+      'Superar silos organizacionais atuando com inteligência relacional e colaboração interdepartamental.'
+    ],
+    modules: [
+      {
+        id: 'soft-skills-mod-1',
+        number: 1,
+        title: 'MÓDULO 1: Habilidades Comportamentais',
+        summary: 'Compreenda a relevância das Soft Skills frente às Hard Skills e aprenda a praticar escuta ativa com empatia profunda.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Hard Skills vs. Soft Skills',
+              body: [
+                'Enquanto as Hard Skills representam as habilidades técnicas mensuráveis (como dominar um software ou falar um idioma), as Soft Skills envolvem competências comportamentais e inteligência emocional.',
+                'No mercado atual, contrata-se pelo conhecimento técnico, mas promove-se ou desliga-se pelo comportamento.',
+                'Cultivar empatia, adaptabilidade e atitude colaborativa é essencial para o crescimento contínuo.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'O Fator Comportamental',
+                text: 'O conhecimento técnico abre portas, mas são as habilidades comportamentais e relacionais que sustentam uma carreira sólida e inspiram confiança.'
+              }
+            },
+            {
+              subheading: '2. Escuta Ativa e Empatia',
+              body: [
+                'A escuta ativa vai além de ouvir o áudio das palavras; consiste em focar 100% no interlocutor sem distrações (como olhar o celular), compreendendo suas necessidades subjacentes e demonstrando empatia.',
+                'Empatizar significa colocar-se genuinamente no lugar do outro para entender suas motivações e desafios, permitindo construir relações de confiança no ambiente de trabalho.'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Presença Total',
+                text: 'Evite distrações e interrupções durante o diálogo; escutar com atenção genuína valida o interlocutor e evita mal-entendidos.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'soft-skills-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: Inteligência Relacional',
+        summary: 'Metodologia da Comunicação Não-Violenta (CNV), resolução pacífica de conflitos e superação de silos organizacionais.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Comunicação Não-Violenta (CNV)',
+              body: [
+                'A CNV é uma abordagem estruturada para resolver conflitos e expressar opiniões sem gerar defensiva.',
+                'Ela baseia-se em quatro pilares: Observar os fatos sem julgamentos, identificar os Sentimentos envolvidos, reconhecer as Necessidades não atendidas e formular Pedidos claros e concretos.',
+                'Isso transforma discussões destrutivas em conversas construtivas.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Os 4 Pilares da CNV',
+                text: 'Fatos sem julgamento + Identificação de sentimentos + Reconhecimento de necessidades + Pedidos claros e objetivos.'
+              }
+            },
+            {
+              subheading: '2. Quebra de Silos Organizacionais',
+              body: [
+                '"Silos" ocorrem quando equipes ou departamentos trabalham de forma isolada, gerando falhas de comunicação e competição interna.',
+                'O profissional com inteligência relacional atua como ponte, promovendo a integração entre setores, compartilhando informações relevantes proativamente e alinhando objetivos para o sucesso geral da empresa.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Pontes vs. Silos',
+                text: 'Compartilhe informações relevantes proativamente entre departamentos para eliminar retrabalho e alinhar a empresa rumo aos mesmos objetivos.'
+              }
+            }
+          ]
+        }
+      }
+    ],
+    caseStudies: [
+      {
+        id: 'caso-softskills-1',
+        title: 'Comunicação Assertiva e Quebra de Silos no Fechamento de Projetos',
+        character: 'Mariana, Aprendiz de Suporte Corporativo',
+        scenario: 'Dois departamentos estavam atrasando a entrega de um relatório por falta de alinhamento e acusações mútuas.',
+        criticalAnalysis: 'Mariana aplicou a CNV e a escuta ativa para mapear os fatos objetivos e as necessidades de cada time, criando um canal de diálogo respeitoso.',
+        keyTakeaways: [
+          'Separar fatos de julgamentos pessoais diminui a defensiva.',
+          'Construir pontes entre setores economiza tempo e resguarda a qualidade do trabalho.'
+        ],
+        badgeRelevance: 'Demonstra maestria em inteligência relacional e mediação empática no ambiente corporativo.'
+      }
+    ],
+    quiz: [
+      {
+        id: 1,
+        question: 'A definição de "Soft Skills" é:',
+        options: [
+          'Certificações em softwares.',
+          'Habilidades comportamentais e socioemocionais.',
+          'Tom autoritário.',
+          'Domínio do pacote Office.'
+        ],
+        correct: 1,
+        explanation: 'Enquanto as Hard Skills representam diplomas e conhecimentos técnicos, as Soft Skills representam atributos interpessoais e socioemocionais.'
+      },
+      {
+        id: 2,
+        question: '"Escuta Ativa" exige:',
+        options: [
+          'Olhar o celular.',
+          'Atenção focada para compreender o outro.',
+          'Concordar sempre.',
+          'Interromper.'
+        ],
+        correct: 1,
+        explanation: 'Escutar ativamente envolve dar presença total ao interlocutor para captar a mensagem real sem julgamentos apressados.'
+      },
+      {
+        id: 3,
+        question: 'Na CNV, deve-se focar em:',
+        options: [
+          'Julgamentos de valor.',
+          'Fatos, sentimentos, necessidades e pedidos claros.',
+          'Omitir a verdade.',
+          'Ameaçar o colega.'
+        ],
+        correct: 1,
+        explanation: 'A Comunicação Não-Violenta (CNV) é fundamentada nesses quatro pilares estruturados para resolver desentendimentos sem acusações.'
+      },
+      {
+        id: 4,
+        question: 'O fenômeno dos "Silos Organizacionais":',
+        options: [
+          'Aumenta a produção.',
+          'Desintegra a colaboração e gera falhas de comunicação.',
+          'Facilita o controle de horas.',
+          'Auxilia na segurança.'
+        ],
+        correct: 1,
+        explanation: 'Silos organizacionais isolam departamentos, impedindo o fluxo livre de dados e gerando retrabalho entre equipes.'
+      },
+      {
+        id: 5,
+        question: 'O que é "Inteligência Relacional"?',
+        options: [
+          'Trabalhar bem com perfis diversos construindo redes saudáveis.',
+          'Trabalhar isolado.',
+          'Decorar nomes de sistemas.',
+          'Criar intrigas.'
+        ],
+        correct: 0,
+        explanation: 'Inteligência relacional é a capacidade de transitar entre diferentes personalidades mantendo respeito e produtividade.'
+      },
+      {
+        id: 6,
+        question: 'Como a empatia contribui no departamento?',
+        options: [
+          'Promove suporte mútuo e fortalece a confiança da equipe.',
+          'Aumenta a rivalidade.',
+          'Isenta faltas.',
+          'Elimina relatórios.'
+        ],
+        correct: 0,
+        explanation: 'Colocar-se no lugar do outro constrói um ambiente de cooperação onde os colaboradores se ajudam nas demandas complexas.'
+      },
+      {
+        id: 7,
+        question: 'A "assertividade" na comunicação é a habilidade de:',
+        options: [
+          'Expressar necessidades de forma clara, direta e respeitosa.',
+          'Gritar no escritório.',
+          'Aceitar tudo passivamente.',
+          'Usar vocabulário prolixo.'
+        ],
+        correct: 0,
+        explanation: 'A assertividade é o equilíbrio perfeito entre a passividade e a agressividade ao defender um ponto de vista com polidez.'
+      }
+    ]
+  },
   // =========================================================================
   // 1. JORNADA DO JOVEM APRENDIZ & ESTAGIÁRIO (MÓDULO AVANÇADO)
   // =========================================================================
