@@ -27,12 +27,14 @@ import {
   Wallet,
   PiggyBank,
   Landmark,
-  HeartHandshake
+  GraduationCap,
+  Award,
+  Users
 } from 'lucide-react';
 
 export default function HoleriteSimulator() {
-  // Modalidade de Contrato
-  const [contractType, setContractType] = useState<'APRENDIZ' | 'CLT' | 'ESTAGIARIO'>('APRENDIZ');
+  // Modalidade de Contrato: Apenas Estagiários, Aprendizes e Primeiro Emprego
+  const [contractType, setContractType] = useState<'APRENDIZ' | 'ESTAGIARIO' | 'PRIMEIRO_EMPREGO'>('APRENDIZ');
 
   // Campos de Entrada Principais
   const [salarioBruto, setSalarioBruto] = useState<number>(1518);
@@ -49,7 +51,7 @@ export default function HoleriteSimulator() {
   const [outrosDescontos, setOutrosDescontos] = useState<number>(0);
 
   // Modos de Visualização Criativos
-  const [viewMode, setViewMode] = useState<'MENSAL' | 'ANUAL' | 'COMPARATIVO_PJ'>('MENSAL');
+  const [viewMode, setViewMode] = useState<'MENSAL' | 'ANUAL' | 'COMPARATIVO_MODALIDADES'>('MENSAL');
 
   // Estados de Interação
   const [copied, setCopied] = useState<boolean>(false);
@@ -173,19 +175,19 @@ export default function HoleriteSimulator() {
   // 5. Cálculo do FGTS (Depositado pela Empresa, NÃO Descontado)
   const fgtsCalculado = useMemo(() => {
     if (contractType === 'ESTAGIARIO') {
-      return { valor: 0, percentual: 0, rotulo: 'Isento por lei (Estágio)' };
+      return { valor: 0, percentual: 0, rotulo: 'Isento por lei (Lei do Estágio 11.788/08)' };
     }
     if (contractType === 'APRENDIZ') {
       return {
         valor: totalProventos * 0.02,
         percentual: 2,
-        rotulo: '2% (Alíquota especial para Aprendiz)'
+        rotulo: '2% (Alíquota especial para Jovem Aprendiz - Lei 10.097/00)'
       };
     }
     return {
       valor: totalProventos * 0.08,
       percentual: 8,
-      rotulo: '8% (Alíquota tradicional CLT)'
+      rotulo: '8% (Contrato de Entrada no Mercado / Primeiro Emprego)'
     };
   }, [totalProventos, contractType]);
 
@@ -213,33 +215,25 @@ export default function HoleriteSimulator() {
     };
   }, [salarioLiquido, fgtsCalculado.valor]);
 
-  // Estimativa Comparativa CLT vs PJ
-  const comparativoPJ = useMemo(() => {
-    const impostoDAS = totalProventos * 0.06;
-    const liquidoPJ = totalProventos - impostoDAS;
-    const diferencaMensal = liquidoPJ - salarioLiquido;
-    const valorBrutoPJEquivalente = (anualAcumulado.totalAnualLiquido + anualAcumulado.totalFGTSAnual) / 11;
-
-    return {
-      liquidoPJ,
-      impostoDAS,
-      diferencaMensal,
-      valorBrutoPJEquivalente
-    };
-  }, [totalProventos, salarioLiquido, anualAcumulado]);
-
   // Copiar Resumo em Linguagem Simples
   const handleCopySummary = () => {
-    const texto = `💰 Resumo Descomplicado do Meu Salário - SkillHub\n` +
+    const nomeModalidade =
+      contractType === 'APRENDIZ'
+        ? 'Jovem Aprendiz'
+        : contractType === 'ESTAGIARIO'
+        ? 'Estágio'
+        : 'Primeiro Emprego';
+
+    const texto = `💰 Resumo do Meu Salário - SkillHub\n` +
       `----------------------------------------\n` +
-      `Contrato: ${contractType === 'APRENDIZ' ? 'Jovem Aprendiz' : contractType === 'ESTAGIARIO' ? 'Estágio' : 'CLT Tradicional'}\n` +
+      `Modalidade: ${nomeModalidade}\n` +
       `1. O que eu ganho (Salário Bruto): R$ ${totalProventos.toFixed(2)}\n` +
       `2. O que o Governo recolhe (INSS + IR): - R$ ${totalDescontosGoverno.toFixed(2)}\n` +
       (totalDescontosBeneficios > 0 ? `3. Descontos de Benefícios (VT e outros): - R$ ${totalDescontosBeneficios.toFixed(2)}\n` : '') +
       `----------------------------------------\n` +
       `✅ O QUE REALMENTE CAI NA MINHA CONTA: R$ ${salarioLiquido.toFixed(2)}\n` +
       `🏦 Poupança FGTS depositada pela empresa: R$ ${fgtsCalculado.valor.toFixed(2)}/mês (NÃO descontado do salário)\n` +
-      `Calculadora disponível em: https://skillhub.com.br/holerite`;
+      `Calculado no SkillHub: https://skillhub.com.br/holerite`;
 
     navigator.clipboard.writeText(texto);
     setCopied(true);
@@ -253,7 +247,7 @@ export default function HoleriteSimulator() {
   return (
     <div className="w-full max-w-[800px] mx-auto space-y-4 pb-16">
       {/* ========================================================================= */}
-      {/* 1. CABEÇALHO HERO BANNER (PADRÃO ESCURO E DIDÁTICO)                       */}
+      {/* 1. CABEÇALHO HERO BANNER (FOCO EM APRENDIZ, ESTÁGIO E PRIMEIRO EMPREGO)   */}
       {/* ========================================================================= */}
       <div className="bg-[#110E1B] border border-purple-500/20 rounded-2xl p-5 shadow-xl relative overflow-hidden">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 relative z-10">
@@ -261,19 +255,19 @@ export default function HoleriteSimulator() {
             <div className="flex flex-wrap items-center gap-1.5 mb-2">
               <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-purple-950/80 text-purple-200 border border-purple-500/30">
                 <Calculator className="w-3.5 h-3.5 text-purple-400" />
-                <span>Calculadora Salarial Simples</span>
+                <span>Calculadora Salarial do Jovem</span>
               </span>
               <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-950/70 text-emerald-300 border border-emerald-500/30">
                 <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
-                <span>100% Descomplicada &amp; Sem Juridiquês</span>
+                <span>Estágio • Jovem Aprendiz • Primeiro Emprego</span>
               </span>
             </div>
 
             <h1 className="text-lg sm:text-xl font-bold text-white tracking-tight">
-              Calculadora de Salário Líquido (Holerite Didático)
+              Calculadora de Holerite &amp; Salário Líquido
             </h1>
             <p className="text-xs sm:text-sm text-zinc-300 mt-1 max-w-xl leading-relaxed">
-              Descubra com facilidade quanto você realmente vai receber no banco, entendendo cada desconto em palavras simples.
+              Exclusiva para vagas de <strong>Estágio</strong>, <strong>Jovem Aprendiz</strong> e <strong>Primeiro Emprego</strong>. Calcule quanto vai cair no seu Pix sem burocracia ou termos difíceis.
             </p>
           </div>
 
@@ -298,13 +292,14 @@ export default function HoleriteSimulator() {
           </div>
         </div>
 
-        {/* Modalidade de Contrato com explicações para leigos */}
+        {/* Modalidade de Contrato: 3 Pilares do SkillHub */}
         <div className="mt-4 pt-3.5 border-t border-[#2D1B4E]/60 space-y-2">
           <span className="text-xs font-bold text-zinc-300 block">
-            Qual é o seu tipo de contratação?
+            Selecione a sua modalidade de oportunidade:
           </span>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            {/* Opção 1: Jovem Aprendiz */}
             <button
               onClick={() => {
                 setContractType('APRENDIZ');
@@ -318,39 +313,20 @@ export default function HoleriteSimulator() {
               }`}
             >
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-white">Jovem Aprendiz</span>
+                <span className="text-xs font-bold text-white flex items-center gap-1">
+                  <GraduationCap className="w-3.5 h-3.5 text-purple-400" />
+                  <span>Jovem Aprendiz</span>
+                </span>
                 <span className="text-[10px] bg-purple-900 text-purple-200 px-1.5 py-0.2 rounded font-semibold">
                   FGTS 2%
                 </span>
               </div>
               <p className="text-[11px] text-zinc-300 mt-1">
-                De 14 a 24 anos. Carteira assinada com curso e horário protegido.
+                De 14 a 24 anos. Carteira assinada, curso teórico e horário protegido (Lei 10.097).
               </p>
             </button>
 
-            <button
-              onClick={() => {
-                setContractType('CLT');
-                setSalarioBruto(2200);
-                setOptValeTransporte(true);
-              }}
-              className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
-                contractType === 'CLT'
-                  ? 'bg-purple-950/90 border-purple-500 text-white shadow-md ring-1 ring-purple-400/50'
-                  : 'bg-[#140E24] border-[#2D1B4E] text-zinc-400 hover:text-white'
-              }`}
-            >
-              <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-white">Carteira Assinada (CLT)</span>
-                <span className="text-[10px] bg-purple-900 text-purple-200 px-1.5 py-0.2 rounded font-semibold">
-                  FGTS 8%
-                </span>
-              </div>
-              <p className="text-[11px] text-zinc-300 mt-1">
-                Trabalho formal comum com todos os direitos (13º, férias e FGTS).
-              </p>
-            </button>
-
+            {/* Opção 2: Estagiário */}
             <button
               onClick={() => {
                 setContractType('ESTAGIARIO');
@@ -364,13 +340,43 @@ export default function HoleriteSimulator() {
               }`}
             >
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-white">Estágio (Estudante)</span>
+                <span className="text-xs font-bold text-white flex items-center gap-1">
+                  <Briefcase className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>Estagiário</span>
+                </span>
                 <span className="text-[10px] bg-emerald-950 text-emerald-300 px-1.5 py-0.2 rounded font-semibold">
                   Sem Descontos
                 </span>
               </div>
               <p className="text-[11px] text-zinc-300 mt-1">
-                Bolsa de aprendizado escolar. Não tem desconto de INSS nem FGTS.
+                Para estudantes de Ensino Médio, Técnico ou Superior. Bolsa-auxílio livre de INSS (Lei 11.788).
+              </p>
+            </button>
+
+            {/* Opção 3: Primeiro Emprego */}
+            <button
+              onClick={() => {
+                setContractType('PRIMEIRO_EMPREGO');
+                setSalarioBruto(1600);
+                setOptValeTransporte(true);
+              }}
+              className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
+                contractType === 'PRIMEIRO_EMPREGO'
+                  ? 'bg-purple-950/90 border-purple-500 text-white shadow-md ring-1 ring-purple-400/50'
+                  : 'bg-[#140E24] border-[#2D1B4E] text-zinc-400 hover:text-white'
+              }`}
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-white flex items-center gap-1">
+                  <Award className="w-3.5 h-3.5 text-purple-400" />
+                  <span>Primeiro Emprego</span>
+                </span>
+                <span className="text-[10px] bg-purple-900 text-purple-200 px-1.5 py-0.2 rounded font-semibold">
+                  FGTS 8%
+                </span>
+              </div>
+              <p className="text-[11px] text-zinc-300 mt-1">
+                Vaga de entrada formal para quem não tem experiência. Direitos completos garantidos.
               </p>
             </button>
           </div>
@@ -388,10 +394,10 @@ export default function HoleriteSimulator() {
           <div className="border-b border-[#2D1B4E]/60 pb-2.5">
             <h2 className="text-sm sm:text-base font-bold text-white flex items-center gap-1.5">
               <Scale className="w-4 h-4 text-purple-400" />
-              <span>Valores do seu Contrato</span>
+              <span>Valores da sua Oportunidade</span>
             </h2>
             <p className="text-[12px] text-zinc-400 mt-0.5">
-              Preencha com os valores combinados com a sua empresa:
+              Preencha o valor combinado para ver o resultado instantâneo:
             </p>
           </div>
 
@@ -400,14 +406,14 @@ export default function HoleriteSimulator() {
             <div>
               <div className="flex justify-between items-center text-xs">
                 <label htmlFor="salario-input" className="font-bold text-zinc-200">
-                  {contractType === 'ESTAGIARIO' ? 'Bolsa-Auxílio Mensal:' : 'Salário Bruto (Registrado na Carteira):'}
+                  {contractType === 'ESTAGIARIO' ? 'Bolsa-Auxílio Mensal (Estudante):' : 'Salário Bruto Combinado:'}
                 </label>
                 <span className="text-xs font-bold text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-500/30">
                   R$ {salarioBruto.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                 </span>
               </div>
               <p className="text-[11px] text-purple-300 mt-0.5">
-                💡 O valor total combinado antes de qualquer desconto obrigatório.
+                💡 O valor que a empresa combinou pagar por mês antes dos descontos.
               </p>
             </div>
 
@@ -425,13 +431,13 @@ export default function HoleriteSimulator() {
               />
             </div>
 
-            {/* Botões Rápidos com rótulos amigáveis */}
+            {/* Botões Rápidos para Jovens e Estudantes */}
             <div className="flex flex-wrap gap-1.5 pt-1">
               {[
                 { label: 'R$ 800 (Aprendiz 4h)', value: 800 },
+                { label: 'R$ 1.400 (Estágio Médio)', value: 1400 },
                 { label: 'R$ 1.518 (Salário Mínimo)', value: 1518 },
-                { label: 'R$ 2.200 (Início de Carreira)', value: 2200 },
-                { label: 'R$ 3.500 (Profissional)', value: 3500 }
+                { label: 'R$ 1.800 (Primeiro Emprego)', value: 1800 }
               ].map((b) => (
                 <button
                   key={b.value}
@@ -470,7 +476,7 @@ export default function HoleriteSimulator() {
               </span>
             </div>
             <p className="text-[11px] text-zinc-400">
-              Filhos ou cônjuge que dependem financeiramente de você. Reduz o desconto do Imposto de Renda!
+              Filhos ou dependentes legais. Reduz o desconto do Imposto de Renda!
             </p>
 
             {activeTooltip === 'dependentes' && (
@@ -480,7 +486,7 @@ export default function HoleriteSimulator() {
                   <span>O que são dependentes?</span>
                 </div>
                 <p>
-                  Filhos menores de 21 anos (ou até 24 se universitários) ou parceiro(a). Cada dependente cadastrado reduz automaticamente <strong>R$ 189,59</strong> da base onde o governo cobra o Imposto de Renda, fazendo você pagar menos imposto.
+                  Filhos menores de idade ou cônjuge. Cada dependente cadastrado reduz <strong>R$ 189,59</strong> da base onde o governo cobra o Imposto de Renda, ajudando a proteger seu salário.
                 </p>
               </div>
             )}
@@ -535,12 +541,12 @@ export default function HoleriteSimulator() {
               </div>
 
               <p className="text-[11px] text-zinc-400 pl-6 leading-relaxed">
-                A empresa paga as passagens do mês inteiro e desconta no máximo <strong>6% do seu salário</strong> (neste cálculo: R$ {descontoVT.toFixed(2)}).
+                A empresa cobre as passagens do mês inteiro e desconta no máximo <strong>6% do seu salário base</strong> (neste caso: R$ {descontoVT.toFixed(2)}).
               </p>
 
               {activeTooltip === 'vt' && (
                 <div className="text-[11px] bg-[#160F28] border border-purple-500/40 rounded-xl p-2.5 text-zinc-200 leading-relaxed shadow-lg">
-                  <strong>Regra do Vale-Transporte:</strong> A empresa é obrigada a fornecer as passagens necessárias para o trajeto casa-trabalho. Se suas passagens custarem R$ 300 no mês, você só paga os 6% (ex: R$ {descontoVT.toFixed(2)}) e a empresa cobre todo o restante!
+                  <strong>Regra do Vale-Transporte:</strong> A empresa é obrigada a fornecer passagens suficientes para você ir e voltar do trabalho. Se suas passagens custarem R$ 250 no mês, você só contribui com até 6% do salário (R$ {descontoVT.toFixed(2)}) e a empresa paga todo o restante!
                 </div>
               )}
             </div>
@@ -555,7 +561,7 @@ export default function HoleriteSimulator() {
             >
               <span className="flex items-center gap-1.5">
                 <TrendingUp className="w-3.5 h-3.5 text-purple-400" />
-                <span>Ganhos Extras (Horas Extras, Periculosidade, Bônus)</span>
+                <span>Ganhos Extras (Horas Extras, Bônus, Adicionais)</span>
               </span>
               {showAdicionais ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
             </button>
@@ -575,11 +581,16 @@ export default function HoleriteSimulator() {
                     className="w-full bg-[#160F28] border border-purple-500/20 rounded-xl px-3 py-1.5 text-xs text-white"
                     placeholder="R$ 0,00"
                   />
+                  {contractType === 'APRENDIZ' && (
+                    <span className="text-[10px] text-amber-300 block">
+                      Nota: A Lei do Aprendiz protege o jovem e proíbe a realização de horas extras rotineiras.
+                    </span>
+                  )}
                 </div>
 
                 <div className="space-y-1">
                   <label className="text-xs font-medium text-zinc-300 block">
-                    Adicional por Risco ou Saúde:
+                    Adicional por Atividade Especial:
                   </label>
                   <select
                     value={tipoAdicional}
@@ -587,16 +598,16 @@ export default function HoleriteSimulator() {
                     className="w-full bg-[#160F28] border border-purple-500/20 rounded-xl px-3 py-1.5 text-xs text-white"
                   >
                     <option value="NENHUM">Nenhum adicional especial</option>
-                    <option value="PERICULOSIDADE">Periculosidade (+30% por trabalhar com risco elétrico/moto/combustível)</option>
+                    <option value="PERICULOSIDADE">Periculosidade (+30% por risco físico/eletricidade/combustível)</option>
                     <option value="INSALUBRIDADE_MIN">Insalubridade Mínima (+10% por barulho/químicos leves)</option>
-                    <option value="INSALUBRIDADE_MED">Insalubridade Média (+20% por ambientes hospitalares/agentes)</option>
+                    <option value="INSALUBRIDADE_MED">Insalubridade Média (+20% por ambientes de atendimento de saúde)</option>
                     <option value="INSALUBRIDADE_MAX">Insalubridade Máxima (+40% por alto contato biológico/químico)</option>
                   </select>
                 </div>
 
                 <div className="space-y-1">
                   <label className="text-xs font-medium text-zinc-300 block">
-                    Bônus, Comissões ou Gorjetas (R$):
+                    Bônus, Gratificações ou Prêmios (R$):
                   </label>
                   <input
                     type="number"
@@ -618,7 +629,7 @@ export default function HoleriteSimulator() {
               <label htmlFor="outros-descontos-input" className="font-bold text-zinc-300">
                 Outros Descontos (Convênios ou Adiantamentos):
               </label>
-              <span className="text-[11px] text-zinc-400">Plano de saúde, odonto...</span>
+              <span className="text-[11px] text-zinc-400">Plano odontológico, etc.</span>
             </div>
             <input
               id="outros-descontos-input"
@@ -628,7 +639,7 @@ export default function HoleriteSimulator() {
               value={outrosDescontos || ''}
               onChange={(e) => setOutrosDescontos(Math.max(0, Number(e.target.value)))}
               className="w-full bg-[#160F28] border border-purple-500/20 rounded-xl px-3 py-2 text-xs text-white"
-              placeholder="Ex: 50.00"
+              placeholder="Ex: 30.00"
             />
           </div>
         </div>
@@ -643,7 +654,7 @@ export default function HoleriteSimulator() {
               <div className="flex items-center gap-1.5">
                 <FileText className="w-4 h-4 text-purple-400" />
                 <h2 className="text-sm sm:text-base font-bold text-white">
-                  Contracheque Explicado
+                  Contracheque do Jovem
                 </h2>
               </div>
               <span className="text-[11px] bg-purple-950/80 text-purple-300 border border-purple-500/30 px-2 py-0.5 rounded font-semibold">
@@ -660,7 +671,7 @@ export default function HoleriteSimulator() {
                 R$ {salarioLiquido.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
               </div>
               <p className="text-xs text-zinc-300 mt-1">
-                Salário livre para pagar suas contas, guardar na poupança e usar no dia a dia.
+                Seu dinheiro limpo para usar livremente após os descontos legais.
               </p>
             </div>
 
@@ -669,7 +680,9 @@ export default function HoleriteSimulator() {
               {/* Salário Bruto */}
               <div className="flex items-center justify-between p-2.5 rounded-lg bg-[#140E24] text-zinc-200">
                 <div>
-                  <span className="font-bold text-white block">1. Salário Combinado (Bruto)</span>
+                  <span className="font-bold text-white block">
+                    {contractType === 'ESTAGIARIO' ? '1. Bolsa de Estágio' : '1. Salário Bruto Combinado'}
+                  </span>
                   <span className="text-[11px] text-zinc-400">Total antes dos descontos</span>
                 </div>
                 <span className="font-bold text-emerald-400 text-sm">
@@ -692,7 +705,7 @@ export default function HoleriteSimulator() {
                       </button>
                     </div>
                     <span className="text-[11px] text-zinc-400 block">
-                      {contractType === 'ESTAGIARIO' ? 'Estágio é isento' : `Desconto obrigatório: ${inssCalculado.faixa}`}
+                      {contractType === 'ESTAGIARIO' ? 'Estágio é isento' : `Contribuição: ${inssCalculado.faixa}`}
                     </span>
                   </div>
                   <span className="font-bold text-rose-400 text-sm">
@@ -704,13 +717,13 @@ export default function HoleriteSimulator() {
                   <div className="text-[12px] bg-[#160F28] border border-purple-500/40 rounded-xl p-3 text-zinc-200 leading-relaxed space-y-1.5 shadow-lg">
                     <p className="font-bold text-purple-300 flex items-center gap-1">
                       <ShieldCheck className="w-4 h-4 text-emerald-400" />
-                      <span>O que é o INSS em palavras simples?</span>
+                      <span>O que é o INSS para o jovem?</span>
                     </p>
                     <p>
-                      É a contribuição obrigatória para a <strong>Previdência Social</strong> que garante a sua aposentadoria no futuro, auxílio-doença caso você se machuque e licença-maternidade/paternidade.
+                      É a contribuição obrigatória para a <strong>Previdência Social</strong> que garante a sua aposentadoria no futuro, auxílio-doença caso você precise se afastar e licença-maternidade/paternidade.
                     </p>
                     <p className="text-[11px] text-purple-200">
-                      Quanto maior o salário, maior a porcentagem (alíquota progressiva), começando em 7,5%.
+                      Estagiários não têm desconto de INSS. Aprendizes e Primeiro Emprego contribuem a partir de 7,5%.
                     </p>
                   </div>
                 )}
@@ -743,13 +756,13 @@ export default function HoleriteSimulator() {
                   <div className="text-[12px] bg-[#160F28] border border-purple-500/40 rounded-xl p-3 text-zinc-200 leading-relaxed space-y-1.5 shadow-lg">
                     <p className="font-bold text-purple-300 flex items-center gap-1">
                       <Landmark className="w-4 h-4 text-purple-400" />
-                      <span>O que é o IRPF em palavras simples?</span>
+                      <span>O que é o Imposto de Renda (IRPF)?</span>
                     </p>
                     <p>
-                      É o imposto recolhido pelo Governo Federal proporcional aos seus ganhos.
+                      É o imposto recolhido pelo Governo Federal proporcional aos ganhos.
                     </p>
                     <p className="text-emerald-400 font-semibold">
-                      🎉 Se você ganha até R$ 2.259 (ou R$ 2.824 com o desconto simplificado), você é 100% isento e não paga nenhum centavo de Imposto de Renda!
+                      🎉 Se você ganha até R$ 2.259 (ou até R$ 2.824 com o desconto simplificado), você é 100% isento e não paga nenhum centavo!
                     </p>
                   </div>
                 )}
@@ -788,10 +801,10 @@ export default function HoleriteSimulator() {
                 <div className="space-y-0.5">
                   <span className="font-bold text-white flex items-center gap-1.5">
                     <PiggyBank className="w-4 h-4 text-amber-400" />
-                    <span>FGTS (Sua Poupança de Proteção):</span>
+                    <span>FGTS (Poupança que a empresa deposita para você):</span>
                   </span>
                   <span className="text-[11px] text-emerald-400 font-semibold block">
-                    NÃO é descontado do seu salário! A empresa deposita para você.
+                    NÃO é descontado do seu salário! É um dinheiro a mais.
                   </span>
                 </div>
                 <div className="text-right">
@@ -803,7 +816,7 @@ export default function HoleriteSimulator() {
               </div>
 
               <div className="text-[11px] text-zinc-300 bg-[#0F0C1D] p-2 rounded-lg leading-relaxed">
-                <strong>O que é o FGTS?</strong> É o Fundo de Garantia depositado pela empresa em uma conta da Caixa Econômica no seu nome ({fgtsCalculado.rotulo}). Ele acumula rendimento e pode ser sacado na demissão sem justa causa, na compra da casa própria ou em situações de calamidade.
+                <strong>O que é o FGTS?</strong> É o Fundo de Garantia depositado pela empresa em uma conta da Caixa Econômica no seu nome ({fgtsCalculado.rotulo}). Aprendizes recebem 2% e vagas de Primeiro Emprego recebem 8% sobre a remuneração.
               </div>
             </div>
           </div>
@@ -837,7 +850,7 @@ export default function HoleriteSimulator() {
               R$ {totalProventos.toFixed(2)}
             </div>
             <p className="text-[11px] text-zinc-400 leading-snug">
-              Salário bruto combinado na carteira de trabalho mais horas extras.
+              Salário bruto da oportunidade mais eventuais horas extras.
             </p>
           </div>
 
@@ -850,7 +863,7 @@ export default function HoleriteSimulator() {
               - R$ {totalDescontosGoverno.toFixed(2)}
             </div>
             <p className="text-[11px] text-zinc-400 leading-snug">
-              Contribuição para aposentadoria (INSS) e Imposto de Renda (IRPF).
+              Contribuição de aposentadoria (INSS) e Imposto de Renda (IRPF).
             </p>
           </div>
 
@@ -919,7 +932,7 @@ export default function HoleriteSimulator() {
             </span>
             <span className="flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full bg-purple-500" />
-              <span>INSS Aposentadoria: {percentINSS.toFixed(1)}%</span>
+              <span>INSS Previdência: {percentINSS.toFixed(1)}%</span>
             </span>
             {percentIRPF > 0 && (
               <span className="flex items-center gap-1.5">
@@ -936,7 +949,7 @@ export default function HoleriteSimulator() {
           </div>
         </div>
 
-        {/* Abas Criativas: Análise Anual & Comparativo PJ */}
+        {/* Abas Didáticas: Acumulado Anual & Comparativo entre Aprendiz, Estágio e Primeiro Emprego */}
         <div className="pt-3 border-t border-[#2D1B4E]/60 space-y-3">
           <div className="flex items-center gap-2 overflow-x-auto pb-1">
             <button
@@ -952,15 +965,15 @@ export default function HoleriteSimulator() {
             </button>
 
             <button
-              onClick={() => setViewMode(viewMode === 'COMPARATIVO_PJ' ? 'MENSAL' : 'COMPARATIVO_PJ')}
+              onClick={() => setViewMode(viewMode === 'COMPARATIVO_MODALIDADES' ? 'MENSAL' : 'COMPARATIVO_MODALIDADES')}
               className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
-                viewMode === 'COMPARATIVO_PJ'
+                viewMode === 'COMPARATIVO_MODALIDADES'
                   ? 'bg-purple-600 text-white shadow-md'
                   : 'bg-[#140E24] text-zinc-400 hover:text-white border border-[#2D1B4E]'
               }`}
             >
-              <Briefcase className="w-3.5 h-3.5" />
-              <span>Vale a pena ser PJ ou CLT? (Comparador)</span>
+              <Users className="w-3.5 h-3.5" />
+              <span>Comparativo: Aprendiz vs Estágio vs Primeiro Emprego</span>
             </button>
           </div>
 
@@ -970,7 +983,7 @@ export default function HoleriteSimulator() {
               <div className="flex items-center justify-between border-b border-[#2D1B4E] pb-2">
                 <span className="font-bold text-white flex items-center gap-1.5">
                   <Calendar className="w-4 h-4 text-purple-400" />
-                  <span>Seu Dinheiro Somado ao Longo de 1 Ano Completo:</span>
+                  <span>Seu Ganho Total Acumulado em 1 Ano de Contrato:</span>
                 </span>
                 <span className="text-[11px] text-emerald-400 font-semibold">12 meses + direitos</span>
               </div>
@@ -992,7 +1005,7 @@ export default function HoleriteSimulator() {
                     R$ {anualAcumulado.totalFGTSAnual.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                   </div>
                   <span className="text-[10px] text-zinc-400 block mt-0.5">
-                    Depositado pela empresa sem desconto
+                    {contractType === 'ESTAGIARIO' ? 'Estágio não recolhe FGTS' : 'Depositado pela empresa sem desconto'}
                   </span>
                 </div>
 
@@ -1002,51 +1015,67 @@ export default function HoleriteSimulator() {
                     R$ {anualAcumulado.mediaMensalReal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                   </div>
                   <span className="text-[10px] text-zinc-400 block mt-0.5">
-                    O que cada mês representa no bolso
+                    Média por mês somando todos os benefícios
                   </span>
                 </div>
               </div>
             </div>
           )}
 
-          {/* Visualização 2: Comparativo PJ */}
-          {viewMode === 'COMPARATIVO_PJ' && (
+          {/* Visualização 2: Comparativo Didático das 3 Modalidades do SkillHub */}
+          {viewMode === 'COMPARATIVO_MODALIDADES' && (
             <div className="bg-[#140E24] border border-purple-500/20 rounded-xl p-4 space-y-3 text-xs">
               <div className="flex items-center justify-between border-b border-[#2D1B4E] pb-2">
                 <span className="font-bold text-white flex items-center gap-1.5">
-                  <Briefcase className="w-4 h-4 text-purple-400" />
-                  <span>Comparativo: Carteira Assinada (CLT) vs Prestador de Serviços (PJ)</span>
+                  <Users className="w-4 h-4 text-purple-400" />
+                  <span>Diferenças entre as Modalidades de Oportunidades do SkillHub:</span>
                 </span>
-                <span className="text-[11px] text-purple-300 font-semibold">
-                  Bruto: R$ {totalProventos.toFixed(2)}
-                </span>
+                <span className="text-[11px] text-purple-300 font-semibold">Guia Oficial</span>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+                {/* Jovem Aprendiz */}
                 <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-lg p-3 space-y-1.5">
-                  <span className="font-bold text-purple-300 text-xs block">Opção CLT (Segurança e Direitos):</span>
+                  <span className="font-bold text-purple-300 text-xs block flex items-center gap-1">
+                    <GraduationCap className="w-3.5 h-3.5 text-purple-400" />
+                    <span>Jovem Aprendiz:</span>
+                  </span>
                   <ul className="space-y-1 text-zinc-300 text-[11px]">
-                    <li>• Salário que cai na conta: <strong>R$ {salarioLiquido.toFixed(2)}/mês</strong></li>
-                    <li>• 13º Salário garantido no fim do ano</li>
-                    <li>• 30 dias de férias com pagamento adiantado (+ 1/3)</li>
-                    <li>• Depósito mensal do FGTS: <strong>R$ {fgtsCalculado.valor.toFixed(2)}</strong></li>
-                    <li>• Seguro-desemprego em caso de demissão</li>
+                    <li>• <strong>Idade:</strong> 14 a 24 anos incompletos</li>
+                    <li>• <strong>Carga:</strong> 4h a 6h diárias protegidas</li>
+                    <li>• <strong>FGTS:</strong> 2% especial depositado</li>
+                    <li>• <strong>13º e Férias:</strong> 100% garantidos</li>
+                    <li>• <strong>Capacitação:</strong> Curso teórico incluído</li>
                   </ul>
                 </div>
 
+                {/* Estágio */}
                 <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-lg p-3 space-y-1.5">
-                  <span className="font-bold text-emerald-400 text-xs block">Opção PJ (Emitindo Nota Fiscal):</span>
+                  <span className="font-bold text-emerald-400 text-xs block flex items-center gap-1">
+                    <Briefcase className="w-3.5 h-3.5 text-emerald-400" />
+                    <span>Estagiário:</span>
+                  </span>
                   <ul className="space-y-1 text-zinc-300 text-[11px]">
-                    <li>• Recebimento no mês (Simples ~6%): <strong>R$ {comparativoPJ.liquidoPJ.toFixed(2)}</strong></li>
-                    <li>• NÃO tem 13º salário garantido por lei</li>
-                    <li>• NÃO tem férias remuneradas obrigatórias</li>
-                    <li>• NÃO tem recolhimento de FGTS</li>
-                    <li>
-                      • Para empatar com a CLT, o PJ deve cobrar no mínimo:{' '}
-                      <strong className="text-emerald-300">
-                        R$ {comparativoPJ.valorBrutoPJEquivalente.toFixed(2)}/mês
-                      </strong>
-                    </li>
+                    <li>• <strong>Requisito:</strong> Matrícula ativa em curso</li>
+                    <li>• <strong>Carga:</strong> 4h a 6h diárias (máx. 30h/sem)</li>
+                    <li>• <strong>INSS e FGTS:</strong> Isento (sem descontos)</li>
+                    <li>• <strong>Recesso:</strong> 30 dias remunerados após 1 ano</li>
+                    <li>• <strong>Seguro:</strong> Apólice contra acidentes inclusa</li>
+                  </ul>
+                </div>
+
+                {/* Primeiro Emprego */}
+                <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-lg p-3 space-y-1.5">
+                  <span className="font-bold text-white text-xs block flex items-center gap-1">
+                    <Award className="w-3.5 h-3.5 text-purple-400" />
+                    <span>Primeiro Emprego:</span>
+                  </span>
+                  <ul className="space-y-1 text-zinc-300 text-[11px]">
+                    <li>• <strong>Perfil:</strong> Jovens sem experiência prévia</li>
+                    <li>• <strong>Carga:</strong> Até 40h ou 44h semanais</li>
+                    <li>• <strong>FGTS:</strong> 8% integral na conta Caixa</li>
+                    <li>• <strong>Direitos:</strong> 13º, férias e rescisão legal</li>
+                    <li>• <strong>Carteira:</strong> Registro formal de início</li>
                   </ul>
                 </div>
               </div>
