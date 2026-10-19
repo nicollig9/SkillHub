@@ -553,26 +553,26 @@ export default function CourseViewer() {
       {/* MODO LEITURA DO MÓDULO SELECIONADO (PLAYER EAD)       */}
       {/* ===================================================== */}
       {activeTab === 'MODULES' && isReadingMode && (
-        <div className="w-full space-y-6 animate-fadeIn">
+        <div className="w-full max-w-4xl mx-auto space-y-8 animate-fadeIn">
           
           {/* Barra Superior de Navegação no Modo Leitura */}
-          <div className="w-full bg-[#140E24] border border-[#2D1B4E]/70 rounded-2xl p-4 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-3">
+          <div className="w-full bg-[#140E24] border border-[#2D1B4E]/70 rounded-2xl p-4 sm:p-5 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4">
             <button
               type="button"
               onClick={() => setIsReadingMode(false)}
-              className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-[#171126] hover:bg-[#251540] text-zinc-300 hover:text-white text-xs font-bold transition-all border border-[#2D1B4E] shadow cursor-pointer"
+              className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#171126] hover:bg-[#251540] text-zinc-300 hover:text-white text-xs sm:text-sm font-bold transition-all border border-[#2D1B4E] shadow cursor-pointer"
             >
               <ArrowLeft className="w-4 h-4 text-purple-400" />
               <span>Voltar para Todos os Módulos</span>
             </button>
 
             {/* Dropdown seletor rápido do módulo */}
-            <div className="flex items-center gap-2.5">
-              <span className="text-xs text-zinc-400 font-bold hidden sm:inline">Navegar Módulos:</span>
+            <div className="flex items-center gap-3">
+              <span className="text-xs sm:text-sm text-zinc-400 font-bold hidden sm:inline">Navegar Módulos:</span>
               <select
                 value={activeModuleIndex}
                 onChange={(e) => setActiveModuleIndex(Number(e.target.value))}
-                className="bg-[#0D0818] border border-[#2D1B4E] text-white text-xs font-bold rounded-xl px-3 py-2 focus:outline-none focus:border-[#8B5CF6] cursor-pointer"
+                className="bg-[#0D0818] border border-[#2D1B4E] text-white text-xs sm:text-sm font-bold rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#8B5CF6] cursor-pointer"
               >
                 {course.modules.map((m, mIdx) => (
                   <option key={m.id} value={mIdx}>
@@ -584,10 +584,10 @@ export default function CourseViewer() {
           </div>
 
           {/* Card Principal do Conteúdo do Módulo */}
-          <div className="w-full bg-[#110E1B] border border-[#2D1B4E]/70 rounded-3xl p-6 lg:p-9 space-y-8 shadow-2xl">
+          <div className="w-full bg-[#110E1B] border border-purple-500/20 rounded-3xl p-6 sm:p-8 lg:p-10 space-y-8 shadow-2xl">
             
             {/* Cabeçalho do Módulo (Destaque para MÓDULO X DE Y) */}
-            <div className="border-b border-[#2D1B4E]/60 pb-6 space-y-3">
+            <div className="border-b border-[#2D1B4E]/60 pb-6 space-y-4">
               <div className="flex flex-wrap items-center justify-between gap-3">
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className="bg-purple-950/80 text-purple-300 border border-purple-500/40 text-xs font-black tracking-wider uppercase px-3.5 py-1 rounded-full shadow-sm">
@@ -622,7 +622,7 @@ export default function CourseViewer() {
                 {currentModule.title.replace(/MÓDULO \d+: /, '')}
               </h1>
 
-              <p className="text-sm sm:text-base text-zinc-300 leading-relaxed font-normal">
+              <p className="text-sm sm:text-base text-zinc-200 leading-[1.65] font-normal">
                 {currentModule.summary}
               </p>
             </div>
@@ -642,16 +642,16 @@ export default function CourseViewer() {
                 return (
                   <div
                     key={sIdx}
-                    className="bg-[#160F28]/90 border border-[#2D1B4E]/70 hover:border-purple-500/40 rounded-2xl p-5 sm:p-7 shadow-xl space-y-5 transition-all"
+                    className="bg-[#160F28]/90 border border-[#2D1B4E]/70 hover:border-purple-500/40 rounded-3xl p-6 sm:p-8 lg:p-9 shadow-xl space-y-6 transition-all"
                   >
                     {/* Topo do Sub-Card da Seção */}
-                    <div className="flex items-center gap-3 border-b border-[#2D1B4E]/50 pb-4">
-                      <span className="w-8 h-8 rounded-xl bg-purple-950/90 border border-purple-500/40 text-purple-300 text-sm font-black flex items-center justify-center shrink-0 shadow-sm">
+                    <div className="flex items-center gap-3.5 border-b border-[#2D1B4E]/50 pb-5">
+                      <span className="w-9 h-9 rounded-xl bg-purple-950/90 border border-purple-500/40 text-purple-300 text-sm font-black flex items-center justify-center shrink-0 shadow-sm">
                         {topicNumber}
                       </span>
                       <div className="flex items-center gap-2.5">
                         <SectionIcon className="w-5 h-5 text-purple-400 shrink-0" />
-                        <h2 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+                        <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
                           {cleanHeading}
                         </h2>
                       </div>
@@ -660,9 +660,9 @@ export default function CourseViewer() {
                     {/* Conteúdo Teórico da Seção */}
                     {isFlowOrComparativeSection ? (
                       /* Layout Especial com 2 Cards Paralelos (Shallow Work vs Deep Work) */
-                      <div className="space-y-4">
+                      <div className="space-y-5">
                         {section.body.length > 0 && (
-                          <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
+                          <p className="text-sm sm:text-base text-zinc-200 leading-[1.65] font-normal">
                             {section.body[0].replace(/^[-•]\s*/, '').trim()}
                           </p>
                         )}
@@ -671,27 +671,27 @@ export default function CourseViewer() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
                           
                           {/* Card 1: Trabalho Superficial (Shallow Work) */}
-                          <div className="bg-[#120B20] border border-[#2D1B4E] rounded-xl p-4 sm:p-5 space-y-2.5 flex flex-col justify-between">
-                            <div className="flex items-center gap-2 text-white font-bold text-sm">
+                          <div className="bg-[#120B20] border border-[#2D1B4E] rounded-2xl p-5 sm:p-6 space-y-3 flex flex-col justify-between">
+                            <div className="flex items-center gap-2.5 text-white font-bold text-sm sm:text-base">
                               <div className="w-8 h-8 rounded-lg bg-[#1F1535] border border-[#2D1B4E] flex items-center justify-center text-zinc-400 shrink-0">
                                 <Layers className="w-4 h-4" />
                               </div>
                               <span>Trabalho Superficial (Shallow Work)</span>
                             </div>
-                            <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
+                            <p className="text-sm text-zinc-300 leading-[1.6] font-normal">
                               Tarefas mecânicas e operacionais (responder e-mails rápidos, organizar pastas) que exigem pouco esforço mental, mas consomem o dia todo sem gerar valor duradouro.
                             </p>
                           </div>
 
                           {/* Card 2: Ritual de Trabalho Profundo (Foco) */}
-                          <div className="bg-[#120B20] border border-purple-500/40 rounded-xl p-4 sm:p-5 space-y-2.5 flex flex-col justify-between">
-                            <div className="flex items-center gap-2 text-white font-bold text-sm">
+                          <div className="bg-[#120B20] border border-purple-500/40 rounded-2xl p-5 sm:p-6 space-y-3 flex flex-col justify-between">
+                            <div className="flex items-center gap-2.5 text-white font-bold text-sm sm:text-base">
                               <div className="w-8 h-8 rounded-lg bg-purple-950/70 border border-purple-500/30 flex items-center justify-center text-purple-300 shrink-0">
                                 <Brain className="w-4 h-4 text-purple-300" />
                               </div>
                               <span>Ritual de Trabalho Profundo (Foco)</span>
                             </div>
-                            <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
+                            <p className="text-sm text-zinc-200 leading-[1.6] font-normal">
                               Eliminação de abas desnecessárias, bloqueio de notificações no celular e definição de metas claras para blocos ininterruptos de concentração extrema.
                             </p>
                           </div>
@@ -700,9 +700,9 @@ export default function CourseViewer() {
 
                         {/* Parágrafos subsequentes se houver */}
                         {section.body.length > 3 && (
-                          <div className="space-y-3 pt-2">
+                          <div className="space-y-4 pt-2">
                             {section.body.slice(3).map((p, pIdx) => (
-                              <p key={pIdx} className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
+                              <p key={pIdx} className="text-sm sm:text-base text-zinc-200 leading-[1.65] font-normal">
                                 {p}
                               </p>
                             ))}
@@ -711,7 +711,7 @@ export default function CourseViewer() {
                       </div>
                     ) : (
                       /* Layout Padrão em Sub-Cards com Itens e Parágrafos Neutros */
-                      <div className="space-y-3.5">
+                      <div className="space-y-4">
                         {section.body.map((paragraph, pIdx) => {
                           const trimmed = paragraph.trim();
                           const colonIdx = trimmed.indexOf(':');
@@ -724,16 +724,16 @@ export default function CourseViewer() {
                             return (
                               <div
                                 key={pIdx}
-                                className="bg-[#120B20] border border-[#2D1B4E]/80 rounded-xl p-4 flex items-start gap-3 transition-all hover:border-purple-500/30"
+                                className="bg-[#120B20] border border-[#2D1B4E]/80 rounded-2xl p-5 sm:p-6 flex items-start gap-4 transition-all hover:border-purple-500/40 shadow-sm"
                               >
-                                <div className="w-6 h-6 rounded-lg bg-purple-950/70 border border-purple-500/30 flex items-center justify-center text-purple-300 shrink-0 mt-0.5">
-                                  <Check className="w-3.5 h-3.5 stroke-[2.5]" />
+                                <div className="w-7 h-7 rounded-lg bg-purple-950/70 border border-purple-500/30 flex items-center justify-center text-purple-300 shrink-0 mt-0.5">
+                                  <Check className="w-4 h-4 stroke-[2.5]" />
                                 </div>
-                                <div className="space-y-1">
-                                  <div className="text-xs sm:text-sm font-bold text-white">
+                                <div className="space-y-1.5">
+                                  <div className="text-sm sm:text-base font-bold text-white">
                                     {itemTitle}
                                   </div>
-                                  <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
+                                  <p className="text-sm sm:text-[15px] text-zinc-200 leading-[1.65] font-normal">
                                     {itemDesc}
                                   </p>
                                 </div>
@@ -742,7 +742,7 @@ export default function CourseViewer() {
                           }
 
                           return (
-                            <p key={pIdx} className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
+                            <p key={pIdx} className="text-sm sm:text-base text-zinc-200 leading-[1.65] font-normal">
                               {paragraph}
                             </p>
                           );
@@ -963,26 +963,26 @@ export default function CourseViewer() {
             </div>
 
             {/* Nav Controls */}
-            <div className="pt-6 border-t border-[#2D1B4E]/60 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="pt-8 border-t border-[#2D1B4E]/60 flex flex-col sm:flex-row items-center justify-between gap-4">
               <button
                 onClick={handlePrevModule}
                 disabled={activeModuleIndex === 0}
-                className="w-full sm:w-auto px-4 py-2.5 rounded-xl border border-[#2D1B4E] text-zinc-300 text-xs font-bold hover:bg-[#171126] hover:text-white disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer transition-colors"
+                className="w-full sm:w-auto px-5 py-3 rounded-2xl border border-[#2D1B4E] text-zinc-300 text-xs sm:text-sm font-bold hover:bg-[#171126] hover:text-white disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer transition-colors shadow-sm"
               >
-                <ArrowLeft className="w-4 h-4" /> Módulo Anterior
+                <ArrowLeft className="w-4 h-4" /> <span>Módulo Anterior</span>
               </button>
 
               <button
                 type="button"
                 onClick={() => setIsReadingMode(false)}
-                className="w-full sm:w-auto px-4 py-2.5 rounded-xl border border-[#2D1B4E] text-zinc-300 text-xs font-bold hover:bg-[#171126] hover:text-white flex items-center justify-center gap-2 cursor-pointer transition-colors"
+                className="w-full sm:w-auto px-5 py-3 rounded-2xl border border-[#2D1B4E] text-zinc-300 text-xs sm:text-sm font-bold hover:bg-[#171126] hover:text-white flex items-center justify-center gap-2 cursor-pointer transition-colors shadow-sm"
               >
-                <Layers className="w-4 h-4 text-purple-400" /> Ver Todos os Módulos
+                <Layers className="w-4 h-4 text-purple-400" /> <span>Ver Todos os Módulos</span>
               </button>
 
               <button
                 onClick={handleNextModule}
-                className="w-full sm:w-auto px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] hover:from-[#7C3AED] hover:to-[#9D4EDD] text-white text-xs font-bold flex items-center justify-center gap-2 shadow-lg shadow-purple-950/60 cursor-pointer transition-all hover:scale-[1.02]"
+                className="w-full sm:w-auto px-7 py-3 rounded-2xl bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] hover:from-[#7C3AED] hover:to-[#9D4EDD] text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2.5 shadow-lg shadow-purple-950/60 cursor-pointer transition-all hover:scale-[1.02]"
               >
                 <span>{activeModuleIndex === course.modules.length - 1 ? 'Concluir Módulos e Ir para Casos' : 'Concluir Módulo e Avançar'}</span>
                 <ArrowRight className="w-4 h-4" />
