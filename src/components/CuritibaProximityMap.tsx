@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useApp } from '@/context/AppContext';
 import { JobVacancy } from '@/types';
 import {
@@ -23,6 +23,13 @@ import JobDetailsModal from '@/components/JobDetailsModal';
 
 export default function CuritibaProximityMap() {
   const { student, vagas, badges } = useApp();
+
+  // Garante renderização exclusivamente no cliente após a montagem (evita erros de hidratação/SSR)
+  const [isMounted, setIsMounted] = useState<boolean>(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // Estados de Filtros e Pesquisa
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -220,6 +227,16 @@ export default function CuritibaProximityMap() {
       </span>
     );
   };
+
+  // Previne erros de SSR/hidratação retornando placeholder seguro até a montagem no cliente
+  if (!isMounted) {
+    return (
+      <div className="w-full max-w-6xl mx-auto py-24 flex flex-col items-center justify-center space-y-4">
+        <div className="w-10 h-10 border-4 border-purple-500/30 border-t-purple-500 rounded-full animate-spin" />
+        <p className="text-xs text-zinc-400">Carregando painel de vagas em Curitiba &amp; RMC...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full max-w-6xl mx-auto pb-16 space-y-8 flex flex-col items-center">
