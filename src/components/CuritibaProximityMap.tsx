@@ -15,9 +15,11 @@ import {
   Check,
   RotateCcw,
   Briefcase,
-  GraduationCap
+  GraduationCap,
+  Eye
 } from 'lucide-react';
 import JobApplicationModal from '@/components/JobApplicationModal';
+import JobDetailsModal from '@/components/JobDetailsModal';
 
 export default function CuritibaProximityMap() {
   const { student, vagas, badges } = useApp();
@@ -27,6 +29,9 @@ export default function CuritibaProximityMap() {
   const [selectedRegion, setSelectedRegion] = useState<string>('TODOS');
   const [selectedFilter, setSelectedFilter] = useState<'TODAS' | 'JOVEM_APRENDIZ' | 'ESTAGIO' | 'PRIMEIRO_EMPREGO' | 'PERTO_CIC'>('TODAS');
   const [sortBy, setSortBy] = useState<'PROXIMIDADE' | 'SALARIO' | 'RECENTE'>('PROXIMIDADE');
+
+  // Modal de Detalhes da Vaga
+  const [detailsVaga, setDetailsVaga] = useState<JobVacancy | null>(null);
 
   // Modal de Candidatura
   const [modalVaga, setModalVaga] = useState<JobVacancy | null>(null);
@@ -634,26 +639,33 @@ export default function CuritibaProximityMap() {
                   )}
                 </div>
 
-                {/* Botão "Candidatar-se ➔" na parte inferior */}
-                <div className="pt-3 border-t border-[#2D1B4E]/60 flex items-center justify-between gap-3">
-                  <span className="text-[11px] text-zinc-500">
-                    {vaga.candidatosInscritos} inscritos
-                  </span>
+                {/* Botões de Ação na parte inferior do Card */}
+                <div className="pt-3 border-t border-[#2D1B4E]/60 flex items-center justify-between gap-2">
+                  <button
+                    onClick={() => setDetailsVaga(vaga)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-[#171126] hover:bg-purple-950/70 text-zinc-300 hover:text-white border border-purple-500/20 hover:border-purple-500/40 text-xs font-semibold transition-all duration-200 cursor-pointer"
+                    title="Ver detalhes completos da oportunidade"
+                  >
+                    <Eye className="w-3.5 h-3.5 text-purple-400" />
+                    <span>Ver Detalhes</span>
+                  </button>
 
-                  {vaga.jaCandidatou ? (
-                    <span className="inline-flex items-center gap-1 px-3.5 py-2 rounded-xl bg-purple-950/80 text-purple-300 border border-purple-500/40 text-xs font-bold">
-                      <Check className="w-3.5 h-3.5 text-purple-400" />
-                      Candidatura Enviada
-                    </span>
-                  ) : (
-                    <button
-                      onClick={() => handleOpenApply(vaga)}
-                      className="px-4 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 via-purple-700 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white font-bold text-xs shadow-lg shadow-purple-950/40 flex items-center gap-1.5 transition-all duration-200 hover:scale-[1.02] cursor-pointer"
-                    >
-                      <span>Candidatar-se</span>
-                      <ArrowRight className="w-3.5 h-3.5 text-purple-200" />
-                    </button>
-                  )}
+                  <div className="flex items-center gap-2">
+                    {vaga.jaCandidatou ? (
+                      <span className="inline-flex items-center gap-1 px-3.5 py-2 rounded-xl bg-purple-950/80 text-purple-300 border border-purple-500/40 text-xs font-bold">
+                        <Check className="w-3.5 h-3.5 text-purple-400" />
+                        Inscrito
+                      </span>
+                    ) : (
+                      <button
+                        onClick={() => handleOpenApply(vaga)}
+                        className="px-4 py-2 rounded-xl bg-gradient-to-r from-purple-600 via-purple-700 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white font-bold text-xs shadow-lg shadow-purple-950/40 flex items-center gap-1.5 transition-all duration-200 hover:scale-[1.02] cursor-pointer"
+                      >
+                        <span>Candidatar</span>
+                        <ArrowRight className="w-3.5 h-3.5 text-purple-200" />
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             );
@@ -681,6 +693,19 @@ export default function CuritibaProximityMap() {
           </div>
         )}
       </div>
+
+      {/* Modal de Detalhes Completos da Vaga */}
+      <JobDetailsModal
+        isOpen={Boolean(detailsVaga)}
+        vaga={detailsVaga}
+        distanceKm={detailsVaga ? getDistanceForVaga(detailsVaga) : 0}
+        adherencePercent={detailsVaga ? getAdherenceForVaga(detailsVaga) : 0}
+        onClose={() => setDetailsVaga(null)}
+        onApply={(v) => {
+          setDetailsVaga(null);
+          handleOpenApply(v);
+        }}
+      />
 
       {/* Modal de Candidatura Rápida Integrada */}
       <JobApplicationModal

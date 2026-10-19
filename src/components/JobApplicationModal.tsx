@@ -3,25 +3,25 @@
 import React, { useState } from 'react';
 import { useApp } from '@/context/AppContext';
 import { JobVacancy } from '@/types';
-import { 
-  X, 
-  UploadCloud, 
-  FileText, 
-  CheckCircle2, 
-  Sparkles, 
-  Building2, 
-  MapPin, 
-  Clock, 
-  ShieldCheck, 
-  ArrowRight, 
-  ArrowLeft, 
-  Copy, 
-  Check, 
-  Download, 
+import {
+  X,
+  UploadCloud,
+  FileText,
+  CheckCircle2,
+  Sparkles,
+  Building2,
+  MapPin,
+  Clock,
+  ShieldCheck,
+  ArrowRight,
+  ArrowLeft,
+  Copy,
+  Check,
   AlertCircle,
   FileCheck,
-  HelpCircle,
-  DollarSign
+  ExternalLink,
+  Award,
+  HelpCircle
 } from 'lucide-react';
 
 interface JobApplicationModalProps {
@@ -35,29 +35,29 @@ export default function JobApplicationModal({ isOpen, vaga, onClose, onSuccess }
   const { student, currentUser, applyToJob, showToast } = useApp();
 
   const [step, setStep] = useState<1 | 2 | 3 | 4 | 5>(1);
-  const [resumeType, setResumeType] = useState<'PDF_ANEXADO' | 'CURRICULO_SKILLHUB'>('PDF_ANEXADO');
+  const [resumeType, setResumeType] = useState<'CURRICULO_SKILLHUB' | 'PDF_ANEXADO' | 'SEM_CURRICULO'>('CURRICULO_SKILLHUB');
   const [uploadedFileName, setUploadedFileName] = useState<string>('Meu_Curriculo_2026.pdf');
   const [uploadedFileSize, setUploadedFileSize] = useState<string>('245 KB');
   const [isUploading, setIsUploading] = useState<boolean>(false);
-  
+
+  const candidateName = currentUser?.nome || student.nome || 'Lucas Silva Oliveira';
+  const candidateBairro = currentUser?.bairro || student.endereco.bairro || 'CIC';
+
   const [coverLetter, setCoverLetter] = useState<string>(
-    `Olá! Tenho grande interesse na oportunidade de ${vaga?.titulo || 'trabalho'} na ${vaga?.empresaNome || 'empresa'}. Sou dedicado(a), pontual e tenho muita vontade de aprender e contribuir com a equipe!`
+    `Olá! Tenho grande interesse na oportunidade de ${vaga?.titulo || 'trabalho'} na ${vaga?.empresaNome || 'empresa'}. Sou dedicado(a), pontual e tenho muita disposição para aprender e contribuir com a equipe!`
   );
 
-  // Perguntas de triagem estilo Indeed
+  // Perguntas de triagem
   const [disponibilidade, setDisponibilidade] = useState<string>('Imediata (próximos dias)');
   const [transporte, setTransporte] = useState<string>('Sim, fácil acesso via transporte público de Curitiba / RMC');
   const [autorizacaoMenor, setAutorizacaoMenor] = useState<string>('Sim, responsável informado e ciente');
-  
+
   const [consentLgpd, setConsentLgpd] = useState<boolean>(true);
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [generatedProtocol, setGeneratedProtocol] = useState<string | null>(null);
   const [copied, setCopied] = useState<boolean>(false);
 
   if (!isOpen || !vaga) return null;
-
-  const candidateName = currentUser?.nome || student.nome || 'Nicoli Silva';
-  const candidateBairro = currentUser?.bairro || student.endereco.bairro || 'Boqueirão';
 
   // Modelos de Carta de Apresentação
   const applyTemplate = (type: 'PRIMEIRO_EMPREGO' | 'ESTAGIO' | 'APRENDIZ') => {
@@ -91,6 +91,11 @@ export default function JobApplicationModal({ isOpen, vaga, onClose, onSuccess }
   };
 
   const handleFinalSubmit = () => {
+    if (resumeType === 'SEM_CURRICULO') {
+      showToast('Atenção', 'Crie seu currículo antes de enviar ou selecione o Currículo SkillHub.', 'warning');
+      return;
+    }
+
     if (!consentLgpd) {
       showToast('Consentimento Obrigatório', 'Você deve aceitar o compartilhamento seguro de dados para enviar a candidatura.', 'warning');
       return;
@@ -102,7 +107,7 @@ export default function JobApplicationModal({ isOpen, vaga, onClose, onSuccess }
       const protocoloCode = `#CAND-2026-${Math.floor(10000 + Math.random() * 90000)}`;
 
       applyToJob(vaga.id, {
-        curriculoTipo: resumeType,
+        curriculoTipo: resumeType === 'PDF_ANEXADO' ? 'PDF_ANEXADO' : 'CURRICULO_SKILLHUB',
         curriculoNomeArquivo: resumeType === 'PDF_ANEXADO' ? uploadedFileName : `Curriculo_${candidateName.replace(/\s+/g, '_')}_SkillHub.pdf`,
         cartaApresentacao: coverLetter,
         respostasTriagem: [
@@ -118,7 +123,7 @@ export default function JobApplicationModal({ isOpen, vaga, onClose, onSuccess }
       if (onSuccess) {
         onSuccess(protocoloCode);
       }
-    }, 800);
+    }, 700);
   };
 
   const copyProtocol = () => {
@@ -130,32 +135,44 @@ export default function JobApplicationModal({ isOpen, vaga, onClose, onSuccess }
     }
   };
 
+  const handleClose = () => {
+    setStep(1);
+    setGeneratedProtocol(null);
+    onClose();
+  };
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fadeIn">
-      <div className="bg-[#150B25] border-2 border-[#7C3AED]/60 w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh]">
-        
-        {/* Header do Modal */}
-        <div className="bg-gradient-to-r from-[#2A114D] via-[#3E1674] to-[#581C87] border-b border-[#7C3AED]/40 p-5 flex items-center justify-between">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/80 backdrop-blur-md animate-fadeIn">
+      <div
+        className="bg-[#110E1B] border border-purple-500/30 w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh] animate-scaleUp"
+        role="dialog"
+        aria-modal="true"
+      >
+        {/* ========================================================================= */}
+        {/* CABEÇALHO DO MODAL (DARK MODE SKILLHUB)                                    */}
+        {/* ========================================================================= */}
+        <div className="bg-[#160F28] border-b border-[#2D1B4E]/80 p-5 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-[#1A0B2E] font-black shadow-lg">
-              <FileCheck className="w-5 h-5" />
+            <div className="w-10 h-10 rounded-2xl bg-purple-600/20 border border-purple-500/40 flex items-center justify-center text-purple-300">
+              <FileCheck className="w-5 h-5 text-purple-400" />
             </div>
             <div>
-              <h2 className="text-lg font-black text-white flex items-center gap-2">
+              <h2 className="text-base sm:text-lg font-black text-white flex items-center gap-2">
                 <span>Protocolo de Candidatura</span>
-                <span className="text-xs bg-amber-400/20 text-amber-300 px-2 py-0.5 rounded-full border border-amber-400/40">
-                  Estilo Indeed
+                <span className="text-xs bg-purple-950/80 text-purple-300 px-2.5 py-0.5 rounded-full border border-purple-500/30 font-semibold">
+                  IA Multiplataforma
                 </span>
               </h2>
-              <p className="text-xs text-purple-200">
+              <p className="text-xs text-zinc-300">
                 {vaga.titulo} • <strong className="text-white">{vaga.empresaNome}</strong>
               </p>
             </div>
           </div>
 
           <button
-            onClick={onClose}
-            className="p-2 text-purple-300 hover:text-white hover:bg-white/10 rounded-xl transition-all"
+            onClick={handleClose}
+            className="p-2 text-zinc-400 hover:text-white bg-[#0F0C1D] hover:bg-purple-950/60 rounded-xl border border-[#2D1B4E] transition-all"
+            aria-label="Fechar candidatura"
           >
             <X className="w-5 h-5" />
           </button>
@@ -163,118 +180,117 @@ export default function JobApplicationModal({ isOpen, vaga, onClose, onSuccess }
 
         {/* Indicador de Etapas */}
         {!generatedProtocol && (
-          <div className="bg-[#10061D] px-6 py-3 border-b border-[#4C1D95]/40 flex items-center justify-between text-xs">
-            <div className={`flex items-center gap-1.5 font-bold ${step >= 1 ? 'text-amber-400' : 'text-purple-400'}`}>
-              <span className="w-5 h-5 rounded-full bg-[#2A114D] border border-amber-400/50 flex items-center justify-center text-[10px]">1</span>
-              <span className="hidden sm:inline">Vaga</span>
-            </div>
-            <span className="text-purple-600">→</span>
-
-            <div className={`flex items-center gap-1.5 font-bold ${step >= 2 ? 'text-amber-400' : 'text-purple-400'}`}>
-              <span className="w-5 h-5 rounded-full bg-[#2A114D] border border-amber-400/50 flex items-center justify-center text-[10px]">2</span>
-              <span className="hidden sm:inline">Currículo</span>
-            </div>
-            <span className="text-purple-600">→</span>
-
-            <div className={`flex items-center gap-1.5 font-bold ${step >= 3 ? 'text-amber-400' : 'text-purple-400'}`}>
-              <span className="w-5 h-5 rounded-full bg-[#2A114D] border border-amber-400/50 flex items-center justify-center text-[10px]">3</span>
-              <span className="hidden sm:inline">Carta</span>
-            </div>
-            <span className="text-purple-600">→</span>
-
-            <div className={`flex items-center gap-1.5 font-bold ${step >= 4 ? 'text-amber-400' : 'text-purple-400'}`}>
-              <span className="w-5 h-5 rounded-full bg-[#2A114D] border border-amber-400/50 flex items-center justify-center text-[10px]">4</span>
-              <span className="hidden sm:inline">Triagem</span>
-            </div>
-            <span className="text-purple-600">→</span>
-
-            <div className={`flex items-center gap-1.5 font-bold ${step >= 5 ? 'text-amber-400' : 'text-purple-400'}`}>
-              <span className="w-5 h-5 rounded-full bg-[#2A114D] border border-amber-400/50 flex items-center justify-center text-[10px]">5</span>
-              <span className="hidden sm:inline">Enviar</span>
-            </div>
+          <div className="bg-[#0F0C1D] px-6 py-3 border-b border-[#2D1B4E]/60 flex items-center justify-between text-xs">
+            {[
+              { num: 1, label: 'Confirmação' },
+              { num: 2, label: 'Currículo' },
+              { num: 3, label: 'Carta' },
+              { num: 4, label: 'Triagem' },
+              { num: 5, label: 'Revisão' }
+            ].map((s, idx) => (
+              <React.Fragment key={s.num}>
+                <div
+                  className={`flex items-center gap-1.5 font-bold cursor-pointer transition-colors ${
+                    step === s.num
+                      ? 'text-purple-300'
+                      : step > s.num
+                      ? 'text-emerald-400'
+                      : 'text-zinc-500'
+                  }`}
+                  onClick={() => s.num < step && setStep(s.num as any)}
+                >
+                  <span
+                    className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] border ${
+                      step === s.num
+                        ? 'bg-purple-600 border-purple-400 text-white'
+                        : step > s.num
+                        ? 'bg-emerald-950/80 border-emerald-500/40 text-emerald-300'
+                        : 'bg-[#18112C] border-[#2D1B4E] text-zinc-500'
+                    }`}
+                  >
+                    {step > s.num ? <Check className="w-3 h-3 text-emerald-400" /> : s.num}
+                  </span>
+                  <span className="hidden sm:inline">{s.label}</span>
+                </div>
+                {idx < 4 && <span className="text-zinc-700">→</span>}
+              </React.Fragment>
+            ))}
           </div>
         )}
 
-        {/* Conteúdo Dinâmico por Etapa */}
-        <div className="p-6 overflow-y-auto flex-1 space-y-6">
-
-          {/* ========================================================================= */}
-          {/* TELA DE SUCESSO: PROTOCOLO EMITIDO                                         */}
-          {/* ========================================================================= */}
+        {/* ========================================================================= */}
+        {/* CONTEÚDO DINÂMICO POR ETAPA                                               */}
+        {/* ========================================================================= */}
+        <div className="p-5 sm:p-6 overflow-y-auto flex-1 space-y-5">
+          {/* SUCESSO: PROTOCOLO EMITIDO */}
           {generatedProtocol ? (
             <div className="text-center py-6 space-y-6 animate-scaleUp">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-slate-950 mx-auto shadow-2xl shadow-emerald-500/30">
+              <div className="w-16 h-16 rounded-full bg-emerald-950/80 border border-emerald-500/50 flex items-center justify-center text-emerald-400 mx-auto shadow-2xl shadow-emerald-500/20">
                 <CheckCircle2 className="w-10 h-10" />
               </div>
 
               <div className="space-y-2">
                 <h3 className="text-2xl font-black text-white">Candidatura Protocolada com Sucesso!</h3>
-                <p className="text-sm text-purple-200 max-w-md mx-auto">
-                  Seus dados e currículo foram enviados com segurança para o departamento de Recursos Humanos da <strong className="text-amber-300">{vaga.empresaNome}</strong>.
+                <p className="text-sm text-zinc-300 max-w-md mx-auto leading-relaxed">
+                  Seus dados e currículo foram transmitidos com segurança para o RH de{' '}
+                  <strong className="text-white font-bold">{vaga.empresaNome}</strong>.
                 </p>
               </div>
 
               {/* Caixa de Protocolo Oficial */}
-              <div className="bg-[#1A0B2E] border-2 border-amber-400/60 rounded-2xl p-5 max-w-md mx-auto text-left shadow-2xl relative overflow-hidden">
-                <div className="absolute top-0 right-0 bg-amber-400 text-slate-950 font-black text-[10px] px-3 py-1 rounded-bl-xl uppercase tracking-wider">
+              <div className="bg-[#140E24] border border-purple-500/40 rounded-2xl p-5 max-w-md mx-auto text-left shadow-xl relative overflow-hidden">
+                <div className="absolute top-0 right-0 bg-purple-600 text-white font-black text-[10px] px-3 py-1 rounded-bl-xl uppercase tracking-wider">
                   Oficial LGPD
                 </div>
 
-                <div className="text-[11px] text-purple-300 uppercase font-bold tracking-wider mb-1">
+                <div className="text-[11px] text-zinc-400 uppercase font-bold tracking-wider mb-1">
                   Número de Protocolo Oficial:
                 </div>
                 <div className="flex items-center justify-between gap-3">
-                  <span className="text-2xl font-black text-amber-300 tracking-wider font-mono">
+                  <span className="text-2xl font-black text-purple-300 tracking-wider font-mono">
                     {generatedProtocol}
                   </span>
                   <button
                     onClick={copyProtocol}
-                    className="flex items-center gap-1.5 bg-[#2A114D] hover:bg-[#3E1674] border border-amber-400/40 text-amber-300 px-3 py-1.5 rounded-xl text-xs font-bold transition-all"
+                    className="flex items-center gap-1.5 bg-[#0F0C1D] hover:bg-purple-950/60 border border-purple-500/40 text-purple-300 px-3 py-1.5 rounded-xl text-xs font-bold transition-all"
                   >
                     {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5" />}
                     <span>{copied ? 'Copiado' : 'Copiar'}</span>
                   </button>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-[#4C1D95]/40 space-y-1.5 text-xs text-purple-200">
+                <div className="mt-4 pt-3 border-t border-[#2D1B4E]/60 space-y-1.5 text-xs text-zinc-300">
                   <div className="flex justify-between">
-                    <span>Vaga Pretendida:</span>
+                    <span className="text-zinc-400">Vaga:</span>
                     <strong className="text-white">{vaga.titulo}</strong>
                   </div>
                   <div className="flex justify-between">
-                    <span>Empresa:</span>
+                    <span className="text-zinc-400">Empresa:</span>
                     <strong className="text-white">{vaga.empresaNome}</strong>
                   </div>
                   <div className="flex justify-between">
-                    <span>Polo / Bairro:</span>
-                    <strong className="text-white">{vaga.bairro} (Curitiba)</strong>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Currículo Anexado:</span>
-                    <strong className="text-amber-300">
-                      {resumeType === 'PDF_ANEXADO' ? uploadedFileName : 'Currículo SkillHub Validado'}
+                    <span className="text-zinc-400">Currículo Enviado:</span>
+                    <strong className="text-purple-300">
+                      {resumeType === 'PDF_ANEXADO' ? uploadedFileName : 'Currículo SkillHub Integrado'}
                     </strong>
                   </div>
                   <div className="flex justify-between">
-                    <span>Data do Registro:</span>
+                    <span className="text-zinc-400">Data do Envio:</span>
                     <strong className="text-emerald-400">{new Date().toLocaleString('pt-BR')}</strong>
                   </div>
                   <div className="flex justify-between">
-                    <span>Status Inicial:</span>
-                    <span className="bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-bold text-[10px]">
+                    <span className="text-zinc-400">Status:</span>
+                    <span className="bg-emerald-950/60 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded font-bold text-[10px]">
                       EM ANÁLISE PELO RH
                     </span>
                   </div>
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+              <div className="pt-2 flex justify-center">
                 <button
-                  onClick={() => {
-                    showToast('Comprovante Gerado', 'O comprovante do protocolo foi salvo no seu histórico.', 'info');
-                    onClose();
-                  }}
-                  className="w-full sm:w-auto bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-300 hover:to-amber-500 text-slate-950 font-black px-6 py-3 rounded-xl text-sm shadow-xl transition-all"
+                  onClick={handleClose}
+                  className="bg-gradient-to-r from-purple-600 via-purple-700 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white font-bold px-8 py-3 rounded-xl text-sm shadow-xl transition-all hover:scale-105"
                 >
                   Concluir e Voltar às Vagas
                 </button>
@@ -282,112 +298,194 @@ export default function JobApplicationModal({ isOpen, vaga, onClose, onSuccess }
             </div>
           ) : (
             <>
-              {/* ETAPA 1 */}
+              {/* ========================================================================= */}
+              {/* ETAPA 1: CONFIRMAÇÃO DOS DADOS DA VAGA E CANDIDATO                         */}
+              {/* ========================================================================= */}
               {step === 1 && (
                 <div className="space-y-4 animate-fadeIn">
-                  <div className="bg-[#1C0E33] border border-[#7C3AED]/40 rounded-2xl p-4 space-y-3">
+                  <div className="bg-[#140E24] border border-[#2D1B4E] rounded-2xl p-4 sm:p-5 space-y-3">
                     <div className="flex items-start justify-between gap-3">
                       <div>
-                        <span className="text-[10px] bg-purple-900/60 text-purple-200 px-2 py-0.5 rounded-full font-bold uppercase">
+                        <span className="text-[10px] bg-purple-950/80 text-purple-300 border border-purple-500/30 px-2 py-0.5 rounded-full font-bold uppercase">
                           {vaga.tipoVaga}
                         </span>
-                        <h3 className="text-base font-black text-white mt-1">{vaga.titulo}</h3>
-                        <p className="text-xs text-amber-300 font-bold">{vaga.empresaNome}</p>
+                        <h3 className="text-base font-black text-white mt-1.5">{vaga.titulo}</h3>
+                        <p className="text-xs text-purple-300 font-semibold">{vaga.empresaNome}</p>
                       </div>
                       <div className="text-right">
-                        <span className="text-xs text-purple-300">Bolsa / Salário:</span>
+                        <span className="text-[11px] text-zinc-400 block">Salário / Bolsa:</span>
                         <div className="text-base font-black text-emerald-400">
-                          R$ {vaga.remuneracao.toFixed(2)}
+                          {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(vaga.remuneracao)}
                         </div>
                       </div>
                     </div>
 
-                    <p className="text-xs text-purple-200">{vaga.descricao}</p>
+                    <p className="text-xs text-zinc-300 leading-relaxed">{vaga.descricao}</p>
 
-                    <div className="grid grid-cols-2 gap-2 text-xs pt-2 border-t border-purple-900/40">
-                      <div className="flex items-center gap-1.5 text-purple-300">
-                        <MapPin className="w-3.5 h-3.5 text-amber-400" />
-                        <span>Bairro: <strong>{vaga.bairro}</strong></span>
+                    <div className="grid grid-cols-2 gap-2 text-xs pt-2 border-t border-[#2D1B4E]/60 text-zinc-300">
+                      <div className="flex items-center gap-1.5">
+                        <MapPin className="w-3.5 h-3.5 text-rose-400" />
+                        <span>Bairro: <strong className="text-white">{vaga.bairro}</strong></span>
                       </div>
-                      <div className="flex items-center gap-1.5 text-purple-300">
-                        <Clock className="w-3.5 h-3.5 text-amber-400" />
-                        <span>Jornada: <strong>{vaga.cargaHorariaDiaria}h/dia ({vaga.horario})</strong></span>
+                      <div className="flex items-center gap-1.5">
+                        <Clock className="w-3.5 h-3.5 text-purple-400" />
+                        <span>Jornada: <strong className="text-white">{vaga.horario}</strong></span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="bg-[#120722] border border-[#4C1D95]/40 rounded-2xl p-4 space-y-2">
-                    <h4 className="text-xs font-bold text-white uppercase tracking-wider">
-                      Seus Dados de Contato Cadastrados:
+                  <div className="bg-[#140E24] border border-[#2D1B4E] rounded-2xl p-4 sm:p-5 space-y-2">
+                    <h4 className="text-xs font-bold text-white uppercase tracking-wider flex items-center gap-2">
+                      <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                      <span>Seus Dados Cadastrados no Perfil (SkillHub):</span>
                     </h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-purple-200">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs text-zinc-300 pt-1">
                       <div>Nome: <strong className="text-white">{candidateName}</strong></div>
-                      <div>Bairro Residencial: <strong className="text-white">{candidateBairro} (Curitiba)</strong></div>
+                      <div>Bairro: <strong className="text-white">{candidateBairro} (Curitiba)</strong></div>
                       <div>Escolaridade: <strong className="text-white">{student.escolaridade}</strong></div>
-                      <div>Turno Escolar: <strong className="text-amber-300">{student.turnoEscola}</strong></div>
+                      <div>Turno Escolar: <strong className="text-purple-300">{student.turnoEscola}</strong></div>
                     </div>
                   </div>
                 </div>
               )}
 
-              {/* ETAPA 2 */}
+              {/* ========================================================================= */}
+              {/* ETAPA 2: SELEÇÃO DE CURRÍCULO + REDIRECIONAMENTO INTELIGENTE              */}
+              {/* ========================================================================= */}
               {step === 2 && (
-                <div className="space-y-5 animate-fadeIn">
+                <div className="space-y-4 animate-fadeIn">
                   <div>
                     <h3 className="text-base font-bold text-white">Como deseja enviar seu currículo?</h3>
-                    <p className="text-xs text-purple-200 mt-0.5">
-                      Você pode fazer upload de um arquivo PDF/Documento do seu computador ou usar o currículo automático gerado pelo SkillHub.
+                    <p className="text-xs text-zinc-300 mt-1">
+                      Selecione uma das opções abaixo para apresentar seu perfil à empresa:
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div
-                      onClick={() => setResumeType('PDF_ANEXADO')}
-                      className={`cursor-pointer rounded-2xl p-4 border-2 transition-all ${
-                        resumeType === 'PDF_ANEXADO'
-                          ? 'bg-[#2A114D] border-amber-400 shadow-xl'
-                          : 'bg-[#150B25] border-[#4C1D95]/50 hover:border-purple-400'
-                      }`}
-                    >
-                      <div className="flex items-center justify-between mb-2">
-                        <UploadCloud className="w-6 h-6 text-amber-400" />
-                        <span className={`w-4 h-4 rounded-full border flex items-center justify-center ${
-                          resumeType === 'PDF_ANEXADO' ? 'bg-amber-400 border-amber-400' : 'border-purple-400'
-                        }`}>
-                          {resumeType === 'PDF_ANEXADO' && <Check className="w-3 h-3 text-slate-950" />}
-                        </span>
-                      </div>
-                      <h4 className="text-sm font-bold text-white">Fazer Upload de Arquivo</h4>
-                      <p className="text-xs text-purple-300 mt-1">
-                        Anexe seu currículo em formato PDF, DOC ou DOCX.
-                      </p>
-                    </div>
-
-                    <div
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    {/* Opção 1: Currículo SkillHub Integrado */}
+                    <button
+                      type="button"
                       onClick={() => setResumeType('CURRICULO_SKILLHUB')}
-                      className={`cursor-pointer rounded-2xl p-4 border-2 transition-all ${
+                      className={`text-left p-4 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between space-y-2 ${
                         resumeType === 'CURRICULO_SKILLHUB'
-                          ? 'bg-[#2A114D] border-amber-400 shadow-xl'
-                          : 'bg-[#150B25] border-[#4C1D95]/50 hover:border-purple-400'
+                          ? 'bg-[#18112C] border-purple-500 shadow-xl ring-2 ring-purple-500/30'
+                          : 'bg-[#140E24] border-[#2D1B4E] hover:border-purple-500/40'
                       }`}
                     >
-                      <div className="flex items-center justify-between mb-2">
-                        <Sparkles className="w-6 h-6 text-[#8B5CF6]" />
-                        <span className={`w-4 h-4 rounded-full border flex items-center justify-center ${
-                          resumeType === 'CURRICULO_SKILLHUB' ? 'bg-amber-400 border-amber-400' : 'border-purple-400'
-                        }`}>
-                          {resumeType === 'CURRICULO_SKILLHUB' && <Check className="w-3 h-3 text-slate-950" />}
+                      <div className="flex items-center justify-between">
+                        <Sparkles className="w-5 h-5 text-purple-400" />
+                        <span
+                          className={`w-4 h-4 rounded-full border flex items-center justify-center ${
+                            resumeType === 'CURRICULO_SKILLHUB' ? 'bg-purple-600 border-purple-400' : 'border-zinc-600'
+                          }`}
+                        >
+                          {resumeType === 'CURRICULO_SKILLHUB' && <Check className="w-3 h-3 text-white" />}
                         </span>
                       </div>
-                      <h4 className="text-sm font-bold text-white">Currículo SkillHub Oficial</h4>
-                      <p className="text-xs text-purple-300 mt-1">
-                        Gera documento com suas Badges validadas e dados escolares.
-                      </p>
-                    </div>
+                      <div>
+                        <h4 className="text-xs font-bold text-white">Currículo SkillHub Integrado</h4>
+                        <p className="text-[11px] text-zinc-400 mt-1 leading-tight">
+                          Gera documento com suas {student.badgesEarned.length} Badges e dados escolares.
+                        </p>
+                      </div>
+                      <span className="text-[10px] text-emerald-400 font-bold bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-500/30 w-fit">
+                        Recomendado
+                      </span>
+                    </button>
+
+                    {/* Opção 2: Fazer Upload de Arquivo */}
+                    <button
+                      type="button"
+                      onClick={() => setResumeType('PDF_ANEXADO')}
+                      className={`text-left p-4 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between space-y-2 ${
+                        resumeType === 'PDF_ANEXADO'
+                          ? 'bg-[#18112C] border-purple-500 shadow-xl ring-2 ring-purple-500/30'
+                          : 'bg-[#140E24] border-[#2D1B4E] hover:border-purple-500/40'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <UploadCloud className="w-5 h-5 text-blue-400" />
+                        <span
+                          className={`w-4 h-4 rounded-full border flex items-center justify-center ${
+                            resumeType === 'PDF_ANEXADO' ? 'bg-purple-600 border-purple-400' : 'border-zinc-600'
+                          }`}
+                        >
+                          {resumeType === 'PDF_ANEXADO' && <Check className="w-3 h-3 text-white" />}
+                        </span>
+                      </div>
+                      <div>
+                        <h4 className="text-xs font-bold text-white">Upload de Arquivo Próprio</h4>
+                        <p className="text-[11px] text-zinc-400 mt-1 leading-tight">
+                          Anexe seu currículo em formato PDF, DOC ou DOCX.
+                        </p>
+                      </div>
+                      <span className="text-[10px] text-zinc-400 font-medium">
+                        Até 5 MB
+                      </span>
+                    </button>
+
+                    {/* Opção 3: Ainda Não Tenho Currículo */}
+                    <button
+                      type="button"
+                      onClick={() => setResumeType('SEM_CURRICULO')}
+                      className={`text-left p-4 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between space-y-2 ${
+                        resumeType === 'SEM_CURRICULO'
+                          ? 'bg-[#18112C] border-rose-500/60 shadow-xl ring-2 ring-rose-500/30'
+                          : 'bg-[#140E24] border-[#2D1B4E] hover:border-rose-500/30'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <AlertCircle className="w-5 h-5 text-amber-400" />
+                        <span
+                          className={`w-4 h-4 rounded-full border flex items-center justify-center ${
+                            resumeType === 'SEM_CURRICULO' ? 'bg-amber-500 border-amber-400' : 'border-zinc-600'
+                          }`}
+                        >
+                          {resumeType === 'SEM_CURRICULO' && <Check className="w-3 h-3 text-slate-950 font-bold" />}
+                        </span>
+                      </div>
+                      <div>
+                        <h4 className="text-xs font-bold text-white">Ainda não tenho currículo</h4>
+                        <p className="text-[11px] text-zinc-400 mt-1 leading-tight">
+                          Preciso de ajuda para montar meu primeiro currículo.
+                        </p>
+                      </div>
+                      <span className="text-[10px] text-amber-400 font-semibold">
+                        Ajuda da IA
+                      </span>
+                    </button>
                   </div>
 
-                  {resumeType === 'PDF_ANEXADO' ? (
-                    <div className="bg-[#120722] border border-dashed border-[#7C3AED]/60 rounded-2xl p-5 text-center space-y-3">
+                  {/* Detalhes da Opção Selecionada */}
+                  {resumeType === 'CURRICULO_SKILLHUB' && (
+                    <div className="bg-[#140E24] border border-purple-500/40 rounded-2xl p-4 sm:p-5 space-y-3">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-bold text-purple-300 flex items-center gap-1.5">
+                          <Sparkles className="w-4 h-4 text-purple-400" />
+                          <span>Currículo SkillHub Oficial Gerado Automaticamente</span>
+                        </span>
+                        <span className="text-[11px] text-emerald-400 font-bold">✓ Pronto para Envio</span>
+                      </div>
+
+                      <p className="text-xs text-zinc-300">
+                        O recrutador receberá um documento padronizado contendo sua apresentação profissional, dados escolares ({student.escolaridade}) e a comprovação oficial de {student.badgesEarned.length} Badges validadas.
+                      </p>
+
+                      <div className="flex flex-wrap gap-1.5 pt-1">
+                        {student.badgesEarned.map((b) => (
+                          <span
+                            key={b.badgeId}
+                            className="text-[10px] font-semibold bg-purple-950/70 border border-purple-500/40 text-purple-200 px-2 py-0.5 rounded"
+                          >
+                            ✓ {b.badgeId.replace('badge-', '').replaceAll('-', ' ')}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {resumeType === 'PDF_ANEXADO' && (
+                    <div className="bg-[#140E24] border border-dashed border-purple-500/40 rounded-2xl p-5 text-center space-y-3">
                       <label className="cursor-pointer block">
                         <input
                           type="file"
@@ -395,278 +493,321 @@ export default function JobApplicationModal({ isOpen, vaga, onClose, onSuccess }
                           onChange={handleFileUpload}
                           className="hidden"
                         />
-                        <div className="w-12 h-12 rounded-full bg-[#2A114D] border border-amber-400/40 flex items-center justify-center text-amber-300 mx-auto mb-2 hover:scale-105 transition-transform">
+                        <div className="w-12 h-12 rounded-full bg-purple-950/60 border border-purple-500/40 flex items-center justify-center text-purple-300 mx-auto mb-2 hover:scale-105 transition-transform">
                           <UploadCloud className="w-6 h-6" />
                         </div>
                         <span className="text-xs font-bold text-white block">
-                          Clique para escolher um arquivo do seu computador
+                          Clique para escolher o arquivo do seu computador
                         </span>
-                        <span className="text-[11px] text-purple-300 block mt-0.5">
-                          Suporta PDF, DOCX até 5 MB
+                        <span className="text-[11px] text-zinc-400 block mt-0.5">
+                          Suporta arquivos em PDF, DOCX até 5 MB
                         </span>
                       </label>
 
                       {isUploading ? (
-                        <div className="flex items-center justify-center gap-2 text-xs text-amber-300 font-bold animate-pulse">
-                          <span>Carregando arquivo...</span>
+                        <div className="flex items-center justify-center gap-2 text-xs text-purple-300 font-bold animate-pulse">
+                          <span>Processando arquivo...</span>
                         </div>
                       ) : (
-                        <div className="bg-[#1C0E33] border border-emerald-500/40 rounded-xl p-3 flex items-center justify-between text-xs">
+                        <div className="bg-[#0F0C1D] border border-emerald-500/40 rounded-xl p-3 flex items-center justify-between text-xs">
                           <div className="flex items-center gap-2 text-white font-semibold">
                             <FileText className="w-4 h-4 text-emerald-400" />
                             <span>{uploadedFileName}</span>
-                            <span className="text-purple-400 text-[10px]">({uploadedFileSize})</span>
+                            <span className="text-zinc-500 text-[10px]">({uploadedFileSize})</span>
                           </div>
-                          <span className="bg-emerald-500/20 text-emerald-300 text-[10px] px-2 py-0.5 rounded font-bold">
+                          <span className="bg-emerald-950/60 text-emerald-300 border border-emerald-500/30 text-[10px] px-2 py-0.5 rounded font-bold">
                             Pronto para Envio
                           </span>
                         </div>
                       )}
                     </div>
-                  ) : (
-                    <div className="bg-[#1C0E33] border border-[#8B5CF6]/50 rounded-2xl p-4 space-y-2">
-                      <div className="flex items-center gap-2 text-xs font-bold text-amber-300">
-                        <Sparkles className="w-4 h-4" />
-                        <span>Visualização do Currículo SkillHub:</span>
+                  )}
+
+                  {/* REDIRECIONAMENTO INTELIGENTE PARA O GERADOR DE CURRÍCULO */}
+                  {resumeType === 'SEM_CURRICULO' && (
+                    <div className="bg-purple-950/30 border border-purple-500/50 rounded-2xl p-5 space-y-4 animate-fadeIn">
+                      <div className="flex items-start gap-3">
+                        <div className="w-9 h-9 rounded-xl bg-purple-600/30 border border-purple-400/50 flex items-center justify-center shrink-0 text-purple-300">
+                          <Sparkles className="w-5 h-5 text-purple-300" />
+                        </div>
+                        <div className="space-y-1">
+                          <h4 className="text-sm font-bold text-white leading-snug">
+                            Percebemos que você ainda não tem um currículo pronto. Vamos te ajudar a criar um currículo campeão agora!
+                          </h4>
+                          <p className="text-xs text-zinc-300 leading-relaxed">
+                            Nosso gerador inteligente monta seu currículo automaticamente com base no seu perfil, dados escolares e as Badges oficiais que você conquistou. Leva menos de 2 minutos!
+                          </p>
+                        </div>
                       </div>
-                      <p className="text-xs text-purple-200">
-                        O recrutador receberá seu currículo estruturado com seus dados escolares, histórico de {student.badgesEarned.length} Badges oficiais e garantia de autenticidade.
-                      </p>
+
+                      <div className="pt-1 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 border-t border-[#2D1B4E]/60">
+                        <a
+                          href="/curriculo"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 bg-gradient-to-r from-purple-600 via-purple-700 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white font-bold text-xs py-2.5 px-5 rounded-xl shadow-lg shadow-purple-950/40 transition-all hover:scale-105"
+                        >
+                          <span>Criar meu Currículo Agora</span>
+                          <ExternalLink className="w-3.5 h-3.5" />
+                        </a>
+
+                        <span className="text-[11px] text-zinc-400">
+                          💡 Abre em uma nova aba para você não perder esta vaga.
+                        </span>
+                      </div>
                     </div>
                   )}
                 </div>
               )}
 
-              {/* ETAPA 3 */}
+              {/* ========================================================================= */}
+              {/* ETAPA 3: CARTA DE APRESENTAÇÃO                                             */}
+              {/* ========================================================================= */}
               {step === 3 && (
                 <div className="space-y-4 animate-fadeIn">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="text-base font-bold text-white">Carta de Apresentação Pessoal</h3>
-                      <p className="text-xs text-purple-200">
-                        Destaque por que você quer trabalhar na {vaga.empresaNome}.
-                      </p>
-                    </div>
+                  <div>
+                    <h3 className="text-base font-bold text-white">Carta de Apresentação Pessoal</h3>
+                    <p className="text-xs text-zinc-300 mt-1">
+                      Escreva ou personalize sua mensagem de apresentação para o RH da {vaga.empresaNome}:
+                    </p>
                   </div>
 
                   <div className="space-y-1.5">
-                    <span className="text-[11px] font-bold text-amber-300 uppercase tracking-wider flex items-center gap-1">
-                      <Sparkles className="w-3 h-3" />
+                    <span className="text-[11px] font-bold text-purple-300 uppercase tracking-wider flex items-center gap-1">
+                      <Sparkles className="w-3 h-3 text-purple-400" />
                       Modelos de 1 Clique para Inspirar:
                     </span>
                     <div className="flex flex-wrap gap-2">
                       <button
                         type="button"
                         onClick={() => applyTemplate('PRIMEIRO_EMPREGO')}
-                        className="bg-[#24123E] hover:bg-[#381B5E] border border-purple-500/40 text-purple-200 hover:text-white px-3 py-1.5 rounded-xl text-xs font-medium transition-all"
+                        className="text-xs font-semibold px-3 py-1.5 rounded-xl bg-[#140E24] border border-[#2D1B4E] hover:border-purple-500/50 text-zinc-300 hover:text-white transition-all"
                       >
-                        🚀 1º Emprego / Sem Experiência
+                        🚀 Primeiro Emprego
                       </button>
                       <button
                         type="button"
                         onClick={() => applyTemplate('APRENDIZ')}
-                        className="bg-[#24123E] hover:bg-[#381B5E] border border-purple-500/40 text-purple-200 hover:text-white px-3 py-1.5 rounded-xl text-xs font-medium transition-all"
+                        className="text-xs font-semibold px-3 py-1.5 rounded-xl bg-[#140E24] border border-[#2D1B4E] hover:border-purple-500/50 text-zinc-300 hover:text-white transition-all"
                       >
                         🛡️ Jovem Aprendiz
                       </button>
                       <button
                         type="button"
                         onClick={() => applyTemplate('ESTAGIO')}
-                        className="bg-[#24123E] hover:bg-[#381B5E] border border-purple-500/40 text-purple-200 hover:text-white px-3 py-1.5 rounded-xl text-xs font-medium transition-all"
+                        className="text-xs font-semibold px-3 py-1.5 rounded-xl bg-[#140E24] border border-[#2D1B4E] hover:border-purple-500/50 text-zinc-300 hover:text-white transition-all"
                       >
                         💼 Estágio Técnico/Superior
                       </button>
                     </div>
                   </div>
 
-                  <div className="space-y-1.5">
-                    <textarea
-                      rows={6}
-                      value={coverLetter}
-                      onChange={(e) => setCoverLetter(e.target.value)}
-                      placeholder="Escreva uma breve mensagem se apresentando ao recrutador..."
-                      className="w-full bg-[#10061D] border border-[#7C3AED]/50 rounded-2xl p-3.5 text-xs text-white placeholder-purple-400/60 focus:outline-none focus:border-amber-400 font-sans leading-relaxed"
-                    />
-                    <div className="flex justify-between text-[10px] text-purple-400">
-                      <span>Dica: Mencione sua pontualidade e facilidade de lidar com pessoas.</span>
-                      <span>{coverLetter.length} caracteres</span>
+                  <textarea
+                    rows={6}
+                    value={coverLetter}
+                    onChange={(e) => setCoverLetter(e.target.value)}
+                    placeholder="Escreva sua carta de apresentação..."
+                    className="w-full bg-[#140E24] border border-[#2D1B4E] rounded-2xl p-4 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-purple-500 transition-colors leading-relaxed"
+                  />
+                </div>
+              )}
+
+              {/* ========================================================================= */}
+              {/* ETAPA 4: PERGUNTAS DE TRIAGEM                                              */}
+              {/* ========================================================================= */}
+              {step === 4 && (
+                <div className="space-y-4 animate-fadeIn">
+                  <div>
+                    <h3 className="text-base font-bold text-white">Perguntas de Triagem do RH</h3>
+                    <p className="text-xs text-zinc-300 mt-1">
+                      Responda para agilizar a análise do recrutador da {vaga.empresaNome}:
+                    </p>
+                  </div>
+
+                  <div className="space-y-3.5">
+                    <div className="bg-[#140E24] border border-[#2D1B4E] rounded-2xl p-4 space-y-2">
+                      <label className="text-xs font-bold text-white block">
+                        1. Qual a sua disponibilidade para início das atividades?
+                      </label>
+                      <select
+                        value={disponibilidade}
+                        onChange={(e) => setDisponibilidade(e.target.value)}
+                        className="w-full bg-[#0F0C1D] border border-[#2D1B4E] rounded-xl px-3 py-2 text-xs text-zinc-200 focus:outline-none focus:border-purple-500"
+                      >
+                        <option value="Imediata (próximos dias)">Imediata (nos próximos dias)</option>
+                        <option value="Em até 15 dias">Em até 15 dias</option>
+                        <option value="Início no próximo mês letivo">Início no próximo mês letivo</option>
+                      </select>
+                    </div>
+
+                    <div className="bg-[#140E24] border border-[#2D1B4E] rounded-2xl p-4 space-y-2">
+                      <label className="text-xs font-bold text-white block">
+                        2. Você possui facilidade de deslocamento até o bairro {vaga.bairro}?
+                      </label>
+                      <select
+                        value={transporte}
+                        onChange={(e) => setTransporte(e.target.value)}
+                        className="w-full bg-[#0F0C1D] border border-[#2D1B4E] rounded-xl px-3 py-2 text-xs text-zinc-200 focus:outline-none focus:border-purple-500"
+                      >
+                        <option value="Sim, fácil acesso via transporte público de Curitiba / RMC">
+                          Sim, fácil acesso via transporte público (URBS / Metrocard)
+                        </option>
+                        <option value="Moro no mesmo bairro ou próximo">
+                          Moro no mesmo bairro ou bem próximo
+                        </option>
+                        <option value="Possuo veículo ou carona própria">
+                          Possuo transporte próprio / carona
+                        </option>
+                      </select>
+                    </div>
+
+                    <div className="bg-[#140E24] border border-[#2D1B4E] rounded-2xl p-4 space-y-2">
+                      <label className="text-xs font-bold text-white block">
+                        3. Se menor de 18 anos, seu responsável legal está ciente da candidatura?
+                      </label>
+                      <select
+                        value={autorizacaoMenor}
+                        onChange={(e) => setAutorizacaoMenor(e.target.value)}
+                        className="w-full bg-[#0F0C1D] border border-[#2D1B4E] rounded-xl px-3 py-2 text-xs text-zinc-200 focus:outline-none focus:border-purple-500"
+                      >
+                        <option value="Sim, responsável informado e ciente">
+                          Sim, responsável legal devidamente ciente
+                        </option>
+                        <option value="Já possuo 18 anos completos">
+                          Já possuo 18 anos ou mais
+                        </option>
+                      </select>
                     </div>
                   </div>
                 </div>
               )}
 
-              {/* ETAPA 4 */}
-              {step === 4 && (
-                <div className="space-y-4 animate-fadeIn">
-                  <div>
-                    <h3 className="text-base font-bold text-white">Perguntas de Triagem da Empresa</h3>
-                    <p className="text-xs text-purple-200">
-                      A <strong className="text-white">{vaga.empresaNome}</strong> solicita a confirmação dos seguintes itens:
-                    </p>
-                  </div>
-
-                  <div className="bg-[#1C0E33] border border-[#4C1D95]/40 rounded-2xl p-4 space-y-2">
-                    <label className="text-xs font-bold text-amber-300 block">
-                      1. Qual sua disponibilidade para início das atividades?
-                    </label>
-                    <select
-                      value={disponibilidade}
-                      onChange={(e) => setDisponibilidade(e.target.value)}
-                      className="w-full bg-[#10061D] border border-[#7C3AED]/50 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
-                    >
-                      <option value="Imediata (próximos dias)">Imediata (próximos dias)</option>
-                      <option value="Em até 1 semana">Em até 1 semana</option>
-                      <option value="Em até 15 dias">Em até 15 dias</option>
-                      <option value="A combinar conforme período escolar">A combinar conforme período escolar</option>
-                    </select>
-                  </div>
-
-                  <div className="bg-[#1C0E33] border border-[#4C1D95]/40 rounded-2xl p-4 space-y-2">
-                    <label className="text-xs font-bold text-amber-300 block">
-                      2. Você tem facilidade de deslocamento até o bairro <u>{vaga.bairro}</u>?
-                    </label>
-                    <select
-                      value={transporte}
-                      onChange={(e) => setTransporte(e.target.value)}
-                      className="w-full bg-[#10061D] border border-[#7C3AED]/50 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
-                    >
-                      <option value="Sim, fácil acesso via transporte público de Curitiba / RMC">
-                        Sim, fácil acesso via transporte público de Curitiba / RMC
-                      </option>
-                      <option value="Sim, resido no mesmo bairro ou proximidades">
-                        Sim, resido no mesmo bairro ou proximidades
-                      </option>
-                      <option value="Sim, utilizo condução própria / carona">
-                        Sim, utilizo condução própria / carona
-                      </option>
-                    </select>
-                  </div>
-
-                  <div className="bg-[#1C0E33] border border-[#4C1D95]/40 rounded-2xl p-4 space-y-2">
-                    <label className="text-xs font-bold text-amber-300 block">
-                      3. Confirmação de Idade & Autorização do Responsável:
-                    </label>
-                    <select
-                      value={autorizacaoMenor}
-                      onChange={(e) => setAutorizacaoMenor(e.target.value)}
-                      className="w-full bg-[#10061D] border border-[#7C3AED]/50 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
-                    >
-                      <option value="Sim, responsável informado e ciente">
-                        Sim, responsável legal informado e ciente da candidatura
-                      </option>
-                      <option value="Tenho 18 anos ou mais">
-                        Tenho 18 anos ou mais (maioridade civil)
-                      </option>
-                    </select>
-                  </div>
-                </div>
-              )}
-
-              {/* ETAPA 5 */}
+              {/* ========================================================================= */}
+              {/* ETAPA 5: REVISÃO FINAL & ENVIO COM TERMO LGPD                              */}
+              {/* ========================================================================= */}
               {step === 5 && (
                 <div className="space-y-4 animate-fadeIn">
                   <div>
                     <h3 className="text-base font-bold text-white">Revisão Final da Candidatura</h3>
-                    <p className="text-xs text-purple-200">
-                      Confira todos os itens antes de emitir o protocolo oficial.
+                    <p className="text-xs text-zinc-300 mt-1">
+                      Verifique as informações antes de transmitir ao recrutador:
                     </p>
                   </div>
 
-                  <div className="bg-[#1A0B2E] border border-purple-900/50 rounded-2xl p-4 space-y-2 text-xs text-purple-200">
-                    <div className="flex justify-between">
-                      <span>Candidato:</span>
-                      <strong className="text-white">{candidateName}</strong>
-                    </div>
-                    <div className="flex justify-between">
-                      <span>Vaga:</span>
+                  <div className="bg-[#140E24] border border-[#2D1B4E] rounded-2xl p-4 sm:p-5 space-y-2.5 text-xs text-zinc-300">
+                    <div className="flex justify-between border-b border-[#2D1B4E]/60 pb-2">
+                      <span className="text-zinc-400">Vaga Selecionada:</span>
                       <strong className="text-white">{vaga.titulo}</strong>
                     </div>
-                    <div className="flex justify-between">
-                      <span>Empresa:</span>
+                    <div className="flex justify-between border-b border-[#2D1B4E]/60 pb-2">
+                      <span className="text-zinc-400">Empresa Contratante:</span>
                       <strong className="text-white">{vaga.empresaNome}</strong>
                     </div>
-                    <div className="flex justify-between">
-                      <span>Modalidade de Currículo:</span>
-                      <strong className="text-amber-300">
-                        {resumeType === 'PDF_ANEXADO' ? uploadedFileName : 'Currículo Oficial SkillHub'}
+                    <div className="flex justify-between border-b border-[#2D1B4E]/60 pb-2">
+                      <span className="text-zinc-400">Candidato(a):</span>
+                      <strong className="text-white">{candidateName} ({candidateBairro})</strong>
+                    </div>
+                    <div className="flex justify-between border-b border-[#2D1B4E]/60 pb-2">
+                      <span className="text-zinc-400">Currículo Selecionado:</span>
+                      <strong className="text-purple-300">
+                        {resumeType === 'PDF_ANEXADO' ? uploadedFileName : 'Currículo SkillHub Integrado'}
                       </strong>
                     </div>
                     <div className="flex justify-between">
-                      <span>Disponibilidade:</span>
-                      <strong className="text-emerald-400">{disponibilidade}</strong>
+                      <span className="text-zinc-400">Remuneração Inicial:</span>
+                      <strong className="text-emerald-400">
+                        {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(vaga.remuneracao)}
+                      </strong>
                     </div>
                   </div>
 
-                  <label className="flex items-start gap-3 bg-[#120722] border border-amber-400/40 rounded-2xl p-4 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={consentLgpd}
-                      onChange={(e) => setConsentLgpd(e.target.checked)}
-                      className="mt-1 w-4 h-4 rounded text-amber-400 bg-[#10061D] border-purple-500 focus:ring-amber-400"
-                    />
-                    <div className="text-xs text-purple-200">
-                      <strong className="text-white block mb-0.5">Autorização de Tratamento de Dados (LGPD):</strong>
-                      Declaro que autorizo o compartilhamento seguro do meu currículo, dados de contato e histórico escolar exclusivamente com os recrutadores da <strong>{vaga.empresaNome}</strong> para fins desta seleção, sem cobrança de nenhuma taxa.
-                    </div>
-                  </label>
+                  {/* Termo LGPD */}
+                  <div className="bg-[#0F0C1D] border border-purple-500/30 rounded-2xl p-4 space-y-2">
+                    <label className="flex items-start gap-2.5 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={consentLgpd}
+                        onChange={(e) => setConsentLgpd(e.target.checked)}
+                        className="w-4 h-4 rounded mt-0.5 accent-purple-600 cursor-pointer"
+                      />
+                      <span className="text-xs text-zinc-300 leading-relaxed">
+                        Autorizo o compartilhamento seguro dos meus dados profissionais e escolares com a empresa{' '}
+                        <strong className="text-white font-semibold">{vaga.empresaNome}</strong> estritamente para fins de processo seletivo, em conformidade com a LGPD e Proteção de Dados de Menores.
+                      </span>
+                    </label>
+                  </div>
                 </div>
               )}
             </>
           )}
-
         </div>
 
-        {/* Footer com Botões de Navegação */}
+        {/* ========================================================================= */}
+        {/* RODAPÉ DO MODAL (BOTÕES DE NAVEGAÇÃO)                                     */}
+        {/* ========================================================================= */}
         {!generatedProtocol && (
-          <div className="bg-[#10061D] border-t border-[#4C1D95]/40 p-4 px-6 flex items-center justify-between">
-            {step > 1 ? (
-              <button
-                type="button"
-                onClick={() => setStep((prev) => (prev - 1) as any)}
-                className="flex items-center gap-1.5 text-xs font-bold text-purple-300 hover:text-white px-3 py-2 rounded-xl transition-all"
-              >
-                <ArrowLeft className="w-4 h-4" />
-                <span>Voltar</span>
-              </button>
-            ) : (
-              <button
-                type="button"
-                onClick={onClose}
-                className="text-xs font-bold text-purple-400 hover:text-white px-3 py-2 rounded-xl transition-all"
-              >
-                Cancelar
-              </button>
-            )}
+          <div className="bg-[#160F28] border-t border-[#2D1B4E]/80 p-4 sm:p-5 flex items-center justify-between gap-3">
+            <div>
+              {step > 1 ? (
+                <button
+                  type="button"
+                  onClick={() => setStep((s) => (s - 1) as any)}
+                  className="px-4 py-2.5 rounded-xl bg-[#0F0C1D] border border-[#2D1B4E] hover:border-purple-500/50 text-zinc-300 hover:text-white font-bold text-xs flex items-center gap-1.5 transition-colors"
+                >
+                  <ArrowLeft className="w-3.5 h-3.5" />
+                  <span>Voltar</span>
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={handleClose}
+                  className="px-4 py-2.5 rounded-xl bg-[#0F0C1D] border border-[#2D1B4E] hover:border-purple-500/50 text-zinc-400 hover:text-white font-bold text-xs transition-colors"
+                >
+                  Cancelar
+                </button>
+              )}
+            </div>
 
-            {step < 5 ? (
-              <button
-                type="button"
-                onClick={() => setStep((prev) => (prev + 1) as any)}
-                className="flex items-center gap-1.5 bg-[#6D28D9] hover:bg-[#7C3AED] text-white font-bold px-5 py-2.5 rounded-xl text-xs shadow-lg transition-all"
-              >
-                <span>Avançar</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            ) : (
-              <button
-                type="button"
-                disabled={isSubmitting}
-                onClick={handleFinalSubmit}
-                className="flex items-center gap-2 bg-gradient-to-r from-amber-400 to-amber-600 hover:from-amber-300 hover:to-amber-500 text-slate-950 font-black px-6 py-2.5 rounded-xl text-xs shadow-xl transition-all disabled:opacity-50"
-              >
-                {isSubmitting ? (
-                  <span>Emitindo Protocolo...</span>
-                ) : (
-                  <>
-                    <CheckCircle2 className="w-4 h-4" />
-                    <span>Confirmar e Emitir Protocolo</span>
-                  </>
-                )}
-              </button>
-            )}
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-zinc-500 mr-2 hidden sm:inline">
+                Etapa {step} de 5
+              </span>
+
+              {step < 5 ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (step === 2 && resumeType === 'SEM_CURRICULO') {
+                      showToast('Atenção', 'Crie seu currículo pelo botão acima ou selecione o Currículo SkillHub.', 'warning');
+                      return;
+                    }
+                    setStep((s) => (s + 1) as any);
+                  }}
+                  className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 via-purple-700 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white font-bold text-xs shadow-lg shadow-purple-950/40 flex items-center gap-1.5 transition-all hover:scale-105"
+                >
+                  <span>Avançar</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-purple-200" />
+                </button>
+              ) : (
+                <button
+                  type="button"
+                  onClick={handleFinalSubmit}
+                  disabled={isSubmitting || !consentLgpd}
+                  className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 via-purple-700 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white font-bold text-xs shadow-lg shadow-purple-950/40 flex items-center gap-2 transition-all hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    <span>Enviando Candidatura...</span>
+                  ) : (
+                    <>
+                      <span>Transmitir Candidatura</span>
+                      <Check className="w-4 h-4 text-purple-200" />
+                    </>
+                  )}
+                </button>
+              )}
+            </div>
           </div>
         )}
-
       </div>
     </div>
   );
