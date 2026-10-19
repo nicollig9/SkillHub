@@ -87,7 +87,7 @@ export default function Sidebar() {
     },
     {
       id: 'MAPA_PROXIMIDADE',
-      label: 'Vagas por Bairro',
+      label: 'Mapa de Vagas',
       icon: MapPin,
       badge: `${vagas.length} Vagas`
     },

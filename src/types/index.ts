@@ -204,6 +204,10 @@ export interface JobVacancy {
   badgesRequeridas: string[];
   candidatosInscritos: number;
   jaCandidatou?: boolean;
+  origemIA?: 'Via Indeed' | 'Via CIEE' | 'Via Vagas.com' | 'Via NUBE' | 'Via Catho' | 'Parceiro Direto';
+  distanciaKm?: number;
+  aderenciaPerfil?: number;
+  cargaSemanal?: string;
 }
 
 export interface Application {
