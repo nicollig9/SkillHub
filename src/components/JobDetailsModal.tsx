@@ -454,38 +454,36 @@ export default function JobDetailsModal({
   return (
     /* ===================================================== */
     /* 1. CONTAINER PAI (WRAPPER DA PÁGINA "VER MAIS")       */
-    /* display: flex; flex-direction: column; gap: 24px;     */
-    /* width: 100%; min-height: 100vh; padding: 32px 16px;  */
-    /* overflow-y: auto;                                     */
+    /* Espaçamento compacto: gap: 16px; padding: 24px 16px;  */
     /* ===================================================== */
     <div
       className="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md"
       style={{
         display: 'flex',
         flexDirection: 'column',
-        gap: '24px',
+        gap: '16px',
         width: '100%',
         minHeight: '100vh',
-        padding: '32px 16px',
+        padding: '24px 16px',
         overflowY: 'auto',
         alignItems: 'center'
       }}
       onClick={onClose}
     >
       {/* ===================================================== */}
-      {/* CONTAINER DO CARTÃO CENTRALIZADO (TEMA ESCURO ORIGINAL) */}
-      {/* Sem height ou max-height fixo travando o container    */}
+      {/* CONTAINER DO CARTÃO CENTRALIZADO (TEMA ESCURO)        */ }
+      {/* Padding reduzido para 18px a 20px, gap de 12px a 16px */}
       {/* ===================================================== */}
       <div
-        className="w-full max-w-[850px] mx-auto bg-[#110E1B] border border-purple-500/30 rounded-3xl shadow-2xl relative"
+        className="w-full max-w-[820px] mx-auto bg-[#110E1B] border border-purple-500/30 rounded-2xl sm:rounded-3xl shadow-2xl relative"
         style={{
           display: 'block',
           width: '100%',
-          maxWidth: '850px',
+          maxWidth: '820px',
           boxSizing: 'border-box',
           margin: '0 auto',
-          marginBottom: '24px',
-          padding: '24px',
+          marginBottom: '16px',
+          padding: '18px sm:padding: 20px',
           height: 'auto',
           maxHeight: 'none'
         }}
@@ -495,16 +493,15 @@ export default function JobDetailsModal({
         aria-labelledby="job-details-title"
       >
         {/* ===================================================== */}
-        {/* BLOCO DE TOPO / CABEÇALHO DO CARD                     */}
+        {/* BLOCO DE TOPO / CABEÇALHO DO CARD (COMPACTO)          */}
         {/* ===================================================== */}
         <div
-          className="bg-[#160F28] border border-[#2D1B4E] rounded-2xl relative"
+          className="bg-[#160F28] border border-[#2D1B4E] rounded-xl sm:rounded-2xl relative p-4 sm:p-5"
           style={{
             display: 'block',
             width: '100%',
             boxSizing: 'border-box',
-            marginBottom: '24px',
-            padding: '24px',
+            marginBottom: '14px',
             height: 'auto',
             maxHeight: 'none'
           }}
@@ -512,42 +509,43 @@ export default function JobDetailsModal({
           {/* Botão Fechar */}
           <button
             onClick={onClose}
-            className="absolute top-5 right-5 p-2 text-zinc-400 hover:text-white bg-[#0F0C1D] hover:bg-purple-950/60 rounded-xl border border-[#2D1B4E] transition-all cursor-pointer shadow-md"
+            className="absolute top-4 right-4 p-1.5 text-zinc-400 hover:text-white bg-[#0F0C1D] hover:bg-purple-950/60 rounded-lg border border-[#2D1B4E] transition-all cursor-pointer shadow-sm"
             aria-label="Fechar detalhes da vaga"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4" />
           </button>
 
-          {/* Badges de Topo */}
-          <div className="flex flex-wrap items-center gap-2 pr-12 mb-4">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-purple-950/90 text-purple-200 border border-purple-500/40">
-              <Sparkles className="w-3.5 h-3.5 text-purple-300" />
+          {/* Badges de Topo Compactos (12px / text-xs) */}
+          <div className="flex flex-wrap items-center gap-1.5 pr-10 mb-2.5">
+            <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] sm:text-xs font-bold bg-purple-950/90 text-purple-200 border border-purple-500/40">
+              <Sparkles className="w-3 h-3 text-purple-300" />
               <span>✨ {adherencePercent}% de Compatibilidade IA</span>
             </span>
 
-            <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#110E1B] text-purple-300 border border-purple-500/30">
+            <span className="px-2.5 py-0.5 rounded-full text-[11px] sm:text-xs font-bold bg-[#110E1B] text-purple-300 border border-purple-500/30">
               {vaga.tipoVaga}
             </span>
 
             {vaga.origemIA && (
-              <span className="px-3 py-1 rounded-full text-xs font-medium bg-[#110E1B] text-zinc-300 border border-[#2D1B4E]">
+              <span className="px-2.5 py-0.5 rounded-full text-[11px] sm:text-xs font-medium bg-[#110E1B] text-zinc-300 border border-[#2D1B4E]">
                 {vaga.origemIA}
               </span>
             )}
 
-            <span className="px-3 py-1 rounded-full text-xs font-medium bg-emerald-950/80 text-emerald-300 border border-emerald-500/40">
+            <span className="px-2.5 py-0.5 rounded-full text-[11px] sm:text-xs font-medium bg-emerald-950/80 text-emerald-300 border border-emerald-500/40">
               📍 Curitiba &amp; RMC
             </span>
           </div>
 
-          {/* TÍTULO PRINCIPAL (<h1> com margin-bottom: 16px; line-height: 1.7; display: block;) */}
+          {/* TÍTULO PRINCIPAL (H1: 18px a 20px / text-lg a text-xl) */}
           <h1
             id="job-details-title"
-            className="text-2xl sm:text-3xl font-black text-white tracking-tight"
+            className="text-lg sm:text-xl font-bold text-white tracking-tight"
             style={{
               display: 'block',
-              marginBottom: '16px',
-              lineHeight: 1.7,
+              fontSize: '20px',
+              marginBottom: '10px',
+              lineHeight: 1.4,
               width: '100%',
               wordBreak: 'normal',
               whiteSpace: 'normal'
@@ -556,68 +554,68 @@ export default function JobDetailsModal({
             {vaga.titulo}
           </h1>
 
-          {/* Empresa, CNPJ e Bairro */}
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-zinc-300 mb-4">
-            <div className="flex items-center gap-2 font-bold text-white">
-              <Building2 className="w-4 h-4 text-purple-400 shrink-0" />
-              <span className="text-base">{vaga.empresaNome}</span>
+          {/* Empresa, CNPJ e Bairro (12px a 13px / text-xs a text-sm) */}
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs sm:text-sm text-zinc-300 mb-3.5">
+            <div className="flex items-center gap-1.5 font-bold text-white">
+              <Building2 className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+              <span>{vaga.empresaNome}</span>
               {vaga.empresaValidadaCnpj ? (
-                <span className="inline-flex items-center gap-1 text-xs text-emerald-400 font-bold bg-emerald-950/80 px-2.5 py-0.5 rounded-md border border-emerald-500/40">
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+                <span className="inline-flex items-center gap-1 text-[11px] text-emerald-400 font-bold bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/40">
+                  <ShieldCheck className="w-3 h-3 text-emerald-400" />
                   CNPJ Verificado
                 </span>
               ) : (
-                <span className="inline-flex items-center gap-1 text-xs text-purple-300 font-medium bg-purple-950/50 px-2.5 py-0.5 rounded-md border border-purple-500/20">
+                <span className="inline-flex items-center gap-1 text-[11px] text-purple-300 font-medium bg-purple-950/50 px-2 py-0.5 rounded border border-purple-500/20">
                   Empresa Parceira
                 </span>
               )}
             </div>
 
-            <div className="flex items-center gap-2 text-zinc-300">
-              <MapPin className="w-4 h-4 text-rose-400 shrink-0" />
-              <span className="font-medium">{vaga.bairro}, {vaga.cidade}</span>
-              <span className="text-purple-300 font-bold bg-purple-950/80 px-2.5 py-0.5 rounded-md border border-purple-500/30 text-xs">
-                A {distanceKm.toFixed(1)} km do seu endereço ({student?.endereco?.bairro || 'CIC'})
+            <div className="flex items-center gap-1.5 text-zinc-300">
+              <MapPin className="w-3.5 h-3.5 text-rose-400 shrink-0" />
+              <span>{vaga.bairro}, {vaga.cidade}</span>
+              <span className="text-purple-300 font-bold bg-purple-950/80 px-2 py-0.5 rounded border border-purple-500/30 text-[11px]">
+                A {distanceKm.toFixed(1)} km ({student?.endereco?.bairro || 'CIC'})
               </span>
             </div>
           </div>
 
-          {/* Salário & Carga Horária */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 bg-[#0F0C1D] border border-purple-500/20 rounded-xl">
+          {/* Salário & Carga Horária Compactos */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 p-3 sm:p-3.5 bg-[#0F0C1D] border border-purple-500/20 rounded-xl">
             <div>
-              <span className="text-zinc-400 text-xs uppercase font-bold tracking-wider block mb-1">
+              <span className="text-zinc-400 text-[11px] uppercase font-bold tracking-wider block mb-0.5">
                 Bolsa / Salário Registrado
               </span>
-              <div className="text-xl sm:text-2xl font-black text-emerald-400">
+              <div className="text-lg sm:text-xl font-black text-emerald-400">
                 {formattedSalary}
               </div>
-              <span className="text-xs text-zinc-400 mt-1 block">
+              <span className="text-[11px] text-zinc-400 mt-0.5 block">
                 Direitos trabalhistas e FGTS assegurados
               </span>
             </div>
 
             <div>
-              <span className="text-zinc-400 text-xs uppercase font-bold tracking-wider block mb-1">
+              <span className="text-zinc-400 text-[11px] uppercase font-bold tracking-wider block mb-0.5">
                 Carga Horária &amp; Horário
               </span>
-              <div className="text-base sm:text-lg font-bold text-zinc-100 flex items-center gap-2">
-                <Clock className="w-4 h-4 text-purple-400 shrink-0" />
+              <div className="text-xs sm:text-sm font-bold text-zinc-100 flex items-center gap-1.5">
+                <Clock className="w-3.5 h-3.5 text-purple-400 shrink-0" />
                 <span>{cargaSemanal} ({vaga.horario})</span>
               </div>
-              <span className="text-xs text-zinc-400 mt-1 block">
-                Compatível com turno escolar e transporte público
+              <span className="text-[11px] text-zinc-400 mt-0.5 block">
+                Compatível com turno escolar e transporte URBS
               </span>
             </div>
           </div>
 
-          {/* Abas de Navegação */}
-          <div className="mt-5 flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none border-t border-[#2D1B4E] pt-4 w-full">
+          {/* Abas de Navegação Compactas */}
+          <div className="mt-3.5 flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none border-t border-[#2D1B4E] pt-3 w-full">
             {[
               { id: 'TODAS', label: 'Visão Completa', icon: Layers },
-              { id: 'LOCALIZACAO', label: '1. Mapa & Transporte RMC', icon: Compass },
+              { id: 'LOCALIZACAO', label: '1. Mapa & Transporte', icon: Compass },
               { id: 'EMPRESA', label: '2. Sobre a Empresa', icon: Building2 },
               { id: 'ATIVIDADES', label: '3. Atividades & Rotinas', icon: Briefcase },
-              { id: 'REQUISITOS', label: '4. Perfil & Requisitos', icon: Target },
+              { id: 'REQUISITOS', label: '4. Requisitos', icon: Target },
               { id: 'BENEFICIOS', label: '5. Benefícios', icon: HeartHandshake }
             ].map((tab) => {
               const Icon = tab.icon;
@@ -626,7 +624,7 @@ export default function JobDetailsModal({
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as any)}
-                  className={`px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap flex items-center gap-1.5 transition-all cursor-pointer shrink-0 ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-semibold whitespace-nowrap flex items-center gap-1.5 transition-all cursor-pointer shrink-0 ${
                     isActive
                       ? 'bg-purple-600 text-white shadow-md shadow-purple-900/40 ring-1 ring-purple-400'
                       : 'bg-[#110E1B] text-zinc-400 hover:text-white hover:bg-[#1A122E] border border-purple-500/20'
@@ -642,138 +640,127 @@ export default function JobDetailsModal({
 
         {/* ===================================================== */}
         {/* BLOCO 1: 📍 LOCALIZAÇÃO, MAPA & TRANSPORTE RMC       */}
+        {/* Organizado em Grid de 2 colunas nos displays maiores  */}
         {/* ===================================================== */}
         {(activeTab === 'TODAS' || activeTab === 'LOCALIZACAO') && (
           <div
-            className="bg-[#140E24] border border-purple-500/20 rounded-2xl"
+            className="bg-[#140E24] border border-purple-500/20 rounded-xl sm:rounded-2xl p-4 sm:p-5"
             style={{
               display: 'block',
               width: '100%',
               boxSizing: 'border-box',
-              marginBottom: '24px',
-              padding: '24px',
+              marginBottom: '14px',
               height: 'auto',
               maxHeight: 'none'
             }}
           >
+            {/* Título de Seção (H2: 18px a 20px) */}
             <h2
-              className="text-lg sm:text-xl font-bold text-white flex items-center gap-2 border-b border-[#2D1B4E] pb-3"
+              className="text-base sm:text-lg font-bold text-white flex items-center gap-1.5 border-b border-[#2D1B4E] pb-2.5"
               style={{
                 display: 'block',
-                marginBottom: '16px',
-                lineHeight: 1.7
+                fontSize: '18px',
+                marginBottom: '10px',
+                lineHeight: 1.4
               }}
             >
-              <Compass className="w-5 h-5 text-purple-400 inline-block align-middle mr-2" />
+              <Compass className="w-4 h-4 text-purple-400 inline-block align-middle mr-1.5" />
               1. Localização, Mobilidade Urbana &amp; Mapa de Curitiba
             </h2>
 
+            {/* Parágrafo do corpo (14px a 15px) */}
             <p
-              className="text-base text-zinc-200"
+              className="text-sm text-zinc-300"
               style={{
                 display: 'block',
-                marginBottom: '16px',
-                lineHeight: 1.7
+                fontSize: '14px',
+                marginBottom: '12px',
+                lineHeight: 1.6
               }}
             >
               {locationData.descricao}
             </p>
 
-            {/* Grid de Métricas de Trajeto */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mb-4">
-              <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-xl p-4">
-                <span className="text-xs uppercase font-bold text-zinc-400 flex items-center gap-1.5 mb-1">
-                  <Route className="w-3.5 h-3.5 text-purple-400" />
-                  Distância do Candidato
+            {/* Grid de Métricas de Trajeto (3 colunas compactas) */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mb-3.5">
+              <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-xl p-3">
+                <span className="text-[11px] uppercase font-bold text-zinc-400 flex items-center gap-1 mb-0.5">
+                  <Route className="w-3 h-3 text-purple-400" />
+                  Distância
                 </span>
-                <p className="text-lg font-black text-white" style={{ display: 'block', marginBottom: '4px', lineHeight: 1.4 }}>
+                <p className="text-base font-black text-white" style={{ display: 'block', marginBottom: '2px', lineHeight: 1.3 }}>
                   {distanceKm.toFixed(1)} km
                 </p>
-                <span className="text-xs text-zinc-400 block">
+                <span className="text-[11px] text-zinc-400 block">
                   Partindo de {student?.endereco?.bairro || 'CIC'}
                 </span>
               </div>
 
-              <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-xl p-4">
-                <span className="text-xs uppercase font-bold text-zinc-400 flex items-center gap-1.5 mb-1">
-                  <Clock className="w-3.5 h-3.5 text-purple-400" />
-                  Tempo Médio em Trânsito
+              <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-xl p-3">
+                <span className="text-[11px] uppercase font-bold text-zinc-400 flex items-center gap-1 mb-0.5">
+                  <Clock className="w-3 h-3 text-purple-400" />
+                  Tempo de Trajeto
                 </span>
-                <p className="text-lg font-black text-white" style={{ display: 'block', marginBottom: '4px', lineHeight: 1.4 }}>
+                <p className="text-base font-black text-white" style={{ display: 'block', marginBottom: '2px', lineHeight: 1.3 }}>
                   ~{locationData.tempoEstimadoMinutos} min
                 </p>
-                <span className="text-xs text-zinc-400 block">
-                  Trajeto via rede integrada URBS
+                <span className="text-[11px] text-zinc-400 block">
+                  Via rede integrada URBS
                 </span>
               </div>
 
-              <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-xl p-4">
-                <span className="text-xs uppercase font-bold text-zinc-400 flex items-center gap-1.5 mb-1">
-                  <Bus className="w-3.5 h-3.5 text-purple-400" />
-                  Sistema de Bilhetagem
+              <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-xl p-3">
+                <span className="text-[11px] uppercase font-bold text-zinc-400 flex items-center gap-1 mb-0.5">
+                  <Bus className="w-3 h-3 text-purple-400" />
+                  Bilhetagem
                 </span>
-                <p className="text-sm font-bold text-white pt-1" style={{ display: 'block', marginBottom: '4px', lineHeight: 1.4 }}>
+                <p className="text-xs font-bold text-white pt-0.5" style={{ display: 'block', marginBottom: '2px', lineHeight: 1.3 }}>
                   {locationData.tipoTarifa}
                 </p>
-                <span className="text-xs text-emerald-400 font-semibold block">
-                  100% Subsidiado por Vale-Transporte
+                <span className="text-[11px] text-emerald-400 font-semibold block">
+                  100% Coberto por Vale-Transporte
                 </span>
               </div>
             </div>
 
-            {/* Linhas e Terminais */}
-            <div className="pt-3 border-t border-[#2D1B4E] space-y-3">
-              <h3
-                className="text-sm font-bold text-purple-300 uppercase tracking-wider flex items-center gap-2"
-                style={{ display: 'block', marginBottom: '12px', lineHeight: 1.5 }}
-              >
-                <Bus className="w-4 h-4 text-purple-400 inline-block mr-1.5" />
-                Terminais Integrados &amp; Principais Linhas:
-              </h3>
+            {/* Grid de 2 colunas para Linhas/Terminais e Pontos de Referência */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-3 border-t border-[#2D1B4E]">
+              {/* Coluna 1: Terminais & Linhas */}
+              <div className="bg-[#0F0C1D] border border-[#2D1B4E] rounded-xl p-3 space-y-2">
+                <span className="text-xs font-bold text-purple-300 uppercase tracking-wider block">
+                  Terminais &amp; Linhas de Ônibus:
+                </span>
+                <div className="space-y-1 text-xs text-zinc-300">
+                  <span className="text-[11px] font-semibold text-zinc-400 block">Terminais:</span>
+                  <p className="text-zinc-200" style={{ display: 'block', marginBottom: '4px', lineHeight: 1.4, fontSize: '13px' }}>
+                    {locationData.terminaisProximos.join(' • ')}
+                  </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <div className="bg-[#0F0C1D] border border-[#2D1B4E] rounded-xl p-3.5">
-                  <span className="text-xs font-bold text-zinc-300 block mb-2">Terminais de Acesso:</span>
-                  <ul className="space-y-1.5 text-xs text-zinc-300">
-                    {locationData.terminaisProximos.map((t, idx) => (
-                      <li key={idx} className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-purple-400" />
-                        <span>{t}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <div className="bg-[#0F0C1D] border border-[#2D1B4E] rounded-xl p-3.5">
-                  <span className="text-xs font-bold text-zinc-300 block mb-2">Linhas Diretas / Biarticulados:</span>
-                  <ul className="space-y-1.5 text-xs text-zinc-300">
-                    {locationData.linhasOnibus.map((l, idx) => (
-                      <li key={idx} className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                  <span className="text-[11px] font-semibold text-zinc-400 block pt-1">Linhas Principais:</span>
+                  <ul className="space-y-1">
+                    {locationData.linhasOnibus.slice(0, 3).map((l, idx) => (
+                      <li key={idx} className="flex items-start gap-1.5 text-[12px] text-zinc-300">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 mt-1.5 shrink-0" />
                         <span>{l}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
               </div>
-            </div>
 
-            {/* Pontos de Referência */}
-            <div className="pt-4 border-t border-[#2D1B4E] space-y-2">
-              <h3
-                className="text-sm font-bold text-purple-300 uppercase tracking-wider flex items-center gap-2"
-                style={{ display: 'block', marginBottom: '12px', lineHeight: 1.5 }}
-              >
-                <Navigation className="w-4 h-4 text-purple-400 inline-block mr-1.5" />
-                Pontos de Referência &amp; Polos Próximos:
-              </h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                {locationData.pontosInteresse.map((p, idx) => (
-                  <div key={idx} className="bg-[#0F0C1D] border border-purple-500/20 rounded-lg p-2.5 text-xs text-zinc-200 flex items-start gap-2">
-                    <CheckCheck className="w-3.5 h-3.5 text-purple-400 shrink-0 mt-0.5" />
-                    <span>{p}</span>
-                  </div>
-                ))}
+              {/* Coluna 2: Pontos de Referência */}
+              <div className="bg-[#0F0C1D] border border-[#2D1B4E] rounded-xl p-3 space-y-2">
+                <span className="text-xs font-bold text-purple-300 uppercase tracking-wider block">
+                  Pontos de Referência no Bairro:
+                </span>
+                <ul className="space-y-1.5 text-[12px] text-zinc-300">
+                  {locationData.pontosInteresse.slice(0, 4).map((p, idx) => (
+                    <li key={idx} className="flex items-start gap-1.5 bg-[#140E24] border border-purple-500/10 rounded-lg p-1.5">
+                      <CheckCheck className="w-3.5 h-3.5 text-purple-400 shrink-0 mt-0.5" />
+                      <span>{p}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
@@ -784,76 +771,77 @@ export default function JobDetailsModal({
         {/* ===================================================== */}
         {(activeTab === 'TODAS' || activeTab === 'EMPRESA') && (
           <div
-            className="bg-[#140E24] border border-purple-500/20 rounded-2xl"
+            className="bg-[#140E24] border border-purple-500/20 rounded-xl sm:rounded-2xl p-4 sm:p-5"
             style={{
               display: 'block',
               width: '100%',
               boxSizing: 'border-box',
-              marginBottom: '24px',
-              padding: '24px',
+              marginBottom: '14px',
               height: 'auto',
               maxHeight: 'none'
             }}
           >
             <h2
-              className="text-lg sm:text-xl font-bold text-white flex items-center gap-2 border-b border-[#2D1B4E] pb-3"
+              className="text-base sm:text-lg font-bold text-white flex items-center gap-1.5 border-b border-[#2D1B4E] pb-2.5"
               style={{
                 display: 'block',
-                marginBottom: '16px',
-                lineHeight: 1.7
+                fontSize: '18px',
+                marginBottom: '10px',
+                lineHeight: 1.4
               }}
             >
-              <Building2 className="w-5 h-5 text-purple-400 inline-block align-middle mr-2" />
+              <Building2 className="w-4 h-4 text-purple-400 inline-block align-middle mr-1.5" />
               2. Perfil Institucional da Empresa &amp; Polo de Trabalho
             </h2>
 
             <p
-              className="text-base text-zinc-200"
+              className="text-sm text-zinc-300"
               style={{
                 display: 'block',
-                marginBottom: '16px',
-                lineHeight: 1.7
+                fontSize: '14px',
+                marginBottom: '12px',
+                lineHeight: 1.6
               }}
             >
               {company.descricao}
             </p>
 
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 mb-4 pt-2">
-              <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-xl p-4">
-                <span className="text-xs uppercase font-bold text-zinc-400 flex items-center gap-1.5 mb-1">
-                  <Users2 className="w-3.5 h-3.5 text-purple-400" />
-                  Porte Institucional
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 mb-3 pt-1">
+              <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-xl p-3">
+                <span className="text-[11px] uppercase font-bold text-zinc-400 flex items-center gap-1 mb-0.5">
+                  <Users2 className="w-3 h-3 text-purple-400" />
+                  Porte
                 </span>
-                <p className="font-semibold text-zinc-100 text-sm" style={{ display: 'block', marginBottom: '0', lineHeight: 1.5 }}>
+                <p className="font-semibold text-zinc-100 text-xs sm:text-sm" style={{ display: 'block', marginBottom: '0', lineHeight: 1.4 }}>
                   {company.porte}
                 </p>
               </div>
 
-              <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-xl p-4">
-                <span className="text-xs uppercase font-bold text-zinc-400 flex items-center gap-1.5 mb-1">
-                  <Briefcase className="w-3.5 h-3.5 text-purple-400" />
-                  Setor de Atuação
+              <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-xl p-3">
+                <span className="text-[11px] uppercase font-bold text-zinc-400 flex items-center gap-1 mb-0.5">
+                  <Briefcase className="w-3 h-3 text-purple-400" />
+                  Setor
                 </span>
-                <p className="font-semibold text-zinc-100 text-sm" style={{ display: 'block', marginBottom: '0', lineHeight: 1.5 }}>
+                <p className="font-semibold text-zinc-100 text-xs sm:text-sm" style={{ display: 'block', marginBottom: '0', lineHeight: 1.4 }}>
                   {company.setor}
                 </p>
               </div>
 
-              <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-xl p-4">
-                <span className="text-xs uppercase font-bold text-zinc-400 flex items-center gap-1.5 mb-1">
-                  <MapPin className="w-3.5 h-3.5 text-rose-400" />
-                  Polo de Trabalho
+              <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-xl p-3">
+                <span className="text-[11px] uppercase font-bold text-zinc-400 flex items-center gap-1 mb-0.5">
+                  <MapPin className="w-3 h-3 text-rose-400" />
+                  Polo
                 </span>
-                <p className="font-semibold text-zinc-100 text-sm" style={{ display: 'block', marginBottom: '0', lineHeight: 1.5 }}>
+                <p className="font-semibold text-zinc-100 text-xs sm:text-sm" style={{ display: 'block', marginBottom: '0', lineHeight: 1.4 }}>
                   {company.polo}
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3 p-3.5 rounded-xl bg-purple-950/40 border border-purple-500/30 text-xs text-purple-200">
+            <div className="flex items-center gap-2 p-2.5 rounded-lg bg-purple-950/40 border border-purple-500/30 text-xs text-purple-200">
               <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
               <span>
-                <strong>Conformidade Legal Assegurada:</strong> Processo de contratação supervisionado e em estrita conformidade com a Lei 10.097/00 (Jovem Aprendiz) e Lei 11.788/08 (Estágio).
+                <strong>Conformidade Legal:</strong> Vaga registrada conforme Lei 10.097/00 (Jovem Aprendiz) e Lei 11.788/08 (Estágio).
               </span>
             </div>
           </div>
@@ -864,81 +852,72 @@ export default function JobDetailsModal({
         {/* ===================================================== */}
         {(activeTab === 'TODAS' || activeTab === 'ATIVIDADES') && (
           <div
-            className="bg-[#140E24] border border-purple-500/20 rounded-2xl"
+            className="bg-[#140E24] border border-purple-500/20 rounded-xl sm:rounded-2xl p-4 sm:p-5"
             style={{
               display: 'block',
               width: '100%',
               boxSizing: 'border-box',
-              marginBottom: '24px',
-              padding: '24px',
+              marginBottom: '14px',
               height: 'auto',
               maxHeight: 'none'
             }}
           >
             <h2
-              className="text-lg sm:text-xl font-bold text-white flex items-center gap-2 border-b border-[#2D1B4E] pb-3"
+              className="text-base sm:text-lg font-bold text-white flex items-center gap-1.5 border-b border-[#2D1B4E] pb-2.5"
               style={{
                 display: 'block',
-                marginBottom: '16px',
-                lineHeight: 1.7
+                fontSize: '18px',
+                marginBottom: '10px',
+                lineHeight: 1.4
               }}
             >
-              <Briefcase className="w-5 h-5 text-purple-400 inline-block align-middle mr-2" />
+              <Briefcase className="w-4 h-4 text-purple-400 inline-block align-middle mr-1.5" />
               3. Atividades &amp; Responsabilidades Práticas
             </h2>
 
             <p
-              className="text-base text-zinc-200"
+              className="text-sm text-zinc-300"
               style={{
                 display: 'block',
-                marginBottom: '16px',
-                lineHeight: 1.7
+                fontSize: '14px',
+                marginBottom: '12px',
+                lineHeight: 1.6
               }}
             >
               {vaga.descricao}
             </p>
 
-            <div className="pt-2 space-y-3">
-              <h3
-                className="text-sm font-bold text-purple-300 uppercase tracking-wider"
-                style={{ display: 'block', marginBottom: '12px', lineHeight: 1.5 }}
-              >
-                Rotinas Práticas Desenvolvidas no Dia a Dia:
-              </h3>
+            <div className="pt-1 space-y-2">
+              <span className="text-xs font-bold text-purple-300 uppercase tracking-wider block mb-2">
+                Rotinas Desenvolvidas no Dia a Dia:
+              </span>
 
-              <div className="space-y-3">
-                <div className="flex items-start gap-3 bg-[#0F0C1D] border border-purple-500/20 rounded-xl p-3.5">
-                  <CheckCircle2 className="w-4 h-4 text-purple-400 shrink-0 mt-1" />
-                  <span className="text-sm text-zinc-200" style={{ lineHeight: 1.7 }}>
-                    <strong className="text-white">Atendimento Corporativo &amp; Apoio:</strong> Recebimento cordial e encaminhamento de solicitações internas, correspondências e mensagens de clientes.
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                <div className="flex items-start gap-2 bg-[#0F0C1D] border border-purple-500/20 rounded-lg p-2.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-purple-400 shrink-0 mt-0.5" />
+                  <span className="text-xs text-zinc-200" style={{ lineHeight: 1.5 }}>
+                    <strong className="text-white">Atendimento:</strong> Apoio corporativo, triagem de solicitações e e-mails.
                   </span>
                 </div>
 
-                <div className="flex items-start gap-3 bg-[#0F0C1D] border border-purple-500/20 rounded-xl p-3.5">
-                  <CheckCircle2 className="w-4 h-4 text-purple-400 shrink-0 mt-1" />
-                  <span className="text-sm text-zinc-200" style={{ lineHeight: 1.7 }}>
-                    <strong className="text-white">Organização Documental &amp; Nuvem:</strong> Arquivamento metódico de notas fiscais, relatórios e documentos nos diretórios Microsoft OneDrive / Google Drive.
+                <div className="flex items-start gap-2 bg-[#0F0C1D] border border-purple-500/20 rounded-lg p-2.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-purple-400 shrink-0 mt-0.5" />
+                  <span className="text-xs text-zinc-200" style={{ lineHeight: 1.5 }}>
+                    <strong className="text-white">Arquivos Digitais:</strong> Organização em Google Drive e Microsoft OneDrive.
                   </span>
                 </div>
 
-                <div className="flex items-start gap-3 bg-[#0F0C1D] border border-purple-500/20 rounded-xl p-3.5">
-                  <CheckCircle2 className="w-4 h-4 text-purple-400 shrink-0 mt-1" />
-                  <span className="text-sm text-zinc-200" style={{ lineHeight: 1.7 }}>
-                    <strong className="text-white">Alimentação de Planilhas e Sistemas ERP:</strong> Cadastro e atualização de registros operacionais com acompanhamento de tutores.
+                <div className="flex items-start gap-2 bg-[#0F0C1D] border border-purple-500/20 rounded-lg p-2.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-purple-400 shrink-0 mt-0.5" />
+                  <span className="text-xs text-zinc-200" style={{ lineHeight: 1.5 }}>
+                    <strong className="text-white">Sistemas ERP:</strong> Alimentação de cadastros com tutoria contínua.
                   </span>
                 </div>
 
-                <div className="flex items-start gap-3 bg-[#0F0C1D] border border-purple-500/20 rounded-xl p-3.5">
-                  <CheckCircle2 className="w-4 h-4 text-purple-400 shrink-0 mt-1" />
-                  <span className="text-sm text-zinc-200" style={{ lineHeight: 1.7 }}>
-                    <strong className="text-white">Ética, Sigilo e LGPD:</strong> Cumprimento cuidadoso das políticas corporativas de sigilo de informações e integridade profissional.
-                  </span>
-                </div>
-
-                <div className="flex items-start gap-3 bg-[#0F0C1D] border border-purple-500/20 rounded-xl p-3.5">
-                  <CheckCircle2 className="w-4 h-4 text-purple-400 shrink-0 mt-1" />
-                  <span className="text-sm text-zinc-200" style={{ lineHeight: 1.7 }}>
-                    <strong className="text-white">Formação Teórica Integrada:</strong> Participação periódica em oficinas de capacitação profissional e reuniões pedagógicas.
+                <div className="flex items-start gap-2 bg-[#0F0C1D] border border-purple-500/20 rounded-lg p-2.5">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-purple-400 shrink-0 mt-0.5" />
+                  <span className="text-xs text-zinc-200" style={{ lineHeight: 1.5 }}>
+                    <strong className="text-white">Ética &amp; LGPD:</strong> Zelo por sigilo de informações corporativas.
                   </span>
                 </div>
               </div>
@@ -951,72 +930,67 @@ export default function JobDetailsModal({
         {/* ===================================================== */}
         {(activeTab === 'TODAS' || activeTab === 'REQUISITOS') && (
           <div
-            className="bg-[#140E24] border border-purple-500/20 rounded-2xl"
+            className="bg-[#140E24] border border-purple-500/20 rounded-xl sm:rounded-2xl p-4 sm:p-5"
             style={{
               display: 'block',
               width: '100%',
               boxSizing: 'border-box',
-              marginBottom: '24px',
-              padding: '24px',
+              marginBottom: '14px',
               height: 'auto',
               maxHeight: 'none'
             }}
           >
-            <div className="flex items-center justify-between border-b border-[#2D1B4E] pb-3 mb-4">
+            <div className="flex items-center justify-between border-b border-[#2D1B4E] pb-2.5 mb-3">
               <h2
-                className="text-lg sm:text-xl font-bold text-white flex items-center gap-2"
+                className="text-base sm:text-lg font-bold text-white flex items-center gap-1.5"
                 style={{
                   display: 'block',
+                  fontSize: '18px',
                   marginBottom: '0',
-                  lineHeight: 1.7
+                  lineHeight: 1.4
                 }}
               >
-                <Target className="w-5 h-5 text-purple-400 inline-block align-middle mr-2" />
+                <Target className="w-4 h-4 text-purple-400 inline-block align-middle mr-1.5" />
                 4. Requisitos, Selos de Competência &amp; Cursos SkillHub
               </h2>
-              <span className="text-xs font-bold text-purple-300 bg-purple-950/80 px-2.5 py-1 rounded-md border border-purple-500/30">
+              <span className="text-[11px] font-bold text-purple-300 bg-purple-950/80 px-2 py-0.5 rounded border border-purple-500/30">
                 {matchingBadgesCount}/{vaga.badgesRequeridas.length} compatíveis
               </span>
             </div>
 
             <p
-              className="text-base text-zinc-200"
+              className="text-sm text-zinc-300"
               style={{
                 display: 'block',
-                marginBottom: '16px',
-                lineHeight: 1.7
+                fontSize: '14px',
+                marginBottom: '10px',
+                lineHeight: 1.5
               }}
             >
               Critérios de elegibilidade e perfil comportamental valorizados pelo time de seleção:
             </p>
 
-            <ul className="space-y-2.5 text-sm text-zinc-200 mb-5">
-              <li className="flex items-start gap-2.5">
-                <span className="w-2 h-2 rounded-full bg-purple-400 mt-2 shrink-0" />
-                <span style={{ lineHeight: 1.7 }}>
-                  <strong className="text-white">Escolaridade:</strong> Ensino Médio, Técnico ou Superior com matrícula ativa e frequência escolar comprovada.
+            <ul className="space-y-1.5 text-xs sm:text-sm text-zinc-200 mb-4">
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-1.5 shrink-0" />
+                <span style={{ lineHeight: 1.5 }}>
+                  <strong className="text-white">Escolaridade:</strong> Ensino Médio, Técnico ou Superior com matrícula ativa.
                 </span>
               </li>
-              <li className="flex items-start gap-2.5">
-                <span className="w-2 h-2 rounded-full bg-purple-400 mt-2 shrink-0" />
-                <span style={{ lineHeight: 1.7 }}>
-                  <strong className="text-white">Postura &amp; Relacionamento:</strong> Pontualidade, compromisso, boa comunicação oral e escrita, e vontade de aprender.
-                </span>
-              </li>
-              <li className="flex items-start gap-2.5">
-                <span className="w-2 h-2 rounded-full bg-purple-400 mt-2 shrink-0" />
-                <span style={{ lineHeight: 1.7 }}>
-                  <strong className="text-white">Ferramentas de Trabalho:</strong> Conhecimentos elementares de informática, internet e planilhas eletrônicas.
+              <li className="flex items-start gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-1.5 shrink-0" />
+                <span style={{ lineHeight: 1.5 }}>
+                  <strong className="text-white">Postura:</strong> Pontualidade, comunicação respeitosa e vontade de aprender.
                 </span>
               </li>
             </ul>
 
             {/* Badges Requeridas */}
-            <div className="pt-3 border-t border-[#2D1B4E] mb-5">
-              <span className="text-xs font-bold text-zinc-300 block mb-3 uppercase tracking-wider">
+            <div className="pt-2.5 border-t border-[#2D1B4E] mb-3.5">
+              <span className="text-[11px] font-bold text-zinc-400 block mb-2 uppercase tracking-wider">
                 Microcertificações e Selos Requeridos:
               </span>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-1.5">
                 {vaga.badgesRequeridas.map((bId) => {
                   const hasBadge = userBadgeIds.some(
                     (ub) => bId.includes(ub.replace('badge-', '')) || ub.includes(bId.replace('badge-', ''))
@@ -1029,21 +1003,21 @@ export default function JobDetailsModal({
                   return (
                     <div
                       key={bId}
-                      className={`px-3.5 py-1.5 rounded-xl text-xs font-bold flex items-center gap-2 border transition-all ${
+                      className={`px-2.5 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 border transition-all ${
                         hasBadge
                           ? 'bg-purple-950/80 border-purple-500/50 text-purple-200'
                           : 'bg-[#0F0C1D] border-[#2D1B4E] text-zinc-400'
                       }`}
                     >
                       {hasBadge ? (
-                        <Check className="w-4 h-4 text-purple-400" />
+                        <Check className="w-3.5 h-3.5 text-purple-400" />
                       ) : (
-                        <span className="w-3.5 h-3.5 rounded-full border border-zinc-600" />
+                        <span className="w-3 h-3 rounded-full border border-zinc-600" />
                       )}
                       <span>{label}</span>
                       {hasBadge && (
-                        <span className="text-[10px] bg-purple-900/80 text-purple-200 px-1.5 py-0.5 rounded font-semibold">
-                          Validado no seu perfil
+                        <span className="text-[10px] bg-purple-900/80 text-purple-200 px-1 py-0.2 rounded font-semibold">
+                          Validado
                         </span>
                       )}
                     </div>
@@ -1053,28 +1027,28 @@ export default function JobDetailsModal({
             </div>
 
             {/* Cursos Recomendados */}
-            <div className="pt-3 border-t border-[#2D1B4E]">
-              <span className="text-xs font-bold text-purple-300 block mb-3 uppercase tracking-wider flex items-center gap-1.5">
-                <GraduationCap className="w-4 h-4 text-purple-400" />
-                Cursos do SkillHub Recomendados para a Oportunidade:
+            <div className="pt-2.5 border-t border-[#2D1B4E]">
+              <span className="text-xs font-bold text-purple-300 block mb-2 uppercase tracking-wider flex items-center gap-1">
+                <GraduationCap className="w-3.5 h-3.5 text-purple-400" />
+                Cursos Recomendados do Catálogo:
               </span>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
                 {recommendedCourses.map((c) => (
                   <div
                     key={c.id}
-                    className="bg-[#0F0C1D] border border-purple-500/20 rounded-xl p-4 flex flex-col justify-between space-y-2"
+                    className="bg-[#0F0C1D] border border-purple-500/20 rounded-lg p-3 flex flex-col justify-between space-y-1.5"
                   >
                     <div>
                       <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider block">
                         {c.category}
                       </span>
-                      <h4 className="text-xs font-bold text-white mt-1 leading-snug">
+                      <h4 className="text-xs font-bold text-white mt-0.5 leading-snug">
                         {c.title}
                       </h4>
                     </div>
-                    <div className="flex items-center justify-between text-[11px] text-purple-300 pt-2 border-t border-[#2D1B4E]">
-                      <span>Carga: {c.hours}</span>
-                      <span className="text-emerald-400 font-bold">100% Gratuito</span>
+                    <div className="flex items-center justify-between text-[10px] text-purple-300 pt-1.5 border-t border-[#2D1B4E]">
+                      <span>{c.hours}</span>
+                      <span className="text-emerald-400 font-bold">Gratuito</span>
                     </div>
                   </div>
                 ))}
@@ -1088,73 +1062,73 @@ export default function JobDetailsModal({
         {/* ===================================================== */}
         {(activeTab === 'TODAS' || activeTab === 'BENEFICIOS') && (
           <div
-            className="bg-[#140E24] border border-purple-500/20 rounded-2xl"
+            className="bg-[#140E24] border border-purple-500/20 rounded-xl sm:rounded-2xl p-4 sm:p-5"
             style={{
               display: 'block',
               width: '100%',
               boxSizing: 'border-box',
-              marginBottom: '24px',
-              padding: '24px',
+              marginBottom: '14px',
               height: 'auto',
               maxHeight: 'none'
             }}
           >
             <h2
-              className="text-lg sm:text-xl font-bold text-white flex items-center gap-2 border-b border-[#2D1B4E] pb-3"
+              className="text-base sm:text-lg font-bold text-white flex items-center gap-1.5 border-b border-[#2D1B4E] pb-2.5"
               style={{
                 display: 'block',
-                marginBottom: '16px',
-                lineHeight: 1.7
+                fontSize: '18px',
+                marginBottom: '10px',
+                lineHeight: 1.4
               }}
             >
-              <HeartHandshake className="w-5 h-5 text-purple-400 inline-block align-middle mr-2" />
+              <HeartHandshake className="w-4 h-4 text-purple-400 inline-block align-middle mr-1.5" />
               5. Pacote de Benefícios &amp; Apoio ao Estudante
             </h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 mb-4">
-              <div className="flex items-start gap-3 p-4 bg-[#0F0C1D] border border-purple-500/20 rounded-xl text-zinc-200">
-                <Bus className="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-3">
+              <div className="flex items-start gap-2.5 p-3 bg-[#0F0C1D] border border-purple-500/20 rounded-xl text-zinc-200">
+                <Bus className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
                 <div>
-                  <strong className="text-white block font-bold text-sm">Vale-Transporte Integral</strong>
-                  <p className="text-xs text-zinc-400 mt-0.5">Recarga mensal de cartões URBS ou Metrocard sem cobranças abusivas.</p>
+                  <strong className="text-white block font-bold text-xs sm:text-sm">Vale-Transporte Integral</strong>
+                  <p className="text-[11px] text-zinc-400 mt-0.5">Recarga mensal URBS/Metrocard garantida por lei.</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 p-4 bg-[#0F0C1D] border border-purple-500/20 rounded-xl text-zinc-200">
-                <Utensils className="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />
+              <div className="flex items-start gap-2.5 p-3 bg-[#0F0C1D] border border-purple-500/20 rounded-xl text-zinc-200">
+                <Utensils className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
                 <div>
-                  <strong className="text-white block font-bold text-sm">Vale-Refeição ou Alimentação</strong>
-                  <p className="text-xs text-zinc-400 mt-0.5">Refeitório completo no polo de trabalho ou cartão alimentação flexível.</p>
+                  <strong className="text-white block font-bold text-xs sm:text-sm">Vale-Alimentação / Refeição</strong>
+                  <p className="text-[11px] text-zinc-400 mt-0.5">Refeitório estruturado ou cartão alimentação.</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 p-4 bg-[#0F0C1D] border border-purple-500/20 rounded-xl text-zinc-200">
-                <HeartPulse className="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />
+              <div className="flex items-start gap-2.5 p-3 bg-[#0F0C1D] border border-purple-500/20 rounded-xl text-zinc-200">
+                <HeartPulse className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
                 <div>
-                  <strong className="text-white block font-bold text-sm">Seguro de Vida Coletivo</strong>
-                  <p className="text-xs text-zinc-400 mt-0.5">Apólice de acidentes pessoais com cobertura integral 24 horas.</p>
+                  <strong className="text-white block font-bold text-xs sm:text-sm">Seguro de Vida Coletivo</strong>
+                  <p className="text-[11px] text-zinc-400 mt-0.5">Apólice com cobertura 24h para o estudante.</p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 p-4 bg-[#0F0C1D] border border-purple-500/20 rounded-xl text-zinc-200">
-                <BookOpen className="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />
+              <div className="flex items-start gap-2.5 p-3 bg-[#0F0C1D] border border-purple-500/20 rounded-xl text-zinc-200">
+                <BookOpen className="w-4 h-4 text-purple-400 shrink-0 mt-0.5" />
                 <div>
-                  <strong className="text-white block font-bold text-sm">Tutoria e Mentoria Dedicada</strong>
-                  <p className="text-xs text-zinc-400 mt-0.5">Acompanhamento contínuo de gestores seniores com plano de aprendizado.</p>
+                  <strong className="text-white block font-bold text-xs sm:text-sm">Tutoria &amp; Mentoria</strong>
+                  <p className="text-[11px] text-zinc-400 mt-0.5">Acompanhamento contínuo de gestores experientes.</p>
                 </div>
               </div>
             </div>
 
             {vaga.beneficios && vaga.beneficios.length > 0 && (
-              <div className="pt-3 border-t border-[#2D1B4E] space-y-2">
-                <span className="text-xs font-bold text-zinc-400 block uppercase tracking-wider">
+              <div className="pt-2.5 border-t border-[#2D1B4E] space-y-1.5">
+                <span className="text-[11px] font-bold text-zinc-400 block uppercase tracking-wider">
                   Diferenciais oferecidos por esta filial:
                 </span>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5">
                   {vaga.beneficios.map((b, i) => (
                     <span
                       key={i}
-                      className="bg-purple-950/60 text-purple-200 border border-purple-500/30 text-xs px-3 py-1 rounded-lg font-medium"
+                      className="bg-purple-950/60 text-purple-200 border border-purple-500/30 text-[11px] px-2.5 py-0.5 rounded-md font-medium"
                     >
                       ✓ {b}
                     </span>
@@ -1166,38 +1140,37 @@ export default function JobDetailsModal({
         )}
 
         {/* ===================================================== */}
-        {/* BLOCO DE RODAPÉ / AÇÕES                               */}
+        {/* BLOCO DE RODAPÉ / AÇÕES (COMPACTO)                    */}
         {/* ===================================================== */}
         <div
-          className="bg-[#160F28] border border-[#2D1B4E] rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4"
+          className="bg-[#160F28] border border-[#2D1B4E] rounded-xl sm:rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-3 p-3.5 sm:p-4"
           style={{
             display: 'flex',
             width: '100%',
             boxSizing: 'border-box',
             marginBottom: '0',
-            padding: '24px',
             height: 'auto',
             maxHeight: 'none'
           }}
         >
-          <div className="text-xs sm:text-sm text-zinc-300 flex items-center gap-2 self-start sm:self-auto">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block animate-pulse" />
+          <div className="text-xs text-zinc-300 flex items-center gap-1.5 self-start sm:self-auto">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 inline-block animate-pulse" />
             <span>
-              <strong>{vaga.candidatosInscritos} candidaturas registradas</strong> para esta vaga via SkillHub
+              <strong>{vaga.candidatosInscritos} candidaturas registradas</strong> via SkillHub
             </span>
           </div>
 
-          <div className="flex items-center gap-3 w-full sm:w-auto">
+          <div className="flex items-center gap-2.5 w-full sm:w-auto">
             <button
               onClick={onClose}
-              className="w-1/2 sm:w-auto px-6 py-2.5 rounded-xl bg-[#0F0C1D] border border-[#2D1B4E] hover:border-purple-500/50 text-zinc-300 hover:text-white font-bold text-xs sm:text-sm transition-colors cursor-pointer"
+              className="w-1/2 sm:w-auto px-5 py-2 rounded-xl bg-[#0F0C1D] border border-[#2D1B4E] hover:border-purple-500/50 text-zinc-300 hover:text-white font-bold text-xs transition-colors cursor-pointer"
             >
               Voltar ao Painel
             </button>
 
             {vaga.jaCandidatou ? (
-              <span className="w-1/2 sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-purple-950/80 text-purple-300 border border-purple-500/40 text-xs sm:text-sm font-bold shadow-md">
-                <Check className="w-4 h-4 text-purple-400" />
+              <span className="w-1/2 sm:w-auto inline-flex items-center justify-center gap-1.5 px-5 py-2 rounded-xl bg-purple-950/80 text-purple-300 border border-purple-500/40 text-xs font-bold shadow-sm">
+                <Check className="w-3.5 h-3.5 text-purple-400" />
                 <span>Candidatura Enviada</span>
               </span>
             ) : (
@@ -1206,10 +1179,10 @@ export default function JobDetailsModal({
                   onClose();
                   onApply(vaga);
                 }}
-                className="w-1/2 sm:w-auto px-7 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 via-purple-700 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white font-bold text-xs sm:text-sm shadow-lg shadow-purple-950/50 flex items-center justify-center gap-2 transition-all hover:scale-[1.02] cursor-pointer"
+                className="w-1/2 sm:w-auto px-6 py-2 rounded-xl bg-gradient-to-r from-purple-600 via-purple-700 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white font-bold text-xs shadow-md shadow-purple-950/50 flex items-center justify-center gap-1.5 transition-all hover:scale-[1.02] cursor-pointer"
               >
                 <span>Quero me Candidatar</span>
-                <ArrowRight className="w-4 h-4 text-purple-200" />
+                <ArrowRight className="w-3.5 h-3.5 text-purple-200" />
               </button>
             )}
           </div>
