@@ -22,7 +22,12 @@ import {
   Sparkles,
   ArrowRight,
   Plus,
-  Minus
+  Minus,
+  Bus,
+  Wallet,
+  PiggyBank,
+  Landmark,
+  HeartHandshake
 } from 'lucide-react';
 
 export default function HoleriteSimulator() {
@@ -57,7 +62,7 @@ export default function HoleriteSimulator() {
   // CÁLCULOS TRABALHISTAS & FISCAIS (OFICIAIS 2026)
   // =========================================================================
 
-  // 1. Adicionais de Insalubridade e Periculosidade
+  // 1. Adicionais Especiais
   const valorAdicionalEspecial = useMemo(() => {
     if (tipoAdicional === 'PERICULOSIDADE') {
       return salarioBruto * 0.3; // 30% sobre salário base
@@ -74,7 +79,7 @@ export default function HoleriteSimulator() {
     return 0;
   }, [tipoAdicional, salarioBruto]);
 
-  // Total de Proventos Brutos
+  // Total de Ganhos Brutos
   const totalProventos = useMemo(() => {
     return salarioBruto + horasExtras + valorAdicionalEspecial + outrosAdicionais;
   }, [salarioBruto, horasExtras, valorAdicionalEspecial, outrosAdicionais]);
@@ -82,10 +87,9 @@ export default function HoleriteSimulator() {
   // 2. Cálculo Progressivo do INSS 2026
   const inssCalculado = useMemo(() => {
     if (contractType === 'ESTAGIARIO') {
-      return { valor: 0, aliquotaEfetiva: 0, faixa: 'Isento (Termo TCE)' };
+      return { valor: 0, aliquotaEfetiva: 0, faixa: 'Isento (Estágio não desconta INSS)' };
     }
 
-    // Tabela Oficial de Faixas Progressivas INSS 2026
     const base = totalProventos;
     let imposto = 0;
 
@@ -107,8 +111,7 @@ export default function HoleriteSimulator() {
         (faixa3Teto - faixa2Teto) * 0.12 +
         (base - faixa3Teto) * 0.14;
     } else {
-      // Teto Máximo do INSS
-      imposto = 951.63;
+      imposto = 951.63; // Teto Máximo
     }
 
     const valorFinal = Math.min(imposto, 951.63);
@@ -117,11 +120,11 @@ export default function HoleriteSimulator() {
     return {
       valor: valorFinal,
       aliquotaEfetiva: Number(aliquotaEfetiva.toFixed(2)),
-      faixa: base > faixa4Teto ? 'Teto Máximo' : `${aliquotaEfetiva.toFixed(1)}% efetiva`
+      faixa: base > faixa4Teto ? 'Teto Máximo' : `${aliquotaEfetiva.toFixed(1)}% do salário`
     };
   }, [totalProventos, contractType]);
 
-  // 3. Desconto do Vale-Transporte (Limite de 6% do salário base ou isento para estágio)
+  // 3. Desconto do Vale-Transporte (Limite de 6%)
   const descontoVT = useMemo(() => {
     if (!optValeTransporte || contractType === 'ESTAGIARIO') return 0;
     return Math.round(salarioBruto * 0.06 * 100) / 100;
@@ -129,17 +132,13 @@ export default function HoleriteSimulator() {
 
   // 4. Cálculo do IRPF Retido na Fonte 2026
   const irpfCalculado = useMemo(() => {
-    // Dedução por dependente: R$ 189,59
     const deducaoDependentes = dependentes * 189.59;
     const baseLegal = totalProventos - inssCalculado.valor - deducaoDependentes;
-
-    // Desconto simplificado de R$ 564,80 (se for mais vantajoso)
     const baseComSimplificado = totalProventos - 564.8;
-
     const baseCalculo = Math.min(baseLegal, baseComSimplificado);
 
     if (baseCalculo <= 2259.2) {
-      return { valor: 0, aliquota: 'Isento', parcelaDeduzir: 0 };
+      return { valor: 0, aliquota: 'Isento (Não Paga Nada)', parcelaDeduzir: 0 };
     }
 
     let valor = 0;
@@ -174,44 +173,38 @@ export default function HoleriteSimulator() {
   // 5. Cálculo do FGTS (Depositado pela Empresa, NÃO Descontado)
   const fgtsCalculado = useMemo(() => {
     if (contractType === 'ESTAGIARIO') {
-      return { valor: 0, percentual: 0, rotulo: 'Isento (Lei do Estágio 11.788)' };
+      return { valor: 0, percentual: 0, rotulo: 'Isento por lei (Estágio)' };
     }
     if (contractType === 'APRENDIZ') {
       return {
         valor: totalProventos * 0.02,
         percentual: 2,
-        rotulo: '2% (Alíquota Especial de Aprendizagem)'
+        rotulo: '2% (Alíquota especial para Aprendiz)'
       };
     }
     return {
       valor: totalProventos * 0.08,
       percentual: 8,
-      rotulo: '8% (Alíquota CLT Tradicional)'
+      rotulo: '8% (Alíquota tradicional CLT)'
     };
   }, [totalProventos, contractType]);
 
   // Totais Finais
-  const totalDescontos = useMemo(() => {
-    return inssCalculado.valor + irpfCalculado.valor + descontoVT + outrosDescontos;
-  }, [inssCalculado.valor, irpfCalculado.valor, descontoVT, outrosDescontos]);
-
-  const salarioLiquido = useMemo(() => {
-    return Math.max(0, totalProventos - totalDescontos);
-  }, [totalProventos, totalDescontos]);
+  const totalDescontosGoverno = inssCalculado.valor + irpfCalculado.valor;
+  const totalDescontosBeneficios = descontoVT + outrosDescontos;
+  const totalDescontos = totalDescontosGoverno + totalDescontosBeneficios;
+  const salarioLiquido = Math.max(0, totalProventos - totalDescontos);
 
   // Distribuição Percentual para a Barra Visual
   const percentLiquido = totalProventos > 0 ? (salarioLiquido / totalProventos) * 100 : 100;
   const percentINSS = totalProventos > 0 ? (inssCalculado.valor / totalProventos) * 100 : 0;
   const percentIRPF = totalProventos > 0 ? (irpfCalculado.valor / totalProventos) * 100 : 0;
-  const percentOutros =
-    totalProventos > 0 ? ((descontoVT + outrosDescontos) / totalProventos) * 100 : 0;
+  const percentOutros = totalProventos > 0 ? (totalDescontosBeneficios / totalProventos) * 100 : 0;
 
   // Impacto Anual Acumulado (12 meses + 13º + 1/3 de férias + FGTS)
   const anualAcumulado = useMemo(() => {
-    const decimoTerceiroLiquido = salarioLiquido;
-    const tercoFeriasLiquido = salarioLiquido / 3;
-    const totalAnualLiquido = salarioLiquido * 12 + decimoTerceiroLiquido + tercoFeriasLiquido;
-    const totalFGTSAnual = fgtsCalculado.valor * 13.33; // 12 meses + 13º + férias
+    const totalAnualLiquido = salarioLiquido * 12 + salarioLiquido + salarioLiquido / 3;
+    const totalFGTSAnual = fgtsCalculado.valor * 13.33;
 
     return {
       totalAnualLiquido,
@@ -222,14 +215,9 @@ export default function HoleriteSimulator() {
 
   // Estimativa Comparativa CLT vs PJ
   const comparativoPJ = useMemo(() => {
-    // Estimativa PJ no Anexo III do Simples Nacional (6% imposto DAS + custos básicos de contabilidade/DAS)
     const impostoDAS = totalProventos * 0.06;
     const liquidoPJ = totalProventos - impostoDAS;
-
-    // Diferença em relação ao salário líquido CLT
     const diferencaMensal = liquidoPJ - salarioLiquido;
-
-    // Para ter o mesmo benefício anual (13º, férias + 1/3, FGTS, rescisão), o PJ precisa ganhar ~30% a mais
     const valorBrutoPJEquivalente = (anualAcumulado.totalAnualLiquido + anualAcumulado.totalFGTSAnual) / 11;
 
     return {
@@ -240,20 +228,18 @@ export default function HoleriteSimulator() {
     };
   }, [totalProventos, salarioLiquido, anualAcumulado]);
 
-  // Copiar Resultado para a Área de Transferência
+  // Copiar Resumo em Linguagem Simples
   const handleCopySummary = () => {
-    const texto = `📊 Resumo do Holerite - SkillHub 2026\n` +
+    const texto = `💰 Resumo Descomplicado do Meu Salário - SkillHub\n` +
       `----------------------------------------\n` +
-      `Contrato: ${contractType === 'APRENDIZ' ? 'Jovem Aprendiz' : contractType === 'ESTAGIARIO' ? 'Estágio' : 'CLT Padrão'}\n` +
-      `Salário Bruto: R$ ${totalProventos.toFixed(2)}\n` +
-      `(-) INSS: R$ ${inssCalculado.valor.toFixed(2)} (${inssCalculado.faixa})\n` +
-      `(-) IRPF: R$ ${irpfCalculado.valor.toFixed(2)}\n` +
-      (descontoVT > 0 ? `(-) Vale-Transporte (6%): R$ ${descontoVT.toFixed(2)}\n` : '') +
-      (outrosDescontos > 0 ? `(-) Outros Descontos: R$ ${outrosDescontos.toFixed(2)}\n` : '') +
+      `Contrato: ${contractType === 'APRENDIZ' ? 'Jovem Aprendiz' : contractType === 'ESTAGIARIO' ? 'Estágio' : 'CLT Tradicional'}\n` +
+      `1. O que eu ganho (Salário Bruto): R$ ${totalProventos.toFixed(2)}\n` +
+      `2. O que o Governo recolhe (INSS + IR): - R$ ${totalDescontosGoverno.toFixed(2)}\n` +
+      (totalDescontosBeneficios > 0 ? `3. Descontos de Benefícios (VT e outros): - R$ ${totalDescontosBeneficios.toFixed(2)}\n` : '') +
       `----------------------------------------\n` +
-      `💰 Salário Líquido a Receber: R$ ${salarioLiquido.toFixed(2)}\n` +
-      `💼 FGTS Depositado pela Empresa: R$ ${fgtsCalculado.valor.toFixed(2)} (${fgtsCalculado.rotulo})\n` +
-      `Calculado em: https://skillhub.com.br`;
+      `✅ O QUE REALMENTE CAI NA MINHA CONTA: R$ ${salarioLiquido.toFixed(2)}\n` +
+      `🏦 Poupança FGTS depositada pela empresa: R$ ${fgtsCalculado.valor.toFixed(2)}/mês (NÃO descontado do salário)\n` +
+      `Calculadora disponível em: https://skillhub.com.br/holerite`;
 
     navigator.clipboard.writeText(texto);
     setCopied(true);
@@ -267,7 +253,7 @@ export default function HoleriteSimulator() {
   return (
     <div className="w-full max-w-[800px] mx-auto space-y-4 pb-16">
       {/* ========================================================================= */}
-      {/* 1. CABEÇALHO HERO BANNER (PADRÃO ESCURO DO SITE)                          */}
+      {/* 1. CABEÇALHO HERO BANNER (PADRÃO ESCURO E DIDÁTICO)                       */}
       {/* ========================================================================= */}
       <div className="bg-[#110E1B] border border-purple-500/20 rounded-2xl p-5 shadow-xl relative overflow-hidden">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 relative z-10">
@@ -275,19 +261,19 @@ export default function HoleriteSimulator() {
             <div className="flex flex-wrap items-center gap-1.5 mb-2">
               <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-purple-950/80 text-purple-200 border border-purple-500/30">
                 <Calculator className="w-3.5 h-3.5 text-purple-400" />
-                <span>Simulador de Holerite</span>
+                <span>Calculadora Salarial Simples</span>
               </span>
               <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-950/70 text-emerald-300 border border-emerald-500/30">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                <span>Tabelas Oficiais 2026</span>
+                <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+                <span>100% Descomplicada &amp; Sem Juridiquês</span>
               </span>
             </div>
 
             <h1 className="text-lg sm:text-xl font-bold text-white tracking-tight">
-              Calculadora de Salário Líquido &amp; Direitos Trabalhistas
+              Calculadora de Salário Líquido (Holerite Didático)
             </h1>
-            <p className="text-xs sm:text-sm text-zinc-400 mt-1 max-w-xl leading-relaxed">
-              Descubra exatamente quanto cai na sua conta bancária após os descontos legais de INSS, Imposto de Renda e Vale-Transporte.
+            <p className="text-xs sm:text-sm text-zinc-300 mt-1 max-w-xl leading-relaxed">
+              Descubra com facilidade quanto você realmente vai receber no banco, entendendo cada desconto em palavras simples.
             </p>
           </div>
 
@@ -295,16 +281,16 @@ export default function HoleriteSimulator() {
             <button
               onClick={handleCopySummary}
               className="px-3 py-1.5 rounded-xl bg-[#171126] hover:bg-[#221838] text-zinc-300 hover:text-white border border-purple-500/20 text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer"
-              title="Copiar resultado formatado"
+              title="Copiar resumo simplificado"
             >
               {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-purple-400" />}
-              <span>{copied ? 'Copiado!' : 'Copiar'}</span>
+              <span>{copied ? 'Copiado!' : 'Copiar Resumo'}</span>
             </button>
 
             <button
               onClick={handlePrint}
               className="px-3 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer shadow-md shadow-purple-950/40"
-              title="Imprimir holerite ou salvar em PDF"
+              title="Imprimir ou salvar em PDF"
             >
               <Printer className="w-3.5 h-3.5" />
               <span>Imprimir</span>
@@ -312,70 +298,82 @@ export default function HoleriteSimulator() {
           </div>
         </div>
 
-        {/* Modalidade de Contrato em 3 botões modernos */}
-        <div className="mt-4 pt-3.5 border-t border-[#2D1B4E]/60 grid grid-cols-1 sm:grid-cols-3 gap-2">
-          <button
-            onClick={() => {
-              setContractType('APRENDIZ');
-              setSalarioBruto(1518);
-              setOptValeTransporte(true);
-            }}
-            className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
-              contractType === 'APRENDIZ'
-                ? 'bg-purple-950/90 border-purple-500 text-white shadow-md ring-1 ring-purple-400/50'
-                : 'bg-[#140E24] border-[#2D1B4E] text-zinc-400 hover:text-white'
-            }`}
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-bold">Jovem Aprendiz</span>
-              <span className="text-[10px] bg-purple-900/80 text-purple-200 px-1.5 py-0.2 rounded font-semibold">
-                FGTS 2%
-              </span>
-            </div>
-            <p className="text-[11px] text-zinc-400 mt-0.5">Lei 10.097/00 • Contrato protegido</p>
-          </button>
+        {/* Modalidade de Contrato com explicações para leigos */}
+        <div className="mt-4 pt-3.5 border-t border-[#2D1B4E]/60 space-y-2">
+          <span className="text-xs font-bold text-zinc-300 block">
+            Qual é o seu tipo de contratação?
+          </span>
 
-          <button
-            onClick={() => {
-              setContractType('CLT');
-              setSalarioBruto(2200);
-              setOptValeTransporte(true);
-            }}
-            className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
-              contractType === 'CLT'
-                ? 'bg-purple-950/90 border-purple-500 text-white shadow-md ring-1 ring-purple-400/50'
-                : 'bg-[#140E24] border-[#2D1B4E] text-zinc-400 hover:text-white'
-            }`}
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-bold">CLT Tradicional</span>
-              <span className="text-[10px] bg-purple-900/80 text-purple-200 px-1.5 py-0.2 rounded font-semibold">
-                FGTS 8%
-              </span>
-            </div>
-            <p className="text-[11px] text-zinc-400 mt-0.5">Regime formal de 40h/44h semanais</p>
-          </button>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <button
+              onClick={() => {
+                setContractType('APRENDIZ');
+                setSalarioBruto(1518);
+                setOptValeTransporte(true);
+              }}
+              className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
+                contractType === 'APRENDIZ'
+                  ? 'bg-purple-950/90 border-purple-500 text-white shadow-md ring-1 ring-purple-400/50'
+                  : 'bg-[#140E24] border-[#2D1B4E] text-zinc-400 hover:text-white'
+              }`}
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-white">Jovem Aprendiz</span>
+                <span className="text-[10px] bg-purple-900 text-purple-200 px-1.5 py-0.2 rounded font-semibold">
+                  FGTS 2%
+                </span>
+              </div>
+              <p className="text-[11px] text-zinc-300 mt-1">
+                De 14 a 24 anos. Carteira assinada com curso e horário protegido.
+              </p>
+            </button>
 
-          <button
-            onClick={() => {
-              setContractType('ESTAGIARIO');
-              setSalarioBruto(1400);
-              setOptValeTransporte(false);
-            }}
-            className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
-              contractType === 'ESTAGIARIO'
-                ? 'bg-purple-950/90 border-purple-500 text-white shadow-md ring-1 ring-purple-400/50'
-                : 'bg-[#140E24] border-[#2D1B4E] text-zinc-400 hover:text-white'
-            }`}
-          >
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-bold">Estágio (Bolsa)</span>
-              <span className="text-[10px] bg-emerald-950/90 text-emerald-300 px-1.5 py-0.2 rounded font-semibold">
-                Sem INSS
-              </span>
-            </div>
-            <p className="text-[11px] text-zinc-400 mt-0.5">Lei 11.788/08 • Termo de estágio</p>
-          </button>
+            <button
+              onClick={() => {
+                setContractType('CLT');
+                setSalarioBruto(2200);
+                setOptValeTransporte(true);
+              }}
+              className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
+                contractType === 'CLT'
+                  ? 'bg-purple-950/90 border-purple-500 text-white shadow-md ring-1 ring-purple-400/50'
+                  : 'bg-[#140E24] border-[#2D1B4E] text-zinc-400 hover:text-white'
+              }`}
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-white">Carteira Assinada (CLT)</span>
+                <span className="text-[10px] bg-purple-900 text-purple-200 px-1.5 py-0.2 rounded font-semibold">
+                  FGTS 8%
+                </span>
+              </div>
+              <p className="text-[11px] text-zinc-300 mt-1">
+                Trabalho formal comum com todos os direitos (13º, férias e FGTS).
+              </p>
+            </button>
+
+            <button
+              onClick={() => {
+                setContractType('ESTAGIARIO');
+                setSalarioBruto(1400);
+                setOptValeTransporte(false);
+              }}
+              className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
+                contractType === 'ESTAGIARIO'
+                  ? 'bg-purple-950/90 border-purple-500 text-white shadow-md ring-1 ring-purple-400/50'
+                  : 'bg-[#140E24] border-[#2D1B4E] text-zinc-400 hover:text-white'
+              }`}
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-xs font-bold text-white">Estágio (Estudante)</span>
+                <span className="text-[10px] bg-emerald-950 text-emerald-300 px-1.5 py-0.2 rounded font-semibold">
+                  Sem Descontos
+                </span>
+              </div>
+              <p className="text-[11px] text-zinc-300 mt-1">
+                Bolsa de aprendizado escolar. Não tem desconto de INSS nem FGTS.
+              </p>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -384,26 +382,33 @@ export default function HoleriteSimulator() {
       {/* ========================================================================= */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* ========================================================================= */}
-        {/* COLUNA ESQUERDA: FORMULÁRIO DE ENTRADA DE DADOS                           */}
+        {/* COLUNA ESQUERDA: FORMULÁRIO DE ENTRADA (LINGUAGEM SIMPLES E DIDÁTICA)     */}
         {/* ========================================================================= */}
         <div className="bg-[#110E1B] border border-purple-500/20 rounded-2xl p-4 sm:p-5 space-y-4 shadow-xl">
-          <div className="flex items-center justify-between border-b border-[#2D1B4E]/60 pb-2.5">
+          <div className="border-b border-[#2D1B4E]/60 pb-2.5">
             <h2 className="text-sm sm:text-base font-bold text-white flex items-center gap-1.5">
               <Scale className="w-4 h-4 text-purple-400" />
-              <span>Parâmetros Salariais</span>
+              <span>Valores do seu Contrato</span>
             </h2>
-            <span className="text-[11px] text-zinc-400">Edição em tempo real</span>
+            <p className="text-[12px] text-zinc-400 mt-0.5">
+              Preencha com os valores combinados com a sua empresa:
+            </p>
           </div>
 
-          {/* Salário Bruto */}
+          {/* 1. Salário Bruto com subtítulo explicativo */}
           <div className="space-y-1.5">
-            <div className="flex justify-between items-center text-xs">
-              <label htmlFor="salario-input" className="font-semibold text-zinc-200">
-                {contractType === 'ESTAGIARIO' ? 'Bolsa-Auxílio Mensal (R$):' : 'Salário Bruto Base (R$):'}
-              </label>
-              <span className="text-xs font-bold text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-500/30">
-                R$ {salarioBruto.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
-              </span>
+            <div>
+              <div className="flex justify-between items-center text-xs">
+                <label htmlFor="salario-input" className="font-bold text-zinc-200">
+                  {contractType === 'ESTAGIARIO' ? 'Bolsa-Auxílio Mensal:' : 'Salário Bruto (Registrado na Carteira):'}
+                </label>
+                <span className="text-xs font-bold text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-500/30">
+                  R$ {salarioBruto.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
+                </span>
+              </div>
+              <p className="text-[11px] text-purple-300 mt-0.5">
+                💡 O valor total combinado antes de qualquer desconto obrigatório.
+              </p>
             </div>
 
             <div className="relative">
@@ -420,13 +425,13 @@ export default function HoleriteSimulator() {
               />
             </div>
 
-            {/* Botões Rápidos de Salário */}
+            {/* Botões Rápidos com rótulos amigáveis */}
             <div className="flex flex-wrap gap-1.5 pt-1">
               {[
-                { label: 'R$ 800 (Aprendiz 20h)', value: 800 },
-                { label: 'R$ 1.518 (Mínimo)', value: 1518 },
-                { label: 'R$ 2.200 (CLT Jr)', value: 2200 },
-                { label: 'R$ 3.500 (Pleno)', value: 3500 }
+                { label: 'R$ 800 (Aprendiz 4h)', value: 800 },
+                { label: 'R$ 1.518 (Salário Mínimo)', value: 1518 },
+                { label: 'R$ 2.200 (Início de Carreira)', value: 2200 },
+                { label: 'R$ 3.500 (Profissional)', value: 3500 }
               ].map((b) => (
                 <button
                   key={b.value}
@@ -444,29 +449,39 @@ export default function HoleriteSimulator() {
             </div>
           </div>
 
-          {/* Número de Dependentes */}
+          {/* 2. Dependentes com explicação simples */}
           <div className="space-y-1.5 pt-1">
             <div className="flex justify-between items-center text-xs">
-              <span className="font-semibold text-zinc-200 flex items-center gap-1">
-                <span>Número de Dependentes:</span>
+              <span className="font-bold text-zinc-200 flex items-center gap-1.5">
+                <span>Pessoas que Dependem de Você:</span>
                 <button
                   type="button"
                   onClick={() =>
                     setActiveTooltip(activeTooltip === 'dependentes' ? null : 'dependentes')
                   }
-                  className="text-zinc-400 hover:text-purple-300"
+                  className="text-purple-400 hover:text-purple-300 cursor-pointer"
+                  title="Clique para entender"
                 >
                   <HelpCircle className="w-3.5 h-3.5" />
                 </button>
               </span>
               <span className="text-[11px] text-purple-300">
-                -R$ {(dependentes * 189.59).toFixed(2)} na base IRPF
+                {dependentes > 0 ? `Economiza no Imposto de Renda` : 'Nenhum dependente'}
               </span>
             </div>
+            <p className="text-[11px] text-zinc-400">
+              Filhos ou cônjuge que dependem financeiramente de você. Reduz o desconto do Imposto de Renda!
+            </p>
 
             {activeTooltip === 'dependentes' && (
-              <div className="text-[11px] bg-[#160F28] border border-purple-500/30 rounded-lg p-2 text-zinc-300 leading-relaxed">
-                Cada dependente legal (filhos até 21 anos ou cônjuge) deduz R$ 189,59 da base de cálculo do Imposto de Renda.
+              <div className="text-[11px] bg-[#160F28] border border-purple-500/40 rounded-xl p-3 text-zinc-200 leading-relaxed space-y-1 shadow-lg">
+                <div className="font-bold text-purple-300 flex items-center gap-1">
+                  <Info className="w-3.5 h-3.5" />
+                  <span>O que são dependentes?</span>
+                </div>
+                <p>
+                  Filhos menores de 21 anos (ou até 24 se universitários) ou parceiro(a). Cada dependente cadastrado reduz automaticamente <strong>R$ 189,59</strong> da base onde o governo cobra o Imposto de Renda, fazendo você pagar menos imposto.
+                </p>
               </div>
             )}
 
@@ -492,48 +507,64 @@ export default function HoleriteSimulator() {
                   <Plus className="w-3.5 h-3.5" />
                 </button>
               </div>
-              <span className="text-xs text-zinc-400">dependentes legais para dedução de IR</span>
+              <span className="text-xs text-zinc-300">dependentes informados</span>
             </div>
           </div>
 
-          {/* Opção Vale-Transporte */}
+          {/* 3. Vale-Transporte com linguagem do dia a dia */}
           {contractType !== 'ESTAGIARIO' && (
-            <div className="bg-[#140E24] border border-purple-500/20 rounded-xl p-3 space-y-1">
-              <label className="flex items-center gap-2 text-xs font-semibold text-zinc-200 cursor-pointer">
-                <input
-                  type="checkbox"
-                  checked={optValeTransporte}
-                  onChange={(e) => setOptValeTransporte(e.target.checked)}
-                  className="w-4 h-4 accent-purple-600 rounded cursor-pointer"
-                />
-                <span>Optar por Receber Vale-Transporte (VT)</span>
-              </label>
+            <div className="bg-[#140E24] border border-purple-500/20 rounded-xl p-3 space-y-1.5">
+              <div className="flex items-center justify-between">
+                <label className="flex items-center gap-2 text-xs font-bold text-zinc-200 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={optValeTransporte}
+                    onChange={(e) => setOptValeTransporte(e.target.checked)}
+                    className="w-4 h-4 accent-purple-600 rounded cursor-pointer"
+                  />
+                  <span>Quero receber Vale-Transporte (Ônibus / Metrocard)</span>
+                </label>
+                <button
+                  type="button"
+                  onClick={() => setActiveTooltip(activeTooltip === 'vt' ? null : 'vt')}
+                  className="text-purple-400 hover:text-purple-300 text-[11px] font-semibold flex items-center gap-0.5 cursor-pointer"
+                >
+                  <span>Entenda</span>
+                  <HelpCircle className="w-3.5 h-3.5" />
+                </button>
+              </div>
+
               <p className="text-[11px] text-zinc-400 pl-6 leading-relaxed">
-                Desconto legal limitado a <strong>6% do salário base</strong> (neste caso, R$ {descontoVT.toFixed(2)}).
+                A empresa paga as passagens do mês inteiro e desconta no máximo <strong>6% do seu salário</strong> (neste cálculo: R$ {descontoVT.toFixed(2)}).
               </p>
+
+              {activeTooltip === 'vt' && (
+                <div className="text-[11px] bg-[#160F28] border border-purple-500/40 rounded-xl p-2.5 text-zinc-200 leading-relaxed shadow-lg">
+                  <strong>Regra do Vale-Transporte:</strong> A empresa é obrigada a fornecer as passagens necessárias para o trajeto casa-trabalho. Se suas passagens custarem R$ 300 no mês, você só paga os 6% (ex: R$ {descontoVT.toFixed(2)}) e a empresa cobre todo o restante!
+                </div>
+              )}
             </div>
           )}
 
-          {/* Sanfona de Adicionais (Horas Extras, Periculosidade, Insalubridade) */}
+          {/* 4. Sanfona de Ganhos Extras */}
           <div className="border-t border-[#2D1B4E]/60 pt-2">
             <button
               type="button"
               onClick={() => setShowAdicionais(!showAdicionais)}
               className="w-full flex items-center justify-between text-xs font-semibold text-purple-300 hover:text-white py-1 transition-colors cursor-pointer"
             >
-              <span className="flex items-center gap-1">
+              <span className="flex items-center gap-1.5">
                 <TrendingUp className="w-3.5 h-3.5 text-purple-400" />
-                <span>Adicionais (Horas Extras, Periculosidade, Bônus)</span>
+                <span>Ganhos Extras (Horas Extras, Periculosidade, Bônus)</span>
               </span>
               {showAdicionais ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
             </button>
 
             {showAdicionais && (
               <div className="space-y-3 pt-2">
-                {/* Horas Extras */}
                 <div className="space-y-1">
                   <label className="text-xs font-medium text-zinc-300 block">
-                    Horas Extras e Adicional Noturno (R$):
+                    Horas a mais trabalhadas (Horas Extras e Noturno):
                   </label>
                   <input
                     type="number"
@@ -542,37 +573,30 @@ export default function HoleriteSimulator() {
                     value={horasExtras || ''}
                     onChange={(e) => setHorasExtras(Math.max(0, Number(e.target.value)))}
                     className="w-full bg-[#160F28] border border-purple-500/20 rounded-xl px-3 py-1.5 text-xs text-white"
-                    placeholder="R$ 0.00"
+                    placeholder="R$ 0,00"
                   />
                 </div>
 
-                {/* Adicional de Periculosidade / Insalubridade */}
                 <div className="space-y-1">
                   <label className="text-xs font-medium text-zinc-300 block">
-                    Adicional Especial de Atividade:
+                    Adicional por Risco ou Saúde:
                   </label>
                   <select
                     value={tipoAdicional}
                     onChange={(e) => setTipoAdicional(e.target.value as any)}
                     className="w-full bg-[#160F28] border border-purple-500/20 rounded-xl px-3 py-1.5 text-xs text-white"
                   >
-                    <option value="NENHUM">Sem Adicional Especial</option>
-                    <option value="PERICULOSIDADE">Periculosidade (+30% sobre o salário)</option>
-                    <option value="INSALUBRIDADE_MIN">Insalubridade Grau Mínimo (+10% do salário mínimo)</option>
-                    <option value="INSALUBRIDADE_MED">Insalubridade Grau Médio (+20% do salário mínimo)</option>
-                    <option value="INSALUBRIDADE_MAX">Insalubridade Grau Máximo (+40% do salário mínimo)</option>
+                    <option value="NENHUM">Nenhum adicional especial</option>
+                    <option value="PERICULOSIDADE">Periculosidade (+30% por trabalhar com risco elétrico/moto/combustível)</option>
+                    <option value="INSALUBRIDADE_MIN">Insalubridade Mínima (+10% por barulho/químicos leves)</option>
+                    <option value="INSALUBRIDADE_MED">Insalubridade Média (+20% por ambientes hospitalares/agentes)</option>
+                    <option value="INSALUBRIDADE_MAX">Insalubridade Máxima (+40% por alto contato biológico/químico)</option>
                   </select>
-                  {valorAdicionalEspecial > 0 && (
-                    <span className="text-[11px] text-emerald-400 block pt-0.5">
-                      + R$ {valorAdicionalEspecial.toFixed(2)} somados ao bruto
-                    </span>
-                  )}
                 </div>
 
-                {/* Outros Adicionais */}
                 <div className="space-y-1">
                   <label className="text-xs font-medium text-zinc-300 block">
-                    Outros Proventos / Comissões / Gratificações (R$):
+                    Bônus, Comissões ou Gorjetas (R$):
                   </label>
                   <input
                     type="number"
@@ -581,20 +605,20 @@ export default function HoleriteSimulator() {
                     value={outrosAdicionais || ''}
                     onChange={(e) => setOutrosAdicionais(Math.max(0, Number(e.target.value)))}
                     className="w-full bg-[#160F28] border border-purple-500/20 rounded-xl px-3 py-1.5 text-xs text-white"
-                    placeholder="R$ 0.00"
+                    placeholder="R$ 0,00"
                   />
                 </div>
               </div>
             )}
           </div>
 
-          {/* Outros Descontos Voluntários */}
+          {/* 5. Outros Descontos Voluntários */}
           <div className="space-y-1 pt-1 border-t border-[#2D1B4E]/60">
             <div className="flex justify-between items-center text-xs">
-              <label htmlFor="outros-descontos-input" className="font-semibold text-zinc-300">
-                Outros Descontos Voluntários (R$):
+              <label htmlFor="outros-descontos-input" className="font-bold text-zinc-300">
+                Outros Descontos (Convênios ou Adiantamentos):
               </label>
-              <span className="text-[11px] text-zinc-400">Plano de Saúde, Coparticipação...</span>
+              <span className="text-[11px] text-zinc-400">Plano de saúde, odonto...</span>
             </div>
             <input
               id="outros-descontos-input"
@@ -604,13 +628,13 @@ export default function HoleriteSimulator() {
               value={outrosDescontos || ''}
               onChange={(e) => setOutrosDescontos(Math.max(0, Number(e.target.value)))}
               className="w-full bg-[#160F28] border border-purple-500/20 rounded-xl px-3 py-2 text-xs text-white"
-              placeholder="Ex: 50.00 (convênio médico/odontológico)"
+              placeholder="Ex: 50.00"
             />
           </div>
         </div>
 
         {/* ========================================================================= */}
-        {/* COLUNA DIREITA: RESUMO DO HOLERITE E VALOR LÍQUIDO                        */}
+        {/* COLUNA DIREITA: RESUMO DO HOLERITE COM BOTÕES "ENTENDA ESTE DESCONTO"     */}
         {/* ========================================================================= */}
         <div className="bg-[#110E1B] border border-purple-500/20 rounded-2xl p-4 sm:p-5 flex flex-col justify-between space-y-4 shadow-xl">
           <div className="space-y-3.5">
@@ -619,167 +643,247 @@ export default function HoleriteSimulator() {
               <div className="flex items-center gap-1.5">
                 <FileText className="w-4 h-4 text-purple-400" />
                 <h2 className="text-sm sm:text-base font-bold text-white">
-                  Resumo do Contracheque
+                  Contracheque Explicado
                 </h2>
               </div>
-              <span className="text-[11px] bg-[#160F28] text-purple-300 border border-purple-500/30 px-2 py-0.5 rounded font-mono">
-                COMPETÊNCIA 2026
+              <span className="text-[11px] bg-purple-950/80 text-purple-300 border border-purple-500/30 px-2 py-0.5 rounded font-semibold">
+                Ano Oficial 2026
               </span>
             </div>
 
-            {/* DESTAQUE PRINCIPAL: SALÁRIO LÍQUIDO FINAL */}
-            <div className="bg-gradient-to-r from-emerald-950/80 via-[#0F1E17] to-[#140E24] border border-emerald-500/40 rounded-xl p-4 shadow-inner">
+            {/* DESTAQUE DO SALÁRIO LÍQUIDO */}
+            <div className="bg-gradient-to-r from-emerald-950/90 via-[#0F1E17] to-[#140E24] border border-emerald-500/40 rounded-xl p-4 shadow-inner">
               <span className="text-[11px] uppercase font-bold text-emerald-300 tracking-wider block">
-                Salário Líquido Final (Na sua Conta)
+                💰 O que realmente cai na sua conta (via Pix/TED):
               </span>
               <div className="text-2xl sm:text-3xl font-black text-emerald-400 mt-1">
                 R$ {salarioLiquido.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
               </div>
-              <div className="text-xs text-zinc-300 mt-1 flex items-center justify-between">
-                <span>Total Bruto: R$ {totalProventos.toFixed(2)}</span>
-                <span className="text-rose-400 font-semibold">
-                  Total Descontos: -R$ {totalDescontos.toFixed(2)}
-                </span>
-              </div>
+              <p className="text-xs text-zinc-300 mt-1">
+                Salário livre para pagar suas contas, guardar na poupança e usar no dia a dia.
+              </p>
             </div>
 
-            {/* TABELA DE RUBRICAS / DETALHAMENTO */}
+            {/* ITENS DETALHADOS COM BOTÃO "ENTENDA" */}
             <div className="space-y-2 text-xs">
-              {/* Proventos */}
-              <div className="flex items-center justify-between p-2 rounded-lg bg-[#140E24] text-zinc-200">
-                <span className="font-medium">
-                  {contractType === 'ESTAGIARIO' ? 'Bolsa-Auxílio Mensal' : 'Salário Bruto Base'}
-                </span>
-                <span className="font-bold text-emerald-400">
-                  + R$ {salarioBruto.toFixed(2)}
+              {/* Salário Bruto */}
+              <div className="flex items-center justify-between p-2.5 rounded-lg bg-[#140E24] text-zinc-200">
+                <div>
+                  <span className="font-bold text-white block">1. Salário Combinado (Bruto)</span>
+                  <span className="text-[11px] text-zinc-400">Total antes dos descontos</span>
+                </div>
+                <span className="font-bold text-emerald-400 text-sm">
+                  + R$ {totalProventos.toFixed(2)}
                 </span>
               </div>
 
-              {horasExtras + valorAdicionalEspecial + outrosAdicionais > 0 && (
-                <div className="flex items-center justify-between p-2 rounded-lg bg-[#140E24] text-zinc-200">
-                  <span className="font-medium">Horas Extras &amp; Adicionais</span>
-                  <span className="font-bold text-emerald-400">
-                    + R$ {(horasExtras + valorAdicionalEspecial + outrosAdicionais).toFixed(2)}
+              {/* INSS com Balão Explicativo Didático */}
+              <div className="space-y-1">
+                <div className="flex items-center justify-between p-2.5 rounded-lg bg-[#140E24] text-zinc-200">
+                  <div className="space-y-0.5">
+                    <div className="flex items-center gap-1.5">
+                      <span className="font-bold text-white">2. INSS (Previdência Social)</span>
+                      <button
+                        type="button"
+                        onClick={() => setActiveTooltip(activeTooltip === 'inss' ? null : 'inss')}
+                        className="text-purple-400 hover:text-purple-300 text-[11px] font-semibold underline cursor-pointer"
+                      >
+                        {activeTooltip === 'inss' ? 'Fechar' : 'Entenda (?)'}
+                      </button>
+                    </div>
+                    <span className="text-[11px] text-zinc-400 block">
+                      {contractType === 'ESTAGIARIO' ? 'Estágio é isento' : `Desconto obrigatório: ${inssCalculado.faixa}`}
+                    </span>
+                  </div>
+                  <span className="font-bold text-rose-400 text-sm">
+                    {inssCalculado.valor > 0 ? `- R$ ${inssCalculado.valor.toFixed(2)}` : 'R$ 0,00'}
                   </span>
                 </div>
-              )}
 
-              {/* INSS com Tooltip (?) */}
-              <div className="flex items-center justify-between p-2 rounded-lg bg-[#140E24] text-zinc-200">
-                <span className="flex items-center gap-1.5">
-                  <span>INSS (Previdência Social)</span>
-                  <button
-                    type="button"
-                    onClick={() => setActiveTooltip(activeTooltip === 'inss' ? null : 'inss')}
-                    className="text-zinc-400 hover:text-purple-300 cursor-pointer"
-                    title="Explicar cálculo do INSS"
-                  >
-                    <HelpCircle className="w-3.5 h-3.5" />
-                  </button>
-                  <span className="text-[10px] text-zinc-400">({inssCalculado.faixa})</span>
-                </span>
-                <span className="font-bold text-rose-400">
-                  {inssCalculado.valor > 0 ? `- R$ ${inssCalculado.valor.toFixed(2)}` : 'R$ 0,00'}
-                </span>
+                {activeTooltip === 'inss' && (
+                  <div className="text-[12px] bg-[#160F28] border border-purple-500/40 rounded-xl p-3 text-zinc-200 leading-relaxed space-y-1.5 shadow-lg">
+                    <p className="font-bold text-purple-300 flex items-center gap-1">
+                      <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                      <span>O que é o INSS em palavras simples?</span>
+                    </p>
+                    <p>
+                      É a contribuição obrigatória para a <strong>Previdência Social</strong> que garante a sua aposentadoria no futuro, auxílio-doença caso você se machuque e licença-maternidade/paternidade.
+                    </p>
+                    <p className="text-[11px] text-purple-200">
+                      Quanto maior o salário, maior a porcentagem (alíquota progressiva), começando em 7,5%.
+                    </p>
+                  </div>
+                )}
               </div>
 
-              {activeTooltip === 'inss' && (
-                <div className="text-[11px] bg-[#160F28] border border-purple-500/30 rounded-lg p-2.5 text-zinc-300 leading-relaxed space-y-1">
-                  <p>
-                    <strong>Como é calculado o INSS:</strong> Aplica-se a alíquota progressiva por faixas salariais (7,5% até R$ 1.518; 9% até R$ 2.793,88; 12% até R$ 4.190,83; 14% até R$ 8.157,41).
-                  </p>
-                  <p className="text-purple-300 font-semibold">
-                    Alíquota efetiva calculada para este salário: {inssCalculado.aliquotaEfetiva}%
-                  </p>
+              {/* IRPF com Balão Explicativo Didático */}
+              <div className="space-y-1">
+                <div className="flex items-center justify-between p-2.5 rounded-lg bg-[#140E24] text-zinc-200">
+                  <div className="space-y-0.5">
+                    <div className="flex items-center gap-1.5">
+                      <span className="font-bold text-white">3. Imposto de Renda (IRPF)</span>
+                      <button
+                        type="button"
+                        onClick={() => setActiveTooltip(activeTooltip === 'irpf' ? null : 'irpf')}
+                        className="text-purple-400 hover:text-purple-300 text-[11px] font-semibold underline cursor-pointer"
+                      >
+                        {activeTooltip === 'irpf' ? 'Fechar' : 'Entenda (?)'}
+                      </button>
+                    </div>
+                    <span className="text-[11px] text-zinc-400 block">
+                      Retido na fonte: {irpfCalculado.aliquota}
+                    </span>
+                  </div>
+                  <span className="font-bold text-rose-400 text-sm">
+                    {irpfCalculado.valor > 0 ? `- R$ ${irpfCalculado.valor.toFixed(2)}` : 'Isento (R$ 0)'}
+                  </span>
                 </div>
-              )}
 
-              {/* IRPF com Tooltip (?) */}
-              <div className="flex items-center justify-between p-2 rounded-lg bg-[#140E24] text-zinc-200">
-                <span className="flex items-center gap-1.5">
-                  <span>IRPF (Imposto de Renda Retido)</span>
-                  <button
-                    type="button"
-                    onClick={() => setActiveTooltip(activeTooltip === 'irpf' ? null : 'irpf')}
-                    className="text-zinc-400 hover:text-purple-300 cursor-pointer"
-                    title="Explicar cálculo do IRPF"
-                  >
-                    <HelpCircle className="w-3.5 h-3.5" />
-                  </button>
-                  <span className="text-[10px] text-zinc-400">({irpfCalculado.aliquota})</span>
-                </span>
-                <span className="font-bold text-rose-400">
-                  {irpfCalculado.valor > 0 ? `- R$ ${irpfCalculado.valor.toFixed(2)}` : 'Isento'}
-                </span>
+                {activeTooltip === 'irpf' && (
+                  <div className="text-[12px] bg-[#160F28] border border-purple-500/40 rounded-xl p-3 text-zinc-200 leading-relaxed space-y-1.5 shadow-lg">
+                    <p className="font-bold text-purple-300 flex items-center gap-1">
+                      <Landmark className="w-4 h-4 text-purple-400" />
+                      <span>O que é o IRPF em palavras simples?</span>
+                    </p>
+                    <p>
+                      É o imposto recolhido pelo Governo Federal proporcional aos seus ganhos.
+                    </p>
+                    <p className="text-emerald-400 font-semibold">
+                      🎉 Se você ganha até R$ 2.259 (ou R$ 2.824 com o desconto simplificado), você é 100% isento e não paga nenhum centavo de Imposto de Renda!
+                    </p>
+                  </div>
+                )}
               </div>
-
-              {activeTooltip === 'irpf' && (
-                <div className="text-[11px] bg-[#160F28] border border-purple-500/30 rounded-lg p-2.5 text-zinc-300 leading-relaxed space-y-1">
-                  <p>
-                    <strong>Como é calculado o IRPF:</strong> A base de cálculo subtrai o INSS e os dependentes legais do salário bruto. Salários com base até R$ 2.259,20 são 100% isentos.
-                  </p>
-                </div>
-              )}
 
               {/* Vale-Transporte */}
               {descontoVT > 0 && (
-                <div className="flex items-center justify-between p-2 rounded-lg bg-[#140E24] text-zinc-200">
-                  <span>Vale-Transporte (6%)</span>
-                  <span className="font-bold text-rose-400">- R$ {descontoVT.toFixed(2)}</span>
+                <div className="flex items-center justify-between p-2.5 rounded-lg bg-[#140E24] text-zinc-200">
+                  <div>
+                    <span className="font-bold text-white block">4. Vale-Transporte (6%)</span>
+                    <span className="text-[11px] text-zinc-400">Desconto limite para passagens de ônibus</span>
+                  </div>
+                  <span className="font-bold text-rose-400 text-sm">
+                    - R$ {descontoVT.toFixed(2)}
+                  </span>
                 </div>
               )}
 
               {/* Outros Descontos */}
               {outrosDescontos > 0 && (
-                <div className="flex items-center justify-between p-2 rounded-lg bg-[#140E24] text-zinc-200">
-                  <span>Outros Descontos</span>
-                  <span className="font-bold text-rose-400">- R$ {outrosDescontos.toFixed(2)}</span>
+                <div className="flex items-center justify-between p-2.5 rounded-lg bg-[#140E24] text-zinc-200">
+                  <div>
+                    <span className="font-bold text-white block">5. Outros Convênios / Descontos</span>
+                    <span className="text-[11px] text-zinc-400">Planos médicos ou adiantamentos</span>
+                  </div>
+                  <span className="font-bold text-rose-400 text-sm">
+                    - R$ {outrosDescontos.toFixed(2)}
+                  </span>
                 </div>
               )}
             </div>
 
-            {/* FGTS (CONSULTA / SEM DESCONTO) */}
-            <div className="bg-[#140E24] border border-purple-500/20 rounded-xl p-3 flex items-center justify-between text-xs">
-              <div className="space-y-0.5">
-                <span className="font-semibold text-zinc-200 flex items-center gap-1.5">
-                  <Briefcase className="w-3.5 h-3.5 text-purple-400" />
-                  <span>Depósito FGTS na Conta Caixa</span>
-                </span>
-                <span className="text-[11px] text-zinc-400 block">{fgtsCalculado.rotulo}</span>
+            {/* FGTS COM EXPLICAÇÃO: NÃO É DESCONTADO! */}
+            <div className="bg-[#140E24] border border-purple-500/30 rounded-xl p-3 space-y-1.5">
+              <div className="flex items-center justify-between text-xs">
+                <div className="space-y-0.5">
+                  <span className="font-bold text-white flex items-center gap-1.5">
+                    <PiggyBank className="w-4 h-4 text-amber-400" />
+                    <span>FGTS (Sua Poupança de Proteção):</span>
+                  </span>
+                  <span className="text-[11px] text-emerald-400 font-semibold block">
+                    NÃO é descontado do seu salário! A empresa deposita para você.
+                  </span>
+                </div>
+                <div className="text-right">
+                  <span className="text-base font-black text-amber-300">
+                    R$ {fgtsCalculado.valor.toFixed(2)}
+                  </span>
+                  <span className="text-[10px] text-zinc-400 block">por mês na Caixa</span>
+                </div>
               </div>
-              <div className="text-right">
-                <span className="text-sm font-bold text-purple-300">
-                  R$ {fgtsCalculado.valor.toFixed(2)}
-                </span>
-                <span className="text-[10px] text-emerald-400 block font-medium">Pago pela Empresa</span>
+
+              <div className="text-[11px] text-zinc-300 bg-[#0F0C1D] p-2 rounded-lg leading-relaxed">
+                <strong>O que é o FGTS?</strong> É o Fundo de Garantia depositado pela empresa em uma conta da Caixa Econômica no seu nome ({fgtsCalculado.rotulo}). Ele acumula rendimento e pode ser sacado na demissão sem justa causa, na compra da casa própria ou em situações de calamidade.
               </div>
             </div>
-          </div>
-
-          {/* Dica de Transparência */}
-          <div className="pt-2 border-t border-[#2D1B4E]/60 text-[11px] text-zinc-400 flex items-center gap-1.5">
-            <Info className="w-3.5 h-3.5 text-purple-400 shrink-0" />
-            <span>Valores calculados em conformidade com a CLT e legislação trabalhista brasileira.</span>
           </div>
         </div>
       </div>
 
       {/* ========================================================================= */}
-      {/* 3. IDEIAS CRIATIVAS: BARRA DE DISTRIBUIÇÃO & MODOS DE ANÁLISE              */}
+      {/* 3. RESUMO VISUAL: "PARA ONDE VAI MEU DINHEIRO? (PASSO A PASSO)"           */}
       {/* ========================================================================= */}
-      <div className="bg-[#110E1B] border border-purple-500/20 rounded-2xl p-4 sm:p-5 space-y-4 shadow-xl">
-        {/* Barra Visual de Distribuição do Dinheiro */}
-        <div className="space-y-2">
-          <div className="flex items-center justify-between text-xs font-semibold text-zinc-300">
-            <span className="flex items-center gap-1.5">
-              <Percent className="w-3.5 h-3.5 text-purple-400" />
-              <span>Distribuição do seu Salário Bruto:</span>
+      <div className="bg-[#110E1B] border border-purple-500/20 rounded-2xl p-5 space-y-4 shadow-xl">
+        <div className="flex items-center justify-between border-b border-[#2D1B4E]/60 pb-3">
+          <div className="flex items-center gap-2">
+            <Wallet className="w-5 h-5 text-emerald-400" />
+            <h3 className="text-sm sm:text-base font-bold text-white">
+              Para Onde Vai Meu Dinheiro? (Passo a Passo Descomplicado)
+            </h3>
+          </div>
+          <span className="text-xs text-purple-300 font-semibold">
+            {percentLiquido.toFixed(1)}% fica com você
+          </span>
+        </div>
+
+        {/* Passo a Passo em 4 Caixas Claras */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {/* Passo 1 */}
+          <div className="bg-[#140E24] border border-purple-500/20 rounded-xl p-3.5 space-y-1">
+            <span className="text-[11px] font-bold text-purple-400 uppercase tracking-wider block">
+              Passo 1: Você Ganha
             </span>
-            <span className="text-emerald-400 font-bold">{percentLiquido.toFixed(1)}% Líquido</span>
+            <div className="text-base font-black text-white">
+              R$ {totalProventos.toFixed(2)}
+            </div>
+            <p className="text-[11px] text-zinc-400 leading-snug">
+              Salário bruto combinado na carteira de trabalho mais horas extras.
+            </p>
           </div>
 
-          {/* Barra Multissegmentada Colorida */}
-          <div className="w-full h-3.5 bg-[#160F28] rounded-full overflow-hidden flex border border-[#2D1B4E]">
+          {/* Passo 2 */}
+          <div className="bg-[#140E24] border border-purple-500/20 rounded-xl p-3.5 space-y-1">
+            <span className="text-[11px] font-bold text-rose-400 uppercase tracking-wider block">
+              Passo 2: Governo / INSS
+            </span>
+            <div className="text-base font-black text-rose-400">
+              - R$ {totalDescontosGoverno.toFixed(2)}
+            </div>
+            <p className="text-[11px] text-zinc-400 leading-snug">
+              Contribuição para aposentadoria (INSS) e Imposto de Renda (IRPF).
+            </p>
+          </div>
+
+          {/* Passo 3 */}
+          <div className="bg-[#140E24] border border-purple-500/20 rounded-xl p-3.5 space-y-1">
+            <span className="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">
+              Passo 3: Seus Benefícios
+            </span>
+            <div className="text-base font-black text-amber-400">
+              - R$ {totalDescontosBeneficios.toFixed(2)}
+            </div>
+            <p className="text-[11px] text-zinc-400 leading-snug">
+              Parte do custo do vale-transporte de ônibus e outros convênios.
+            </p>
+          </div>
+
+          {/* Passo 4 */}
+          <div className="bg-[#140E24] border border-emerald-500/40 rounded-xl p-3.5 space-y-1 bg-gradient-to-b from-[#140E24] to-emerald-950/40">
+            <span className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider block">
+              Passo 4: Na sua Conta
+            </span>
+            <div className="text-base font-black text-emerald-300">
+              R$ {salarioLiquido.toFixed(2)}
+            </div>
+            <p className="text-[11px] text-zinc-300 leading-snug">
+              O valor líquido disponível para você pagar contas e usar livremente!
+            </p>
+          </div>
+        </div>
+
+        {/* Barra Visual Colorida de Distribuição */}
+        <div className="pt-2 space-y-2">
+          <div className="w-full h-3 bg-[#160F28] rounded-full overflow-hidden flex border border-[#2D1B4E]">
             <div
               style={{ width: `${percentLiquido}%` }}
               className="h-full bg-emerald-500 transition-all duration-300"
@@ -803,39 +907,36 @@ export default function HoleriteSimulator() {
               <div
                 style={{ width: `${percentOutros}%` }}
                 className="h-full bg-amber-500 transition-all duration-300"
-                title={`Outros / VT: ${percentOutros.toFixed(1)}%`}
+                title={`Benefícios / VT: ${percentOutros.toFixed(1)}%`}
               />
             )}
           </div>
 
-          {/* Legenda da Barra */}
-          <div className="flex flex-wrap items-center gap-3 text-[11px] text-zinc-400 pt-1">
-            <span className="flex items-center gap-1">
+          <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] text-zinc-400">
+            <span className="flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
-              <span>Líquido ({percentLiquido.toFixed(1)}%)</span>
+              <strong className="text-zinc-200">Líquido no Bolso: {percentLiquido.toFixed(1)}%</strong>
             </span>
-            {percentINSS > 0 && (
-              <span className="flex items-center gap-1">
-                <span className="w-2.5 h-2.5 rounded-full bg-purple-500" />
-                <span>INSS ({percentINSS.toFixed(1)}%)</span>
-              </span>
-            )}
+            <span className="flex items-center gap-1.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-purple-500" />
+              <span>INSS Aposentadoria: {percentINSS.toFixed(1)}%</span>
+            </span>
             {percentIRPF > 0 && (
-              <span className="flex items-center gap-1">
+              <span className="flex items-center gap-1.5">
                 <span className="w-2.5 h-2.5 rounded-full bg-rose-500" />
-                <span>IRPF ({percentIRPF.toFixed(1)}%)</span>
+                <span>Imposto de Renda: {percentIRPF.toFixed(1)}%</span>
               </span>
             )}
             {percentOutros > 0 && (
-              <span className="flex items-center gap-1">
+              <span className="flex items-center gap-1.5">
                 <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
-                <span>VT &amp; Outros ({percentOutros.toFixed(1)}%)</span>
+                <span>Vale-Transporte: {percentOutros.toFixed(1)}%</span>
               </span>
             )}
           </div>
         </div>
 
-        {/* Abas de Recursos Criativos: Detalhamento Anual vs Comparativo PJ */}
+        {/* Abas Criativas: Análise Anual & Comparativo PJ */}
         <div className="pt-3 border-t border-[#2D1B4E]/60 space-y-3">
           <div className="flex items-center gap-2 overflow-x-auto pb-1">
             <button
@@ -847,7 +948,7 @@ export default function HoleriteSimulator() {
               }`}
             >
               <Calendar className="w-3.5 h-3.5" />
-              <span>Detalhamento Anual (13º + Férias)</span>
+              <span>Quanto eu recebo no ano inteiro? (13º + Férias)</span>
             </button>
 
             <button
@@ -859,19 +960,19 @@ export default function HoleriteSimulator() {
               }`}
             >
               <Briefcase className="w-3.5 h-3.5" />
-              <span>Modo Comparativo CLT vs PJ</span>
+              <span>Vale a pena ser PJ ou CLT? (Comparador)</span>
             </button>
           </div>
 
-          {/* Visualização 1: Detalhamento Anual Acumulado */}
+          {/* Visualização 1: Acumulado Anual */}
           {viewMode === 'ANUAL' && (
             <div className="bg-[#140E24] border border-purple-500/20 rounded-xl p-4 space-y-3 text-xs">
               <div className="flex items-center justify-between border-b border-[#2D1B4E] pb-2">
                 <span className="font-bold text-white flex items-center gap-1.5">
                   <Calendar className="w-4 h-4 text-purple-400" />
-                  <span>Impacto Financeiro Acumulado em 1 Ano:</span>
+                  <span>Seu Dinheiro Somado ao Longo de 1 Ano Completo:</span>
                 </span>
-                <span className="text-[11px] text-emerald-400 font-semibold">12 meses completos</span>
+                <span className="text-[11px] text-emerald-400 font-semibold">12 meses + direitos</span>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
@@ -880,41 +981,41 @@ export default function HoleriteSimulator() {
                   <div className="text-base font-bold text-emerald-400 mt-0.5">
                     R$ {anualAcumulado.totalAnualLiquido.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                   </div>
-                  <span className="text-[10px] text-zinc-500 block mt-0.5">
+                  <span className="text-[10px] text-zinc-400 block mt-0.5">
                     12 salários + 13º integral + Férias (+ 1/3)
                   </span>
                 </div>
 
                 <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-lg p-3">
-                  <span className="text-[11px] text-zinc-400 block">FGTS Acumulado no Ano:</span>
+                  <span className="text-[11px] text-zinc-400 block">FGTS Guardado na Caixa:</span>
                   <div className="text-base font-bold text-purple-300 mt-0.5">
                     R$ {anualAcumulado.totalFGTSAnual.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                   </div>
-                  <span className="text-[10px] text-zinc-500 block mt-0.5">
-                    Depósitos na Caixa com rendimento legal
+                  <span className="text-[10px] text-zinc-400 block mt-0.5">
+                    Depositado pela empresa sem desconto
                   </span>
                 </div>
 
                 <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-lg p-3">
-                  <span className="text-[11px] text-zinc-400 block">Média Mensal Global Real:</span>
+                  <span className="text-[11px] text-zinc-400 block">Média Mensal Real:</span>
                   <div className="text-base font-bold text-white mt-0.5">
                     R$ {anualAcumulado.mediaMensalReal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                   </div>
-                  <span className="text-[10px] text-zinc-500 block mt-0.5">
-                    Salário líquido ponderado por mês
+                  <span className="text-[10px] text-zinc-400 block mt-0.5">
+                    O que cada mês representa no bolso
                   </span>
                 </div>
               </div>
             </div>
           )}
 
-          {/* Visualização 2: Comparativo CLT vs PJ */}
+          {/* Visualização 2: Comparativo PJ */}
           {viewMode === 'COMPARATIVO_PJ' && (
             <div className="bg-[#140E24] border border-purple-500/20 rounded-xl p-4 space-y-3 text-xs">
               <div className="flex items-center justify-between border-b border-[#2D1B4E] pb-2">
                 <span className="font-bold text-white flex items-center gap-1.5">
                   <Briefcase className="w-4 h-4 text-purple-400" />
-                  <span>Análise Comparativa: CLT vs Pessoa Jurídica (PJ)</span>
+                  <span>Comparativo: Carteira Assinada (CLT) vs Prestador de Serviços (PJ)</span>
                 </span>
                 <span className="text-[11px] text-purple-300 font-semibold">
                   Bruto: R$ {totalProventos.toFixed(2)}
@@ -923,27 +1024,27 @@ export default function HoleriteSimulator() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
                 <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-lg p-3 space-y-1.5">
-                  <span className="font-bold text-purple-300 text-xs block">Opção CLT (Segurança):</span>
+                  <span className="font-bold text-purple-300 text-xs block">Opção CLT (Segurança e Direitos):</span>
                   <ul className="space-y-1 text-zinc-300 text-[11px]">
-                    <li>• Salário Líquido Mensal: <strong>R$ {salarioLiquido.toFixed(2)}</strong></li>
-                    <li>• 13º Salário Garantido</li>
-                    <li>• 30 dias de Férias Remuneradas + 1/3</li>
-                    <li>• Depósito FGTS: <strong>R$ {fgtsCalculado.valor.toFixed(2)}/mês</strong></li>
-                    <li>• Seguro-desemprego e proteção previdenciária</li>
+                    <li>• Salário que cai na conta: <strong>R$ {salarioLiquido.toFixed(2)}/mês</strong></li>
+                    <li>• 13º Salário garantido no fim do ano</li>
+                    <li>• 30 dias de férias com pagamento adiantado (+ 1/3)</li>
+                    <li>• Depósito mensal do FGTS: <strong>R$ {fgtsCalculado.valor.toFixed(2)}</strong></li>
+                    <li>• Seguro-desemprego em caso de demissão</li>
                   </ul>
                 </div>
 
                 <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-lg p-3 space-y-1.5">
-                  <span className="font-bold text-emerald-400 text-xs block">Opção PJ (Simples Nacional ~6%):</span>
+                  <span className="font-bold text-emerald-400 text-xs block">Opção PJ (Emitindo Nota Fiscal):</span>
                   <ul className="space-y-1 text-zinc-300 text-[11px]">
-                    <li>• Valor Líquido Mensal: <strong>R$ {comparativoPJ.liquidoPJ.toFixed(2)}</strong></li>
-                    <li>• Imposto Simples Nacional: ~R$ {comparativoPJ.impostoDAS.toFixed(2)}</li>
-                    <li>• Sem 13º salário obrigatório</li>
-                    <li>• Sem FGTS nem férias remuneradas pela lei</li>
+                    <li>• Recebimento no mês (Simples ~6%): <strong>R$ {comparativoPJ.liquidoPJ.toFixed(2)}</strong></li>
+                    <li>• NÃO tem 13º salário garantido por lei</li>
+                    <li>• NÃO tem férias remuneradas obrigatórias</li>
+                    <li>• NÃO tem recolhimento de FGTS</li>
                     <li>
-                      • Valor PJ mínimo para compensar a CLT:{' '}
+                      • Para empatar com a CLT, o PJ deve cobrar no mínimo:{' '}
                       <strong className="text-emerald-300">
-                        R$ {comparativoPJ.valorBrutoPJEquivalente.toFixed(2)}
+                        R$ {comparativoPJ.valorBrutoPJEquivalente.toFixed(2)}/mês
                       </strong>
                     </li>
                   </ul>
