@@ -470,7 +470,10 @@ export default function CourseViewer() {
                     </h3>
 
                     {/* Resumo do Módulo */}
-                    <p className={`text-xs text-zinc-300/90 leading-relaxed ${isExpanded ? '' : 'line-clamp-2'}`}>
+                    <p 
+                      className={`text-sm text-zinc-300 leading-relaxed break-normal ${isExpanded ? '' : 'line-clamp-2'}`}
+                      style={{ whiteSpace: 'normal', wordBreak: 'normal', lineHeight: 1.6 }}
+                    >
                       {mod.summary}
                     </p>
 
@@ -478,10 +481,10 @@ export default function CourseViewer() {
                       <button
                         type="button"
                         onClick={() => setExpandedDesc((prev) => ({ ...prev, [mod.id]: !prev[mod.id] }))}
-                        className="text-[11px] text-purple-400 hover:text-white font-bold flex items-center gap-1 transition-colors cursor-pointer"
+                        className="text-xs text-purple-400 hover:text-white font-bold flex items-center gap-1 transition-colors cursor-pointer"
                       >
                         <span>{isExpanded ? 'Ver menos' : 'Ver mais'}</span>
-                        <ChevronDown className={`w-3 h-3 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
+                        <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
                       </button>
                     )}
 

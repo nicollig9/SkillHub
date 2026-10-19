@@ -142,9 +142,14 @@ export default function JobApplicationModal({ isOpen, vaga, onClose, onSuccess }
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-slate-950/70 backdrop-blur-md animate-fadeIn">
+    <div 
+      className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-3 sm:p-6"
+      onClick={handleClose}
+    >
       <div
-        className="bg-[#110E1B] border border-purple-500/30 w-full max-w-2xl rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[92vh] animate-scaleUp"
+        className="relative w-full max-w-2xl mx-auto bg-[#110E1B] border border-purple-500/30 rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] my-auto shrink-0"
+        style={{ width: '100%', maxWidth: '680px', margin: '0 auto' }}
+        onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
       >

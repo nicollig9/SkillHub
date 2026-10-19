@@ -40,7 +40,6 @@ interface JobDetailsModalProps {
 // Perfil institucional realista da empresa com base no nome e segmento
 function getCompanyProfile(vaga: JobVacancy) {
   const nome = vaga.empresaNome.toLowerCase();
-  const desc = vaga.descricao.toLowerCase();
 
   if (nome.includes('bosch')) {
     return {
@@ -225,17 +224,23 @@ export default function JobDetailsModal({
   const cargaSemanal = vaga.cargaSemanal || (vaga.cargaHorariaDiaria === 4 ? '20h/semanais' : '30h/semanais');
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-slate-950/75 backdrop-blur-md animate-fadeIn overflow-y-auto">
+    <div 
+      className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
+      onClick={onClose}
+    >
+      {/* Container Principal do Modal: Largura fixa controlada (850px) para evitar texto vertical */}
       <div
-        className="bg-[#110E1B] border border-purple-500/30 w-full max-w-4xl rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh] my-auto animate-scaleUp"
+        className="relative w-full max-w-[850px] mx-auto bg-[#110E1B] border border-purple-500/30 rounded-3xl shadow-2xl flex flex-col max-h-[90vh] my-auto overflow-hidden shrink-0"
+        style={{ width: '100%', maxWidth: '850px', margin: '0 auto' }}
+        onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
         aria-labelledby="job-details-title"
       >
         {/* ===================================================== */}
-        {/* CABEÇALHO DO MODAL (PADRÃO PROFISSIONAL DE RECRUTAMENTO) */}
+        {/* CABEÇALHO DO MODAL                                    */}
         {/* ===================================================== */}
-        <div className="bg-[#160F28] border-b border-[#2D1B4E]/80 p-6 sm:p-8 lg:p-9 relative space-y-4">
+        <div className="w-full bg-[#160F28] border-b border-[#2D1B4E]/80 p-6 sm:p-8 relative shrink-0">
           <button
             onClick={onClose}
             className="absolute top-6 right-6 p-2.5 text-zinc-400 hover:text-white bg-[#0F0C1D] hover:bg-purple-950/60 rounded-xl border border-[#2D1B4E] transition-all cursor-pointer shadow-md"
@@ -245,10 +250,10 @@ export default function JobDetailsModal({
           </button>
 
           {/* Badges de Topo */}
-          <div className="flex flex-wrap items-center gap-2.5 pr-12">
+          <div className="flex flex-wrap items-center gap-2.5 pr-12 mb-3">
             <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold bg-purple-950/80 border border-purple-500/40 text-purple-200 shadow-sm">
               <Sparkles className="w-3.5 h-3.5 text-purple-300" />
-              <span>✨ {adherencePercent}% de Compatibilidade com seu Perfil</span>
+              <span>✨ {adherencePercent}% de Compatibilidade</span>
             </span>
 
             <span className="px-3 py-1 rounded-full text-xs font-bold bg-[#110E1B] border border-purple-500/30 text-purple-300">
@@ -262,13 +267,17 @@ export default function JobDetailsModal({
             )}
           </div>
 
-          {/* Título Principal */}
-          <h2 id="job-details-title" className="text-2xl sm:text-3xl font-black text-white tracking-tight leading-snug">
+          {/* Título Principal (24px+) */}
+          <h2 
+            id="job-details-title" 
+            className="w-full text-2xl sm:text-3xl font-black text-white tracking-tight leading-snug break-normal"
+            style={{ width: '100%', whiteSpace: 'normal', wordBreak: 'normal', lineHeight: 1.3 }}
+          >
             {vaga.titulo}
           </h2>
 
           {/* Empresa com Badge CNPJ Verificado e Localização */}
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-zinc-300">
+          <div className="mt-3 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-zinc-300">
             <div className="flex items-center gap-2 font-semibold text-white">
               <Building2 className="w-4 h-4 text-purple-400 shrink-0" />
               <span className="text-base">{vaga.empresaNome}</span>
@@ -294,7 +303,7 @@ export default function JobDetailsModal({
           </div>
 
           {/* Destaque Salarial & Carga Horária */}
-          <div className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 sm:p-5 bg-[#0F0C1D] border border-purple-500/20 rounded-2xl shadow-inner">
+          <div className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 sm:p-5 bg-[#0F0C1D] border border-purple-500/20 rounded-2xl shadow-inner w-full">
             <div className="space-y-1">
               <span className="text-zinc-400 text-xs uppercase font-bold tracking-wider block">
                 Bolsa / Salário Mensal
@@ -315,8 +324,8 @@ export default function JobDetailsModal({
             </div>
           </div>
 
-          {/* Barra de Navegação por Abas (Estilo Apps de Recrutamento) */}
-          <div className="mt-5 flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none border-t border-[#2D1B4E]/60 pt-4">
+          {/* Barra de Navegação por Abas */}
+          <div className="mt-5 flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none border-t border-[#2D1B4E]/60 pt-4 w-full">
             {[
               { id: 'TODAS', label: 'Visão Geral', icon: Layers },
               { id: 'EMPRESA', label: '1. Sobre a Empresa', icon: Building2 },
@@ -330,7 +339,7 @@ export default function JobDetailsModal({
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id as any)}
-                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap flex items-center gap-2 transition-all cursor-pointer ${
+                  className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap flex items-center gap-2 transition-all cursor-pointer shrink-0 ${
                     isActive
                       ? 'bg-purple-600 text-white shadow-md shadow-purple-900/40 ring-1 ring-purple-400/50'
                       : 'bg-[#110E1B] text-zinc-400 hover:text-zinc-100 hover:bg-[#1A122E] border border-purple-500/20'
@@ -345,55 +354,61 @@ export default function JobDetailsModal({
         </div>
 
         {/* ===================================================== */}
-        {/* CORPO DO MODAL (ROLÁVEL COM AS 4 SEÇÕES ENRIQUECIDAS) */}
+        {/* CORPO DO MODAL (ROLÁVEL COM AS SEÇÕES BEM ESPAÇADAS) */}
         {/* ===================================================== */}
-        <div className="p-6 sm:p-8 lg:p-9 overflow-y-auto space-y-8 flex-1 text-sm sm:text-[15px] leading-[1.65] text-zinc-200">
+        <div 
+          className="w-full p-6 sm:p-8 lg:p-9 overflow-y-auto space-y-8 flex-1 text-base text-zinc-200"
+          style={{ width: '100%', whiteSpace: 'normal', wordBreak: 'normal', lineHeight: 1.6 }}
+        >
           
           {/* ===================================================== */}
           {/* ABA / BLOCO 1: 🏢 SOBRE A EMPRESA */}
           {/* ===================================================== */}
           {(activeTab === 'TODAS' || activeTab === 'EMPRESA') && (
-            <section className="space-y-4">
-              <div className="flex items-center gap-2.5 text-white font-bold text-base uppercase tracking-wider">
-                <Building2 className="w-5 h-5 text-purple-400" />
+            <section className="w-full space-y-4" style={{ width: '100%' }}>
+              <div className="flex items-center gap-2.5 text-white font-bold text-lg uppercase tracking-wider">
+                <Building2 className="w-5 h-5 text-purple-400 shrink-0" />
                 <span>1. Sobre a Empresa Contratante</span>
               </div>
 
-              <div className="bg-[#140E24] border border-purple-500/20 rounded-3xl p-6 sm:p-8 space-y-6 shadow-xl">
-                <p className="text-zinc-200 text-sm sm:text-base leading-[1.65]">
+              <div className="w-full bg-[#140E24] border border-purple-500/20 rounded-3xl p-6 sm:p-8 space-y-5 shadow-xl">
+                <p 
+                  className="w-full text-base text-zinc-200"
+                  style={{ width: '100%', whiteSpace: 'normal', wordBreak: 'normal', lineHeight: 1.6 }}
+                >
                   {company.descricao}
                 </p>
 
                 {/* Cards de Metadados Corporativos */}
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2 border-t border-[#2D1B4E]/60">
-                  <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-2xl p-4 sm:p-5 space-y-1.5">
+                <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-4 pt-3 border-t border-[#2D1B4E]/60">
+                  <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-2xl p-4 sm:p-5 space-y-1">
                     <span className="text-xs uppercase font-bold text-zinc-400 flex items-center gap-1.5">
                       <Users2 className="w-4 h-4 text-purple-400" />
                       Porte da Empresa
                     </span>
-                    <p className="font-semibold text-zinc-100 text-sm sm:text-[15px]">{company.porte}</p>
+                    <p className="font-semibold text-zinc-100 text-sm sm:text-base">{company.porte}</p>
                   </div>
 
-                  <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-2xl p-4 sm:p-5 space-y-1.5">
+                  <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-2xl p-4 sm:p-5 space-y-1">
                     <span className="text-xs uppercase font-bold text-zinc-400 flex items-center gap-1.5">
                       <Briefcase className="w-4 h-4 text-purple-400" />
                       Setor de Atuação
                     </span>
-                    <p className="font-semibold text-zinc-100 text-sm sm:text-[15px]">{company.setor}</p>
+                    <p className="font-semibold text-zinc-100 text-sm sm:text-base">{company.setor}</p>
                   </div>
 
-                  <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-2xl p-4 sm:p-5 space-y-1.5">
+                  <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-2xl p-4 sm:p-5 space-y-1">
                     <span className="text-xs uppercase font-bold text-zinc-400 flex items-center gap-1.5">
                       <MapPin className="w-4 h-4 text-rose-400" />
                       Polo de Trabalho
                     </span>
-                    <p className="font-semibold text-zinc-100 text-sm sm:text-[15px]">{company.polo}</p>
+                    <p className="font-semibold text-zinc-100 text-sm sm:text-base">{company.polo}</p>
                   </div>
                 </div>
 
-                <div className="flex items-center gap-3 p-4 rounded-2xl bg-purple-950/40 border border-purple-500/30 text-xs sm:text-sm text-purple-200 leading-relaxed">
+                <div className="w-full flex items-center gap-3 p-4 rounded-2xl bg-purple-950/40 border border-purple-500/30 text-sm text-purple-200">
                   <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0" />
-                  <span>
+                  <span style={{ whiteSpace: 'normal', wordBreak: 'normal', lineHeight: 1.6 }}>
                     <strong className="text-white">Conformidade Legal Garantida:</strong> Vaga registrada conforme as diretrizes do Ministério do Trabalho e Emprego (MTE) e Lei 10.097/00 (Jovem Aprendiz) / Lei 11.788/08 (Estágio).
                   </span>
                 </div>
@@ -405,39 +420,39 @@ export default function JobDetailsModal({
           {/* ABA / BLOCO 2: 🎯 O QUE A EMPRESA BUSCA (PERFIL DESEJADO) */}
           {/* ===================================================== */}
           {(activeTab === 'TODAS' || activeTab === 'PERFIL') && (
-            <section className="space-y-4">
-              <div className="flex items-center justify-between text-white font-bold text-base uppercase tracking-wider">
+            <section className="w-full space-y-4" style={{ width: '100%' }}>
+              <div className="w-full flex items-center justify-between text-white font-bold text-lg uppercase tracking-wider">
                 <div className="flex items-center gap-2.5">
-                  <Target className="w-5 h-5 text-purple-400" />
+                  <Target className="w-5 h-5 text-purple-400 shrink-0" />
                   <span>2. O que a Empresa Busca (Perfil Desejado)</span>
                 </div>
-                <span className="text-xs sm:text-sm font-semibold text-purple-300">
+                <span className="text-sm font-semibold text-purple-300">
                   {matchingBadgesCount}/{vaga.badgesRequeridas.length} requisitos compatíveis
                 </span>
               </div>
 
-              <div className="bg-[#140E24] border border-purple-500/20 rounded-3xl p-6 sm:p-8 space-y-6 shadow-xl">
+              <div className="w-full bg-[#140E24] border border-purple-500/20 rounded-3xl p-6 sm:p-8 space-y-6 shadow-xl">
                 {/* Requisitos Comportamentais & Técnicos */}
-                <div className="space-y-3">
-                  <span className="text-sm font-bold text-purple-300 block">
+                <div className="w-full space-y-3">
+                  <span className="text-base font-bold text-purple-300 block">
                     Requisitos Comportamentais &amp; Formação Escolar:
                   </span>
-                  <ul className="space-y-3 text-zinc-200 text-sm sm:text-[15px] leading-[1.65]">
-                    <li className="flex items-start gap-3">
+                  <ul className="w-full space-y-3.5 text-base text-zinc-200">
+                    <li className="w-full flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />
-                      <span>
+                      <span style={{ whiteSpace: 'normal', wordBreak: 'normal', lineHeight: 1.6 }}>
                         <strong className="text-white">Escolaridade:</strong> Estudantes do Ensino Médio, Técnico ou Superior com matrícula ativa e frequência comprovada (turno compatível com a vaga).
                       </span>
                     </li>
-                    <li className="flex items-start gap-3">
+                    <li className="w-full flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />
-                      <span>
+                      <span style={{ whiteSpace: 'normal', wordBreak: 'normal', lineHeight: 1.6 }}>
                         <strong className="text-white">Atitude &amp; Postura:</strong> Vontade genuína de aprender, pontualidade, facilidade para trabalhar em equipe e comunicação clara e respeitosa.
                       </span>
                     </li>
-                    <li className="flex items-start gap-3">
+                    <li className="w-full flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />
-                      <span>
+                      <span style={{ whiteSpace: 'normal', wordBreak: 'normal', lineHeight: 1.6 }}>
                         <strong className="text-white">Ferramentas de Trabalho:</strong> Conhecimentos básicos de informática, internet, e-mail corporativo e planilhas eletrônicas (alinhados aos cursos do SkillHub).
                       </span>
                     </li>
@@ -445,11 +460,11 @@ export default function JobDetailsModal({
                 </div>
 
                 {/* Selos e Microcertificações Exigidos */}
-                <div className="pt-4 border-t border-[#2D1B4E]/60 space-y-3">
-                  <span className="text-xs sm:text-sm font-bold text-zinc-400 block">
+                <div className="w-full pt-4 border-t border-[#2D1B4E]/60 space-y-3">
+                  <span className="text-sm font-bold text-zinc-300 block">
                     Selos de Competência &amp; Microcertificações do SkillHub:
                   </span>
-                  <div className="flex flex-wrap gap-2.5">
+                  <div className="w-full flex flex-wrap gap-2.5">
                     {vaga.badgesRequeridas.map((bId) => {
                       const hasBadge = userBadgeIds.some(
                         (ub) => bId.includes(ub.replace('badge-', '')) || ub.includes(bId.replace('badge-', ''))
@@ -462,7 +477,7 @@ export default function JobDetailsModal({
                       return (
                         <div
                           key={bId}
-                          className={`px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold flex items-center gap-2.5 border transition-all ${
+                          className={`px-4 py-2 rounded-xl text-sm font-semibold flex items-center gap-2.5 border transition-all ${
                             hasBadge
                               ? 'bg-purple-950/80 border-purple-500/50 text-purple-200'
                               : 'bg-[#0F0C1D] border-[#2D1B4E] text-zinc-400'
@@ -475,7 +490,7 @@ export default function JobDetailsModal({
                           )}
                           <span>{label}</span>
                           {hasBadge && (
-                            <span className="text-[10px] text-purple-300 font-bold bg-purple-900/60 px-2 py-0.5 rounded">
+                            <span className="text-xs text-purple-300 font-bold bg-purple-900/60 px-2 py-0.5 rounded">
                               Validado no seu perfil
                             </span>
                           )}
@@ -486,20 +501,25 @@ export default function JobDetailsModal({
                 </div>
 
                 {/* Cursos Recomendados para Capacitação */}
-                <div className="pt-4 border-t border-[#2D1B4E]/60 space-y-3">
-                  <span className="text-sm font-bold text-purple-300 flex items-center gap-2">
-                    <GraduationCap className="w-4 h-4 text-purple-400" />
+                <div className="w-full pt-4 border-t border-[#2D1B4E]/60 space-y-3">
+                  <span className="text-base font-bold text-purple-300 flex items-center gap-2">
+                    <GraduationCap className="w-5 h-5 text-purple-400" />
                     <span>Cursos do SkillHub Recomendados para Fortalecer sua Candidatura:</span>
                   </span>
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-1">
+                  <div className="w-full grid grid-cols-1 sm:grid-cols-3 gap-4 pt-1">
                     {recommendedCourses.map((c) => (
                       <div
                         key={c.id}
-                        className="bg-[#0F0C1D] border border-purple-500/20 hover:border-purple-500/50 rounded-2xl p-4 flex flex-col justify-between space-y-3 transition-colors shadow-sm"
+                        className="bg-[#0F0C1D] border border-purple-500/20 hover:border-purple-500/50 rounded-2xl p-4 sm:p-5 flex flex-col justify-between space-y-3 transition-colors shadow-sm"
                       >
                         <div className="space-y-1">
-                          <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">{c.category}</span>
-                          <h4 className="text-xs sm:text-sm font-bold text-white line-clamp-2 leading-snug">{c.title}</h4>
+                          <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider">{c.category}</span>
+                          <h4 
+                            className="text-sm sm:text-base font-bold text-white line-clamp-2 leading-snug"
+                            style={{ whiteSpace: 'normal', wordBreak: 'normal' }}
+                          >
+                            {c.title}
+                          </h4>
                         </div>
                         <div className="flex items-center justify-between text-xs text-purple-300 pt-2 border-t border-[#2D1B4E]/60">
                           <span>Carga: {c.hours}</span>
@@ -517,47 +537,52 @@ export default function JobDetailsModal({
           {/* ABA / BLOCO 3: 📋 ATIVIDADES & RESPONSABILIDADES */}
           {/* ===================================================== */}
           {(activeTab === 'TODAS' || activeTab === 'ATIVIDADES') && (
-            <section className="space-y-4">
-              <div className="flex items-center gap-2.5 text-white font-bold text-base uppercase tracking-wider">
-                <Briefcase className="w-5 h-5 text-purple-400" />
+            <section className="w-full space-y-4" style={{ width: '100%' }}>
+              <div className="flex items-center gap-2.5 text-white font-bold text-lg uppercase tracking-wider">
+                <Briefcase className="w-5 h-5 text-purple-400 shrink-0" />
                 <span>3. Atividades &amp; Responsabilidades Diárias</span>
               </div>
 
-              <div className="bg-[#140E24] border border-purple-500/20 rounded-3xl p-6 sm:p-8 space-y-4 shadow-xl">
-                <p className="text-zinc-200 text-sm sm:text-base leading-[1.65]">{vaga.descricao}</p>
+              <div className="w-full bg-[#140E24] border border-purple-500/20 rounded-3xl p-6 sm:p-8 space-y-5 shadow-xl">
+                <p 
+                  className="w-full text-base text-zinc-200"
+                  style={{ width: '100%', whiteSpace: 'normal', wordBreak: 'normal', lineHeight: 1.6 }}
+                >
+                  {vaga.descricao}
+                </p>
 
-                <div className="pt-3 border-t border-[#2D1B4E]/60 space-y-3">
-                  <span className="text-sm font-bold text-purple-300 block">
+                <div className="w-full pt-4 border-t border-[#2D1B4E]/60 space-y-3">
+                  <span className="text-base font-bold text-purple-300 block">
                     Rotinas práticas que você executará no dia a dia:
                   </span>
-                  <ul className="space-y-3 text-zinc-200 text-sm sm:text-[15px] leading-[1.65]">
-                    <li className="flex items-start gap-3">
+                  <ul className="w-full space-y-3.5 text-base text-zinc-200">
+                    <li className="w-full flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />
-                      <span>
+                      <span style={{ whiteSpace: 'normal', wordBreak: 'normal', lineHeight: 1.6 }}>
                         <strong className="text-white">Atendimento &amp; Apoio:</strong> Recepção e triagem inicial de correspondências, e-mails e solicitações de clientes ou colegas de setor.
                       </span>
                     </li>
-                    <li className="flex items-start gap-3">
+                    <li className="w-full flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />
-                      <span>
+                      <span style={{ whiteSpace: 'normal', wordBreak: 'normal', lineHeight: 1.6 }}>
                         <strong className="text-white">Organização de Arquivos:</strong> Digitalização, classificação de documentos e manutenção de planilhas de controle no Microsoft Excel e Google Drive.
                       </span>
                     </li>
-                    <li className="flex items-start gap-3">
+                    <li className="w-full flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />
-                      <span>
+                      <span style={{ whiteSpace: 'normal', wordBreak: 'normal', lineHeight: 1.6 }}>
                         <strong className="text-white">Lançamento de Dados:</strong> Atualização de cadastros em sistemas internos (ERP/SAP) com acompanhamento direto de um tutor ou gestor da área.
                       </span>
                     </li>
-                    <li className="flex items-start gap-3">
+                    <li className="w-full flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />
-                      <span>
+                      <span style={{ whiteSpace: 'normal', wordBreak: 'normal', lineHeight: 1.6 }}>
                         <strong className="text-white">Ética e Segurança:</strong> Zelo pelas diretrizes de conduta corporativa, sigilo de informações conforme a LGPD e pontualidade na jornada diária.
                       </span>
                     </li>
-                    <li className="flex items-start gap-3">
+                    <li className="w-full flex items-start gap-3">
                       <CheckCircle2 className="w-5 h-5 text-purple-400 shrink-0 mt-0.5" />
-                      <span>
+                      <span style={{ whiteSpace: 'normal', wordBreak: 'normal', lineHeight: 1.6 }}>
                         <strong className="text-white">Formação Teórica:</strong> Participação periódica em oficinas de capacitação profissional e acompanhamento pedagógico.
                       </span>
                     </li>
@@ -571,57 +596,57 @@ export default function JobDetailsModal({
           {/* ABA / BLOCO 4: 🎁 BENEFÍCIOS OFERTADOS */}
           {/* ===================================================== */}
           {(activeTab === 'TODAS' || activeTab === 'BENEFICIOS') && (
-            <section className="space-y-4">
-              <div className="flex items-center gap-2.5 text-white font-bold text-base uppercase tracking-wider">
-                <HeartHandshake className="w-5 h-5 text-purple-400" />
+            <section className="w-full space-y-4" style={{ width: '100%' }}>
+              <div className="flex items-center gap-2.5 text-white font-bold text-lg uppercase tracking-wider">
+                <HeartHandshake className="w-5 h-5 text-purple-400 shrink-0" />
                 <span>4. Benefícios Ofertados &amp; Apoio ao Jovem</span>
               </div>
 
-              <div className="bg-[#140E24] border border-purple-500/20 rounded-3xl p-6 sm:p-8 space-y-4 shadow-xl">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
-                  <div className="flex items-center gap-3.5 p-4 bg-[#0F0C1D] border border-purple-500/20 rounded-2xl text-sm text-zinc-200">
+              <div className="w-full bg-[#140E24] border border-purple-500/20 rounded-3xl p-6 sm:p-8 space-y-5 shadow-xl">
+                <div className="w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="flex items-center gap-3.5 p-4 sm:p-5 bg-[#0F0C1D] border border-purple-500/20 rounded-2xl text-sm sm:text-base text-zinc-200">
                     <Bus className="w-5 h-5 text-purple-400 shrink-0" />
                     <div className="space-y-0.5">
-                      <strong className="text-white block font-semibold text-sm">Vale-Transporte Integral</strong>
+                      <strong className="text-white block font-semibold text-base">Vale-Transporte Integral</strong>
                       <span className="text-xs text-zinc-400">Cartão URBS / Metrocard sem cobranças abusivas</span>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3.5 p-4 bg-[#0F0C1D] border border-purple-500/20 rounded-2xl text-sm text-zinc-200">
+                  <div className="flex items-center gap-3.5 p-4 sm:p-5 bg-[#0F0C1D] border border-purple-500/20 rounded-2xl text-sm sm:text-base text-zinc-200">
                     <Utensils className="w-5 h-5 text-purple-400 shrink-0" />
                     <div className="space-y-0.5">
-                      <strong className="text-white block font-semibold text-sm">Vale-Refeição ou Alimentação</strong>
+                      <strong className="text-white block font-semibold text-base">Vale-Refeição ou Alimentação</strong>
                       <span className="text-xs text-zinc-400">Refeitório estruturado no local ou cartão benefício</span>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3.5 p-4 bg-[#0F0C1D] border border-purple-500/20 rounded-2xl text-sm text-zinc-200">
+                  <div className="flex items-center gap-3.5 p-4 sm:p-5 bg-[#0F0C1D] border border-purple-500/20 rounded-2xl text-sm sm:text-base text-zinc-200">
                     <HeartPulse className="w-5 h-5 text-purple-400 shrink-0" />
                     <div className="space-y-0.5">
-                      <strong className="text-white block font-semibold text-sm">Seguro de Vida Coletivo</strong>
+                      <strong className="text-white block font-semibold text-base">Seguro de Vida Coletivo</strong>
                       <span className="text-xs text-zinc-400">Cobertura integral e assistência médica/odontológica</span>
                     </div>
                   </div>
 
-                  <div className="flex items-center gap-3.5 p-4 bg-[#0F0C1D] border border-purple-500/20 rounded-2xl text-sm text-zinc-200">
+                  <div className="flex items-center gap-3.5 p-4 sm:p-5 bg-[#0F0C1D] border border-purple-500/20 rounded-2xl text-sm sm:text-base text-zinc-200">
                     <BookOpen className="w-5 h-5 text-purple-400 shrink-0" />
                     <div className="space-y-0.5">
-                      <strong className="text-white block font-semibold text-sm">Tutoria &amp; Mentoria Dedicada</strong>
+                      <strong className="text-white block font-semibold text-base">Tutoria &amp; Mentoria Dedicada</strong>
                       <span className="text-xs text-zinc-400">Acompanhamento contínuo de gestores experientes</span>
                     </div>
                   </div>
                 </div>
 
                 {vaga.beneficios && vaga.beneficios.length > 0 && (
-                  <div className="pt-3 border-t border-[#2D1B4E]/60 space-y-2">
+                  <div className="w-full pt-4 border-t border-[#2D1B4E]/60 space-y-2.5">
                     <span className="text-xs font-bold text-zinc-400 block uppercase tracking-wider">
                       Vantagens adicionais oferecidas por esta filial:
                     </span>
-                    <div className="flex flex-wrap gap-2">
+                    <div className="w-full flex flex-wrap gap-2">
                       {vaga.beneficios.map((b, i) => (
                         <span
                           key={i}
-                          className="bg-purple-950/50 text-purple-200 border border-purple-500/30 text-xs px-3 py-1.5 rounded-xl font-medium"
+                          className="bg-purple-950/50 text-purple-200 border border-purple-500/30 text-xs px-3.5 py-1.5 rounded-xl font-medium"
                         >
                           ✓ {b}
                         </span>
@@ -635,9 +660,9 @@ export default function JobDetailsModal({
         </div>
 
         {/* ===================================================== */}
-        {/* RODAPÉ FIXO DO MODAL */}
+        {/* RODAPÉ FIXO DO MODAL                                  */}
         {/* ===================================================== */}
-        <div className="bg-[#160F28] border-t border-[#2D1B4E]/80 p-5 sm:p-7 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="w-full bg-[#160F28] border-t border-[#2D1B4E]/80 p-5 sm:p-7 flex flex-col sm:flex-row items-center justify-between gap-4 shrink-0">
           <div className="text-xs sm:text-sm text-zinc-300 flex items-center gap-2 self-start sm:self-auto">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 inline-block animate-pulse" />
             <span>{vaga.candidatosInscritos} candidaturas registradas via IA Multiplataforma</span>
