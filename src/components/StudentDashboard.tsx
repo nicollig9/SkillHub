@@ -137,7 +137,7 @@ export default function StudentDashboard() {
       {/* ========================================================================= */}
       {/* BANNER PRINCIPAL DE BOAS-VINDAS                                          */}
       {/* ========================================================================= */}
-      <div className="bg-white dark:bg-[#110E1B] border border-gray-200 dark:border-purple-500/20 rounded-2xl p-5 sm:p-6 shadow-sm dark:shadow-xl transition-colors duration-300">
+      <div className="bg-white dark:bg-[#110E1B] border border-slate-300 dark:border-purple-500/20 rounded-2xl p-5 sm:p-6 shadow-sm dark:shadow-xl transition-colors duration-300">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-2">
@@ -177,7 +177,7 @@ export default function StudentDashboard() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         
         {/* KPI 1: Cursos Concluídos */}
-        <div className="bg-white dark:bg-slate-900/80 border border-gray-200 dark:border-purple-500/20 rounded-2xl p-4 sm:p-5 shadow-sm dark:shadow-lg space-y-2 transition-all hover:border-purple-400 dark:hover:border-purple-500/40">
+        <div className="bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-purple-500/20 rounded-2xl p-4 sm:p-5 shadow-sm dark:shadow-lg space-y-2 transition-all hover:border-purple-400 dark:hover:border-purple-500/40">
           <div className="flex items-center justify-between">
             <span className="font-bold uppercase tracking-wider text-purple-700 dark:text-purple-300 text-xs">
               Cursos Concluídos
@@ -190,17 +190,17 @@ export default function StudentDashboard() {
             <span className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
               {completedCount}
             </span>
-            <span className="text-xs text-slate-500 dark:text-zinc-400 font-medium">
+            <span className="text-xs text-slate-700 font-medium dark:text-zinc-400 font-medium">
               finalizados
             </span>
           </div>
-          <p className="text-[11px] text-slate-500 dark:text-zinc-400">
+          <p className="text-[11px] text-slate-700 font-medium dark:text-zinc-400">
             Microcertificados e badges emitidos no SkillHub.
           </p>
         </div>
 
         {/* KPI 2: Cursos em Andamento */}
-        <div className="bg-white dark:bg-slate-900/80 border border-gray-200 dark:border-purple-500/20 rounded-2xl p-4 sm:p-5 shadow-sm dark:shadow-lg space-y-2 transition-all hover:border-purple-400 dark:hover:border-purple-500/40">
+        <div className="bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-purple-500/20 rounded-2xl p-4 sm:p-5 shadow-sm dark:shadow-lg space-y-2 transition-all hover:border-purple-400 dark:hover:border-purple-500/40">
           <div className="flex items-center justify-between">
             <span className="font-bold uppercase tracking-wider text-amber-700 dark:text-amber-300 text-xs">
               Cursos em Andamento
@@ -213,17 +213,17 @@ export default function StudentDashboard() {
             <span className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
               {inProgressCount}
             </span>
-            <span className="text-xs text-slate-500 dark:text-zinc-400 font-medium">
+            <span className="text-xs text-slate-700 font-medium dark:text-zinc-400 font-medium">
               em progresso
             </span>
           </div>
-          <p className="text-[11px] text-slate-500 dark:text-zinc-400">
+          <p className="text-[11px] text-slate-700 font-medium dark:text-zinc-400">
             Aulas iniciadas aguardando conclusão dos módulos.
           </p>
         </div>
 
         {/* KPI 3: Trilhas em Progresso */}
-        <div className="bg-white dark:bg-slate-900/80 border border-gray-200 dark:border-purple-500/20 rounded-2xl p-4 sm:p-5 shadow-sm dark:shadow-lg space-y-2 transition-all hover:border-purple-400 dark:hover:border-purple-500/40">
+        <div className="bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-purple-500/20 rounded-2xl p-4 sm:p-5 shadow-sm dark:shadow-lg space-y-2 transition-all hover:border-purple-400 dark:hover:border-purple-500/40">
           <div className="flex items-center justify-between">
             <span className="font-bold uppercase tracking-wider text-indigo-700 dark:text-indigo-300 text-xs">
               Trilhas em Progresso
@@ -236,17 +236,17 @@ export default function StudentDashboard() {
             <span className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
               {tracksInProgressCount}
             </span>
-            <span className="text-xs text-slate-500 dark:text-zinc-400 font-medium">
+            <span className="text-xs text-slate-700 font-medium dark:text-zinc-400 font-medium">
               formações ativas
             </span>
           </div>
-          <p className="text-[11px] text-slate-500 dark:text-zinc-400">
+          <p className="text-[11px] text-slate-700 font-medium dark:text-zinc-400">
             Jornadas estruturadas de entrada no mercado.
           </p>
         </div>
 
         {/* KPI 4: Vagas Novas Hoje */}
-        <div className="bg-white dark:bg-slate-900/80 border border-gray-200 dark:border-purple-500/20 rounded-2xl p-4 sm:p-5 shadow-sm dark:shadow-lg space-y-2 transition-all hover:border-purple-400 dark:hover:border-purple-500/40">
+        <div className="bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-purple-500/20 rounded-2xl p-4 sm:p-5 shadow-sm dark:shadow-lg space-y-2 transition-all hover:border-purple-400 dark:hover:border-purple-500/40">
           <div className="flex items-center justify-between">
             <span className="font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-300 text-xs">
               Vagas Novas Hoje
@@ -259,11 +259,11 @@ export default function StudentDashboard() {
             <span className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
               {newVacanciesToday}
             </span>
-            <span className="text-xs text-slate-500 dark:text-zinc-400 font-medium">
+            <span className="text-xs text-slate-700 font-medium dark:text-zinc-400 font-medium">
               vagas abertas
             </span>
           </div>
-          <p className="text-[11px] text-slate-500 dark:text-zinc-400">
+          <p className="text-[11px] text-slate-700 font-medium dark:text-zinc-400">
             Estágio e Jovem Aprendiz em Curitiba e RMC.
           </p>
         </div>
@@ -273,14 +273,14 @@ export default function StudentDashboard() {
       {/* ========================================================================= */}
       {/* B) SEÇÃO "MEU APRENDIZADO EM ANDAMENTO"                                    */}
       {/* ========================================================================= */}
-      <div className="bg-white dark:bg-slate-900/80 border border-gray-200 dark:border-purple-500/20 rounded-2xl p-5 sm:p-6 shadow-sm dark:shadow-xl space-y-4 transition-colors duration-300">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-gray-200 dark:border-zinc-800">
+      <div className="bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-purple-500/20 rounded-2xl p-5 sm:p-6 shadow-sm dark:shadow-xl space-y-4 transition-colors duration-300">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-300 dark:border-zinc-800">
           <div>
             <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <BookOpen className="w-5 h-5 text-purple-600 dark:text-purple-400" />
               <span>Meu Aprendizado em Andamento</span>
             </h2>
-            <p className="text-xs text-slate-500 dark:text-zinc-400">
+            <p className="text-xs text-slate-700 font-medium dark:text-zinc-400">
               Cursos e trilhas que você iniciou recentemente. Retome suas aulas a qualquer momento.
             </p>
           </div>
@@ -298,14 +298,14 @@ export default function StudentDashboard() {
           {activeCourses.map((course) => (
             <div
               key={course.id}
-              className="bg-slate-50 dark:bg-slate-950/60 border border-gray-200 dark:border-purple-500/15 rounded-xl p-4 sm:p-5 flex flex-col justify-between space-y-4 hover:border-purple-400 dark:hover:border-purple-500/40 transition-all shadow-sm"
+              className="bg-slate-50 dark:bg-slate-950/60 border border-slate-300 dark:border-purple-500/15 rounded-xl p-4 sm:p-5 flex flex-col justify-between space-y-4 hover:border-purple-400 dark:hover:border-purple-500/40 transition-all shadow-sm"
             >
               <div className="space-y-2">
                 <div className="flex items-center justify-between gap-2">
                   <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-100 text-purple-700 dark:bg-purple-950/80 dark:text-purple-300 border border-purple-200 dark:border-purple-500/30">
                     {course.trackName}
                   </span>
-                  <span className="text-[11px] font-semibold text-slate-500 dark:text-zinc-400">
+                  <span className="text-[11px] font-semibold text-slate-700 font-medium dark:text-zinc-400">
                     {course.workload}
                   </span>
                 </div>
@@ -314,15 +314,15 @@ export default function StudentDashboard() {
                   {course.title}
                 </h3>
 
-                <p className="text-xs text-slate-600 dark:text-zinc-400 line-clamp-1">
+                <p className="text-xs text-slate-800 font-semibold dark:text-zinc-400 line-clamp-1">
                   {course.currentModule}
                 </p>
               </div>
 
               {/* Barra de Progresso Visual */}
-              <div className="space-y-1.5 pt-2 border-t border-gray-200 dark:border-zinc-800/80">
+              <div className="space-y-1.5 pt-2 border-t border-slate-300 dark:border-zinc-800/80">
                 <div className="flex justify-between items-center text-xs font-bold">
-                  <span className="text-slate-600 dark:text-zinc-400 text-[11px]">Progresso</span>
+                  <span className="text-slate-800 font-semibold dark:text-zinc-400 text-[11px]">Progresso</span>
                   <span className="text-purple-600 dark:text-purple-300">{course.progress}%</span>
                 </div>
                 <div className="w-full bg-gray-200 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
@@ -349,14 +349,14 @@ export default function StudentDashboard() {
       {/* ========================================================================= */}
       {/* C) SEÇÃO "OPORTUNIDADES RECOMENDADAS HOJE"                                  */}
       {/* ========================================================================= */}
-      <div className="bg-white dark:bg-slate-900/80 border border-gray-200 dark:border-purple-500/20 rounded-2xl p-5 sm:p-6 shadow-sm dark:shadow-xl space-y-4 transition-colors duration-300">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-gray-200 dark:border-zinc-800">
+      <div className="bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-purple-500/20 rounded-2xl p-5 sm:p-6 shadow-sm dark:shadow-xl space-y-4 transition-colors duration-300">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-300 dark:border-zinc-800">
           <div>
             <h2 className="text-base sm:text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
               <Briefcase className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
               <span>Oportunidades Recomendadas Hoje</span>
             </h2>
-            <p className="text-xs text-slate-500 dark:text-zinc-400">
+            <p className="text-xs text-slate-700 font-medium dark:text-zinc-400">
               Vagas abertas nas últimas 24h em Curitiba e RMC selecionadas para o seu perfil.
             </p>
           </div>
@@ -377,7 +377,7 @@ export default function StudentDashboard() {
             return (
               <div
                 key={vaga.id}
-                className="bg-slate-50 dark:bg-slate-950/60 border border-gray-200 dark:border-purple-500/15 rounded-xl p-4 sm:p-5 flex flex-col justify-between space-y-3 hover:border-purple-400 dark:hover:border-purple-500/40 transition-all shadow-sm"
+                className="bg-slate-50 dark:bg-slate-950/60 border border-slate-300 dark:border-purple-500/15 rounded-xl p-4 sm:p-5 flex flex-col justify-between space-y-3 hover:border-purple-400 dark:hover:border-purple-500/40 transition-all shadow-sm"
               >
                 <div className="space-y-1.5">
                   <div className="flex items-center justify-between gap-2">
@@ -394,24 +394,24 @@ export default function StudentDashboard() {
                     {vaga.titulo}
                   </h3>
 
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-600 dark:text-zinc-400 pt-1">
+                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-800 font-semibold dark:text-zinc-400 pt-1">
                     <span className="flex items-center gap-1 font-semibold text-emerald-700 dark:text-emerald-400">
                       <DollarSign className="w-3.5 h-3.5" />
                       <span>R$ {vaga.remuneracao.toFixed(2)}</span>
                     </span>
                     <span className="flex items-center gap-1">
-                      <MapPin className="w-3.5 h-3.5 text-slate-500 dark:text-zinc-400" />
+                      <MapPin className="w-3.5 h-3.5 text-slate-700 font-medium dark:text-zinc-400" />
                       <span>Bairro {vaga.bairro}</span>
                     </span>
                     <span className="flex items-center gap-1">
-                      <Clock className="w-3.5 h-3.5 text-slate-500 dark:text-zinc-400" />
+                      <Clock className="w-3.5 h-3.5 text-slate-700 font-medium dark:text-zinc-400" />
                       <span>{vaga.cargaSemanal}</span>
                     </span>
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between pt-3 border-t border-gray-200 dark:border-zinc-800/80 gap-2">
-                  <div className="text-[11px] text-slate-500 dark:text-zinc-400 flex items-center gap-1">
+                <div className="flex items-center justify-between pt-3 border-t border-slate-300 dark:border-zinc-800/80 gap-2">
+                  <div className="text-[11px] text-slate-700 font-medium dark:text-zinc-400 flex items-center gap-1">
                     <TrendingUp className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
                     <span>{vaga.aderenciaPerfil}% de aderência</span>
                   </div>

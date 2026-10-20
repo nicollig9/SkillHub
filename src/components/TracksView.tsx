@@ -147,7 +147,7 @@ export default function TracksView() {
           </div>
 
           {/* Card Dinâmico de Métricas */}
-          <div className="bg-[#171126] border border-[#2D1B4E] rounded-2xl p-4 sm:p-5 text-center shrink-0 shadow-lg min-w-[190px] flex flex-col items-center justify-center">
+          <div className="bg-slate-50 dark:bg-[#171126] border border-slate-300 dark:border-[#2D1B4E] rounded-2xl p-4 sm:p-5 text-center shrink-0 shadow-lg min-w-[190px] flex flex-col items-center justify-center">
             <div className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
               {filteredTracks.length}
             </div>
@@ -167,7 +167,7 @@ export default function TracksView() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             
             {/* Coluna 1: O que são Cursos? */}
-            <div className="bg-[#171126] border border-[#2D1B4E] hover:border-purple-500/30 rounded-2xl p-5 space-y-2.5 transition-all">
+            <div className="bg-slate-50 dark:bg-[#171126] border border-slate-300 dark:border-[#2D1B4E] hover:border-purple-500/30 rounded-2xl p-5 space-y-2.5 transition-all">
               <div className="flex items-center gap-2.5 text-white font-bold text-sm">
                 <div className="w-8 h-8 rounded-xl bg-purple-950/60 border border-purple-500/30 flex items-center justify-center text-purple-300 shrink-0">
                   <BookOpen className="w-4 h-4" />
@@ -208,7 +208,7 @@ export default function TracksView() {
       {/* ===================================================== */}
       {/* 2. BARRA DE FILTROS & PESQUISA                        */}
       {/* ===================================================== */}
-      <div className="w-full bg-[#140E24] border border-[#2D1B4E]/60 rounded-2xl p-4 sm:p-5 shadow-lg space-y-4">
+      <div className="w-full bg-white dark:bg-[#140E24] border border-slate-300 dark:border-[#2D1B4E]/60 rounded-2xl p-4 sm:p-5 shadow-sm space-y-4">
         
         {/* Linha 1: Input de Busca + Filtro por Público */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3">
@@ -220,16 +220,16 @@ export default function TracksView() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Pesquisar por formação, selo, etapa ou palavra-chave..."
-              className="w-full bg-[#0D0818] border border-[#2D1B4E] rounded-xl pl-10 pr-4 py-2.5 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#8B5CF6]"
+              className="w-full bg-white dark:bg-[#0D0818] border border-slate-300 dark:border-[#2D1B4E] rounded-xl pl-10 pr-4 py-2.5 text-xs sm:text-sm text-slate-900 dark:text-white placeholder-slate-500 dark:placeholder-zinc-500 font-semibold focus:outline-none focus:border-purple-600"
             />
           </div>
 
           <div className="md:col-span-5 flex items-center gap-2">
-            <span className="text-xs font-bold text-zinc-400 shrink-0">Para quem:</span>
+            <span className="text-xs font-bold text-slate-800 dark:text-zinc-400 shrink-0">Para quem:</span>
             <select
               value={selectedAudience}
               onChange={(e) => setSelectedAudience(e.target.value as any)}
-              className="w-full bg-[#0D0818] border border-[#2D1B4E] rounded-xl px-3 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-[#8B5CF6]"
+              className="w-full bg-white dark:bg-[#0D0818] border border-slate-300 dark:border-[#2D1B4E] rounded-xl px-3 py-2.5 text-xs sm:text-sm text-slate-900 dark:text-white font-semibold focus:outline-none focus:border-purple-600"
             >
               <option value="TODOS">Todos os Públicos</option>
               <option value="JOVEM_APRENDIZ">🛡️ Jovem Aprendiz</option>
@@ -242,7 +242,7 @@ export default function TracksView() {
         </div>
 
         {/* Linha 2: Filtro Rápido por Nível */}
-        <div className="flex flex-wrap items-center justify-start sm:justify-center gap-2 pt-2 border-t border-[#2D1B4E]/40 text-xs">
+        <div className="flex flex-wrap items-center justify-start sm:justify-center gap-2 pt-2 border-t border-slate-300 dark:border-[#2D1B4E]/40 text-xs">
           <span className="text-zinc-400 font-bold shrink-0 flex items-center gap-1.5 mr-1">
             <Target className="w-3.5 h-3.5 text-amber-400" />
             Níveis:
@@ -251,8 +251,8 @@ export default function TracksView() {
             onClick={() => setSelectedLevel('TODOS')}
             className={`px-3 py-1.5 rounded-xl font-bold transition-all ${
               selectedLevel === 'TODOS'
-                ? 'bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] text-white shadow'
-                : 'bg-[#0D0818] text-zinc-400 hover:text-white border border-[#2D1B4E]'
+                ? 'bg-purple-700 text-white font-black shadow'
+                : 'bg-slate-200 text-slate-800 hover:text-black hover:bg-slate-300 font-bold border border-slate-300 dark:bg-[#0D0818] dark:text-zinc-400 dark:hover:text-white dark:border-[#2D1B4E]'
             }`}
           >
             Todas as Trilhas ({TRACKS.length})
@@ -270,8 +270,8 @@ export default function TracksView() {
                 onClick={() => setSelectedLevel(selectedLevel === lvl.id ? 'TODOS' : lvl.id)}
                 className={`px-3 py-1.5 rounded-xl font-bold transition-all flex items-center gap-1.5 ${
                   selectedLevel === lvl.id
-                    ? 'bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] text-white shadow ring-2 ring-[#8B5CF6]/50'
-                    : 'bg-[#0D0818] text-zinc-400 hover:text-white border border-[#2D1B4E]'
+                    ? 'bg-purple-700 text-white font-black shadow ring-2 ring-purple-600/50'
+                    : 'bg-slate-200 text-slate-800 hover:text-black hover:bg-slate-300 font-bold border border-slate-300 dark:bg-[#0D0818] dark:text-zinc-400 dark:hover:text-white dark:border-[#2D1B4E]'
                 }`}
               >
                 <span>{lvl.label}</span>
@@ -302,7 +302,7 @@ export default function TracksView() {
             return (
               <div
                 key={track.id}
-                className={`bg-[#140E24] border rounded-3xl p-5 sm:p-6 shadow-xl transition-all duration-200 ${
+                className={`bg-white dark:bg-[#140E24] border border-slate-300 dark:border-[#2D1B4E]/60 rounded-3xl p-5 sm:p-6 shadow-sm dark:shadow-xl transition-all duration-200 ${
                   isExpanded 
                     ? 'border-[#8B5CF6]/70 shadow-purple-950/40 ring-1 ring-[#8B5CF6]/30' 
                     : 'border-[#2D1B4E]/60 hover:border-purple-500/40'
@@ -327,7 +327,7 @@ export default function TracksView() {
                       <span className={`text-[10px] font-bold px-2.5 py-0.5 rounded-md border ${levelInfo.class}`}>
                         {levelInfo.label}
                       </span>
-                      <span className="text-[10px] font-bold bg-[#1F1535] text-zinc-300 border border-[#2D1B4E] px-2.5 py-0.5 rounded-md">
+                      <span className="text-[10px] font-bold bg-slate-200 text-slate-900 border border-slate-300 dark:bg-[#1F1535] dark:text-zinc-300 dark:border-[#2D1B4E] px-2.5 py-0.5 rounded-md">
                         {track.category}
                       </span>
                       <span className="text-xs font-semibold text-zinc-400 flex items-center gap-1">
@@ -350,10 +350,10 @@ export default function TracksView() {
                   {/* Linha Central: Título e Descrição da Trilha */}
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <div className="space-y-1.5 max-w-3xl">
-                      <h2 className="text-lg sm:text-xl font-extrabold text-white tracking-tight hover:text-purple-200 transition-colors">
+                      <h2 className="text-lg sm:text-xl font-black text-slate-900 dark:text-white tracking-tight transition-colors">
                         {track.name}
                       </h2>
-                      <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
+                      <p className="text-xs sm:text-sm text-slate-700 dark:text-zinc-300 leading-relaxed font-medium">
                         {track.description}
                       </p>
                     </div>
@@ -380,7 +380,7 @@ export default function TracksView() {
                   </div>
 
                   {/* Linha Inferior: Barra de Progresso Visual Simples */}
-                  <div className="pt-2 border-t border-[#2D1B4E]/40 space-y-1.5">
+                  <div className="pt-2 border-t border-slate-300 dark:border-[#2D1B4E]/40 space-y-1.5">
                     <div className="flex items-center justify-between text-[11px] text-zinc-400">
                       <span className="font-medium">
                         {completed} de {total} {total === 1 ? 'Curso concluído' : 'Cursos concluídos'}
@@ -402,7 +402,7 @@ export default function TracksView() {
                 {/* CONTEÚDO EXPANDIDO: LINHA DO TEMPO / ETAPAS           */}
                 {/* ===================================================== */}
                 {isExpanded && (
-                  <div className="mt-6 pt-6 border-t border-[#2D1B4E]/60 space-y-6">
+                  <div className="mt-6 pt-6 border-t border-slate-300 dark:border-[#2D1B4E]/60 space-y-6">
                     
                     {/* Cabeçalho da Linha do Tempo */}
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
@@ -440,7 +440,7 @@ export default function TracksView() {
                           <div key={step.stepNumber} className="relative">
                             
                             {/* Card da Etapa */}
-                            <div className="bg-[#100A1D] border border-[#2D1B4E] hover:border-purple-500/40 rounded-2xl p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 transition-all">
+                            <div className="bg-slate-50 dark:bg-[#100A1D] border border-slate-300 dark:border-[#2D1B4E] hover:border-purple-500/40 rounded-2xl p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4 transition-all">
                               
                               <div className="flex items-start gap-3.5">
                                 {/* Indicador Visual do Passo */}

@@ -211,7 +211,7 @@ export default function CourseViewer() {
       {/* 1. CABEÇALHO DO CURSO (HERO BANNER COMPLETO)          */}
       {/* ===================================================== */}
       {!isReadingMode && (
-        <div className="w-full bg-[#110E1B] border border-[#2D1B4E]/60 rounded-3xl p-6 lg:p-8 shadow-2xl relative overflow-hidden space-y-6">
+        <div className="w-full bg-white dark:bg-[#110E1B] border border-slate-300 dark:border-[#2D1B4E]/60 rounded-3xl p-6 lg:p-8 shadow-sm dark:shadow-2xl relative overflow-hidden space-y-6">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 relative z-10">
             
             {/* Lado Esquerdo: Badges de Metadados, Título e Descrição */}
@@ -228,12 +228,12 @@ export default function CourseViewer() {
                   {course.level === 'Intermediário' ? '🟡 Nível 2: Intermediário' : course.level === 'Avançado' ? '🔴 Nível 3: Avançado' : '🟢 Nível 1: Iniciante'}
                 </span>
                 
-                <span className="inline-flex items-center gap-1 bg-[#171126] border border-[#2D1B4E] text-zinc-300 text-[10px] sm:text-xs font-semibold px-2.5 py-0.5 rounded-md">
+                <span className="inline-flex items-center gap-1 bg-slate-200 dark:bg-[#171126] border border-slate-300 dark:border-[#2D1B4E] text-slate-900 dark:text-zinc-300 font-bold text-[10px] sm:text-xs font-semibold px-2.5 py-0.5 rounded-md">
                   <Clock className="w-3.5 h-3.5 text-zinc-400" />
                   <span>Carga Horária: {course.hours}h</span>
                 </span>
 
-                <span className="inline-flex items-center gap-1 bg-[#171126] border border-[#2D1B4E] text-zinc-300 text-[10px] sm:text-xs font-semibold px-2.5 py-0.5 rounded-md">
+                <span className="inline-flex items-center gap-1 bg-slate-200 dark:bg-[#171126] border border-slate-300 dark:border-[#2D1B4E] text-slate-900 dark:text-zinc-300 font-bold text-[10px] sm:text-xs font-semibold px-2.5 py-0.5 rounded-md">
                   <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
                   <span>Certificado Incluso</span>
                 </span>
@@ -250,7 +250,7 @@ export default function CourseViewer() {
               </h1>
 
               {/* Descrição Curta com Foco em Curitiba & RMC */}
-              <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
+              <p className="text-xs sm:text-sm text-slate-700 dark:text-zinc-300 leading-relaxed font-medium">
                 {course.subtitle} — Desenvolva competências práticas e comportamentais altamente valorizadas no mercado de trabalho e empresas parceiras de Curitiba e Região Metropolitana.
               </p>
             </div>
@@ -924,7 +924,7 @@ export default function CourseViewer() {
 
                           <div className="mt-3 bg-[#171126] border border-[#2D1B4E] rounded-xl p-3.5 flex flex-col sm:flex-row justify-between items-center gap-2 font-sans">
                             <div>
-                              <div className="text-xs text-zinc-400 font-bold">VALOR LÍQUIDO A RECEBER:</div>
+                              <div className="text-xs text-slate-700 dark:text-zinc-400 font-medium font-bold">VALOR LÍQUIDO A RECEBER:</div>
                               <div className="text-xl font-black text-white">R$ 968,80</div>
                             </div>
                             <div className="text-right sm:text-right text-xs">
@@ -1013,7 +1013,7 @@ export default function CourseViewer() {
               >
                 <div className="text-xs font-bold text-purple-400 mb-1">Caso #{idx + 1}</div>
                 <div className="text-sm font-bold text-white mb-2">{cs.title}</div>
-                <div className="text-xs text-zinc-400 line-clamp-2">{cs.scenario}</div>
+                <div className="text-xs text-slate-700 dark:text-zinc-400 font-medium line-clamp-2">{cs.scenario}</div>
               </button>
             ))}
           </div>
@@ -1288,7 +1288,7 @@ export default function CourseViewer() {
                           <div className="text-xs text-rose-200 bg-rose-950/70 p-3 rounded-lg border border-rose-800/40 leading-relaxed">
                             <div>
                               Sua escolha:{' '}
-                              <span className="font-bold text-white">
+                              <span className="font-black text-slate-900 dark:text-white">
                                 {selectedOpt !== undefined ? `Alternativa (${String.fromCharCode(65 + selectedOpt)})` : 'Não respondeu'}
                               </span>
                             </div>
@@ -1434,7 +1434,7 @@ export default function CourseViewer() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
                 {/* Dica 1 */}
                 <div className="bg-[#140E24] border border-[#2D1B4E] rounded-xl p-3.5 space-y-1.5">
-                  <div className="font-bold text-white flex items-center gap-1.5">
+                  <div className="font-black text-slate-900 dark:text-white flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-purple-400"></span>
                     <span>No seu Currículo (PDF/Word):</span>
                   </div>
@@ -1445,7 +1445,7 @@ export default function CourseViewer() {
 
                 {/* Dica 2 */}
                 <div className="bg-[#140E24] border border-[#2D1B4E] rounded-xl p-3.5 space-y-1.5">
-                  <div className="font-bold text-white flex items-center gap-1.5">
+                  <div className="font-black text-slate-900 dark:text-white flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-amber-400"></span>
                     <span>Na Entrevista com o RH:</span>
                   </div>
@@ -1456,7 +1456,7 @@ export default function CourseViewer() {
 
                 {/* Dica 3 */}
                 <div className="bg-[#140E24] border border-[#2D1B4E] rounded-xl p-3.5 space-y-1.5">
-                  <div className="font-bold text-white flex items-center gap-1.5">
+                  <div className="font-black text-slate-900 dark:text-white flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
                     <span>No seu Perfil do LinkedIn:</span>
                   </div>

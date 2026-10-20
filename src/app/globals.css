@@ -549,3 +549,423 @@ body {
 :is([data-theme="light"], .light) table tbody tr:hover {
   background-color: #F1F5F9 !important;
 }
+
+
+/* ==========================================================================
+   MASTER WCAG ALTO CONTRASTE - TEMA CLARO (LIGHT MODE)
+   Garante 100% de legibilidade, letras escuras em negrito e bordas nítidas
+   ========================================================================== */
+
+/* 1. FUNDO GERAL DA PÁGINA */
+:is([data-theme="light"], .light) body,
+:is([data-theme="light"], .light) main,
+:is([data-theme="light"], .light) #__next,
+html.light,
+html[data-theme="light"] {
+  background-color: #F1F5F9 !important; /* bg-slate-100 */
+  color: #0F172A !important;            /* text-slate-900 */
+}
+
+/* 2. CARDS E CONTAINERS: Branco com bordas bem visíveis border-slate-300 */
+:is([data-theme="light"], .light) :is(
+  .rounded-2xl,
+  .rounded-3xl,
+  [class*="rounded-2xl"],
+  [class*="rounded-3xl"]
+):not(button):not(input):not(select):not(textarea):not(.rounded-full):not(header *):not(nav *) {
+  background-color: #FFFFFF !important;
+  background-image: none !important;
+  border: 1.5px solid #CBD5E1 !important; /* border-slate-300 */
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08) !important;
+}
+
+/* 3. CARDS INTERNOS E CAIXAS EXPLICATIVAS */
+:is([data-theme="light"], .light) :is(
+  .rounded-xl,
+  [class*="rounded-xl"]
+):not(button):not(input):not(select):not(textarea):not(.rounded-full):not(header *):not(nav *):not(footer *) {
+  background-color: #F8FAFC !important; /* bg-slate-50 */
+  background-image: none !important;
+  border: 1px solid #CBD5E1 !important; /* border-slate-300 */
+}
+
+/* 4. TÍTULOS PRINCIPAIS (H1, H2, H3, H4) SEMPRE ESCUROS E EM NEGRITO */
+:is([data-theme="light"], .light) :is(h1, h2, h3, h4, h5, h6):not(button *) {
+  color: #0F172A !important;       /* text-slate-900 */
+  font-weight: 800 !important;      /* font-extrabold */
+  letter-spacing: -0.02em;
+}
+
+/* 5. SUBTÍTULOS E RÓTULOS (TEXT-SLATE-800 FONT-SEMIBOLD) */
+:is([data-theme="light"], .light) :is(
+  label,
+  strong,
+  b,
+  th,
+  .font-semibold,
+  .font-bold:not(button):not(button *)
+):not(button):not(button *):not([class*="from-"]):not([class*="bg-purple-"]) {
+  color: #1E293B !important;       /* text-slate-800 */
+  font-weight: 700 !important;
+}
+
+/* 6. PARÁGRAFOS E DESCRIÇÕES (TEXT-SLATE-700 FONT-MEDIUM) */
+:is([data-theme="light"], .light) :is(
+  p,
+  li,
+  .text-zinc-300,
+  .text-zinc-400,
+  .text-zinc-500,
+  .text-slate-300,
+  .text-slate-400,
+  .text-slate-500,
+  .text-neutral-300,
+  .text-neutral-400,
+  .text-purple-200,
+  .text-purple-300
+):not(button):not(button *):not(.btn):not(.btn *):not([class*="rounded-full"]):not([class*="rounded-full"] *):not([class*="from-"]):not([class*="bg-purple-"]):not([class*="text-purple-600"]) {
+  color: #334155 !important;       /* text-slate-700 */
+  font-weight: 500 !important;
+  opacity: 1 !important;
+}
+
+/* 7. PÍLULAS E BADGES SUPERIORES (BG-SLATE-200, BORDER-SLATE-300, TEXT-SLATE-900 FONT-BOLD) */
+:is([data-theme="light"], .light) :is(
+  .rounded-full,
+  [class*="rounded-full"]
+):not(button):not(a):not(img):not(.w-7):not(.w-8):not(.w-9):not(.w-10):not(.avatar):not(header *):not(nav *) {
+  background-color: #E2E8F0 !important; /* bg-slate-200 */
+  border: 1px solid #CBD5E1 !important; /* border-slate-300 */
+  color: #0F172A !important;            /* text-slate-900 */
+  font-weight: 700 !important;
+}
+
+:is([data-theme="light"], .light) :is(
+  .rounded-full,
+  [class*="rounded-full"]
+):not(button):not(a):not(header *):not(nav *) :is(span, p, strong, div, b) {
+  color: #0F172A !important;            /* text-slate-900 */
+  font-weight: 700 !important;
+}
+
+:is([data-theme="light"], .light) :is(
+  .rounded-full,
+  [class*="rounded-full"]
+):not(button):not(a):not(header *):not(nav *) svg {
+  color: #475569 !important;            /* text-slate-600 */
+}
+
+/* 8. BOTÕES DE FILTRO NO TEMA CLARO */
+/* Estado Inativo: bg-slate-200 text-slate-800 font-bold border border-slate-300 */
+:is([data-theme="light"], .light) button:is(
+  .bg-\[\#0D0818\],
+  .bg-\[\#171126\],
+  .bg-\[\#18092E\],
+  .bg-\[\#10061D\],
+  .bg-\[\#24123E\],
+  .bg-slate-900,
+  .bg-slate-950
+):not([class*="from-"]):not([class*="bg-purple-600"]):not([class*="bg-purple-700"]):not(.btn-primary) {
+  background-color: #E2E8F0 !important; /* bg-slate-200 */
+  border: 1px solid #CBD5E1 !important; /* border-slate-300 */
+  color: #1E293B !important;            /* text-slate-800 */
+  font-weight: 700 !important;
+}
+
+:is([data-theme="light"], .light) button:is(
+  .bg-\[\#0D0818\],
+  .bg-\[\#171126\],
+  .bg-\[\#18092E\],
+  .bg-\[\#10061D\],
+  .bg-\[\#24123E\],
+  .bg-slate-900,
+  .bg-slate-950
+):not([class*="from-"]):not([class*="bg-purple-600"]):not([class*="bg-purple-700"]):not(.btn-primary) * {
+  color: #1E293B !important;
+  font-weight: 700 !important;
+}
+
+/* Estado Ativo: bg-purple-700 text-white font-bold */
+:is([data-theme="light"], .light) button:is(
+  .bg-purple-600,
+  .bg-purple-700,
+  [class*="from-[#6D28D9]"],
+  [class*="from-purple-"]
+) {
+  background-color: #6D28D9 !important; /* bg-purple-700 */
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  border-color: #6D28D9 !important;
+}
+
+:is([data-theme="light"], .light) button:is(
+  .bg-purple-600,
+  .bg-purple-700,
+  [class*="from-[#6D28D9]"],
+  [class*="from-purple-"]
+) * {
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+}
+
+/* 9. INPUTS E SELECTS NO TEMA CLARO */
+:is([data-theme="light"], .light) :is(input, select, textarea) {
+  background-color: #FFFFFF !important;
+  border: 1.5px solid #CBD5E1 !important; /* border-slate-300 */
+  color: #0F172A !important;              /* text-slate-900 */
+  font-weight: 600 !important;
+}
+
+:is([data-theme="light"], .light) ::placeholder {
+  color: #64748B !important;              /* text-slate-500 */
+  font-weight: 500 !important;
+}
+
+/* 10. ELIMINAÇÃO DE OPACIDADE FRACA NO TEMA CLARO */
+:is([data-theme="light"], .light) .opacity-75,
+:is([data-theme="light"], .light) .opacity-50 {
+  opacity: 0.9 !important;
+}
+
+/* ==========================================================================
+   MASTER INCONDICIONAL WCAG ALTO CONTRASTE - MODO CLARO (html:not(.dark), html.light)
+   ========================================================================== */
+html:not(.dark),
+html.light,
+[data-theme="light"],
+html:not(.dark) body,
+html.light body {
+  background-color: #F1F5F9 !important;
+  color: #0F172A !important;
+}
+
+/* Fundo dos cartões e containers no modo claro */
+html:not(.dark) :is(
+  .bg-\[\#110E1B\],
+  .bg-\[\#140E24\],
+  .bg-\[\#171126\],
+  .bg-\[\#0D0818\],
+  .bg-\[\#100A1D\],
+  .bg-\[\#1F1535\],
+  .bg-\[\#160F28\],
+  .bg-\[\#0E091A\],
+  .bg-\[\#0c0a16\],
+  .bg-\[\#0D0618\],
+  .bg-\[\#0f0c1b\],
+  .bg-\[\#0F0D1E\],
+  .bg-\[\#10061D\],
+  .bg-\[\#120722\],
+  .bg-\[\#130722\],
+  .bg-\[\#140625\],
+  .bg-\[\#140726\],
+  .bg-\[\#140824\],
+  .bg-\[\#140A23\],
+  .bg-\[\#141020\],
+  .bg-\[\#150524\],
+  .bg-\[\#150926\],
+  .bg-\[\#15092A\],
+  .bg-\[\#150B25\],
+  .bg-\[\#160728\],
+  .bg-\[\#160A25\],
+  .bg-\[\#17092A\],
+  .bg-\[\#17092B\],
+  .bg-\[\#170C2B\],
+  .bg-\[\#18092E\],
+  .bg-\[\#180A2B\],
+  .bg-\[\#180A2D\],
+  .bg-\[\#180C2C\],
+  .bg-\[\#18132b\],
+  .bg-\[\#190D2E\],
+  .bg-\[\#1A0B2E\],
+  .bg-\[\#1B0D30\],
+  .bg-\[\#1C0A33\],
+  .bg-\[\#1C0D33\],
+  .bg-\[\#1C0E33\],
+  .bg-\[\#1C0F32\],
+  .bg-\[\#1D0933\],
+  .bg-\[\#1d0b36\],
+  .bg-\[\#1E0F38\],
+  .bg-\[\#1F0E34\],
+  .bg-\[\#1F0E38\],
+  .bg-\[\#220E3A\],
+  .bg-\[\#220E3D\],
+  .bg-\[\#24103D\],
+  .bg-\[\#24103E\],
+  .bg-\[\#241042\],
+  .bg-\[\#24123E\],
+  .bg-\[\#250B3E\],
+  .bg-\[\#250F44\],
+  .bg-\[\#25123E\],
+  .bg-\[\#281347\],
+  .bg-\[\#2A114D\],
+  .bg-\[\#2A154A\],
+  .bg-\[\#2D164E\],
+  .bg-\[\#2E1254\],
+  .bg-\[\#2F1352\],
+  .bg-\[\#311554\],
+  .bg-\[\#341858\],
+  .bg-\[\#35135A\],
+  .bg-\[\#351859\],
+  .bg-\[\#381B5E\],
+  .bg-\[\#3C1A6E\],
+  .bg-\[\#3E1674\],
+  .bg-\[\#521C7E\],
+  .bg-slate-950,
+  .bg-slate-900,
+  .bg-slate-850,
+  .bg-purple-950,
+  .bg-purple-900
+):not(button):not(a):not(.btn):not([class*="from-"]):not([class*="bg-purple-6"]):not([class*="bg-purple-7"]):not([class*="bg-emerald-"]):not([class*="bg-amber-"]):not([class*="rounded-full"]) {
+  background-color: #FFFFFF !important;
+  background-image: none !important;
+  border-color: #CBD5E1 !important;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08) !important;
+}
+
+/* Bordas escuras hex transformam-se em border-slate-300 */
+html:not(.dark) :is(
+  .border-\[\#2D1B4E\],
+  .border-\[\#2D1B4E\]\/60,
+  .border-\[\#2D1B4E\]\/40,
+  .border-\[\#2D1B4E\]\/30,
+  .border-\[\#3F1F68\],
+  .border-\[\#521E8A\]\/40,
+  .border-\[\#5B2594\]\/60,
+  .border-\[\#6D34A8\]\/40,
+  .border-purple-500\/20,
+  .border-purple-500\/30,
+  .border-purple-500\/40,
+  .border-neutral-800,
+  .border-neutral-800\/80,
+  .border-zinc-800,
+  .border-zinc-800\/80
+):not(button):not([class*="from-"]):not([class*="bg-purple-"]) {
+  border-color: #CBD5E1 !important;
+}
+
+/* Títulos Principais H1, H2, H3, H4, H5, H6 SEMPRE ESCUROS E EM NEGRITO */
+html:not(.dark) :is(h1, h2, h3, h4, h5, h6):not(button *):not(.btn *) {
+  color: #0F172A !important;
+  font-weight: 800 !important;
+}
+
+/* Todos os textos brancos fora de botões coloridos tornam-se escuros em negrito */
+html:not(.dark) :is(
+  .text-white,
+  .text-zinc-100,
+  .text-zinc-200,
+  .text-slate-100,
+  .text-slate-200
+):not(button):not(button *):not(.btn):not(.btn *):not(a[class*="bg-"]):not([class*="from-"]):not([class*="bg-purple-"]):not([class*="bg-emerald-"]):not([class*="bg-amber-"]):not(.badge-colored) {
+  color: #0F172A !important;
+  font-weight: 700 !important;
+}
+
+/* Subtítulos e parágrafos: cinza escuro de alto contraste */
+html:not(.dark) :is(
+  p,
+  li,
+  .text-zinc-300,
+  .text-zinc-400,
+  .text-zinc-500,
+  .text-slate-300,
+  .text-slate-400,
+  .text-slate-500,
+  .text-purple-200,
+  .text-purple-300
+):not(button):not(button *):not(.btn):not(.btn *):not(a[class*="bg-"]):not([class*="from-"]):not([class*="bg-purple-"]):not([class*="bg-emerald-"]):not([class*="bg-amber-"]):not([class*="rounded-full"]):not([class*="rounded-full"] *) {
+  color: #334155 !important;
+  font-weight: 600 !important;
+  opacity: 1 !important;
+}
+
+/* Pílulas e Badges superiores no Modo Claro */
+html:not(.dark) :is(
+  .rounded-full,
+  [class*="rounded-full"]
+):not(button):not(a):not(img):not(.w-7):not(.w-8):not(.w-9):not(.w-10):not(.avatar):not(header *):not(nav *) {
+  background-color: #E2E8F0 !important;
+  border: 1px solid #CBD5E1 !important;
+  color: #0F172A !important;
+  font-weight: 700 !important;
+}
+
+html:not(.dark) :is(
+  .rounded-full,
+  [class*="rounded-full"]
+):not(button):not(a):not(header *):not(nav *) :is(span, p, strong, div, b) {
+  color: #0F172A !important;
+  font-weight: 700 !important;
+}
+
+/* Botões de Filtro e Abas Inativas */
+html:not(.dark) button:is(
+  .bg-\[\#0D0818\],
+  .bg-\[\#171126\],
+  .bg-\[\#18092E\],
+  .bg-\[\#10061D\],
+  .bg-\[\#24123E\],
+  .bg-slate-900,
+  .bg-slate-950
+):not([class*="from-"]):not([class*="bg-purple-600"]):not([class*="bg-purple-700"]):not(.btn-primary) {
+  background-color: #E2E8F0 !important;
+  border: 1px solid #CBD5E1 !important;
+  color: #1E293B !important;
+  font-weight: 700 !important;
+}
+
+html:not(.dark) button:is(
+  .bg-\[\#0D0818\],
+  .bg-\[\#171126\],
+  .bg-\[\#18092E\],
+  .bg-\[\#10061D\],
+  .bg-\[\#24123E\],
+  .bg-slate-900,
+  .bg-slate-950
+):not([class*="from-"]):not([class*="bg-purple-600"]):not([class*="bg-purple-700"]):not(.btn-primary) * {
+  color: #1E293B !important;
+  font-weight: 700 !important;
+}
+
+/* Botões Ativos: Roxo Vibrante com Texto Branco Negrito */
+html:not(.dark) button:is(
+  .bg-purple-600,
+  .bg-purple-700,
+  [class*="from-[#6D28D9]"],
+  [class*="from-purple-"]
+) {
+  background-color: #6D28D9 !important;
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  border-color: #6D28D9 !important;
+}
+
+html:not(.dark) button:is(
+  .bg-purple-600,
+  .bg-purple-700,
+  [class*="from-[#6D28D9]"],
+  [class*="from-purple-"]
+) * {
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+}
+
+/* Caixas explicativas internas */
+html:not(.dark) :is(
+  .bg-\[\#0E091A\],
+  .bg-\[\#1F1535\],
+  .bg-\[\#100A1D\]
+):not(button):not(a) {
+  background-color: #F8FAFC !important;
+  border: 1px solid #CBD5E1 !important;
+  color: #1E293B !important;
+}
+
+html:not(.dark) :is(
+  .bg-\[\#0E091A\],
+  .bg-\[\#1F1535\],
+  .bg-\[\#100A1D\]
+):not(button):not(a) * {
+  color: #1E293B !important;
+  font-weight: 600 !important;
+}

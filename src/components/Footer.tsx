@@ -21,7 +21,7 @@ export default function Footer() {
   const [activeModal, setActiveModal] = useState<'FAQ' | 'TERMOS' | 'LGPD' | null>(null);
 
   return (
-    <footer className="w-full bg-slate-50 dark:bg-slate-950 text-slate-700 dark:text-zinc-300 border-t border-gray-200 dark:border-purple-500/20 transition-colors duration-300 mt-auto print:hidden">
+    <footer className="w-full bg-white dark:bg-slate-950 text-slate-800 dark:text-zinc-300 border-t border-slate-300 dark:border-purple-500/20 transition-colors duration-300 mt-auto print:hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-start">
           
@@ -38,22 +38,22 @@ export default function Footer() {
                   <span className="text-xl font-black text-slate-900 dark:text-white tracking-tight">
                     Skill<span className="text-purple-600 dark:text-purple-400">Hub</span>
                   </span>
-                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-100 text-purple-700 dark:bg-purple-950/80 dark:text-purple-300 border border-purple-200 dark:border-purple-500/30">
+                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-200 text-slate-900 border border-slate-300 dark:bg-purple-950/80 dark:text-purple-300">
                     Curitiba &amp; RMC
                   </span>
                 </div>
               </div>
             </div>
 
-            <p className="text-sm text-slate-600 dark:text-zinc-400 leading-relaxed max-w-md">
+            <p className="text-sm text-slate-700 dark:text-zinc-400 font-medium leading-relaxed max-w-md">
               Capacitando jovens aprendizes e estagiários para o primeiro emprego no mercado local.
             </p>
 
-            <div className="pt-2 border-t border-gray-200 dark:border-zinc-800/80 text-xs text-slate-500 dark:text-zinc-500 space-y-1">
+            <div className="pt-2 border-t border-gray-200 dark:border-zinc-800/80 text-xs text-slate-700 dark:text-zinc-500 font-medium space-y-1">
               <div>
                 © 2026 SkillHub — Plataforma de Empregabilidade Jovem em Curitiba &amp; Região Metropolitana.
               </div>
-              <div className="flex items-center gap-1.5 text-[11px] text-slate-500 dark:text-zinc-400">
+              <div className="flex items-center gap-1.5 text-[11px] text-slate-700 dark:text-zinc-400 font-medium">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
                 <span>Dados protegidos nos termos da LGPD (Lei Federal nº 13.709/18).</span>
               </div>
@@ -75,7 +75,7 @@ export default function Footer() {
                 <li>
                   <button
                     onClick={() => setCurrentView('CURSOS_DISPONIVEIS')}
-                    className="text-slate-600 dark:text-zinc-400 hover:text-purple-600 dark:hover:text-purple-300 transition-colors cursor-pointer flex items-center gap-1.5 text-left"
+                    className="text-slate-800 dark:text-zinc-400 hover:text-purple-700 dark:hover:text-purple-300 font-bold transition-colors cursor-pointer flex items-center gap-1.5 text-left"
                   >
                     <span>Cursos</span>
                   </button>
@@ -83,7 +83,7 @@ export default function Footer() {
                 <li>
                   <button
                     onClick={() => setCurrentView('TRILHAS_DISPONIVEIS')}
-                    className="text-slate-600 dark:text-zinc-400 hover:text-purple-600 dark:hover:text-purple-300 transition-colors cursor-pointer flex items-center gap-1.5 text-left"
+                    className="text-slate-800 dark:text-zinc-400 hover:text-purple-700 dark:hover:text-purple-300 font-bold transition-colors cursor-pointer flex items-center gap-1.5 text-left"
                   >
                     <span>Trilhas de Formação</span>
                   </button>
@@ -91,7 +91,7 @@ export default function Footer() {
                 <li>
                   <button
                     onClick={() => setCurrentView('MAPA_PROXIMIDADE')}
-                    className="text-slate-600 dark:text-zinc-400 hover:text-purple-600 dark:hover:text-purple-300 transition-colors cursor-pointer flex items-center gap-1.5 text-left"
+                    className="text-slate-800 dark:text-zinc-400 hover:text-purple-700 dark:hover:text-purple-300 font-bold transition-colors cursor-pointer flex items-center gap-1.5 text-left"
                   >
                     <span>Mapa de Vagas</span>
                   </button>
@@ -99,7 +99,7 @@ export default function Footer() {
                 <li>
                   <button
                     onClick={() => setCurrentView('HOLERITE')}
-                    className="text-slate-600 dark:text-zinc-400 hover:text-purple-600 dark:hover:text-purple-300 transition-colors cursor-pointer flex items-center gap-1.5 text-left"
+                    className="text-slate-800 dark:text-zinc-400 hover:text-purple-700 dark:hover:text-purple-300 font-bold transition-colors cursor-pointer flex items-center gap-1.5 text-left"
                   >
                     <span>Calculadora Salarial</span>
                   </button>
@@ -117,7 +117,7 @@ export default function Footer() {
                 <li>
                   <button
                     onClick={() => setActiveModal('FAQ')}
-                    className="text-slate-600 dark:text-zinc-400 hover:text-purple-600 dark:hover:text-purple-300 transition-colors cursor-pointer flex items-center gap-1.5 text-left"
+                    className="text-slate-800 dark:text-zinc-400 hover:text-purple-700 dark:hover:text-purple-300 font-bold transition-colors cursor-pointer flex items-center gap-1.5 text-left"
                   >
                     <HelpCircle className="w-3.5 h-3.5" />
                     <span>Dúvidas Frequentes</span>
@@ -126,7 +126,7 @@ export default function Footer() {
                 <li>
                   <button
                     onClick={() => setActiveModal('TERMOS')}
-                    className="text-slate-600 dark:text-zinc-400 hover:text-purple-600 dark:hover:text-purple-300 transition-colors cursor-pointer flex items-center gap-1.5 text-left"
+                    className="text-slate-800 dark:text-zinc-400 hover:text-purple-700 dark:hover:text-purple-300 font-bold transition-colors cursor-pointer flex items-center gap-1.5 text-left"
                   >
                     <FileText className="w-3.5 h-3.5" />
                     <span>Termos de Uso</span>
@@ -135,7 +135,7 @@ export default function Footer() {
                 <li>
                   <button
                     onClick={() => setActiveModal('LGPD')}
-                    className="text-slate-600 dark:text-zinc-400 hover:text-purple-600 dark:hover:text-purple-300 transition-colors cursor-pointer flex items-center gap-1.5 text-left"
+                    className="text-slate-800 dark:text-zinc-400 hover:text-purple-700 dark:hover:text-purple-300 font-bold transition-colors cursor-pointer flex items-center gap-1.5 text-left"
                   >
                     <Lock className="w-3.5 h-3.5 text-emerald-500" />
                     <span>Privacidade / LGPD</span>
@@ -168,7 +168,7 @@ export default function Footer() {
               </div>
               <button
                 onClick={() => setActiveModal(null)}
-                className="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 text-slate-500 dark:text-zinc-400 transition-colors"
+                className="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 text-slate-700 dark:text-zinc-400 font-medium transition-colors"
               >
                 <X className="w-5 h-5" />
               </button>

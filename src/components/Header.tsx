@@ -61,7 +61,7 @@ export default function Header() {
   const isHoleriteActive = currentView === 'HOLERITE';
 
   return (
-    <header className="sticky top-0 z-40 bg-white/95 dark:bg-[#0E091B]/95 backdrop-blur-md border-b border-slate-200 dark:border-purple-500/20 px-4 lg:px-8 py-2.5 shadow-sm dark:shadow-2xl transition-colors duration-300">
+    <header className="sticky top-0 z-40 bg-white/95 dark:bg-[#0E091B]/95 backdrop-blur-md border-b border-slate-300 dark:border-purple-500/20 px-4 lg:px-8 py-2.5 shadow-sm dark:shadow-2xl transition-colors duration-300">
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
         
         {/* ========================================================================= */}
@@ -74,10 +74,10 @@ export default function Header() {
             <button
               onClick={toggleSidebar}
               title="Abrir Menu de Navegação"
-              className="flex items-center gap-1.5 p-2 rounded-xl border border-slate-200 dark:border-purple-500/30 bg-slate-100 hover:bg-slate-200 dark:bg-purple-950/60 dark:hover:bg-purple-900/60 text-slate-700 dark:text-purple-200 transition-all cursor-pointer"
+              className="flex items-center gap-1.5 p-2 rounded-xl border border-slate-300 dark:border-purple-500/30 bg-slate-200/80 hover:bg-slate-300 dark:bg-purple-950/60 dark:hover:bg-purple-900/60 text-slate-900 dark:text-purple-200 font-bold transition-all cursor-pointer"
             >
-              <Menu className="w-4 h-4 text-purple-600 dark:text-purple-300" />
-              <span className="hidden sm:inline text-xs font-bold">Menu</span>
+              <Menu className="w-4 h-4 text-purple-700 dark:text-purple-300" />
+              <span className="hidden sm:inline text-xs font-bold text-slate-900 dark:text-purple-200">Menu</span>
             </button>
           )}
 
@@ -95,9 +95,9 @@ export default function Header() {
             </div>
             <div>
               <h1 className="text-lg font-black tracking-tight text-slate-900 dark:text-white flex items-center leading-none">
-                Skill<span className="text-purple-600 dark:text-[#FBBF24]">Hub</span>
+                Skill<span className="text-purple-700 dark:text-[#FBBF24]">Hub</span>
               </h1>
-              <p className="text-[10px] text-slate-500 dark:text-purple-300 font-semibold tracking-wide mt-0.5">
+              <p className="text-[10px] text-slate-700 dark:text-purple-300 font-bold tracking-wide mt-0.5">
                 Curitiba &amp; RMC
               </p>
             </div>
@@ -108,15 +108,15 @@ export default function Header() {
         {/* 2. LINKS DE NAVEGAÇÃO FLUTUANTES (CENTRO)                                */}
         {/* ========================================================================= */}
         {isAuthenticated && role !== 'RECRUTADOR' && (
-          <nav aria-label="Navegação Principal" className="hidden lg:flex items-center gap-1 bg-slate-100 dark:bg-slate-900 p-1 rounded-2xl border border-slate-200 dark:border-purple-500/20 shadow-inner text-xs font-semibold">
+          <nav aria-label="Navegação Principal" className="hidden lg:flex items-center gap-1 bg-slate-200/90 dark:bg-slate-900 p-1.5 rounded-2xl border border-slate-300 dark:border-purple-500/20 shadow-inner text-xs font-bold">
             
             {/* Aba 1: Meu Dashboard */}
             <button
               onClick={() => setCurrentView('DASHBOARD')}
               className={`px-3.5 py-1.5 rounded-xl transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
                 isDashboardActive
-                  ? 'bg-purple-600 text-white font-bold shadow-sm'
-                  : 'text-slate-600 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/80 dark:hover:bg-slate-800/60 font-medium'
+                  ? 'bg-purple-700 text-white font-black shadow-sm'
+                  : 'text-slate-800 dark:text-zinc-300 hover:text-black dark:hover:text-white hover:bg-white dark:hover:bg-slate-800/60 font-bold'
               }`}
             >
               <span>Meu Dashboard</span>
@@ -127,8 +127,8 @@ export default function Header() {
               onClick={() => setCurrentView('CURSOS_DISPONIVEIS')}
               className={`px-3.5 py-1.5 rounded-xl transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
                 isCursosActive
-                  ? 'bg-purple-600 text-white font-bold shadow-sm'
-                  : 'text-slate-600 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/80 dark:hover:bg-slate-800/60 font-medium'
+                  ? 'bg-purple-700 text-white font-black shadow-sm'
+                  : 'text-slate-800 dark:text-zinc-300 hover:text-black dark:hover:text-white hover:bg-white dark:hover:bg-slate-800/60 font-bold'
               }`}
             >
               <span>Cursos</span>
@@ -139,8 +139,8 @@ export default function Header() {
               onClick={() => setCurrentView('TRILHAS_DISPONIVEIS')}
               className={`px-3.5 py-1.5 rounded-xl transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
                 isTrilhasActive
-                  ? 'bg-purple-600 text-white font-bold shadow-sm'
-                  : 'text-slate-600 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/80 dark:hover:bg-slate-800/60 font-medium'
+                  ? 'bg-purple-700 text-white font-black shadow-sm'
+                  : 'text-slate-800 dark:text-zinc-300 hover:text-black dark:hover:text-white hover:bg-white dark:hover:bg-slate-800/60 font-bold'
               }`}
             >
               <span>Trilhas</span>
@@ -151,8 +151,8 @@ export default function Header() {
               onClick={() => setCurrentView('MAPA_PROXIMIDADE')}
               className={`px-3.5 py-1.5 rounded-xl transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
                 isMapaActive
-                  ? 'bg-purple-600 text-white font-bold shadow-sm'
-                  : 'text-slate-600 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/80 dark:hover:bg-slate-800/60 font-medium'
+                  ? 'bg-purple-700 text-white font-black shadow-sm'
+                  : 'text-slate-800 dark:text-zinc-300 hover:text-black dark:hover:text-white hover:bg-white dark:hover:bg-slate-800/60 font-bold'
               }`}
             >
               <span>Mapa de Vagas</span>
@@ -163,8 +163,8 @@ export default function Header() {
               onClick={() => setCurrentView('HOLERITE')}
               className={`px-3.5 py-1.5 rounded-xl transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
                 isHoleriteActive
-                  ? 'bg-purple-600 text-white font-bold shadow-sm'
-                  : 'text-slate-600 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white hover:bg-white/80 dark:hover:bg-slate-800/60 font-medium'
+                  ? 'bg-purple-700 text-white font-black shadow-sm'
+                  : 'text-slate-800 dark:text-zinc-300 hover:text-black dark:hover:text-white hover:bg-white dark:hover:bg-slate-800/60 font-bold'
               }`}
             >
               <span>Calculadora Salarial</span>
@@ -197,16 +197,16 @@ export default function Header() {
               {/* Botão Perfil / Usuário */}
               <button
                 onClick={() => setCurrentView(role === 'RECRUTADOR' ? 'RECRUTADOR_RH' : 'DASHBOARD')}
-                className="flex items-center gap-2.5 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-purple-500/30 bg-slate-100 hover:bg-slate-200/80 dark:bg-slate-900/80 dark:hover:bg-slate-800 transition-all text-left shadow-sm cursor-pointer"
+                className="flex items-center gap-2.5 px-3 py-1.5 rounded-xl border border-slate-300 dark:border-purple-500/30 bg-slate-200/80 hover:bg-slate-300 dark:bg-slate-900/80 dark:hover:bg-slate-800 transition-all text-left shadow-sm cursor-pointer"
               >
                 <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-purple-600 to-indigo-600 flex items-center justify-center text-white font-extrabold text-[11px] shadow-sm">
                   {displayInitials}
                 </div>
                 <div className="hidden sm:block">
-                  <div className="text-xs font-bold text-slate-900 dark:text-white leading-tight">
+                  <div className="text-xs font-black text-slate-950 dark:text-white leading-tight">
                     {displayName}
                   </div>
-                  <div className="text-[10px] text-slate-500 dark:text-purple-300">
+                  <div className="text-[10px] text-slate-700 dark:text-purple-300 font-bold">
                     {role === 'RECRUTADOR' 
                       ? '🏢 Empresa Parceira' 
                       : `📍 ${student?.endereco?.bairro || 'CIC'} • Curitiba/PR`}
@@ -218,17 +218,17 @@ export default function Header() {
               <button
                 onClick={handleLogout}
                 title="Encerrar Sessão"
-                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-200 dark:border-purple-500/30 text-slate-700 dark:text-purple-200 hover:bg-rose-50 hover:border-rose-200 hover:text-rose-600 dark:hover:bg-rose-500/15 dark:hover:text-rose-300 text-xs font-bold transition-all cursor-pointer"
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-slate-300 dark:border-purple-500/30 text-slate-900 dark:text-purple-200 hover:bg-rose-100 hover:border-rose-300 hover:text-rose-700 dark:hover:bg-rose-500/15 dark:hover:text-rose-300 text-xs font-bold transition-all cursor-pointer"
               >
-                <LogOut className="w-4 h-4" />
-                <span className="hidden md:inline">Sair</span>
+                <LogOut className="w-4 h-4 text-rose-600 dark:text-rose-400" />
+                <span className="hidden md:inline font-bold">Sair</span>
               </button>
             </div>
           ) : (
             <div className="flex items-center gap-2">
               <button
                 onClick={() => router.push('/login')}
-                className="flex items-center gap-1.5 border border-slate-200 dark:border-[#8B5CF6]/50 bg-slate-100 dark:bg-transparent text-slate-800 dark:text-white font-bold px-3 py-1.5 rounded-xl text-xs transition-colors cursor-pointer"
+                className="flex items-center gap-1.5 border border-slate-300 dark:border-[#8B5CF6]/50 bg-slate-200/80 text-slate-900 dark:text-white font-bold px-3 py-1.5 rounded-xl text-xs transition-colors cursor-pointer"
               >
                 <User className="w-3.5 h-3.5" />
                 <span>Login</span>
@@ -238,7 +238,7 @@ export default function Header() {
                   router.push('/login?cadastro=1');
                   window.dispatchEvent(new Event('skillhub:register'));
                 }}
-                className="bg-purple-600 hover:bg-purple-500 text-white font-bold px-3 py-1.5 rounded-xl text-xs shadow-sm transition-colors cursor-pointer"
+                className="bg-purple-700 hover:bg-purple-600 text-white font-bold px-3 py-1.5 rounded-xl text-xs shadow-sm transition-colors cursor-pointer"
               >
                 Cadastrar
               </button>
@@ -250,17 +250,17 @@ export default function Header() {
             onClick={toggleTheme}
             title={theme === 'dark' ? 'Mudar para Tema Claro' : 'Mudar para Tema Escuro'}
             aria-label="Alternar tema de cores"
-            className="flex items-center gap-1.5 p-2 px-2.5 rounded-xl text-xs font-bold transition-all border border-slate-200 dark:border-purple-500/30 bg-slate-100 hover:bg-slate-200 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-800 dark:text-amber-300 shadow-sm cursor-pointer"
+            className="flex items-center gap-1.5 p-2 px-2.5 rounded-xl text-xs font-bold transition-all border border-slate-300 dark:border-purple-500/30 bg-slate-200/80 hover:bg-slate-300 dark:bg-slate-900 dark:hover:bg-slate-800 text-slate-900 dark:text-amber-300 shadow-sm cursor-pointer"
           >
             {theme === 'dark' ? (
               <>
                 <Sun className="w-4 h-4 text-amber-400" />
-                <span className="hidden md:inline text-[11px] text-amber-300 font-semibold">Claro</span>
+                <span className="hidden md:inline text-[11px] text-amber-300 font-bold">Claro</span>
               </>
             ) : (
               <>
-                <Moon className="w-4 h-4 text-purple-600" />
-                <span className="hidden md:inline text-[11px] text-slate-700 font-semibold">Escuro</span>
+                <Moon className="w-4 h-4 text-purple-700" />
+                <span className="hidden md:inline text-[11px] text-slate-900 font-bold">Escuro</span>
               </>
             )}
           </button>
