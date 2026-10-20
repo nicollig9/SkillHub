@@ -1,144 +1,157 @@
 'use client';
 
 import React, { useState } from 'react';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import {
-  ShieldCheck,
-  GraduationCap,
-  Calculator,
-  Compass,
-  Briefcase,
   HelpCircle,
   FileText,
   Lock,
-  X,
-  ExternalLink
+  X
 } from 'lucide-react';
 import { useApp } from '@/context/AppContext';
 
 export default function Footer() {
-  const { setCurrentView } = useApp();
+  const router = useRouter();
+  const { setCurrentView, isAuthenticated } = useApp();
   const [activeModal, setActiveModal] = useState<'FAQ' | 'TERMOS' | 'LGPD' | null>(null);
 
+  const handleNav = (view: any) => {
+    setCurrentView(view);
+    if (typeof window !== 'undefined' && window.location.pathname !== '/') {
+      router.push('/');
+    }
+  };
+
   return (
-    <footer className="w-full bg-white dark:bg-slate-950 text-slate-800 dark:text-zinc-300 border-t border-slate-300 dark:border-purple-500/20 transition-colors duration-300 mt-auto print:hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-start">
+    <footer className="w-full mt-auto py-8 px-4 sm:px-6 lg:px-8 print:hidden transition-colors duration-300">
+      {/* Container elegante flutuante com bordas suaves e cantos arredondados */}
+      <div className="max-w-7xl mx-auto bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-purple-500/20 rounded-2xl shadow-sm py-8 px-6 sm:px-8 transition-colors duration-300">
+        
+        {/* Layout em 2 Colunas: Marca (40%) + Navegação Organizada (60%) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* ===================================================== */}
-          {/* COLUNA DA ESQUERDA: IDENTIDADE DA MARCA               */}
+          {/* COLUNA DA ESQUERDA (IDENTIDADE VISUAL - 40% / 5 cols) */}
           {/* ===================================================== */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-700 to-indigo-600 flex items-center justify-center text-white font-black text-lg shadow-md shadow-purple-900/30">
-                S
-              </div>
-              <div>
-                <div className="flex items-center gap-2">
-                  <span className="text-xl font-black text-slate-900 dark:text-white tracking-tight">
-                    Skill<span className="text-purple-600 dark:text-purple-400">Hub</span>
-                  </span>
-                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-200 text-slate-900 border border-slate-300 dark:bg-purple-950/80 dark:text-purple-300">
-                    Curitiba &amp; RMC
-                  </span>
+          <div className="lg:col-span-5 space-y-3">
+            <div className="flex flex-wrap items-center gap-2.5">
+              {/* Logo & Nome */}
+              <div className="flex items-center gap-2.5">
+                <div className="relative w-8 h-8 flex items-center justify-center shrink-0">
+                  <img
+                    src="/assets/icons/favicon-skillhub.svg"
+                    alt="SkillHub"
+                    className="w-7 h-7 object-contain"
+                    onError={(e) => {
+                      (e.target as HTMLElement).style.display = 'none';
+                      const fallback = (e.target as HTMLElement).parentElement?.querySelector('.fallback-footer-logo');
+                      if (fallback) fallback.classList.remove('hidden');
+                    }}
+                  />
+                  <div className="fallback-footer-logo hidden w-7 h-7 rounded-lg bg-purple-600 flex items-center justify-center text-white font-black text-sm">
+                    S
+                  </div>
                 </div>
+
+                <span className="text-xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                  Skill<span className="text-purple-600 dark:text-purple-400">Hub</span>
+                </span>
               </div>
+
+              {/* Badge Local */}
+              <span className="inline-flex items-center bg-purple-100 text-purple-800 dark:bg-purple-950/80 dark:text-purple-300 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-purple-200 dark:border-purple-500/30">
+                Curitiba &amp; RMC
+              </span>
             </div>
 
-            <p className="text-sm text-slate-700 dark:text-zinc-400 font-medium leading-relaxed max-w-md">
+            {/* Descrição Curta */}
+            <p className="text-slate-600 dark:text-zinc-400 text-sm mt-2 max-w-sm leading-relaxed font-medium">
               Capacitando jovens aprendizes e estagiários para o primeiro emprego no mercado local.
             </p>
-
-            <div className="pt-2 border-t border-gray-200 dark:border-zinc-800/80 text-xs text-slate-700 dark:text-zinc-500 font-medium space-y-1">
-              <div>
-                © 2026 SkillHub — Plataforma de Empregabilidade Jovem em Curitiba &amp; Região Metropolitana.
-              </div>
-              <div className="flex items-center gap-1.5 text-[11px] text-slate-700 dark:text-zinc-400 font-medium">
-                <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400 shrink-0" />
-                <span>Dados protegidos nos termos da LGPD (Lei Federal nº 13.709/18).</span>
-              </div>
-            </div>
           </div>
 
           {/* ===================================================== */}
-          {/* COLUNA DA DIREITA: NAVEGAÇÃO RÁPIDA E LINKS ÚTEIS     */}
+          {/* COLUNA DA DIREITA (LINKS ÚTEIS - 60% / 7 cols)        */}
           {/* ===================================================== */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
             
-            {/* Bloco 1: Plataforma */}
-            <div className="space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-zinc-200 flex items-center gap-1.5 pb-1 border-b border-gray-200 dark:border-zinc-800">
-                <GraduationCap className="w-4 h-4 text-purple-600 dark:text-purple-400" />
-                <span>Plataforma</span>
+            {/* Subcoluna 1: Plataforma */}
+            <div>
+              <h4 className="text-xs font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-wider mb-3">
+                Plataforma
               </h4>
-              <ul className="space-y-2 text-sm">
+              <ul className="space-y-2.5">
                 <li>
                   <button
-                    onClick={() => setCurrentView('CURSOS_DISPONIVEIS')}
-                    className="text-slate-800 dark:text-zinc-400 hover:text-purple-700 dark:hover:text-purple-300 font-bold transition-colors cursor-pointer flex items-center gap-1.5 text-left"
+                    onClick={() => handleNav(isAuthenticated ? 'DASHBOARD' : 'LOGIN')}
+                    className="text-slate-600 hover:text-purple-600 dark:text-zinc-400 dark:hover:text-purple-300 text-sm font-medium transition-colors duration-200 cursor-pointer text-left"
                   >
-                    <span>Cursos</span>
+                    Meu Dashboard
                   </button>
                 </li>
                 <li>
                   <button
-                    onClick={() => setCurrentView('TRILHAS_DISPONIVEIS')}
-                    className="text-slate-800 dark:text-zinc-400 hover:text-purple-700 dark:hover:text-purple-300 font-bold transition-colors cursor-pointer flex items-center gap-1.5 text-left"
+                    onClick={() => handleNav('CURSOS_DISPONIVEIS')}
+                    className="text-slate-600 hover:text-purple-600 dark:text-zinc-400 dark:hover:text-purple-300 text-sm font-medium transition-colors duration-200 cursor-pointer text-left"
                   >
-                    <span>Trilhas de Formação</span>
+                    Cursos
                   </button>
                 </li>
                 <li>
                   <button
-                    onClick={() => setCurrentView('MAPA_PROXIMIDADE')}
-                    className="text-slate-800 dark:text-zinc-400 hover:text-purple-700 dark:hover:text-purple-300 font-bold transition-colors cursor-pointer flex items-center gap-1.5 text-left"
+                    onClick={() => handleNav('TRILHAS_DISPONIVEIS')}
+                    className="text-slate-600 hover:text-purple-600 dark:text-zinc-400 dark:hover:text-purple-300 text-sm font-medium transition-colors duration-200 cursor-pointer text-left"
                   >
-                    <span>Mapa de Vagas</span>
+                    Trilhas
                   </button>
                 </li>
                 <li>
                   <button
-                    onClick={() => setCurrentView('HOLERITE')}
-                    className="text-slate-800 dark:text-zinc-400 hover:text-purple-700 dark:hover:text-purple-300 font-bold transition-colors cursor-pointer flex items-center gap-1.5 text-left"
+                    onClick={() => handleNav('MAPA_PROXIMIDADE')}
+                    className="text-slate-600 hover:text-purple-600 dark:text-zinc-400 dark:hover:text-purple-300 text-sm font-medium transition-colors duration-200 cursor-pointer text-left"
                   >
-                    <span>Calculadora Salarial</span>
+                    Mapa de Vagas
+                  </button>
+                </li>
+                <li>
+                  <button
+                    onClick={() => handleNav('HOLERITE')}
+                    className="text-slate-600 hover:text-purple-600 dark:text-zinc-400 dark:hover:text-purple-300 text-sm font-medium transition-colors duration-200 cursor-pointer text-left"
+                  >
+                    Calculadora Salarial
                   </button>
                 </li>
               </ul>
             </div>
 
-            {/* Bloco 2: Suporte & Legal */}
-            <div className="space-y-3">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-zinc-200 flex items-center gap-1.5 pb-1 border-b border-gray-200 dark:border-zinc-800">
-                <ShieldCheck className="w-4 h-4 text-purple-600 dark:text-purple-400" />
-                <span>Suporte</span>
+            {/* Subcoluna 2: Suporte & Legal */}
+            <div>
+              <h4 className="text-xs font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-wider mb-3">
+                Suporte &amp; Legal
               </h4>
-              <ul className="space-y-2 text-sm">
+              <ul className="space-y-2.5">
                 <li>
                   <button
                     onClick={() => setActiveModal('FAQ')}
-                    className="text-slate-800 dark:text-zinc-400 hover:text-purple-700 dark:hover:text-purple-300 font-bold transition-colors cursor-pointer flex items-center gap-1.5 text-left"
+                    className="text-slate-600 hover:text-purple-600 dark:text-zinc-400 dark:hover:text-purple-300 text-sm font-medium transition-colors duration-200 cursor-pointer text-left"
                   >
-                    <HelpCircle className="w-3.5 h-3.5" />
-                    <span>Dúvidas Frequentes</span>
+                    Dúvidas Frequentes
                   </button>
                 </li>
                 <li>
                   <button
                     onClick={() => setActiveModal('TERMOS')}
-                    className="text-slate-800 dark:text-zinc-400 hover:text-purple-700 dark:hover:text-purple-300 font-bold transition-colors cursor-pointer flex items-center gap-1.5 text-left"
+                    className="text-slate-600 hover:text-purple-600 dark:text-zinc-400 dark:hover:text-purple-300 text-sm font-medium transition-colors duration-200 cursor-pointer text-left"
                   >
-                    <FileText className="w-3.5 h-3.5" />
-                    <span>Termos de Uso</span>
+                    Termos de Uso
                   </button>
                 </li>
                 <li>
                   <button
                     onClick={() => setActiveModal('LGPD')}
-                    className="text-slate-800 dark:text-zinc-400 hover:text-purple-700 dark:hover:text-purple-300 font-bold transition-colors cursor-pointer flex items-center gap-1.5 text-left"
+                    className="text-slate-600 hover:text-purple-600 dark:text-zinc-400 dark:hover:text-purple-300 text-sm font-medium transition-colors duration-200 cursor-pointer text-left"
                   >
-                    <Lock className="w-3.5 h-3.5 text-emerald-500" />
-                    <span>Privacidade / LGPD</span>
+                    Privacidade / LGPD
                   </button>
                 </li>
               </ul>
@@ -147,13 +160,24 @@ export default function Footer() {
           </div>
 
         </div>
+
+        {/* ===================================================== */}
+        {/* LINHA INFERIOR (COPYRIGHT E CRÉDITOS)                  */}
+        {/* ===================================================== */}
+        <div className="border-t border-slate-100 dark:border-slate-800 my-6" />
+
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 dark:text-zinc-500 font-medium">
+          <span>© 2026 SkillHub. Todos os direitos reservados.</span>
+          <span>Desenvolvido para jovens em Curitiba e Região Metropolitana</span>
+        </div>
+
       </div>
 
       {/* MODAL DIDÁTICO DE DÚVIDAS / TERMOS / LGPD */}
       {activeModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fadeIn">
-          <div className="w-full max-w-lg bg-white dark:bg-slate-900 border border-gray-200 dark:border-purple-500/30 rounded-2xl p-6 shadow-2xl relative text-slate-900 dark:text-zinc-100 space-y-4">
-            <div className="flex items-center justify-between pb-3 border-b border-gray-100 dark:border-zinc-800">
+          <div className="w-full max-w-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-purple-500/30 rounded-2xl p-6 shadow-2xl relative text-slate-900 dark:text-zinc-100 space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-zinc-800">
               <div className="flex items-center gap-2">
                 <span className="w-8 h-8 rounded-lg bg-purple-100 dark:bg-purple-950/80 text-purple-600 dark:text-purple-300 flex items-center justify-center font-bold text-sm">
                   {activeModal === 'FAQ' && <HelpCircle className="w-4 h-4" />}
@@ -168,13 +192,14 @@ export default function Footer() {
               </div>
               <button
                 onClick={() => setActiveModal(null)}
-                className="p-1 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-800 text-slate-700 dark:text-zinc-400 font-medium transition-colors"
+                className="p-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-800 text-slate-600 dark:text-zinc-400 transition-colors cursor-pointer"
+                aria-label="Fechar"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="text-xs sm:text-sm text-slate-600 dark:text-zinc-300 leading-relaxed space-y-3 max-h-[60vh] overflow-y-auto pr-2">
+            <div className="text-xs sm:text-sm text-slate-600 dark:text-zinc-300 leading-relaxed space-y-3 max-h-[60vh] overflow-y-auto pr-2 font-medium">
               {activeModal === 'FAQ' && (
                 <>
                   <div>
@@ -218,7 +243,7 @@ export default function Footer() {
             <div className="pt-2 flex justify-end">
               <button
                 onClick={() => setActiveModal(null)}
-                className="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition-colors cursor-pointer"
+                className="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs transition-colors cursor-pointer shadow-sm"
               >
                 Entendi e Fechar
               </button>
