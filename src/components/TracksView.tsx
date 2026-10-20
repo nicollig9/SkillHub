@@ -121,34 +121,34 @@ export default function TracksView() {
       {/* ===================================================== */}
       {/* 1. HERO BANNER PRINCIPAL: CONCEITO & EDUCAÇÃO         */}
       {/* ===================================================== */}
-      <div className="w-full bg-[#110E1B] border border-[#2D1B4E]/60 rounded-3xl p-6 lg:p-8 shadow-2xl relative overflow-hidden space-y-6">
+      <div className="w-full bg-white dark:bg-[#110E1B] border border-slate-200 dark:border-[#2D1B4E]/60 rounded-3xl p-6 lg:p-8 shadow-sm dark:shadow-2xl relative overflow-hidden space-y-6">
         
         {/* Cabeçalho do Banner */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative z-10 pb-6 border-b border-[#2D1B4E]/60">
           <div className="space-y-3 max-w-2xl">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 bg-[#171126] border border-purple-500/30 px-3 py-1 rounded-full text-xs font-semibold text-zinc-300">
+              <span className="inline-flex items-center gap-1.5 bg-slate-200 dark:bg-[#171126] border border-slate-300 dark:border-purple-500/30 px-3 py-1 rounded-full text-xs font-semibold text-slate-800 dark:text-zinc-300">
                 <GraduationCap className="w-3.5 h-3.5 text-purple-400" />
                 <span>Selos Oficiais de Especialista</span>
               </span>
-              <span className="inline-flex items-center gap-1.5 bg-[#171126] border border-purple-500/30 px-3 py-1 rounded-full text-xs font-semibold text-zinc-300">
+              <span className="inline-flex items-center gap-1.5 bg-slate-200 dark:bg-[#171126] border border-slate-300 dark:border-purple-500/30 px-3 py-1 rounded-full text-xs font-semibold text-slate-800 dark:text-zinc-300">
                 <MapPin className="w-3.5 h-3.5 text-rose-400" />
                 <span>Focado em Curitiba &amp; RMC</span>
               </span>
             </div>
             
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Trilhas de Formação Profissional
             </h1>
             
-            <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-700 dark:text-zinc-300 leading-relaxed">
               Jornadas guiadas passo a passo que conectam múltiplos cursos em uma sequência lógica para você conquistar Selos de Especialista e se destacar no mercado.
             </p>
           </div>
 
           {/* Card Dinâmico de Métricas */}
           <div className="bg-[#171126] border border-[#2D1B4E] rounded-2xl p-4 sm:p-5 text-center shrink-0 shadow-lg min-w-[190px] flex flex-col items-center justify-center">
-            <div className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+            <div className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
               {filteredTracks.length}
             </div>
             <div className="text-xs text-zinc-400 font-medium mt-1">
@@ -174,7 +174,7 @@ export default function TracksView() {
                 </div>
                 <span>O que são Cursos?</span>
               </div>
-              <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-700 dark:text-zinc-300 leading-relaxed">
                 Módulos individuais e focados. Ideal para quem quer aprender uma habilidade específica de forma rápida (ex: aprender apenas Excel ou apenas LGPD).
               </p>
               <div className="text-[11px] text-zinc-400 pt-1 flex items-center gap-1.5">
@@ -191,7 +191,7 @@ export default function TracksView() {
                 </div>
                 <span>O que são Trilhas?</span>
               </div>
-              <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+              <p className="text-xs sm:text-sm text-slate-700 dark:text-zinc-300 leading-relaxed">
                 Pacotes completos organizados em etapas sequenciais (Etapa 1 ➔ Etapa 2 ➔ Etapa 3). Ao concluir todos os cursos da trilha, você ganha um Selo Oficial de Especialista para o seu currículo.
               </p>
               <div className="text-[11px] text-amber-300/80 pt-1 flex items-center gap-1.5">

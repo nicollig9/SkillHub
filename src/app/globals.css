@@ -27,7 +27,7 @@
    TEMA CLARO (LIGHT THEME) - PALETA LIMPA, LUMINOSA E COM ALTO CONTRASTE
    ========================================================================== */
 [data-theme="light"], .light, html[data-theme="light"], html.light {
-  --background: #F8FAFC;
+  --background: #F1F5F9;
   --foreground: #0F172A;
   --card-bg: #FFFFFF;
   --card-border: #E2E8F0;
@@ -96,7 +96,7 @@ body {
 /* 1. FUNDO GERAL DA PÁGINA */
 :is([data-theme="light"], .light) body,
 :is([data-theme="light"], .light) main {
-  background-color: #F8FAFC !important;
+  background-color: #F1F5F9 !important;
   color: #0F172A !important;
 }
 
@@ -237,7 +237,7 @@ body {
   [class*="from-indigo-950 via-slate-900"],
   [class*="from-emerald-950 via-slate-900"]
 ) :is(h1, h2, h3, h4) {
-  color: #3B0764 !important;
+  color: #0F172A !important;
 }
 
 :is([data-theme="light"], .light) :is(
@@ -248,7 +248,7 @@ body {
   [class*="from-indigo-950 via-slate-900"],
   [class*="from-emerald-950 via-slate-900"]
 ) :is(p, span:not(button *)) {
-  color: #475569 !important;
+  color: #334155 !important;
 }
 
 /* 5. CABEÇALHO GLOBAL (HEADER) NO TEMA CLARO */
@@ -260,7 +260,7 @@ body {
 }
 
 :is([data-theme="light"], .light) header h1 {
-  color: #1E1B4B !important;
+  color: #0F172A !important;
 }
 
 :is([data-theme="light"], .light) header p {
@@ -269,7 +269,7 @@ body {
 
 :is([data-theme="light"], .light) header button.text-purple-200,
 :is([data-theme="light"], .light) header button.text-purple-300 {
-  color: #475569 !important;
+  color: #334155 !important;
 }
 
 :is([data-theme="light"], .light) header .bg-\[\#140726\]\/80,
@@ -289,12 +289,12 @@ body {
 }
 
 :is([data-theme="light"], .light) aside :is(h1, h2, h3, h4, span.text-white) {
-  color: #1E1B4B !important;
+  color: #0F172A !important;
 }
 
 :is([data-theme="light"], .light) aside .text-purple-300,
 :is([data-theme="light"], .light) aside .text-purple-200 {
-  color: #475569 !important;
+  color: #334155 !important;
 }
 
 :is([data-theme="light"], .light) aside button:hover {
@@ -305,7 +305,7 @@ body {
 :is([data-theme="light"], .light) aside .bg-\[\#220E3A\] {
   background-color: #F1F5F9 !important;
   border-color: #CBD5E1 !important;
-  color: #6D28D9 !important;
+  /* pill text */
 }
 
 /* 7. RODAPÉ GLOBAL (FOOTER) NO TEMA CLARO */
@@ -313,7 +313,7 @@ body {
   background: #FFFFFF !important;
   background-color: #FFFFFF !important;
   border-top: 1px solid #E2E8F0 !important;
-  color: #475569 !important;
+  color: #334155 !important;
 }
 
 :is([data-theme="light"], .light) footer :is(h1, h2, h3, h4, .text-white, .text-slate-100, .text-slate-200, .text-zinc-100, .text-zinc-200) {
@@ -321,7 +321,7 @@ body {
 }
 
 :is([data-theme="light"], .light) footer :is(.text-slate-400, .text-slate-500, .text-zinc-400, .text-zinc-500, .text-neutral-400) {
-  color: #475569 !important;
+  color: #334155 !important;
 }
 
 :is([data-theme="light"], .light) footer a {
@@ -329,7 +329,7 @@ body {
 }
 
 :is([data-theme="light"], .light) footer a:hover {
-  color: #6D28D9 !important;
+  /* pill text */
 }
 
 /* 8. CONTRASTE DE TEXTOS DENTRO DE CARDS E CONTEÚDOS */
@@ -337,11 +337,11 @@ body {
 :is([data-theme="light"], .light) section :is(h1, h2, h3, h4, h5, h6).text-white,
 :is([data-theme="light"], .light) article :is(h1, h2, h3, h4, h5, h6).text-white,
 :is([data-theme="light"], .light) div[role="dialog"] :is(h1, h2, h3, h4, h5, h6).text-white {
-  color: #1E1B4B !important;
+  color: #0F172A !important;
 }
 
 :is([data-theme="light"], .light) main :is(p, span, strong, label).text-white:not(button *):not(.btn *):not(a.bg-violet-600 *):not([class*="from-purple-"] *):not([class*="bg-purple-"] *):not([class*="from-violet-"] *):not([class*="bg-violet-"] *) {
-  color: #1E1B4B !important;
+  color: #0F172A !important;
 }
 
 :is([data-theme="light"], .light) main :is(
@@ -370,23 +370,28 @@ body {
   .text-\[\#DDD6FE\],
   .text-\[\#D8B4FE\]
 ):not(button *):not(.btn *):not([class*="from-[#6D28D9]"] *):not([class*="from-violet-"] *):not([class*="bg-purple-"] *):not([class*="bg-violet-"] *) {
-  color: #475569 !important;
+  color: #334155 !important;
 }
 
 /* Títulos de cursos e vagas em hover */
 :is([data-theme="light"], .light) .group:hover .group-hover\:text-\[\#FDE68A\] {
-  color: #6D28D9 !important;
+  /* pill text */
 }
 
 /* Métricas em destaque */
 :is([data-theme="light"], .light) .text-3xl.font-black.text-white,
 :is([data-theme="light"], .light) .text-3xl.font-extrabold.text-white,
 :is([data-theme="light"], .light) .text-2xl.font-black.text-white {
-  color: #3B0764 !important;
+  color: #0F172A !important;
 }
 
 /* 9. PÍLULAS, CHIPS E TAGS SECUNDÁRIAS DENTRO DE CARDS */
 :is([data-theme="light"], .light) :is(
+  .rounded-full,
+  [class*="rounded-full"],
+  span.bg-\[\#171126\],
+  span.bg-\[\#1F1535\],
+  div.bg-\[\#171126\],
   span.bg-\[\#24123E\],
   span.bg-\[\#2E1254\],
   span.bg-\[\#17092A\],
@@ -399,9 +404,18 @@ body {
   div.bg-\[\#24123E\],
   div.bg-\[\#2E1254\]
 ):not(button) {
-  background-color: #F3E8FF !important;
-  color: #6D28D9 !important;
-  border-color: #DDD6FE !important;
+  background-color: #E2E8F0 !important;
+  /* pill text */
+  border: 1px solid #CBD5E1 !important;
+  color: #1E293B !important;
+}
+
+:is([data-theme="light"], .light) :is(.rounded-full, [class*="rounded-full"], span.bg-\[\#171126\]):not(button):not(a):not(header *):not(nav *) :is(span, p, strong, div) {
+  color: #1E293B !important;
+}
+
+:is([data-theme="light"], .light) :is(.rounded-full, [class*="rounded-full"], span.bg-\[\#171126\]):not(button):not(a):not(header *):not(nav *) svg {
+  color: #475569 !important;
 }
 
 /* 10. INPUTS, SELECTS E TEXTAREAS NO TEMA CLARO */
@@ -433,7 +447,7 @@ body {
 ):not([class*="from-"]):not(.btn-primary):not(.btn-purple-brand) {
   background-color: #F1F5F9 !important;
   border: 1px solid #CBD5E1 !important;
-  color: #475569 !important;
+  color: #334155 !important;
 }
 
 :is([data-theme="light"], .light) button:is(
@@ -446,7 +460,7 @@ body {
   [class*="bg-slate-8"]
 ):not([class*="from-"]):hover {
   background-color: #E2E8F0 !important;
-  color: #1E1B4B !important;
+  color: #0F172A !important;
 }
 
 /* 12. BOTÕES PRINCIPAIS E COLORIDOS PRESERVAM SUAS CORES E TEXTO BRANCO PURO */
@@ -517,7 +531,7 @@ body {
 /* 13. PRE E CÓDIGO NO TEMA CLARO */
 :is([data-theme="light"], .light) pre,
 :is([data-theme="light"], .light) code {
-  background-color: #F8FAFC !important;
+  background-color: #F1F5F9 !important;
   color: #4C1D95 !important;
   border-color: #E2E8F0 !important;
 }
@@ -528,8 +542,8 @@ body {
 }
 
 :is([data-theme="light"], .light) table thead tr {
-  background-color: #F8FAFC !important;
-  color: #475569 !important;
+  background-color: #F1F5F9 !important;
+  color: #334155 !important;
 }
 
 :is([data-theme="light"], .light) table tbody tr:hover {

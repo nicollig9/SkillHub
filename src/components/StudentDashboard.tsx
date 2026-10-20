@@ -141,11 +141,11 @@ export default function StudentDashboard() {
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3">
           <div>
             <div className="flex flex-wrap items-center gap-2 mb-2">
-              <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-xs font-bold bg-purple-100 text-purple-700 dark:bg-purple-950/80 dark:text-purple-200 border border-purple-200 dark:border-purple-500/30">
+              <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-xs font-bold bg-slate-200 dark:bg-purple-950/80 text-slate-800 dark:text-purple-200 border border-slate-300 dark:border-purple-500/30">
                 <Sparkles className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
                 <span>Painel do Aluno</span>
               </span>
-              <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800 dark:bg-emerald-950/70 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-500/30">
+              <span className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full text-xs font-semibold bg-slate-200 dark:bg-emerald-950/70 text-slate-800 dark:text-emerald-300 border border-slate-300 dark:border-emerald-500/30">
                 <MapPin className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                 <span>{studentBairro} • Curitiba/PR</span>
               </span>
@@ -154,7 +154,7 @@ export default function StudentDashboard() {
             <h1 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">
               Olá, <span className="text-purple-600 dark:text-purple-300">{userName}</span>!
             </h1>
-            <p className="text-xs sm:text-sm text-slate-600 dark:text-zinc-400 mt-1 max-w-2xl leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-700 dark:text-zinc-300 mt-1 max-w-2xl leading-relaxed">
               Aqui está o resumo em tempo real do seu progresso educacional, trilhas em andamento e oportunidades compatíveis com o seu perfil em Curitiba e RMC.
             </p>
           </div>
