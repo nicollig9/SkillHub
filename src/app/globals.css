@@ -316,13 +316,12 @@ body {
   color: #475569 !important;
 }
 
-:is([data-theme="light"], .light) footer :is(h1, h2, h3, .text-white, .text-slate-200) {
-  color: #1E1B4B !important;
+:is([data-theme="light"], .light) footer :is(h1, h2, h3, h4, .text-white, .text-slate-100, .text-slate-200, .text-zinc-100, .text-zinc-200) {
+  color: #0F172A !important;
 }
 
-:is([data-theme="light"], .light) footer .text-slate-400,
-:is([data-theme="light"], .light) footer .text-slate-500 {
-  color: #64748B !important;
+:is([data-theme="light"], .light) footer :is(.text-slate-400, .text-slate-500, .text-zinc-400, .text-zinc-500, .text-neutral-400) {
+  color: #475569 !important;
 }
 
 :is([data-theme="light"], .light) footer a {
@@ -349,6 +348,17 @@ body {
   .text-slate-200,
   .text-slate-300,
   .text-slate-400,
+  .text-zinc-100,
+  .text-zinc-200,
+  .text-zinc-300,
+  .text-zinc-400,
+  .text-zinc-500,
+  .text-neutral-200,
+  .text-neutral-300,
+  .text-neutral-400,
+  .text-gray-200,
+  .text-gray-300,
+  .text-gray-400,
   .text-purple-100,
   .text-purple-200,
   .text-purple-300,
@@ -359,7 +369,7 @@ body {
   .text-indigo-300,
   .text-\[\#DDD6FE\],
   .text-\[\#D8B4FE\]
-):not(button *):not(.btn *):not([class*="from-[#6D28D9]"] *):not([class*="from-violet-"] *) {
+):not(button *):not(.btn *):not([class*="from-[#6D28D9]"] *):not([class*="from-violet-"] *):not([class*="bg-purple-"] *):not([class*="bg-violet-"] *) {
   color: #475569 !important;
 }
 
