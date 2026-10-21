@@ -1,8 +1,8 @@
-// File: C:\Users\nicolisilva\SkillHub\src\app\holerite\page.tsx
-import * as entry from '../../../../src/app/holerite/page.js'
+// File: C:\Users\nicolisilva\SkillHub\src\app\login\page.tsx
+import * as entry from '../../../../src/app/login/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
-type TEntry = typeof import('../../../../src/app/holerite/page.js')
+type TEntry = typeof import('../../../../src/app/login/page.js')
 
 // Check that the entry is a valid entry
 checkFields<Diff<{
