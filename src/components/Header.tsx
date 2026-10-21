@@ -50,8 +50,8 @@ export default function Header() {
   };
 
   const hasSession = isAuthenticated && hasStoredSession;
-  const displayName = currentUser?.nome || student?.nome || 'Nicoli Vitoria';
-  const displayInitials = 'NV';
+  const displayName = currentUser?.nome || student?.nome || 'Estudante';
+  const displayInitials = (displayName || 'ES').split(' ').map((n) => n[0]).slice(0, 2).join('').toUpperCase();
 
   // Helper para verificar qual aba está ativa
   const isDashboardActive = currentView === 'DASHBOARD' || currentView === 'INICIO';

@@ -1,14 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useApp } from '@/context/AppContext';
-import { COURSES, TRACKS } from '@/data/coursesData';
 import {
   GraduationCap,
   Clock,
   MapPin,
   Briefcase,
-  Play,
   ArrowRight,
   Sparkles,
   CheckCircle2,
@@ -20,17 +18,6 @@ import {
   Award
 } from 'lucide-react';
 
-interface ActiveCourseProgress {
-  id: string;
-  title: string;
-  trackName: string;
-  category: string;
-  currentModule: string;
-  progress: number;
-  workload: string;
-  moduleIndex: number;
-}
-
 export default function StudentDashboard() {
   const {
     currentUser,
@@ -40,72 +27,31 @@ export default function StudentDashboard() {
     student,
     vagas,
     applications,
-    badges,
     showToast,
     applyToJob,
-    completedModules,
-    quizResults
+    cursosInscritos,
+    badgesConquistadas,
+    horasEstudadas,
+    progressoGeral
   } = useApp();
 
-  const userName = currentUser?.nome || student?.nome || 'Nicoli Silva';
-  const studentBairro = student?.endereco?.bairro || 'CIC';
+  const userName = currentUser?.nome || student?.nome || 'Estudante';
+  const studentBairro = student?.endereco?.bairro || currentUser?.bairro || 'Curitiba';
 
   // =========================================================================
-  // DADOS E ESTADO DE APRENDIZADO DO ALUNO
+  // CÁLCULOS DINÂMICOS EM TEMPO REAL (BASEADOS NO USUÁRIO LOGADO)
   // =========================================================================
 
-  // Cursos ativos em andamento do aluno
-  const [activeCourses, setActiveCourses] = useState<ActiveCourseProgress[]>([
-    {
-      id: 'curso-jovem-aprendiz-avancado',
-      title: 'Legislação Trabalhista, Direitos & Deveres do Aprendiz',
-      trackName: 'Trilha Entrada no Mercado',
-      category: 'Direito & Cidadania',
-      currentModule: 'Módulo 2: Jornada de Trabalho e Horas Teóricas',
-      progress: 60,
-      workload: '20h',
-      moduleIndex: 1
-    },
-    {
-      id: 'curso-soft-skills-comunicacao-interpessoal',
-      title: 'Microsoft Excel & Planilhas para Escritório',
-      trackName: 'Trilha Rotinas Administrativas',
-      category: 'Tecnologia & Escritório',
-      currentModule: 'Módulo 3: Fórmulas PROCV, PROCH e Tabelas Dinâmicas',
-      progress: 45,
-      workload: '24h',
-      moduleIndex: 2
-    },
-    {
-      id: 'curso-preparacao-entrevistas-processos-seletivos',
-      title: 'Comunicação Assertiva e Postura Corporativa',
-      trackName: 'Trilha Soft Skills Essenciais',
-      category: 'Desenvolvimento Pessoal',
-      currentModule: 'Módulo 1: Escuta Ativa e Convivência em Equipe',
-      progress: 30,
-      workload: '16h',
-      moduleIndex: 0
-    }
-  ]);
+  // 1. Cursos Concluídos
+  const concluidosCount = cursosInscritos.filter((c) => c.status === 'concluido').length;
 
-  // Contadores Reais Conectados
-  // 1. Cursos Concluídos: soma de quizzes aprovados ou módulos finalizados + cursos concluídos históricos
-  const completedFromQuizzes = Object.values(quizResults).filter((q) => q.passed).length;
-  const completedCount = Math.max(5, completedFromQuizzes + (badges?.length || 2));
+  // 2. Badges Reais Validadas
+  const badgesCount = badgesConquistadas.length;
 
-  // 2. Cursos em Andamento
-  const inProgressCount = activeCourses.length;
+  // 3. Cursos em Andamento (ou total ativos)
+  const activeCourses = cursosInscritos.filter((c) => c.status === 'em_andamento');
 
-  // 3. Trilhas em Progresso
-  const tracksInProgressCount = 2; // "Trilha Rotinas Administrativas" e "Trilha Entrada no Mercado"
-
-  // 4. Vagas Novas Hoje (últimas 24h na RMC)
-  const newVacanciesToday = vagas.filter((v) => v.status === 'ATIVA').length;
-
-  // =========================================================================
-  // OPORTUNIDADES RECOMENDADAS HOJE
-  // =========================================================================
-  // Filtrar vagas para o perfil do aluno e ordenar por proximidade/aderência
+  // 4. Vagas Recomendadas para o perfil
   const recommendedJobs = vagas
     .filter((v) => {
       if (candidateProfileType === 'ESTAGIARIO') {
@@ -162,7 +108,7 @@ export default function StudentDashboard() {
           <div className="flex items-center gap-2 self-start sm:self-auto shrink-0">
             <button
               onClick={() => setCurrentView('CURSOS_DISPONIVEIS')}
-              className="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs sm:text-sm shadow-md transition-all cursor-pointer flex items-center gap-1.5"
+              className="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs sm:text-sm shadow-md transition-all cursor-pointer flex items-center gap-1.5 hover:scale-[1.02]"
             >
               <BookOpen className="w-4 h-4" />
               <span>Explorar Catálogo</span>
@@ -172,106 +118,154 @@ export default function StudentDashboard() {
       </div>
 
       {/* ========================================================================= */}
-      {/* A) CARDS DE MÉTRICAS E CONTADORES REAIS (TOPO)                            */}
+      {/* 2. CONTADORES REAIS E DINÂMICOS DO DASHBOARD (4 CARDS)                    */}
       {/* ========================================================================= */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         
-        {/* KPI 1: Cursos Concluídos */}
-        <div className="bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-purple-500/20 rounded-2xl p-4 sm:p-5 shadow-sm dark:shadow-lg space-y-2 transition-all hover:border-purple-400 dark:hover:border-purple-500/40">
-          <div className="flex items-center justify-between">
-            <span className="font-bold uppercase tracking-wider text-purple-700 dark:text-purple-300 text-xs">
-              Cursos Concluídos
-            </span>
-            <div className="w-9 h-9 rounded-xl bg-purple-100 dark:bg-purple-950/80 border border-purple-200 dark:border-purple-500/30 flex items-center justify-center text-purple-600 dark:text-purple-300">
-              <GraduationCap className="w-4 h-4" />
+        {/* CARD 1: Cursos Concluídos */}
+        <div className="bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-purple-500/20 rounded-2xl p-4 sm:p-5 shadow-sm dark:shadow-lg space-y-2 transition-all hover:border-purple-400 dark:hover:border-purple-500/40 flex flex-col justify-between">
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="font-bold uppercase tracking-wider text-purple-700 dark:text-purple-300 text-xs">
+                Cursos Concluídos
+              </span>
+              <div className="w-9 h-9 rounded-xl bg-purple-100 dark:bg-purple-950/80 border border-purple-200 dark:border-purple-500/30 flex items-center justify-center text-purple-600 dark:text-purple-300">
+                <GraduationCap className="w-4 h-4" />
+              </div>
+            </div>
+
+            <div className="flex items-baseline gap-2">
+              <span className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
+                {concluidosCount}
+              </span>
+              <span className="text-xs text-slate-700 dark:text-zinc-400 font-medium">
+                {concluidosCount === 1 ? 'concluído' : 'concluídos'}
+              </span>
             </div>
           </div>
-          <div className="flex items-baseline gap-2">
-            <span className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
-              {completedCount}
-            </span>
-            <span className="text-xs text-slate-700 font-medium dark:text-zinc-400 font-medium">
-              finalizados
-            </span>
+
+          <div>
+            {concluidosCount === 0 ? (
+              <p className="text-[11px] text-purple-700 dark:text-purple-300 font-semibold leading-tight">
+                Nenhum curso concluído ainda. Comece sua jornada!
+              </p>
+            ) : (
+              <p className="text-[11px] text-slate-700 dark:text-zinc-400 font-medium leading-tight">
+                Microcertificados e badges emitidos no SkillHub.
+              </p>
+            )}
           </div>
-          <p className="text-[11px] text-slate-700 font-medium dark:text-zinc-400">
-            Microcertificados e badges emitidos no SkillHub.
-          </p>
         </div>
 
-        {/* KPI 2: Cursos em Andamento */}
-        <div className="bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-purple-500/20 rounded-2xl p-4 sm:p-5 shadow-sm dark:shadow-lg space-y-2 transition-all hover:border-purple-400 dark:hover:border-purple-500/40">
-          <div className="flex items-center justify-between">
-            <span className="font-bold uppercase tracking-wider text-amber-700 dark:text-amber-300 text-xs">
-              Cursos em Andamento
-            </span>
-            <div className="w-9 h-9 rounded-xl bg-amber-100 dark:bg-amber-950/80 border border-amber-200 dark:border-amber-500/30 flex items-center justify-center text-amber-600 dark:text-amber-300">
-              <Clock className="w-4 h-4" />
+        {/* CARD 2: Badges Reais Validadas */}
+        <div className="bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-purple-500/20 rounded-2xl p-4 sm:p-5 shadow-sm dark:shadow-lg space-y-2 transition-all hover:border-purple-400 dark:hover:border-purple-500/40 flex flex-col justify-between">
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="font-bold uppercase tracking-wider text-amber-700 dark:text-amber-300 text-xs">
+                Badges Reais Validadas
+              </span>
+              <div className="w-9 h-9 rounded-xl bg-amber-100 dark:bg-amber-950/80 border border-amber-200 dark:border-amber-500/30 flex items-center justify-center text-amber-600 dark:text-amber-300">
+                <Award className="w-4 h-4" />
+              </div>
+            </div>
+
+            <div className="flex items-baseline gap-2">
+              <span className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
+                {badgesCount}
+              </span>
+              <span className="text-xs text-slate-700 dark:text-zinc-400 font-medium">
+                {badgesCount === 1 ? 'selo oficial' : 'selos oficiais'}
+              </span>
             </div>
           </div>
-          <div className="flex items-baseline gap-2">
-            <span className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
-              {inProgressCount}
-            </span>
-            <span className="text-xs text-slate-700 font-medium dark:text-zinc-400 font-medium">
-              em progresso
-            </span>
+
+          <div>
+            {badgesCount === 0 ? (
+              <p className="text-[11px] text-amber-700 dark:text-amber-300 font-semibold leading-tight">
+                0 Badges Conquistadas. Conclua testes para emitir selos.
+              </p>
+            ) : (
+              <p className="text-[11px] text-slate-700 dark:text-zinc-400 font-medium leading-tight">
+                Selos digitais verificados visíveis para recrutadores.
+              </p>
+            )}
           </div>
-          <p className="text-[11px] text-slate-700 font-medium dark:text-zinc-400">
-            Aulas iniciadas aguardando conclusão dos módulos.
-          </p>
         </div>
 
-        {/* KPI 3: Trilhas em Progresso */}
-        <div className="bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-purple-500/20 rounded-2xl p-4 sm:p-5 shadow-sm dark:shadow-lg space-y-2 transition-all hover:border-purple-400 dark:hover:border-purple-500/40">
-          <div className="flex items-center justify-between">
-            <span className="font-bold uppercase tracking-wider text-indigo-700 dark:text-indigo-300 text-xs">
-              Trilhas em Progresso
-            </span>
-            <div className="w-9 h-9 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 border border-indigo-200 dark:border-indigo-500/30 flex items-center justify-center text-indigo-600 dark:text-indigo-300">
-              <Compass className="w-4 h-4" />
+        {/* CARD 3: Horas de Aprendizagem */}
+        <div className="bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-purple-500/20 rounded-2xl p-4 sm:p-5 shadow-sm dark:shadow-lg space-y-2 transition-all hover:border-purple-400 dark:hover:border-purple-500/40 flex flex-col justify-between">
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="font-bold uppercase tracking-wider text-indigo-700 dark:text-indigo-300 text-xs">
+                Horas de Aprendizagem
+              </span>
+              <div className="w-9 h-9 rounded-xl bg-indigo-100 dark:bg-indigo-950/80 border border-indigo-200 dark:border-indigo-500/30 flex items-center justify-center text-indigo-600 dark:text-indigo-300">
+                <Clock className="w-4 h-4" />
+              </div>
+            </div>
+
+            <div className="flex items-baseline gap-2">
+              <span className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
+                {horasEstudadas}h
+              </span>
+              <span className="text-xs text-slate-700 dark:text-zinc-400 font-medium">
+                computadas
+              </span>
             </div>
           </div>
-          <div className="flex items-baseline gap-2">
-            <span className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
-              {tracksInProgressCount}
-            </span>
-            <span className="text-xs text-slate-700 font-medium dark:text-zinc-400 font-medium">
-              formações ativas
-            </span>
+
+          <div>
+            <p className="text-[11px] text-slate-700 dark:text-zinc-400 font-medium leading-tight">
+              {horasEstudadas === 0
+                ? 'Nenhuma hora registrada ainda.'
+                : 'Horas teóricas válidas para cota de aprendizagem.'}
+            </p>
           </div>
-          <p className="text-[11px] text-slate-700 font-medium dark:text-zinc-400">
-            Jornadas estruturadas de entrada no mercado.
-          </p>
         </div>
 
-        {/* KPI 4: Vagas Novas Hoje */}
-        <div className="bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-purple-500/20 rounded-2xl p-4 sm:p-5 shadow-sm dark:shadow-lg space-y-2 transition-all hover:border-purple-400 dark:hover:border-purple-500/40">
-          <div className="flex items-center justify-between">
-            <span className="font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-300 text-xs">
-              Vagas Novas Hoje
-            </span>
-            <div className="w-9 h-9 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-200 dark:border-emerald-500/30 flex items-center justify-center text-emerald-600 dark:text-emerald-300">
-              <Briefcase className="w-4 h-4" />
+        {/* CARD 4: Progresso de Trilhas */}
+        <div className="bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-purple-500/20 rounded-2xl p-4 sm:p-5 shadow-sm dark:shadow-lg space-y-2 transition-all hover:border-purple-400 dark:hover:border-purple-500/40 flex flex-col justify-between">
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <span className="font-bold uppercase tracking-wider text-emerald-700 dark:text-emerald-300 text-xs">
+                Progresso de Trilhas
+              </span>
+              <div className="w-9 h-9 rounded-xl bg-emerald-100 dark:bg-emerald-950/80 border border-emerald-200 dark:border-emerald-500/30 flex items-center justify-center text-emerald-600 dark:text-emerald-300">
+                <Compass className="w-4 h-4" />
+              </div>
+            </div>
+
+            <div className="flex items-baseline gap-2">
+              <span className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
+                {progressoGeral}%
+              </span>
+              <span className="text-xs text-slate-700 dark:text-zinc-400 font-medium">
+                evolução geral
+              </span>
+            </div>
+
+            {/* Barra de Progresso Real (0% para novos usuários) */}
+            <div className="w-full bg-slate-200 dark:bg-zinc-800 rounded-full h-2 overflow-hidden mt-1">
+              <div
+                className="bg-gradient-to-r from-emerald-600 to-teal-500 h-2 rounded-full transition-all duration-500"
+                style={{ width: `${progressoGeral}%` }}
+              />
             </div>
           </div>
-          <div className="flex items-baseline gap-2">
-            <span className="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
-              {newVacanciesToday}
-            </span>
-            <span className="text-xs text-slate-700 font-medium dark:text-zinc-400 font-medium">
-              vagas abertas
-            </span>
+
+          <div>
+            <p className="text-[11px] text-slate-700 dark:text-zinc-400 font-medium leading-tight">
+              {progressoGeral === 0
+                ? '0% inicial. Escolha um curso para começar.'
+                : 'Média de conclusão dos módulos matriculados.'}
+            </p>
           </div>
-          <p className="text-[11px] text-slate-700 font-medium dark:text-zinc-400">
-            Estágio e Jovem Aprendiz em Curitiba e RMC.
-          </p>
         </div>
 
       </div>
 
       {/* ========================================================================= */}
-      {/* B) SEÇÃO "MEU APRENDIZADO EM ANDAMENTO"                                    */}
+      {/* 3. SEÇÃO "MEU APRENDIZADO EM ANDAMENTO" COM EMPTY STATE ELEGANTE          */}
       {/* ========================================================================= */}
       <div className="bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-purple-500/20 rounded-2xl p-5 sm:p-6 shadow-sm dark:shadow-xl space-y-4 transition-colors duration-300">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-300 dark:border-zinc-800">
@@ -293,61 +287,89 @@ export default function StudentDashboard() {
           </button>
         </div>
 
-        {/* Grid de Cursos em Andamento */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {activeCourses.map((course) => (
-            <div
-              key={course.id}
-              className="bg-slate-50 dark:bg-slate-950/60 border border-slate-300 dark:border-purple-500/15 rounded-xl p-4 sm:p-5 flex flex-col justify-between space-y-4 hover:border-purple-400 dark:hover:border-purple-500/40 transition-all shadow-sm"
-            >
-              <div className="space-y-2">
-                <div className="flex items-center justify-between gap-2">
-                  <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-100 text-purple-700 dark:bg-purple-950/80 dark:text-purple-300 border border-purple-200 dark:border-purple-500/30">
-                    {course.trackName}
-                  </span>
-                  <span className="text-[11px] font-semibold text-slate-700 font-medium dark:text-zinc-400">
-                    {course.workload}
-                  </span>
-                </div>
+        {/* Empty State Elegante se o usuário não iniciou nenhum curso */}
+        {activeCourses.length === 0 ? (
+          <div className="bg-slate-50/70 dark:bg-slate-950/40 border border-dashed border-slate-300 dark:border-purple-500/20 rounded-2xl p-8 sm:p-10 text-center space-y-4">
+            <div className="w-12 h-12 mx-auto rounded-2xl bg-purple-100 dark:bg-purple-950/80 border border-purple-200 dark:border-purple-500/30 flex items-center justify-center text-purple-600 dark:text-purple-300">
+              <BookOpen className="w-6 h-6" />
+            </div>
 
-                <h3 className="font-bold text-sm sm:text-base text-slate-900 dark:text-white leading-snug line-clamp-2">
-                  {course.title}
-                </h3>
+            <div className="max-w-md mx-auto space-y-1">
+              <h3 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
+                Você ainda não iniciou nenhum curso
+              </h3>
+              <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+                Que tal explorar as Trilhas de Curitiba &amp; RMC para conquistar suas primeiras badges e se destacar para os recrutadores?
+              </p>
+            </div>
 
-                <p className="text-xs text-slate-800 font-semibold dark:text-zinc-400 line-clamp-1">
-                  {course.currentModule}
-                </p>
-              </div>
-
-              {/* Barra de Progresso Visual */}
-              <div className="space-y-1.5 pt-2 border-t border-slate-300 dark:border-zinc-800/80">
-                <div className="flex justify-between items-center text-xs font-bold">
-                  <span className="text-slate-800 font-semibold dark:text-zinc-400 text-[11px]">Progresso</span>
-                  <span className="text-purple-600 dark:text-purple-300">{course.progress}%</span>
-                </div>
-                <div className="w-full bg-gray-200 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
-                  <div
-                    className="bg-gradient-to-r from-purple-600 to-indigo-600 h-2 rounded-full transition-all duration-500"
-                    style={{ width: `${course.progress}%` }}
-                  />
-                </div>
-              </div>
-
-              {/* Botão de Ação Direta */}
+            <div>
               <button
-                onClick={() => handleContinueCourse(course.id, course.moduleIndex)}
-                className="w-full mt-2 py-2.5 px-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs shadow-sm transition-all flex items-center justify-center gap-1.5 cursor-pointer group"
+                onClick={() => setCurrentView('CURSOS_DISPONIVEIS')}
+                className="px-5 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs shadow-sm transition-all inline-flex items-center gap-2 cursor-pointer hover:scale-[1.02]"
               >
-                <span>Continuar de onde parou</span>
-                <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" />
+                <span>🚀 Explorar Cursos Gratuitos</span>
+                <ArrowRight className="w-3.5 h-3.5" />
               </button>
             </div>
-          ))}
-        </div>
+          </div>
+        ) : (
+          /* Grid de Cursos em Andamento (quando houver) */
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {activeCourses.map((course) => (
+              <div
+                key={course.id}
+                className="bg-slate-50 dark:bg-slate-950/60 border border-slate-300 dark:border-purple-500/15 rounded-xl p-4 sm:p-5 flex flex-col justify-between space-y-4 hover:border-purple-400 dark:hover:border-purple-500/40 transition-all shadow-sm"
+              >
+                <div className="space-y-2">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-purple-100 text-purple-700 dark:bg-purple-950/80 dark:text-purple-300 border border-purple-200 dark:border-purple-500/30">
+                      {course.trackName}
+                    </span>
+                    <span className="text-[11px] font-semibold text-slate-700 font-medium dark:text-zinc-400">
+                      {course.workload}
+                    </span>
+                  </div>
+
+                  <h3 className="font-bold text-sm sm:text-base text-slate-900 dark:text-white leading-snug line-clamp-2">
+                    {course.title}
+                  </h3>
+
+                  <p className="text-xs text-slate-800 font-semibold dark:text-zinc-400 line-clamp-1">
+                    {course.currentModule}
+                  </p>
+                </div>
+
+                {/* Barra de Progresso Visual */}
+                <div className="space-y-1.5 pt-2 border-t border-slate-300 dark:border-zinc-800/80">
+                  <div className="flex justify-between items-center text-xs font-bold">
+                    <span className="text-slate-800 font-semibold dark:text-zinc-400 text-[11px]">Progresso</span>
+                    <span className="text-purple-600 dark:text-purple-300">{course.progress}%</span>
+                  </div>
+                  <div className="w-full bg-gray-200 dark:bg-zinc-800 rounded-full h-2 overflow-hidden">
+                    <div
+                      className="bg-gradient-to-r from-purple-600 to-indigo-600 h-2 rounded-full transition-all duration-500"
+                      style={{ width: `${course.progress}%` }}
+                    />
+                  </div>
+                </div>
+
+                {/* Botão de Ação Direta */}
+                <button
+                  onClick={() => handleContinueCourse(course.courseId || course.id, course.moduleIndex)}
+                  className="w-full mt-2 py-2.5 px-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold text-xs shadow-sm transition-all flex items-center justify-center gap-1.5 cursor-pointer group"
+                >
+                  <span>Continuar de onde parou</span>
+                  <ArrowRight className="w-3.5 h-3.5 transform group-hover:translate-x-0.5 transition-transform" />
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* ========================================================================= */}
-      {/* C) SEÇÃO "OPORTUNIDADES RECOMENDADAS HOJE"                                  */}
+      {/* SEÇÃO "OPORTUNIDADES RECOMENDADAS HOJE"                                    */}
       {/* ========================================================================= */}
       <div className="bg-white dark:bg-slate-900/80 border border-slate-300 dark:border-purple-500/20 rounded-2xl p-5 sm:p-6 shadow-sm dark:shadow-xl space-y-4 transition-colors duration-300">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-slate-300 dark:border-zinc-800">

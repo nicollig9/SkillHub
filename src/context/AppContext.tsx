@@ -1,7 +1,7 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { UserRole, CandidateProfileType, UserAccount, Student, JobVacancy, Badge, Application, GuardrailLog } from '@/types';
+import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
+import { UserRole, CandidateProfileType, UserAccount, Student, JobVacancy, Badge, Application, GuardrailLog, UserCourseItem } from '@/types';
 import { INITIAL_STUDENT, INITIAL_VAGAS, INITIAL_BADGES, INITIAL_APPLICATIONS, INITIAL_GUARDRAILS_LOGS } from '@/data/mockData';
 import { COURSES } from '@/data/coursesData';
 
@@ -41,6 +41,11 @@ export interface UserSavedData {
   activeModuleIndex: number;
   candidateProfileType: CandidateProfileType;
   currentUser: UserAccount;
+  cursosInscritos?: UserCourseItem[];
+  badgesConquistadas?: { badgeId: string; title: string; date: string; score: number; code: string }[];
+  horasEstudadas?: number;
+  progressoGeral?: number;
+  candidaturasEnviadas?: Application[];
   lastView?: AppView;
   savedAt: string;
 }
@@ -125,6 +130,11 @@ interface AppContextType {
   theme: 'dark' | 'light';
   toggleTheme: () => void;
   isDemoMode: boolean;
+  cursosInscritos: UserCourseItem[];
+  badgesConquistadas: { badgeId: string; title: string; date: string; score: number; code: string }[];
+  horasEstudadas: number;
+  progressoGeral: number;
+  candidaturasEnviadas: Application[];
 }
 
 const STORAGE_PREFIX = 'skillhub_user_';
@@ -298,6 +308,129 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
+  // =========================================================================
+  // GESTÃO DINÂMICA DE PROGRESSO REAL DO USUÁRIO (ZERA EM NOVOS CADASTROS)
+  // =========================================================================
+
+  // 1. Cursos Inscritos (Zero para nova conta, calculado dinamicamente conforme o jovem estuda)
+  const cursosInscritos: UserCourseItem[] = useMemo(() => {
+    if (isDemoMode) {
+      return [
+        {
+          id: 'curso-jovem-aprendiz-avancado',
+          courseId: 'curso-jovem-aprendiz-avancado',
+          title: 'Legislação Trabalhista, Direitos & Deveres do Aprendiz',
+          trackName: 'Trilha Entrada no Mercado',
+          category: 'Direito & Cidadania',
+          currentModule: 'Módulo 2: Jornada de Trabalho e Horas Teóricas',
+          progress: 60,
+          workload: '20h',
+          hours: 20,
+          status: 'em_andamento',
+          moduleIndex: 1
+        },
+        {
+          id: 'curso-soft-skills-comunicacao-interpessoal',
+          courseId: 'curso-soft-skills-comunicacao-interpessoal',
+          title: 'Microsoft Excel & Planilhas para Escritório',
+          trackName: 'Trilha Rotinas Administrativas',
+          category: 'Tecnologia & Escritório',
+          currentModule: 'Módulo 3: Fórmulas PROCV, PROCH e Tabelas Dinâmicas',
+          progress: 45,
+          workload: '24h',
+          hours: 24,
+          status: 'em_andamento',
+          moduleIndex: 2
+        },
+        {
+          id: 'curso-preparacao-entrevistas-processos-seletivos',
+          courseId: 'curso-preparacao-entrevistas-processos-seletivos',
+          title: 'Comunicação Assertiva e Postura Corporativa',
+          trackName: 'Trilha Soft Skills Essenciais',
+          category: 'Desenvolvimento Pessoal',
+          currentModule: 'Módulo 1: Escuta Ativa e Convivência em Equipe',
+          progress: 30,
+          workload: '16h',
+          hours: 16,
+          status: 'em_andamento',
+          moduleIndex: 0
+        }
+      ];
+    }
+
+    // Para nova conta ou usuário real:
+    const list: UserCourseItem[] = [];
+    const courseIds = Array.from(new Set([
+      ...Object.keys(completedModules),
+      ...Object.keys(quizResults)
+    ]));
+
+    for (const cId of courseIds) {
+      const course = COURSES.find((c) => c.id === cId);
+      if (!course) continue;
+
+      const completedInCourse = completedModules[cId] || [];
+      const quizPassed = Boolean(quizResults[cId]?.passed);
+      const totalMods = course.modules.length || 1;
+      const progress = quizPassed ? 100 : Math.min(99, Math.round((completedInCourse.length / totalMods) * 100));
+      const isCompleted = quizPassed || (progress >= 100 && completedInCourse.length === totalMods);
+
+      list.push({
+        id: course.id,
+        courseId: course.id,
+        title: course.title,
+        trackName: course.trackName || 'Trilha de Qualificação',
+        category: course.category || 'Geral',
+        currentModule: completedInCourse.length < course.modules.length 
+          ? course.modules[completedInCourse.length]?.title || `Módulo ${completedInCourse.length + 1}`
+          : 'Curso Concluído',
+        progress: isCompleted ? 100 : progress,
+        workload: `${course.hours}h`,
+        hours: course.hours,
+        status: isCompleted ? 'concluido' : 'em_andamento',
+        moduleIndex: Math.min(completedInCourse.length, course.modules.length - 1)
+      });
+    }
+
+    return list;
+  }, [isDemoMode, completedModules, quizResults]);
+
+  // 2. Badges Conquistadas (Zero para nova conta)
+  const badgesConquistadas = useMemo(() => {
+    return student.badgesEarned.map((b) => {
+      const badgeObj = badges.find((item) => item.id.includes(b.badgeId.replace('badge-', '')) || b.badgeId.includes(item.id.replace('badge-', '')));
+      return {
+        badgeId: b.badgeId,
+        title: badgeObj?.title || 'Badge Conquistada',
+        date: b.date,
+        score: b.score,
+        code: b.code
+      };
+    });
+  }, [student.badgesEarned, badges]);
+
+  // 3. Horas Estudadas (0h para nova conta)
+  const horasEstudadas = useMemo(() => {
+    if (isDemoMode) return 42;
+    return cursosInscritos.reduce((acc, curr) => {
+      if (curr.status === 'concluido') return acc + curr.hours;
+      return acc + Math.round((curr.hours * curr.progress) / 100);
+    }, 0);
+  }, [isDemoMode, cursosInscritos]);
+
+  // 4. Progresso Geral (0% para nova conta)
+  const progressoGeral = useMemo(() => {
+    if (isDemoMode) return 45;
+    if (cursosInscritos.length === 0) return 0;
+    const total = cursosInscritos.reduce((acc, c) => acc + c.progress, 0);
+    return Math.round(total / cursosInscritos.length);
+  }, [isDemoMode, cursosInscritos]);
+
+  // 5. Candidaturas Enviadas (Zero para nova conta)
+  const candidaturasEnviadas = useMemo(() => {
+    return applications;
+  }, [applications]);
+
   // SINCRONIZAÇÃO AUTOMÁTICA DO PROGRESSO DO USUÁRIO NO LOCALSTORAGE
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -313,7 +446,19 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         selectedCourseId,
         activeModuleIndex,
         candidateProfileType,
-        currentUser,
+        currentUser: currentUser ? {
+          ...currentUser,
+          cursosInscritos,
+          badgesConquistadas,
+          horasEstudadas,
+          progressoGeral,
+          candidaturasEnviadas
+        } : null,
+        cursosInscritos,
+        badgesConquistadas,
+        horasEstudadas,
+        progressoGeral,
+        candidaturasEnviadas,
         lastView: currentView === 'LOGIN' ? 'DASHBOARD' : currentView,
         savedAt: new Date().toISOString()
       };
@@ -909,7 +1054,12 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       idade: data.idade || 17,
       menorDeIdade: isMinor,
       responsavelLegal: data.responsavelLegal,
-      matriculaEscolar: data.matriculaEscolar
+      matriculaEscolar: data.matriculaEscolar,
+      cursosInscritos: [],
+      badgesConquistadas: [],
+      horasEstudadas: 0,
+      progressoGeral: 0,
+      candidaturasEnviadas: []
     };
     persistSession(account);
 
@@ -953,6 +1103,11 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
           activeModuleIndex: 0,
           candidateProfileType: data.profileType,
           currentUser: account,
+          cursosInscritos: [],
+          badgesConquistadas: [],
+          horasEstudadas: 0,
+          progressoGeral: 0,
+          candidaturasEnviadas: [],
           lastView: 'DASHBOARD',
           savedAt: new Date().toISOString()
         };
@@ -1045,6 +1200,18 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     localStorage.removeItem(SESSION_KEY);
     setIsAuthenticated(false);
     setCurrentUser(null);
+    setStudent({
+      ...INITIAL_STUDENT,
+      id: 0,
+      nome: '',
+      email: '',
+      badgesEarned: []
+    });
+    setCompletedModules({});
+    setQuizResults({});
+    setApplications([]);
+    setBadges(INITIAL_BADGES.map((b) => ({ ...b, dateEarned: undefined, score: undefined, codeVerificador: undefined })));
+    setVagas(INITIAL_VAGAS.map((v) => ({ ...v, jaCandidatou: false })));
     setCurrentView('LOGIN');
     showToast('Sessão Encerrada', 'Você saiu com segurança do sistema.', 'info');
   };
@@ -1073,7 +1240,19 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         setIsSidebarOpen,
         toggleSidebar,
         isAuthenticated,
-        currentUser,
+        currentUser: currentUser ? {
+          ...currentUser,
+          cursosInscritos,
+          badgesConquistadas,
+          horasEstudadas,
+          progressoGeral,
+          candidaturasEnviadas
+        } : null,
+        cursosInscritos,
+        badgesConquistadas,
+        horasEstudadas,
+        progressoGeral,
+        candidaturasEnviadas,
         candidateProfileType,
         setCandidateProfileType,
         loginUser,

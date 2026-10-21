@@ -8,6 +8,20 @@ export type CandidateProfileType =
 
 export type UserType = CandidateProfileType | 'EMPRESA';
 
+export interface UserCourseItem {
+  id: string;
+  courseId: string;
+  title: string;
+  trackName: string;
+  category: string;
+  currentModule: string;
+  progress: number;
+  workload: string;
+  hours: number;
+  status: 'em_andamento' | 'concluido';
+  moduleIndex: number;
+}
+
 export interface UserAccount {
   id: string;
   nome: string;
@@ -22,6 +36,11 @@ export interface UserAccount {
   isDemo?: boolean;
   idade?: number;
   menorDeIdade?: boolean;
+  cursosInscritos?: UserCourseItem[];
+  badgesConquistadas?: { badgeId: string; title?: string; date: string; score: number; code: string }[];
+  horasEstudadas?: number;
+  progressoGeral?: number;
+  candidaturasEnviadas?: Application[];
   responsavelLegal?: {
     nome: string;
     parentesco: string;
