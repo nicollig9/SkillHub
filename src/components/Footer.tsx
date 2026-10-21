@@ -126,19 +126,8 @@ export default function Footer() {
           {/* ========================================================================= */}
           {/* 2. COLUNAS DE NAVEGAÇÃO ENRIQUECIDAS (DIREITA - 7 COLUNAS)                 */}
           {/* ========================================================================= */}
-          <div className="lg:col-span-7 space-y-6">
-            
-            {/* Topo da Navegação com a marca SKILLHUB estilizada */}
-            <div className="flex items-center justify-between border-b border-[#ded9cb] dark:border-slate-800 pb-3">
-              <span className="text-xs font-black tracking-widest uppercase text-purple-700 dark:text-purple-400 bg-purple-100/80 dark:bg-purple-950/60 px-2.5 py-1 rounded-md border border-purple-200 dark:border-purple-500/20">
-                SKILLHUB
-              </span>
-              <span className="text-[11px] text-slate-500 dark:text-zinc-400 font-semibold">
-                Plataforma de Formação &amp; Empregabilidade
-              </span>
-            </div>
-
-            {/* Grid em 3 Colunas Detalhadas */}
+          <div className="lg:col-span-7 pt-1 sm:pt-1.5">
+            {/* Grid em 3 Colunas Detalhadas Alinhadas ao Topo */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4">
               
               {/* COLUNA 1: Formação & Aprendizado */}
