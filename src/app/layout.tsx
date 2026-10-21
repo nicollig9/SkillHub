@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { AppProvider } from '@/context/AppContext';
 import ToastContainer from '@/components/ToastContainer';
+import Footer from '@/components/Footer';
 
 export const metadata: Metadata = {
   title: 'SkillHub — Plataforma de Formação e Empregabilidade de Aprendizes',
@@ -25,9 +26,12 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-[var(--background)] text-[var(--foreground)] min-h-screen antialiased selection:bg-purple-600 selection:text-white transition-colors duration-300">
+      <body className="bg-[var(--background)] text-[var(--foreground)] min-h-screen flex flex-col antialiased selection:bg-purple-600 selection:text-white transition-colors duration-300">
         <AppProvider>
-          {children}
+          <div className="flex-1 flex flex-col w-full">
+            {children}
+          </div>
+          <Footer />
           <ToastContainer />
         </AppProvider>
       </body>

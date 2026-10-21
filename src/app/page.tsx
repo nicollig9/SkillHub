@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import Header from '@/components/Header';
 import Sidebar from '@/components/Sidebar';
 import LandingPage from '@/components/LandingPage';
@@ -11,12 +12,22 @@ import TracksView from '@/components/TracksView';
 import MyCoursesView from '@/components/MyCoursesView';
 import MyEvaluationsView from '@/components/MyEvaluationsView';
 import CourseViewer from '@/components/CourseViewer';
-import CuritibaProximityMap from '@/components/CuritibaProximityMap';
 import HoleriteSimulator from '@/components/HoleriteSimulator';
 import BadgeWallet from '@/components/BadgeWallet';
 import RecruiterDashboard from '@/components/RecruiterDashboard';
 import DemoFeatureGuide from '@/components/DemoFeatureGuide';
 import { useApp } from '@/context/AppContext';
+
+// Importação dinâmica com SSR desativado para prevenir erros de hidratação/window no servidor
+const CuritibaProximityMap = dynamic(() => import('@/components/CuritibaProximityMap'), {
+  ssr: false,
+  loading: () => (
+    <div className="w-full max-w-6xl mx-auto py-24 flex flex-col items-center justify-center space-y-4">
+      <div className="w-10 h-10 border-4 border-purple-500/30 border-t-purple-500 rounded-full animate-spin" />
+      <p className="text-xs text-zinc-400">Carregando painel de vagas...</p>
+    </div>
+  )
+});
 
 export default function HomePage() {
   const { currentView, role, isAuthenticated, setCurrentView } = useApp();
@@ -41,7 +52,7 @@ export default function HomePage() {
       {isAuthenticated && <Sidebar />}
 
       {/* Dynamic Main Content Area - Totalmente Centralizada */}
-      <main className="flex-1 p-4 lg:p-8 overflow-y-auto max-w-6xl w-full mx-auto flex flex-col items-center justify-start">
+      <main className="flex-1 p-4 lg:p-8 overflow-y-auto max-w-7xl w-full mx-auto flex flex-col items-center justify-start">
         {!isAuthenticated ? (
           <LoginPage />
         ) : (

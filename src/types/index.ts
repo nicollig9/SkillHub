@@ -115,6 +115,16 @@ export interface Course {
   quiz: QuizQuestion[];
 }
 
+export interface TrackStep {
+  stepNumber: number;
+  title: string;
+  subtitle?: string;
+  description: string;
+  courseId: string;
+  hours: number;
+  badge?: string;
+}
+
 export interface Track {
   id: string;
   name: string;
@@ -127,6 +137,8 @@ export interface Track {
   badgeReward: string;
   icon: string;
   accentColor: string;
+  level?: 'Iniciante' | 'Intermediário' | 'Avançado';
+  steps?: TrackStep[];
 }
 
 export interface Badge {
@@ -192,6 +204,10 @@ export interface JobVacancy {
   badgesRequeridas: string[];
   candidatosInscritos: number;
   jaCandidatou?: boolean;
+  origemIA?: 'Via Indeed' | 'Via CIEE' | 'Via Vagas.com' | 'Via NUBE' | 'Via Catho' | 'Parceiro Direto';
+  distanciaKm?: number;
+  aderenciaPerfil?: number;
+  cargaSemanal?: string;
 }
 
 export interface Application {
