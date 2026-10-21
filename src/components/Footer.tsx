@@ -6,188 +6,310 @@ import {
   HelpCircle,
   FileText,
   Lock,
-  X
+  X,
+  ArrowRight,
+  CheckCircle2,
+  Building2,
+  Sparkles,
+  Award,
+  Briefcase
 } from 'lucide-react';
 import { useApp } from '@/context/AppContext';
 
 export default function Footer() {
   const router = useRouter();
-  const { setCurrentView, isAuthenticated } = useApp();
-  const [activeModal, setActiveModal] = useState<'FAQ' | 'TERMOS' | 'LGPD' | null>(null);
+  const { setCurrentView } = useApp();
+  const [activeModal, setActiveModal] = useState<'FAQ' | 'TERMOS' | 'LGPD' | 'EMPRESAS' | 'ENTREVISTAS' | 'EMBAIXADOR' | null>(null);
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [subscribed, setSubscribed] = useState(false);
 
-  const handleNav = (view: any) => {
+  const handleNav = (view: any, route?: string) => {
     setCurrentView(view);
-    if (typeof window !== 'undefined' && window.location.pathname !== '/') {
+    if (typeof window !== 'undefined' && window.location.pathname !== '/' && route) {
+      router.push(route);
+    } else if (typeof window !== 'undefined' && window.location.pathname !== '/') {
       router.push('/');
     }
   };
 
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!newsletterEmail.trim()) return;
+    setSubscribed(true);
+    setNewsletterEmail('');
+    setTimeout(() => setSubscribed(false), 4500);
+  };
+
   return (
     <footer className="w-full mt-auto py-8 px-4 sm:px-6 lg:px-8 print:hidden transition-colors duration-300">
-      {/* Container elegante flutuante com bordas suaves e cantos arredondados */}
-      <div className="max-w-7xl mx-auto bg-white dark:bg-slate-900/80 border border-slate-200 dark:border-purple-500/20 rounded-2xl shadow-sm py-8 px-6 sm:px-8 transition-colors duration-300">
+      {/* Container elegante flutuante com tom creme suave bg-[#f4f2eb] no tema claro */}
+      <div className="max-w-7xl mx-auto bg-[#f4f2eb] dark:bg-slate-900/90 border border-[#e3dfd3] dark:border-purple-500/20 rounded-3xl shadow-sm py-9 px-6 sm:px-10 transition-colors duration-300">
         
-        {/* Layout em 2 Colunas: Marca (40%) + Navegação Organizada (60%) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        {/* Grid Principal: Identidade & Textos Institucionais (Esquerda) vs Navegação em 3 Colunas (Direita) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start">
           
-          {/* ===================================================== */}
-          {/* COLUNA DA ESQUERDA (IDENTIDADE VISUAL - 40% / 5 cols) */}
-          {/* ===================================================== */}
-          <div className="lg:col-span-5 space-y-3">
-            <div className="flex flex-wrap items-center gap-2.5">
-              {/* Logo & Nome */}
-              <div className="flex items-center gap-2.5">
-                <div className="relative w-8 h-8 flex items-center justify-center shrink-0">
+          {/* ========================================================================= */}
+          {/* 1. BLOCO DE IDENTIDADE E TEXTOS INSTITUCIONAIS (ESQUERDA - 5 COLUNAS)     */}
+          {/* ========================================================================= */}
+          <div className="lg:col-span-5 space-y-4">
+            
+            {/* Logo oficial do SkillHub (escudo roxo e dourado) & Marca */}
+            <div className="flex flex-wrap items-center gap-3">
+              <div className="flex items-center gap-3">
+                <div className="relative w-11 h-11 flex items-center justify-center shrink-0">
                   <img
-                    src="/assets/icons/favicon-skillhub.svg"
-                    alt="SkillHub"
-                    className="w-7 h-7 object-contain"
+                    src="/logo.png"
+                    alt="SkillHub Logo"
+                    className="w-10 h-10 object-contain drop-shadow-sm transition-transform hover:scale-105"
                     onError={(e) => {
                       (e.target as HTMLElement).style.display = 'none';
                       const fallback = (e.target as HTMLElement).parentElement?.querySelector('.fallback-footer-logo');
                       if (fallback) fallback.classList.remove('hidden');
                     }}
                   />
-                  <div className="fallback-footer-logo hidden w-7 h-7 rounded-lg bg-purple-600 flex items-center justify-center text-white font-black text-sm">
+                  <div className="fallback-footer-logo hidden w-10 h-10 rounded-xl bg-purple-600 flex items-center justify-center text-white font-black text-base shadow-sm">
                     S
                   </div>
                 </div>
 
-                <span className="text-xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                <span className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
                   Skill<span className="text-purple-600 dark:text-purple-400">Hub</span>
                 </span>
               </div>
 
-              {/* Badge Local */}
-              <span className="inline-flex items-center bg-purple-100 text-purple-800 dark:bg-purple-950/80 dark:text-purple-300 text-xs font-semibold px-2.5 py-0.5 rounded-full border border-purple-200 dark:border-purple-500/30">
-                Curitiba &amp; RMC
+              {/* Badge Regional */}
+              <span className="inline-flex items-center bg-purple-100 text-purple-900 dark:bg-purple-950/80 dark:text-purple-300 text-xs font-semibold px-3 py-1 rounded-full border border-purple-200/80 dark:border-purple-500/30">
+                📍 Focado em Curitiba e Região Metropolitana
               </span>
             </div>
 
-            {/* Descrição Curta */}
-            <p className="text-slate-600 dark:text-zinc-400 text-sm mt-2 max-w-sm leading-relaxed font-medium">
-              Capacitando jovens aprendizes e estagiários para o primeiro emprego no mercado local.
+            {/* Texto de Apresentação Acolhedor */}
+            <p className="text-slate-600 dark:text-zinc-400 text-sm leading-relaxed max-w-md font-medium">
+              O SkillHub é a plataforma de aceleração profissional criada para conectar jovens aprendizes, estagiários e ingressantes no mercado de trabalho às melhores oportunidades reais em Curitiba e RMC, integrando trilhas de formação modular, inteligência de vagas e ferramentas práticas de carreira.
             </p>
+
+            {/* Captura de Newsletter / Vagas no E-mail */}
+            <div className="pt-2">
+              <label htmlFor="newsletter-email" className="text-xs font-bold text-slate-800 dark:text-zinc-200 uppercase tracking-wider block mb-2">
+                Receba alertas de novas vagas da RMC no seu e-mail
+              </label>
+              
+              <form onSubmit={handleSubscribe} className="relative flex items-center max-w-md">
+                <input
+                  id="newsletter-email"
+                  type="email"
+                  value={newsletterEmail}
+                  onChange={(e) => setNewsletterEmail(e.target.value)}
+                  placeholder="Seu melhor e-mail para vagas..."
+                  required
+                  className="w-full bg-white dark:bg-slate-950/80 border border-[#d6d0c2] dark:border-purple-500/30 rounded-full pl-4 pr-12 py-2.5 text-xs sm:text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-zinc-500 focus:outline-none focus:border-purple-600 transition-colors shadow-xs"
+                />
+                <button
+                  type="submit"
+                  aria-label="Cadastrar e-mail para receber vagas"
+                  className="absolute right-1 w-8 h-8 rounded-full bg-purple-600 hover:bg-purple-500 text-white flex items-center justify-center transition-all cursor-pointer shadow-sm"
+                  title="Cadastrar e-mail"
+                >
+                  <ArrowRight className="w-4 h-4" />
+                </button>
+              </form>
+
+              {subscribed && (
+                <div className="flex items-center gap-1.5 text-xs font-semibold text-emerald-700 dark:text-emerald-400 mt-2 animate-fadeIn">
+                  <CheckCircle2 className="w-4 h-4" />
+                  <span>Pronto! Você receberá nosso radar semanal de vagas de Curitiba e RMC.</span>
+                </div>
+              )}
+            </div>
           </div>
 
-          {/* ===================================================== */}
-          {/* COLUNA DA DIREITA (LINKS ÚTEIS - 60% / 7 cols)        */}
-          {/* ===================================================== */}
-          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8">
+          {/* ========================================================================= */}
+          {/* 2. COLUNAS DE NAVEGAÇÃO ENRIQUECIDAS (DIREITA - 7 COLUNAS)                 */}
+          {/* ========================================================================= */}
+          <div className="lg:col-span-7 space-y-6">
             
-            {/* Subcoluna 1: Plataforma */}
-            <div>
-              <h4 className="text-xs font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-wider mb-3">
-                Plataforma
-              </h4>
-              <ul className="space-y-2.5">
-                <li>
-                  <button
-                    onClick={() => handleNav(isAuthenticated ? 'DASHBOARD' : 'LOGIN')}
-                    className="text-slate-600 hover:text-purple-600 dark:text-zinc-400 dark:hover:text-purple-300 text-sm font-medium transition-colors duration-200 cursor-pointer text-left"
-                  >
-                    Meu Dashboard
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={() => handleNav('CURSOS_DISPONIVEIS')}
-                    className="text-slate-600 hover:text-purple-600 dark:text-zinc-400 dark:hover:text-purple-300 text-sm font-medium transition-colors duration-200 cursor-pointer text-left"
-                  >
-                    Cursos
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={() => handleNav('TRILHAS_DISPONIVEIS')}
-                    className="text-slate-600 hover:text-purple-600 dark:text-zinc-400 dark:hover:text-purple-300 text-sm font-medium transition-colors duration-200 cursor-pointer text-left"
-                  >
-                    Trilhas
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={() => handleNav('MAPA_PROXIMIDADE')}
-                    className="text-slate-600 hover:text-purple-600 dark:text-zinc-400 dark:hover:text-purple-300 text-sm font-medium transition-colors duration-200 cursor-pointer text-left"
-                  >
-                    Mapa de Vagas
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={() => handleNav('HOLERITE')}
-                    className="text-slate-600 hover:text-purple-600 dark:text-zinc-400 dark:hover:text-purple-300 text-sm font-medium transition-colors duration-200 cursor-pointer text-left"
-                  >
-                    Calculadora Salarial
-                  </button>
-                </li>
-              </ul>
+            {/* Topo da Navegação com a marca SKILLHUB estilizada */}
+            <div className="flex items-center justify-between border-b border-[#ded9cb] dark:border-slate-800 pb-3">
+              <span className="text-xs font-black tracking-widest uppercase text-purple-700 dark:text-purple-400 bg-purple-100/80 dark:bg-purple-950/60 px-2.5 py-1 rounded-md border border-purple-200 dark:border-purple-500/20">
+                SKILLHUB
+              </span>
+              <span className="text-[11px] text-slate-500 dark:text-zinc-400 font-semibold">
+                Plataforma de Formação &amp; Empregabilidade
+              </span>
             </div>
 
-            {/* Subcoluna 2: Suporte & Legal */}
-            <div>
-              <h4 className="text-xs font-bold text-slate-400 dark:text-zinc-500 uppercase tracking-wider mb-3">
-                Suporte &amp; Legal
-              </h4>
-              <ul className="space-y-2.5">
-                <li>
-                  <button
-                    onClick={() => setActiveModal('FAQ')}
-                    className="text-slate-600 hover:text-purple-600 dark:text-zinc-400 dark:hover:text-purple-300 text-sm font-medium transition-colors duration-200 cursor-pointer text-left"
-                  >
-                    Dúvidas Frequentes
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={() => setActiveModal('TERMOS')}
-                    className="text-slate-600 hover:text-purple-600 dark:text-zinc-400 dark:hover:text-purple-300 text-sm font-medium transition-colors duration-200 cursor-pointer text-left"
-                  >
-                    Termos de Uso
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onClick={() => setActiveModal('LGPD')}
-                    className="text-slate-600 hover:text-purple-600 dark:text-zinc-400 dark:hover:text-purple-300 text-sm font-medium transition-colors duration-200 cursor-pointer text-left"
-                  >
-                    Privacidade / LGPD
-                  </button>
-                </li>
-              </ul>
+            {/* Grid em 3 Colunas Detalhadas */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-4">
+              
+              {/* COLUNA 1: Formação & Aprendizado */}
+              <div>
+                <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-3.5">
+                  Formação &amp; Aprendizado
+                </h4>
+                <ul className="space-y-2">
+                  <li>
+                    <button
+                      onClick={() => handleNav('CURSOS_DISPONIVEIS')}
+                      className="text-slate-700 hover:text-purple-700 dark:text-zinc-400 dark:hover:text-purple-300 text-xs sm:text-[13px] leading-snug font-medium transition-colors duration-200 cursor-pointer text-left block py-0.5"
+                    >
+                      Cursos por Níveis (Iniciante ao Avançado)
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => handleNav('TRILHAS_DISPONIVEIS')}
+                      className="text-slate-700 hover:text-purple-700 dark:text-zinc-400 dark:hover:text-purple-300 text-xs sm:text-[13px] leading-snug font-medium transition-colors duration-200 cursor-pointer text-left block py-0.5"
+                    >
+                      Trilhas de Formação &amp; Selos
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => setActiveModal('EMBAIXADOR')}
+                      className="text-slate-700 hover:text-purple-700 dark:text-zinc-400 dark:hover:text-purple-300 text-xs sm:text-[13px] leading-snug font-medium transition-colors duration-200 cursor-pointer text-left block py-0.5"
+                    >
+                      Embaixador do Primeiro Emprego
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => handleNav('CURSOS_DISPONIVEIS')}
+                      className="text-slate-700 hover:text-purple-700 dark:text-zinc-400 dark:hover:text-purple-300 text-xs sm:text-[13px] leading-snug font-medium transition-colors duration-200 cursor-pointer text-left block py-0.5"
+                    >
+                      Produtividade com IA
+                    </button>
+                  </li>
+                </ul>
+              </div>
+
+              {/* COLUNA 2: Ferramentas & Vagas */}
+              <div>
+                <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-3.5">
+                  Ferramentas &amp; Vagas
+                </h4>
+                <ul className="space-y-2">
+                  <li>
+                    <button
+                      onClick={() => handleNav('MAPA_PROXIMIDADE')}
+                      className="text-slate-700 hover:text-purple-700 dark:text-zinc-400 dark:hover:text-purple-300 text-xs sm:text-[13px] leading-snug font-medium transition-colors duration-200 cursor-pointer text-left block py-0.5"
+                    >
+                      Mapa Inteligente de Vagas (Curitiba &amp; RMC)
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => handleNav('HOLERITE', '/holerite')}
+                      className="text-slate-700 hover:text-purple-700 dark:text-zinc-400 dark:hover:text-purple-300 text-xs sm:text-[13px] leading-snug font-medium transition-colors duration-200 cursor-pointer text-left block py-0.5"
+                    >
+                      Calculadora de Holerite &amp; Salário
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => router.push('/curriculo')}
+                      className="text-slate-700 hover:text-purple-700 dark:text-zinc-400 dark:hover:text-purple-300 text-xs sm:text-[13px] leading-snug font-medium transition-colors duration-200 cursor-pointer text-left block py-0.5"
+                    >
+                      Gerador de Currículo Inteligente
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => setActiveModal('ENTREVISTAS')}
+                      className="text-slate-700 hover:text-purple-700 dark:text-zinc-400 dark:hover:text-purple-300 text-xs sm:text-[13px] leading-snug font-medium transition-colors duration-200 cursor-pointer text-left block py-0.5"
+                    >
+                      Guia de Entrevistas &amp; Postura
+                    </button>
+                  </li>
+                </ul>
+              </div>
+
+              {/* COLUNA 3: Institucional & Suporte */}
+              <div>
+                <h4 className="text-xs font-bold text-slate-900 dark:text-white uppercase tracking-wider mb-3.5">
+                  Institucional &amp; Suporte
+                </h4>
+                <ul className="space-y-2">
+                  <li>
+                    <button
+                      onClick={() => setActiveModal('FAQ')}
+                      className="text-slate-700 hover:text-purple-700 dark:text-zinc-400 dark:hover:text-purple-300 text-xs sm:text-[13px] leading-snug font-medium transition-colors duration-200 cursor-pointer text-left block py-0.5"
+                    >
+                      Dúvidas Frequentes (FAQ)
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => setActiveModal('EMPRESAS')}
+                      className="text-slate-700 hover:text-purple-700 dark:text-zinc-400 dark:hover:text-purple-300 text-xs sm:text-[13px] leading-snug font-medium transition-colors duration-200 cursor-pointer text-left block py-0.5"
+                    >
+                      Como Funciona para Empresas
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => setActiveModal('TERMOS')}
+                      className="text-slate-700 hover:text-purple-700 dark:text-zinc-400 dark:hover:text-purple-300 text-xs sm:text-[13px] leading-snug font-medium transition-colors duration-200 cursor-pointer text-left block py-0.5"
+                    >
+                      Termos de Uso da Plataforma
+                    </button>
+                  </li>
+                  <li>
+                    <button
+                      onClick={() => setActiveModal('LGPD')}
+                      className="text-slate-700 hover:text-purple-700 dark:text-zinc-400 dark:hover:text-purple-300 text-xs sm:text-[13px] leading-snug font-medium transition-colors duration-200 cursor-pointer text-left block py-0.5"
+                    >
+                      Política de Privacidade &amp; LGPD
+                    </button>
+                  </li>
+                </ul>
+              </div>
+
             </div>
 
           </div>
 
         </div>
 
-        {/* ===================================================== */}
-        {/* LINHA INFERIOR (COPYRIGHT E CRÉDITOS)                  */}
-        {/* ===================================================== */}
-        <div className="border-t border-slate-100 dark:border-slate-800 my-6" />
+        {/* ========================================================================= */}
+        {/* 3. FAIXA INFERIOR DE CREDIBILIDADE (BOTTOM BAR)                            */}
+        {/* ========================================================================= */}
+        <div className="border-t border-[#ded9cb] dark:border-slate-800 my-6" />
 
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-500 dark:text-zinc-500 font-medium">
-          <span>© 2026 SkillHub. Todos os direitos reservados.</span>
-          <span>Desenvolvido para jovens em Curitiba e Região Metropolitana</span>
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-600 dark:text-zinc-500 font-medium">
+          <span className="text-center sm:text-left">
+            © 2026 SkillHub — Plataforma de Formação Profissional e Empregabilidade Jovem. Todos os direitos reservados.
+          </span>
+          <span className="text-center sm:text-right shrink-0">
+            Desenvolvido com foco no ecossistema de talentos locais | Curitiba, PR
+          </span>
         </div>
 
       </div>
 
-      {/* MODAL DIDÁTICO DE DÚVIDAS / TERMOS / LGPD */}
+      {/* ========================================================================= */}
+      {/* MODAIS INFORMATIVOS & INSTITUCIONAIS                                     */}
+      {/* ========================================================================= */}
       {activeModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fadeIn">
           <div className="w-full max-w-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-purple-500/30 rounded-2xl p-6 shadow-2xl relative text-slate-900 dark:text-zinc-100 space-y-4">
+            
             <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-zinc-800">
               <div className="flex items-center gap-2">
                 <span className="w-8 h-8 rounded-lg bg-purple-100 dark:bg-purple-950/80 text-purple-600 dark:text-purple-300 flex items-center justify-center font-bold text-sm">
                   {activeModal === 'FAQ' && <HelpCircle className="w-4 h-4" />}
                   {activeModal === 'TERMOS' && <FileText className="w-4 h-4" />}
                   {activeModal === 'LGPD' && <Lock className="w-4 h-4 text-emerald-500" />}
+                  {activeModal === 'EMPRESAS' && <Building2 className="w-4 h-4 text-purple-600" />}
+                  {activeModal === 'ENTREVISTAS' && <Briefcase className="w-4 h-4 text-amber-500" />}
+                  {activeModal === 'EMBAIXADOR' && <Award className="w-4 h-4 text-purple-600" />}
                 </span>
                 <h3 className="text-base font-bold text-slate-900 dark:text-white">
                   {activeModal === 'FAQ' && 'Dúvidas Frequentes (FAQ)'}
                   {activeModal === 'TERMOS' && 'Termos de Uso da Plataforma'}
                   {activeModal === 'LGPD' && 'Privacidade & Proteção de Dados (LGPD)'}
+                  {activeModal === 'EMPRESAS' && 'Como Funciona para Empresas'}
+                  {activeModal === 'ENTREVISTAS' && 'Guia de Entrevistas & Postura'}
+                  {activeModal === 'EMBAIXADOR' && 'Programa Embaixador do Primeiro Emprego'}
                 </h3>
               </div>
               <button
@@ -212,7 +334,50 @@ export default function Footer() {
                   </div>
                   <div>
                     <h5 className="font-bold text-slate-900 dark:text-white">O SkillHub atende apenas Curitiba?</h5>
-                    <p>Nosso foco principal é a Região Metropolitana de Curitiba (RMC), conectando candidatos às linhas de transporte e bairros locais como CIC, Centro, Boqueirão, Pinhais e São José dos Pinhais.</p>
+                    <p>Nosso foco principal é Curitiba e os 29 municípios da Região Metropolitana (RMC), conectando candidatos às linhas de transporte e bairros locais como CIC, Centro, Boqueirão, Pinhais, Araucária e São José dos Pinhais.</p>
+                  </div>
+                </>
+              )}
+
+              {activeModal === 'EMPRESAS' && (
+                <>
+                  <div>
+                    <h5 className="font-bold text-slate-900 dark:text-white">Contratação Segura de Jovens Talentos</h5>
+                    <p>O SkillHub facilita o cumprimento da cota legal de aprendizagem (Lei 10.097/00) e a captação de estagiários qualificados, conectando empresas da RMC a candidatos pré-capacitados e certificados.</p>
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-slate-900 dark:text-white">Painel do Recrutador Integrado</h5>
+                    <p>Anuncie vagas com filtros de proximidade por linhas de ônibus da URBS/Comec e avalie o índice de engajamento do jovem nas trilhas de capacitação antes da entrevista.</p>
+                  </div>
+                </>
+              )}
+
+              {activeModal === 'ENTREVISTAS' && (
+                <>
+                  <div>
+                    <h5 className="font-bold text-slate-900 dark:text-white">1. Pontualidade e Rota Antecipada</h5>
+                    <p>Consulte antecipadamente o trajeto de ônibus pelo nosso Mapa Inteligente. Chegar 15 minutos antes demonstra organização e confiabilidade.</p>
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-slate-900 dark:text-white">2. Demonstre Vontade de Aprender</h5>
+                    <p>Para o primeiro emprego e estágio, recrutadores valorizam mais a curiosidade, disciplina e vontade de evoluir do que a experiência prévia.</p>
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-slate-900 dark:text-white">3. Conheça a Empresa</h5>
+                    <p>Pesquise o que a empresa faz em Curitiba. Isso mostra preparação e interesse genuíno na oportunidade.</p>
+                  </div>
+                </>
+              )}
+
+              {activeModal === 'EMBAIXADOR' && (
+                <>
+                  <div>
+                    <h5 className="font-bold text-slate-900 dark:text-white">Liderança Jovem nas Escolas e Colégios</h5>
+                    <p>O programa Embaixador reconhece jovens estudantes que compartilham as capacitações e vagas do SkillHub com sua turma escolar ou comunidade local.</p>
+                  </div>
+                  <div>
+                    <h5 className="font-bold text-slate-900 dark:text-white">Benefícios e Selo Especial</h5>
+                    <p>Embaixadores recebem mentorias exclusivas de carreira, destaque em processos seletivos locais e o selo oficial de Liderança Jovem.</p>
                   </div>
                 </>
               )}
