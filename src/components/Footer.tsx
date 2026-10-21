@@ -28,20 +28,20 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           
           {/* ESQUERDA: Identidade Simples */}
-          <div className="space-y-1">
-            <div className="flex items-center gap-2.5">
-              <div className="relative w-7 h-7 flex items-center justify-center shrink-0">
+          <div className="space-y-1.5">
+            <div className="flex items-center gap-3">
+              <div className="relative flex items-center justify-center shrink-0">
                 <img
                   src="/logo.png"
                   alt="SkillHub"
-                  className="w-6 h-6 object-contain"
+                  className="h-11 w-auto object-contain drop-shadow-sm"
                   onError={(e) => {
                     (e.target as HTMLElement).style.display = 'none';
                   }}
                 />
               </div>
 
-              <span className="text-lg font-bold text-slate-800 dark:text-white tracking-tight">
+              <span className="text-xl font-bold text-slate-800 dark:text-white tracking-tight">
                 Skill<span className="text-purple-600 dark:text-purple-400">Hub</span>
               </span>
 
@@ -50,7 +50,7 @@ export default function Footer() {
               </span>
             </div>
 
-            <p className="text-slate-500 dark:text-slate-400 text-xs mt-1.5 font-normal">
+            <p className="text-slate-500 dark:text-slate-400 text-xs font-normal">
               Aceleração profissional e primeiro emprego para jovens da RMC.
             </p>
           </div>

@@ -84,17 +84,17 @@ export default function Header() {
           {/* Logo Oficial e Nome SkillHub */}
           <button
             onClick={() => setCurrentView(isAuthenticated ? (role === 'RECRUTADOR' ? 'RECRUTADOR_RH' : 'DASHBOARD') : 'LOGIN')}
-            className="flex items-center gap-2.5 text-left group transition-transform duration-150 hover:scale-[1.01] cursor-pointer"
+            className="flex items-center gap-3 text-left group transition-transform duration-150 hover:scale-[1.01] cursor-pointer"
           >
-            <div className="relative w-9 h-9 flex items-center justify-center filter drop-shadow-sm">
+            <div className="relative flex items-center justify-center shrink-0 filter drop-shadow-sm">
               <img
                 src="/logo.png"
                 alt="SkillHub Logo"
-                className="w-full h-full object-contain transform group-hover:scale-105 transition-transform duration-200"
+                className="h-10 w-auto object-contain transform group-hover:scale-105 transition-transform duration-200"
               />
             </div>
             <div>
-              <h1 className="text-lg font-black tracking-tight text-slate-900 dark:text-white flex items-center leading-none">
+              <h1 className="text-xl font-black tracking-tight text-slate-900 dark:text-white flex items-center leading-none">
                 Skill<span className="text-purple-700 dark:text-[#FBBF24]">Hub</span>
               </h1>
               <p className="text-[10px] text-slate-700 dark:text-purple-300 font-bold tracking-wide mt-0.5">

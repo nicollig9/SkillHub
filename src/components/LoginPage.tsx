@@ -195,12 +195,12 @@ export default function LoginPage() {
         {/* TOPO: LOGO OFICIAL & BADGE REGIONAL */}
         <div className="relative z-10 space-y-3">
           <div className="flex flex-wrap items-center gap-3">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 p-2 flex items-center justify-center shrink-0 shadow-inner">
+            <div className="flex items-center gap-3.5">
+              <div className="shrink-0 flex items-center justify-center">
                 <img
                   src="/logo.png"
                   alt="SkillHub"
-                  className="w-full h-full object-contain filter drop-shadow-md"
+                  className="w-16 h-16 object-contain filter drop-shadow-lg"
                   onError={(e) => {
                     (e.target as HTMLElement).style.display = 'none';
                   }}
@@ -211,7 +211,7 @@ export default function LoginPage() {
                 <span className="text-2xl sm:text-3xl font-black text-white tracking-tight leading-none block">
                   Skill<span className="text-amber-400">Hub</span>
                 </span>
-                <span className="text-[11px] text-purple-200 font-medium tracking-wide">
+                <span className="text-xs text-purple-200 font-medium tracking-wide mt-1 block">
                   Empregabilidade Jovem
                 </span>
               </div>
