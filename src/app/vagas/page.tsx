@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic';
 import Header from '@/components/Header';
 import Sidebar from '@/components/Sidebar';
+import LoginPage from '@/components/LoginPage';
 import { useApp } from '@/context/AppContext';
 
 const CuritibaProximityMap = dynamic(() => import('@/components/CuritibaProximityMap'), {
@@ -23,7 +24,7 @@ export default function VagasRoute() {
       <Header />
       {isAuthenticated && <Sidebar />}
       <main className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <CuritibaProximityMap />
+        {!isAuthenticated ? <LoginPage /> : <CuritibaProximityMap />}
       </main>
     </div>
   );
