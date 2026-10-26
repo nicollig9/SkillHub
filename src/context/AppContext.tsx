@@ -111,6 +111,7 @@ interface AppContextType {
   openCourse: (courseId: string, moduleIndex?: number) => void;
   markModuleComplete: (courseId: string, moduleId: string) => void;
   submitCourseQuiz: (courseId: string, scorePercentage: number, userAnswers: number[]) => boolean;
+  completeCourseAndClaimBadge: (courseId: string) => boolean;
   applyToJob: (
     vagaId: number, 
     details?: {
@@ -598,6 +599,79 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       );
       return false;
     }
+  };
+
+  const completeCourseAndClaimBadge = (courseId: string): boolean => {
+    const course = COURSES.find((c) => c.id === courseId) || COURSES[0];
+    if (!course) return false;
+
+    const allModuleIds = course.modules.map((m) => m.id);
+    const now = new Date().toLocaleDateString('pt-BR');
+    const badgeCode = `SKILL-PR-2026-${Math.floor(1000 + Math.random() * 9000)}Z`;
+
+    setCompletedModules((prev) => ({
+      ...prev,
+      [course.id]: allModuleIds
+    }));
+
+    setQuizResults((prev) => ({
+      ...prev,
+      [course.id]: {
+        score: 100,
+        passed: true,
+        answers: course.quiz.map((q) => q.correct),
+        date: now
+      }
+    }));
+
+    setBadges((prev) =>
+      prev.map((b) =>
+        b.title.toLowerCase().includes(course.badgeName.toLowerCase()) || 
+        b.id.includes(course.badgeCategory.toLowerCase()) ||
+        b.title.toLowerCase().includes(course.title.toLowerCase())
+          ? { ...b, dateEarned: now, score: 100, codeVerificador: badgeCode }
+          : b
+      )
+    );
+
+    setStudent((prev) => {
+      const alreadyHas = prev.badgesEarned.some(
+        (b) => b.badgeId === `badge-${course.badgeCategory.toLowerCase()}` || b.badgeId.includes(course.id)
+      );
+      if (!alreadyHas) {
+        return {
+          ...prev,
+          badgesEarned: [
+            ...prev.badgesEarned,
+            {
+              badgeId: `badge-${course.badgeCategory.toLowerCase()}`,
+              date: now,
+              score: 100,
+              code: badgeCode
+            }
+          ]
+        };
+      }
+      return prev;
+    });
+
+    const newLog: GuardrailLog = {
+      id: 'glog-' + Date.now(),
+      timestamp: `${now} ${new Date().toLocaleTimeString('pt-BR')}`,
+      type: 'BADGE_INTEGRITY',
+      status: 'ALLOWED',
+      details: `Curso "${course.title}" concluído com 100%. Badge "${course.badgeName}" resgatada e validada.`,
+      source: 'Módulo de Visualização de Curso & Gamificação'
+    };
+    setGuardrailLogs((prev) => [newLog, ...prev]);
+
+    showToast(
+      '🎉 Parabéns! Curso Concluído!',
+      `Você concluiu "${course.title}" e resgatou sua Badge Oficial: "${course.badgeName}"!`,
+      'success'
+    );
+
+    return true;
   };
 
   const applyToJob = (
@@ -1276,6 +1350,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         openCourse,
         markModuleComplete,
         submitCourseQuiz,
+        completeCourseAndClaimBadge,
         applyToJob,
         addNewVacancy,
         testAntiHarassment,

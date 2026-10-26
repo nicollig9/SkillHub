@@ -114,7 +114,7 @@ export interface Course {
   id: string;
   trackId: string;
   trackName: string;
-  category: 'Desenvolvimento Pessoal' | 'Administração e Negócios' | 'Tecnologia da Informação' | 'Legislação e Cidadania';
+  category: 'Desenvolvimento Pessoal' | 'Administração e Negócios' | 'Tecnologia da Informação' | 'Legislação e Cidadania' | 'Finanças Pessoais' | string;
   targetAudienceType: CandidateProfileType[] | 'TODOS';
   title: string;
   subtitle: string;
@@ -132,6 +132,9 @@ export interface Course {
   modules: CourseModule[];
   caseStudies: CaseStudy[];
   quiz: QuizQuestion[];
+  isPublished?: boolean;
+  active?: boolean;
+  visible?: boolean;
 }
 
 export interface TrackStep {

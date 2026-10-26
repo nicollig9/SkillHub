@@ -20,6 +20,7 @@ import {
 // Mapeamento dos motivos e objetivos pedagógicos
 const COURSE_REASONS: Record<string, string> = {
   // Nível 1
+  'orcamento-primeiro-salarial': 'Adaptação financeira inicial, mentalidade consciente sobre o salário líquido, impostos do contracheque e formação de hábitos de poupança.',
   'curso-orcamento-primeiro-salario': 'Adaptação financeira inicial, mentalidade consciente sobre o salário líquido, impostos do contracheque e formação de hábitos de poupança.',
   'curso-saude-mental-trabalho': 'Inteligência emocional de entrada, controle da ansiedade no primeiro emprego e foco para conciliar novas responsabilidades.',
   'curso-financas-pessoais': 'Organização de rotina semanal, conciliação prática entre os horários escolares e a jornada de trabalho sem esgotamento mental.',
@@ -48,6 +49,7 @@ const LEVEL_DEFINITIONS = [
     badgeClass: 'bg-emerald-950/60 text-emerald-300 border-emerald-500/30',
     dotColor: 'bg-emerald-400',
     priorityOrder: [
+      'orcamento-primeiro-salarial',
       'curso-orcamento-primeiro-salario',
       'curso-saude-mental-trabalho',
       'curso-financas-pessoais',
@@ -103,6 +105,7 @@ export default function CoursesView() {
 
   const categories = [
     'TODAS',
+    'Finanças Pessoais',
     'Desenvolvimento Pessoal',
     'Administração e Negócios',
     'Tecnologia da Informação',
@@ -118,7 +121,10 @@ export default function CoursesView() {
 
     // Filtro por categoria
     const matchesCategory = 
-      selectedCategory === 'TODAS' || course.category === selectedCategory;
+      selectedCategory === 'TODAS' || 
+      course.category === selectedCategory ||
+      (selectedCategory === 'Desenvolvimento Pessoal' && (course.id === 'orcamento-primeiro-salarial' || course.id === 'curso-orcamento-primeiro-salario')) ||
+      (selectedCategory === 'Finanças Pessoais' && (course.id === 'orcamento-primeiro-salarial' || course.id === 'curso-orcamento-primeiro-salario' || course.category === 'Finanças Pessoais'));
 
     // Filtro por público-alvo
     const matchesAudience = 
