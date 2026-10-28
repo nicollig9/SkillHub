@@ -20,6 +20,8 @@ import {
 // Mapeamento dos motivos e objetivos pedagógicos
 const COURSE_REASONS: Record<string, string> = {
   // Nível 1
+  'equilibrio-emocional': 'Inteligência emocional de entrada, controle da ansiedade no primeiro emprego e foco para conciliar novas responsabilidades.',
+  'curso-equilibrio-emocional': 'Inteligência emocional de entrada, controle da ansiedade no primeiro emprego e foco para conciliar novas responsabilidades.',
   'orcamento-primeiro-salarial': 'Adaptação financeira inicial, mentalidade consciente sobre o salário líquido, impostos do contracheque e formação de hábitos de poupança.',
   'curso-orcamento-primeiro-salario': 'Adaptação financeira inicial, mentalidade consciente sobre o salário líquido, impostos do contracheque e formação de hábitos de poupança.',
   'curso-saude-mental-trabalho': 'Inteligência emocional de entrada, controle da ansiedade no primeiro emprego e foco para conciliar novas responsabilidades.',
@@ -49,10 +51,12 @@ const LEVEL_DEFINITIONS = [
     badgeClass: 'bg-emerald-950/60 text-emerald-300 border-emerald-500/30',
     dotColor: 'bg-emerald-400',
     priorityOrder: [
+      'equilibrio-emocional',
+
       'orcamento-primeiro-salarial',
-      'curso-orcamento-primeiro-salario',
-      'curso-saude-mental-trabalho',
-      'curso-financas-pessoais',
+
+
+
       'curso-excel-iniciante',
       'curso-informatica-seguranca'
     ]
@@ -112,7 +116,14 @@ export default function CoursesView() {
     'Legislação e Cidadania'
   ];
 
-  const filteredCourses = COURSES.filter((course) => {
+  const uniqueCourses = COURSES.reduce((acc: typeof COURSES, c) => {
+    if (!acc.some((x) => x.id === c.id || x.title.trim().toLowerCase() === c.title.trim().toLowerCase())) {
+      acc.push(c);
+    }
+    return acc;
+  }, []);
+
+  const filteredCourses = uniqueCourses.filter((course) => {
     // Filtro por texto
     const matchesSearch = 
       course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -123,6 +134,7 @@ export default function CoursesView() {
     const matchesCategory = 
       selectedCategory === 'TODAS' || 
       course.category === selectedCategory ||
+      course.category.toLowerCase().includes(selectedCategory.toLowerCase()) ||
       (selectedCategory === 'Desenvolvimento Pessoal' && (course.id === 'orcamento-primeiro-salarial' || course.id === 'curso-orcamento-primeiro-salario')) ||
       (selectedCategory === 'Finanças Pessoais' && (course.id === 'orcamento-primeiro-salarial' || course.id === 'curso-orcamento-primeiro-salario' || course.category === 'Finanças Pessoais'));
 
@@ -140,7 +152,7 @@ export default function CoursesView() {
   });
 
   return (
-    <div className="w-full max-w-6xl mx-auto pb-12 space-y-8 flex flex-col items-center">
+    <div className="w-full max-w-6xl mx-auto px-4 py-8 space-y-8 flex flex-col items-center">
       
       {/* Banner Principal Unificado: Aba de Cursos & Progressão por Níveis */}
       <div className="w-full bg-white dark:bg-[#110E1B] border border-slate-200 dark:border-[#2D1B4E]/60 rounded-3xl p-6 lg:p-8 shadow-sm dark:shadow-2xl relative overflow-hidden space-y-6">
@@ -169,7 +181,7 @@ export default function CoursesView() {
           {/* Card Único de Métricas Dinâmicas */}
           <div className="bg-[#171126] border border-[#2D1B4E] rounded-2xl p-4 sm:p-5 text-center shrink-0 shadow-lg min-w-[190px] flex flex-col items-center justify-center">
             <div className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
-              {COURSES.length}
+              {uniqueCourses.length}
             </div>
             <div className="text-xs text-zinc-400 font-medium mt-1">
               Cursos Cadastrados
@@ -276,7 +288,7 @@ export default function CoursesView() {
             Todos os Níveis ({filteredCourses.length})
           </button>
           {LEVEL_DEFINITIONS.map((def) => {
-            const count = COURSES.filter((c) => c.level === def.id).length;
+            const count = uniqueCourses.filter((c) => c.level === def.id).length;
             return (
               <button
                 key={def.id}
@@ -371,14 +383,14 @@ export default function CoursesView() {
               </div>
 
               {/* Grid de Cursos do Nível */}
-              <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {coursesInLevel.map((course) => {
                   const pedagogicalReason = COURSE_REASONS[course.id];
 
                   return (
                     <div
                       key={course.id}
-                      className="bg-white dark:bg-[#140E24] border border-slate-300 dark:border-[#2D1B4E]/60 hover:border-purple-600 dark:hover:border-[#8B5CF6]/70 rounded-2xl p-5 sm:p-6 shadow-sm dark:shadow-xl flex flex-col justify-between space-y-4 transition-all duration-200 hover:-translate-y-1 group relative"
+                      className="bg-white border border-slate-200 shadow-sm dark:bg-slate-900/50 dark:backdrop-blur-md dark:border-purple-500/15 hover:border-purple-500/50 dark:hover:border-purple-500/40 rounded-3xl p-6 flex flex-col justify-between space-y-4 transition-all duration-200 hover:-translate-y-1 group relative"
                     >
                       <div className="space-y-3">
                         {/* Header do Card com Categoria, Nível & Carga Horária (SEM numeração 'Curso X') */}

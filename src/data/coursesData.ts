@@ -2424,6 +2424,174 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
+  // 2.5 EQUILÍBRIO EMOCIONAL, ANSIEDADE E FOCO NO TRABALHO
+  // =========================================================================
+  {
+    id: 'equilibrio-emocional',
+    isPublished: true,
+    active: true,
+    visible: true,
+    trackId: 'trilha-comunicacao-relacionamento',
+    trackName: 'Trilha Comunicação & Relacionamento Profissional',
+    category: 'Saúde Mental & Desenvolvimento Pessoal',
+    targetAudienceType: ['PRIMEIRO_EMPREGO', 'JOVEM_APRENDIZ', 'ESTUDANTE', 'ESTAGIARIO', 'TODOS'],
+    title: 'Equilíbrio Emocional, Ansiedade e Foco no Trabalho',
+    subtitle: 'Aprenda a reconhecer o ciclo da ansiedade, cultivar autocuidado emocional, sustentar a concentração no trabalho e agir com intenção em momentos de pressão.',
+    hours: 1,
+    equivalentHours: 1,
+    modality: 'EAD 100% Gratuito (Escola Virtual)',
+    targetAudience: 'Jovens aprendizes, estagiários e colaboradores que buscam inteligência emocional, foco e bem-estar no trabalho.',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Selo de Inteligência Emocional',
+    badgeCategory: 'Saúde Mental',
+    badgeIcon: 'Heart',
+    accentColor: '#8B5CF6',
+    level: 'Iniciante',
+    learningObjectives: [
+      'Reconhecer o ciclo biológico e cognitivo da ansiedade no ambiente profissional.',
+      'Desenvolver técnicas práticas de autorregulação emocional e respiração para desacelerar.',
+      'Sustentar o foco diário através de blocos de tempo e fragmentação de tarefas.',
+      'Transitar da reação impulsiva para a intenção consciente em momentos de pressão.'
+    ],
+    modules: [
+      {
+        id: 'eq-mod-1',
+        number: 1,
+        title: 'Pilar 1: Entenda o Ciclo da Ansiedade',
+        summary: 'Mapeamento de pensamentos acelerados, preocupações e a cadeia cognitiva da ansiedade no ambiente profissional.',
+        estimatedMinutes: 15,
+        content: {
+          sections: [
+            {
+              subheading: '1. Entenda o Ciclo da Ansiedade',
+              body: [
+                '• Pensamentos acelerados, preocupações constantes, dificuldade de relaxar e queda na concentração.',
+                '• Compreenda a cadeia: Estímulos ➔ Sobrecarga cognitiva ➔ Ansiedade ➔ Cansaço mental.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'A Cadeia da Sobrecarga Cognitiva',
+                text: 'Estímulos ➔ Sobrecarga cognitiva ➔ Ansiedade ➔ Cansaço mental. Identificar esse padrão nos primeiros minutos é a chave para interromper o esgotamento.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'eq-mod-2',
+        number: 2,
+        title: 'Pilar 2: Cuide das Emoções',
+        summary: 'Autoconsciência emocional, nomeação de sentimentos, respiração diafragmática e acolhimento.',
+        estimatedMinutes: 15,
+        content: {
+          sections: [
+            {
+              subheading: '2. Cuide das Emoções',
+              body: [
+                '• Reconheça o que sente e nomeie suas emoções.',
+                '• Respire, desacelere e busque apoio quando precisar.',
+                '• Lembrete essencial: "Você não controla tudo, mas pode escolher como responder."'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Lembrete de Autocuidado',
+                text: '"Você não controla tudo, mas pode escolher como responder."'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'eq-mod-3',
+        number: 3,
+        title: 'Pilar 3: Sustente o Foco',
+        summary: 'Blocos de tempo, técnica Pomodoro, divisão de demandas extensas e priorização diária.',
+        estimatedMinutes: 15,
+        content: {
+          sections: [
+            {
+              subheading: '3. Sustente o Foco',
+              body: [
+                '• Trabalhe em blocos de tempo e divida tarefas grandes em etapas menores.',
+                '• Defina prioridades diárias e elimine distrações no ambiente.',
+                '• Ciclo prático: Planejar ➔ Executar ➔ Concluir.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Ciclo Prático de Foco',
+                text: 'Planejar ➔ Executar ➔ Concluir. A fragmentação de tarefas grandes alivia a ansiedade e eleva o rendimento.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'eq-mod-4',
+        number: 4,
+        title: 'Pilar 4: Troque Reação por Intenção',
+        summary: 'Pausa estratégica, limites saudáveis, ressignificação de erros e consistência diária.',
+        estimatedMinutes: 15,
+        content: {
+          sections: [
+            {
+              subheading: '4. Troque Reação por Intenção',
+              body: [
+                '• Pause antes de reagir impulsivamente e estabeleça limites saudáveis.',
+                '• Faça pausas estratégicas durante a jornada e veja desafios como aprendizado.',
+                '• Lembrete: "Pequenos passos geram grandes resultados!"'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Postura Consciente',
+                text: '"Pequenos passos geram grandes resultados!" Agir com intenção preserva a clareza mental e melhora suas relações no trabalho.'
+              }
+            }
+          ]
+        }
+      }
+    ],
+    caseStudies: [],
+    quiz: [
+      {
+        id: 1,
+        question: 'Qual é a recomendação ao perceber pensamentos acelerados e ansiedade no trabalho?',
+        options: [
+          'Ignorar os sinais e acelerar as tarefas para terminar logo.',
+          'Respirar, desacelerar e nomear as emoções.',
+          'Reclamar em voz alta na equipe para aliviar a tensão.',
+          'Abandonar a estação de trabalho sem avisar o gestor.'
+        ],
+        correct: 1,
+        explanation: 'Respirar com calma, desacelerar o ritmo e nomear conscientemente as emoções reduz a ativação da amígdala e devolve a clareza mental.'
+      },
+      {
+        id: 2,
+        question: 'Como sustentar o foco em tarefas complexas ou extensas?',
+        options: [
+          'Realizar várias tarefas simultâneas respondendo a todas as notificações.',
+          'Dividir em tarefas menores e trabalhar em blocos de tempo.',
+          'Deixar a demanda para a última hora para trabalhar sob pressão.',
+          'Evitar planejar o dia para não gerar expectativas.'
+        ],
+        correct: 1,
+        explanation: 'Dividir demandas extensas em etapas menores e focar em blocos de tempo evita a sobrecarga e mantém o ritmo sustentável.'
+      },
+      {
+        id: 3,
+        question: 'O que significa "trocar reação por intenção"?',
+        options: [
+          'Pausar antes de agir e estabelecer limites em vez de responder no impulso.',
+          'Responder de imediato com ironia para não demonstrar fraqueza.',
+          'Dizer "sim" para todas as ordens sem avaliar sua capacidade diária.',
+          'Fingir que não há desafios no ambiente corporativo.'
+        ],
+        correct: 0,
+        explanation: 'Pausar antes de reagir impulsivamente e definir limites saudáveis permite escolher conscientemente a melhor resposta profissional.'
+      }
+    ]
+  },
+
+  // =========================================================================
   // 3. ORÇAMENTO DO PRIMEIRO SALÁRIO
   // =========================================================================
   {
@@ -5751,13 +5919,31 @@ export const COURSES: Course[] = [
 ];
 
 
-// Garantir propriedades e visibilidade do curso Orçamento do Primeiro Salário
-const orcamentoCourse = COURSES.find((c) => c.id === 'orcamento-primeiro-salarial' || c.id === 'curso-orcamento-primeiro-salario');
+
+
 if (orcamentoCourse) {
-  orcamentoCourse.id = 'orcamento-primeiro-salarial';
-  orcamentoCourse.category = 'Finanças Pessoais';
-  orcamentoCourse.isPublished = true;
-  orcamentoCourse.active = true;
-  orcamentoCourse.visible = true;
+
+
+
+
+
+  orcamentoCourse.targetAudienceType = ['PRIMEIRO_EMPREGO', 'JOVEM_APRENDIZ', 'ESTUDANTE', 'ESTAGIARIO', 'TODOS'];
+}
+
+
+if (eqCourse) {
+  eqCourse.id = 'equilibrio-emocional';
+  eqCourse.isPublished = true;
+  eqCourse.active = true;
+  eqCourse.visible = true;
+  eqCourse.category = 'Saúde Mental & Desenvolvimento Pessoal';
+}
+
+if (orcamentoCourse) {
+
+
+
+
+
   orcamentoCourse.targetAudienceType = ['PRIMEIRO_EMPREGO', 'JOVEM_APRENDIZ', 'ESTUDANTE', 'ESTAGIARIO', 'TODOS'];
 }
