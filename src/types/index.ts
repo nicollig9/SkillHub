@@ -8,6 +8,20 @@ export type CandidateProfileType =
 
 export type UserType = CandidateProfileType | 'EMPRESA';
 
+export interface UserCourseItem {
+  id: string;
+  courseId: string;
+  title: string;
+  trackName: string;
+  category: string;
+  currentModule: string;
+  progress: number;
+  workload: string;
+  hours: number;
+  status: 'em_andamento' | 'concluido';
+  moduleIndex: number;
+}
+
 export interface UserAccount {
   id: string;
   nome: string;
@@ -22,6 +36,11 @@ export interface UserAccount {
   isDemo?: boolean;
   idade?: number;
   menorDeIdade?: boolean;
+  cursosInscritos?: UserCourseItem[];
+  badgesConquistadas?: { badgeId: string; title?: string; date: string; score: number; code: string }[];
+  horasEstudadas?: number;
+  progressoGeral?: number;
+  candidaturasEnviadas?: Application[];
   responsavelLegal?: {
     nome: string;
     parentesco: string;
@@ -95,7 +114,7 @@ export interface Course {
   id: string;
   trackId: string;
   trackName: string;
-  category: 'Desenvolvimento Pessoal' | 'Administração e Negócios' | 'Tecnologia da Informação' | 'Legislação e Cidadania';
+  category: 'Desenvolvimento Pessoal' | 'Administração e Negócios' | 'Tecnologia da Informação' | 'Legislação e Cidadania' | 'Finanças Pessoais' | string;
   targetAudienceType: CandidateProfileType[] | 'TODOS';
   title: string;
   subtitle: string;
@@ -113,6 +132,19 @@ export interface Course {
   modules: CourseModule[];
   caseStudies: CaseStudy[];
   quiz: QuizQuestion[];
+  isPublished?: boolean;
+  active?: boolean;
+  visible?: boolean;
+}
+
+export interface TrackStep {
+  stepNumber: number;
+  title: string;
+  subtitle?: string;
+  description: string;
+  courseId: string;
+  hours: number;
+  badge?: string;
 }
 
 export interface Track {
@@ -127,6 +159,8 @@ export interface Track {
   badgeReward: string;
   icon: string;
   accentColor: string;
+  level?: 'Iniciante' | 'Intermediário' | 'Avançado';
+  steps?: TrackStep[];
 }
 
 export interface Badge {
@@ -192,6 +226,10 @@ export interface JobVacancy {
   badgesRequeridas: string[];
   candidatosInscritos: number;
   jaCandidatou?: boolean;
+  origemIA?: 'Via Indeed' | 'Via CIEE' | 'Via Vagas.com' | 'Via NUBE' | 'Via Catho' | 'Parceiro Direto';
+  distanciaKm?: number;
+  aderenciaPerfil?: number;
+  cargaSemanal?: string;
 }
 
 export interface Application {
