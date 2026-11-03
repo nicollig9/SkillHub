@@ -1,2 +1,5 @@
 node_modules
 SkillHub/
+
+.next
+node_modules

@@ -13,63 +13,59 @@ import {
   Mail, 
   User, 
   MapPin, 
-  FileText, 
   CheckCircle2, 
   ShieldCheck, 
-  Phone,
-  HelpCircle,
-  Eye,
-  EyeOff,
-  Calendar,
-  AlertTriangle,
-  FileCheck,
-  Building,
-  Scale
+  Eye, 
+  EyeOff, 
+  Award, 
+  BookOpen, 
+  Sun, 
+  Moon,
+  Info,
+  X,
+  Scale,
+  Calendar
 } from 'lucide-react';
 import { BAIRROS_CURITIBA } from '@/data/mockData';
 
 export default function LoginPage() {
-  const { loginUser, registerCandidate, registerCompany, setCurrentView, showToast, getKnownAccounts } = useApp();
+  const { 
+    loginUser, 
+    registerCandidate, 
+    registerCompany, 
+    showToast, 
+    getKnownAccounts,
+    theme,
+    toggleTheme
+  } = useApp();
 
+  // Estados principais de navegação do portal
   const [activeTab, setActiveTab] = useState<'CANDIDATO' | 'EMPRESA'>('CANDIDATO');
   const [authMode, setAuthMode] = useState<'LOGIN' | 'CADASTRO' | 'DEMO'>('LOGIN');
   const [selectedProfile, setSelectedProfile] = useState<CandidateProfileType>('JOVEM_APRENDIZ');
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [rememberMe, setRememberMe] = useState<boolean>(true);
+  const [showForgotModal, setShowForgotModal] = useState<boolean>(false);
+  const [forgotEmail, setForgotEmail] = useState<string>('');
+  const [forgotSent, setForgotSent] = useState<boolean>(false);
+
+  // Contas salvas no dispositivo
   const [savedAccounts, setSavedAccounts] = useState<{ email: string; nome: string; username?: string; profileType: CandidateProfileType; date: string }[]>([]);
 
   React.useEffect(() => {
     setSavedAccounts(getKnownAccounts());
   }, [authMode]);
 
-  React.useEffect(() => {
-    const selectRegistration = () => setAuthMode('CADASTRO');
-    if (new URLSearchParams(window.location.search).get('cadastro') === '1') {
-      setAuthMode('CADASTRO');
-    }
-
-    window.addEventListener('skillhub:register', selectRegistration);
-    return () => window.removeEventListener('skillhub:register', selectRegistration);
-  }, []);
-
-  // Form Candidato (inicia limpo)
+  // Form Candidato
   const [candUsuario, setCandUsuario] = useState('');
   const [candEmail, setCandEmail] = useState('');
   const [candSenha, setCandSenha] = useState('');
+  const [candConfirmSenha, setCandConfirmSenha] = useState('');
   const [candNome, setCandNome] = useState('');
-  const [candCpf, setCandCpf] = useState('');
   const [candBairro, setCandBairro] = useState('Boqueirão');
-  const [candDataNasc, setCandDataNasc] = useState('');
-  const [candEscola, setCandEscola] = useState('');
-  const [candTurno, setCandTurno] = useState('Manhã');
+  const [termoAceito, setTermoAceito] = useState(false);
 
-  // Dados do Responsável Legal (Obrigatório se < 18 anos)
-  const [respNome, setRespNome] = useState('');
-  const [respParentesco, setRespParentesco] = useState('Mãe');
-  const [respCpf, setRespCpf] = useState('');
-  const [respTelefone, setRespTelefone] = useState('');
-  const [termoParentalAceito, setTermoParentalAceito] = useState<boolean>(false);
-
-  // Form Empresa (inicia limpo)
+  // Form Empresa
   const [empStep, setEmpStep] = useState<number>(1);
   const [empEmail, setEmpEmail] = useState('');
   const [empSenha, setEmpSenha] = useState('');
@@ -78,1102 +74,860 @@ export default function LoginPage() {
   const [empCnpj, setEmpCnpj] = useState('');
   const [empCnae, setEmpCnae] = useState('');
   const [empBairro, setEmpBairro] = useState('CIC');
-  const [empRamo, setEmpRamo] = useState('');
   const [empResponsavel, setEmpResponsavel] = useState('');
-  const [empCargo, setEmpCargo] = useState('');
-  const [empCpfResp, setEmpCpfResp] = useState('');
+  const [empCargo, setEmpCargo] = useState('Recursos Humanos');
   const [empTelefone, setEmpTelefone] = useState('');
 
-  // Declarações Burocráticas Obrigatórias da Empresa
-  const [decCotaAprendiz, setDecCotaAprendiz] = useState<boolean>(false);
-  const [decNaoCobranca, setDecNaoCobranca] = useState<boolean>(false);
-  const [decTermoEstagio, setDecTermoEstagio] = useState<boolean>(false);
-  const [decLgpdMenores, setDecLgpdMenores] = useState<boolean>(false);
+  // Declarações Legais da Empresa
+  const [decCotaAprendiz, setDecCotaAprendiz] = useState<boolean>(true);
+  const [decNaoCobranca, setDecNaoCobranca] = useState<boolean>(true);
+  const [decTermoEstagio, setDecTermoEstagio] = useState<boolean>(true);
+  const [decLgpdMenores, setDecLgpdMenores] = useState<boolean>(true);
 
-  // Cálculo da idade
-  const calculateAge = (birthDateStr: string): number | null => {
-    if (!birthDateStr) return null;
-    const birth = new Date(birthDateStr);
-    if (isNaN(birth.getTime())) return null;
-    const today = new Date();
-    let age = today.getFullYear() - birth.getFullYear();
-    const m = today.getMonth() - birth.getMonth();
-    if (m < 0 || (m === 0 && today.getDate() < birth.getDate())) {
-      age--;
-    }
-    return age;
-  };
-
-  const calculatedAge = calculateAge(candDataNasc);
-  const isMinor = calculatedAge !== null && calculatedAge < 18;
-
+  // Submissão do Candidato
   const handleCandidateSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (authMode === 'LOGIN') {
-      loginUser(candEmail, 'ALUNO', selectedProfile, candNome);
+      if (!candEmail.trim()) {
+        showToast('E-mail Obrigatório', 'Por favor preencha seu e-mail ou nome de usuário.', 'warning');
+        return;
+      }
+      loginUser(candEmail.trim(), 'ALUNO', selectedProfile, candNome || candEmail.split('@')[0]);
     } else {
-      if (!candNome || !candEmail || !candCpf || !candUsuario) {
-        showToast('Campos Obrigatórios', 'Por favor preencha todos os dados de cadastro (incluindo nome de usuário e e-mail).', 'warning');
+      if (!candNome.trim() || !candEmail.trim() || !candSenha) {
+        showToast('Campos Obrigatórios', 'Por favor preencha todos os campos do cadastro.', 'warning');
         return;
       }
-      if (isMinor && (!respNome || !respCpf || !respTelefone || !termoParentalAceito)) {
-        showToast('Autorização Parental Necessária', 'Para menores de 18 anos, os dados do responsável e o termo de consentimento são obrigatórios.', 'warning');
+      if (candSenha !== candConfirmSenha) {
+        showToast('Senhas Não Conferem', 'A confirmação de senha deve ser idêntica à senha informada.', 'error');
         return;
       }
+      if (!termoAceito) {
+        showToast('Termos Obrigatórios', 'É necessário aceitar os Termos de Uso e Política de Privacidade.', 'warning');
+        return;
+      }
+
       registerCandidate({
-        nome: candNome,
-        username: candUsuario.trim().toLowerCase(),
-        email: candEmail,
+        nome: candNome.trim(),
+        username: (candUsuario.trim() || candEmail.split('@')[0]).toLowerCase(),
+        email: candEmail.trim(),
         profileType: selectedProfile,
         bairro: candBairro,
-        cpf: candCpf,
-        dataNascimento: candDataNasc,
-        idade: calculatedAge ?? 18,
-        responsavelLegal: isMinor ? {
-          nome: respNome,
-          parentesco: respParentesco,
-          cpf: respCpf,
-          telefone: respTelefone,
-          termoAceito: termoParentalAceito
-        } : undefined,
+        cpf: '000.000.000-00',
+        dataNascimento: '2008-01-01',
+        idade: 18,
         matriculaEscolar: {
-          instituicao: candEscola,
+          instituicao: 'Colégio Estadual de Curitiba',
           cursoOuSerie: selectedProfile === 'ESTAGIARIO' ? 'Técnico / Superior' : 'Ensino Médio',
-          turno: candTurno,
+          turno: 'Manhã',
           comprovanteValido: true
         }
       });
     }
   };
 
+  // Submissão da Empresa
   const handleCompanySubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (authMode === 'LOGIN') {
-      loginUser(empEmail, 'RECRUTADOR', 'JOVEM_APRENDIZ', empResponsavel);
-    } else {
-      if (!decCotaAprendiz || !decNaoCobranca || !decTermoEstagio || !decLgpdMenores) {
-        showToast('Compliance Obrigatório', 'A empresa deve aceitar todos os termos legais e declarações de conformidade.', 'warning');
+      if (!empEmail.trim()) {
+        showToast('E-mail Corporativo Obrigatório', 'Por favor preencha seu e-mail de RH.', 'warning');
         return;
       }
+      loginUser(empEmail.trim(), 'RECRUTADOR', 'JOVEM_APRENDIZ', empResponsavel || 'Gestor RH');
+    } else {
+      if (!decCotaAprendiz || !decNaoCobranca || !decTermoEstagio || !decLgpdMenores) {
+        showToast('Compliance Obrigatório', 'A empresa deve aceitar todos os termos legais para cadastrar vagas.', 'warning');
+        return;
+      }
+
       registerCompany({
-        razaoSocial: empRazao,
-        nomeFantasia: empFantasia || empRazao,
-        cnpj: empCnpj,
-        cnae: empCnae,
+        razaoSocial: empRazao.trim() || 'Empresa Parceira S/A',
+        nomeFantasia: empFantasia.trim() || empRazao.trim() || 'Empresa Parceira Curitiba',
+        cnpj: empCnpj.trim() || '00.000.000/0001-00',
+        cnae: empCnae.trim() || '62.01-5-01',
         bairro: empBairro,
-        ramo: empRamo,
-        responsavel: `${empResponsavel} (${empCargo})`,
-        email: empEmail,
-        telefone: empTelefone,
+        ramo: 'Tecnologia / Serviços',
+        responsavel: `${empResponsavel.trim() || 'Recrutador'} (${empCargo})`,
+        email: empEmail.trim(),
+        telefone: empTelefone.trim() || '(41) 3000-0000',
         cotaAprendizagemCumprida: decCotaAprendiz,
         termoNaoCobrancaAceito: decNaoCobranca
       });
     }
   };
 
-  // Modo Demonstração / Tour do Aplicativo (sem conta pessoal)
-  const quickDemoLogin = (profile: CandidateProfileType, tourLabel: string) => {
+  // Modo Demonstração Controlado
+  const quickDemoLogin = (profile: CandidateProfileType, label: string) => {
     setSelectedProfile(profile);
-    loginUser('demo@skillhub.com.br', 'ALUNO', profile, `Modo Demonstração (${tourLabel})`, true);
+    loginUser('demo@skillhub.com.br', 'ALUNO', profile, `Visitante (${label})`, true);
   };
 
   const loginCompanyDemo = () => {
-    loginUser('rh.demo@empresa.com.br', 'RECRUTADOR', 'JOVEM_APRENDIZ', 'Empresa Parceira (Demonstração)', true);
+    loginUser('rh.demo@empresa.com.br', 'RECRUTADOR', 'JOVEM_APRENDIZ', 'Renault Curitiba RH', true);
+  };
+
+  // Envio de recuperação de senha
+  const handleForgotSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!forgotEmail.trim()) return;
+    setForgotSent(true);
+    setTimeout(() => {
+      setForgotSent(false);
+      setShowForgotModal(false);
+      setForgotEmail('');
+      showToast('Link Enviado', 'As instruções de recuperação foram enviadas ao seu e-mail.', 'success');
+    }, 2500);
   };
 
   return (
-    <div className="min-h-[85vh] flex flex-col justify-center items-center py-6 px-4">
+    <div className="w-full max-w-7xl mx-auto my-2 sm:my-6 rounded-3xl overflow-hidden border border-slate-200 dark:border-purple-500/20 shadow-2xl bg-white dark:bg-slate-900 grid grid-cols-1 lg:grid-cols-12 min-h-[720px] transition-colors duration-300">
       
-      {/* Card Principal de Autenticação */}
-      <div className="w-full max-w-3xl bg-gradient-to-b from-[#1C0D33] via-[#160B29] to-[#120722] border border-[#5B2594]/60 rounded-3xl p-6 sm:p-10 shadow-2xl relative overflow-hidden backdrop-blur-xl">
+      {/* ========================================================================= */}
+      {/* LADO ESQUERDO — BRANDING & DESTAQUES DO SKILLHUB (50% / 6 COLUNAS)        */}
+      {/* ========================================================================= */}
+      <div className="lg:col-span-6 bg-gradient-to-br from-purple-950 via-slate-900 to-purple-900 text-white p-8 sm:p-12 flex flex-col justify-between relative overflow-hidden">
         
-        {/* Glow de fundo */}
-        <div className="absolute top-0 right-1/4 w-72 h-72 bg-[#8B5CF6]/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-1/4 w-72 h-72 bg-[#F59E0B]/10 rounded-full blur-3xl pointer-events-none" />
+        {/* Glows Decorativos de Fundo */}
+        <div className="absolute top-0 right-0 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-amber-500/15 rounded-full blur-3xl pointer-events-none" />
 
-        {/* Topo do Card com Logo */}
-        <div className="text-center space-y-3 relative z-10 mb-8">
-          <div className="flex items-center justify-center mb-3">
-            <img 
-              src="/logo.png" 
-              alt="SkillHub" 
-              className="w-64 sm:w-80 md:w-96 h-auto max-h-36 sm:max-h-44 object-contain filter drop-shadow-xl transition-transform duration-300 hover:scale-105" 
-            />
+        {/* TOPO: LOGO OFICIAL & BADGE REGIONAL */}
+        <div className="relative z-10 space-y-3">
+          <div className="flex flex-wrap items-center gap-3">
+            <div className="flex items-center gap-3.5">
+              <div className="shrink-0 flex items-center justify-center">
+                <img
+                  src="/logo.png"
+                  alt="SkillHub"
+                  className="w-16 h-16 object-contain filter drop-shadow-lg"
+                  onError={(e) => {
+                    (e.target as HTMLElement).style.display = 'none';
+                  }}
+                />
+              </div>
+
+              <div>
+                <span className="text-2xl sm:text-3xl font-black text-white tracking-tight leading-none block">
+                  Skill<span className="text-amber-400">Hub</span>
+                </span>
+                <span className="text-xs text-purple-200 font-medium tracking-wide mt-1 block">
+                  Empregabilidade Jovem
+                </span>
+              </div>
+            </div>
+
+            <span className="inline-flex items-center gap-1.5 bg-purple-900/80 text-purple-200 border border-purple-400/30 text-xs font-semibold px-3 py-1 rounded-full shadow-sm">
+              📍 Focado em Curitiba e Região Metropolitana
+            </span>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-            Portal de Acesso <span className="text-[#FBBF24]">SkillHub</span>
-          </h2>
-          <p className="text-xs sm:text-sm text-purple-200 max-w-xl mx-auto">
-            Plataforma protegida de formação e empregabilidade jovem para Curitiba e Região Metropolitana. Faça login ou crie sua conta para acessar o sistema.
-          </p>
         </div>
 
-        {/* Chaveador Principal: Candidato / Jovem vs Empresa / RH (apenas se não estiver no tour de demonstração) */}
-        {authMode !== 'DEMO' && (
-          <div className="grid grid-cols-2 gap-2 bg-[#10061D] p-1.5 rounded-2xl border border-[#4C1D95]/40 mb-6 relative z-10">
+        {/* CONTEÚDO CENTRAL: PROPOSTA DE VALOR & CARDS DE IMPACTO */}
+        <div className="relative z-10 my-8 sm:my-10 space-y-6">
+          <div className="space-y-3 max-w-lg">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight leading-tight text-white">
+              Sua jornada rumo ao primeiro emprego começa aqui.
+            </h1>
+            <p className="text-sm sm:text-base text-purple-200/90 leading-relaxed font-medium">
+              Capacitação prática com selos de especialização e conexão direta com vagas de Estágio e Jovem Aprendiz na RMC.
+            </p>
+          </div>
+
+          {/* CARDS DE IMPACTO */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
+            
+            {/* Card 1 */}
+            <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4 space-y-1.5 hover:bg-white/10 transition-colors">
+              <div className="w-8 h-8 rounded-xl bg-purple-500/20 border border-purple-400/30 flex items-center justify-center text-amber-300">
+                <Award className="w-4 h-4" />
+              </div>
+              <h3 className="text-xs font-bold text-white">8 Trilhas de Aprendizagem</h3>
+              <p className="text-[11px] text-purple-200/80 leading-snug">
+                Com badges oficiais reconhecidos pelo mercado.
+              </p>
+            </div>
+
+            {/* Card 2 */}
+            <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4 space-y-1.5 hover:bg-white/10 transition-colors">
+              <div className="w-8 h-8 rounded-xl bg-purple-500/20 border border-purple-400/30 flex items-center justify-center text-amber-300">
+                <BookOpen className="w-4 h-4" />
+              </div>
+              <h3 className="text-xs font-bold text-white">27 Cursos Práticos</h3>
+              <p className="text-[11px] text-purple-200/80 leading-snug">
+                Do nível Iniciante ao Avançado com IA e planilhas.
+              </p>
+            </div>
+
+            {/* Card 3 */}
+            <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-4 space-y-1.5 hover:bg-white/10 transition-colors">
+              <div className="w-8 h-8 rounded-xl bg-purple-500/20 border border-purple-400/30 flex items-center justify-center text-amber-300">
+                <Building2 className="w-4 h-4" />
+              </div>
+              <h3 className="text-xs font-bold text-white">Conexão Direta</h3>
+              <p className="text-[11px] text-purple-200/80 leading-snug">
+                Empresas parceiras de Curitiba e RMC por ônibus.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        {/* RODAPÉ DA MARCA: CREDIBILIDADE */}
+        <div className="relative z-10 pt-4 border-t border-white/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 text-xs text-purple-300 font-medium">
+          <span>✨ Mais de 1.200 jovens capacitados para o mercado de trabalho local.</span>
+          <span className="text-[11px] text-purple-400">Lei 10.097/00 • Lei 11.788/08</span>
+        </div>
+
+      </div>
+
+      {/* ========================================================================= */}
+      {/* LADO DIREITO — FORMULÁRIO COMPLETO DE AUTH (50% / 6 COLUNAS)              */}
+      {/* ========================================================================= */}
+      <div className="lg:col-span-6 bg-white dark:bg-slate-900 p-6 sm:p-10 lg:p-12 flex flex-col justify-between relative transition-colors duration-300">
+        
+        {/* TOPO: SELETOR DE PERFIL & ALTERNADOR DE TEMA */}
+        <div className="flex items-center justify-between gap-3 mb-6">
+          
+          {/* Abas de Perfil: Jovem vs Empresa */}
+          <div className="grid grid-cols-2 gap-1.5 bg-slate-100 dark:bg-slate-800/80 p-1 rounded-2xl border border-slate-200 dark:border-purple-500/20 max-w-xs w-full">
             <button
               type="button"
               onClick={() => {
                 setActiveTab('CANDIDATO');
+                if (authMode === 'DEMO') setAuthMode('LOGIN');
               }}
-              className={`flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+              className={`flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                 activeTab === 'CANDIDATO'
-                  ? 'bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] text-white shadow-lg shadow-purple-900/40'
-                  : 'text-purple-300 hover:text-white'
+                  ? 'bg-purple-600 text-white shadow-sm'
+                  : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
-              <GraduationCap className="w-4 h-4 text-[#FDE68A]" />
-              <span>Sou Jovem / Candidato</span>
+              <GraduationCap className="w-3.5 h-3.5" />
+              <span>Sou Jovem</span>
             </button>
 
             <button
               type="button"
               onClick={() => {
                 setActiveTab('EMPRESA');
+                if (authMode === 'DEMO') setAuthMode('LOGIN');
               }}
-              className={`flex items-center justify-center gap-2 py-3 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+              className={`flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                 activeTab === 'EMPRESA'
-                  ? 'bg-gradient-to-r from-[#D97706] to-[#F59E0B] text-[#1A0B2E] shadow-lg shadow-amber-950/40 font-black'
-                  : 'text-purple-300 hover:text-white'
+                  ? 'bg-amber-600 text-white shadow-sm'
+                  : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white'
               }`}
             >
-              <Building2 className="w-4 h-4" />
-              <span>Sou Empresa / Recrutador RH</span>
+              <Building2 className="w-3.5 h-3.5" />
+              <span>Sou Empresa</span>
             </button>
           </div>
-        )}
 
-        {/* Toggle Login vs Cadastro vs Modo Demonstração */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-6 border-b border-[#3F1F68]/40 pb-4 text-xs font-bold relative z-10">
+          {/* Botão de Tema Claro/Escuro */}
           <button
             type="button"
-            onClick={() => setAuthMode('LOGIN')}
-            className={`px-4 py-2 rounded-xl transition-all ${
-              authMode === 'LOGIN'
-                ? 'bg-[#311554] text-white border border-[#7C3AED]/60 shadow-md ring-1 ring-purple-500/30'
-                : 'text-purple-300 hover:text-white'
-            }`}
+            onClick={toggleTheme}
+            aria-label="Alternar Tema Claro/Escuro"
+            className="p-2 rounded-xl border border-slate-200 dark:border-purple-500/30 bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-purple-300 transition-colors cursor-pointer"
+            title={theme === 'dark' ? 'Mudar para Tema Claro' : 'Mudar para Tema Escuro'}
           >
-            Já possuo conta (Entrar)
-          </button>
-          <button
-            type="button"
-            onClick={() => setAuthMode('CADASTRO')}
-            className={`px-4 py-2 rounded-xl transition-all ${
-              authMode === 'CADASTRO'
-                ? 'bg-[#311554] text-white border border-[#7C3AED]/60 shadow-md ring-1 ring-purple-500/30'
-                : 'text-purple-300 hover:text-white'
-            }`}
-          >
-            Criar nova conta gratuita
-          </button>
-          <button
-            type="button"
-            onClick={() => setAuthMode('DEMO')}
-            className={`px-4 py-2 rounded-xl transition-all flex items-center gap-1.5 ${
-              authMode === 'DEMO'
-                ? 'bg-gradient-to-r from-amber-500 to-purple-600 text-white border border-amber-300 shadow-lg font-extrabold ring-2 ring-amber-400/40'
-                : 'text-amber-300 hover:text-white bg-amber-500/10 border border-amber-500/30 hover:border-amber-400'
-            }`}
-          >
-            <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-            <span>Modo Demonstração (Tour)</span>
+            {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-purple-600" />}
           </button>
         </div>
 
-        {/* ========================================================================= */}
-        {/* ABA: MODO DEMONSTRAÇÃO (TOUR GUIADO COMPLETO)                            */}
-        {/* ========================================================================= */}
-        {authMode === 'DEMO' && (
-          <div className="space-y-6 relative z-10 animate-fadeIn">
-            {/* Box Explicativo Principal */}
-            <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-[#271047] via-[#1B0A33] to-[#120524] border border-[#7C3AED]/50 shadow-2xl space-y-4">
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500 to-purple-600 flex items-center justify-center text-white shadow-lg shrink-0">
-                  <Sparkles className="w-5 h-5 text-amber-200" />
-                </div>
-                <div>
-                  <h3 className="text-base sm:text-lg font-black text-white flex items-center gap-2">
-                    <span>Como Funciona o Modo Demonstração?</span>
-                    <span className="text-[10px] uppercase font-extrabold px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/30">
-                      Tour do Sistema
-                    </span>
-                  </h3>
-                  <p className="text-xs text-purple-200">
-                    Acesso imediato e irrestrito sem preenchimento de formulários, CPF ou senhas.
-                  </p>
-                </div>
-              </div>
+        {/* ÁREA CENTRAL: ALTERNÂNCIA DE ABAS DE FORMULÁRIO */}
+        <div className="space-y-6">
+          
+          {/* Abas: Entrar vs Criar Conta vs Modo Demonstração */}
+          <div className="flex flex-wrap items-center gap-2 border-b border-slate-200 dark:border-slate-800 pb-3">
+            <button
+              type="button"
+              onClick={() => setAuthMode('LOGIN')}
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                authMode === 'LOGIN'
+                  ? 'bg-purple-600 text-white shadow-sm'
+                  : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800'
+              }`}
+            >
+              Entrar na Conta
+            </button>
 
-              <div className="text-xs text-purple-200 space-y-3 leading-relaxed border-t border-purple-800/40 pt-4">
-                <p>
-                  O <strong>Modo Demonstração</strong> foi criado para que jovens, orientadores e recrutadores possam vivenciar 100% da experiência da plataforma <strong>SkillHub</strong> instantaneamente, sem precisar cadastrar dados reais ou criar senhas.
+            <button
+              type="button"
+              onClick={() => setAuthMode('CADASTRO')}
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
+                authMode === 'CADASTRO'
+                  ? 'bg-purple-600 text-white shadow-sm'
+                  : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800'
+              }`}
+            >
+              Criar Nova Conta Gratuita
+            </button>
+
+            <button
+              type="button"
+              onClick={() => setAuthMode('DEMO')}
+              className={`px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer ${
+                authMode === 'DEMO'
+                  ? 'bg-amber-600 text-white shadow-sm font-extrabold'
+                  : 'text-amber-700 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-500/30 hover:bg-amber-100'
+              }`}
+            >
+              <Sparkles className="w-3.5 h-3.5 text-amber-500 dark:text-amber-300" />
+              <span>Modo Demonstração</span>
+            </button>
+          </div>
+
+          {/* ========================================================================= */}
+          {/* 1. MODO DEMONSTRAÇÃO (TOUR RÁPIDO CONTROLADO)                             */}
+          {/* ========================================================================= */}
+          {authMode === 'DEMO' && (
+            <div className="space-y-4 animate-fadeIn">
+              <div className="p-4 rounded-2xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-500/30 space-y-2">
+                <div className="flex items-center gap-2 text-xs font-bold text-amber-900 dark:text-amber-300">
+                  <Sparkles className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+                  <span>Acesso Controlado de Demonstração (Sem Senha)</span>
+                </div>
+                <p className="text-xs text-amber-800 dark:text-zinc-300 leading-relaxed">
+                  Explore todos os recursos práticos do SkillHub (Trilhas, Cursos, Mapa de Curitiba e Holerite) instantaneamente com dados simulados.
                 </p>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2">
-                  <div className="p-3 rounded-xl bg-[#160728]/80 border border-purple-500/30 space-y-1.5">
-                    <div className="font-bold text-amber-300 text-xs flex items-center gap-1.5">
-                      <span>⚡ Navegação Livre e Segura</span>
-                    </div>
-                    <p className="text-[11px] text-purple-300">
-                      Nenhum dado pessoal é gravado no servidor. Você pode concluir módulos de estudo, simular quizes e emitir badges com total liberdade.
-                    </p>
-                  </div>
-
-                  <div className="p-3 rounded-xl bg-[#160728]/80 border border-purple-500/30 space-y-1.5">
-                    <div className="font-bold text-amber-300 text-xs flex items-center gap-1.5">
-                      <span>📍 Geolocalização Real em Curitiba</span>
-                    </div>
-                    <p className="text-[11px] text-purple-300">
-                      Explore o mapa interativo por proximidade com vagas reais nos 75 bairros de Curitiba (Boqueirão, CIC, Batel, Portão, etc.).
-                    </p>
-                  </div>
-
-                  <div className="p-3 rounded-xl bg-[#160728]/80 border border-purple-500/30 space-y-1.5">
-                    <div className="font-bold text-amber-300 text-xs flex items-center gap-1.5">
-                      <span>🛡️ Proteção Legal & Salarial</span>
-                    </div>
-                    <p className="text-[11px] text-purple-300">
-                      Teste o simulador de holerite com cálculos da CLT, tabela progressiva do INSS 2026 e limite de 6h para jovens aprendizes.
-                    </p>
-                  </div>
-
-                  <div className="p-3 rounded-xl bg-[#160728]/80 border border-purple-500/30 space-y-1.5">
-                    <div className="font-bold text-amber-300 text-xs flex items-center gap-1.5">
-                      <span>💡 Guia Pedagógico em Todas as Telas</span>
-                    </div>
-                    <p className="text-[11px] text-purple-300">
-                      Dentro do app, cada tela terá um painel interativo no topo explicando detalhadamente o objetivo de cada funcionalidade e como testá-la.
-                    </p>
-                  </div>
-                </div>
               </div>
 
-              {/* Botões para entrar na demonstração */}
-              <div className="pt-3 border-t border-purple-800/40 space-y-3">
-                <div className="text-xs font-bold text-white flex items-center justify-between">
-                  <span>Escolha um perfil para iniciar o Tour guiado:</span>
-                  <span className="text-[10px] text-purple-300 font-normal">Alterne quando quiser pelo menu</span>
-                </div>
+              <div className="space-y-2.5">
+                <span className="text-xs font-bold text-slate-800 dark:text-zinc-200 block">
+                  Escolha um perfil para iniciar o Tour guiado:
+                </span>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   <button
                     type="button"
                     onClick={() => quickDemoLogin('JOVEM_APRENDIZ', 'Jovem Aprendiz')}
-                    className="p-3.5 rounded-xl bg-[#1d0b36] hover:bg-[#2e1354] border border-[#7C3AED]/60 hover:border-amber-400 text-left transition-all group flex flex-col justify-between"
+                    className="p-3 rounded-xl border border-slate-200 dark:border-purple-500/30 hover:border-purple-600 bg-slate-50 dark:bg-slate-800/60 hover:bg-purple-50 dark:hover:bg-purple-950/40 text-left transition-all group cursor-pointer"
                   >
-                    <div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-xl">🛡️</span>
-                        <span className="text-[10px] font-bold text-amber-300 bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/20">Lei 10.097/00</span>
-                      </div>
-                      <div className="text-xs font-bold text-white group-hover:text-amber-300 mt-2">
-                        Tour como Jovem Aprendiz
-                      </div>
-                      <div className="text-[11px] text-purple-300 mt-1">
-                        14 a 24 anos. Formação teórica, holerite com desconto de VT até 6% e vagas com carga horária protegida.
-                      </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-purple-600">Jovem Aprendiz</span>
+                      <span className="text-[10px] bg-purple-100 text-purple-800 px-1.5 py-0.5 rounded font-semibold">Lei 10.097</span>
                     </div>
-                    <div className="text-[11px] font-bold text-purple-300 group-hover:text-white flex items-center gap-1 mt-3">
-                      <span>Iniciar Tour Aprendiz</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </div>
+                    <p className="text-[11px] text-slate-600 dark:text-zinc-400 mt-1">
+                      14 a 24 anos. Formação teórica e jornada protegida.
+                    </p>
                   </button>
 
                   <button
                     type="button"
                     onClick={() => quickDemoLogin('ESTAGIARIO', 'Estagiário')}
-                    className="p-3.5 rounded-xl bg-[#1d0b36] hover:bg-[#2e1354] border border-[#7C3AED]/60 hover:border-amber-400 text-left transition-all group flex flex-col justify-between"
+                    className="p-3 rounded-xl border border-slate-200 dark:border-purple-500/30 hover:border-emerald-600 bg-slate-50 dark:bg-slate-800/60 hover:bg-emerald-50 dark:hover:bg-emerald-950/40 text-left transition-all group cursor-pointer"
                   >
-                    <div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-xl">💼</span>
-                        <span className="text-[10px] font-bold text-purple-300 bg-purple-500/10 px-2 py-0.5 rounded-full border border-purple-500/20">Lei 11.788/08</span>
-                      </div>
-                      <div className="text-xs font-bold text-white group-hover:text-amber-300 mt-2">
-                        Tour como Estagiário
-                      </div>
-                      <div className="text-[11px] text-purple-300 mt-1">
-                        Ensino Médio, Técnico ou Superior. Bolsa-auxílio, termo de compromisso e vagas sem exigência de experiência.
-                      </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-emerald-600">Estagiário</span>
+                      <span className="text-[10px] bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded font-semibold">Lei 11.788</span>
                     </div>
-                    <div className="text-[11px] font-bold text-purple-300 group-hover:text-white flex items-center gap-1 mt-3">
-                      <span>Iniciar Tour Estágio</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </div>
+                    <p className="text-[11px] text-slate-600 dark:text-zinc-400 mt-1">
+                      Ensino Médio, Técnico ou Superior com bolsa-auxílio.
+                    </p>
                   </button>
 
                   <button
                     type="button"
                     onClick={() => quickDemoLogin('PRIMEIRO_EMPREGO', '1º Emprego')}
-                    className="p-3.5 rounded-xl bg-[#1d0b36] hover:bg-[#2e1354] border border-[#7C3AED]/60 hover:border-amber-400 text-left transition-all group flex flex-col justify-between"
+                    className="p-3 rounded-xl border border-slate-200 dark:border-purple-500/30 hover:border-purple-600 bg-slate-50 dark:bg-slate-800/60 hover:bg-purple-50 dark:hover:bg-purple-950/40 text-left transition-all group cursor-pointer"
                   >
-                    <div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-xl">🚀</span>
-                        <span className="text-[10px] font-bold text-emerald-300 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">CLT / Entrada</span>
-                      </div>
-                      <div className="text-xs font-bold text-white group-hover:text-amber-300 mt-2">
-                        Tour como 1º Emprego
-                      </div>
-                      <div className="text-[11px] text-purple-300 mt-1">
-                        Em busca da primeira carteira assinada. Cursos rápidos de postura profissional, badges e oportunidades em Curitiba.
-                      </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-purple-600">Primeiro Emprego</span>
+                      <span className="text-[10px] bg-purple-100 text-purple-800 px-1.5 py-0.5 rounded font-semibold">Entrada</span>
                     </div>
-                    <div className="text-[11px] font-bold text-purple-300 group-hover:text-white flex items-center gap-1 mt-3">
-                      <span>Iniciar Tour 1º Emprego</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </div>
+                    <p className="text-[11px] text-slate-600 dark:text-zinc-400 mt-1">
+                      Para quem não tem experiência e quer começar agora.
+                    </p>
                   </button>
 
                   <button
                     type="button"
                     onClick={loginCompanyDemo}
-                    className="p-3.5 rounded-xl bg-gradient-to-br from-[#271505] to-[#1c0d02] hover:from-[#3a1f07] hover:to-[#2b1403] border border-amber-500/60 hover:border-amber-300 text-left transition-all group flex flex-col justify-between"
+                    className="p-3 rounded-xl border border-amber-200 dark:border-amber-500/30 hover:border-amber-600 bg-amber-50/50 dark:bg-amber-950/20 hover:bg-amber-100 text-left transition-all group cursor-pointer"
                   >
-                    <div>
-                      <div className="flex items-center justify-between">
-                        <span className="text-xl">🏢</span>
-                        <span className="text-[10px] font-bold text-amber-300 bg-amber-500/20 px-2 py-0.5 rounded-full border border-amber-500/30">Visão RH</span>
-                      </div>
-                      <div className="text-xs font-bold text-amber-200 group-hover:text-white mt-2">
-                        Tour como Empresa / Recrutador RH
-                      </div>
-                      <div className="text-[11px] text-amber-100/70 mt-1">
-                        Painel corporativo para publicar vagas, testar a trava antiassédio com IA e filtrar candidatos por bairros de Curitiba.
-                      </div>
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-bold text-slate-900 dark:text-white group-hover:text-amber-600">Empresa / RH</span>
+                      <span className="text-[10px] bg-amber-200 text-amber-900 px-1.5 py-0.5 rounded font-semibold">Renault</span>
                     </div>
-                    <div className="text-[11px] font-bold text-amber-300 group-hover:text-amber-200 flex items-center gap-1 mt-3">
-                      <span>Iniciar Tour RH</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </div>
+                    <p className="text-[11px] text-slate-600 dark:text-zinc-400 mt-1">
+                      Painel de publicação e gestão de candidatos.
+                    </p>
                   </button>
                 </div>
               </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {/* ========================================================================= */}
-        {/* ABA 1: JOVEM / CANDIDATO                                                 */}
-        {/* ========================================================================= */}
-        {authMode !== 'DEMO' && activeTab === 'CANDIDATO' && (
-          <div className="space-y-6 relative z-10">
-
-            {/* SELETOR DE SITUAÇÃO DO JOVEM (3 OPÇÕES CLARAS - APENAS NO CADASTRO) */}
-            {authMode === 'CADASTRO' && (
-              <div className="space-y-2.5">
-                <label className="text-xs font-bold text-purple-200 flex items-center justify-between">
-                  <span>Qual é a sua situação atual? (O app personalizará tudo para você):</span>
-                  <span className="text-[11px] text-amber-300 font-normal">Personalização Imediata</span>
-                </label>
-
-                <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
-                  
-                  {/* Opção 1: Jovem Aprendiz */}
-                  <button
-                    type="button"
-                    onClick={() => setSelectedProfile('JOVEM_APRENDIZ')}
-                    className={`p-3 rounded-2xl border text-left flex flex-col justify-between transition-all ${
-                      selectedProfile === 'JOVEM_APRENDIZ'
-                        ? 'bg-gradient-to-b from-[#381665] to-[#250F44] border-purple-400 text-white ring-2 ring-purple-500/40 shadow-lg'
-                        : 'bg-[#150926] border-[#4C1D95]/40 text-purple-300 hover:border-purple-400/60'
-                    }`}
-                  >
-                    <span className="text-2xl mb-1">🛡️</span>
-                    <div>
-                      <div className="text-xs font-bold text-white leading-tight">Jovem Aprendiz</div>
-                      <div className="text-[10px] text-purple-300 mt-0.5">14 a 24 anos (Lei 10.097)</div>
-                    </div>
-                  </button>
-
-                  {/* Opção 2: Estagiário */}
-                  <button
-                    type="button"
-                    onClick={() => setSelectedProfile('ESTAGIARIO')}
-                    className={`p-3 rounded-2xl border text-left flex flex-col justify-between transition-all ${
-                      selectedProfile === 'ESTAGIARIO'
-                        ? 'bg-gradient-to-b from-[#381665] to-[#250F44] border-purple-400 text-white ring-2 ring-purple-500/40 shadow-lg'
-                        : 'bg-[#150926] border-[#4C1D95]/40 text-purple-300 hover:border-purple-400/60'
-                    }`}
-                  >
-                    <span className="text-2xl mb-1">💼</span>
-                    <div>
-                      <div className="text-xs font-bold text-white leading-tight">Estagiário</div>
-                      <div className="text-[10px] text-purple-300 mt-0.5">Técnico / Superior (Lei 11.788)</div>
-                    </div>
-                  </button>
-
-                  {/* Opção 3: Nenhuma das opções / 1º Emprego */}
-                  <button
-                    type="button"
-                    onClick={() => setSelectedProfile('PRIMEIRO_EMPREGO')}
-                    className={`p-3 rounded-2xl border text-left flex flex-col justify-between transition-all ${
-                      selectedProfile === 'PRIMEIRO_EMPREGO'
-                        ? 'bg-gradient-to-b from-[#381665] to-[#250F44] border-purple-400 text-white ring-2 ring-purple-500/40 shadow-lg'
-                        : 'bg-[#150926] border-[#4C1D95]/40 text-purple-300 hover:border-purple-400/60'
-                    }`}
-                  >
-                    <span className="text-2xl mb-1">🚀</span>
-                    <div>
-                      <div className="text-xs font-bold text-white leading-tight">1º Emprego</div>
-                      <div className="text-[10px] text-purple-300 mt-0.5">Em busca da 1ª vaga</div>
-                    </div>
-                  </button>
-
-                </div>
-              </div>
-            )}
-
-            {/* FORMULÁRIO DO CANDIDATO */}
-            <form onSubmit={handleCandidateSubmit} className="space-y-4">
+          {/* ========================================================================= */}
+          {/* 2. FORMULÁRIO DE LOGIN (CANDIDATO OU EMPRESA)                            */}
+          {/* ========================================================================= */}
+          {authMode === 'LOGIN' && (
+            <div className="space-y-4 animate-fadeIn">
               
-              {authMode === 'CADASTRO' && (
-                <>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div className="space-y-1">
-                      <label className="text-xs font-bold text-purple-200">Nome Completo:</label>
-                      <div className="relative">
-                        <User className="w-4 h-4 text-purple-400 absolute left-3.5 top-3" />
-                        <input
-                          type="text"
-                          required
-                          value={candNome}
-                          onChange={(e) => setCandNome(e.target.value)}
-                          placeholder="Nome e Sobrenome"
-                          className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl pl-10 pr-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8B5CF6]"
-                        />
-                      </div>
-                    </div>
+              <div>
+                <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+                  {activeTab === 'CANDIDATO' ? 'Acesse sua Conta de Estudante' : 'Acesse o Painel Corporativo'}
+                </h2>
+                <p className="text-xs text-slate-600 dark:text-zinc-400 mt-0.5">
+                  Informe seus dados para continuar seus cursos e candidaturas.
+                </p>
+              </div>
 
-                    <div className="space-y-1">
-                      <label className="text-xs font-bold text-purple-200">CPF:</label>
-                      <input
-                        type="text"
-                        required
-                        value={candCpf}
-                        onChange={(e) => setCandCpf(e.target.value)}
-                        placeholder="000.000.000-00"
-                        className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8B5CF6]"
-                      />
-                    </div>
-                  </div>
-
-                  {/* DATA DE NASCIMENTO & CÁLCULO DE IDADE (PROTEÇÃO DE MENORES) */}
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 bg-[#130722] p-3 rounded-2xl border border-[#4C1D95]/30">
-                    <div className="sm:col-span-2 space-y-1">
-                      <label className="text-xs font-bold text-purple-200 flex items-center gap-1.5">
-                        <Calendar className="w-3.5 h-3.5 text-[#FBBF24]" />
-                        <span>Data de Nascimento:</span>
-                      </label>
-                      <input
-                        type="date"
-                        required
-                        value={candDataNasc}
-                        onChange={(e) => setCandDataNasc(e.target.value)}
-                        className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-[#8B5CF6]"
-                      />
-                    </div>
-
-                    <div className="space-y-1 flex flex-col justify-end">
-                      <div className="bg-[#24123E] border border-purple-500/40 rounded-xl p-2 text-center">
-                        <span className="text-[10px] text-purple-300 block">Idade Calculada:</span>
-                        <span className="text-sm font-black text-[#FBBF24]">
-                          {calculatedAge !== null ? `${calculatedAge} anos` : 'Informe a data'}
-                        </span>
-                        {calculatedAge !== null && (
-                          <span className={`text-[9px] block ${isMinor ? 'text-amber-400 font-bold' : 'text-emerald-400'}`}>
-                            {isMinor ? '(Menor de 18)' : '(Maior de idade)'}
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* SALVAGUARDAS LEGAIS PARA MENORES DE 18 ANOS */}
-                  {isMinor && (
-                    <div className="p-4 rounded-2xl bg-gradient-to-r from-[#24103B] to-[#1C0D30] border-2 border-amber-500/50 space-y-3 shadow-inner animate-fadeIn">
-                      <div className="flex items-center gap-2 text-xs font-bold text-amber-300">
-                        <ShieldCheck className="w-4 h-4 text-amber-400" />
-                        <span>Módulo de Proteção de Menores (LGPD & Lei nº 10.097/00)</span>
-                      </div>
-                      <p className="text-[11px] text-purple-200 leading-relaxed">
-                        Como você tem <strong>{calculatedAge} anos</strong>, a legislação trabalhista brasileira exige os dados e a autorização formal do responsável legal para garantir total proteção.
-                      </p>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
-                        <div>
-                          <label className="text-[11px] font-bold text-purple-300">Nome do Responsável Legal:</label>
-                          <input
-                            type="text"
-                            required
-                            value={respNome}
-                            onChange={(e) => setRespNome(e.target.value)}
-                            placeholder="Nome do Pai, Mãe ou Tutor"
-                            className="w-full bg-[#10061D] border border-[#4C1D95]/60 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
-                          />
-                        </div>
-
-                        <div>
-                          <label className="text-[11px] font-bold text-purple-300">Grau de Parentesco:</label>
-                          <select
-                            value={respParentesco}
-                            onChange={(e) => setRespParentesco(e.target.value)}
-                            className="w-full bg-[#10061D] border border-[#4C1D95]/60 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
-                          >
-                            <option value="Mãe">Mãe</option>
-                            <option value="Pai">Pai</option>
-                            <option value="Avô/Avó">Avô / Avó</option>
-                            <option value="Tutor Legal">Tutor Legal com Guarda</option>
-                          </select>
-                        </div>
-
-                        <div>
-                          <label className="text-[11px] font-bold text-purple-300">CPF do Responsável:</label>
-                          <input
-                            type="text"
-                            required
-                            value={respCpf}
-                            onChange={(e) => setRespCpf(e.target.value)}
-                            placeholder="000.000.000-00"
-                            className="w-full bg-[#10061D] border border-[#4C1D95]/60 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
-                          />
-                        </div>
-
-                        <div>
-                          <label className="text-[11px] font-bold text-purple-300">WhatsApp / Telefone do Responsável:</label>
-                          <input
-                            type="text"
-                            required
-                            value={respTelefone}
-                            onChange={(e) => setRespTelefone(e.target.value)}
-                            placeholder="(41) 90000-0000"
-                            className="w-full bg-[#10061D] border border-[#4C1D95]/60 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
-                          />
-                        </div>
-                      </div>
-
-                      <div className="pt-2 border-t border-purple-900/40 flex items-start gap-2.5">
-                        <input
-                          type="checkbox"
-                          id="termoParental"
-                          checked={termoParentalAceito}
-                          onChange={(e) => setTermoParentalAceito(e.target.checked)}
-                          className="w-4 h-4 accent-amber-400 rounded cursor-pointer mt-0.5"
-                        />
-                        <label htmlFor="termoParental" className="text-[11px] text-purple-200 cursor-pointer">
-                          Declaro que os dados do responsável acima são verídicos e autorizo a participação em cursos gratuitos e processos seletivos de vagas de aprendizagem em Curitiba/RMC.
-                        </label>
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <div className="space-y-1">
-                      <label className="text-xs font-bold text-purple-200">Bairro em Curitiba / RMC:</label>
-                      <select
-                        value={candBairro}
-                        onChange={(e) => setCandBairro(e.target.value)}
-                        className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8B5CF6]"
-                      >
-                        {Object.keys(BAIRROS_CURITIBA).map((b) => (
-                          <option key={b} value={b}>{b}</option>
-                        ))}
-                      </select>
-                    </div>
-
-                    <div className="space-y-1">
-                      <label className="text-xs font-bold text-purple-200">Escola / Colégio Atual:</label>
-                      <input
-                        type="text"
-                        value={candEscola}
-                        onChange={(e) => setCandEscola(e.target.value)}
-                        placeholder="Nome da Escola ou Faculdade"
-                        className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl px-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8B5CF6]"
-                      />
-                    </div>
-                  </div>
-                </>
-              )}
-
-              {/* CONTAS SALVAS RECENTES (RESTAURAR PROGRESSO) */}
-              {authMode === 'LOGIN' && savedAccounts.length > 0 && (
-                <div className="p-3.5 rounded-2xl bg-[#1F0E38] border border-[#7C3AED]/40 space-y-2">
-                  <div className="text-[11px] font-bold text-amber-300 flex items-center justify-between">
-                    <span>💡 Contas salvas neste dispositivo:</span>
-                    <span className="text-[10px] text-purple-300">Clique para preencher</span>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    {savedAccounts.slice(0, 4).map((acc) => (
+              {/* Atalho para Contas Salvas */}
+              {activeTab === 'CANDIDATO' && savedAccounts.length > 0 && (
+                <div className="p-3 rounded-xl bg-purple-50 dark:bg-purple-950/40 border border-purple-200 dark:border-purple-500/30 space-y-1.5">
+                  <span className="text-[11px] font-bold text-purple-900 dark:text-purple-300 block">
+                    ⚡ Contas salvas neste navegador:
+                  </span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {savedAccounts.slice(0, 3).map((acc) => (
                       <button
                         key={acc.email}
                         type="button"
                         onClick={() => {
                           setCandEmail(acc.email);
-                          setCandUsuario(acc.username || acc.email.split('@')[0]);
                           setCandSenha('••••••••');
                           setSelectedProfile(acc.profileType);
                         }}
-                        className={`p-2 rounded-xl text-left border transition-all flex items-center gap-2.5 ${
-                          candEmail.toLowerCase() === acc.email.toLowerCase()
-                            ? 'bg-[#3C1A6E] border-amber-400 text-white shadow-md'
-                            : 'bg-[#150926] border-[#4C1D95]/40 text-purple-200 hover:border-purple-400'
-                        }`}
+                        className="px-2.5 py-1 rounded-lg bg-white dark:bg-slate-800 border border-purple-200 dark:border-purple-500/40 text-[11px] font-semibold text-purple-900 dark:text-purple-200 hover:border-purple-500 cursor-pointer"
                       >
-                        <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-purple-600 to-amber-500 flex items-center justify-center text-[10px] font-black text-white shrink-0">
-                          {acc.nome.slice(0, 2).toUpperCase()}
-                        </div>
-                        <div className="truncate">
-                          <div className="text-xs font-bold text-white truncate">{acc.nome}</div>
-                          <div className="text-[10px] text-purple-300 truncate">{acc.username ? `@${acc.username}` : acc.email}</div>
-                        </div>
+                        {acc.nome} ({acc.email.split('@')[0]})
                       </button>
                     ))}
                   </div>
                 </div>
               )}
 
-              {/* NOME DE USUÁRIO, E-MAIL & SENHA */}
-              {authMode === 'CADASTRO' ? (
-                <>
-                  <div className="space-y-1">
-                    <label className="text-xs font-bold text-purple-200">Nome de Usuário:</label>
-                    <div className="relative">
-                      <User className="w-4 h-4 text-purple-400 absolute left-3.5 top-3" />
-                      <input
-                        type="text"
-                        required
-                        value={candUsuario}
-                        onChange={(e) => setCandUsuario(e.target.value.toLowerCase().replace(/\s+/g, ''))}
-                        placeholder="Escolha seu nome de usuário (ex: maria.silva)"
-                        className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl pl-10 pr-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8B5CF6]"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-1">
-                    <label className="text-xs font-bold text-purple-200">E-mail:</label>
-                    <div className="relative">
-                      <Mail className="w-4 h-4 text-purple-400 absolute left-3.5 top-3" />
-                      <input
-                        type="email"
-                        required
-                        value={candEmail}
-                        onChange={(e) => setCandEmail(e.target.value)}
-                        placeholder="seuemail@exemplo.com"
-                        className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl pl-10 pr-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8B5CF6]"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-1">
-                    <label className="text-xs font-bold text-purple-200">Senha:</label>
-                    <div className="relative">
-                      <Lock className="w-4 h-4 text-purple-400 absolute left-3.5 top-3" />
-                      <input
-                        type={showPassword ? 'text' : 'password'}
-                        required
-                        value={candSenha}
-                        onChange={(e) => setCandSenha(e.target.value)}
-                        placeholder="Sua senha segura"
-                        className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl pl-10 pr-10 py-2.5 text-xs text-white focus:outline-none focus:border-[#8B5CF6]"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-3.5 top-3 text-purple-400 hover:text-white"
-                      >
-                        {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                      </button>
-                    </div>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="space-y-1">
-                    <label className="text-xs font-bold text-purple-200">Nome de Usuário ou E-mail:</label>
-                    <div className="relative">
-                      <User className="w-4 h-4 text-purple-400 absolute left-3.5 top-3" />
-                      <input
-                        type="text"
-                        required
-                        value={candEmail}
-                        onChange={(e) => setCandEmail(e.target.value)}
-                        placeholder="Seu nome de usuário ou e-mail"
-                        className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl pl-10 pr-3 py-2.5 text-xs text-white focus:outline-none focus:border-[#8B5CF6]"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-1">
-                    <label className="text-xs font-bold text-purple-200">Senha:</label>
-                    <div className="relative">
-                      <Lock className="w-4 h-4 text-purple-400 absolute left-3.5 top-3" />
-                      <input
-                        type={showPassword ? 'text' : 'password'}
-                        required
-                        value={candSenha}
-                        onChange={(e) => setCandSenha(e.target.value)}
-                        placeholder="Sua senha de acesso"
-                        className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl pl-10 pr-10 py-2.5 text-xs text-white focus:outline-none focus:border-[#8B5CF6]"
-                      />
-                      <button
-                        type="button"
-                        onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-3.5 top-3 text-purple-400 hover:text-white"
-                      >
-                        {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                      </button>
-                    </div>
-                  </div>
-                </>
-              )}
-
-              <button
-                type="submit"
-                className="w-full bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] hover:from-[#7C3AED] hover:to-[#9D4EDD] text-white font-extrabold py-3.5 rounded-xl shadow-lg shadow-purple-950/50 transition-all flex items-center justify-center gap-2 text-sm mt-4"
-              >
-                <span>{authMode === 'LOGIN' ? 'Entrar no SkillHub' : 'Finalizar Cadastro Gratuito'}</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-
-            </form>
-
-            {/* Atalho para Modo Demonstração */}
-            <div className="pt-4 border-t border-[#3F1F68]/40 text-center">
-              <button
-                type="button"
-                onClick={() => setAuthMode('DEMO')}
-                className="text-xs text-amber-300 hover:text-amber-200 transition-colors inline-flex items-center gap-1.5 font-bold"
-              >
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>Quer apenas conhecer a plataforma? Acesse o Modo Demonstração</span>
-              </button>
-            </div>
-
-          </div>
-        )}
-
-        {/* ========================================================================= */}
-        {/* ABA 2: EMPRESA / RECRUTADOR RH (COM BUROCRACIA COMPLETA DE VALIDAÇÃO)      */}
-        {/* ========================================================================= */}
-        {authMode !== 'DEMO' && activeTab === 'EMPRESA' && (
-          <div className="space-y-6 relative z-10">
-            
-            {authMode === 'LOGIN' ? (
-              <form onSubmit={handleCompanySubmit} className="space-y-4">
-                <div className="p-4 rounded-2xl bg-[#261509]/60 border border-amber-500/40 text-xs text-amber-200 flex items-start gap-3">
-                  <Building2 className="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-                  <div>
-                    <strong className="text-white block font-bold mb-0.5">Acesso Restrito a Empresas & RH:</strong>
-                    Ambiente corporativo exclusivo para publicação e gestão de vagas de jovens aprendizes e estagiários em Curitiba.
-                  </div>
-                </div>
-
+              {/* FORMULÁRIO */}
+              <form onSubmit={activeTab === 'CANDIDATO' ? handleCandidateSubmit : handleCompanySubmit} className="space-y-3.5">
+                
+                {/* Campo E-mail / Usuário */}
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-purple-200">E-mail Corporativo do RH:</label>
+                  <label htmlFor="auth-email" className="text-xs font-bold text-slate-800 dark:text-zinc-200 block">
+                    {activeTab === 'CANDIDATO' ? 'E-mail ou Nome de Usuário:' : 'E-mail Corporativo do RH:'}
+                  </label>
                   <div className="relative">
-                    <Mail className="w-4 h-4 text-purple-400 absolute left-3.5 top-3" />
+                    <Mail className="w-4 h-4 text-slate-400 dark:text-zinc-500 absolute left-3.5 top-3" />
                     <input
-                      type="email"
+                      id="auth-email"
+                      type="text"
                       required
-                      value={empEmail}
-                      onChange={(e) => setEmpEmail(e.target.value)}
-                      placeholder="rh@empresa.com.br"
-                      className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl pl-10 pr-3 py-2.5 text-xs text-white focus:outline-none focus:border-amber-400"
+                      value={activeTab === 'CANDIDATO' ? candEmail : empEmail}
+                      onChange={(e) => activeTab === 'CANDIDATO' ? setCandEmail(e.target.value) : setEmpEmail(e.target.value)}
+                      placeholder={activeTab === 'CANDIDATO' ? 'seuemail@exemplo.com ou @usuario' : 'rh@suaempresa.com.br'}
+                      className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-purple-500/30 rounded-xl pl-10 pr-3 py-2.5 text-xs sm:text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-zinc-500 focus:outline-none focus:border-purple-600 transition-colors"
                     />
                   </div>
                 </div>
 
+                {/* Campo Senha */}
                 <div className="space-y-1">
-                  <label className="text-xs font-bold text-purple-200">Senha Corporativa:</label>
+                  <label htmlFor="auth-senha" className="text-xs font-bold text-slate-800 dark:text-zinc-200 block">
+                    Senha:
+                  </label>
                   <div className="relative">
-                    <Lock className="w-4 h-4 text-purple-400 absolute left-3.5 top-3" />
+                    <Lock className="w-4 h-4 text-slate-400 dark:text-zinc-500 absolute left-3.5 top-3" />
                     <input
+                      id="auth-senha"
                       type={showPassword ? 'text' : 'password'}
                       required
-                      value={empSenha}
-                      onChange={(e) => setEmpSenha(e.target.value)}
-                      placeholder="Senha do Portal RH"
-                      className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl pl-10 pr-10 py-2.5 text-xs text-white focus:outline-none focus:border-amber-400"
+                      value={activeTab === 'CANDIDATO' ? candSenha : empSenha}
+                      onChange={(e) => activeTab === 'CANDIDATO' ? setCandSenha(e.target.value) : setEmpSenha(e.target.value)}
+                      placeholder="Sua senha de acesso"
+                      className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-purple-500/30 rounded-xl pl-10 pr-10 py-2.5 text-xs sm:text-sm text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-zinc-500 focus:outline-none focus:border-purple-600 transition-colors"
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3.5 top-3 text-purple-400 hover:text-white"
+                      className="absolute right-3.5 top-3 text-slate-400 hover:text-slate-600 dark:hover:text-white cursor-pointer"
                     >
                       {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                     </button>
                   </div>
                 </div>
 
-                <button
-                  type="submit"
-                  className="w-full bg-gradient-to-r from-[#D97706] to-[#F59E0B] hover:brightness-110 text-[#1A0B2E] font-black py-3.5 rounded-xl shadow-lg shadow-amber-950/50 transition-all flex items-center justify-center gap-2 text-sm mt-4"
-                >
-                  <Building2 className="w-4 h-4" />
-                  <span>Acessar Painel RH da Empresa</span>
-                </button>
+                {/* Linha Lembrar Dados & Esqueceu Senha */}
+                <div className="flex items-center justify-between text-xs pt-1">
+                  <label className="flex items-center gap-2 text-slate-700 dark:text-zinc-400 cursor-pointer select-none">
+                    <input
+                      type="checkbox"
+                      checked={rememberMe}
+                      onChange={(e) => setRememberMe(e.target.checked)}
+                      className="w-4 h-4 accent-purple-600 rounded cursor-pointer"
+                    />
+                    <span>Lembrar dos meus dados</span>
+                  </label>
 
-                <div className="pt-4 border-t border-[#3F1F68]/40">
                   <button
                     type="button"
-                    onClick={() => loginUser('rh@renaultcuritiba.com.br', 'RECRUTADOR', 'JOVEM_APRENDIZ', 'Renault do Brasil RH')}
-                    className="w-full py-2.5 px-3 rounded-xl bg-[#241306] hover:bg-[#341b09] border border-amber-500/50 text-amber-200 font-bold text-xs flex items-center justify-center gap-2 transition-all"
+                    onClick={() => setShowForgotModal(true)}
+                    className="text-purple-600 dark:text-purple-400 hover:underline font-semibold cursor-pointer"
                   >
-                    <span>⚡ Demo 1-Clique: Entrar como Renault Curitiba RH</span>
-                    <ArrowRight className="w-3.5 h-3.5" />
+                    Esqueceu a senha?
                   </button>
                 </div>
+
+                {/* Botão de Envio */}
+                <button
+                  type="submit"
+                  className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-purple-900/20 transition-all text-sm flex items-center justify-center gap-2 mt-4 cursor-pointer"
+                >
+                  <span>{activeTab === 'CANDIDATO' ? 'Entrar no SkillHub' : 'Acessar Painel da Empresa'}</span>
+                  <ArrowRight className="w-4 h-4" />
+                </button>
               </form>
-            ) : (
-              /* CADASTRO BUROCRÁTICO DA EMPRESA EM ETAPAS */
-              <form onSubmit={handleCompanySubmit} className="space-y-4">
-                
-                {/* Stepper de Burocracia */}
-                <div className="flex items-center justify-between bg-[#120722] p-2 rounded-2xl border border-[#4C1D95]/40 text-xs">
-                  <div className={`flex items-center gap-1.5 px-3 py-1 rounded-xl font-bold ${empStep === 1 ? 'bg-amber-500 text-slate-950' : 'text-purple-300'}`}>
-                    <span>1. CNPJ & Dados</span>
-                  </div>
-                  <div className={`flex items-center gap-1.5 px-3 py-1 rounded-xl font-bold ${empStep === 2 ? 'bg-amber-500 text-slate-950' : 'text-purple-300'}`}>
-                    <span>2. Gestor RH</span>
-                  </div>
-                  <div className={`flex items-center gap-1.5 px-3 py-1 rounded-xl font-bold ${empStep === 3 ? 'bg-amber-500 text-slate-950' : 'text-purple-300'}`}>
-                    <span>3. Compliance Legal</span>
-                  </div>
-                </div>
+            </div>
+          )}
 
-                {/* ETAPA 1: DADOS JURÍDICOS */}
-                {empStep === 1 && (
-                  <div className="space-y-3 animate-fadeIn">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      <div className="space-y-1">
-                        <label className="text-xs font-bold text-purple-200">CNPJ da Empresa:</label>
-                        <input
-                          type="text"
-                          required
-                          value={empCnpj}
-                          onChange={(e) => setEmpCnpj(e.target.value)}
-                          placeholder="00.000.000/0001-00"
-                          className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
-                        />
-                      </div>
+          {/* ========================================================================= */}
+          {/* 3. FORMULÁRIO DE CADASTRO (CRIAR NOVA CONTA GRATUITA)                    */}
+          {/* ========================================================================= */}
+          {authMode === 'CADASTRO' && (
+            <div className="space-y-4 animate-fadeIn">
+              <div>
+                <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">
+                  {activeTab === 'CANDIDATO' ? 'Criar Nova Conta Gratuita' : 'Credenciamento de Empresa'}
+                </h2>
+                <p className="text-xs text-slate-600 dark:text-zinc-400 mt-0.5">
+                  {activeTab === 'CANDIDATO' 
+                    ? 'Leva menos de 1 minuto para começar a se capacitar e buscar vagas.' 
+                    : 'Cadastre sua empresa para anunciar vagas e contratar talentos locais.'}
+                </p>
+              </div>
 
-                      <div className="space-y-1">
-                        <label className="text-xs font-bold text-purple-200">Razão Social Oficial:</label>
-                        <input
-                          type="text"
-                          required
-                          value={empRazao}
-                          onChange={(e) => setEmpRazao(e.target.value)}
-                          placeholder="Razão Social Registrada"
-                          className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
-                        />
-                      </div>
+              {activeTab === 'CANDIDATO' ? (
+                /* CADASTRO DE JOVEM / ESTUDANTE */
+                <form onSubmit={handleCandidateSubmit} className="space-y-3">
+                  
+                  {/* Seletor de Modalidade Desejada */}
+                  <div className="space-y-1.5">
+                    <label className="text-xs font-bold text-slate-800 dark:text-zinc-200 block">
+                      Qual é o seu objetivo no SkillHub?
+                    </label>
+                    <div className="grid grid-cols-3 gap-2">
+                      <button
+                        type="button"
+                        onClick={() => setSelectedProfile('JOVEM_APRENDIZ')}
+                        className={`p-2.5 rounded-xl border text-center transition-all cursor-pointer ${
+                          selectedProfile === 'JOVEM_APRENDIZ'
+                            ? 'bg-purple-600 border-purple-600 text-white font-bold shadow-sm'
+                            : 'bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-purple-500/30 text-slate-700 dark:text-zinc-300'
+                        }`}
+                      >
+                        <span className="text-xs block">🛡️ Aprendiz</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => setSelectedProfile('ESTAGIARIO')}
+                        className={`p-2.5 rounded-xl border text-center transition-all cursor-pointer ${
+                          selectedProfile === 'ESTAGIARIO'
+                            ? 'bg-purple-600 border-purple-600 text-white font-bold shadow-sm'
+                            : 'bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-purple-500/30 text-slate-700 dark:text-zinc-300'
+                        }`}
+                      >
+                        <span className="text-xs block">💼 Estágio</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => setSelectedProfile('PRIMEIRO_EMPREGO')}
+                        className={`p-2.5 rounded-xl border text-center transition-all cursor-pointer ${
+                          selectedProfile === 'PRIMEIRO_EMPREGO'
+                            ? 'bg-purple-600 border-purple-600 text-white font-bold shadow-sm'
+                            : 'bg-slate-50 dark:bg-slate-800 border-slate-200 dark:border-purple-500/30 text-slate-700 dark:text-zinc-300'
+                        }`}
+                      >
+                        <span className="text-xs block">🚀 1º Emprego</span>
+                      </button>
                     </div>
+                  </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      <div className="space-y-1">
-                        <label className="text-xs font-bold text-purple-200">Nome Fantasia:</label>
-                        <input
-                          type="text"
-                          required
-                          value={empFantasia}
-                          onChange={(e) => setEmpFantasia(e.target.value)}
-                          placeholder="Nome comercial da marca"
-                          className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
-                        />
-                      </div>
+                  {/* Nome Completo */}
+                  <div className="space-y-1">
+                    <label htmlFor="cad-nome" className="text-xs font-bold text-slate-800 dark:text-zinc-200 block">
+                      Nome Completo:
+                    </label>
+                    <input
+                      id="cad-nome"
+                      type="text"
+                      required
+                      value={candNome}
+                      onChange={(e) => setCandNome(e.target.value)}
+                      placeholder="Ex: Ana Clara Silva"
+                      className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-purple-500/30 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-purple-600"
+                    />
+                  </div>
 
-                      <div className="space-y-1">
-                        <label className="text-xs font-bold text-purple-200">Bairro / Polo em Curitiba & RMC:</label>
-                        <select
-                          value={empBairro}
-                          onChange={(e) => setEmpBairro(e.target.value)}
-                          className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
-                        >
-                          {Object.keys(BAIRROS_CURITIBA).map((b) => (
-                            <option key={b} value={b}>{b}</option>
-                          ))}
-                        </select>
-                      </div>
-                    </div>
-
+                  {/* E-mail e Bairro */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div className="space-y-1">
-                      <label className="text-xs font-bold text-purple-200">CNAE Principal & Ramo:</label>
+                      <label htmlFor="cad-email" className="text-xs font-bold text-slate-800 dark:text-zinc-200 block">
+                        E-mail:
+                      </label>
                       <input
-                        type="text"
-                        value={empCnae}
-                        onChange={(e) => setEmpCnae(e.target.value)}
-                        placeholder="Código CNAE e descrição de atividade"
-                        className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
+                        id="cad-email"
+                        type="email"
+                        required
+                        value={candEmail}
+                        onChange={(e) => setCandEmail(e.target.value)}
+                        placeholder="seuemail@exemplo.com"
+                        className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-purple-500/30 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-purple-600"
                       />
                     </div>
 
-                    <button
-                      type="button"
-                      onClick={() => setEmpStep(2)}
-                      className="w-full py-2.5 rounded-xl bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-bold text-xs flex items-center justify-center gap-2 mt-3"
-                    >
-                      <span>Avançar para Dados do Gestor de RH</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </button>
-                  </div>
-                )}
-
-                {/* ETAPA 2: DADOS DO GESTOR DE RH */}
-                {empStep === 2 && (
-                  <div className="space-y-3 animate-fadeIn">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      <div className="space-y-1">
-                        <label className="text-xs font-bold text-purple-200">Nome do Responsável de RH:</label>
-                        <input
-                          type="text"
-                          required
-                          value={empResponsavel}
-                          onChange={(e) => setEmpResponsavel(e.target.value)}
-                          placeholder="Gestor de Contratação"
-                          className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
-                        />
-                      </div>
-
-                      <div className="space-y-1">
-                        <label className="text-xs font-bold text-purple-200">Cargo / Função:</label>
-                        <input
-                          type="text"
-                          required
-                          value={empCargo}
-                          onChange={(e) => setEmpCargo(e.target.value)}
-                          placeholder="Ex: Coordenador de RH"
-                          className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                      <div className="space-y-1">
-                        <label className="text-xs font-bold text-purple-200">E-mail Corporativo (@empresa.com.br):</label>
-                        <input
-                          type="email"
-                          required
-                          value={empEmail}
-                          onChange={(e) => setEmpEmail(e.target.value)}
-                          placeholder="rh@suaempresa.com.br"
-                          className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
-                        />
-                      </div>
-
-                      <div className="space-y-1">
-                        <label className="text-xs font-bold text-purple-200">Telefone Comercial:</label>
-                        <input
-                          type="text"
-                          required
-                          value={empTelefone}
-                          onChange={(e) => setEmpTelefone(e.target.value)}
-                          placeholder="(41) 3000-0000"
-                          className="w-full bg-[#10061D] border border-[#4C1D95]/50 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-amber-400"
-                        />
-                      </div>
-                    </div>
-
-                    <div className="flex gap-2 pt-2">
-                      <button
-                        type="button"
-                        onClick={() => setEmpStep(1)}
-                        className="w-1/3 py-2.5 rounded-xl bg-[#24123E] text-purple-300 text-xs font-bold"
+                    <div className="space-y-1">
+                      <label htmlFor="cad-bairro" className="text-xs font-bold text-slate-800 dark:text-zinc-200 block">
+                        Bairro em Curitiba / RMC:
+                      </label>
+                      <select
+                        id="cad-bairro"
+                        value={candBairro}
+                        onChange={(e) => setCandBairro(e.target.value)}
+                        className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-purple-500/30 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-purple-600"
                       >
-                        Voltar
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => setEmpStep(3)}
-                        className="w-2/3 py-2.5 rounded-xl bg-[#7C3AED] hover:bg-[#6D28D9] text-white font-bold text-xs flex items-center justify-center gap-2"
-                      >
-                        <span>Avançar para Declarações de Compliance</span>
-                        <ArrowRight className="w-4 h-4" />
-                      </button>
+                        {Object.keys(BAIRROS_CURITIBA).map((b) => (
+                          <option key={b} value={b}>{b}</option>
+                        ))}
+                      </select>
                     </div>
                   </div>
-                )}
 
-                {/* ETAPA 3: COMPLIANCE LEGAL & DECLARAÇÕES DE LEI */}
-                {empStep === 3 && (
-                  <div className="space-y-3 animate-fadeIn">
-                    <div className="p-3.5 rounded-2xl bg-[#241306] border border-amber-500/50 space-y-2">
-                      <span className="text-xs font-bold text-amber-300 flex items-center gap-1.5">
-                        <Scale className="w-4 h-4 text-amber-400" />
-                        Declarações Legais Obrigatórias para Contratação:
+                  {/* Senha e Confirmação */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="space-y-1">
+                      <label htmlFor="cad-senha" className="text-xs font-bold text-slate-800 dark:text-zinc-200 block">
+                        Senha:
+                      </label>
+                      <input
+                        id="cad-senha"
+                        type="password"
+                        required
+                        value={candSenha}
+                        onChange={(e) => setCandSenha(e.target.value)}
+                        placeholder="Mínimo 6 caracteres"
+                        className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-purple-500/30 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-purple-600"
+                      />
+                    </div>
+
+                    <div className="space-y-1">
+                      <label htmlFor="cad-confirm" className="text-xs font-bold text-slate-800 dark:text-zinc-200 block">
+                        Confirmar Senha:
+                      </label>
+                      <input
+                        id="cad-confirm"
+                        type="password"
+                        required
+                        value={candConfirmSenha}
+                        onChange={(e) => setCandConfirmSenha(e.target.value)}
+                        placeholder="Repita a senha"
+                        className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-purple-500/30 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-purple-600"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Checkbox Termos de Uso */}
+                  <div className="pt-1">
+                    <label className="flex items-start gap-2 text-xs text-slate-700 dark:text-zinc-300 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        required
+                        checked={termoAceito}
+                        onChange={(e) => setTermoAceito(e.target.checked)}
+                        className="w-4 h-4 accent-purple-600 rounded mt-0.5 cursor-pointer"
+                      />
+                      <span>
+                        Aceito os <strong className="text-purple-600 dark:text-purple-400">Termos de Uso</strong> e a <strong className="text-purple-600 dark:text-purple-400">Política de Privacidade</strong> do SkillHub em conformidade com a LGPD.
                       </span>
-                      
-                      <div className="space-y-2 text-[11px] text-purple-200">
-                        <label className="flex items-start gap-2 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={decCotaAprendiz}
-                            onChange={(e) => setDecCotaAprendiz(e.target.checked)}
-                            className="w-4 h-4 accent-amber-400 rounded mt-0.5"
-                          />
-                          <span>Declaro que as vagas abertas respeitarão a <strong>Cota de Aprendizagem (Art. 429 da CLT / Lei 10.097/00)</strong> com garantia de formação teórica.</span>
-                        </label>
+                    </label>
+                  </div>
 
-                        <label className="flex items-start gap-2 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={decNaoCobranca}
-                            onChange={(e) => setDecNaoCobranca(e.target.checked)}
-                            className="w-4 h-4 accent-amber-400 rounded mt-0.5"
-                          />
-                          <span>Declaro que <strong>nenhuma taxa, curso prévio ou valor financeiro</strong> será cobrado dos jovens candidatos em nenhuma fase do processo seletivo.</span>
-                        </label>
-
-                        <label className="flex items-start gap-2 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={decTermoEstagio}
-                            onChange={(e) => setDecTermoEstagio(e.target.checked)}
-                            className="w-4 h-4 accent-amber-400 rounded mt-0.5"
-                          />
-                          <span>Declaro que as contratações de estágio seguirão integralmente a <strong>Lei nº 11.788/08</strong> com Termo de Compromisso e Seguro de Vida Coletivo.</span>
-                        </label>
-
-                        <label className="flex items-start gap-2 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            checked={decLgpdMenores}
-                            onChange={(e) => setDecLgpdMenores(e.target.checked)}
-                            className="w-4 h-4 accent-amber-400 rounded mt-0.5"
-                          />
-                          <span>Comprometo-me com o sigilo e tratamento de dados de menores de idade conforme as diretrizes da <strong>LGPD (Lei nº 13.709/2018)</strong>.</span>
-                        </label>
-                      </div>
+                  {/* Botão de Envio Cadastro */}
+                  <button
+                    type="submit"
+                    className="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-purple-900/20 transition-all text-sm flex items-center justify-center gap-2 mt-2 cursor-pointer"
+                  >
+                    <span>Finalizar Cadastro Gratuito</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </form>
+              ) : (
+                /* CADASTRO DE EMPRESA / RECRUTADOR */
+                <form onSubmit={handleCompanySubmit} className="space-y-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="space-y-1">
+                      <label className="text-xs font-bold text-slate-800 dark:text-zinc-200 block">CNPJ:</label>
+                      <input
+                        type="text"
+                        required
+                        value={empCnpj}
+                        onChange={(e) => setEmpCnpj(e.target.value)}
+                        placeholder="00.000.000/0001-00"
+                        className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-purple-500/30 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white"
+                      />
                     </div>
 
-                    <div className="flex gap-2 pt-2">
-                      <button
-                        type="button"
-                        onClick={() => setEmpStep(2)}
-                        className="w-1/3 py-2.5 rounded-xl bg-[#24123E] text-purple-300 text-xs font-bold"
-                      >
-                        Voltar
-                      </button>
-                      <button
-                        type="submit"
-                        className="w-2/3 py-3 rounded-xl bg-gradient-to-r from-[#D97706] to-[#F59E0B] text-[#1A0B2E] font-black text-xs flex items-center justify-center gap-2 shadow-lg"
-                      >
-                        <Building2 className="w-4 h-4" />
-                        <span>Homologar Cadastro da Empresa</span>
-                      </button>
+                    <div className="space-y-1">
+                      <label className="text-xs font-bold text-slate-800 dark:text-zinc-200 block">Razão Social:</label>
+                      <input
+                        type="text"
+                        required
+                        value={empRazao}
+                        onChange={(e) => setEmpRazao(e.target.value)}
+                        placeholder="Razão Social Registrada"
+                        className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-purple-500/30 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white"
+                      />
                     </div>
                   </div>
-                )}
 
-              </form>
-            )}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="space-y-1">
+                      <label className="text-xs font-bold text-slate-800 dark:text-zinc-200 block">Gestor de RH Responsável:</label>
+                      <input
+                        type="text"
+                        required
+                        value={empResponsavel}
+                        onChange={(e) => setEmpResponsavel(e.target.value)}
+                        placeholder="Nome do Recrutador"
+                        className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-purple-500/30 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white"
+                      />
+                    </div>
 
-          </div>
-        )}
+                    <div className="space-y-1">
+                      <label className="text-xs font-bold text-slate-800 dark:text-zinc-200 block">E-mail Corporativo (@empresa.com.br):</label>
+                      <input
+                        type="email"
+                        required
+                        value={empEmail}
+                        onChange={(e) => setEmpEmail(e.target.value)}
+                        placeholder="rh@empresa.com.br"
+                        className="w-full bg-slate-50 dark:bg-slate-800/80 border border-slate-300 dark:border-purple-500/30 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Declarações de Compliance */}
+                  <div className="p-3 rounded-xl bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-500/30 space-y-1.5 text-[11px] text-amber-900 dark:text-amber-200">
+                    <label className="flex items-start gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={decCotaAprendiz}
+                        onChange={(e) => setDecCotaAprendiz(e.target.checked)}
+                        className="w-4 h-4 accent-amber-500 rounded mt-0.5"
+                      />
+                      <span>Garantia de cumprimento da <strong>Cota de Aprendizagem (Lei 10.097/00)</strong> e Estágio (Lei 11.788/08).</span>
+                    </label>
+
+                    <label className="flex items-start gap-2 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        checked={decNaoCobranca}
+                        onChange={(e) => setDecNaoCobranca(e.target.checked)}
+                        className="w-4 h-4 accent-amber-500 rounded mt-0.5"
+                      />
+                      <span>Declaro que <strong>nenhuma taxa</strong> será cobrada dos jovens candidatos.</span>
+                    </label>
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-3.5 rounded-xl shadow-lg transition-all text-sm flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <span>Homologar Cadastro da Empresa</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
+                </form>
+              )}
+            </div>
+          )}
+
+        </div>
+
+        {/* RODAPÉ DO FORMULÁRIO: ALTERNÂNCIA RÁPIDA ENTRE LOGIN E CADASTRO */}
+        <div className="pt-6 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs text-slate-600 dark:text-zinc-400">
+          <span>
+            {authMode === 'LOGIN' ? 'Não tem uma conta ainda?' : 'Já possui uma conta ativa?'}
+          </span>
+          <button
+            type="button"
+            onClick={() => setAuthMode(authMode === 'LOGIN' ? 'CADASTRO' : 'LOGIN')}
+            className="text-purple-600 dark:text-purple-400 font-bold hover:underline cursor-pointer"
+          >
+            {authMode === 'LOGIN' ? 'Criar conta gratuita' : 'Entrar na minha conta'}
+          </button>
+        </div>
 
       </div>
+
+      {/* ========================================================================= */}
+      {/* MODAL DE RECUPERAÇÃO DE SENHA (ESQUECEU A SENHA)                         */}
+      {/* ========================================================================= */}
+      {showForgotModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fadeIn">
+          <div className="w-full max-w-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-purple-500/30 rounded-2xl p-6 shadow-2xl relative space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-zinc-800">
+              <div className="flex items-center gap-2">
+                <span className="w-8 h-8 rounded-lg bg-purple-100 dark:bg-purple-950/80 text-purple-600 dark:text-purple-300 flex items-center justify-center font-bold">
+                  <Lock className="w-4 h-4" />
+                </span>
+                <h3 className="text-base font-bold text-slate-900 dark:text-white">
+                  Recuperação de Senha
+                </h3>
+              </div>
+              <button
+                onClick={() => setShowForgotModal(false)}
+                className="p-1 rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-800 text-slate-600 dark:text-zinc-400 cursor-pointer"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <p className="text-xs text-slate-600 dark:text-zinc-300 leading-relaxed">
+              Informe seu e-mail cadastrado. Enviaremos um link de acesso imediato para redefinir sua senha com segurança.
+            </p>
+
+            <form onSubmit={handleForgotSubmit} className="space-y-3">
+              <div className="space-y-1">
+                <label className="text-xs font-bold text-slate-800 dark:text-zinc-200">Seu E-mail Cadastrado:</label>
+                <input
+                  type="email"
+                  required
+                  value={forgotEmail}
+                  onChange={(e) => setForgotEmail(e.target.value)}
+                  placeholder="seuemail@exemplo.com"
+                  className="w-full bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-purple-500/30 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white focus:outline-none focus:border-purple-600"
+                />
+              </div>
+
+              {forgotSent ? (
+                <div className="flex items-center gap-2 text-xs font-bold text-emerald-600 p-2.5 rounded-lg bg-emerald-50 dark:bg-emerald-950/30">
+                  <CheckCircle2 className="w-4 h-4" />
+                  <span>Link enviado! Verifique sua caixa de entrada.</span>
+                </div>
+              ) : (
+                <div className="flex justify-end gap-2 pt-2">
+                  <button
+                    type="button"
+                    onClick={() => setShowForgotModal(false)}
+                    className="px-3.5 py-2 rounded-xl text-xs font-bold text-slate-600 dark:text-zinc-400 hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer"
+                  >
+                    Cancelar
+                  </button>
+                  <button
+                    type="submit"
+                    className="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold shadow-sm cursor-pointer"
+                  >
+                    Enviar Link de Recuperação
+                  </button>
+                </div>
+              )}
+            </form>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }

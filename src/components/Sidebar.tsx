@@ -87,7 +87,7 @@ export default function Sidebar() {
     },
     {
       id: 'MAPA_PROXIMIDADE',
-      label: 'Vagas por Bairro',
+      label: 'Mapa de Vagas',
       icon: MapPin,
       badge: `${vagas.length} Vagas`
     },
@@ -135,7 +135,7 @@ export default function Sidebar() {
         <div className="space-y-6">
           <div className="flex items-center justify-between pb-3 border-b border-[#3E1C66]/50">
             <div className="flex items-center gap-2.5">
-              <img src="/logo.png" alt="SkillHub Logo" className="w-8 h-8 object-contain" />
+              <img src="/logo.png" alt="SkillHub Logo" className="h-9 w-auto object-contain drop-shadow-sm" />
               <div>
                 <span className="font-black text-base text-white tracking-tight">
                   Skill<span className="text-[#FBBF24]">Hub</span>

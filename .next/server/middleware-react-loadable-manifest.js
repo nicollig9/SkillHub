@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{}"
+self.__REACT_LOADABLE_MANIFEST="{\"app\\\\page.tsx -> @/components/CuritibaProximityMap\":{\"id\":\"app\\\\page.tsx -> @/components/CuritibaProximityMap\",\"files\":[\"static/chunks/_app-pages-browser_src_components_CuritibaProximityMap_tsx.js\"]}}"

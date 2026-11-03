@@ -1,54 +1,104 @@
 import { Student, JobVacancy, Badge, Application, GuardrailLog } from '@/types';
 
-export const BAIRROS_CURITIBA: Record<string, { nome: string; coords: [number, number]; desc: string; vagasCount: number; distKmDoBoqueirao: number }> = {
-  'Boqueirão': {
-    nome: 'Boqueirão',
-    coords: [-25.5039, -49.2372],
-    desc: 'Região Sul de Curitiba com forte polo comercial, serviços e logística.',
-    vagasCount: 6,
-    distKmDoBoqueirao: 0
-  },
+export const BAIRROS_CURITIBA: Record<string, { nome: string; coords: [number, number]; desc: string; vagasCount: number; distKmDoBoqueirao: number; distKmDaCIC: number; regiao: 'Curitiba' | 'RMC' }> = {
   'CIC': {
     nome: 'CIC (Cidade Industrial de Curitiba)',
     coords: [-25.5036, -49.3338],
     desc: 'Maior polo industrial do Paraná com centenas de empresas metalmecânicas, automobilísticas e tecnologia.',
     vagasCount: 14,
-    distKmDoBoqueirao: 8.5
+    distKmDoBoqueirao: 8.5,
+    distKmDaCIC: 0,
+    regiao: 'Curitiba'
+  },
+  'Pinheirinho': {
+    nome: 'Pinheirinho',
+    coords: [-25.5218, -49.2941],
+    desc: 'Polo logístico e atacadista próximo à Linha Verde Sul e Terminal Pinheirinho.',
+    vagasCount: 9,
+    distKmDoBoqueirao: 4.8,
+    distKmDaCIC: 4.8,
+    regiao: 'Curitiba'
+  },
+  'Portão': {
+    nome: 'Portão',
+    coords: [-25.4748, -49.2934],
+    desc: 'Região com grandes shoppings centers, supermercados, serviços e clínicas corporativas.',
+    vagasCount: 7,
+    distKmDoBoqueirao: 6.4,
+    distKmDaCIC: 6.0,
+    regiao: 'Curitiba'
   },
   'Tatuquara': {
     nome: 'Tatuquara',
     coords: [-25.5681, -49.3392],
-    desc: 'Região em forte expansão no extremo sul, com centros de distribuição e varejo.',
-    vagasCount: 4,
-    distKmDoBoqueirao: 11.2
-  },
-  'Centro': {
-    nome: 'Centro',
-    coords: [-25.4284, -49.2733],
-    desc: 'Coração financeiro e administrativo de Curitiba, com órgãos públicos, escritórios e serviços.',
-    vagasCount: 12,
-    distKmDoBoqueirao: 9.1
+    desc: 'Região em forte expansão no extremo sul, com centros de distribuição e varejo logístico.',
+    vagasCount: 5,
+    distKmDoBoqueirao: 11.2,
+    distKmDaCIC: 7.5,
+    regiao: 'Curitiba'
   },
   'Batel': {
     nome: 'Batel',
     coords: [-25.4431, -49.2842],
     desc: 'Hub financeiro, consultorias de RH, tecnologia e serviços corporativos de alta demanda.',
     vagasCount: 8,
-    distKmDoBoqueirao: 8.8
+    distKmDoBoqueirao: 8.8,
+    distKmDaCIC: 8.2,
+    regiao: 'Curitiba'
   },
-  'Portão': {
-    nome: 'Portão',
-    coords: [-25.4748, -49.2934],
-    desc: 'Região com grandes shoppings centers, supermercados e clínicas.',
-    vagasCount: 7,
-    distKmDoBoqueirao: 6.4
+  'Boqueirão': {
+    nome: 'Boqueirão',
+    coords: [-25.5039, -49.2372],
+    desc: 'Região Sul de Curitiba com forte polo comercial, serviços e terminais de integração.',
+    vagasCount: 6,
+    distKmDoBoqueirao: 0,
+    distKmDaCIC: 8.5,
+    regiao: 'Curitiba'
   },
-  'Pinheirinho': {
-    nome: 'Pinheirinho',
-    coords: [-25.5218, -49.2941],
-    desc: 'Polo logístico e atacadista próximo à Linha Verde Sul.',
-    vagasCount: 9,
-    distKmDoBoqueirao: 4.8
+  'Centro': {
+    nome: 'Centro',
+    coords: [-25.4284, -49.2733],
+    desc: 'Coração financeiro e administrativo de Curitiba, com órgãos públicos, escritórios e serviços.',
+    vagasCount: 12,
+    distKmDoBoqueirao: 9.1,
+    distKmDaCIC: 9.1,
+    regiao: 'Curitiba'
+  },
+  'Araucária': {
+    nome: 'Araucária (RMC)',
+    coords: [-25.5921, -49.4102],
+    desc: 'Polo petroquímico e industrial da RMC vizinho à CIC, com empresas de transporte e manufatura.',
+    vagasCount: 6,
+    distKmDoBoqueirao: 16.4,
+    distKmDaCIC: 9.8,
+    regiao: 'RMC'
+  },
+  'São José dos Pinhais': {
+    nome: 'São José dos Pinhais (RMC)',
+    coords: [-25.5347, -49.2064],
+    desc: 'Polo automotivo internacional, aeroporto Afonso Pena e grandes armazéns de e-commerce.',
+    vagasCount: 8,
+    distKmDoBoqueirao: 12.0,
+    distKmDaCIC: 16.5,
+    regiao: 'RMC'
+  },
+  'Pinhais': {
+    nome: 'Pinhais (RMC)',
+    coords: [-25.4429, -49.1919],
+    desc: 'Município da RMC leste com forte setor metalmecânico, autopeças e serviços logísticos.',
+    vagasCount: 5,
+    distKmDoBoqueirao: 14.5,
+    distKmDaCIC: 18.2,
+    regiao: 'RMC'
+  },
+  'Colombo': {
+    nome: 'Colombo (RMC)',
+    coords: [-25.2917, -49.2242],
+    desc: 'Segunda maior cidade da RMC, com polos de distribuição comercial na Rodovia da Uva e BR-116.',
+    vagasCount: 4,
+    distKmDoBoqueirao: 21.0,
+    distKmDaCIC: 22.0,
+    regiao: 'RMC'
   }
 };
 
@@ -122,14 +172,14 @@ export const INITIAL_STUDENT: Student = {
   turnoEscola: 'Noturno (19:00 às 22:30)',
   endereco: {
     id: 101,
-    rua: 'Rua Maestro Carlos Frank',
-    numero: '1240',
-    bairro: 'Boqueirão',
+    rua: 'Rua Juscelino Kubitschek de Oliveira',
+    numero: '2600',
+    bairro: 'CIC',
     cidade: 'Curitiba',
     estado: 'PR',
-    cep: '81650-010',
-    latitude: -25.5039,
-    longitude: -25.2372
+    cep: '81260-000',
+    latitude: -25.5036,
+    longitude: -49.3338
   },
   badgesEarned: [
     {
@@ -145,7 +195,7 @@ export const INITIAL_STUDENT: Student = {
       code: 'SKILL-PR-2026-1920B'
     }
   ],
-  bio: 'Estudante dedicado do Ensino Médio noturno buscando primeira oportunidade como Jovem Aprendiz Administrativo ou Logística. Badges validadas em Legislação Trabalhista e Elaboração de Currículo.',
+  bio: 'Estudante da Cidade Industrial de Curitiba (CIC) buscando oportunidade como Jovem Aprendiz ou Estágio em TI, Logística e Rotinas Administrativas. Badges validadas em Legislação Trabalhista e Currículo Campeão.',
   telefoneRaw: '(41) 98877-6655',
   telefoneMasked: '(41) *****-6655'
 };
@@ -165,13 +215,17 @@ export const INITIAL_VAGAS: JobVacancy[] = [
     cidade: 'Curitiba',
     remuneracao: 1120.00,
     beneficios: ['Vale-Transporte Integral', 'Refeitório no Local', 'Assistência Odontológica', 'Seguro de Vida'],
-    cargaHorariaDiaria: 6,
-    horario: '08:00 às 14:00 (Segunda a Sexta)',
+    cargaHorariaDiaria: 4,
+    cargaSemanal: '20h/semanais',
+    horario: '08:00 às 12:00 (Segunda a Sexta)',
     status: 'ATIVA',
     dataCriacao: '12/09/2026',
     badgesRequeridas: ['badge-direitos-legislação', 'badge-curriculo-campeao'],
     candidatosInscritos: 18,
-    jaCandidatou: true
+    jaCandidatou: true,
+    origemIA: 'Via CIEE',
+    distanciaKm: 1.2,
+    aderenciaPerfil: 94
   },
   {
     id: 2,
@@ -187,12 +241,16 @@ export const INITIAL_VAGAS: JobVacancy[] = [
     remuneracao: 1080.00,
     beneficios: ['Vale-Transporte', 'Desconto em Compras', 'Uniforme Gratuito', 'Plano Odontológico'],
     cargaHorariaDiaria: 6,
+    cargaSemanal: '24h/semanais',
     horario: '08:30 às 14:30 (Segunda a Sexta)',
     status: 'ATIVA',
     dataCriacao: '13/09/2026',
     badgesRequeridas: ['badge-direitos-legislação'],
     candidatosInscritos: 9,
-    jaCandidatou: false
+    jaCandidatou: false,
+    origemIA: 'Parceiro Direto',
+    distanciaKm: 8.5,
+    aderenciaPerfil: 88
   },
   {
     id: 4,
@@ -202,18 +260,22 @@ export const INITIAL_VAGAS: JobVacancy[] = [
     empresaValidadaCnpj: true,
     titulo: 'Jovem Aprendiz em Rotinas de Escritório e Recepção',
     tipoVaga: 'Jovem Aprendiz',
-    descricao: 'Triagem de documentos digitais, agendamento de reuniões em Google Workspace e atendimento telefônico cortês a clientes.',
+    descricao: 'Triagem de documentos digitais, agendamento de reuniões em Google Workspace e atendimento telefônico cortês a clientes corporativos.',
     bairro: 'Batel',
     cidade: 'Curitiba',
     remuneracao: 1150.00,
     beneficios: ['Vale-Transporte', 'Vale-Alimentação R$ 450/mês', 'Café da manhã no escritório'],
     cargaHorariaDiaria: 6,
+    cargaSemanal: '30h/semanais',
     horario: '09:00 às 15:00',
     status: 'ATIVA',
     dataCriacao: '11/09/2026',
     badgesRequeridas: ['badge-direitos-legislação', 'badge-curriculo-campeao'],
     candidatosInscritos: 11,
-    jaCandidatou: false
+    jaCandidatou: false,
+    origemIA: 'Via Vagas.com',
+    distanciaKm: 8.2,
+    aderenciaPerfil: 90
   },
   {
     id: 5,
@@ -223,18 +285,72 @@ export const INITIAL_VAGAS: JobVacancy[] = [
     empresaValidadaCnpj: true,
     titulo: 'Jovem Aprendiz Auxiliar de Expedição',
     tipoVaga: 'Jovem Aprendiz',
-    descricao: 'Conferência de etiquetas de remessas expressas e organização de relatórios de saída de frotas.',
+    descricao: 'Conferência de etiquetas de remessas expressas e organização de relatórios de saída de frotas e conferência de códigos de barras.',
     bairro: 'Tatuquara',
     cidade: 'Curitiba',
     remuneracao: 1050.00,
     beneficios: ['Vale-Transporte', 'Seguro de Vida', 'Refeitório no Local'],
-    cargaHorariaDiaria: 6,
-    horario: '08:00 às 14:00',
+    cargaHorariaDiaria: 4,
+    cargaSemanal: '20h/semanais',
+    horario: '08:00 às 12:00',
     status: 'ATIVA',
     dataCriacao: '14/09/2026',
     badgesRequeridas: ['badge-direitos-legislação'],
     candidatosInscritos: 5,
-    jaCandidatou: false
+    jaCandidatou: false,
+    origemIA: 'Via Catho',
+    distanciaKm: 7.5,
+    aderenciaPerfil: 82
+  },
+  {
+    id: 11,
+    idEmpresa: 20,
+    empresaNome: 'Atacadista Sul Linha Verde',
+    empresaCnpjMasked: '12.***.***/0001-44',
+    empresaValidadaCnpj: true,
+    titulo: 'Jovem Aprendiz em Organização e Almoxarifado',
+    tipoVaga: 'Jovem Aprendiz',
+    descricao: 'Apoio na recepção de mercadorias no Terminal Pinheirinho, triagem física de lotes e auxílio em inventário rotativo com coletores de dados.',
+    bairro: 'Pinheirinho',
+    cidade: 'Curitiba',
+    remuneracao: 1100.00,
+    beneficios: ['Vale-Transporte', 'Desconto em Compras', 'Plano Odontológico', 'Seguro de Vida'],
+    cargaHorariaDiaria: 4,
+    cargaSemanal: '20h/semanais',
+    horario: '13:00 às 17:00',
+    status: 'ATIVA',
+    dataCriacao: '14/09/2026',
+    badgesRequeridas: ['badge-direitos-legislação'],
+    candidatosInscritos: 8,
+    jaCandidatou: false,
+    origemIA: 'Via Indeed',
+    distanciaKm: 4.8,
+    aderenciaPerfil: 91
+  },
+  {
+    id: 12,
+    idEmpresa: 21,
+    empresaNome: 'Refinaria & Transportes Araucária S.A.',
+    empresaCnpjMasked: '33.***.***/0001-72',
+    empresaValidadaCnpj: true,
+    titulo: 'Jovem Aprendiz em Rotinas Operacionais e Segurança',
+    tipoVaga: 'Jovem Aprendiz',
+    descricao: 'Suporte no preenchimento de checklists de segurança, organização de fichas técnicas e atendimento no setor de controle operacional da unidade Araucária.',
+    bairro: 'Araucária',
+    cidade: 'Araucária',
+    remuneracao: 1180.00,
+    beneficios: ['Vale-Transporte / Fretado da CIC', 'Refeitório Industrial', 'Plano de Saúde', 'Seguro de Vida'],
+    cargaHorariaDiaria: 6,
+    cargaSemanal: '24h/semanais',
+    horario: '08:00 às 14:00',
+    status: 'ATIVA',
+    dataCriacao: '12/09/2026',
+    badgesRequeridas: ['badge-direitos-legislação'],
+    candidatosInscritos: 7,
+    jaCandidatou: false,
+    origemIA: 'Via CIEE',
+    distanciaKm: 9.8,
+    aderenciaPerfil: 86
   },
 
   // --- VAGAS DE ESTÁGIO (LEI 11.788/08) ---
@@ -252,12 +368,41 @@ export const INITIAL_VAGAS: JobVacancy[] = [
     remuneracao: 1350.00,
     beneficios: ['Bolsa-Auxílio R$ 1.350', 'Auxílio Transporte', 'Vale-Refeição R$ 32/dia', 'Seguro de Vida Coletivo (Lei do Estágio)'],
     cargaHorariaDiaria: 6,
+    cargaSemanal: '30h/semanais',
     horario: '13:00 às 19:00',
     status: 'ATIVA',
     dataCriacao: '10/09/2026',
     badgesRequeridas: ['badge-direitos-legislação', 'badge-curriculo-campeao'],
     candidatosInscritos: 14,
-    jaCandidatou: false
+    jaCandidatou: false,
+    origemIA: 'Via Indeed',
+    distanciaKm: 1.2,
+    aderenciaPerfil: 85
+  },
+  {
+    id: 16,
+    idEmpresa: 22,
+    empresaNome: 'SoftTech Paraná Inovação (CIC)',
+    empresaCnpjMasked: '17.***.***/0001-99',
+    empresaValidadaCnpj: true,
+    titulo: 'Estágio em Desenvolvimento Web & Suporte Front-end',
+    tipoVaga: 'Estagiário',
+    descricao: 'Desenvolvimento de telas e componentes em React/Tailwind, manutenção de documentação técnica e integração com APIs internas da plataforma.',
+    bairro: 'CIC',
+    cidade: 'Curitiba',
+    remuneracao: 1500.00,
+    beneficios: ['Bolsa-Auxílio R$ 1.500', 'Auxílio Transporte', 'Vale-Refeição R$ 30/dia', 'Horário Flexível'],
+    cargaHorariaDiaria: 6,
+    cargaSemanal: '30h/semanais',
+    horario: '09:00 às 15:00',
+    status: 'ATIVA',
+    dataCriacao: '15/09/2026',
+    badgesRequeridas: ['badge-curriculo-campeao', 'badge-direitos-legislação'],
+    candidatosInscritos: 16,
+    jaCandidatou: false,
+    origemIA: 'Parceiro Direto',
+    distanciaKm: 1.8,
+    aderenciaPerfil: 96
   },
   {
     id: 6,
@@ -267,18 +412,22 @@ export const INITIAL_VAGAS: JobVacancy[] = [
     empresaValidadaCnpj: true,
     titulo: 'Estagiário de Comunicação e Conteúdo Digital',
     tipoVaga: 'Estagiário',
-    descricao: 'Criação de comunicados internos, auxílio na organização de workshops e atualização de murais informativos.',
+    descricao: 'Criação de comunicados internos, auxílio na organização de workshops e atualização de murais informativos e redes sociais.',
     bairro: 'Centro',
     cidade: 'Curitiba',
     remuneracao: 1200.00,
-    beneficios: ['Bolsa-Auxílio', 'Auxílio Transporte', 'Curso de Inglês Interno'],
+    beneficios: ['Bolsa-Auxílio R$ 1.200', 'Auxílio Transporte', 'Curso de Inglês Interno'],
     cargaHorariaDiaria: 5,
+    cargaSemanal: '25h/semanais',
     horario: '13:30 às 18:30',
     status: 'ATIVA',
     dataCriacao: '09/09/2026',
     badgesRequeridas: ['badge-curriculo-campeao'],
     candidatosInscritos: 22,
-    jaCandidatou: false
+    jaCandidatou: false,
+    origemIA: 'Via NUBE',
+    distanciaKm: 9.1,
+    aderenciaPerfil: 89
   },
   {
     id: 7,
@@ -294,15 +443,44 @@ export const INITIAL_VAGAS: JobVacancy[] = [
     remuneracao: 1400.00,
     beneficios: ['Bolsa-Auxílio R$ 1.400', 'Vale-Transporte', 'Vale-Refeição R$ 28/dia', 'Seguro de Vida'],
     cargaHorariaDiaria: 6,
+    cargaSemanal: '30h/semanais',
     horario: '08:00 às 14:00',
     status: 'ATIVA',
     dataCriacao: '14/09/2026',
     badgesRequeridas: ['badge-direitos-legislação'],
     candidatosInscritos: 8,
-    jaCandidatou: false
+    jaCandidatou: false,
+    origemIA: 'Via Indeed',
+    distanciaKm: 6.0,
+    aderenciaPerfil: 87
+  },
+  {
+    id: 13,
+    idEmpresa: 23,
+    empresaNome: 'Polo Automotivo Renault & Nissan (SJP)',
+    empresaCnpjMasked: '04.***.***/0001-50',
+    empresaValidadaCnpj: true,
+    titulo: 'Estágio em Engenharia da Qualidade & Processos Jr.',
+    tipoVaga: 'Estagiário',
+    descricao: 'Auditoria de padrões de montagem, acompanhamento de indicadores de conformidade e suporte na elaboração de relatórios industriais.',
+    bairro: 'São José dos Pinhais',
+    cidade: 'São José dos Pinhais',
+    remuneracao: 1450.00,
+    beneficios: ['Bolsa-Auxílio R$ 1.450', 'Fretado Linha Terminal CIC / SJP', 'Refeitório no Local', 'Seguro de Vida'],
+    cargaHorariaDiaria: 6,
+    cargaSemanal: '30h/semanais',
+    horario: '07:30 às 13:30',
+    status: 'ATIVA',
+    dataCriacao: '13/09/2026',
+    badgesRequeridas: ['badge-direitos-legislação', 'badge-curriculo-campeao'],
+    candidatosInscritos: 12,
+    jaCandidatou: false,
+    origemIA: 'Via Vagas.com',
+    distanciaKm: 16.5,
+    aderenciaPerfil: 83
   },
 
-  // --- VAGAS DE PRIMEIRO EMPREGO / EM BUSCA DE OPORTUNIDADE ---
+  // --- VAGAS DE PRIMEIRO EMPREGO / SEM EXPERIÊNCIA ---
   {
     id: 8,
     idEmpresa: 17,
@@ -317,12 +495,16 @@ export const INITIAL_VAGAS: JobVacancy[] = [
     remuneracao: 1420.00,
     beneficios: ['Vale-Transporte', 'Vale-Alimentação R$ 600/mês', 'Plano de Saúde', 'Treinamento Remunerado'],
     cargaHorariaDiaria: 8,
+    cargaSemanal: '40h/semanais',
     horario: '08:00 às 17:00',
     status: 'ATIVA',
     dataCriacao: '15/09/2026',
     badgesRequeridas: ['badge-curriculo-campeao'],
     candidatosInscritos: 35,
-    jaCandidatou: false
+    jaCandidatou: false,
+    origemIA: 'Parceiro Direto',
+    distanciaKm: 8.5,
+    aderenciaPerfil: 80
   },
   {
     id: 9,
@@ -338,12 +520,66 @@ export const INITIAL_VAGAS: JobVacancy[] = [
     remuneracao: 1380.00,
     beneficios: ['Vale-Transporte', 'Vale-Refeição R$ 25/dia', 'Comissões', 'Auxílio Creche'],
     cargaHorariaDiaria: 6,
+    cargaSemanal: '30h/semanais',
     horario: '14:00 às 20:20',
     status: 'ATIVA',
     dataCriacao: '15/09/2026',
     badgesRequeridas: ['badge-curriculo-campeao'],
     candidatosInscritos: 19,
-    jaCandidatou: false
+    jaCandidatou: false,
+    origemIA: 'Via Catho',
+    distanciaKm: 9.1,
+    aderenciaPerfil: 78
+  },
+  {
+    id: 14,
+    idEmpresa: 24,
+    empresaNome: 'Metalúrgica Pinhais Componentes',
+    empresaCnpjMasked: '28.***.***/0001-19',
+    empresaValidadaCnpj: true,
+    titulo: 'Auxiliar de Almoxarifado Jr. (Sem Experiência Prévia)',
+    tipoVaga: 'Primeiro Emprego',
+    descricao: 'Apoio no registro de peças acabadas, etiquetagem e estocagem em prateleiras industriais. Empresa oferece formação interna de ponte rolante.',
+    bairro: 'Pinhais',
+    cidade: 'Pinhais',
+    remuneracao: 1460.00,
+    beneficios: ['Vale-Transporte Metrocard', 'Cesta Básica R$ 350', 'Refeitório no Local', 'Seguro de Vida'],
+    cargaHorariaDiaria: 8,
+    cargaSemanal: '40h/semanais',
+    horario: '08:00 às 17:48',
+    status: 'ATIVA',
+    dataCriacao: '14/09/2026',
+    badgesRequeridas: ['badge-curriculo-campeao'],
+    candidatosInscritos: 15,
+    jaCandidatou: false,
+    origemIA: 'Via NUBE',
+    distanciaKm: 18.2,
+    aderenciaPerfil: 81
+  },
+  {
+    id: 15,
+    idEmpresa: 25,
+    empresaNome: 'Centro Logístico Colombo BR-116',
+    empresaCnpjMasked: '39.***.***/0001-66',
+    empresaValidadaCnpj: true,
+    titulo: 'Jovem Aprendiz em Logística e Conferência de Cargas',
+    tipoVaga: 'Jovem Aprendiz',
+    descricao: 'Conferência física de pedidos de e-commerce e suporte em relatórios diários de expedição na rodovia de integração da RMC norte.',
+    bairro: 'Colombo',
+    cidade: 'Colombo',
+    remuneracao: 1070.00,
+    beneficios: ['Vale-Transporte Metrocard', 'Refeitório no Local', 'Plano Odontológico'],
+    cargaHorariaDiaria: 4,
+    cargaSemanal: '20h/semanais',
+    horario: '08:30 às 12:30',
+    status: 'ATIVA',
+    dataCriacao: '13/09/2026',
+    badgesRequeridas: ['badge-direitos-legislação'],
+    candidatosInscritos: 6,
+    jaCandidatou: false,
+    origemIA: 'Via Catho',
+    distanciaKm: 22.0,
+    aderenciaPerfil: 79
   },
 
   // --- VAGAS PARA ESTUDANTES (TURNO FLEXÍVEL) ---
@@ -361,12 +597,66 @@ export const INITIAL_VAGAS: JobVacancy[] = [
     remuneracao: 950.00,
     beneficios: ['Vale-Transporte', 'Desconto em Livros', 'Horário Flexível para Provas'],
     cargaHorariaDiaria: 4,
+    cargaSemanal: '20h/semanais',
     horario: '14:00 às 18:00',
     status: 'ATIVA',
     dataCriacao: '13/09/2026',
     badgesRequeridas: ['badge-direitos-legislação'],
     candidatosInscritos: 12,
-    jaCandidatou: false
+    jaCandidatou: false,
+    origemIA: 'Via CIEE',
+    distanciaKm: 12.0,
+    aderenciaPerfil: 84
+  },
+  {
+    id: 17,
+    idEmpresa: 26,
+    empresaNome: 'Mondelēz International (CIC)',
+    empresaCnpjMasked: '00.***.***/0001-33',
+    empresaValidadaCnpj: true,
+    titulo: 'Auxiliar Administrativo (Jovem Aprendiz)',
+    tipoVaga: 'Jovem Aprendiz',
+    descricao: 'Suporte na organização de planilhas de expedição, conferência de malotes de documentos internos e rotinas de comunicação corporativa no polo CIC.',
+    bairro: 'CIC',
+    cidade: 'Curitiba',
+    remuneracao: 1120.00,
+    beneficios: ['Vale-Transporte Integral', 'Refeitório no Local', 'Assistência Médica', 'Cesta de Produtos'],
+    cargaHorariaDiaria: 4,
+    cargaSemanal: '20h/semanais',
+    horario: '08:00 às 12:00 (Segunda a Sexta)',
+    status: 'ATIVA',
+    dataCriacao: '16/09/2026',
+    badgesRequeridas: ['badge-curriculo-campeao', 'badge-direitos-legislação'],
+    candidatosInscritos: 14,
+    jaCandidatou: false,
+    origemIA: 'Via Indeed',
+    distanciaKm: 1.5,
+    aderenciaPerfil: 95
+  },
+  {
+    id: 18,
+    idEmpresa: 27,
+    empresaNome: 'Siemens Energy Brasil (CIC)',
+    empresaCnpjMasked: '59.***.***/0001-10',
+    empresaValidadaCnpj: true,
+    titulo: 'Estagiário de Comunicação e Suporte Comercial',
+    tipoVaga: 'Estagiário',
+    descricao: 'Apoio no atendimento a clientes corporativos, atualização de cadastros no CRM e acompanhamento de relatórios comerciais na fábrica do CIC.',
+    bairro: 'CIC',
+    cidade: 'Curitiba',
+    remuneracao: 1380.00,
+    beneficios: ['Bolsa-Auxílio R$ 1.380', 'Vale-Transporte', 'Refeitório Industrial', 'Seguro de Vida'],
+    cargaHorariaDiaria: 6,
+    cargaSemanal: '30h/semanais',
+    horario: '09:00 às 15:00',
+    status: 'ATIVA',
+    dataCriacao: '16/09/2026',
+    badgesRequeridas: ['badge-curriculo-campeao'],
+    candidatosInscritos: 10,
+    jaCandidatou: false,
+    origemIA: 'Via CIEE',
+    distanciaKm: 2.1,
+    aderenciaPerfil: 92
   }
 ];
 
