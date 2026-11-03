@@ -133,6 +133,7 @@ export interface Course {
   caseStudies: CaseStudy[];
   quiz: QuizQuestion[];
   isPublished?: boolean;
+  published?: boolean;
   active?: boolean;
   visible?: boolean;
 }

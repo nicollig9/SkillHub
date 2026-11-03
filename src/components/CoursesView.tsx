@@ -22,6 +22,7 @@ const COURSE_REASONS: Record<string, string> = {
   // Nível 1
   'equilibrio-emocional': 'Inteligência emocional de entrada, controle da ansiedade no primeiro emprego e foco para conciliar novas responsabilidades.',
   'curso-equilibrio-emocional': 'Inteligência emocional de entrada, controle da ansiedade no primeiro emprego e foco para conciliar novas responsabilidades.',
+  'orcamento-primeiro-salario': 'Adaptação financeira inicial, mentalidade consciente sobre o salário líquido, impostos do contracheque e formação de hábitos de poupança.',
   'orcamento-primeiro-salarial': 'Adaptação financeira inicial, mentalidade consciente sobre o salário líquido, impostos do contracheque e formação de hábitos de poupança.',
   'curso-orcamento-primeiro-salario': 'Adaptação financeira inicial, mentalidade consciente sobre o salário líquido, impostos do contracheque e formação de hábitos de poupança.',
   'curso-saude-mental-trabalho': 'Inteligência emocional de entrada, controle da ansiedade no primeiro emprego e foco para conciliar novas responsabilidades.',
@@ -53,7 +54,9 @@ const LEVEL_DEFINITIONS = [
     priorityOrder: [
       'equilibrio-emocional',
 
+      'orcamento-primeiro-salario',
       'orcamento-primeiro-salarial',
+      'curso-orcamento-primeiro-salario',
 
 
 
@@ -135,14 +138,14 @@ export default function CoursesView() {
       selectedCategory === 'TODAS' || 
       course.category === selectedCategory ||
       course.category.toLowerCase().includes(selectedCategory.toLowerCase()) ||
-      (selectedCategory === 'Desenvolvimento Pessoal' && (course.id === 'orcamento-primeiro-salarial' || course.id === 'curso-orcamento-primeiro-salario')) ||
-      (selectedCategory === 'Finanças Pessoais' && (course.id === 'orcamento-primeiro-salarial' || course.id === 'curso-orcamento-primeiro-salario' || course.category === 'Finanças Pessoais'));
+      (selectedCategory === 'Desenvolvimento Pessoal' && (course.id === 'orcamento-primeiro-salario' || course.id === 'orcamento-primeiro-salarial' || course.id === 'curso-orcamento-primeiro-salario')) ||
+      (selectedCategory === 'Finanças Pessoais' && (course.id === 'orcamento-primeiro-salario' || course.id === 'orcamento-primeiro-salarial' || course.id === 'curso-orcamento-primeiro-salario' || course.category === 'Finanças Pessoais' || course.category.toLowerCase().includes('finan')));
 
     // Filtro por público-alvo
     const matchesAudience = 
       selectedAudience === 'TODOS' || 
       course.targetAudienceType === 'TODOS' || 
-      (Array.isArray(course.targetAudienceType) && course.targetAudienceType.includes(selectedAudience));
+      (Array.isArray(course.targetAudienceType) && (course.targetAudienceType.includes(selectedAudience) || course.targetAudienceType.includes('TODOS' as any)));
 
     // Filtro por nível
     const matchesLevel =
@@ -397,7 +400,7 @@ export default function CoursesView() {
                         <div className="flex items-center justify-between gap-2">
                           <div className="flex items-center gap-1.5 flex-wrap">
                             <span className="text-[10px] font-bold bg-slate-200 text-slate-900 border border-slate-300 dark:bg-[#1F1535] dark:text-zinc-300 dark:border-[#2D1B4E] px-2.5 py-0.5 rounded-md">
-                              {course.category}
+                              {(course.id === 'orcamento-primeiro-salario' || course.id === 'orcamento-primeiro-salarial') ? 'Finanças Pessoais' : course.category}
                             </span>
                             <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md border ${def.badgeClass}`}>
                               {course.level || 'Iniciante'}

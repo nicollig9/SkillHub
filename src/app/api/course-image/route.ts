@@ -61,15 +61,23 @@ export async function GET(request: NextRequest) {
         const ext = path.extname(filePath).toLowerCase();
         const contentType = ext === '.webp' ? 'image/webp' : ext === '.png' ? 'image/png' : 'image/jpeg';
 
-        // Sincronizar para public/mapa-mental-orcamento.png
+        // Sincronizar para public/mapa-mental-orcamento.png e orcamento.png
         try {
           const publicPng = path.join(process.cwd(), 'public', 'mapa-mental-orcamento.png');
+          const orcamentoPng = path.join(process.cwd(), 'public', 'orcamento.png');
           if (!fs.existsSync(publicPng)) {
             fs.copyFileSync(filePath, publicPng);
           }
+          if (!fs.existsSync(orcamentoPng)) {
+            fs.copyFileSync(filePath, orcamentoPng);
+          }
           const subPublicPng = path.join(process.cwd(), 'SkillHub', 'public', 'mapa-mental-orcamento.png');
+          const subOrcamentoPng = path.join(process.cwd(), 'SkillHub', 'public', 'orcamento.png');
           if (!fs.existsSync(subPublicPng)) {
             fs.copyFileSync(filePath, subPublicPng);
+          }
+          if (!fs.existsSync(subOrcamentoPng)) {
+            fs.copyFileSync(filePath, subOrcamentoPng);
           }
         } catch {}
 

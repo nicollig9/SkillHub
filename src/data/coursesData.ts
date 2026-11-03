@@ -2595,14 +2595,15 @@ export const COURSES: Course[] = [
   // 3. ORÇAMENTO DO PRIMEIRO SALÁRIO
   // =========================================================================
   {
-    id: 'orcamento-primeiro-salarial',
+    id: 'orcamento-primeiro-salario',
+    published: true,
     isPublished: true,
     active: true,
     visible: true,
     trackId: 'trilha-1',
     trackName: 'TRILHA 1: Entrada no Mercado & Primeiro Emprego',
-    category: 'Desenvolvimento Pessoal',
-    targetAudienceType: ['PRIMEIRO_EMPREGO', 'JOVEM_APRENDIZ', 'ESTUDANTE'],
+    category: 'Finanças Pessoais',
+    targetAudienceType: 'TODOS',
     title: 'Orçamento do Primeiro Salário',
     subtitle: 'Ensinar a organizar, priorizar e multiplicar o primeiro salário, evitando dívidas e criando hábitos financeiros saudáveis desde o início da carreira.',
     hours: 12,

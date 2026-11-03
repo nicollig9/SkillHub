@@ -22,6 +22,7 @@ import {
   ChevronLeft,
   ArrowRight
 } from 'lucide-react';
+import OrcamentoMindMap from '@/components/OrcamentoMindMap';
 
 export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
   const { 
@@ -42,11 +43,15 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
 
   const course = 
     COURSES.find((c) => c.id === activeCourseId) || 
+    COURSES.find((c) => c.id === 'orcamento-primeiro-salario') || 
     COURSES.find((c) => c.id === 'orcamento-primeiro-salarial') || 
     COURSES.find((c) => c.id === 'curso-orcamento-primeiro-salario') || 
     COURSES[0];
 
-  const isOrcamento = course.id === 'curso-orcamento-primeiro-salario' || course.id === 'orcamento-primeiro-salarial';
+  const isOrcamento = 
+    course.id === 'orcamento-primeiro-salario' || 
+    course.id === 'orcamento-primeiro-salarial' || 
+    course.id === 'curso-orcamento-primeiro-salario';
   const isEquilibrio = course.id === 'equilibrio-emocional' || course.id === 'curso-equilibrio-emocional' || course.id === 'curso-saude-mental-trabalho';
   const hasReadingTimer = isOrcamento || isEquilibrio;
 
@@ -77,19 +82,22 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     : Math.min(99, Math.round((completedInCourse.length / Math.max(course.modules.length, 1)) * 100));
 
   // Cronômetro de leitura
-  const INITIAL_TIMER_SECONDS = 180;
+  const INITIAL_TIMER_SECONDS = isOrcamento ? 300 : 180;
   const [timeLeft, setTimeLeft] = useState<number>(INITIAL_TIMER_SECONDS);
   const isTimerFinished = timeLeft === 0;
 
   useEffect(() => {
     if (!hasReadingTimer) return;
-
     if (isQuizPassedInContext) {
       setTimeLeft(0);
       return;
     }
+    setTimeLeft(isOrcamento ? 300 : 180);
+  }, [course.id, hasReadingTimer, isQuizPassedInContext, isOrcamento]);
 
-    if (timeLeft <= 0) return;
+  useEffect(() => {
+    if (!hasReadingTimer) return;
+    if (isQuizPassedInContext || timeLeft <= 0) return;
 
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
@@ -102,7 +110,7 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [course.id, hasReadingTimer, isQuizPassedInContext, timeLeft]);
+  }, [hasReadingTimer, isQuizPassedInContext, timeLeft]);
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
@@ -230,13 +238,19 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
             {/* Badges e Pills: rounded-full text-xs font-medium px-3 py-1 bg-slate-800 text-slate-300 */}
             <div className="flex flex-wrap items-center gap-2">
               <span className="rounded-full text-xs font-medium px-3 py-1 bg-slate-800 text-slate-300">
-                {course.category}
+                {isOrcamento ? 'Finanças Pessoais' : course.category}
               </span>
 
               <span className="rounded-full text-xs font-medium px-3 py-1 bg-slate-800 text-slate-300 flex items-center gap-1.5">
                 <Clock className="w-3.5 h-3.5 text-purple-400" />
-                <span>{course.hours === 1 ? '1 hora' : `${course.hours}h`}</span>
+                <span>{course.hours === 1 ? '1 hora' : isOrcamento ? '4 Semanas (12 horas estimadas)' : `${course.hours}h`}</span>
               </span>
+
+              {course.level && (
+                <span className="rounded-full text-xs font-medium px-3 py-1 bg-slate-800 text-slate-300">
+                  Nível: {course.level}
+                </span>
+              )}
 
               <span className="rounded-full text-xs font-medium px-3 py-1 bg-emerald-950/60 text-emerald-300 border border-emerald-500/30">
                 EAD 100% Gratuito
@@ -389,20 +403,8 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
               </div>
             </div>
 
-            <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-2 shadow-md flex items-center justify-center">
-              <img 
-                src="/mapa-mental-orcamento.png" 
-                alt="Mapa Mental: Orçamento do Primeiro Salário" 
-                onError={(e) => {
-                  const target = e.currentTarget;
-                  if (!target.dataset.triedFallback) {
-                    target.dataset.triedFallback = 'true';
-                    target.src = '/api/course-image';
-                  }
-                }}
-                className="w-full h-auto object-contain max-h-[480px] rounded-xl cursor-pointer" 
-                onClick={() => setIsImageExpanded(true)}
-              />
+            <div className="w-full my-2">
+              <OrcamentoMindMap />
             </div>
           </div>
         )}
@@ -528,7 +530,7 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                   </div>
                   <p className="text-sm text-slate-300 font-medium">
                     {isOrcamento 
-                      ? 'Se você quiser aprender mais sobre como administrar seus ganhos, assista ao vídeo complementar:'
+                      ? 'Quer ver estes conceitos na prática? Assista ao vídeo recomendado:'
                       : 'Aprofunde seus conhecimentos assistindo à videoaula recomendada para fixar o aprendizado:'}
                   </p>
                 </div>
@@ -541,7 +543,7 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                   rel="noopener noreferrer"
                   className="bg-purple-600 hover:bg-purple-500 text-white font-medium px-5 py-2.5 rounded-full transition-all shadow-md flex items-center gap-2 text-xs sm:text-sm shrink-0 whitespace-nowrap cursor-pointer hover:scale-[1.02]"
                 >
-                  <span>Assistir no YouTube ➔</span>
+                  <span>{isOrcamento ? '🎬 Assistir no YouTube: Como usar o seu primeiro salário? ➔' : 'Assistir no YouTube ➔'}</span>
                 </a>
               </div>
 
@@ -603,7 +605,7 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                   ) : (
                     <>
                       <HelpCircle className="w-4 h-4" />
-                      <span>Fazer Prova de Fixação (Quiz) ➔</span>
+                      <span>{isOrcamento ? '📝 Fazer Prova de Fixação' : 'Fazer Prova de Fixação (Quiz) ➔'}</span>
                     </>
                   )}
                 </button>
@@ -988,19 +990,25 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
               </div>
             </div>
 
-            <div className="overflow-auto max-h-[75vh] flex items-center justify-center p-2">
-              <img
-                src={isEquilibrio ? '/mapa-mental-equilibrio.png' : '/mapa-mental-orcamento.png'}
-                alt="Mapa Mental Expandido"
-                onError={(e) => {
-                  const target = e.currentTarget;
-                  if (!target.dataset.triedFallback) {
-                    target.dataset.triedFallback = 'true';
-                    target.src = isEquilibrio ? '/api/course-image?course=equilibrio' : '/api/course-image';
-                  }
-                }}
-                className="w-full h-auto object-contain rounded-xl max-w-4xl"
-              />
+            <div className="overflow-auto max-h-[82vh] flex items-center justify-center p-2 w-full">
+              {isOrcamento ? (
+                <div className="w-full">
+                  <OrcamentoMindMap />
+                </div>
+              ) : (
+                <img
+                  src="/mapa-mental-equilibrio.png"
+                  alt="Mapa Mental Expandido"
+                  onError={(e) => {
+                    const target = e.currentTarget;
+                    if (!target.dataset.triedFallback) {
+                      target.dataset.triedFallback = 'true';
+                      target.src = '/api/course-image?course=equilibrio';
+                    }
+                  }}
+                  className="w-full h-auto object-contain rounded-xl max-w-4xl border border-slate-700/50 shadow-2xl transition-all"
+                />
+              )}
             </div>
           </div>
         </div>
@@ -1027,7 +1035,7 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                 Certificação Homologada
               </span>
               <h3 className="text-xl font-bold text-white uppercase tracking-tight">
-                {isEquilibrio ? 'SELO DE INTELIGÊNCIA EMOCIONAL' : isOrcamento ? 'Certificado de Educação Financeira' : 'Certificado de Conclusão'}
+                {isEquilibrio ? 'SELO DE INTELIGÊNCIA EMOCIONAL' : isOrcamento ? 'Selo de Certificação de Educação Financeira do SkillHub' : 'Certificado de Conclusão'}
               </h3>
               <p className="text-xs text-slate-400">
                 A plataforma <strong>SkillHub Curitiba &amp; RMC</strong> confere a:
