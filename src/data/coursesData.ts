@@ -5921,29 +5921,26 @@ export const COURSES: Course[] = [
 
 
 
-if (orcamentoCourse) {
 
 
 
 
 
-  orcamentoCourse.targetAudienceType = ['PRIMEIRO_EMPREGO', 'JOVEM_APRENDIZ', 'ESTUDANTE', 'ESTAGIARIO', 'TODOS'];
-}
-
-
-if (eqCourse) {
-  eqCourse.id = 'equilibrio-emocional';
-  eqCourse.isPublished = true;
-  eqCourse.active = true;
-  eqCourse.visible = true;
-  eqCourse.category = 'Saúde Mental & Desenvolvimento Pessoal';
-}
-
-if (orcamentoCourse) {
 
 
 
 
 
-  orcamentoCourse.targetAudienceType = ['PRIMEIRO_EMPREGO', 'JOVEM_APRENDIZ', 'ESTUDANTE', 'ESTAGIARIO', 'TODOS'];
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
