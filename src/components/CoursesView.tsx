@@ -29,6 +29,8 @@ const COURSE_REASONS: Record<string, string> = {
   'curso-financas-pessoais': 'Organização de rotina semanal, conciliação prática entre os horários escolares e a jornada de trabalho sem esgotamento mental.',
   'curso-excel-iniciante': 'Primeiros passos em planilhas eletrônicas, interface básica, inserção de dados, primeiras fórmulas matemáticas e gráficos simples.',
   'curso-informatica-seguranca': 'Conceitos fundamentais de informática, arquivos em nuvem, cuidados com senhas corporativas e prevenção a vírus e phishing.',
+  'informatica-basica': 'Conceitos fundamentais de informática, arquivos em nuvem, cuidados com senhas corporativas e prevenção a vírus e phishing.',
+  'informatica-basica-nuvem-seguranca': 'Conceitos fundamentais de informática, arquivos em nuvem, cuidados com senhas corporativas e prevenção a vírus e phishing.',
 
   // Nível 2
   'curso-comunicacao-nao-violenta': 'Comunicação empática e sem conflitos no dia a dia do escritório, escuta ativa e mediação de divergências.',
@@ -53,6 +55,8 @@ const LEVEL_DEFINITIONS = [
     dotColor: 'bg-emerald-400',
     priorityOrder: [
       'equilibrio-emocional',
+      'curso-saude-mental-trabalho',
+      'curso-equilibrio-emocional',
 
       'orcamento-primeiro-salario',
       'orcamento-primeiro-salarial',
@@ -149,7 +153,7 @@ export default function CoursesView() {
 
     // Filtro por nível
     const matchesLevel =
-      selectedLevel === 'TODOS' || course.level === selectedLevel;
+      selectedLevel === 'TODOS' || course.level === selectedLevel || Boolean(course.level?.toLowerCase().startsWith(selectedLevel.toLowerCase()));
 
     return matchesSearch && matchesCategory && matchesAudience && matchesLevel;
   });
@@ -333,7 +337,7 @@ export default function CoursesView() {
       <div className="w-full space-y-12">
         {LEVEL_DEFINITIONS.filter((def) => selectedLevel === 'TODOS' || selectedLevel === def.id).map((def) => {
           // Filtrar os cursos deste nível
-          const rawCoursesInLevel = filteredCourses.filter((course) => (course.level || 'Iniciante') === def.id);
+          const rawCoursesInLevel = filteredCourses.filter((course) => (course.level || 'Iniciante') === def.id || Boolean(course.level?.toLowerCase().startsWith(def.id.toLowerCase())));
 
           // Ordenação pedagógica prioritária
           const priorityIndex = (id: string, list: string[]) => {
@@ -403,12 +407,12 @@ export default function CoursesView() {
                               {(course.id === 'orcamento-primeiro-salario' || course.id === 'orcamento-primeiro-salarial') ? 'Finanças Pessoais' : course.category}
                             </span>
                             <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md border ${def.badgeClass}`}>
-                              {course.level || 'Iniciante'}
+                              {(course.id === 'curso-informatica-seguranca' || course.id === 'informatica-basica' || course.id === 'informatica-basica-nuvem-seguranca') ? 'Iniciante / Absoluto Zero' : (course.id === 'curso-saude-mental-trabalho' || course.id === 'equilibrio-emocional' || course.id === 'curso-equilibrio-emocional') ? 'Iniciante a Intermediário / Prático' : (course.level || 'Iniciante')}
                             </span>
                           </div>
                           <span className="text-xs font-semibold text-zinc-400 flex items-center gap-1 shrink-0">
                             <Clock className="w-3.5 h-3.5 text-zinc-400" />
-                            <span>{course.hours}h</span>
+                            <span>{(course.id === 'curso-saude-mental-trabalho' || course.id === 'equilibrio-emocional' || course.id === 'curso-equilibrio-emocional') ? '4 Semanas (12 horas estimadas)' : `${course.hours}h`}</span>
                           </span>
                         </div>
 

@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useApp } from '@/context/AppContext';
-import { COURSES } from '@/data/coursesData';
+import { COURSES, CURSO_EQUILIBRIO_EMOCIONAL } from '@/data/coursesData';
 import { 
   BookOpen, 
   CheckCircle2, 
@@ -23,6 +23,129 @@ import {
   ArrowRight
 } from 'lucide-react';
 import OrcamentoMindMap from '@/components/OrcamentoMindMap';
+function MinimalistVideoPlayer({ 
+  youtubeId, 
+  title, 
+  isOrcamento,
+  isExcel,
+  isInformatica,
+  autoStartMuted = false
+}: { 
+  youtubeId: string; 
+  title: string; 
+  isOrcamento?: boolean; 
+  isExcel?: boolean;
+  isInformatica?: boolean;
+  autoStartMuted?: boolean;
+}) {
+  const [isPlaying, setIsPlaying] = useState<boolean>(autoStartMuted || false);
+  const [isMuted, setIsMuted] = useState<boolean>(autoStartMuted || false);
+
+  useEffect(() => {
+    setIsPlaying(autoStartMuted || false);
+    setIsMuted(autoStartMuted || false);
+  }, [youtubeId, autoStartMuted]);
+
+  if (isPlaying) {
+    return (
+      <div className="w-full flex flex-col gap-2">
+        <div className="relative w-full aspect-video rounded-2xl overflow-hidden border border-purple-500/20 bg-slate-950 shadow-2xl group">
+          <iframe
+            className="w-full h-full"
+            src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&mute=${isMuted ? 1 : 0}&controls=1&rel=0&modestbranding=1&showinfo=0&iv_load_policy=3`}
+            title={title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
+        </div>
+
+        {/* Indicador de Som e Controles */}
+        {isMuted && (
+          <div className="flex items-center justify-between px-3.5 py-2 rounded-xl bg-purple-950/40 border border-purple-500/20 text-xs text-purple-200">
+            <span className="flex items-center gap-2">
+              <span className="text-sm">🔊</span>
+              <span>Vídeo iniciado em modo silencioso para ocultar capa estática.</span>
+            </span>
+            <button
+              type="button"
+              onClick={() => setIsMuted(false)}
+              className="text-xs font-semibold text-purple-300 hover:text-white underline cursor-pointer"
+            >
+              Ativar Som do Vídeo
+            </button>
+          </div>
+        )}
+      </div>
+    );
+  }
+
+  return (
+    <div
+      onClick={() => setIsPlaying(true)}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          setIsPlaying(true);
+        }
+      }}
+      className={`relative w-full aspect-video rounded-2xl overflow-hidden border border-slate-800 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 shadow-2xl flex flex-col items-center justify-center p-6 text-center cursor-pointer group transition-all duration-300 ${
+        isOrcamento ? 'hover:border-emerald-500/50' : 'hover:border-purple-500/50'
+      }`}
+      title="Clique para assistir ao vídeo"
+    >
+      {/* Glow de Fundo */}
+      <div 
+        className={`absolute inset-0 pointer-events-none transition-opacity duration-300 opacity-60 group-hover:opacity-100 ${
+          isOrcamento 
+            ? 'bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.15)_0%,transparent_70%)]' 
+            : 'bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.15)_0%,transparent_70%)]'
+        }`} 
+      />
+
+      {/* Botão Play Central Customizado com Efeito Pulsante */}
+      <div 
+        className={`relative z-10 w-16 h-16 sm:w-20 sm:h-20 rounded-full flex items-center justify-center shadow-xl transition-all duration-300 transform group-hover:scale-110 mb-4 cursor-pointer ${
+          isOrcamento
+            ? 'bg-emerald-500 group-hover:bg-emerald-400 text-slate-950 shadow-emerald-500/30 group-hover:shadow-emerald-500/50'
+            : 'bg-purple-600 group-hover:bg-purple-500 text-white shadow-purple-600/30 group-hover:shadow-purple-600/50'
+        }`}
+      >
+        <Play className={`w-7 h-7 sm:w-8 sm:h-8 translate-x-0.5 ${isOrcamento ? 'fill-slate-950' : 'fill-white'}`} />
+      </div>
+
+      {/* Título e Badges Informativas (Substituindo a Capa Padrão do YouTube) */}
+      <div className="relative z-10 space-y-2 max-w-lg">
+        <span 
+          className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold border ${
+            isOrcamento
+              ? 'bg-emerald-950/70 text-emerald-300 border-emerald-500/30'
+              : 'bg-purple-950/70 text-purple-300 border-purple-500/30'
+          }`}
+        >
+          <Play className="w-3 h-3" />
+          Vídeo Oficial de Conclusão
+        </span>
+        <h4 className="text-base sm:text-xl font-bold text-white group-hover:text-purple-300 transition-colors">
+          {title}
+        </h4>
+        <p className="text-xs text-slate-400">
+          Clique para iniciar a reprodução em alta definição sem anúncios externos e liberar as etapas de conclusão.
+        </p>
+      </div>
+
+      {/* Duração Estimada */}
+      <div className="relative z-10 mt-4 flex items-center gap-2 text-[11px] text-slate-400 bg-slate-900/80 px-3 py-1 rounded-full border border-slate-800">
+        <Clock className={`w-3 h-3 ${isOrcamento ? 'text-emerald-400' : 'text-purple-400'}`} />
+        <span>Duração estimada: 5 min</span>
+        <span>•</span>
+        <span>Player Minimalista SkillHub</span>
+      </div>
+    </div>
+  );
+}
+
 
 export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
   const { 
@@ -41,19 +164,103 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
 
   const activeCourseId = courseId || selectedCourseId;
 
+  const isEquilibrioId = (id?: string | null) =>
+    Boolean(
+      id && (
+        id === 'equilibrio-emocional' ||
+        id === 'curso-equilibrio-emocional' ||
+        id === 'curso-saude-mental-trabalho' ||
+        id.includes('equilibrio') ||
+        id.includes('saude-mental')
+      )
+    );
+
+  const isOrcamentoId = (id?: string | null) =>
+    Boolean(
+      id && (
+        id === 'orcamento-primeiro-salario' ||
+        id === 'orcamento-primeiro-salarial' ||
+        id === 'curso-orcamento-primeiro-salario' ||
+        id.includes('orcamento')
+      )
+    );
+
+  const isExcelId = (id?: string | null) =>
+    Boolean(
+      id && (
+        id === 'curso-excel-iniciante' ||
+        id === 'c11' ||
+        id === 'excel-do-zero' ||
+        id === 'curso-excel-do-zero' ||
+        id.includes('excel-iniciante') ||
+        id.includes('excel-do-zero')
+      )
+    );
+
+  const isInformaticaId = (id?: string | null) =>
+    Boolean(
+      id && (
+        id === 'curso-informatica-seguranca' ||
+        id === 'informatica-basica-nuvem-seguranca' ||
+        id === 'informatica-basica' ||
+        id.includes('informatica')
+      )
+    );
+
   const course = 
+    (isInformaticaId(activeCourseId)
+      ? COURSES.find((c) => isInformaticaId(c.id))
+      : null) ||
     COURSES.find((c) => c.id === activeCourseId) || 
-    COURSES.find((c) => c.id === 'orcamento-primeiro-salario') || 
-    COURSES.find((c) => c.id === 'orcamento-primeiro-salarial') || 
-    COURSES.find((c) => c.id === 'curso-orcamento-primeiro-salario') || 
+    (isEquilibrioId(activeCourseId) 
+      ? (COURSES.find((c) => isEquilibrioId(c.id)) || CURSO_EQUILIBRIO_EMOCIONAL)
+      : null) ||
+    (isOrcamentoId(activeCourseId) 
+      ? COURSES.find((c) => isOrcamentoId(c.id)) 
+      : null) ||
+    (isExcelId(activeCourseId)
+      ? COURSES.find((c) => isExcelId(c.id))
+      : null) ||
+    COURSES.find((c) => isInformaticaId(c.id)) ||
+    COURSES.find((c) => isEquilibrioId(c.id)) ||
+    CURSO_EQUILIBRIO_EMOCIONAL ||
     COURSES[0];
 
-  const isOrcamento = 
-    course.id === 'orcamento-primeiro-salario' || 
-    course.id === 'orcamento-primeiro-salarial' || 
-    course.id === 'curso-orcamento-primeiro-salario';
-  const isEquilibrio = course.id === 'equilibrio-emocional' || course.id === 'curso-equilibrio-emocional' || course.id === 'curso-saude-mental-trabalho';
-  const hasReadingTimer = isOrcamento || isEquilibrio;
+  const isOrcamento = isOrcamentoId(course?.id);
+  const isEquilibrio = isEquilibrioId(course?.id) || isEquilibrioId(activeCourseId);
+  const isExcel = isExcelId(course?.id) || Boolean(course?.title && course.title.toLowerCase().includes('excel do zero'));
+  const isInformatica = isInformaticaId(course?.id) || Boolean(course?.title && course.title.toLowerCase().includes('informática básica'));
+  const hasReadingTimer = isOrcamento || isEquilibrio || isExcel || isInformatica;
+
+  const currentYoutubeId = isInformatica
+    ? 'X2wgk02Bqt0'
+    : isExcel 
+    ? '9QbIuIZMVUw' 
+    : isOrcamento 
+    ? 'CIdkEei-BdU' 
+    : isEquilibrio 
+    ? 'PAVaaGa_gug' 
+    : (course?.youtubeId || 'X2wgk02Bqt0');
+
+  const currentVideoUrl = isInformatica
+    ? 'https://youtu.be/X2wgk02Bqt0?si=vwlWKuVB6909U_dG'
+    : isExcel
+    ? 'https://youtu.be/9QbIuIZMVUw?si=WLZ2FTGusBMd0mU2'
+    : isOrcamento
+    ? 'https://youtu.be/CIdkEei-BdU?si=V5_UIYlhtdcZjtEZ'
+    : isEquilibrio
+    ? 'https://youtu.be/PAVaaGa_gug?si=JYdOWSYOz0oJj5TH'
+    : (course?.videoUrl || 'https://youtu.be/X2wgk02Bqt0');
+
+  const currentVideoTitle = isInformatica
+    ? 'Informática Básica, Nuvem e Segurança da Informação'
+    : isExcel
+    ? 'Excel do Zero: Primeiras Planilhas, Fórmulas Básicas e Gráficos'
+    : isOrcamento
+    ? 'Orçamento do Primeiro Salário: Vídeo de Conclusão'
+    : isEquilibrio
+    ? 'Equilíbrio Emocional, Ansiedade e Foco no Trabalho'
+    : (course?.title || 'Informática Básica, Nuvem e Segurança da Informação');
 
   useEffect(() => {
     if (courseId && setSelectedCourseId && selectedCourseId !== courseId) {
@@ -63,7 +270,6 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
 
   const [activeTab, setActiveTab] = useState<'AULA' | 'QUIZ'>('AULA');
   const [selectedModuleId, setSelectedModuleId] = useState<string | null>(null);
-  const [isImageExpanded, setIsImageExpanded] = useState<boolean>(false);
   const [isCertificateModalOpen, setIsCertificateModalOpen] = useState<boolean>(false);
   const [downloadingPdf, setDownloadingPdf] = useState<boolean>(false);
   const [showConfetti, setShowConfetti] = useState<boolean>(false);
@@ -74,15 +280,15 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
   const [quizScore, setQuizScore] = useState<number>(0);
   const [quizPassedState, setQuizPassedState] = useState<boolean>(false);
 
-  const completedInCourse = completedModules[course.id] || [];
-  const isQuizPassedInContext = Boolean(quizResults[course.id]?.passed);
+  const completedInCourse = (course?.id ? completedModules[course.id] : []) || [];
+  const isQuizPassedInContext = Boolean(course?.id && quizResults[course.id]?.passed);
   const isCourseCompleted = isQuizPassedInContext || quizPassedState;
   const progressPercent = isCourseCompleted 
     ? 100 
-    : Math.min(99, Math.round((completedInCourse.length / Math.max(course.modules.length, 1)) * 100));
+    : Math.min(99, Math.round((completedInCourse.length / Math.max(course?.modules?.length || 1, 1)) * 100));
 
-  // Cronômetro de leitura
-  const INITIAL_TIMER_SECONDS = isOrcamento ? 300 : 180;
+  // Cronômetro de leitura / vídeo com persistência de estado
+  const INITIAL_TIMER_SECONDS = (isOrcamento || isExcel || isInformatica) ? 300 : 180;
   const [timeLeft, setTimeLeft] = useState<number>(INITIAL_TIMER_SECONDS);
   const isTimerFinished = timeLeft === 0;
 
@@ -92,25 +298,45 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
       setTimeLeft(0);
       return;
     }
-    setTimeLeft(isOrcamento ? 300 : 180);
-  }, [course.id, hasReadingTimer, isQuizPassedInContext, isOrcamento]);
+
+    try {
+      const savedTimer = localStorage.getItem(`skillhub_timer_${course.id}`);
+      if (savedTimer !== null) {
+        const parsed = parseInt(savedTimer, 10);
+        if (!isNaN(parsed) && parsed >= 0) {
+          setTimeLeft(parsed);
+          return;
+        }
+      }
+    } catch {}
+
+    setTimeLeft((isOrcamento || isExcel || isInformatica) ? 300 : 180);
+  }, [course.id, hasReadingTimer, isQuizPassedInContext, isOrcamento, isExcel, isInformatica]);
 
   useEffect(() => {
     if (!hasReadingTimer) return;
-    if (isQuizPassedInContext || timeLeft <= 0) return;
+    if (isQuizPassedInContext || timeLeft <= 0) {
+      try {
+        localStorage.setItem(`skillhub_timer_${course.id}`, '0');
+      } catch {}
+      return;
+    }
 
     const timer = setInterval(() => {
       setTimeLeft((prev) => {
-        if (prev <= 1) {
+        const nextVal = prev <= 1 ? 0 : prev - 1;
+        try {
+          localStorage.setItem(`skillhub_timer_${course.id}`, String(nextVal));
+        } catch {}
+        if (nextVal === 0) {
           clearInterval(timer);
-          return 0;
         }
-        return prev - 1;
+        return nextVal;
       });
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [hasReadingTimer, isQuizPassedInContext, timeLeft]);
+  }, [hasReadingTimer, isQuizPassedInContext, timeLeft, course.id]);
 
   const formatTime = (seconds: number) => {
     const mins = Math.floor(seconds / 60);
@@ -120,6 +346,9 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
 
   const handleSkipTimerForTesting = () => {
     setTimeLeft(0);
+    try {
+      localStorage.setItem(`skillhub_timer_${course.id}`, '0');
+    } catch {}
     showToast('Timer Concluído para Testes', 'O Quiz do curso foi liberado para validação imediata.', 'info');
   };
 
@@ -187,10 +416,10 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
   const studentName = currentUser?.nome || student?.nome || 'Jovem Aprendiz';
 
   // Informações do Módulo Ativo
-  const currentModuleIndex = selectedModuleId 
+  const currentModuleIndex = selectedModuleId && course?.modules
     ? course.modules.findIndex((m) => m.id === selectedModuleId)
     : -1;
-  const currentModule = currentModuleIndex >= 0 ? course.modules[currentModuleIndex] : null;
+  const currentModule = currentModuleIndex >= 0 && course?.modules ? course.modules[currentModuleIndex] : null;
   const isCurrentModuleDone = currentModule ? completedInCourse.includes(currentModule.id) : false;
 
   return (
@@ -243,12 +472,12 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
 
               <span className="rounded-full text-xs font-medium px-3 py-1 bg-slate-800 text-slate-300 flex items-center gap-1.5">
                 <Clock className="w-3.5 h-3.5 text-purple-400" />
-                <span>{course.hours === 1 ? '1 hora' : isOrcamento ? '4 Semanas (12 horas estimadas)' : `${course.hours}h`}</span>
+                <span>{course.hours === 1 ? '1 hora' : (isOrcamento || isEquilibrio) ? '4 Semanas (12 horas estimadas)' : `${course.hours}h`}</span>
               </span>
 
               {course.level && (
                 <span className="rounded-full text-xs font-medium px-3 py-1 bg-slate-800 text-slate-300">
-                  Nível: {course.level}
+                  Nível: {isEquilibrio ? 'Iniciante a Intermediário / Prático' : course.level}
                 </span>
               )}
 
@@ -316,19 +545,19 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                 disabled={hasReadingTimer && !isTimerFinished}
                 className={`w-full py-2 px-3 rounded-lg text-xs font-medium flex items-center justify-center gap-1.5 transition-colors ${
                   hasReadingTimer && !isTimerFinished
-                    ? 'bg-slate-800 text-slate-500 cursor-not-allowed'
-                    : 'bg-purple-600 hover:bg-purple-500 text-white cursor-pointer shadow-md shadow-purple-600/20'
+                    ? 'bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-700'
+                    : (isOrcamento ? 'bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer shadow-md' : 'bg-purple-600 hover:bg-purple-500 text-white cursor-pointer shadow-md shadow-purple-600/20')
                 }`}
               >
                 {hasReadingTimer && !isTimerFinished ? (
                   <>
                     <Lock className="w-3.5 h-3.5 text-slate-500" />
-                    <span>Quiz Bloqueado ({formatTime(timeLeft)})</span>
+                    <span>🔒 Prova Bloqueada ({formatTime(timeLeft)})</span>
                   </>
                 ) : (
                   <>
                     <HelpCircle className="w-3.5 h-3.5" />
-                    <span>Fazer Quiz Oficial</span>
+                    <span>{isOrcamento ? 'Fazer Prova de Fixação' : 'Fazer Quiz Oficial'}</span>
                   </>
                 )}
               </button>
@@ -336,78 +565,6 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
           </div>
 
         </div>
-
-        {/* ===================================================================== */}
-        {/* MAPA MENTAL OFICIAL (APENAS NOS CURSOS QUE POSSUEM O MATERIAL)        */}
-        {/* ===================================================================== */}
-        {isEquilibrio && (
-          <div className="pt-2 space-y-3">
-            <div className="flex items-center justify-between pb-2 border-b border-slate-800/80">
-              <span className="text-xs font-semibold text-slate-300 flex items-center gap-2">
-                <BookOpen className="w-3.5 h-3.5 text-purple-400" />
-                <span>Material Visual de Referência: Mapa Mental &amp; Práticas Diárias</span>
-              </span>
-              <button
-                type="button"
-                onClick={() => setIsImageExpanded(true)}
-                className="px-2.5 py-1 rounded-md text-xs font-medium border border-slate-700 text-slate-300 hover:bg-slate-800 transition-colors flex items-center gap-1 cursor-pointer"
-              >
-                <Maximize2 className="w-3 h-3 text-purple-400" />
-                <span>Ampliar Mapa</span>
-              </button>
-            </div>
-
-            <div className="w-full rounded-2xl border border-purple-500/20 shadow-md overflow-hidden bg-slate-900/60 p-2">
-              <img 
-                src="/mapa-mental-equilibrio.png" 
-                alt="Mapa Mental Equilíbrio Emocional" 
-                onError={(e) => {
-                  const target = e.currentTarget;
-                  if (!target.dataset.triedFallback) {
-                    target.dataset.triedFallback = 'true';
-                    target.src = '/api/course-image?course=equilibrio';
-                  }
-                }}
-                className="w-full h-auto rounded-xl object-contain cursor-pointer transition-transform hover:scale-[1.01] max-h-[480px]"
-                onClick={() => setIsImageExpanded(true)}
-              />
-            </div>
-          </div>
-        )}
-
-        {isOrcamento && (
-          <div className="pt-2 space-y-3">
-            <div className="flex items-center justify-between pb-2 border-b border-slate-800/80">
-              <span className="text-xs font-semibold text-slate-300 flex items-center gap-2">
-                <BookOpen className="w-3.5 h-3.5 text-purple-400" />
-                <span>Material Visual de Referência: Mapa Mental do Orçamento</span>
-              </span>
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => setIsImageExpanded(true)}
-                  className="px-2.5 py-1 rounded-md text-xs font-medium border border-slate-700 text-slate-300 hover:bg-slate-800 transition-colors flex items-center gap-1 cursor-pointer"
-                >
-                  <Maximize2 className="w-3 h-3 text-purple-400" />
-                  <span>Ampliar</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={handleDownloadInfografico}
-                  disabled={downloadingPdf}
-                  className="px-2.5 py-1 rounded-md text-xs font-medium border border-slate-700 text-slate-300 hover:bg-slate-800 transition-colors flex items-center gap-1 cursor-pointer"
-                >
-                  <Download className="w-3 h-3 text-purple-400" />
-                  <span>{downloadingPdf ? 'Baixando...' : 'Baixar PDF'}</span>
-                </button>
-              </div>
-            </div>
-
-            <div className="w-full my-2">
-              <OrcamentoMindMap />
-            </div>
-          </div>
-        )}
 
       </div>
 
@@ -431,12 +588,12 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                     Módulos do Curso
                   </h2>
                   <span className="rounded-full text-xs font-semibold px-2.5 py-0.5 bg-slate-800 text-slate-300">
-                    {course.modules.length} {course.modules.length === 1 ? 'módulo' : 'módulos'}
+                    {course?.modules?.length || 4} {(course?.modules?.length || 4) === 1 ? 'módulo' : 'módulos'}
                   </span>
                 </div>
 
                 <span className="text-xs text-slate-400 font-medium">
-                  {completedInCourse.length} de {course.modules.length} concluídos
+                  {completedInCourse.length} de {course?.modules?.length || 4} concluídos
                 </span>
               </div>
 
@@ -521,30 +678,97 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                 })}
               </div>
 
-              {/* CARD DE VÍDEO RECOMENDADO NO YOUTUBE (CENTRALIZADO) */}
-              <div className="w-full bg-slate-900/40 border border-slate-800/80 rounded-2xl p-6 backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
-                <div className="space-y-1 text-center sm:text-left">
-                  <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-purple-400">
-                    <Play className="w-3.5 h-3.5 text-purple-400" />
-                    <span>Material Audiovisual Complementar</span>
+              {/* SEÇÃO DE VÍDEO DE CONCLUSÃO (PLAYER MINIMALISTA 16:9 SKILLHUB) */}
+              <div className="w-full bg-slate-900/50 border border-slate-800 rounded-2xl p-6 backdrop-blur-md flex flex-col items-center gap-5 shadow-xl">
+                <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+                  <div className="space-y-1">
+                    <div className={`inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider ${isOrcamento ? 'text-emerald-400' : 'text-purple-400'}`}>
+                      <Play className="w-3.5 h-3.5" />
+                      <span>{isExcel || isOrcamento || isInformatica ? 'Vídeo Oficial de Conclusão' : isEquilibrio ? 'Vídeo Oficial do Curso' : 'Material Audiovisual Complementar'}</span>
+                    </div>
+                    <h3 className="text-base sm:text-lg font-bold text-white">
+                      {currentVideoTitle}
+                    </h3>
+                    <p className="text-xs text-slate-300 font-normal">
+                      {isInformatica
+                        ? 'Assista à aula prática de Informática Básica, Nuvem e Segurança e aguarde o temporizador para liberar o acesso à Prova de Fixação.'
+                        : isExcel
+                        ? 'Assista à videoaula prática de Excel e acompanhe o temporizador para liberar o acesso à Prova de Fixação.'
+                        : isOrcamento 
+                        ? 'Assista ao vídeo de conclusão completo e aguarde o temporizador para liberar o acesso à Prova de Fixação.'
+                        : isEquilibrio 
+                        ? 'Assista à aula completa e aguarde o temporizador para liberar o acesso à Prova de Fixação.' 
+                        : 'Aprofunde seus conhecimentos assistindo à videoaula recomendada para fixar o aprendizado.'}
+                    </p>
                   </div>
-                  <p className="text-sm text-slate-300 font-medium">
-                    {isOrcamento 
-                      ? 'Quer ver estes conceitos na prática? Assista ao vídeo recomendado:'
-                      : 'Aprofunde seus conhecimentos assistindo à videoaula recomendada para fixar o aprendizado:'}
-                  </p>
+
+                  <a
+                    href={currentVideoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`font-medium px-4 py-2 rounded-full transition-all shadow-md flex items-center gap-2 text-xs shrink-0 whitespace-nowrap cursor-pointer hover:scale-[1.02] text-white ${
+                      isOrcamento ? 'bg-emerald-600 hover:bg-emerald-500' : 'bg-purple-600 hover:bg-purple-500'
+                    }`}
+                  >
+                    <span>Abrir no YouTube ➔</span>
+                  </a>
                 </div>
 
-                <a
-                  href={isOrcamento 
-                    ? "https://youtu.be/CIdkEei-BdU?si=V5_UIYlhtdcZjtEZ" 
-                    : "https://www.youtube.com/results?search_query=inteligencia+emocional+e+foco+no+trabalho"}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-purple-600 hover:bg-purple-500 text-white font-medium px-5 py-2.5 rounded-full transition-all shadow-md flex items-center gap-2 text-xs sm:text-sm shrink-0 whitespace-nowrap cursor-pointer hover:scale-[1.02]"
-                >
-                  <span>{isOrcamento ? '🎬 Assistir no YouTube: Como usar o seu primeiro salário? ➔' : 'Assistir no YouTube ➔'}</span>
-                </a>
+                <div className="w-full max-w-4xl space-y-4">
+                  <MinimalistVideoPlayer
+                    youtubeId={currentYoutubeId}
+                    title={currentVideoTitle}
+                    isOrcamento={isOrcamento}
+                    isExcel={isExcel}
+                    isInformatica={isInformatica}
+                    autoStartMuted={isExcel || isInformatica}
+                  />
+
+                  {/* Barra de Progresso do Vídeo Vinculada ao Temporizador */}
+                  {hasReadingTimer && (
+                    <div className="w-full bg-slate-900/60 border border-purple-500/20 rounded-2xl p-4 backdrop-blur-md shadow-lg space-y-2.5">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                        <div className="flex items-center gap-2 text-slate-300 font-medium">
+                          <Clock className={`w-4 h-4 ${isOrcamento ? 'text-emerald-400' : 'text-purple-400'}`} />
+                          <span>
+                            {isTimerFinished 
+                              ? '✅ Tempo mínimo de visualização concluído!' 
+                              : `⏱️ Tempo de visualização: ${formatTime(INITIAL_TIMER_SECONDS - timeLeft)} de ${formatTime(INITIAL_TIMER_SECONDS)}`}
+                          </span>
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                          <span className={`text-xs font-semibold ${isOrcamento ? 'text-emerald-400' : 'text-purple-300'}`}>
+                            {Math.round(((INITIAL_TIMER_SECONDS - timeLeft) / INITIAL_TIMER_SECONDS) * 100)}% concluído
+                          </span>
+                          {!isTimerFinished && (
+                            <button
+                              type="button"
+                              onClick={handleSkipTimerForTesting}
+                              className={`text-xs ${isOrcamento ? 'text-emerald-400' : 'text-purple-400'} hover:underline cursor-pointer`}
+                              title="Atalho de teste para validação imediata"
+                            >
+                              (pular tempo)
+                            </button>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                        <div
+                          className={`h-full transition-all duration-500 rounded-full ${
+                            isTimerFinished 
+                              ? 'bg-emerald-500 w-full' 
+                              : isOrcamento 
+                              ? 'bg-gradient-to-r from-emerald-600 to-teal-400' 
+                              : 'bg-gradient-to-r from-purple-600 to-emerald-400'
+                          }`}
+                          style={{ width: `${Math.round(((INITIAL_TIMER_SECONDS - timeLeft) / INITIAL_TIMER_SECONDS) * 100)}%` }}
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
 
               {/* BARRA INFERIOR DE TIMER & QUIZ */}
@@ -552,15 +776,15 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                 <div className="flex items-center gap-3">
                   {hasReadingTimer ? (
                     <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700 text-xs font-medium">
-                      <Clock className="w-3.5 h-3.5 text-purple-400" />
+                      <Clock className={`w-3.5 h-3.5 ${isOrcamento ? 'text-emerald-400' : 'text-purple-400'}`} />
                       <span>
-                        {isTimerFinished ? 'Tempo de estudo concluído' : `⏱️ Tempo mínimo de leitura: ${formatTime(timeLeft)}`}
+                        {isTimerFinished ? '✅ Vídeo e leitura concluídos' : `⏱️ Tempo mínimo de visualização: ${formatTime(timeLeft)}`}
                       </span>
                     </div>
                   ) : (
                     <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700 text-xs font-medium">
                       <BookOpen className="w-3.5 h-3.5 text-purple-400" />
-                      <span>{completedInCourse.length} de {course.modules.length} módulos concluídos</span>
+                      <span>{completedInCourse.length} de {course?.modules?.length || 4} módulos concluídos</span>
                     </div>
                   )}
 
@@ -568,8 +792,8 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                     <button
                       type="button"
                       onClick={handleSkipTimerForTesting}
-                      className="text-xs text-purple-400 hover:underline cursor-pointer"
-                      title="Atalho de teste"
+                      className={`text-xs ${isOrcamento ? 'text-emerald-400' : 'text-purple-400'} hover:underline cursor-pointer`}
+                      title="Atalho de teste para validação imediata"
                     >
                       (pular tempo)
                     </button>
@@ -588,8 +812,8 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                     isCourseCompleted
                       ? 'bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer'
                       : !hasReadingTimer || isTimerFinished
-                      ? 'bg-purple-600 hover:bg-purple-500 text-white cursor-pointer hover:scale-[1.02]'
-                      : 'bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-700'
+                      ? (isOrcamento ? 'bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer hover:scale-[1.02]' : 'bg-purple-600 hover:bg-purple-500 text-white cursor-pointer hover:scale-[1.02]')
+                      : 'bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-700 opacity-70'
                   }`}
                 >
                   {isCourseCompleted ? (
@@ -599,13 +823,13 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                     </>
                   ) : hasReadingTimer && !isTimerFinished ? (
                     <>
-                      <Lock className="w-4 h-4" />
-                      <span>Quiz Bloqueado ({formatTime(timeLeft)})</span>
+                      <Lock className="w-4 h-4 text-slate-500" />
+                      <span>🔒 Prova Bloqueada ({formatTime(timeLeft)})</span>
                     </>
                   ) : (
                     <>
                       <HelpCircle className="w-4 h-4" />
-                      <span>{isOrcamento ? '📝 Fazer Prova de Fixação' : 'Fazer Prova de Fixação (Quiz) ➔'}</span>
+                      <span>{isOrcamento ? '📝 Acessar Prova de Fixação ➔' : 'Fazer Prova de Fixação (Quiz) ➔'}</span>
                     </>
                   )}
                 </button>
@@ -635,7 +859,7 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
 
                   <div className="flex items-center gap-2.5">
                     <span className="rounded-full text-xs font-semibold px-3 py-1 bg-slate-800 text-slate-300">
-                      Módulo {currentModuleIndex + 1} de {course.modules.length}
+                      Módulo {currentModuleIndex + 1} de {course?.modules?.length || 4}
                     </span>
 
                     <button
@@ -723,6 +947,136 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                       </div>
                     ))}
                   </div>
+
+                  {/* VÍDEO DE ENCERRAMENTO COM TEMPORIZADOR (MÓDULO 4 / FINAL DO CURSO) */}
+                  {(Boolean(currentModule) && (currentModuleIndex === (course?.modules?.length ? course.modules.length - 1 : 3) || currentModule?.number === 4)) && (
+                    <div className="mt-8 pt-6 border-t border-slate-800 space-y-4">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div className="space-y-1">
+                          <div className={`inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider ${isOrcamento ? 'text-emerald-400' : 'text-purple-400'}`}>
+                            <Play className="w-3.5 h-3.5" />
+                            <span>Vídeo de Conclusão (Obrigatório)</span>
+                          </div>
+                          <h4 className="text-base font-bold text-white">
+                            {currentVideoTitle}
+                          </h4>
+                          <p className="text-xs text-slate-300">
+                            Assista ao vídeo de conclusão antes de realizar a Prova de Fixação. O botão de prova será desbloqueado quando o temporizador atingir 00:00.
+                          </p>
+                        </div>
+
+                        <div className="flex items-center gap-2">
+                          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-800 text-slate-300 border border-slate-700 text-xs font-medium">
+                            <Clock className={`w-3.5 h-3.5 ${isOrcamento ? 'text-emerald-400' : 'text-purple-400'}`} />
+                            <span>{isTimerFinished ? 'Tempo concluído' : `⏱️ Mínimo: ${formatTime(timeLeft)}`}</span>
+                          </div>
+                          {!isTimerFinished && (
+                            <button
+                              type="button"
+                              onClick={handleSkipTimerForTesting}
+                              className={`text-[11px] ${isOrcamento ? 'text-emerald-400' : 'text-purple-400'} hover:underline cursor-pointer`}
+                              title="Pular tempo para validação imediata"
+                            >
+                              (pular tempo)
+                            </button>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="w-full max-w-4xl mx-auto space-y-4">
+                        <MinimalistVideoPlayer
+                          youtubeId={currentYoutubeId}
+                          title={currentVideoTitle}
+                          isOrcamento={isOrcamento}
+                          isExcel={isExcel}
+                          isInformatica={isInformatica}
+                          autoStartMuted={isExcel || isInformatica}
+                        />
+
+                        {/* Barra de Progresso do Vídeo Vinculada ao Temporizador */}
+                        {hasReadingTimer && (
+                          <div className="w-full bg-slate-900/60 border border-purple-500/20 rounded-2xl p-4 backdrop-blur-md shadow-lg space-y-2.5">
+                            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+                              <div className="flex items-center gap-2 text-slate-300 font-medium">
+                                <Clock className={`w-4 h-4 ${isOrcamento ? 'text-emerald-400' : 'text-purple-400'}`} />
+                                <span>
+                                  {isTimerFinished 
+                                    ? '✅ Tempo mínimo de visualização concluído!' 
+                                    : `⏱️ Tempo de visualização: ${formatTime(INITIAL_TIMER_SECONDS - timeLeft)} de ${formatTime(INITIAL_TIMER_SECONDS)}`}
+                                </span>
+                              </div>
+
+                              <div className="flex items-center gap-3">
+                                <span className={`text-xs font-semibold ${isOrcamento ? 'text-emerald-400' : 'text-purple-300'}`}>
+                                  {Math.round(((INITIAL_TIMER_SECONDS - timeLeft) / INITIAL_TIMER_SECONDS) * 100)}% concluído
+                                </span>
+                                {!isTimerFinished && (
+                                  <button
+                                    type="button"
+                                    onClick={handleSkipTimerForTesting}
+                                    className={`text-xs ${isOrcamento ? 'text-emerald-400' : 'text-purple-400'} hover:underline cursor-pointer`}
+                                    title="Pular tempo para validação imediata"
+                                  >
+                                    (pular tempo)
+                                  </button>
+                                )}
+                              </div>
+                            </div>
+
+                            <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                              <div
+                                className={`h-full transition-all duration-500 rounded-full ${
+                                  isTimerFinished 
+                                    ? 'bg-emerald-500 w-full' 
+                                    : isOrcamento 
+                                    ? 'bg-gradient-to-r from-emerald-600 to-teal-400' 
+                                    : 'bg-gradient-to-r from-purple-600 to-emerald-400'
+                                }`}
+                                style={{ width: `${Math.round(((INITIAL_TIMER_SECONDS - timeLeft) / INITIAL_TIMER_SECONDS) * 100)}%` }}
+                              />
+                            </div>
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3">
+                        <span className="text-xs text-slate-400">
+                          {isTimerFinished
+                            ? '✅ Temporizador concluído! Prova de Fixação liberada.'
+                            : '⏳ Assista ao vídeo de conclusão para desbloquear a Prova de Fixação.'}
+                        </span>
+
+                        <button
+                          type="button"
+                          disabled={!isTimerFinished}
+                          onClick={() => {
+                            if (!isCurrentModuleDone) {
+                              markModuleComplete(course.id, currentModule.id);
+                            }
+                            setActiveTab('QUIZ');
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                          }}
+                          className={`w-full sm:w-auto px-5 py-2.5 rounded-full text-xs font-semibold flex items-center justify-center gap-2 transition-all shadow-md ${
+                            isTimerFinished
+                              ? (isOrcamento ? 'bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer hover:scale-[1.02]' : 'bg-purple-600 hover:bg-purple-500 text-white cursor-pointer hover:scale-[1.02]')
+                              : 'bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-700 opacity-70'
+                          }`}
+                        >
+                          {isTimerFinished ? (
+                            <>
+                              <span>Avançar para Prova de Fixação</span>
+                              <ArrowRight className="w-4 h-4" />
+                            </>
+                          ) : (
+                            <>
+                              <Lock className="w-3.5 h-3.5 text-slate-500" />
+                              <span>🔒 Prova Bloqueada ({formatTime(timeLeft)})</span>
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </div>
+                  )}
 
                   {/* Rodapé de Navegação Entre Módulos */}
                   <div className="pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
@@ -950,67 +1304,6 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
             </div>
           )}
 
-        </div>
-      )}
-
-      {/* ========================================================================= */}
-      {/* 5. MODAL DE EXPANSÃO DA IMAGEM                                            */}
-      {/* ========================================================================= */}
-      {isImageExpanded && (
-        <div 
-          onClick={() => setIsImageExpanded(false)}
-          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex flex-col items-center justify-center p-4 animate-fadeIn cursor-zoom-out"
-        >
-          <div 
-            onClick={(e) => e.stopPropagation()}
-            className="relative max-w-5xl w-full bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-2xl flex flex-col space-y-3 max-h-[92vh] cursor-default"
-          >
-            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-              <span className="text-white font-semibold text-sm">
-                Material Visual: {course.title}
-              </span>
-
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={handleDownloadInfografico}
-                  className="px-3 py-1 rounded-md bg-purple-600 hover:bg-purple-500 text-white text-xs font-medium flex items-center gap-1.5 cursor-pointer shadow-sm"
-                >
-                  <Download className="w-3.5 h-3.5" />
-                  <span>Baixar</span>
-                </button>
-
-                <button
-                  type="button"
-                  onClick={() => setIsImageExpanded(false)}
-                  className="p-1 rounded-md text-slate-400 hover:text-white transition-colors cursor-pointer"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-            </div>
-
-            <div className="overflow-auto max-h-[82vh] flex items-center justify-center p-2 w-full">
-              {isOrcamento ? (
-                <div className="w-full">
-                  <OrcamentoMindMap />
-                </div>
-              ) : (
-                <img
-                  src="/mapa-mental-equilibrio.png"
-                  alt="Mapa Mental Expandido"
-                  onError={(e) => {
-                    const target = e.currentTarget;
-                    if (!target.dataset.triedFallback) {
-                      target.dataset.triedFallback = 'true';
-                      target.src = '/api/course-image?course=equilibrio';
-                    }
-                  }}
-                  className="w-full h-auto object-contain rounded-xl max-w-4xl border border-slate-700/50 shadow-2xl transition-all"
-                />
-              )}
-            </div>
-          </div>
         </div>
       )}
 

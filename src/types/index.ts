@@ -118,6 +118,7 @@ export interface Course {
   targetAudienceType: CandidateProfileType[] | 'TODOS';
   title: string;
   subtitle: string;
+  description?: string;
   hours: number;
   equivalentHours: number;
   modality: string;
@@ -127,7 +128,7 @@ export interface Course {
   badgeCategory: string;
   badgeIcon: string;
   accentColor: string;
-  level?: 'Iniciante' | 'Intermediário' | 'Avançado';
+  level?: 'Iniciante' | 'Intermediário' | 'Avançado' | string;
   learningObjectives: string[];
   modules: CourseModule[];
   caseStudies: CaseStudy[];
@@ -136,6 +137,8 @@ export interface Course {
   published?: boolean;
   active?: boolean;
   visible?: boolean;
+  videoUrl?: string;
+  youtubeId?: string;
 }
 
 export interface TrackStep {
@@ -160,7 +163,7 @@ export interface Track {
   badgeReward: string;
   icon: string;
   accentColor: string;
-  level?: 'Iniciante' | 'Intermediário' | 'Avançado';
+  level?: 'Iniciante' | 'Intermediário' | 'Avançado' | string;
   steps?: TrackStep[];
 }
 
