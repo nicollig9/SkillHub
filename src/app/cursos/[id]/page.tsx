@@ -10,7 +10,7 @@ import { useApp } from '@/context/AppContext';
 export default function CourseRoutePage() {
   const params = useParams();
   const rawId = params?.id;
-  const courseId = Array.isArray(rawId) ? rawId[0] : (rawId as string) || 'orcamento-primeiro-salarial';
+  const courseId = Array.isArray(rawId) ? rawId[0] : (rawId as string) || 'orcamento-primeiro-salario';
   const { setSelectedCourseId, isAuthenticated } = useApp();
 
   useEffect(() => {

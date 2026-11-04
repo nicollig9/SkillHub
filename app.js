@@ -406,6 +406,8 @@ const COURSES_DATA = [
     level: 'Iniciante',
     format: 'Laboratório Prático',
     badgeName: 'Excel Fundamentos',
+    videoUrl: 'https://youtu.be/9QbIuIZMVUw?si=WLZ2FTGusBMd0mU2',
+    youtubeId: '9QbIuIZMVUw',
     badgeIcon: 'fa-table-cells',
     accentColor: 'cyan',
     syllabus: [
@@ -426,6 +428,102 @@ const COURSES_DATA = [
           'Jogo da velha (#)'
         ],
         correct: 1
+      }
+    ]
+  },
+  {
+  {
+    id: 'curso-informatica-seguranca',
+    track: 'trilha-3',
+    trackName: '3. Tecnologia & Informática',
+    title: 'Informática Básica, Nuvem e Segurança da Informação',
+    description: 'Sistemas operacionais, atalhos de produtividade, Google Workspace, OneDrive e defesa contra ameaças cibernéticas.',
+    duration: '12 horas',
+    level: 'Iniciante',
+    format: 'EAD 100% Gratuito',
+    badgeName: 'Segurança Digital & Nuvem',
+    videoUrl: 'https://youtu.be/X2wgk02Bqt0?si=vwlWKuVB6909U_dG',
+    youtubeId: 'X2wgk02Bqt0',
+    badgeIcon: 'fa-shield-halved',
+    accentColor: 'cyan',
+    syllabus: [
+      'Módulo 1: Fundamentos de Informática e Sistemas Operacionais',
+      'Módulo 2: Navegação na Web e Serviços de Produtividade em Nuvem',
+      'Módulo 3: Segurança da Informação e Proteção de Dados',
+      'Módulo 4: Rotinas de Proteção e Lei Geral de Proteção de Dados (LGPD)'
+    ],
+    prerequisites: 'Nenhum pré-requisito.',
+    instructor: 'Especialista em TI e Cibersegurança',
+    quiz: [
+      {
+        question: 'Um profissional recebeu um e-mail parecendo ser do seu banco, informando sobre o bloqueio da conta e solicitando que ele clique em um link para digitar sua senha e reativar o acesso. Trata-se de uma tentativa de golpe conhecida como:',
+        options: [
+          'Phishing.',
+          'Defragmentação de disco.',
+          'Backup em nuvem.',
+          'Atualização de firmware.'
+        ],
+        correct: 0
+      },
+      {
+        question: 'Para reforçar a segurança de uma conta corporativa de e-mail contra acessos não autorizados, qual das opções representa a prática recomendada de proteção adicional?',
+        options: [
+          'Utilizar a mesma senha simples em todos os sites da internet.',
+          'Anotar a senha em um bloco de notas colado no monitor do computador.',
+          'Habilitar a Autenticação em Duas Etapas (2FA) utilizando um aplicativo autenticador.',
+          'Compartilhar a senha com todos os colegas de equipe para facilitar o trabalho.'
+        ],
+        correct: 2
+      },
+      {
+        question: 'Na rotina de trabalho em equipe utilizando serviços de armazenamento em nuvem (como Google Drive ou OneDrive), qual é a vantagem de definir uma permissão como \"Apenas Leitura\" ao compartilhar um arquivo com um parceiro externo?',
+        options: [
+          'Permitir que a pessoa apague permanentemente o arquivo original.',
+          'Garantir que o destinatário consiga visualizar o documento sem a possibilidade de alterar seu conteúdo original.',
+          'Fazer com que o arquivo seja impresso automaticamente na impressora do destinatário.',
+          'Bloquear completamente o acesso da pessoa ao link compartilhado.'
+        ],
+        correct: 1
+      },
+      {
+        question: 'Qual atalho universal de teclado nos sistemas operacionais é utilizado para alternar rapidamente entre as janelas e programas abertos na tela?',
+        options: [
+          'Ctrl + P',
+          'Alt + Tab',
+          'Ctrl + S',
+          'Windows + L'
+        ],
+        correct: 1
+      },
+      {
+        question: 'A estratégia de proteção de dados conhecida como \"Regra 3-2-1 de Backup\" recomenda qual das seguintes estruturas para garantir que informações críticas não sejam perdidas?',
+        options: [
+          'Guardar 3 cópias dos dados, em 2 mídias diferentes, com 1 cópia armazenada em um local externo (como a nuvem).',
+          'Fazer backup a cada 3 dias, durante 2 meses, usando 1 pendrive usado.',
+          'Salvar 3 arquivos na mesma pasta, em 2 computadores iguais, sem senha.',
+          'Enviar 3 e-mails para você mesmo com 2 anexos em 1 dia.'
+        ],
+        correct: 0
+      },
+      {
+        question: 'Um tipo nocivo de software malicioso que criptografa (bloqueia) os arquivos de um computador e exige o pagamento de um \"resgate\" financeiro para liberar o acesso aos dados é chamado de:',
+        options: [
+          'Antivírus.',
+          'Ransomware.',
+          'Sistema Operacional.',
+          'Processador.'
+        ],
+        correct: 1
+      },
+      {
+        question: 'Para encontrar no Google exatamente um arquivo em formato PDF contendo um manual de instruções, sem exibir páginas com textos genéricos, qual expressão de busca utiliza o operador correto?',
+        options: [
+          'manual de instrucoes filetype:pdf',
+          'manual + instrucoes + site',
+          'buscar manual formato texto',
+          'pdf.manual.com'
+        ],
+        correct: 0
       }
     ]
   },

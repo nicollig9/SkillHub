@@ -329,6 +329,547 @@ export const TRACKS: Track[] = [
   }
 ];
 
+// =========================================================================
+// CURSO OFICIAL: EQUILÍBRIO EMOCIONAL, ANSIEDADE E FOCO NO TRABALHO
+// =========================================================================
+export const CURSO_EQUILIBRIO_EMOCIONAL: Course = {
+  id: 'curso-saude-mental-trabalho',
+  published: true,
+  isPublished: true,
+  active: true,
+  visible: true,
+  trackId: 'trilha-2',
+  trackName: 'TRILHA 2: Soft Skills, Postura & Comunicação Corporativa',
+  category: 'Desenvolvimento Pessoal',
+  targetAudienceType: 'TODOS',
+  title: 'Equilíbrio Emocional, Ansiedade e Foco no Trabalho',
+  subtitle: 'Capacitar o profissional a identificar gatilhos de estresse e ansiedade no ambiente corporativo, aplicar técnicas de autorregulação emocional e mindfulness, manter o foco em tarefas complexas e construir uma rotina de trabalho mentalmente saudável e sustentável.',
+  hours: 12,
+  equivalentHours: 12,
+  modality: 'EAD 100% Gratuito (Escola Virtual)',
+  targetAudience: 'Estudantes, aprendizes e profissionais em transição ou atuação no mercado de trabalho',
+  prerequisites: 'Nenhum pré-requisito.',
+  badgeName: 'Equilíbrio Emocional & Foco',
+  badgeCategory: 'Saúde Mental & Carreira',
+  videoUrl: 'https://youtu.be/PAVaaGa_gug?si=JYdOWSYOz0oJj5TH',
+  youtubeId: 'PAVaaGa_gug',
+  badgeIcon: 'HeartPulse',
+  accentColor: '#EC4899',
+  level: 'Iniciante',
+  learningObjectives: [
+    'Identificar o mecanismo biológico do estresse no trabalho, compreendendo as diferenças entre Eustresse (positivo) e Distresse (negativo).',
+    'Mapear gatilhos individuais internos (perfeccionismo, síndrome do impostor) e externos (pressões, reuniões e cobranças).',
+    'Aplicar técnicas de autorregulação fisiológica e respiratória como Respiração Quadrada (Box Breathing) e Técnica 4-7-8.',
+    'Praticar a reestruturação cognitiva contra a catastrofização, focando em fatos e planos de ação práticos.',
+    'Implementar o Trabalho Profundo (Deep Work) e a pausa estratégica com o método S.T.O.P. de Mindfulness Corporativo.',
+    'Estabelecer fronteiras e desconexão digital no expediente, prevenindo precocemente os sinais e estágios da Síndrome de Burnout.'
+  ],
+  modules: [
+    {
+      id: 'sau-mod-1',
+      number: 1,
+      title: 'MÓDULO 1: Inteligência Emocional e Mapeamento de Gatilhos',
+      summary: 'O primeiro passo para o equilíbrio emocional é o autoconhecimento. O ambiente corporativo expõe os profissionais a pressões constantes, prazos curtos e conflitos interpessoais. Entender como o corpo e a mente reagem a esses estímulos é fundamental para evitar a exaustão.',
+      estimatedMinutes: 45,
+      content: {
+        sections: [
+          {
+            subheading: '1. O Mecanismo do Estresse no Trabalho',
+            body: [
+              'O primeiro passo para o equilíbrio emocional é o autoconhecimento. O ambiente corporativo expõe os profissionais a pressões constantes, prazos curtos e conflitos interpessoais. Entender como o corpo e a mente reagem a esses estímulos é fundamental para evitar a exaustão.',
+              'O estresse é uma resposta biológica natural de preservação. No entanto, quando ativado de forma crônica no escritório (reação de "luta ou fuga"), ele libera cortisol e adrenalina continuamente, prejudicando o raciocínio lógico e a tomada de decisões.',
+              '• Estresse Positivo (Eustresse): O nível de ativação saudável que gera motivação, foco e impulso para cumprir prazos.',
+              '• Estresse Negativo (Distresse): A sobrecarga contínua que gera paralisia, irritabilidade, esquecimentos e exaustão física.'
+            ],
+            highlightBox: {
+              type: 'info',
+              title: 'Eustresse vs. Distresse',
+              text: 'O eustresse é o nível produtivo de energia que nos move. O perigo é a sobrecarga constante sem descanso, que descamba para o distresse crônico.'
+            }
+          },
+          {
+            subheading: '2. Mapeamento de Gatilhos Individuais',
+            body: [
+              'Cada profissional reage de forma diferente aos estímulos do trabalho. O mapeamento consiste em identificar as situações específicas que desencadeiam picos de ansiedade:',
+              '• Gatilhos Internos: Perfeccionismo extremo, medo de errar, síndrome do impostor e necessidade contínua de aprovação.',
+              '• Gatilhos Externos: E-mails de cobrança, reuniões de última hora, sobrecarga de demandas e comunicação agressiva de terceiros.'
+            ],
+            asciiDiagram: `┌────────────────────────────────────────────────────────┐
+│           MAPEAMENTO DE GATILHOS CORPORATIVOS          │
+├────────────────────────────────────────────────────────┤
+│ GATILHOS INTERNOS:                                     │
+│ • Perfeccionismo ──► Medo de errar ──► Procrastinação  │
+│ • Síndrome do Impostor ──► Insegurança contínua        │
+├────────────────────────────────────────────────────────┤
+│ GATILHOS EXTERNOS:                                     │
+│ • Demandas urgentes ──► Sobrecarga ──► Desorganização  │
+│ • Cobranças e prazos ──► Reação de Luta ou Fuga        │
+└────────────────────────────────────────────────────────┘`
+          }
+        ]
+      }
+    },
+    {
+      id: 'sau-mod-2',
+      number: 2,
+      title: 'MÓDULO 2: Técnicas de Autorregulação e Gestão da Ansiedade',
+      summary: 'A ansiedade manifesta-se quando a mente antecipa cenários futuros catastróficos. A autorregulação emocional reúne ferramentas práticas para trazer a atenção de volta ao presente e acalmar o sistema nervoso autônomo.',
+      estimatedMinutes: 45,
+      content: {
+        sections: [
+          {
+            subheading: '1. Técnicas Respiratórias para Redução Ansiolítica',
+            body: [
+              'A ansiedade manifesta-se quando a mente antecipa cenários futuros catastróficos. A autorregulação emocional reúne ferramentas práticas para trazer a atenção de volta ao presente e acalmar o sistema nervoso autônomo.',
+              'A respiração é a ponte direta para ativar o sistema nervoso parassimpático, desacelerando os batimentos cardíacos:',
+              '• Respiração Quadrada (Box Breathing): Inspirar em 4 segundos, reter o ar por 4 segundos, expirar em 4 segundos e manter os pulmões vazios por 4 segundos. Ideal para fazer antes de reuniões decisivas.',
+              '• Técnica 4-7-8: Inspirar em 4 segundos, reter o ar por 7 segundos e soltar o ar lentamente pela boca durante 8 segundos.'
+            ],
+            highlightBox: {
+              type: 'calc',
+              title: 'Respiração Quadrada (Box Breathing)',
+              text: 'Inspire em 4s ──► Segure em 4s ──► Expire em 4s ──► Pause em 4s. Pratique rodadas conscientes para normalizar batimentos e clarear o raciocínio.'
+            }
+          },
+          {
+            subheading: '2. Reestruturação Cognitiva',
+            body: [
+              'Diante de uma crise de ansiedade ou de um erro no projeto, a mente costuma criar distorções cognitivas (catastrofização). A reestruturação é o ato de questionar o pensamento ansiogênico com fatos concretos:',
+              '• Pensamento Ansiogênico: "Apresentei o relatório com um dado incorreto, serei demitido imediatamente."',
+              '• Questionamento Racional: "O dado foi corrigido a tempo? Qual é a probabilidade real de demissão por esse fato isolado? Qual o plano de ação prático agora?"'
+            ],
+            highlightBox: {
+              type: 'warning',
+              title: 'Fatos vs. Suposições',
+              text: 'Não tome pensamentos catastróficos como certezas. Busque fatos observáveis e estruture um plano de resolução prático em vez de alimentar o pânico.'
+            }
+          }
+        ]
+      }
+    },
+    {
+      id: 'sau-mod-3',
+      number: 3,
+      title: 'MÓDULO 3: Foco Profundo (Deep Work) e Atenção Plena',
+      summary: 'A oscilação emocional corrói a capacidade de concentração. Em um ambiente repleto de notificações, manter o foco em tarefas complexas exige estratégias deliberadas de proteção mental.',
+      estimatedMinutes: 45,
+      content: {
+        sections: [
+          {
+            subheading: '1. O Estado de Flow e o Trabalho Profundo (Deep Work)',
+            body: [
+              'O conceito de Deep Work (Trabalho Profundo), desenvolvido por Cal Newport, refere-se à capacidade de focar sem distrações em uma tarefa cognitivamente exigente.',
+              '• Trabalho Superficial (Shallow Work): Tarefas mecânicas e operacionais (responder e-mails rápidos, organizar pastas) que exigem pouco esforço mental, mas consomem o dia.',
+              '• Construção de Rituais de Foco: Eliminação de abas desnecessárias, bloqueio de notificações e definição de metas claras para o bloco de trabalho focado.'
+            ]
+          },
+          {
+            subheading: '2. Aplicação Prática do Mindfulness Corporativo',
+            body: [
+              'Atenção plena (Mindfulness) não significa "esvaziar a mente", mas observar os pensamentos e emoções sem julgamento imediato, ancorando-se na atividade presente.',
+              'A Pausa Estratégica (Método STOP):',
+              '• S (Stop): Pare o que está fazendo.',
+              '• T (Take a breath): Tome uma respiração profunda.',
+              '• O (Observe): Observe seus pensamentos e o seu corpo.',
+              '• P (Proceed): Prossiga com clareza e intenção.'
+            ],
+            asciiDiagram: `┌────────────────────────────────────────────────────────┐
+│               MÉTODO S.T.O.P. DE MINDFULNESS           │
+├────────────────────────────────────────────────────────┤
+│ [S] STOP: Pare imediatamente o que está fazendo        │
+│ [T] TAKE A BREATH: Respire consciente e profundamente  │
+│ [O] OBSERVE: Observe mente, emoções e corpo sem julgar │
+│ [P] PROCEED: Prossiga com foco, calma e intenção clara │
+└────────────────────────────────────────────────────────┘`
+          }
+        ]
+      }
+    },
+    {
+      id: 'sau-mod-4',
+      number: 4,
+      title: 'MÓDULO 4: Limites Saudáveis, Comunicação e Prevenção do Burnout',
+      summary: 'O equilíbrio emocional sustentável depende da capacidade de estabelecer fronteiras claras entre a vida profissional e a vida pessoal, evitando o esgotamento extremo (Burnout).',
+      estimatedMinutes: 45,
+      content: {
+        sections: [
+          {
+            subheading: '1. Estabelecimento de Fronteiras e Desconexão Digital',
+            body: [
+              'A hiperconectividade cria a falsa sensação de que tudo precisa ser respondido imediatamente.',
+              '• Desconexão do Expediente: Definir um horário claro para encerrar a checagem de mensagens corporativas no celular pessoal.',
+              '• Gestão de Expectativas: Comunicar à equipe os prazos reais de resposta e entrega, sem assumir compromissos inalcançáveis por medo de dizer "não".'
+            ],
+            highlightBox: {
+              type: 'info',
+              title: 'Comunicação Assertiva',
+              text: 'Dizer "não" fundamentado com alternativas e prazos viáveis é sinal de maturidade profissional e respeito pela qualidade do trabalho.'
+            }
+          },
+          {
+            subheading: '2. Sinais de Alerta do Burnout',
+            body: [
+              'A Síndrome de Burnout é o estresse crônico não gerenciado no ambiente de trabalho. Reconhecer os sinais iniciais evita o colapso físico e emocional:',
+              '• Estágio Inicial: Entusiasmo excessivo com negligência de necessidades básicas (sono, alimentação); sensação constante de falta de tempo e ansiedade aos domingos.',
+              '• Estágio Avançado: Exaustão física e mental diária; cinismo, desconexão emocional com o trabalho e queda brusca de produtividade.'
+            ],
+            asciiDiagram: `┌────────────────────────────────────────────────────────┐
+│             ESTÁGIOS DA SÍNDROME DE BURNOUT            │
+├────────────────────────────────────────────────────────┤
+│ ESTÁGIO INICIAL:                                       │
+│ • Entusiasmo desmedido sem descanso                    │
+│ • Negligência com sono e alimentação                   │
+│ • Ansiedade aos domingos e falta de tempo              │
+├────────────────────────────────────────────────────────┤
+│ ESTÁGIO AVANÇADO:                                      │
+│ • Exaustão física e mental diária                      │
+│ • Cinismo, frieza e distanciamento da equipe           │
+│ • Queda drástica de produtividade e esgotamento        │
+└────────────────────────────────────────────────────────┘`
+          }
+        ]
+      }
+    }
+  ],
+  caseStudies: [],
+  quiz: [
+    {
+      id: 1,
+      question: 'Durante um dia de alta demanda no escritório, um colaborador percebe que sua respiração está acelerada e que não consegue se concentrar nas tarefas devido ao nervosismo. Qual técnica de autorregulação fisiológica é mais indicada para reativar a calma do sistema nervoso de forma rápida?',
+      options: [
+        'Ingerir bebidas estimulantes com alto teor de cafeína para acelerar o ritmo de trabalho.',
+        'Ignorar os sinais do corpo e continuar digitando em velocidade máxima sem fazer pausas.',
+        'Aplicar a técnica de Respiração Quadrada (Box Breathing), alternando inspiração, retenção, expiração e pausa em tempos iguais.',
+        'Reclamar abertamente sobre a sobrecarga com os colegas de equipe durante o horário de pico.'
+      ],
+      correct: 2,
+      explanation: 'A técnica de Respiração Quadrada (Box Breathing) reduz diretamente os níveis de excitação fisiológica provocados pela ansiedade, desacelerando a frequência cardíaca e ativando o sistema nervoso parassimpático para recuperar o controle consciente.'
+    },
+    {
+      id: 2,
+      question: 'A Síndrome de Burnout foi reconhecida como uma condição ocupacional resultante do estresse crônico no ambiente de trabalho. Qual das opções abaixo apresenta um sintoma característico dessa síndrome em seu estágio avançado?',
+      options: [
+        'Sensação diária de exaustão física/mental acompanhada de atitudes de cinismo e desapego ao trabalho.',
+        'Aumento da criatividade e engajamento constante em novos projetos da empresa.',
+        'Capacidade de manter o foco ininterrupto por 12 horas consecutivas sem apresentar fadiga.',
+        'Facilidade em desligar-se das responsabilidades profissionais no exato momento em que encerra o expediente.'
+      ],
+      correct: 0,
+      explanation: 'O Burnout é caracterizado pela tríade: exaustão emocional profunda, despersonalização/cinismo (desapego frio em relação às tarefas e colegas) e queda da percepção de eficácia profissional.'
+    },
+    {
+      id: 3,
+      question: 'O conceito de Deep Work (Trabalho Profundo) exige eliminar distrações para focar em tarefas cognitivamente complexas. Qual ação prática contribui diretamente para a criação de um ambiente favorável ao Deep Work?',
+      options: [
+        'Deixar os alertas sonoros do e-mail e do chat corporativo ativados na tela principal.',
+        'Alternar a atenção a cada 5 minutos entre a escrita de um relatório e a navegação em redes sociais.',
+        'Realizar chamadas de vídeo sem roteiro prévio enquanto tenta revisar planilhas complexas.',
+        'Agendar o checamento de e-mails para horários específicos do dia e silenciar notificações durante o bloco de foco.'
+      ],
+      correct: 3,
+      explanation: 'O Trabalho Profundo exige a eliminação de fragmentações na atenção. Definir blocos de tempo isolados e silenciar notificações previne a troca constante de contexto, permitindo hiperfoco e alta performance.'
+    },
+    {
+      id: 4,
+      question: 'Diante de um erro cometido em um projeto, a mente de um profissional ansioso pode gerar uma "distorção cognitiva", acreditando que o problema é uma catastrofização irreparável. Qual técnica ajuda a reestruturar esse pensamento de forma racional?',
+      options: [
+        'Aceitar o pensamento catastrófico como verdade absoluta e pedir demissão imediatamente.',
+        'Questionar o pensamento ansiogênico buscando evidências concretas sobre o impacto real e focando no plano de ação para correção.',
+        'Esconder o erro da equipe na esperança de que ninguém perceba a falha.',
+        'Culpar publicamente outros colegas pelo ocorrido para preservar a própria imagem.'
+      ],
+      correct: 1,
+      explanation: 'A Reestruturação Cognitiva combate vieses de catastrofização substituindo suposições por fatos. Analisar o erro objetivamente e construir uma solução prática reduz a ansiedade e restaura o senso de controle.'
+    },
+    {
+      id: 5,
+      question: 'O acrônimo S.T.O.P. representa uma pausa consciente no meio da rotina para recuperar a clareza e o equilíbrio emocional. O que significa a letra "O" nessa metodologia de Mindfulness?',
+      options: [
+        'Observar os pensamentos, emoções e sensações corporais sem julgamento imediato.',
+        'Omitir os sentimentos negativos até o fim da semana.',
+        'Optimizar o tempo eliminando o horário de almoço.',
+        'Organizar a mesa de trabalho descartando papéis antigos.'
+      ],
+      correct: 0,
+      explanation: 'No método S.T.O.P. (Stop, Take a breath, Observe, Proceed), o passo Observe orienta o indivíduo a tomar consciência de seus estados internos (pensamentos, emoções, tensão muscular) com curiosidade e sem auto-julgamento.'
+    },
+    {
+      id: 6,
+      question: 'Para manter a saúde mental e prevenir o esgotamento no ambiente de trabalho, o estabelecimento de limites saudáveis é indispensável. Qual postura reflete o estabelecimento de uma fronteira profissional assertiva?',
+      options: [
+        'Responder mensagens de trabalho no aplicativo pessoal de mensagens às 23 horas de um domingo.',
+        'Aceitar todas as solicitações de última hora recebidas, mesmo quando impossibilitam o cumprimento dos prazos já acordados.',
+        'Desligar o telefone corporativo durante o horário de expediente normal sem avisar a equipe.',
+        'Comunicar com clareza a capacidade atual de entregas, renegociar prazos com a liderança e respeitar os horários de descanso.'
+      ],
+      correct: 3,
+      explanation: 'Ter assertividade emocional significa alinhar expectativas e prioridades de forma transparente com a equipe. Dizer "não" fundamentado ou renegociar prazos protege a qualidade das entregas e a saúde mental do profissional.'
+    },
+    {
+      id: 7,
+      question: 'O estresse é uma reação biológica do organismo que pode ser dividida entre "eustresse" e "distresse". Qual a principal característica do eustresse?',
+      options: [
+        'É o estágio final de esgotamento físico que exige afastamento médico imediato.',
+        'Trata-se do sentimento constante de pânico acompanhado de insônia crônica.',
+        'É a forma saudável e positiva de estresse, que mobiliza energia, melhora o foco e motiva a resolução de desafios.',
+        'É a incapacidade total de sentir qualquer tipo de emoção durante reuniões de trabalho.'
+      ],
+      correct: 2,
+      explanation: 'O Eustresse (estresse positivo) é o nível moderado de ativação necessário para nos manter alertas, motivados e engajados na superação de metas e desafios do dia a dia, diferindo do estresse crônico nocivo (distresse).'
+    }
+  ]
+};
+
+export const EQUILIBRIO_EMOCIONAL_DATA = CURSO_EQUILIBRIO_EMOCIONAL;
+
+// =========================================================================
+// CURSO OFICIAL: INFORMÁTICA BÁSICA, NUVEM E SEGURANÇA DA INFORMAÇÃO
+// =========================================================================
+export const CURSO_INFORMATICA_SEGURANCA: Course = {
+  id: 'curso-informatica-seguranca',
+  published: true,
+  isPublished: true,
+  active: true,
+  visible: true,
+  trackId: 'trilha-3',
+  trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
+  category: 'Tecnologia da Informação',
+  targetAudienceType: 'TODOS',
+  title: 'Informática Básica, Nuvem e Segurança da Informação',
+  subtitle: 'Sistemas operacionais, atalhos de produtividade, Google Workspace, OneDrive e defesa contra ameaças cibernéticas',
+  hours: 12,
+  equivalentHours: 12,
+  modality: 'EAD 100% Gratuito (Escola Virtual)',
+  targetAudience: 'Iniciante / Absoluto Zero — Estudantes e profissionais iniciando o uso de computadores e ferramentas em nuvem',
+  prerequisites: 'Nenhum pré-requisito.',
+  badgeName: 'Segurança Digital & Nuvem',
+  badgeCategory: 'Ferramentas de Escritório',
+  badgeIcon: 'Shield',
+  accentColor: '#3B82F6',
+  level: 'Iniciante',
+  videoUrl: 'https://youtu.be/X2wgk02Bqt0?si=vwlWKuVB6909U_dG',
+  youtubeId: 'X2wgk02Bqt0',
+  learningObjectives: [
+    'Capacitar o participante a operar sistemas operacionais de forma eficiente, compreendendo hardware e software.',
+    'Utilizar serviços de armazenamento e produtividade em nuvem (Google Drive e OneDrive) com permissões adequadas e edição colaborativa.',
+    'Adotar práticas essenciais de segurança da informação (senhas fortes, 2FA, defesa contra phishing e ransomware) e aplicar a regra 3-2-1 de backup e princípios da LGPD.'
+  ],
+  modules: [
+    {
+      id: 'inf-mod-1',
+      number: 1,
+      title: 'MÓDULO 1: Fundamentos de Informática e Sistemas Operacionais',
+      summary: 'Compreender a estrutura de um computador e dominar a navegação eficiente pelo sistema operacional.',
+      estimatedMinutes: 45,
+      content: {
+        sections: [
+          {
+            subheading: '1. Hardware, Software e Estrutura Lógica',
+            body: [
+              'Hardware vs. Software: Diferença entre componentes físicos (processador, memória RAM, disco de armazenamento SSD/HD) e programas/sistemas.',
+              'Sistemas Operacionais (Windows e Linux): Interface gráfica, atalhos universais de teclado (Ctrl+C, Ctrl+V, Ctrl+Z, Alt+Tab, Windows+E) e personalização de ambiente.'
+            ]
+          },
+          {
+            subheading: '2. Organização de Arquivos e Armazenamento',
+            body: [
+              'Estrutura de Pastas e Diretórios: Boas práticas de criação, movimentação, renomeação e exclusão de arquivos.',
+              'Extensões de Arquivos Frequentes: Identificação de formatos (.pdf, .docx, .xlsx, .png, .jpeg, .zip).',
+              'Gerenciamento de Espaço e Lixeira: Como esvaziar a lixeira com segurança e recuperar arquivos excluídos acidentalmente.'
+            ],
+            highlightBox: {
+              type: 'info',
+              title: 'Atalhos de Produtividade',
+              text: 'Dominar atalhos como Alt+Tab (alternar janelas) e Windows+E (explorador de arquivos) aumenta expressivamente a velocidade de trabalho no computador corporativo.'
+            }
+          }
+        ]
+      }
+    },
+    {
+      id: 'inf-mod-2',
+      number: 2,
+      title: 'MÓDULO 2: Navegação na Web e Serviços de Produtividade em Nuvem',
+      summary: 'Aprender a explorar a internet de forma rápida e utilizar plataformas de colaboração em tempo real.',
+      estimatedMinutes: 45,
+      content: {
+        sections: [
+          {
+            subheading: '1. Navegadores e Pesquisa Eficiente',
+            body: [
+              'Navegadores (Browsers): Configuração básica de Chrome, Edge e Firefox (favoritos, histórico, guias e modo anônimo).',
+              'Técnicas de Busca: Uso de aspas ("termo exato"), hífen para exclusão (termo -excluído) e busca por tipo de arquivo (filetype:pdf).'
+            ]
+          },
+          {
+            subheading: '2. Ecossistemas em Nuvem (Google Workspace e Microsoft 365)',
+            body: [
+              'O que é Computação em Nuvem (Cloud Computing): Conceito de armazenamento e processamento remoto de dados.',
+              'Armazenamento e Compartilhamento: Uso do Google Drive / OneDrive para criar pastas compartilhadas, definir permissões de acesso (Apenas Leitura, Comentador, Editor) e sincronizar arquivos locais.',
+              'Edição Colaborativa em Tempo Real: Criação e revisão simultânea de documentos e planilhas em equipe.'
+            ],
+            highlightBox: {
+              type: 'info',
+              title: 'Permissões em Nuvem',
+              text: 'A permissão de "Apenas Leitura" (ou Visualizador) garante a transparência da informação sem colocar em risco a integridade do arquivo original contra edições ou exclusões indevidas.'
+            }
+          }
+        ]
+      }
+    },
+    {
+      id: 'inf-mod-3',
+      number: 3,
+      title: 'MÓDULO 3: Segurança da Informação e Proteção de Dados',
+      summary: 'Desenvolver uma postura preventiva contra os golpes digitais mais comuns do mercado.',
+      estimatedMinutes: 45,
+      content: {
+        sections: [
+          {
+            subheading: '1. Mapeamento de Ameaças Digitais',
+            body: [
+              'Engenharia Social e Phishing: Como identificar e-mails, mensagens de WhatsApp e sites falsos projetados para roubar senhas e dados bancários.',
+              'Tipos de Malware: Diferenças conceituais entre Vírus, Ransomware (sequestro de dados), Spyware e Trojan (Cavalo de Tróia).'
+            ]
+          },
+          {
+            subheading: '2. Mecanismos de Defesa Pessoal e Corporativa',
+            body: [
+              'Gestão de Senhas Fortes: Criação de combinações seguras sem padrões óbvios e uso de gerenciadores de senhas.',
+              'Autenticação em Duas Etapas (2FA/MFA): Configuração obrigatória de verificação em duas etapas via aplicativos autenticadores (Google Authenticator, Microsoft Authenticator) ou chaves de segurança.',
+              'Redes Wi-Fi Seguras: Cuidados ao navegar em redes Wi-Fi públicas e uso de conexões criptografadas (HTTPS).'
+            ],
+            highlightBox: {
+              type: 'warning',
+              title: 'Alerta de Phishing e Ransomware',
+              text: 'Desconfie sempre de e-mails com tom de urgência ou links suspeitos. O ransomware bloqueia arquivos por criptografia exigindo resgate financeiro; a prevenção e a postura atenta são as melhores defesas.'
+            }
+          }
+        ]
+      }
+    },
+    {
+      id: 'inf-mod-4',
+      number: 4,
+      title: 'MÓDULO 4: Rotinas de Proteção e Lei Geral de Proteção de Dados (LGPD)',
+      summary: 'Garantir a continuidade das atividades e o cumprimento das normas legais de privacidade.',
+      estimatedMinutes: 45,
+      content: {
+        sections: [
+          {
+            subheading: '1. Estratégias de Backup (Cópia de Segurança)',
+            body: [
+              'A Regra de Backup 3-2-1: Manter 3 cópias dos dados, em 2 mídias diferentes, com 1 cópia armazenada fora do local (na nuvem).',
+              'Automação de Backups: Programação de rotinas de sincronização automática no sistema operacional e na nuvem.'
+            ]
+          },
+          {
+            subheading: '2. Boas Práticas de Privacidade e LGPD no Dia a Dia',
+            body: [
+              'Privacidade de Dados: Configuração de permissões em aplicativos, redes sociais e navegadores.',
+              'Introdução à LGPD: Noções básicas sobre o tratamento responsável de dados de clientes, colegas e fornecedores no ambiente de trabalho.'
+            ],
+            highlightBox: {
+              type: 'law',
+              title: 'A Regra 3-2-1 de Backup',
+              text: 'Padrão ouro de segurança: 3 cópias dos dados (1 principal + 2 backups), em 2 mídias distintas (ex: disco interno e HD externo), com 1 cópia fora da empresa/residência (nuvem).'
+            }
+          }
+        ]
+      }
+    }
+  ],
+  caseStudies: [],
+  quiz: [
+    {
+      id: 1,
+      question: 'Um profissional recebeu um e-mail parecendo ser do seu banco, informando sobre o bloqueio da conta e solicitando que ele clique em um link para digitar sua senha e reativar o acesso. Trata-se de uma tentativa de golpe conhecida como:',
+      options: [
+        'Phishing.',
+        'Defragmentação de disco.',
+        'Backup em nuvem.',
+        'Atualização de firmware.'
+      ],
+      correct: 0,
+      explanation: 'Phishing é uma técnica de engenharia social onde golpistas se passam por instituições confiáveis (bancos, empresas, órgãos governamentais) para enganar o usuário e induzi-lo a fornecer dados confidenciais.'
+    },
+    {
+      id: 2,
+      question: 'Para reforçar a segurança de uma conta corporativa de e-mail contra acessos não autorizados, qual das opções representa a prática recomendada de proteção adicional?',
+      options: [
+        'Utilizar a mesma senha simples em todos os sites da internet.',
+        'Anotar a senha em um bloco de notas colado no monitor do computador.',
+        'Habilitar a Autenticação em Duas Etapas (2FA) utilizando um aplicativo autenticador.',
+        'Compartilhar a senha com todos os colegas de equipe para facilitar o trabalho.'
+      ],
+      correct: 2,
+      explanation: 'A Autenticação em Duas Etapas (2FA) adiciona uma camada de proteção física/digital além da senha, exigindo um código temporário gerado no celular para confirmar a identidade.'
+    },
+    {
+      id: 3,
+      question: 'Na rotina de trabalho em equipe utilizando serviços de armazenamento em nuvem (como Google Drive ou OneDrive), qual é a vantagem de definir uma permissão como "Apenas Leitura" ao compartilhar um arquivo com um parceiro externo?',
+      options: [
+        'Permitir que a pessoa apague permanentemente o arquivo original.',
+        'Garantir que o destinatário consiga visualizar o documento sem a possibilidade de alterar seu conteúdo original.',
+        'Fazer com que o arquivo seja impresso automaticamente na impressora do destinatário.',
+        'Bloquear completamente o acesso da pessoa ao link compartilhado.'
+      ],
+      correct: 1,
+      explanation: 'A permissão de Apenas Leitura (ou Visualizador) garante a transparência da informação sem colocar em risco a integridade do arquivo original contra edições ou exclusões indevidas.'
+    },
+    {
+      id: 4,
+      question: 'Qual atalho universal de teclado nos sistemas operacionais é utilizado para alternar rapidamente entre as janelas e programas abertos na tela?',
+      options: [
+        'Ctrl + P',
+        'Alt + Tab',
+        'Ctrl + S',
+        'Windows + L'
+      ],
+      correct: 1,
+      explanation: 'O atalho Alt + Tab é o padrão nos sistemas operacionais para navegar e alternar a visualização entre diferentes aplicativos abertos na área de trabalho.'
+    },
+    {
+      id: 5,
+      question: 'A estratégia de proteção de dados conhecida como "Regra 3-2-1 de Backup" recomenda qual das seguintes estruturas para garantir que informações críticas não sejam perdidas?',
+      options: [
+        'Guardar 3 cópias dos dados, em 2 mídias diferentes, com 1 cópia armazenada em um local externo (como a nuvem).',
+        'Fazer backup a cada 3 dias, durante 2 meses, usando 1 pendrive usado.',
+        'Salvar 3 arquivos na mesma pasta, em 2 computadores iguais, sem senha.',
+        'Enviar 3 e-mails para você mesmo com 2 anexos em 1 dia.'
+      ],
+      correct: 0,
+      explanation: 'A Regra 3-2-1 é o padrão de ouro da segurança da informação: ter 3 cópias no total (1 primária + 2 backups), em 2 tipos de mídias diferentes (ex: HD externo e nuvem), com 1 cópia mantida fora da empresa/residência (nuvem).'
+    },
+    {
+      id: 6,
+      question: 'Um tipo nocivo de software malicioso que criptografa (bloqueia) os arquivos de um computador e exige o pagamento de um "resgate" financeiro para liberar o acesso aos dados é chamado de:',
+      options: [
+        'Antivírus.',
+        'Ransomware.',
+        'Sistema Operacional.',
+        'Processador.'
+      ],
+      correct: 1,
+      explanation: 'O Ransomware é uma ameaça cibersegurança grave que "sequestra" dados por meio de criptografia forte, cobrando pagamentos (geralmente em criptomoedas) para a suposta devolução das chaves de acesso.'
+    },
+    {
+      id: 7,
+      question: 'Para encontrar no Google exatamente um arquivo em formato PDF contendo um manual de instruções, sem exibir páginas com textos genéricos, qual expressão de busca utiliza o operador correto?',
+      options: [
+        'manual de instrucoes filetype:pdf',
+        'manual + instrucoes + site',
+        'buscar manual formato texto',
+        'pdf.manual.com'
+      ],
+      correct: 0,
+      explanation: 'O operador filetype:pdf filtra a pesquisa do Google para retornar exclusivamente arquivos com a extensão .pdf, tornando a busca por manuais, livros e relatórios muito mais precisa.'
+    }
+  ]
+};
+
+export const INFORMATICA_SEGURANCA_DATA = CURSO_INFORMATICA_SEGURANCA;
+
 export const COURSES: Course[] = [
   // =========================================================================
   // CURSO OFICIAL: COMUNICAÇÃO ESCRITA, E-MAILS E REDAÇÃO CORPORATIVA
@@ -338,7 +879,7 @@ export const COURSES: Course[] = [
     trackId: 'trilha-comunicacao-relacionamento',
     trackName: 'Trilha Comunicação & Relacionamento Profissional',
     category: 'Administração e Negócios',
-    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO', 'ESTAGIARIO', 'TODOS'],
+    targetAudienceType: 'TODOS',
     title: 'Comunicação Escrita, E-mails e Redação Corporativa',
     subtitle: 'Domine a arte de redigir mensagens corporativas claras, estruturar e-mails que geram respostas rápidas, elaborar relatórios e utilizar ferramentas digitais com assertividade.',
     hours: 12,
@@ -2434,7 +2975,7 @@ export const COURSES: Course[] = [
     trackId: 'trilha-comunicacao-relacionamento',
     trackName: 'Trilha Comunicação & Relacionamento Profissional',
     category: 'Saúde Mental & Desenvolvimento Pessoal',
-    targetAudienceType: ['PRIMEIRO_EMPREGO', 'JOVEM_APRENDIZ', 'ESTUDANTE', 'ESTAGIARIO', 'TODOS'],
+    targetAudienceType: 'TODOS',
     title: 'Equilíbrio Emocional, Ansiedade e Foco no Trabalho',
     subtitle: 'Aprenda a reconhecer o ciclo da ansiedade, cultivar autocuidado emocional, sustentar a concentração no trabalho e agir com intenção em momentos de pressão.',
     hours: 1,
@@ -2595,14 +3136,15 @@ export const COURSES: Course[] = [
   // 3. ORÇAMENTO DO PRIMEIRO SALÁRIO
   // =========================================================================
   {
-    id: 'orcamento-primeiro-salarial',
+    id: 'orcamento-primeiro-salario',
+    published: true,
     isPublished: true,
     active: true,
     visible: true,
     trackId: 'trilha-1',
     trackName: 'TRILHA 1: Entrada no Mercado & Primeiro Emprego',
-    category: 'Desenvolvimento Pessoal',
-    targetAudienceType: ['PRIMEIRO_EMPREGO', 'JOVEM_APRENDIZ', 'ESTUDANTE'],
+    category: 'Finanças Pessoais',
+    targetAudienceType: 'TODOS',
     title: 'Orçamento do Primeiro Salário',
     subtitle: 'Ensinar a organizar, priorizar e multiplicar o primeiro salário, evitando dívidas e criando hábitos financeiros saudáveis desde o início da carreira.',
     hours: 12,
@@ -2611,6 +3153,8 @@ export const COURSES: Course[] = [
     targetAudience: 'Jovens aprendizes, estagiários e profissionais em seu primeiro emprego',
     prerequisites: 'Nenhum pré-requisito.',
     badgeName: 'Mestre em Finanças',
+    videoUrl: 'https://youtu.be/CIdkEei-BdU?si=V5_UIYlhtdcZjtEZ',
+    youtubeId: 'CIdkEei-BdU',
     badgeCategory: 'Finanças',
     badgeIcon: 'DollarSign',
     accentColor: '#10B981',
@@ -3308,6 +3852,8 @@ export const COURSES: Course[] = [
     targetAudience: 'Estudantes que nunca utilizaram planilhas ou querem reforçar a base',
     prerequisites: 'Nenhum.',
     badgeName: 'Excel Fundamentos',
+    videoUrl: 'https://youtu.be/9QbIuIZMVUw?si=WLZ2FTGusBMd0mU2',
+    youtubeId: '9QbIuIZMVUw',
     badgeCategory: 'Ferramentas de Escritório',
     badgeIcon: 'FileSpreadsheet',
     accentColor: '#10B981',
@@ -3820,68 +4366,24 @@ export const COURSES: Course[] = [
 
   // =========================================================================
   // 9. INFORMÁTICA BÁSICA, NUVEM E SEGURANÇA DA INFORMAÇÃO
-  // =========================================================================
+    // =========================================================================
+  // 9. INFORMÁTICA BÁSICA, NUVEM E SEGURANÇA DA INFORMAÇÃO
+    CURSO_INFORMATICA_SEGURANCA,
+
+  // Aliases de acesso direto a Informática Básica
   {
-    id: 'curso-informatica-seguranca',
-    trackId: 'trilha-3',
-    trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
-    category: 'Tecnologia da Informação',
-    targetAudienceType: 'TODOS',
-    title: 'Informática Básica, Nuvem e Segurança da Informação',
-    subtitle: 'Navegação segura, senhas fortes, Google Drive/OneDrive e proteção contra phishing',
-    hours: 10,
-    equivalentHours: 10,
-    modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Estudantes e aprendizes iniciando o uso de computadores corporativos',
-    prerequisites: 'Nenhum.',
-    badgeName: 'Segurança Digital & Nuvem',
-    badgeCategory: 'Ferramentas de Escritório',
-    badgeIcon: 'Shield',
-    accentColor: '#3B82F6',
-    level: 'Iniciante',
-    learningObjectives: [
-      'Criar senhas fortes e gerenciar autenticação em dois fatores.',
-      'Identificar e-mails de phishing e links maliciosos.',
-      'Organizar pastas e permissões de compartilhamento no Google Drive e OneDrive.'
-    ],
-    modules: [
-      {
-        id: 'inf-mod-1',
-        number: 1,
-        title: 'MÓDULO 1: Proteção de Senhas e Prevenção a Fraudes',
-        summary: 'Como manter o computador da empresa seguro e evitar infecções por malware.',
-        estimatedMinutes: 30,
-        content: {
-          sections: [
-            {
-              subheading: '1.1 Criando Senhas Inquebráveis',
-              body: [
-                'Combine letras maiúsculas, minúsculas, números e caracteres especiais. Nunca utilize "123456" ou sua data de aniversário.'
-              ]
-            }
-          ]
-        }
-      }
-    ],
-    caseStudies: [],
-    quiz: [
-      {
-        id: 1,
-        question: 'Se você receber um e-mail suspeito pedindo sua senha corporativa, o que deve fazer?',
-        options: [
-          'Responder imediatamente com a senha.',
-          'Não clicar em nenhum link e alertar o time de TI da empresa.',
-          'Encaminhar para todos os colegas de trabalho.',
-          'Ignorar e apagar sem avisar ninguém.'
-        ],
-        correct: 1,
-        explanation: 'Nunca compartilhe senhas por e-mail e sempre notifique o departamento de segurança da informação.'
-      }
-    ]
+    ...CURSO_INFORMATICA_SEGURANCA,
+    id: 'informatica-basica'
+  },
+  {
+    ...CURSO_INFORMATICA_SEGURANCA,
+    id: 'informatica-basica-nuvem-seguranca'
+  },
+  {
+    ...CURSO_INFORMATICA_SEGURANCA,
+    id: 'informatica'
   },
 
-  // =========================================================================
-  // 10. LGPD, PRIVACIDADE E SEGURANÇA DIGITAL CORPORATIVA
   // =========================================================================
   {
     id: 'curso-lgpd-seguranca-dados',
@@ -5116,6 +5618,10 @@ export const COURSES: Course[] = [
   // =========================================================================
   {
     id: 'curso-saude-mental-trabalho',
+    published: true,
+    isPublished: true,
+    active: true,
+    visible: true,
     trackId: 'trilha-2',
     trackName: 'TRILHA 2: Soft Skills, Postura & Comunicação Corporativa',
     category: 'Desenvolvimento Pessoal',
@@ -5129,6 +5635,8 @@ export const COURSES: Course[] = [
     prerequisites: 'Nenhum pré-requisito.',
     badgeName: 'Equilíbrio Emocional & Foco',
     badgeCategory: 'Saúde Mental & Carreira',
+  videoUrl: 'https://youtu.be/PAVaaGa_gug?si=JYdOWSYOz0oJj5TH',
+  youtubeId: 'PAVaaGa_gug',
     badgeIcon: 'HeartPulse',
     accentColor: '#EC4899',
     level: 'Iniciante',
@@ -5397,6 +5905,16 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
+  // Aliases para acesso direto a Equilíbrio Emocional
+  {
+    ...CURSO_EQUILIBRIO_EMOCIONAL,
+    id: 'equilibrio-emocional'
+  },
+  {
+    ...CURSO_EQUILIBRIO_EMOCIONAL,
+    id: 'curso-equilibrio-emocional'
+  },
+
   // 17. COMUNICAÇÃO ESCRITA, E-MAILS E REDAÇÃO CORPORATIVA
   // =========================================================================
   {
@@ -5921,29 +6439,26 @@ export const COURSES: Course[] = [
 
 
 
-if (orcamentoCourse) {
 
 
 
 
 
-  orcamentoCourse.targetAudienceType = ['PRIMEIRO_EMPREGO', 'JOVEM_APRENDIZ', 'ESTUDANTE', 'ESTAGIARIO', 'TODOS'];
-}
-
-
-if (eqCourse) {
-  eqCourse.id = 'equilibrio-emocional';
-  eqCourse.isPublished = true;
-  eqCourse.active = true;
-  eqCourse.visible = true;
-  eqCourse.category = 'Saúde Mental & Desenvolvimento Pessoal';
-}
-
-if (orcamentoCourse) {
 
 
 
 
 
-  orcamentoCourse.targetAudienceType = ['PRIMEIRO_EMPREGO', 'JOVEM_APRENDIZ', 'ESTUDANTE', 'ESTAGIARIO', 'TODOS'];
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
