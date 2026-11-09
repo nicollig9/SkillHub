@@ -32,7 +32,8 @@ export default function Sidebar() {
     role,
     candidateProfileType,
     isSidebarOpen,
-    setIsSidebarOpen
+    setIsSidebarOpen,
+    cursosInscritos
   } = useApp();
 
   // Se a barra não estiver aberta, não renderiza nada
@@ -47,7 +48,10 @@ export default function Sidebar() {
     ? 'Estudante' 
     : 'Primeiro Emprego';
 
-  // Itens de navegação do Aluno / Candidato
+  // Contagem dinâmica de cursos em andamento
+  const cursosAtivosCount = cursosInscritos ? cursosInscritos.filter(c => c.status === 'em_andamento').length : 3;
+
+  // Itens de navegação do Aluno / Candidato organizados em estrutura simétrica
   const studentNavItems: { id: AppView; label: string; icon: React.ComponentType<{ className?: string }>; badge?: string }[] = [
     {
       id: 'DASHBOARD',
@@ -61,23 +65,12 @@ export default function Sidebar() {
       icon: ClipboardCheck,
       badge: 'Quizzes'
     },
+    // --- GRUPO CURSOS (Inscritos | Catálogo) ---
     {
       id: 'MEUS_CURSOS',
       label: 'Meus Cursos',
       icon: BookOpen,
-      badge: '3 Ativos'
-    },
-    {
-      id: 'TRILHAS_DISPONIVEIS',
-      label: 'Trilhas de Formação',
-      icon: Compass,
-      badge: '5 Trilhas'
-    },
-    {
-      id: 'MINHAS_TRILHAS',
-      label: 'Minhas Trilhas',
-      icon: Layers,
-      badge: '1 Ativa'
+      badge: `${cursosAtivosCount || 3} Ativos`
     },
     {
       id: 'CURSOS_DISPONIVEIS',
@@ -85,6 +78,20 @@ export default function Sidebar() {
       icon: GraduationCap,
       badge: 'Catálogo'
     },
+    // --- GRUPO TRILHAS (Inscritas | Catálogo) ---
+    {
+      id: 'MINHAS_TRILHAS',
+      label: 'Minhas Trilhas',
+      icon: Layers,
+      badge: '1 Ativa'
+    },
+    {
+      id: 'TRILHAS_DISPONIVEIS',
+      label: 'Explorar Trilhas',
+      icon: Compass,
+      badge: 'Catálogo'
+    },
+    // --- RECURSOS & FERRAMENTAS ---
     {
       id: 'MAPA_PROXIMIDADE',
       label: 'Mapa de Vagas',
@@ -147,7 +154,7 @@ export default function Sidebar() {
             <button
               onClick={() => setIsSidebarOpen(false)}
               title="Fechar menu"
-              className="p-1.5 rounded-xl bg-[#24123E] hover:bg-[#351859] text-purple-300 hover:text-white border border-[#7C3AED]/30 transition-all"
+              className="p-1.5 rounded-xl bg-[#24123E] hover:bg-[#351859] text-purple-300 hover:text-white border border-[#7C3AED]/30 transition-all cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
@@ -156,7 +163,7 @@ export default function Sidebar() {
           {/* Botão Atalho Início */}
           <button
             onClick={() => handleNavigate('INICIO')}
-            className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all ${
+            className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               currentView === 'INICIO'
                 ? 'bg-gradient-to-r from-[#4C1D95] to-[#6D28D9] text-white border border-[#8B5CF6]/60 shadow-md'
                 : 'text-purple-200 hover:text-white hover:bg-[#25123E]/60'
@@ -181,7 +188,7 @@ export default function Sidebar() {
                 <button
                   key={item.id}
                   onClick={() => handleNavigate(item.id)}
-                  className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all duration-150 ${
+                  className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all duration-150 cursor-pointer ${
                     isActive
                       ? 'bg-gradient-to-r from-[#4C1D95] to-[#6D28D9] text-white border border-[#8B5CF6]/60 shadow-md shadow-purple-950/60'
                       : 'text-purple-200 hover:text-white hover:bg-[#25123E]/60'
@@ -193,7 +200,7 @@ export default function Sidebar() {
                   </div>
                   {item.badge && (
                     <span
-                      className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
+                      className={`text-[10px] px-2 py-0.5 rounded-full font-bold transition-colors ${
                         isActive
                           ? 'bg-white/20 text-white'
                           : 'bg-[#220E3A] text-purple-300 border border-[#521E8A]/40'
@@ -216,7 +223,7 @@ export default function Sidebar() {
               alert('Canal de Suporte ao Usuário SkillHub:\nE-mail: contato@skillhub.com.br\nCuritiba & Região Metropolitana');
               setIsSidebarOpen(false);
             }}
-            className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-purple-300 hover:text-white hover:bg-white/5 transition-colors"
+            className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-purple-300 hover:text-white hover:bg-white/5 transition-colors cursor-pointer"
           >
             <div className="flex items-center gap-2">
               <HelpCircle className="w-4 h-4 text-[#A78BFA]" />
@@ -242,7 +249,7 @@ export default function Sidebar() {
                   setIsSidebarOpen(false);
                 }}
                 title="Sair"
-                className="p-1.5 text-purple-300 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors shrink-0"
+                className="p-1.5 text-purple-300 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors shrink-0 cursor-pointer"
               >
                 <LogOut className="w-4 h-4" />
               </button>
@@ -250,7 +257,7 @@ export default function Sidebar() {
           ) : (
             <button
               onClick={() => handleNavigate('LOGIN')}
-              className="w-full bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] hover:from-[#7C3AED] hover:to-[#9D4EDD] text-white font-bold py-2.5 rounded-xl text-xs shadow-md transition-all text-center"
+              className="w-full bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] hover:from-[#7C3AED] hover:to-[#9D4EDD] text-white font-bold py-2.5 rounded-xl text-xs shadow-md transition-all text-center cursor-pointer"
             >
               Fazer Login / Cadastrar
             </button>

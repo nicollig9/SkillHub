@@ -32,6 +32,7 @@ export interface ToastNotification {
 }
 
 export interface UserSavedData {
+  version?: number;
   student: Student;
   completedModules: Record<string, string[]>;
   quizResults: Record<string, { score: number; passed: boolean; answers: number[]; date: string }>;
@@ -40,7 +41,7 @@ export interface UserSavedData {
   selectedCourseId: string;
   activeModuleIndex: number;
   candidateProfileType: CandidateProfileType;
-  currentUser: UserAccount;
+  currentUser: UserAccount | null;
   cursosInscritos?: UserCourseItem[];
   badgesConquistadas?: { badgeId: string; title: string; date: string; score: number; code: string }[];
   horasEstudadas?: number;
@@ -190,6 +191,35 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     try {
+      // Invalidação e renovação de cache do localStorage (versão 2)
+      const DATA_VERSION_KEY = 'skillhub_data_version';
+      const CURRENT_DATA_VERSION = '2';
+      const cachedVersion = localStorage.getItem(DATA_VERSION_KEY);
+
+      if (cachedVersion !== CURRENT_DATA_VERSION) {
+        localStorage.setItem(DATA_VERSION_KEY, CURRENT_DATA_VERSION);
+        const allKeys = Object.keys(localStorage);
+        allKeys.forEach((key) => {
+          if (key.startsWith(STORAGE_PREFIX)) {
+            try {
+              const raw = localStorage.getItem(key);
+              if (raw) {
+                const parsed = JSON.parse(raw);
+                if (parsed) {
+                  parsed.version = 2;
+                  if (parsed.selectedCourseId === 'equilibrio-emocional' || parsed.selectedCourseId === 'curso-equilibrio-emocional') {
+                    parsed.selectedCourseId = 'curso-saude-mental-trabalho';
+                  }
+                  localStorage.setItem(key, JSON.stringify(parsed));
+                }
+              }
+            } catch {
+              // ignore
+            }
+          }
+        });
+      }
+
       const rawSession = localStorage.getItem(SESSION_KEY);
       if (!rawSession) return;
 
@@ -461,6 +491,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         progressoGeral,
         candidaturasEnviadas,
         lastView: currentView === 'LOGIN' ? 'DASHBOARD' : currentView,
+        version: 2,
         savedAt: new Date().toISOString()
       };
       try {
@@ -484,14 +515,31 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     currentView
   ]);
 
+  const resolveCourseAlias = (id: string): string => {
+    if (id === 'equilibrio-emocional' || id === 'curso-equilibrio-emocional' || id === 'curso-saude-mental-trabalho' || id === 'inteligencia-emocional' || id === 'curso-inteligencia-emocional' || id === 'c16') {
+      return 'curso-saude-mental-trabalho';
+    }
+    if (id === 'orcamento-primeiro-salario' || id === 'orcamento-primeiro-salarial' || id === 'curso-orcamento-primeiro-salario') {
+      return 'orcamento-primeiro-salario';
+    }
+    if (id === 'informatica-basica' || id === 'informatica-basica-nuvem-seguranca' || id === 'informatica' || id === 'curso-informatica-seguranca') {
+      return 'curso-informatica-seguranca';
+    }
+    if (id === 'comunicacao-escrita' || id === 'curso-comunicacao-escrita' || id === 'curso-comunicacao-corporativa' || id === 'curso-comunicacao-escrita-corporativa') {
+      return 'curso-comunicacao-escrita-corporativa';
+    }
+    return id;
+  };
+
   const openCourse = (courseId: string, moduleIndex?: number) => {
-    setSelectedCourseId(courseId);
+    const resolvedId = resolveCourseAlias(courseId);
+    setSelectedCourseId(resolvedId);
     if (moduleIndex !== undefined) {
       setActiveModuleIndex(moduleIndex);
     } else {
       // Retomar automaticamente de onde o aluno parou naquele curso
-      const course = COURSES.find((c) => c.id === courseId);
-      const doneList = completedModules[courseId] || [];
+      const course = COURSES.find((c) => c.id === resolvedId || c.id === courseId);
+      const doneList = completedModules[resolvedId] || completedModules[courseId] || [];
       if (course && doneList.length > 0 && doneList.length < course.modules.length) {
         setActiveModuleIndex(doneList.length);
       } else {
@@ -502,13 +550,15 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   };
 
   const markModuleComplete = (courseId: string, moduleId: string) => {
+    const resolvedId = resolveCourseAlias(courseId);
     setCompletedModules((prev) => {
       const currentList = prev[courseId] || [];
       if (!currentList.includes(moduleId)) {
         showToast('Progresso Salvo', 'Módulo concluído e salvo no seu histórico!', 'success');
         return {
           ...prev,
-          [courseId]: [...currentList, moduleId]
+          [courseId]: [...currentList, moduleId],
+          [resolvedId]: [...currentList, moduleId]
         };
       }
       return prev;
@@ -516,7 +566,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   };
 
   const submitCourseQuiz = (courseId: string, scorePercentage: number, userAnswers: number[]): boolean => {
-    const course = COURSES.find((c) => c.id === courseId);
+    const resolvedId = resolveCourseAlias(courseId);
+    const course = COURSES.find((c) => c.id === resolvedId || c.id === courseId);
     if (!course) return false;
 
     const passed = scorePercentage >= 70;
@@ -602,7 +653,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   };
 
   const completeCourseAndClaimBadge = (courseId: string): boolean => {
-    const course = COURSES.find((c) => c.id === courseId) || COURSES[0];
+    const resolvedId = resolveCourseAlias(courseId);
+    const course = COURSES.find((c) => c.id === resolvedId || c.id === courseId) || COURSES[0];
     if (!course) return false;
 
     const allModuleIds = course.modules.map((m) => m.id);
@@ -1074,7 +1126,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
             candidateProfileType: profileType,
             currentUser: newAccount,
             lastView: 'DASHBOARD',
-            savedAt: new Date().toISOString()
+            version: 2,
+        savedAt: new Date().toISOString()
           };
           localStorage.setItem(storageKey, JSON.stringify(initialRecord));
           recordAccountInIndex(cleanEmail, userName, profileType);
@@ -1183,7 +1236,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
           progressoGeral: 0,
           candidaturasEnviadas: [],
           lastView: 'DASHBOARD',
-          savedAt: new Date().toISOString()
+          version: 2,
+        savedAt: new Date().toISOString()
         };
         localStorage.setItem(storageKey, JSON.stringify(initialRecord));
         recordAccountInIndex(cleanEmail, data.nome, data.profileType, cleanUsername);
