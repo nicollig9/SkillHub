@@ -85,7 +85,7 @@ export default function LoginPage() {
   const [decLgpdMenores, setDecLgpdMenores] = useState<boolean>(true);
 
   // Submissão do Candidato
-  const handleCandidateSubmit = (e: React.FormEvent) => {
+  const handleCandidateSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (authMode === 'LOGIN') {
       if (!candEmail.trim()) {
@@ -107,22 +107,58 @@ export default function LoginPage() {
         return;
       }
 
-      registerCandidate({
-        nome: candNome.trim(),
-        username: (candUsuario.trim() || candEmail.split('@')[0]).toLowerCase(),
-        email: candEmail.trim(),
-        profileType: selectedProfile,
-        bairro: candBairro,
-        cpf: '000.000.000-00',
-        dataNascimento: '2008-01-01',
-        idade: 18,
-        matriculaEscolar: {
-          instituicao: 'Colégio Estadual de Curitiba',
-          cursoOuSerie: selectedProfile === 'ESTAGIARIO' ? 'Técnico / Superior' : 'Ensino Médio',
-          turno: 'Manhã',
-          comprovanteValido: true
+      // --- INTEGRAÇÃO COM SUPABASE: Envia o cadastro completo para a API ---
+      try {
+        const response = await fetch('/api/auth/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            email: candEmail.trim(),
+            password: candSenha,
+            nome: candNome.trim(),
+            username: (candUsuario.trim() || candEmail.split('@')[0]).toLowerCase(),
+            bairro: candBairro,
+            perfil: selectedProfile
+          }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Erro ao realizar cadastro.');
         }
-      });
+
+        // Regista também na tabela auxiliar de e-mails, se necessário
+        await fetch('/api/emails', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: candEmail.trim() }),
+        });
+
+        showToast('Sucesso', 'Cadastro efetuado com sucesso!', 'success');
+
+        registerCandidate({
+          nome: candNome.trim(),
+          username: (candUsuario.trim() || candEmail.split('@')[0]).toLowerCase(),
+          email: candEmail.trim(),
+          profileType: selectedProfile,
+          bairro: candBairro,
+          cpf: '000.000.000-00',
+          dataNascimento: '2008-01-01',
+          idade: 18,
+          matriculaEscolar: {
+            instituicao: 'Colégio Estadual de Curitiba',
+            cursoOuSerie: selectedProfile === 'ESTAGIARIO' ? 'Técnico / Superior' : 'Ensino Médio',
+            turno: 'Manhã',
+            comprovanteValido: true
+          }
+        });
+      } catch (err: any) {
+        console.error('Erro ao guardar utilizador no Supabase:', err);
+        showToast('Erro no Cadastro', err.message || 'Erro ao conectar ao banco de dados.', 'error');
+      }
     }
   };
 

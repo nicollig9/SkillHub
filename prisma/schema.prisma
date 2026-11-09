@@ -8,11 +8,17 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
+enum TipoUsuario {
+  ALUNO
+  EMPRESA
+  ADMIN
+}
+
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
+  id        String      @id @default(cuid())
+  email     String      @unique
   senha     String
-  tipo      String
-  situacao  String?
-  createdAt DateTime @default(now())
+  tipo      TipoUsuario @default(ALUNO)
+  situacao  String?     @default("ATIVO")
+  createdAt DateTime    @default(now())
 }
