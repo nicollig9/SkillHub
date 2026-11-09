@@ -516,7 +516,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   ]);
 
   const resolveCourseAlias = (id: string): string => {
-    if (id === 'equilibrio-emocional' || id === 'curso-equilibrio-emocional' || id === 'curso-saude-mental-trabalho') {
+    if (id === 'equilibrio-emocional' || id === 'curso-equilibrio-emocional' || id === 'curso-saude-mental-trabalho' || id === 'inteligencia-emocional' || id === 'curso-inteligencia-emocional' || id === 'c16') {
       return 'curso-saude-mental-trabalho';
     }
     if (id === 'orcamento-primeiro-salario' || id === 'orcamento-primeiro-salarial' || id === 'curso-orcamento-primeiro-salario') {
@@ -524,6 +524,9 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     }
     if (id === 'informatica-basica' || id === 'informatica-basica-nuvem-seguranca' || id === 'informatica' || id === 'curso-informatica-seguranca') {
       return 'curso-informatica-seguranca';
+    }
+    if (id === 'comunicacao-escrita' || id === 'curso-comunicacao-escrita' || id === 'curso-comunicacao-corporativa' || id === 'curso-comunicacao-escrita-corporativa') {
+      return 'curso-comunicacao-escrita-corporativa';
     }
     return id;
   };

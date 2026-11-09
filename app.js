@@ -118,6 +118,8 @@ const COURSES_DATA = [
     badgeName: 'Postura Profissional',
     badgeIcon: 'fa-user-tie',
     accentColor: 'accent-light',
+      videoUrl: 'https://youtu.be/VcFK4u1IOZQ?si=hhiqf7NL7QwLWP_X',
+      youtubeId: 'VcFK4u1IOZQ',
     syllabus: [
       'Módulo 1: A importância da primeira impressão e comunicação não-verbal',
       'Módulo 2: Ética profissional e sigilo de informações corporativas',
@@ -161,6 +163,8 @@ const COURSES_DATA = [
     badgeName: 'Gestão & Resiliência',
     badgeIcon: 'fa-brain',
     accentColor: 'accent-light',
+      videoUrl: 'https://youtu.be/VcFK4u1IOZQ?si=hhiqf7NL7QwLWP_X',
+      youtubeId: 'VcFK4u1IOZQ',
     syllabus: [
       'Módulo 1: Organização pessoal e conciliação de horários (escola + trabalho)',
       'Módulo 2: Matriz de prioridades (O que é urgente vs. O que é importante)',
@@ -342,6 +346,8 @@ const COURSES_DATA = [
     badgeName: 'Finanças do Aprendiz',
     badgeIcon: 'fa-wallet',
     accentColor: 'accent-light',
+      videoUrl: 'https://youtu.be/VcFK4u1IOZQ?si=hhiqf7NL7QwLWP_X',
+      youtubeId: 'VcFK4u1IOZQ',
     syllabus: [
       'Módulo 1: Compreendendo o holerite: salário bruto vs. salário líquido e descontos legais',
       'Módulo 2: A regra do 50-30-20 adaptada para jovens que ajudam em casa',
@@ -375,6 +381,8 @@ const COURSES_DATA = [
     badgeName: 'CNV & Empatia',
     badgeIcon: 'fa-handshake',
     accentColor: 'accent-pink',
+      videoUrl: 'https://youtu.be/PAVaaGa_gug?si=JYdOWSYOz0oJj5TH',
+      youtubeId: 'PAVaaGa_gug',
     syllabus: [
       'Módulo 1: O que é CNV e como separar fatos de julgamentos',
       'Módulo 2: Identificando necessidades não atendidas em situações de conflito',
@@ -432,6 +440,44 @@ const COURSES_DATA = [
     ]
   },
   {
+  {
+    {
+    id: 'curso-comunicacao-escrita-corporativa',
+    track: 'trilha-2',
+    trackName: '2. Soft Skills & Comunicação Corporativa',
+    title: 'Comunicação Escrita, E-mails e Redação Corporativa',
+    description: 'Domine a arte de redigir mensagens corporativas claras, estruturar e-mails que geram respostas rápidas, elaborar relatórios e utilizar ferramentas digitais com assertividade.',
+    duration: '12 horas',
+    level: 'Iniciante',
+    format: 'EAD 100% Gratuito',
+    badgeName: 'Especialista em Comunicação Corporativa',
+    videoUrl: 'https://youtu.be/Lt4zabLCJ9I?si=NpcDLAKgOkQYGDF9',
+    youtubeId: 'Lt4zabLCJ9I',
+    badgeIcon: 'fa-envelope',
+    accentColor: 'accent-pink',
+      videoUrl: 'https://youtu.be/PAVaaGa_gug?si=JYdOWSYOz0oJj5TH',
+      youtubeId: 'PAVaaGa_gug',
+    syllabus: [
+      'Módulo 1: Fundamentos da Comunicação Escrita & E-mails Profissionais',
+      'Módulo 2: Técnicas de Redação Empresarial e Documentos Formais',
+      'Módulo 3: Ferramentas Digitais, Produtividade e Copiloto de IA',
+      'Módulo 4: Comunicação Escrita em Situações Críticas e Canais Instantâneos'
+    ],
+    prerequisites: 'Nenhum pré-requisito.',
+    instructor: 'Especialista em Comunicação Corporativa',
+    quiz: [
+      {
+        question: 'Qual é o objetivo principal da técnica da Pirâmide Invertida na redação corporativa?',
+        options: [
+          'Deixar a conclusão sempre para o último parágrafo.',
+          'Apresentar a informação mais importante logo no início do texto.',
+          'Escrever textos longos e com muitos detalhes.',
+          'Omitir os prazos e responsáveis.'
+        ],
+        correct: 1
+      }
+    ]
+  },
   {
     id: 'curso-informatica-seguranca',
     track: 'trilha-3',
@@ -638,6 +684,8 @@ const COURSES_DATA = [
     badgeName: 'Mestre do Orçamento',
     badgeIcon: 'fa-piggy-bank',
     accentColor: 'accent-light',
+      videoUrl: 'https://youtu.be/VcFK4u1IOZQ?si=hhiqf7NL7QwLWP_X',
+      youtubeId: 'VcFK4u1IOZQ',
     syllabus: [
       'Módulo 1: O impacto dos juros compostos nas dívidas e nos investimentos',
       'Módulo 2: Divisão salarial em gastos essenciais (50%), lazer (30%) e futuro (20%)',
@@ -671,6 +719,8 @@ const COURSES_DATA = [
     badgeName: 'Inteligência Emocional',
     badgeIcon: 'fa-heart-pulse',
     accentColor: 'accent-pink',
+      videoUrl: 'https://youtu.be/PAVaaGa_gug?si=JYdOWSYOz0oJj5TH',
+      youtubeId: 'PAVaaGa_gug',
     syllabus: [
       'Módulo 1: Reconhecendo sinais de estresse e sobrecarga no dia a dia',
       'Módulo 2: Técnicas práticas de respiração e foco (Box Breathing e Pomodoro)',

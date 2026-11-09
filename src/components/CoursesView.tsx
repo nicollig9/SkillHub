@@ -33,6 +33,10 @@ const COURSE_REASONS: Record<string, string> = {
   'informatica-basica-nuvem-seguranca': 'Conceitos fundamentais de informática, arquivos em nuvem, cuidados com senhas corporativas e prevenção a vírus e phishing.',
 
   // Nível 2
+  'excel-avancado': 'Domínio de PROCX, tratamento de bases desestruturadas, tabelas dinâmicas com segmentação de dados e dashboards executivos.',
+  'curso-excel-avancado-analise-dados': 'Domínio de PROCX, tratamento de bases desestruturadas, tabelas dinâmicas com segmentação de dados e dashboards executivos.',
+  'excel-avancado-analise-dados': 'Domínio de PROCX, tratamento de bases desestruturadas, tabelas dinâmicas com segmentação de dados e dashboards executivos.',
+  'curso-excel-avancado': 'Domínio de PROCX, tratamento de bases desestruturadas, tabelas dinâmicas com segmentação de dados e dashboards executivos.',
   'curso-comunicacao-nao-violenta': 'Comunicação empática e sem conflitos no dia a dia do escritório, escuta ativa e mediação de divergências.',
   'curso-excel-basico-avancado': 'Operações estruturadas de escritório, tabelas dinâmicas, PROCV, funções lógicas e padronização visual de dados.',
   'curso-rotinas-administrativas': 'Organização e controle de processos internos, redação de atas formais, arquivos e atendimento telefônico institucional.',
@@ -77,6 +81,8 @@ const LEVEL_DEFINITIONS = [
     badgeClass: 'bg-amber-950/60 text-amber-300 border-amber-500/30',
     dotColor: 'bg-amber-400',
     priorityOrder: [
+      'excel-avancado',
+      'curso-excel-avancado-analise-dados',
       'curso-comunicacao-nao-violenta',
       'curso-excel-basico-avancado',
       'curso-rotinas-administrativas',
@@ -142,6 +148,8 @@ export default function CoursesView() {
       selectedCategory === 'TODAS' || 
       course.category === selectedCategory ||
       course.category.toLowerCase().includes(selectedCategory.toLowerCase()) ||
+      (selectedCategory === 'Tecnologia da Informação' && (course.category.toLowerCase().includes('tecnologia') || course.category.toLowerCase().includes('produtividade') || course.id.includes('excel'))) ||
+      (selectedCategory === 'Produtividade & Tecnologia' && (course.category.toLowerCase().includes('tecnologia') || course.category.toLowerCase().includes('produtividade') || course.id.includes('excel'))) ||
       (selectedCategory === 'Desenvolvimento Pessoal' && (course.id === 'orcamento-primeiro-salario' || course.id === 'orcamento-primeiro-salarial' || course.id === 'curso-orcamento-primeiro-salario')) ||
       (selectedCategory === 'Finanças Pessoais' && (course.id === 'orcamento-primeiro-salario' || course.id === 'orcamento-primeiro-salarial' || course.id === 'curso-orcamento-primeiro-salario' || course.category === 'Finanças Pessoais' || course.category.toLowerCase().includes('finan')));
 

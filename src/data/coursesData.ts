@@ -870,12 +870,351 @@ export const CURSO_INFORMATICA_SEGURANCA: Course = {
 
 export const INFORMATICA_SEGURANCA_DATA = CURSO_INFORMATICA_SEGURANCA;
 
+
+// =========================================================================
+// CURSO OFICIAL: EXCEL AVANÇADO E ANÁLISE DE DADOS
+// =========================================================================
+export const CURSO_EXCEL_AVANCADO_ANALISE_DADOS: Course = {
+  id: 'excel-avancado',
+  trackId: 'trilha-3',
+  trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
+  category: 'Produtividade & Tecnologia',
+  targetAudienceType: 'TODOS',
+  title: 'Excel Avançado e Análise de Dados',
+  subtitle: 'Domine PROCX, tratamento de bases desestruturadas, Tabelas Dinâmicas interativas e construção de Dashboards executivos de alto impacto.',
+  hours: 4,
+  equivalentHours: 4,
+  modality: 'EAD 100% Gratuito (Escola Virtual)',
+  targetAudience: 'Estudantes, estagiários, assistentes e analistas que buscam automatizar análises, tratar grandes bases de dados e construir painéis executivos dinâmicos.',
+  prerequisites: 'Conhecimentos básicos de Excel e planilhas eletrônicas.',
+  badgeName: 'Especialista em Excel Avançado & Dashboards',
+  badgeCategory: 'Produtividade & Tecnologia',
+  badgeIcon: 'FileSpreadsheet',
+  accentColor: '#10B981',
+  level: 'Intermediário',
+  published: true,
+  isPublished: true,
+  active: true,
+  visible: true,
+  videoUrl: 'https://youtu.be/9QbIuIZMVUw',
+  youtubeId: '9QbIuIZMVUw',
+  learningObjectives: [
+    'Substituir fórmulas complexas de busca pelo PROCX com correspondência exata nativa e buscas bidirecionais à esquerda.',
+    'Tratar exceções e erros de planilhas (#N/D, #VALOR!) com a função SEERRO e combinar operadores lógicos encadeados.',
+    'Higienizar bases desestruturadas com ARRUMAR, Texto para Colunas, eliminação de duplicatas e regras de Validação de Dados.',
+    'Construir Tabelas Dinâmicas avançadas com agrupamentos cronológicos, campos calculados e filtros por Segmentação de Dados (Slicers).',
+    'Desenvolver Dashboards executivos interativos sem linhas de grade, com gráficos analíticos combinados e formatação condicional avançada baseada em fórmulas.'
+  ],
+  modules: [
+    {
+      id: 'exc-av-mod-1',
+      number: 1,
+      title: 'MÓDULO 1: Fórmulas de Busca e Lógica Avançada',
+      summary: 'Substituição de estruturas complexas de busca pelo PROCX, além da combinação de operadores lógicos e controle profissional de erros.',
+      estimatedMinutes: 60,
+      content: {
+        sections: [
+          {
+            subheading: '1. Sintaxe e Poder do PROCX',
+            body: [
+              'O PROCX revoluciona a pesquisa no Excel, superando as limitações históricas do PROCV:',
+              '• Buscas à Esquerda: O PROCX aceita matrizes de pesquisa e de retorno independentes, permitindo buscar valores à esquerda sem truques.',
+              '• Correspondência Exata por Padrão: Elimina a necessidade de digitar o parâmetro FALSO ou 0 no final da fórmula.',
+              '• Tratamento Nativo de Erro: O 4º argumento [se_não_encontrado] permite definir uma mensagem padrão caso o item não exista na base.',
+              '• Sintaxe Básica: =PROCX(pesquisa_valor; matriz_pesquisa; matriz_retorno; [se_não_encontrado]; [modo_correspondência]; [modo_pesquisa]).'
+            ],
+            highlightBox: {
+              type: 'calc',
+              title: 'PROCX vs. PROCV Clássico',
+              text: '=PROCX(A2; Clientes[CPF]; Clientes[Nome]; "Não localizado") busca de forma rápida, segura e sem quebrar ao inserir novas colunas.'
+            }
+          },
+          {
+            subheading: '2. Funções de Busca Clássicas em Planilhas Legadas',
+            body: [
+              'Embora o PROCX seja moderno, milhares de empresas utilizam modelos legados compatíveis com versões anteriores do Excel:',
+              '• PROCV e PROCH: Entendimento do índice de coluna e limitações de ordenação.',
+              '• ÍNDICE + CORRESP: A combinação bidirecional clássica para matrizes dinâmicas antes da criação do PROCX.'
+            ]
+          },
+          {
+            subheading: '3. Lógica Encadeada e Tratamento de Exceções',
+            body: [
+              'Combinando testes lógicos para tomada de decisão automatizada no ambiente corporativo:',
+              '• Operadores Lógicos SE, E e OU: Construção de regras de validação multicritério em cascata.',
+              '• Função SEERRO: Envolver fórmulas críticas para exibir mensagens elegantes ou 0 em vez de erros antiestéticos como #N/D, #VALOR! ou #DIV/0!.'
+            ],
+            highlightBox: {
+              type: 'info',
+              title: 'Controle Profissional com SEERRO',
+              text: '=SEERRO(PROCX(A2; Base[ID]; Base[Salário]); 0) garante que células filhas (como somas e médias) não quebrem por erros transitórios.'
+            }
+          }
+        ]
+      }
+    },
+    {
+      id: 'exc-av-mod-2',
+      number: 2,
+      title: 'MÓDULO 2: Tratamento, Limpeza e Organização de Dados',
+      summary: 'Preparação e saneamento de bases desestruturadas ou exportadas de sistemas ERP para análises confiáveis e auditáveis.',
+      estimatedMinutes: 60,
+      content: {
+        sections: [
+          {
+            subheading: '1. Higienização e Tratamento de Dados',
+            body: [
+              'Bases extraídas de sistemas comumente trazem inconsistências invisíveis que quebram fórmulas:',
+              '• Função =ARRUMAR(): Remove espaços duplicados e espaços no início/fim de textos.',
+              '• Padronização de Texto: Funções =MAIÚSCULA(), =MINÚSCULA() e =PRI.MAIÚSCULA() para padronizar nomes e cadastros.',
+              '• Conversão de Tipos: Conversão de datas e números importados incorretamente como texto utilizando =VALOR() e multiplicação por 1.'
+            ]
+          },
+          {
+            subheading: '2. Ferramenta Texto para Colunas',
+            body: [
+              'Separação eficiente de relatórios brutos ou arquivos CSV delimitados:',
+              '• Delimitadores Comuns: Ponto e vírgula (;), vírgula (,), tabulação ou caracteres customizados.',
+              '• Largura Fixa: Divisão de campos baseada em posições de caracteres para relatórios bancários ou de folha de pagamento.'
+            ],
+            highlightBox: {
+              type: 'calc',
+              title: 'Texto para Colunas',
+              text: 'Aba Dados ──► Texto para Colunas ──► Delimitado ──► Selecionar Delimitador (ex: ponto e vírgula) ──► Concluir.'
+            }
+          },
+          {
+            subheading: '3. Validação de Dados e Eliminação de Duplicatas',
+            body: [
+              'Blindagem de planilhas para evitar erros humanos na entrada de dados:',
+              '• Listas Suspensas (Drop-downs): Restrição de células a opções predeterminadas de uma tabela de apoio.',
+              '• Validações Numéricas e de Data: Limitação de intervalos (ex: notas de 0 a 10, datas no ano vigente).',
+              '• Remoção de Duplicatas: Identificação e exclusão de registros repetidos preservando a integridade dos dados originais.'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      id: 'exc-av-mod-3',
+      number: 3,
+      title: 'MÓDULO 3: Tabulação e Análise Dinâmica de Dados',
+      summary: 'Sumarização, agrupamentos e extração de insights de grandes volumes de dados em segundos com Tabelas Dinâmicas.',
+      estimatedMinutes: 60,
+      content: {
+        sections: [
+          {
+            subheading: '1. Arquitetura de Tabelas Dinâmicas (Pivot Tables)',
+            body: [
+              'A ferramenta mais veloz e poderosa para exploração analítica no Excel:',
+              '• Quadrantes Estruturais: Filtros, Colunas, Linhas e Valores.',
+              '• Modos de Resumo: Alternância entre Soma, Contagem, Média, Máximo e Percentual do Total Geral.',
+              '• Formatação Numérica Preservada: Ajuste da formatação de valores direto no resumo do campo.'
+            ]
+          },
+          {
+            subheading: '2. Agrupamentos Automáticos e Campos Calculados',
+            body: [
+              'Elevando o nível analítico sem tocar na base bruta:',
+              '• Agrupamento Cronológico: Agrupar milhares de linhas de pedidos por Anos, Trimestres e Meses com apenas um clique.',
+              '• Agrupamento Numérico: Criação de faixas salariais ou de faturamento para análise de distribuição.',
+              '• Campos Calculados: Criação de métricas proprietárias (ex: Margem de Lucro = [Lucro] / [Receita]) direto na dinâmica.'
+            ],
+            highlightBox: {
+              type: 'info',
+              title: 'Agrupamento Dinâmico',
+              text: 'Clique com o botão direito sobre qualquer data na Tabela Dinâmica ──► Agrupar ──► Selecione "Meses" e "Anos".'
+            }
+          },
+          {
+            subheading: '3. Segmentação de Dados (Slicers) e Linhas do Tempo',
+            body: [
+              'Transformando tabelas estáticas em painéis interativos:',
+              '• Slicers (Segmentação de Dados): Botões modernos de filtro visual intuitivo.',
+              '• Conexões de Relatório: Vinculação de uma única segmentação a múltiplas Tabelas Dinâmicas simultaneamente.',
+              '• Linhas do Tempo (Timelines): Controle visual deslizante para recorte dinâmico de períodos e safras.'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      id: 'exc-av-mod-4',
+      number: 4,
+      title: 'MÓDULO 4: Visualização Profissional, Formatação e Dashboards',
+      summary: 'Transformação de dados brutos em painéis de bordo executivos (Dashboards) funcionais, elegantes e de alto impacto visual.',
+      estimatedMinutes: 60,
+      content: {
+        sections: [
+          {
+            subheading: '1. Gráficos Analíticos e Combinações de Eixos',
+            body: [
+              'A escolha correta do tipo de gráfico orientada ao tipo de decisão:',
+              '• Comparação e Ranking: Gráficos de barras e colunas horizontais/verticais.',
+              '• Tendência e Evolução Temporal: Gráficos de linhas com marcadores para dados contínuos.',
+              '• Composição: Gráficos de rosca ou cascata (waterfall).',
+              '• Gráfico Combinado com Eixo Secundário: Colunas (Volume) + Linha (Percentual de Margem) para análise simultânea.'
+            ]
+          },
+          {
+            subheading: '2. Formatação Condicional Avançada com Fórmulas',
+            body: [
+              'Gestão visual imediata com base em regras automáticas:',
+              '• Regras Baseadas em Fórmulas: Destacar a linha inteira quando a meta não for atingida (ex: =$D2<$C2).',
+              '• Barras de Dados e Escalas de Cor: Gráficos em miniatura dentro das próprias células da tabela.',
+              '• Conjuntos de Ícones (KPIs): Semáforos e setas de tendência para rápida leitura executiva.'
+            ],
+            highlightBox: {
+              type: 'calc',
+              title: 'Formatação Condicional da Linha Inteira',
+              text: 'Selecione a tabela ──► Nova Regra ──► Usar fórmula: =$E2<0 ──► Formatar Preenchimento Vermelho Suave. O "$" na coluna fixa a análise.'
+            }
+          },
+          {
+            subheading: '3. Design e Arquitetura de Dashboards Executivos',
+            body: [
+              'Princípios de UI/UX e design de informação em planilhas corporativas:',
+              '• Limpeza Visual: Ocultar linhas de grade, barra de fórmulas e títulos de linha/coluna na apresentação.',
+              '• Hierarquia e Alinhamento: Cartões de KPIs no topo, gráficos principais no centro e detalhamentos abaixo.',
+              '• Interatividade Integrada: Painel com Segmentação de Dados conectada a todos os gráficos para exploração em tempo real.'
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  caseStudies: [
+    {
+      id: 'case-excel-avancado-1',
+      title: 'Dashboard de Vendas e Margem Operacional da TechVarejo',
+      character: 'Mariana Duarte, Analista de Dados e Planejamento Financeiro',
+      scenario: 'A diretoria da TechVarejo recebia relatórios de vendas semanais em planilhas com 45.000 linhas, nomes de clientes despadronizados e múltiplos erros #N/D provenientes de PROCVs quebrados, impedindo uma tomada de decisão rápida sobre margens por região.',
+      criticalAnalysis: 'Mariana higienizou a base com Texto para Colunas e ARRUMAR, substituiu as buscas instáveis por PROCX encapsulado com SEERRO, estruturou uma Tabela Dinâmica com agrupamento de datas e construiu um Dashboard executivo interativo com Segmentação de Dados e Gráficos Combinados.',
+      keyTakeaways: [
+        'Uso do PROCX para evitar erros decorrentes de inserção de colunas na base de dados.',
+        'Saneamento prévio dos dados brutos com ARRUMAR e remoção de duplicatas antes de qualquer modelagem.',
+        'Conexão de múltiplos gráficos e tabelas dinâmicas a uma mesma Segmentação de Dados para análise executiva em tempo real.'
+      ],
+      badgeRelevance: 'Demonstra maestria em transformar planilhas brutas e caóticas em sistemas de apoio à decisão visualmente impecáveis e auditáveis.',
+      interactiveOptions: {
+        question: 'Qual a primeira medida para garantir que o Dashboard não apresente erros de cálculo ao importar uma nova remessa de dados do sistema?',
+        choices: [
+          { text: 'Tratar a base com ARRUMAR, verificar formatos e validar fórmulas de busca com PROCX e SEERRO.', correct: true, feedback: 'Excelente! A higienização prévia e o tratamento com SEERRO garantem integridade total.' },
+          { text: 'Ocultar as linhas que apresentarem erro na Tabela Dinâmica.', correct: false, feedback: 'Incorreto. Ocultar linhas omite valores reais e distorce os totais do relatório.' },
+          { text: 'Mudar a cor de fundo das células de erro para branco.', correct: false, feedback: 'Incorreto. A célula continua contendo o erro na memória do Excel, quebrando cálculos posteriores.' }
+        ]
+      }
+    }
+  ],
+  quiz: [
+    {
+      id: 1,
+      question: 'Qual é a principal vantagem da função PROCX em relação ao PROCV tradicional?',
+      options: [
+        'O PROCX é a única função que consegue somar valores com base em critérios.',
+        'O PROCX consegue realizar buscas à esquerda da coluna de pesquisa e busca correspondência exata por padrão.',
+        'O PROCX exige que a coluna de busca esteja organizada em ordem alfabética obrigatória.',
+        'O PROCX funciona apenas com valores numéricos, ignorando textos.'
+      ],
+      correct: 1,
+      explanation: 'Diferente do PROCV (que exige que o valor buscado esteja na primeira coluna à esquerda do intervalo), o PROCX aceita matrizes de busca e retorno independentes, além de procurar correspondência exata sem necessidade do parâmetro FALSO.'
+    },
+    {
+      id: 2,
+      question: 'Em um relatório no Excel, algumas células exibem o erro #N/D. Qual é a melhor abordagem para tratar esse problema profissionalmente?',
+      options: [
+        'Deletar a fórmula da célula para que a palavra sumir.',
+        'Ocultar a coluna inteira onde o erro aparece.',
+        'Envolver a fórmula dentro da função SEERRO, definindo um texto amigável como "Não encontrado" ou o valor 0.',
+        'Mudar a cor da fonte da célula para branco para disfarçar o erro.'
+      ],
+      correct: 2,
+      explanation: 'A função SEERRO(fórmula; valor_se_erro) intercepta qualquer erro retornado e exibe uma alternativa limpa, garantindo que fórmulas dependentes continuem funcionando.'
+    },
+    {
+      id: 3,
+      question: 'Para que serve a ferramenta "Segmentação de Dados" (Slicer) associada a uma Tabela Dinâmica?',
+      options: [
+        'Para dividir o arquivo do Excel em várias planilhas separadas por e-mail.',
+        'Para criar botões visuais e interativos que filtram rapidamente as Tabelas Dinâmicas e Gráficos do Dashboard.',
+        'Para calcular a média dos valores da tabela automaticamente.',
+        'Para converter todas as fórmulas em texto estático.'
+      ],
+      correct: 1,
+      explanation: 'A Segmentação de Dados gera botões clicáveis de fácil navegação que filtram a Tabela Dinâmica e podem ser conectados a múltiplos gráficos ao mesmo tempo.'
+    },
+    {
+      id: 4,
+      question: 'Qual é o objetivo principal do recurso "Validação de Dados" no Excel?',
+      options: [
+        'Proteger a planilha contra cópias não autorizadas por senha.',
+        'Restringir os tipos de dados ou valores que os usuários podem inserir em células específicas, evitando erros de digitação.',
+        'Fazer a leitura ótica de imagens e transformar em tabela.',
+        'Atualizar automaticamente as cotações de moedas em tempo real.'
+      ],
+      correct: 1,
+      explanation: 'A Validação de Dados permite definir regras (como permitir apenas datas, números em um intervalo ou criar uma lista suspensa de opções), garantindo a integridade dos dados inseridos.'
+    },
+    {
+      id: 5,
+      question: 'Ao construir um Dashboard executivo, qual tipo de gráfico é o mais recomendado para mostrar a evolução temporal de uma métrica (ex: vendas ao longo dos 12 meses do ano)?',
+      options: [
+        'Gráfico de Pizza (Setores).',
+        'Gráfico de Linhas.',
+        'Gráfico de Dispersão de Bolhas.',
+        'Gráfico de Radar.'
+      ],
+      correct: 1,
+      explanation: 'Gráficos de linha são visualmente ideais para demonstrar tendências, oscilações, picos e quedas contínuas ao longo do tempo (dias, meses, anos).'
+    },
+    {
+      id: 6,
+      question: 'Como a Formatação Condicional com "Regra baseada em Fórmula" pode ajudar na gestão visual de estoque?',
+      options: [
+        'Aumentando o tamanho da célula quando o estoque acaba.',
+        'Destacando automaticamente em vermelho as linhas onde a quantidade atual for menor que o estoque mínimo definido.',
+        'Enviando um alarme sonoro quando o usuário abre o Excel.',
+        'Bloqueando a edição da planilha quando o estoque atingir zero.'
+      ],
+      correct: 1,
+      explanation: 'Aplicar regras de formatação condicional usando fórmulas lógicas (ex: =$C2<$D2) altera dinamicamente o preenchimento, borda ou cor da fonte da linha inteira com base nos dados.'
+    },
+    {
+      id: 7,
+      question: 'O que acontece quando você utiliza a funcionalidade "Texto para Colunas"?',
+      options: [
+        'Converte automaticamente todas as letras minúsculas em maiúsculas.',
+        'Traduz o texto da planilha para outros idiomas.',
+        'Divide o conteúdo de uma única célula em múltiplas colunas com base em um delimitador (como vírgula, espaço ou ponto e vírgula).',
+        'Transforma colunas verticais em linhas horizontais.'
+      ],
+      correct: 2,
+      explanation: 'É a ferramenta ideal para separar dados importados em bloco (como Nome;Sobrenome;CPF ou arquivos CSV), dividindo o texto em colunas independentes a partir do caractere separador.'
+    }
+  ]
+};
+
 export const COURSES: Course[] = [
+  CURSO_EXCEL_AVANCADO_ANALISE_DADOS,
+  {
+    ...CURSO_EXCEL_AVANCADO_ANALISE_DADOS,
+    id: 'curso-excel-avancado-analise-dados'
+  },
+  {
+    ...CURSO_EXCEL_AVANCADO_ANALISE_DADOS,
+    id: 'excel-avancado-analise-dados'
+  },
+  {
+    ...CURSO_EXCEL_AVANCADO_ANALISE_DADOS,
+    id: 'curso-excel-avancado'
+  },
   // =========================================================================
   // CURSO OFICIAL: COMUNICAÇÃO ESCRITA, E-MAILS E REDAÇÃO CORPORATIVA
   // =========================================================================
   {
     id: 'curso-comunicacao-escrita-corporativa',
+    videoUrl: 'https://youtu.be/Lt4zabLCJ9I?si=NpcDLAKgOkQYGDF9',
+    youtubeId: 'Lt4zabLCJ9I',
     trackId: 'trilha-comunicacao-relacionamento',
     trackName: 'Trilha Comunicação & Relacionamento Profissional',
     category: 'Administração e Negócios',
@@ -1616,6 +1955,12 @@ export const COURSES: Course[] = [
   // =========================================================================
   {
     id: 'curso-gestao-tempo-produtividade-iniciante',
+    published: true,
+    isPublished: true,
+    active: true,
+    visible: true,
+    videoUrl: 'https://youtu.be/VcFK4u1IOZQ?si=hhiqf7NL7QwLWP_X',
+    youtubeId: 'VcFK4u1IOZQ',
     trackId: 'trilha-5',
     trackName: 'TRILHA 5: Gestão do Tempo, Foco & Educação Financeira',
     category: 'Desenvolvimento Pessoal',
@@ -2421,6 +2766,12 @@ export const COURSES: Course[] = [
   // =========================================================================
   {
     id: 'curso-soft-skills-comunicacao-interpessoal',
+    published: true,
+    isPublished: true,
+    active: true,
+    visible: true,
+    videoUrl: 'https://youtu.be/SFC9uLZSevs?si=8uoTJHebCyg4PF9z',
+    youtubeId: 'SFC9uLZSevs',
     trackId: 'trilha-2',
     trackName: 'TRILHA 2: Soft Skills, Postura & Comunicação Corporativa',
     category: 'Desenvolvimento Pessoal',
@@ -4132,6 +4483,12 @@ export const COURSES: Course[] = [
   // =========================================================================
   {
     id: 'curso-ia-produtividade',
+    published: true,
+    isPublished: true,
+    active: true,
+    visible: true,
+    videoUrl: 'https://youtu.be/1uIR8erwQmI?si=_Q067y0xVY9R8iWQ',
+    youtubeId: '1uIR8erwQmI',
     trackId: 'trilha-3',
     trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
     category: 'Tecnologia da Informação',
@@ -4822,6 +5179,12 @@ export const COURSES: Course[] = [
   // =========================================================================
   {
     id: 'curso-rotinas-administrativas',
+    published: true,
+    isPublished: true,
+    active: true,
+    visible: true,
+    videoUrl: 'https://youtu.be/HRqLQmuW_kc?si=QN6bzX4Wc1Z-yZ6U',
+    youtubeId: 'HRqLQmuW_kc',
     trackId: 'trilha-4',
     trackName: 'TRILHA 4: Rotinas Administrativas & Gestão Empresarial',
     category: 'Administração e Negócios',
@@ -5043,6 +5406,8 @@ export const COURSES: Course[] = [
   // =========================================================================
   {
     id: 'curso-gestao-tempo',
+    videoUrl: 'https://youtu.be/VcFK4u1IOZQ?si=hhiqf7NL7QwLWP_X',
+    youtubeId: 'VcFK4u1IOZQ',
     trackId: 'trilha-4',
     trackName: 'TRILHA 4: Rotinas Administrativas & Gestão Empresarial',
     category: 'Desenvolvimento Pessoal',
@@ -5914,11 +6279,63 @@ export const COURSES: Course[] = [
     ...CURSO_EQUILIBRIO_EMOCIONAL,
     id: 'curso-equilibrio-emocional'
   },
+  {
+    ...CURSO_EQUILIBRIO_EMOCIONAL,
+    id: 'ia-produtividade',
+    title: 'Inteligência Artificial e Automação no Dia a Dia de Trabalho'
+  },
+  {
+    ...CURSO_EQUILIBRIO_EMOCIONAL,
+    id: 'curso-inteligencia-artificial-automacao',
+    title: 'Inteligência Artificial e Automação no Dia a Dia de Trabalho'
+  },
+  {
+    ...CURSO_EQUILIBRIO_EMOCIONAL,
+    id: 'soft-skills-comunicacao-interpessoal',
+    title: 'Soft Skills e Comunicação Interpessoal'
+  },
+  {
+    ...CURSO_EQUILIBRIO_EMOCIONAL,
+    id: 'curso-soft-skills',
+    title: 'Soft Skills e Comunicação Interpessoal'
+  },
+  {
+    ...CURSO_EQUILIBRIO_EMOCIONAL,
+    id: 'rotinas-administrativas',
+    title: 'Rotinas Administrativas e Organização de Processos de Escritório'
+  },
+  {
+    ...CURSO_EQUILIBRIO_EMOCIONAL,
+    id: 'rotinas-processos-escritorio',
+    title: 'Rotinas Administrativas e Organização de Processos de Escritório'
+  },
+  {
+    ...CURSO_EQUILIBRIO_EMOCIONAL,
+    id: 'gestao-tempo-produtividade',
+    title: 'Gestão do Tempo e Produtividade'
+  },
+  {
+    ...CURSO_EQUILIBRIO_EMOCIONAL,
+    id: 'curso-gestao-tempo-produtividade',
+    title: 'Gestão do Tempo e Produtividade'
+  },
+  {
+    ...CURSO_EQUILIBRIO_EMOCIONAL,
+    id: 'inteligencia-emocional',
+    title: 'Inteligência Emocional no Trabalho'
+  },
+  {
+    ...CURSO_EQUILIBRIO_EMOCIONAL,
+    id: 'curso-inteligencia-emocional',
+    title: 'Inteligência Emocional no Trabalho'
+  },
 
   // 17. COMUNICAÇÃO ESCRITA, E-MAILS E REDAÇÃO CORPORATIVA
   // =========================================================================
   {
     id: 'curso-comunicacao-corporativa',
+    videoUrl: 'https://youtu.be/Lt4zabLCJ9I?si=NpcDLAKgOkQYGDF9',
+    youtubeId: 'Lt4zabLCJ9I',
     trackId: 'trilha-2',
     trackName: 'TRILHA 2: Soft Skills, Postura & Comunicação Corporativa',
     category: 'Desenvolvimento Pessoal',
@@ -6462,3 +6879,7 @@ export const COURSES: Course[] = [
 
 
 
+
+export const COURSES_DATA = COURSES;
+export const catalogCourses = COURSES;
+export const EXCEL_AVANCADO_DATA = CURSO_EXCEL_AVANCADO_ANALISE_DADOS;

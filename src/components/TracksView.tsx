@@ -24,7 +24,19 @@ import {
 } from 'lucide-react';
 
 export default function TracksView() {
-  const { openCourse, candidateProfileType, completedModules, quizResults, student } = useApp();
+  const { openCourse, candidateProfileType, completedModules, quizResults, student, currentView } = useApp();
+
+  // Modo de exibição: Catálogo Completo ("Explorar Trilhas") ou Apenas em Andamento ("Minhas Trilhas")
+  const [activeTab, setActiveTab] = useState<'CATALOGO' | 'MINHAS'>('CATALOGO');
+
+  // Sincronizar com a rota/visão ativa (Minhas Trilhas vs Explorar Trilhas)
+  React.useEffect(() => {
+    if (currentView === 'MINHAS_TRILHAS') {
+      setActiveTab('MINHAS');
+    } else if (currentView === 'TRILHAS_DISPONIVEIS' || currentView === 'TRILHAS') {
+      setActiveTab('CATALOGO');
+    }
+  }, [currentView]);
 
   // Cards recolhidos por padrão (accordion)
   const [expandedTrackId, setExpandedTrackId] = useState<string | null>(null);

@@ -29,6 +29,13 @@ function MinimalistVideoPlayer({
   isOrcamento,
   isExcel,
   isInformatica,
+  isComunicacao,
+  isEquilibrio,
+  isGestaoTempo,
+  isRotinas,
+  isSoftSkills,
+  isIaProdutividade,
+  isExcelAvancado,
   autoStartMuted = false
 }: { 
   youtubeId: string; 
@@ -36,6 +43,13 @@ function MinimalistVideoPlayer({
   isOrcamento?: boolean; 
   isExcel?: boolean;
   isInformatica?: boolean;
+  isComunicacao?: boolean;
+  isEquilibrio?: boolean;
+  isGestaoTempo?: boolean;
+  isRotinas?: boolean;
+  isSoftSkills?: boolean;
+  isIaProdutividade?: boolean;
+  isExcelAvancado?: boolean;
   autoStartMuted?: boolean;
 }) {
   const [isPlaying, setIsPlaying] = useState<boolean>(autoStartMuted || false);
@@ -164,13 +178,79 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
 
   const activeCourseId = courseId || selectedCourseId;
 
+  const isExcelAvancadoId = (id?: string | null) =>
+    Boolean(
+      id && (
+        id === 'curso-excel-avancado-analise-dados' ||
+        id === 'excel-avancado-analise-dados' ||
+        id === 'curso-excel-avancado' ||
+        id === 'excel-avancado' ||
+        id.includes('excel-avancado') ||
+        id.includes('analise-dados')
+      )
+    );
+
+  const isIaProdutividadeId = (id?: string | null) =>
+    Boolean(
+      id && (
+        id === 'curso-ia-produtividade' ||
+        id === 'ia-produtividade' ||
+        id === 'curso-inteligencia-artificial-automacao' ||
+        id === 'inteligencia-artificial-automacao' ||
+        id === 'c13' ||
+        id.includes('ia-produtividade') ||
+        id.includes('ia-automacao')
+      )
+    );
+
+  const isSoftSkillsId = (id?: string | null) =>
+    Boolean(
+      id && (
+        id === 'curso-soft-skills-comunicacao-interpessoal' ||
+        id === 'soft-skills-comunicacao-interpessoal' ||
+        id === 'curso-soft-skills' ||
+        id === 'soft-skills' ||
+        id.includes('soft-skills')
+      )
+    );
+
+  const isRotinasId = (id?: string | null) =>
+    Boolean(
+      id && (
+        id === 'curso-rotinas-administrativas' ||
+        id === 'rotinas-administrativas' ||
+        id === 'curso-rotinas-processos' ||
+        id === 'rotinas-processos-escritorio' ||
+        id === 'curso-rotinas-administrativas-escritorio' ||
+        id.includes('rotinas-administrativas') ||
+        id.includes('rotinas-processos')
+      )
+    );
+
+  const isGestaoTempoId = (id?: string | null) =>
+    Boolean(
+      id && (
+        id === 'curso-gestao-tempo-produtividade-iniciante' ||
+        id === 'gestao-tempo-produtividade' ||
+        id === 'curso-gestao-tempo-produtividade' ||
+        id === 'curso-gestao-tempo' ||
+        id === 'gestao-tempo' ||
+        id === 'c4' ||
+        id.includes('gestao-tempo')
+      )
+    );
+
   const isEquilibrioId = (id?: string | null) =>
     Boolean(
       id && (
         id === 'equilibrio-emocional' ||
         id === 'curso-equilibrio-emocional' ||
         id === 'curso-saude-mental-trabalho' ||
+        id === 'inteligencia-emocional' ||
+        id === 'curso-inteligencia-emocional' ||
+        id === 'c16' ||
         id.includes('equilibrio') ||
+        id.includes('inteligencia') ||
         id.includes('saude-mental')
       )
     );
@@ -197,6 +277,19 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
       )
     );
 
+  const isComunicacaoId = (id?: string | null) =>
+    Boolean(
+      id && (
+        id === 'curso-comunicacao-escrita-corporativa' ||
+        id === 'curso-comunicacao-corporativa' ||
+        id === 'comunicacao-escrita' ||
+        id === 'curso-comunicacao-escrita' ||
+        id === 'comunicacao-corporativa' ||
+        id.includes('comunicacao-escrita') ||
+        id.includes('comunicacao-corporativa')
+      )
+    );
+
   const isInformaticaId = (id?: string | null) =>
     Boolean(
       id && (
@@ -208,6 +301,24 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     );
 
   const course = 
+    (isExcelAvancadoId(activeCourseId)
+      ? COURSES.find((c) => isExcelAvancadoId(c.id))
+      : null) ||
+    (isIaProdutividadeId(activeCourseId)
+      ? COURSES.find((c) => isIaProdutividadeId(c.id))
+      : null) ||
+    (isSoftSkillsId(activeCourseId)
+      ? COURSES.find((c) => isSoftSkillsId(c.id))
+      : null) ||
+    (isRotinasId(activeCourseId)
+      ? COURSES.find((c) => isRotinasId(c.id))
+      : null) ||
+    (isGestaoTempoId(activeCourseId)
+      ? COURSES.find((c) => isGestaoTempoId(c.id))
+      : null) ||
+    (isComunicacaoId(activeCourseId)
+      ? COURSES.find((c) => isComunicacaoId(c.id))
+      : null) ||
     (isInformaticaId(activeCourseId)
       ? COURSES.find((c) => isInformaticaId(c.id))
       : null) ||
@@ -226,13 +337,31 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     CURSO_EQUILIBRIO_EMOCIONAL ||
     COURSES[0];
 
+  const isExcelAvancado = isExcelAvancadoId(course?.id) || isExcelAvancadoId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('excel avançado') || course.title.toLowerCase().includes('excel avancado')));
+  const isIaProdutividade = isIaProdutividadeId(course?.id) || isIaProdutividadeId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('inteligência artificial e automação') || course.title.toLowerCase().includes('automacao no dia a dia') || course.title.toLowerCase().includes('automação no dia a dia')));
+  const isSoftSkills = isSoftSkillsId(course?.id) || isSoftSkillsId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('soft skills') || course.title.toLowerCase().includes('comunicação interpessoal')));
+  const isRotinas = isRotinasId(course?.id) || isRotinasId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('rotinas administrativas') || course.title.toLowerCase().includes('processos de escritório')));
+  const isGestaoTempo = isGestaoTempoId(course?.id) || isGestaoTempoId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('gestão do tempo') || course.title.toLowerCase().includes('gestao do tempo')));
   const isOrcamento = isOrcamentoId(course?.id);
-  const isEquilibrio = isEquilibrioId(course?.id) || isEquilibrioId(activeCourseId);
+  const isEquilibrio = isEquilibrioId(course?.id) || isEquilibrioId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('equilíbrio') || course.title.toLowerCase().includes('inteligência emocional') || course.title.toLowerCase().includes('saúde mental')));
   const isExcel = isExcelId(course?.id) || Boolean(course?.title && course.title.toLowerCase().includes('excel do zero'));
   const isInformatica = isInformaticaId(course?.id) || Boolean(course?.title && course.title.toLowerCase().includes('informática básica'));
-  const hasReadingTimer = isOrcamento || isEquilibrio || isExcel || isInformatica;
+  const isComunicacao = isComunicacaoId(course?.id) || Boolean(course?.title && course.title.toLowerCase().includes('comunicação escrita'));
+  const hasReadingTimer = isOrcamento || isEquilibrio || isExcel || isInformatica || isComunicacao || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado;
 
-  const currentYoutubeId = isInformatica
+  const currentYoutubeId = isExcelAvancado
+    ? '9QbIuIZMVUw'
+    : isIaProdutividade
+    ? '1uIR8erwQmI'
+    : isSoftSkills
+    ? 'SFC9uLZSevs'
+    : isRotinas
+    ? 'HRqLQmuW_kc'
+    : isGestaoTempo
+    ? 'VcFK4u1IOZQ'
+    : isComunicacao
+    ? 'Lt4zabLCJ9I'
+    : isInformatica
     ? 'X2wgk02Bqt0'
     : isExcel 
     ? '9QbIuIZMVUw' 
@@ -242,7 +371,19 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     ? 'PAVaaGa_gug' 
     : (course?.youtubeId || 'X2wgk02Bqt0');
 
-  const currentVideoUrl = isInformatica
+  const currentVideoUrl = isExcelAvancado
+    ? 'https://youtu.be/9QbIuIZMVUw'
+    : isIaProdutividade
+    ? 'https://youtu.be/1uIR8erwQmI?si=_Q067y0xVY9R8iWQ'
+    : isSoftSkills
+    ? 'https://youtu.be/SFC9uLZSevs?si=8uoTJHebCyg4PF9z'
+    : isRotinas
+    ? 'https://youtu.be/HRqLQmuW_kc?si=QN6bzX4Wc1Z-yZ6U'
+    : isGestaoTempo
+    ? 'https://youtu.be/VcFK4u1IOZQ?si=hhiqf7NL7QwLWP_X'
+    : isComunicacao
+    ? 'https://youtu.be/Lt4zabLCJ9I?si=NpcDLAKgOkQYGDF9'
+    : isInformatica
     ? 'https://youtu.be/X2wgk02Bqt0?si=vwlWKuVB6909U_dG'
     : isExcel
     ? 'https://youtu.be/9QbIuIZMVUw?si=WLZ2FTGusBMd0mU2'
@@ -252,14 +393,26 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     ? 'https://youtu.be/PAVaaGa_gug?si=JYdOWSYOz0oJj5TH'
     : (course?.videoUrl || 'https://youtu.be/X2wgk02Bqt0');
 
-  const currentVideoTitle = isInformatica
+  const currentVideoTitle = isExcelAvancado
+    ? 'Excel Avançado e Análise de Dados'
+    : isIaProdutividade
+    ? 'Inteligência Artificial e Automação no Dia a Dia de Trabalho'
+    : isSoftSkills
+    ? 'Soft Skills e Comunicação Interpessoal'
+    : isRotinas
+    ? 'Rotinas Administrativas e Organização de Processos de Escritório'
+    : isGestaoTempo
+    ? 'Gestão do Tempo e Produtividade'
+    : isComunicacao
+    ? 'Comunicação Escrita, E-mails e Redação Corporativa'
+    : isInformatica
     ? 'Informática Básica, Nuvem e Segurança da Informação'
     : isExcel
     ? 'Excel do Zero: Primeiras Planilhas, Fórmulas Básicas e Gráficos'
     : isOrcamento
     ? 'Orçamento do Primeiro Salário: Vídeo de Conclusão'
     : isEquilibrio
-    ? 'Equilíbrio Emocional, Ansiedade e Foco no Trabalho'
+    ? 'Inteligência Emocional no Trabalho: Equilíbrio Emocional, Ansiedade e Foco'
     : (course?.title || 'Informática Básica, Nuvem e Segurança da Informação');
 
   useEffect(() => {
@@ -288,7 +441,7 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     : Math.min(99, Math.round((completedInCourse.length / Math.max(course?.modules?.length || 1, 1)) * 100));
 
   // Cronômetro de leitura / vídeo com persistência de estado
-  const INITIAL_TIMER_SECONDS = (isOrcamento || isExcel || isInformatica) ? 300 : 180;
+  const INITIAL_TIMER_SECONDS = (isOrcamento || isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado) ? 300 : 180;
   const [timeLeft, setTimeLeft] = useState<number>(INITIAL_TIMER_SECONDS);
   const isTimerFinished = timeLeft === 0;
 
@@ -310,8 +463,8 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
       }
     } catch {}
 
-    setTimeLeft((isOrcamento || isExcel || isInformatica) ? 300 : 180);
-  }, [course.id, hasReadingTimer, isQuizPassedInContext, isOrcamento, isExcel, isInformatica]);
+    setTimeLeft((isOrcamento || isExcel || isInformatica || isComunicacao) ? 300 : 180);
+  }, [course.id, hasReadingTimer, isQuizPassedInContext, isOrcamento, isExcel, isInformatica, isComunicacao]);
 
   useEffect(() => {
     if (!hasReadingTimer) return;
@@ -684,20 +837,32 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                   <div className="space-y-1">
                     <div className={`inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider ${isOrcamento ? 'text-emerald-400' : 'text-purple-400'}`}>
                       <Play className="w-3.5 h-3.5" />
-                      <span>{isExcel || isOrcamento || isInformatica ? 'Vídeo Oficial de Conclusão' : isEquilibrio ? 'Vídeo Oficial do Curso' : 'Material Audiovisual Complementar'}</span>
+                      <span>{isExcel || isOrcamento || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado ? 'Vídeo Oficial de Conclusão' : 'Material Audiovisual Complementar'}</span>
                     </div>
                     <h3 className="text-base sm:text-lg font-bold text-white">
                       {currentVideoTitle}
                     </h3>
                     <p className="text-xs text-slate-300 font-normal">
-                      {isInformatica
+                      {isComunicacao
+                        ? 'Assista à aula completa de Comunicação Escrita e Redação Corporativa e aguarde o temporizador para liberar o acesso à Prova de Fixação.'
+                        : isInformatica
                         ? 'Assista à aula prática de Informática Básica, Nuvem e Segurança e aguarde o temporizador para liberar o acesso à Prova de Fixação.'
                         : isExcel
                         ? 'Assista à videoaula prática de Excel e acompanhe o temporizador para liberar o acesso à Prova de Fixação.'
                         : isOrcamento 
                         ? 'Assista ao vídeo de conclusão completo e aguarde o temporizador para liberar o acesso à Prova de Fixação.'
-                        : isEquilibrio 
-                        ? 'Assista à aula completa e aguarde o temporizador para liberar o acesso à Prova de Fixação.' 
+                        : isExcelAvancado
+                        ? 'Assista à videoaula de Excel Avançado e Análise de Dados e aguarde o temporizador para liberar o acesso à Prova de Fixação.'
+                        : isIaProdutividade
+                        ? 'Assista à videoaula de Inteligência Artificial e Automação e aguarde o temporizador para liberar o acesso à Prova de Fixação.'
+                        : isSoftSkills
+                        ? 'Assista à videoaula de Soft Skills e Comunicação Interpessoal e aguarde o temporizador para liberar o acesso à Prova de Fixação.'
+                        : isRotinas
+                        ? 'Assista à videoaula de Rotinas Administrativas e Organização de Processos e aguarde o temporizador para liberar o acesso à Prova de Fixação.'
+                        : isGestaoTempo
+                        ? 'Assista à videoaula de Gestão do Tempo e Produtividade e aguarde o temporizador para liberar o acesso à Prova de Fixação.'
+                        : isEquilibrio
+                        ? 'Assista à aula de Inteligência Emocional no Trabalho e aguarde o temporizador para liberar o acesso à Prova de Fixação.' 
                         : 'Aprofunde seus conhecimentos assistindo à videoaula recomendada para fixar o aprendizado.'}
                     </p>
                   </div>
@@ -721,7 +886,14 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                     isOrcamento={isOrcamento}
                     isExcel={isExcel}
                     isInformatica={isInformatica}
-                    autoStartMuted={isExcel || isInformatica}
+                    isComunicacao={isComunicacao}
+                    isEquilibrio={isEquilibrio}
+                    isGestaoTempo={isGestaoTempo}
+                    isRotinas={isRotinas}
+                    isSoftSkills={isSoftSkills}
+                    isIaProdutividade={isIaProdutividade}
+                    isExcelAvancado={isExcelAvancado}
+                    autoStartMuted={isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado}
                   />
 
                   {/* Barra de Progresso do Vídeo Vinculada ao Temporizador */}
@@ -990,7 +1162,14 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                           isOrcamento={isOrcamento}
                           isExcel={isExcel}
                           isInformatica={isInformatica}
-                          autoStartMuted={isExcel || isInformatica}
+                          isComunicacao={isComunicacao}
+                          isEquilibrio={isEquilibrio}
+                    isGestaoTempo={isGestaoTempo}
+                    isRotinas={isRotinas}
+                    isSoftSkills={isSoftSkills}
+                    isIaProdutividade={isIaProdutividade}
+                    isExcelAvancado={isExcelAvancado}
+                    autoStartMuted={isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado}
                         />
 
                         {/* Barra de Progresso do Vídeo Vinculada ao Temporizador */}
