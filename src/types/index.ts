@@ -8,6 +8,20 @@ export type CandidateProfileType =
 
 export type UserType = CandidateProfileType | 'EMPRESA';
 
+export interface UserCourseItem {
+  id: string;
+  courseId: string;
+  title: string;
+  trackName: string;
+  category: string;
+  currentModule: string;
+  progress: number;
+  workload: string;
+  hours: number;
+  status: 'em_andamento' | 'concluido';
+  moduleIndex: number;
+}
+
 export interface UserAccount {
   id: string;
   nome: string;
@@ -22,6 +36,11 @@ export interface UserAccount {
   isDemo?: boolean;
   idade?: number;
   menorDeIdade?: boolean;
+  cursosInscritos?: UserCourseItem[];
+  badgesConquistadas?: { badgeId: string; title?: string; date: string; score: number; code: string }[];
+  horasEstudadas?: number;
+  progressoGeral?: number;
+  candidaturasEnviadas?: Application[];
   responsavelLegal?: {
     nome: string;
     parentesco: string;
@@ -95,7 +114,7 @@ export interface Course {
   id: string;
   trackId: string;
   trackName: string;
-  category: 'Desenvolvimento Pessoal' | 'Administração e Negócios' | 'Tecnologia da Informação' | 'Legislação e Cidadania';
+  category: 'Desenvolvimento Pessoal' | 'Administração e Negócios' | 'Tecnologia da Informação' | 'Legislação e Cidadania' | 'Finanças Pessoais' | string;
   targetAudienceType: CandidateProfileType[] | 'TODOS';
   title: string;
   subtitle: string;
@@ -113,6 +132,9 @@ export interface Course {
   modules: CourseModule[];
   caseStudies: CaseStudy[];
   quiz: QuizQuestion[];
+  isPublished?: boolean;
+  active?: boolean;
+  visible?: boolean;
 }
 
 export interface TrackStep {

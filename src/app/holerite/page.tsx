@@ -3,6 +3,7 @@
 import Header from '@/components/Header';
 import Sidebar from '@/components/Sidebar';
 import HoleriteSimulator from '@/components/HoleriteSimulator';
+import LoginPage from '@/components/LoginPage';
 import { useApp } from '@/context/AppContext';
 
 export default function HoleriteRoute() {
@@ -13,7 +14,7 @@ export default function HoleriteRoute() {
       <Header />
       {isAuthenticated && <Sidebar />}
       <main className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <HoleriteSimulator />
+        {!isAuthenticated ? <LoginPage /> : <HoleriteSimulator />}
       </main>
     </div>
   );

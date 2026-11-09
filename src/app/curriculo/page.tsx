@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Header from '@/components/Header';
+import LoginPage from '@/components/LoginPage';
 import { useApp } from '@/context/AppContext';
 import {
   FileText,
@@ -23,7 +25,7 @@ import {
 } from 'lucide-react';
 
 export default function CurriculoPage() {
-  const { student, badges } = useApp();
+  const { student, badges, isAuthenticated } = useApp();
 
   // Form states initialized with student data
   const [nome, setNome] = useState(student?.nome || 'Lucas Silva Oliveira');
@@ -82,6 +84,17 @@ export default function CurriculoPage() {
   const handleRemoveCompetencia = (index: number) => {
     setCompetencias(competencias.filter((_, i) => i !== index));
   };
+
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-screen bg-[var(--background)] text-[var(--foreground)]">
+        <Header />
+        <main className="mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+          <LoginPage />
+        </main>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#0B0813] text-zinc-100 py-8 px-4 sm:px-6 lg:px-8">

@@ -331,6 +331,140 @@ export const TRACKS: Track[] = [
 
 export const COURSES: Course[] = [
   // =========================================================================
+  // CURSO OFICIAL: COMUNICAÇÃO ESCRITA, E-MAILS E REDAÇÃO CORPORATIVA
+  // =========================================================================
+  {
+    id: 'curso-comunicacao-escrita-corporativa',
+    trackId: 'trilha-comunicacao-relacionamento',
+    trackName: 'Trilha Comunicação & Relacionamento Profissional',
+    category: 'Administração e Negócios',
+    targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO', 'ESTAGIARIO', 'TODOS'],
+    title: 'Comunicação Escrita, E-mails e Redação Corporativa',
+    subtitle: 'Domine a arte de redigir mensagens corporativas claras, estruturar e-mails que geram respostas rápidas, elaborar relatórios e utilizar ferramentas digitais com assertividade.',
+    hours: 12,
+    equivalentHours: 12,
+    modality: 'EAD 100% Gratuito (Escola Virtual)',
+    targetAudience: 'Jovens aprendizes, estagiários e profissionais em início de carreira em Curitiba e RMC.',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Especialista em Comunicação Corporativa',
+    badgeCategory: 'Comunicacao',
+    badgeIcon: 'Mail',
+    accentColor: '#8B5CF6',
+    level: 'Iniciante',
+    learningObjectives: [
+      'Dominar os fundamentos da escrita corporativa: clareza, concisão e adequação de tom.',
+      'Estruturar e-mails profissionais com assuntos informativos e uso correto de CC e CCO.',
+      'Aplicar técnicas de redação lógica e auto-revisão eliminando vícios e gírias.',
+      'Elaborar documentos institucionais respeitando o sigilo e a LGPD.',
+      'Gerenciar fluxos de comunicação interna (Slack/Teams) e externa com clientes.',
+      'Utilizar ferramentas digitais e copiloto de IA com supervisão e validação humana.'
+    ],
+    modules: [
+      {
+        id: 'comunicacao-mod-1',
+        number: 1,
+        title: 'MÓDULO 1: Fundamentos da Comunicação Escrita & E-mails Profissionais',
+        summary: 'Da postura escrita ao envio de e-mails eficazes, com foco em clareza, tom e assertividade corporativa.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Fundamentos da Comunicação Escrita',
+              body: [
+                'A comunicação escrita no ambiente de trabalho é o principal cartão de visitas de um profissional. Mensagens claras, concisas e objetivas economizam o tempo da equipe e evitam retrabalho.',
+                'Adequação ao interlocutor: O tom adotado com a liderança ou clientes deve ser cordial e polido, equilibrando formalidade e empatia sem prolixidade.',
+                'O teste dos 5 segundos: Ao reler sua mensagem, certifique-se de que o destinatário consegue identificar o objetivo principal logo no primeiro parágrafo.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: '💡 Dica de Ouro de RH',
+                text: 'Evite mensagens fragmentadas de uma linha em chats corporativos. Envie blocos completos com contexto, dúvida e prazo.'
+              }
+            },
+            {
+              subheading: '2. E-mails Profissionais Eficazes',
+              body: [
+                'O assunto do e-mail deve ser um resumo executivo: utilize [Ação], [Urgente] ou [Alinhamento] seguido do projeto e data.',
+                'Estrutura em 3 blocos: Saudação personalizada, parágrafo contextual e chamada para ação (CTA) com prazo claro.',
+                'Uso seguro de CC e CCO: Envie cópia visível apenas para quem precisa acompanhar, e use CCO para listas externas garantindo a privacidade (LGPD).'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: '⚠️ Atenção com Cópia Oculta (CCO)',
+                text: 'Nunca utilize CCO para comunicação velada interna; utilize apenas para proteção de dados em disparos coletivos.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'comunicacao-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: Documentos Corporativos, Fluxos e Ferramentas',
+        summary: 'Redação de atas, relatórios e uso de ferramentas modernas com Inteligência Artificial supervisionada.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Documentos Corporativos e Sigilo',
+              body: [
+                'Elaboração de memorandos, atas de reunião e relatórios operacionais com formatação limpa e numeração padronizada.',
+                'Confidencialidade e LGPD: Atenção redobrada ao compartilhar dados pessoais e planilhas por canais digitais.'
+              ]
+            },
+            {
+              subheading: '2. Ferramentas, Tecnologias e IA',
+              body: [
+                'Uso de corretores gramaticais inteligentes e modelos pré-definidos de respostas.',
+                'Apoio de IA Generativa: Utilizar a IA para rascunhos com revisão humana 100% obrigatória antes do envio.'
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    caseStudies: [
+      {
+        id: 'caso-comunicacao-1',
+        title: 'Reestruturação de E-mail de Alinhamento com a Diretoria',
+        character: 'Beatriz, Estagiária Administrativa',
+        scenario: 'Beatriz precisava solicitar aprovação de orçamento para um evento da empresa e o e-mail anterior continha 6 parágrafos densos sem destaque do valor.',
+        criticalAnalysis: 'Beatriz resumiu a solicitação em 3 tópicos, colocou o valor total em destaque e uma data limite para resposta. O orçamento foi aprovado no mesmo dia.',
+        keyTakeaways: [
+          'Diretoria e gestores priorizam objetividade e clareza com números destacados.',
+          'Sempre estipule prazos amigáveis para retorno.'
+        ],
+        badgeRelevance: 'Comprova alta competência em redação executiva e comunicação ágil.'
+      }
+    ],
+    quiz: [
+      {
+        id: 1,
+        question: 'Qual é a estrutura mais recomendada para um e-mail corporativo eficaz?',
+        options: [
+          'Assunto genérico, texto em caixa alta e sem assinatura para poupar espaço.',
+          'Assunto informativo claro, saudação polida, corpo em tópicos objetivos e chamada clara para ação com prazo.',
+          'Parágrafo longo contínuo de 50 linhas sem pontuação definida.',
+          'Enviar apenas anexos sem nenhuma mensagem explicativa no corpo.'
+        ],
+        correct: 1,
+        explanation: 'A clareza no assunto e a divisão do corpo em blocos com prazo facilitam a leitura e a tomada de decisão rápida.'
+      },
+      {
+        id: 2,
+        question: 'Quando é indicado utilizar o recurso de Cópia Oculta (CCO)?',
+        options: [
+          'Para falar mal de um colega sem que ele perceba.',
+          'Para proteger o e-mail de destinatários em envios coletivos e respeitar a privacidade/LGPD.',
+          'Para fingir que o gestor não foi copiado.',
+          'Em todos os e-mails internos da empresa rotineiramente.'
+        ],
+        correct: 1,
+        explanation: 'O CCO preserva a identidade e o endereço eletrônico dos destinatários externos, evitando vazamento de dados.'
+      }
+    ]
+  },
+  // =========================================================================
   // CURSO 10: RESOLUÇÃO CRIATIVA DE PROBLEMAS E ADAPTAÇÃO
   // =========================================================================
   {
@@ -2290,10 +2424,181 @@ export const COURSES: Course[] = [
   },
 
   // =========================================================================
+  // 2.5 EQUILÍBRIO EMOCIONAL, ANSIEDADE E FOCO NO TRABALHO
+  // =========================================================================
+  {
+    id: 'equilibrio-emocional',
+    isPublished: true,
+    active: true,
+    visible: true,
+    trackId: 'trilha-comunicacao-relacionamento',
+    trackName: 'Trilha Comunicação & Relacionamento Profissional',
+    category: 'Saúde Mental & Desenvolvimento Pessoal',
+    targetAudienceType: ['PRIMEIRO_EMPREGO', 'JOVEM_APRENDIZ', 'ESTUDANTE', 'ESTAGIARIO', 'TODOS'],
+    title: 'Equilíbrio Emocional, Ansiedade e Foco no Trabalho',
+    subtitle: 'Aprenda a reconhecer o ciclo da ansiedade, cultivar autocuidado emocional, sustentar a concentração no trabalho e agir com intenção em momentos de pressão.',
+    hours: 1,
+    equivalentHours: 1,
+    modality: 'EAD 100% Gratuito (Escola Virtual)',
+    targetAudience: 'Jovens aprendizes, estagiários e colaboradores que buscam inteligência emocional, foco e bem-estar no trabalho.',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Selo de Inteligência Emocional',
+    badgeCategory: 'Saúde Mental',
+    badgeIcon: 'Heart',
+    accentColor: '#8B5CF6',
+    level: 'Iniciante',
+    learningObjectives: [
+      'Reconhecer o ciclo biológico e cognitivo da ansiedade no ambiente profissional.',
+      'Desenvolver técnicas práticas de autorregulação emocional e respiração para desacelerar.',
+      'Sustentar o foco diário através de blocos de tempo e fragmentação de tarefas.',
+      'Transitar da reação impulsiva para a intenção consciente em momentos de pressão.'
+    ],
+    modules: [
+      {
+        id: 'eq-mod-1',
+        number: 1,
+        title: 'Pilar 1: Entenda o Ciclo da Ansiedade',
+        summary: 'Mapeamento de pensamentos acelerados, preocupações e a cadeia cognitiva da ansiedade no ambiente profissional.',
+        estimatedMinutes: 15,
+        content: {
+          sections: [
+            {
+              subheading: '1. Entenda o Ciclo da Ansiedade',
+              body: [
+                '• Pensamentos acelerados, preocupações constantes, dificuldade de relaxar e queda na concentração.',
+                '• Compreenda a cadeia: Estímulos ➔ Sobrecarga cognitiva ➔ Ansiedade ➔ Cansaço mental.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'A Cadeia da Sobrecarga Cognitiva',
+                text: 'Estímulos ➔ Sobrecarga cognitiva ➔ Ansiedade ➔ Cansaço mental. Identificar esse padrão nos primeiros minutos é a chave para interromper o esgotamento.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'eq-mod-2',
+        number: 2,
+        title: 'Pilar 2: Cuide das Emoções',
+        summary: 'Autoconsciência emocional, nomeação de sentimentos, respiração diafragmática e acolhimento.',
+        estimatedMinutes: 15,
+        content: {
+          sections: [
+            {
+              subheading: '2. Cuide das Emoções',
+              body: [
+                '• Reconheça o que sente e nomeie suas emoções.',
+                '• Respire, desacelere e busque apoio quando precisar.',
+                '• Lembrete essencial: "Você não controla tudo, mas pode escolher como responder."'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Lembrete de Autocuidado',
+                text: '"Você não controla tudo, mas pode escolher como responder."'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'eq-mod-3',
+        number: 3,
+        title: 'Pilar 3: Sustente o Foco',
+        summary: 'Blocos de tempo, técnica Pomodoro, divisão de demandas extensas e priorização diária.',
+        estimatedMinutes: 15,
+        content: {
+          sections: [
+            {
+              subheading: '3. Sustente o Foco',
+              body: [
+                '• Trabalhe em blocos de tempo e divida tarefas grandes em etapas menores.',
+                '• Defina prioridades diárias e elimine distrações no ambiente.',
+                '• Ciclo prático: Planejar ➔ Executar ➔ Concluir.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Ciclo Prático de Foco',
+                text: 'Planejar ➔ Executar ➔ Concluir. A fragmentação de tarefas grandes alivia a ansiedade e eleva o rendimento.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'eq-mod-4',
+        number: 4,
+        title: 'Pilar 4: Troque Reação por Intenção',
+        summary: 'Pausa estratégica, limites saudáveis, ressignificação de erros e consistência diária.',
+        estimatedMinutes: 15,
+        content: {
+          sections: [
+            {
+              subheading: '4. Troque Reação por Intenção',
+              body: [
+                '• Pause antes de reagir impulsivamente e estabeleça limites saudáveis.',
+                '• Faça pausas estratégicas durante a jornada e veja desafios como aprendizado.',
+                '• Lembrete: "Pequenos passos geram grandes resultados!"'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Postura Consciente',
+                text: '"Pequenos passos geram grandes resultados!" Agir com intenção preserva a clareza mental e melhora suas relações no trabalho.'
+              }
+            }
+          ]
+        }
+      }
+    ],
+    caseStudies: [],
+    quiz: [
+      {
+        id: 1,
+        question: 'Qual é a recomendação ao perceber pensamentos acelerados e ansiedade no trabalho?',
+        options: [
+          'Ignorar os sinais e acelerar as tarefas para terminar logo.',
+          'Respirar, desacelerar e nomear as emoções.',
+          'Reclamar em voz alta na equipe para aliviar a tensão.',
+          'Abandonar a estação de trabalho sem avisar o gestor.'
+        ],
+        correct: 1,
+        explanation: 'Respirar com calma, desacelerar o ritmo e nomear conscientemente as emoções reduz a ativação da amígdala e devolve a clareza mental.'
+      },
+      {
+        id: 2,
+        question: 'Como sustentar o foco em tarefas complexas ou extensas?',
+        options: [
+          'Realizar várias tarefas simultâneas respondendo a todas as notificações.',
+          'Dividir em tarefas menores e trabalhar em blocos de tempo.',
+          'Deixar a demanda para a última hora para trabalhar sob pressão.',
+          'Evitar planejar o dia para não gerar expectativas.'
+        ],
+        correct: 1,
+        explanation: 'Dividir demandas extensas em etapas menores e focar em blocos de tempo evita a sobrecarga e mantém o ritmo sustentável.'
+      },
+      {
+        id: 3,
+        question: 'O que significa "trocar reação por intenção"?',
+        options: [
+          'Pausar antes de agir e estabelecer limites em vez de responder no impulso.',
+          'Responder de imediato com ironia para não demonstrar fraqueza.',
+          'Dizer "sim" para todas as ordens sem avaliar sua capacidade diária.',
+          'Fingir que não há desafios no ambiente corporativo.'
+        ],
+        correct: 0,
+        explanation: 'Pausar antes de reagir impulsivamente e definir limites saudáveis permite escolher conscientemente a melhor resposta profissional.'
+      }
+    ]
+  },
+
+  // =========================================================================
   // 3. ORÇAMENTO DO PRIMEIRO SALÁRIO
   // =========================================================================
   {
-    id: 'curso-orcamento-primeiro-salario',
+    id: 'orcamento-primeiro-salarial',
+    isPublished: true,
+    active: true,
+    visible: true,
     trackId: 'trilha-1',
     trackName: 'TRILHA 1: Entrada no Mercado & Primeiro Emprego',
     category: 'Desenvolvimento Pessoal',
@@ -2305,8 +2610,8 @@ export const COURSES: Course[] = [
     modality: 'EAD 100% Gratuito (Escola Virtual)',
     targetAudience: 'Jovens aprendizes, estagiários e profissionais em seu primeiro emprego',
     prerequisites: 'Nenhum pré-requisito.',
-    badgeName: 'Orçamento do Primeiro Salário',
-    badgeCategory: 'Finanças Pessoais',
+    badgeName: 'Mestre em Finanças',
+    badgeCategory: 'Finanças',
     badgeIcon: 'DollarSign',
     accentColor: '#10B981',
     level: 'Iniciante',
@@ -4598,7 +4903,7 @@ export const COURSES: Course[] = [
     targetAudience: 'Jovens aprendizes, estagiários e estudantes que buscam organizar suas finanças pessoais, quitar dívidas e criar sua primeira reserva de emergência',
     prerequisites: 'Nenhum pré-requisito.',
     badgeName: 'Mestre do Orçamento & Reserva',
-    badgeCategory: 'Finanças Pessoais',
+    badgeCategory: 'Finanças',
     badgeIcon: 'PiggyBank',
     accentColor: '#F59E0B',
     level: 'Intermediário',
@@ -5612,3 +5917,33 @@ export const COURSES: Course[] = [
   }
 
 ];
+
+
+
+
+if (orcamentoCourse) {
+
+
+
+
+
+  orcamentoCourse.targetAudienceType = ['PRIMEIRO_EMPREGO', 'JOVEM_APRENDIZ', 'ESTUDANTE', 'ESTAGIARIO', 'TODOS'];
+}
+
+
+if (eqCourse) {
+  eqCourse.id = 'equilibrio-emocional';
+  eqCourse.isPublished = true;
+  eqCourse.active = true;
+  eqCourse.visible = true;
+  eqCourse.category = 'Saúde Mental & Desenvolvimento Pessoal';
+}
+
+if (orcamentoCourse) {
+
+
+
+
+
+  orcamentoCourse.targetAudienceType = ['PRIMEIRO_EMPREGO', 'JOVEM_APRENDIZ', 'ESTUDANTE', 'ESTAGIARIO', 'TODOS'];
+}

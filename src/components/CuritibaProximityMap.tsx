@@ -243,7 +243,7 @@ export default function CuritibaProximityMap() {
       {/* ===================================================== */}
       {/* 2. CABEÇALHO (HERO BANNER IDÊNTICO AO DE CURSOS) */}
       {/* ===================================================== */}
-      <div className="w-full bg-[#110E1B] border border-purple-500/20 rounded-3xl p-6 lg:p-8 shadow-2xl relative overflow-hidden space-y-6">
+      <div className="w-full bg-white dark:bg-[#110E1B] border border-slate-200 dark:border-purple-500/20 rounded-3xl p-6 lg:p-8 shadow-sm dark:shadow-2xl relative overflow-hidden space-y-6">
         {/* Glow sutil */}
         <div className="absolute -top-24 -right-24 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl pointer-events-none" />
 
@@ -251,30 +251,30 @@ export default function CuritibaProximityMap() {
           <div className="space-y-3 max-w-2xl">
             {/* Badges no Topo */}
             <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 bg-[#171126] border border-purple-500/30 px-3 py-1 rounded-full text-xs font-semibold text-zinc-300">
+              <span className="inline-flex items-center gap-1.5 bg-slate-200 dark:bg-[#171126] border border-slate-300 dark:border-purple-500/30 px-3 py-1 rounded-full text-xs font-semibold text-slate-800 dark:text-zinc-300">
                 <GraduationCap className="w-3.5 h-3.5 text-purple-400" />
                 <span>Vagas Verificadas</span>
               </span>
-              <span className="inline-flex items-center gap-1.5 bg-[#171126] border border-purple-500/30 px-3 py-1 rounded-full text-xs font-semibold text-zinc-300">
+              <span className="inline-flex items-center gap-1.5 bg-slate-200 dark:bg-[#171126] border border-slate-300 dark:border-purple-500/30 px-3 py-1 rounded-full text-xs font-semibold text-slate-800 dark:text-zinc-300">
                 <MapPin className="w-3.5 h-3.5 text-rose-400" />
                 <span>Focado em Curitiba &amp; RMC</span>
               </span>
             </div>
 
             {/* Título Principal */}
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Painel de Vagas &amp; Oportunidades com IA
             </h1>
 
             {/* Subtítulo */}
-            <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-700 dark:text-zinc-300 leading-relaxed">
               Nossa inteligência artificial cruza suas competências com vagas de Jovem Aprendiz, Estágio e Primeiro Emprego agregadas do Indeed, Vagas.com, CIEE e NUBE.
             </p>
           </div>
 
           {/* Card Lateral Direita (Caixa de Estatística) */}
           <div className="bg-[#171126] border border-[#2D1B4E] rounded-2xl p-4 sm:p-5 text-center shrink-0 shadow-lg min-w-[190px] flex flex-col items-center justify-center">
-            <div className="text-3xl sm:text-4xl font-black text-white tracking-tight">
+            <div className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
               {allVagasCount}
             </div>
             <div className="text-xs text-zinc-400 font-medium mt-1">

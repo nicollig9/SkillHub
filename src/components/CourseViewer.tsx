@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useApp } from '@/context/AppContext';
 import { COURSES } from '@/data/coursesData';
 import { 
@@ -9,158 +9,166 @@ import {
   Award, 
   Clock, 
   AlertTriangle, 
-  ShieldAlert, 
   Check, 
   HelpCircle, 
-  ArrowRight, 
   ArrowLeft,
-  Scale,
-  DollarSign,
-  Building,
-  User,
-  GraduationCap,
-  Sparkles,
-  Info,
-  Layers,
-  Lock,
-  Unlock,
-  ChevronDown,
-  ChevronUp,
-  MapPin,
-  FileText,
+  Maximize2,
   Download,
-  Lightbulb,
-  Share2,
-  ExternalLink,
-  Brain,
-  Bot,
-  Shield,
-  Target,
-  MessageSquare,
-  Table
+  Play,
+  Lock,
+  X,
+  RefreshCw,
+  ChevronRight,
+  ChevronLeft,
+  ArrowRight
 } from 'lucide-react';
 
-const getSectionIcon = (heading: string) => {
-  const h = heading.toLowerCase();
-  if (h.includes('flow') || h.includes('mente') || h.includes('cognitiv') || h.includes('emocion') || h.includes('ansiedade') || h.includes('psicol')) {
-    return Brain;
-  }
-  if (h.includes('deep work') || h.includes('leitura') || h.includes('conceito') || h.includes('fundamento') || h.includes('livro')) {
-    return BookOpen;
-  }
-  if (h.includes('mindfulness') || h.includes('atenção') || h.includes('respiração') || h.includes('saúde') || h.includes('bem-estar')) {
-    return Sparkles;
-  }
-  if (h.includes('prática') || h.includes('aplicação') || h.includes('estratég') || h.includes('metodolog') || h.includes('meta')) {
-    return Target;
-  }
-  if (h.includes('comunicação') || h.includes('feedback') || h.includes('reunião') || h.includes('relacionamento') || h.includes('escuta') || h.includes('conversa')) {
-    return MessageSquare;
-  }
-  if (h.includes('excel') || h.includes('planilha') || h.includes('fórmula') || h.includes('dado') || h.includes('dashboard') || h.includes('tabela')) {
-    return Table;
-  }
-  if (h.includes('lei') || h.includes('legisla') || h.includes('direito') || h.includes('dever') || h.includes('juríd') || h.includes('lgpd') || h.includes('clt') || h.includes('contrato')) {
-    return Scale;
-  }
-  if (h.includes('tempo') || h.includes('produtiv') || h.includes('pomodoro') || h.includes('prazo') || h.includes('urgênc') || h.includes('hora')) {
-    return Clock;
-  }
-  if (h.includes('nuvem') || h.includes('segurança') || h.includes('informática') || h.includes('senha') || h.includes('fraude') || h.includes('phishing')) {
-    return Shield;
-  }
-  if (h.includes('inteligência artificial') || h.includes(' ia ') || h.includes('prompt') || h.includes('notebooklm') || h.includes('bot') || h.includes('copiloto')) {
-    return Bot;
-  }
-  return Layers;
-};
-
-const parseHeading = (subheading: string, defaultIdx: number) => {
-  const match = subheading.match(/^(\d+)[\.\-\:]?\s*(.*)$/);
-  if (match) {
-    return {
-      topicNumber: match[1],
-      title: match[2].trim()
-    };
-  }
-  return {
-    topicNumber: String(defaultIdx + 1),
-    title: subheading.trim()
-  };
-};
-
-export default function CourseViewer() {
+export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
   const { 
     selectedCourseId, 
-    activeModuleIndex, 
-    setActiveModuleIndex, 
-    markModuleComplete, 
-    completedModules, 
-    submitCourseQuiz, 
-    quizResults,
+    setSelectedCourseId,
     setCurrentView,
-    showToast
+    showToast,
+    completedModules,
+    quizResults,
+    markModuleComplete,
+    submitCourseQuiz,
+    completeCourseAndClaimBadge,
+    currentUser,
+    student
   } = useApp();
 
-  const course = COURSES.find((c) => c.id === selectedCourseId) || COURSES[0];
+  const activeCourseId = courseId || selectedCourseId;
 
-  const [activeTab, setActiveTab] = useState<'MODULES' | 'CASE_STUDIES' | 'QUIZ'>('MODULES');
-  const [isReadingMode, setIsReadingMode] = useState<boolean>(false);
-  const [expandedDesc, setExpandedDesc] = useState<Record<string, boolean>>({});
-  const [selectedCaseIdx, setSelectedCaseIdx] = useState<number>(0);
-  const [caseAnswers, setCaseAnswers] = useState<Record<string, number>>({});
+  const course = 
+    COURSES.find((c) => c.id === activeCourseId) || 
+    COURSES.find((c) => c.id === 'orcamento-primeiro-salarial') || 
+    COURSES.find((c) => c.id === 'curso-orcamento-primeiro-salario') || 
+    COURSES[0];
+
+  const isOrcamento = course.id === 'curso-orcamento-primeiro-salario' || course.id === 'orcamento-primeiro-salarial';
+  const isEquilibrio = course.id === 'equilibrio-emocional' || course.id === 'curso-equilibrio-emocional' || course.id === 'curso-saude-mental-trabalho';
+  const hasReadingTimer = isOrcamento || isEquilibrio;
+
+  useEffect(() => {
+    if (courseId && setSelectedCourseId && selectedCourseId !== courseId) {
+      setSelectedCourseId(courseId);
+    }
+  }, [courseId, selectedCourseId, setSelectedCourseId]);
+
+  const [activeTab, setActiveTab] = useState<'AULA' | 'QUIZ'>('AULA');
+  const [selectedModuleId, setSelectedModuleId] = useState<string | null>(null);
+  const [isImageExpanded, setIsImageExpanded] = useState<boolean>(false);
+  const [isCertificateModalOpen, setIsCertificateModalOpen] = useState<boolean>(false);
+  const [downloadingPdf, setDownloadingPdf] = useState<boolean>(false);
+  const [showConfetti, setShowConfetti] = useState<boolean>(false);
+
+  // Quiz State
   const [userQuizAnswers, setUserQuizAnswers] = useState<Record<number, number>>({});
   const [quizSubmitted, setQuizSubmitted] = useState<boolean>(false);
-  const [showInterviewTips, setShowInterviewTips] = useState<boolean>(false);
+  const [quizScore, setQuizScore] = useState<number>(0);
+  const [quizPassedState, setQuizPassedState] = useState<boolean>(false);
 
-  const currentModule = course.modules[activeModuleIndex] || course.modules[0];
-  const completedList = completedModules[course.id] || [];
+  const completedInCourse = completedModules[course.id] || [];
+  const isQuizPassedInContext = Boolean(quizResults[course.id]?.passed);
+  const isCourseCompleted = isQuizPassedInContext || quizPassedState;
+  const progressPercent = isCourseCompleted 
+    ? 100 
+    : Math.min(99, Math.round((completedInCourse.length / Math.max(course.modules.length, 1)) * 100));
 
-  const handleNextModule = () => {
-    markModuleComplete(course.id, currentModule.id);
-    if (activeModuleIndex < course.modules.length - 1) {
-      setActiveModuleIndex(activeModuleIndex + 1);
-    } else {
-      if (course.caseStudies && course.caseStudies.length > 0) {
-        setActiveTab('CASE_STUDIES');
-        setIsReadingMode(false);
-      } else {
-        setActiveTab('QUIZ');
-        setIsReadingMode(false);
-      }
+  // Cronômetro de leitura
+  const INITIAL_TIMER_SECONDS = 180;
+  const [timeLeft, setTimeLeft] = useState<number>(INITIAL_TIMER_SECONDS);
+  const isTimerFinished = timeLeft === 0;
+
+  useEffect(() => {
+    if (!hasReadingTimer) return;
+
+    if (isQuizPassedInContext) {
+      setTimeLeft(0);
+      return;
     }
+
+    if (timeLeft <= 0) return;
+
+    const timer = setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, [course.id, hasReadingTimer, isQuizPassedInContext, timeLeft]);
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
   };
 
-  const handlePrevModule = () => {
-    if (activeModuleIndex > 0) {
-      setActiveModuleIndex(activeModuleIndex - 1);
-    }
+  const handleSkipTimerForTesting = () => {
+    setTimeLeft(0);
+    showToast('Timer Concluído para Testes', 'O Quiz do curso foi liberado para validação imediata.', 'info');
   };
 
-  const handleCaseOptionSelect = (caseId: string, choiceIdx: number) => {
-    setCaseAnswers((prev) => ({ ...prev, [caseId]: choiceIdx }));
+  const handleDownloadInfografico = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setDownloadingPdf(true);
+    setTimeout(() => {
+      setDownloadingPdf(false);
+      showToast(
+        'Infográfico em PDF Gerado',
+        `O mapa mental de "${course.title}" foi enviado para download no seu dispositivo.`,
+        'success'
+      );
+    }, 800);
   };
 
-  const handleQuizOptionSelect = (questionId: number, optionIdx: number) => {
+  const handleAnswerSelect = (questionId: number, optionIdx: number) => {
     if (quizSubmitted) return;
-    setUserQuizAnswers((prev) => ({ ...prev, [questionId]: optionIdx }));
+    setUserQuizAnswers((prev) => ({
+      ...prev,
+      [questionId]: optionIdx
+    }));
   };
 
-  const handleQuizSubmit = () => {
-    let correctCount = 0;
-    const answersArray: number[] = [];
+  const handleSubmitQuiz = () => {
+    const questions = course.quiz || [];
+    if (questions.length === 0) return;
 
-    course.quiz.forEach((q) => {
-      const selected = userQuizAnswers[q.id];
-      answersArray.push(selected !== undefined ? selected : -1);
-      if (selected === q.correct) {
-        correctCount++;
+    const answeredCount = Object.keys(userQuizAnswers).length;
+    if (answeredCount < questions.length) {
+      showToast('Atenção', `Por favor, responda todas as ${questions.length} questões antes de enviar.`, 'warning');
+      return;
+    }
+
+    let correct = 0;
+    questions.forEach((q) => {
+      if (userQuizAnswers[q.id] === q.correct) {
+        correct++;
       }
     });
 
-    const scorePercentage = Math.round((correctCount / course.quiz.length) * 100);
-    submitCourseQuiz(course.id, scorePercentage, answersArray);
+    const scorePct = Math.round((correct / questions.length) * 100);
+    const passed = isEquilibrio ? correct >= 2 : scorePct >= 70;
+
+    setQuizScore(scorePct);
     setQuizSubmitted(true);
+    setQuizPassedState(passed);
+
+    const answersArray = questions.map((q) => userQuizAnswers[q.id] ?? 0);
+    submitCourseQuiz(course.id, scorePct, answersArray);
+
+    if (passed) {
+      completeCourseAndClaimBadge(course.id);
+      setIsCertificateModalOpen(true);
+      setShowConfetti(true);
+      setTimeout(() => setShowConfetti(false), 6000);
+    }
   };
 
   const handleRetakeQuiz = () => {
@@ -168,1306 +176,928 @@ export default function CourseViewer() {
     setQuizSubmitted(false);
   };
 
-  const handleDownloadApostila = () => {
-    showToast(
-      'Download Iniciado',
-      `A apostila completa em PDF de "${course.title}" foi enviada para o seu dispositivo.`,
-      'success'
-    );
-  };
+  const studentName = currentUser?.nome || student?.nome || 'Jovem Aprendiz';
 
-  const currentQuizResult = quizResults[course.id];
-
-  const isAllModulesCompleted = course.modules.every((mod) => completedList.includes(mod.id));
-  const completedModulesCount = course.modules.filter((mod) => completedList.includes(mod.id)).length;
-  const progressPercent = Math.round((completedModulesCount / Math.max(course.modules.length, 1)) * 100);
-
-  // Determinar qual é o próximo módulo a fazer
-  const nextUnfinishedIndex = course.modules.findIndex((m) => !completedList.includes(m.id));
+  // Informações do Módulo Ativo
+  const currentModuleIndex = selectedModuleId 
+    ? course.modules.findIndex((m) => m.id === selectedModuleId)
+    : -1;
+  const currentModule = currentModuleIndex >= 0 ? course.modules[currentModuleIndex] : null;
+  const isCurrentModuleDone = currentModule ? completedInCourse.includes(currentModule.id) : false;
 
   return (
-    <div className="space-y-8 max-w-5xl w-full mx-auto flex flex-col items-center pb-16">
+    <div className="max-w-6xl w-full mx-auto px-4 py-6 flex flex-col items-center space-y-6 pb-24 font-sans text-slate-100">
       
-      {/* ===================================================== */}
-      {/* BREADCRUMB DE NAVEGAÇÃO                               */}
-      {/* ===================================================== */}
-      <div className="w-full flex items-center justify-between text-xs text-zinc-400 pb-1">
-        <div className="flex items-center gap-2 flex-wrap">
-          <button
-            onClick={() => setCurrentView('CURSOS_DISPONIVEIS')}
-            className="hover:text-white flex items-center gap-1.5 transition-colors font-medium cursor-pointer"
-          >
-            <GraduationCap className="w-4 h-4 text-purple-400" />
-            <span>Catálogo de Cursos</span>
-          </button>
-          <span>/</span>
-          <span className="text-zinc-500">{course.category}</span>
-          <span>/</span>
-          <span className="text-white font-semibold truncate max-w-xs sm:max-w-md">{course.title}</span>
-        </div>
+      {/* ========================================================================= */}
+      {/* 1. NAVEGAÇÃO SUPERIOR                                                     */}
+      {/* ========================================================================= */}
+      <div className="w-full flex items-center justify-between text-xs pb-1">
+        <button
+          onClick={() => {
+            if (typeof window !== 'undefined' && window.location.pathname.startsWith('/cursos')) {
+              window.location.href = '/cursos';
+            } else {
+              setCurrentView('CURSOS_DISPONIVEIS');
+            }
+          }}
+          className="inline-flex items-center gap-1.5 font-medium text-slate-400 hover:text-white transition-colors cursor-pointer group"
+        >
+          <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform text-purple-400" />
+          <span>Voltar ao Catálogo de Cursos</span>
+        </button>
+
+        <button
+          onClick={() => {
+            if (typeof window !== 'undefined' && window.location.pathname.startsWith('/cursos')) {
+              window.location.href = '/';
+            } else {
+              setCurrentView('DASHBOARD');
+            }
+          }}
+          className="text-xs font-medium text-slate-400 hover:text-white transition-colors cursor-pointer"
+        >
+          Painel Principal
+        </button>
       </div>
 
-      {/* ===================================================== */}
-      {/* 1. CABEÇALHO DO CURSO (HERO BANNER COMPLETO)          */}
-      {/* ===================================================== */}
-      {!isReadingMode && (
-        <div className="w-full bg-[#110E1B] border border-[#2D1B4E]/60 rounded-3xl p-6 lg:p-8 shadow-2xl relative overflow-hidden space-y-6">
-          <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 relative z-10">
-            
-            {/* Lado Esquerdo: Badges de Metadados, Título e Descrição */}
-            <div className="space-y-3 max-w-2xl">
-              {/* Badges de Metadados */}
-              <div className="flex flex-wrap items-center gap-2">
-                <span className={`text-[10px] sm:text-xs font-bold px-2.5 py-0.5 rounded-md border ${
-                  course.level === 'Intermediário'
-                    ? 'bg-amber-950/60 text-amber-300 border-amber-500/30'
-                    : course.level === 'Avançado'
-                    ? 'bg-rose-950/60 text-rose-300 border-rose-500/30'
-                    : 'bg-emerald-950/60 text-emerald-300 border-emerald-500/30'
-                }`}>
-                  {course.level === 'Intermediário' ? '🟡 Nível 2: Intermediário' : course.level === 'Avançado' ? '🔴 Nível 3: Avançado' : '🟢 Nível 1: Iniciante'}
-                </span>
-                
-                <span className="inline-flex items-center gap-1 bg-[#171126] border border-[#2D1B4E] text-zinc-300 text-[10px] sm:text-xs font-semibold px-2.5 py-0.5 rounded-md">
-                  <Clock className="w-3.5 h-3.5 text-zinc-400" />
-                  <span>Carga Horária: {course.hours}h</span>
-                </span>
+      {/* ========================================================================= */}
+      {/* 2. CABEÇALHO DO CURSO (DESIGN PADRÃO SKILLHUB COM BACKDROP-BLUR)          */}
+      {/* ========================================================================= */}
+      <div className="w-full bg-slate-900/40 border border-slate-800/80 rounded-2xl p-6 backdrop-blur-md shadow-lg space-y-5">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+          
+          <div className="space-y-3 max-w-2xl">
+            {/* Badges e Pills: rounded-full text-xs font-medium px-3 py-1 bg-slate-800 text-slate-300 */}
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="rounded-full text-xs font-medium px-3 py-1 bg-slate-800 text-slate-300">
+                {course.category}
+              </span>
 
-                <span className="inline-flex items-center gap-1 bg-[#171126] border border-[#2D1B4E] text-zinc-300 text-[10px] sm:text-xs font-semibold px-2.5 py-0.5 rounded-md">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                  <span>Certificado Incluso</span>
-                </span>
+              <span className="rounded-full text-xs font-medium px-3 py-1 bg-slate-800 text-slate-300 flex items-center gap-1.5">
+                <Clock className="w-3.5 h-3.5 text-purple-400" />
+                <span>{course.hours === 1 ? '1 hora' : `${course.hours}h`}</span>
+              </span>
 
-                <span className="inline-flex items-center gap-1 bg-[#171126] border border-purple-500/30 text-purple-300 text-[10px] sm:text-xs font-semibold px-2.5 py-0.5 rounded-md">
-                  <MapPin className="w-3.5 h-3.5 text-rose-400" />
-                  <span>Jornada: {course.category}</span>
+              <span className="rounded-full text-xs font-medium px-3 py-1 bg-emerald-950/60 text-emerald-300 border border-emerald-500/30">
+                EAD 100% Gratuito
+              </span>
+
+              <span className="rounded-full text-xs font-medium px-3 py-1 bg-purple-950/60 text-purple-300 border border-purple-500/30 flex items-center gap-1.5">
+                <Award className="w-3.5 h-3.5 text-purple-400" />
+                <span>Selo: {course.badgeName}</span>
+              </span>
+            </div>
+
+            {/* Título Principal com text-2xl md:text-3xl font-bold */}
+            <h1 className="text-2xl md:text-3xl font-bold text-white leading-tight tracking-tight">
+              {course.title}
+            </h1>
+
+            <p className="text-sm text-slate-300 leading-relaxed font-normal">
+              {course.subtitle}
+            </p>
+          </div>
+
+          {/* Card Lateral de Progresso */}
+          <div className="w-full md:w-64 bg-slate-900/60 border border-slate-800/80 rounded-xl p-4 shrink-0 flex flex-col justify-between space-y-3">
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-between text-xs font-semibold">
+                <span className="text-slate-300">Progresso Geral</span>
+                <span className={isCourseCompleted ? 'text-emerald-400 font-bold' : 'text-purple-300 font-bold'}>
+                  {isCourseCompleted ? '100%' : `${progressPercent}%`}
                 </span>
               </div>
 
-              {/* Título Grande */}
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
-                {course.title}
-              </h1>
+              <div className="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                <div
+                  className={`h-full transition-all duration-500 rounded-full ${
+                    isCourseCompleted ? 'bg-emerald-500' : 'bg-purple-600'
+                  }`}
+                  style={{ width: `${progressPercent}%` }}
+                />
+              </div>
 
-              {/* Descrição Curta com Foco em Curitiba & RMC */}
-              <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed font-normal">
-                {course.subtitle} — Desenvolva competências práticas e comportamentais altamente valorizadas no mercado de trabalho e empresas parceiras de Curitiba e Região Metropolitana.
+              <p className="text-[11px] text-slate-400">
+                {isCourseCompleted 
+                  ? 'Certificação homologada com sucesso!' 
+                  : `${completedInCourse.length} de ${course.modules.length} módulos concluídos`}
               </p>
             </div>
 
-            {/* Lado Direito: Card / Widget de Progresso do Curso */}
-            <div className="w-full lg:w-80 bg-[#140E24] border border-[#2D1B4E] rounded-2xl p-5 shadow-xl shrink-0 flex flex-col justify-between space-y-4">
-              <div className="space-y-1.5">
-                <div className="flex items-center justify-between text-xs font-bold">
-                  <span className="text-zinc-300">Progresso do Curso</span>
-                  <span className="text-emerald-400 font-black">{progressPercent}%</span>
-                </div>
-
-                <div className="w-full h-2.5 bg-[#0D0818] rounded-full overflow-hidden border border-[#2D1B4E]/60">
-                  <div
-                    className="h-full bg-gradient-to-r from-[#6D28D9] via-[#8B5CF6] to-emerald-400 transition-all duration-500 rounded-full"
-                    style={{ width: `${progressPercent}%` }}
-                  />
-                </div>
-
-                <div className="text-[11px] text-zinc-400 flex items-center justify-between pt-0.5">
-                  <span>{completedModulesCount}/{course.modules.length} Módulos Concluídos</span>
-                  {isAllModulesCompleted && (
-                    <span className="text-emerald-400 font-bold flex items-center gap-1">
-                      <Check className="w-3 h-3 stroke-[3]" /> Concluído
-                    </span>
-                  )}
-                </div>
-              </div>
-
-              {/* Botão de Ação Principal em Destaque */}
+            {isCourseCompleted ? (
               <button
-                type="button"
+                onClick={() => setIsCertificateModalOpen(true)}
+                className="w-full py-2 px-3 rounded-lg text-xs font-medium flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-500 text-white transition-colors cursor-pointer"
+              >
+                <Award className="w-3.5 h-3.5" />
+                <span>Ver Certificado</span>
+              </button>
+            ) : (
+              <button
                 onClick={() => {
-                  if (isAllModulesCompleted) {
+                  if (!hasReadingTimer || isTimerFinished) {
                     setActiveTab('QUIZ');
-                    setIsReadingMode(false);
-                  } else {
-                    const targetIdx = nextUnfinishedIndex !== -1 ? nextUnfinishedIndex : 0;
-                    setActiveModuleIndex(targetIdx);
-                    setActiveTab('MODULES');
-                    setIsReadingMode(true);
                   }
                 }}
-                className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] hover:from-[#7C3AED] hover:to-[#9D4EDD] text-white text-xs font-bold flex items-center justify-center gap-2 shadow-lg shadow-purple-950/60 transition-all hover:scale-[1.02] cursor-pointer"
+                disabled={hasReadingTimer && !isTimerFinished}
+                className={`w-full py-2 px-3 rounded-lg text-xs font-medium flex items-center justify-center gap-1.5 transition-colors ${
+                  hasReadingTimer && !isTimerFinished
+                    ? 'bg-slate-800 text-slate-500 cursor-not-allowed'
+                    : 'bg-purple-600 hover:bg-purple-500 text-white cursor-pointer shadow-md shadow-purple-600/20'
+                }`}
               >
-                <span>
-                  {completedModulesCount === 0
-                    ? 'Iniciar Módulo 1'
-                    : isAllModulesCompleted
-                    ? 'Ir para Avaliação Final'
-                    : 'Continuar de Onde Parou'}
-                </span>
-                <ArrowRight className="w-4 h-4" />
+                {hasReadingTimer && !isTimerFinished ? (
+                  <>
+                    <Lock className="w-3.5 h-3.5 text-slate-500" />
+                    <span>Quiz Bloqueado ({formatTime(timeLeft)})</span>
+                  </>
+                ) : (
+                  <>
+                    <HelpCircle className="w-3.5 h-3.5" />
+                    <span>Fazer Quiz Oficial</span>
+                  </>
+                )}
               </button>
+            )}
+          </div>
 
-              {/* Tag Selo Oficial ao Finalizar */}
-              <div className="pt-3 border-t border-[#2D1B4E]/60 flex items-center gap-2 text-xs">
-                <Award className="w-4 h-4 text-amber-400 shrink-0" />
-                <span className="text-zinc-400 text-[11px]">
-                  Selo Oficial: <strong className="text-amber-300 font-semibold">{course.badgeName}</strong>
-                </span>
+        </div>
+
+        {/* ===================================================================== */}
+        {/* MAPA MENTAL OFICIAL (APENAS NOS CURSOS QUE POSSUEM O MATERIAL)        */}
+        {/* ===================================================================== */}
+        {isEquilibrio && (
+          <div className="pt-2 space-y-3">
+            <div className="flex items-center justify-between pb-2 border-b border-slate-800/80">
+              <span className="text-xs font-semibold text-slate-300 flex items-center gap-2">
+                <BookOpen className="w-3.5 h-3.5 text-purple-400" />
+                <span>Material Visual de Referência: Mapa Mental &amp; Práticas Diárias</span>
+              </span>
+              <button
+                type="button"
+                onClick={() => setIsImageExpanded(true)}
+                className="px-2.5 py-1 rounded-md text-xs font-medium border border-slate-700 text-slate-300 hover:bg-slate-800 transition-colors flex items-center gap-1 cursor-pointer"
+              >
+                <Maximize2 className="w-3 h-3 text-purple-400" />
+                <span>Ampliar Mapa</span>
+              </button>
+            </div>
+
+            <div className="w-full rounded-2xl border border-purple-500/20 shadow-md overflow-hidden bg-slate-900/60 p-2">
+              <img 
+                src="/mapa-mental-equilibrio.png" 
+                alt="Mapa Mental Equilíbrio Emocional" 
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.dataset.triedFallback) {
+                    target.dataset.triedFallback = 'true';
+                    target.src = '/api/course-image?course=equilibrio';
+                  }
+                }}
+                className="w-full h-auto rounded-xl object-contain cursor-pointer transition-transform hover:scale-[1.01] max-h-[480px]"
+                onClick={() => setIsImageExpanded(true)}
+              />
+            </div>
+          </div>
+        )}
+
+        {isOrcamento && (
+          <div className="pt-2 space-y-3">
+            <div className="flex items-center justify-between pb-2 border-b border-slate-800/80">
+              <span className="text-xs font-semibold text-slate-300 flex items-center gap-2">
+                <BookOpen className="w-3.5 h-3.5 text-purple-400" />
+                <span>Material Visual de Referência: Mapa Mental do Orçamento</span>
+              </span>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setIsImageExpanded(true)}
+                  className="px-2.5 py-1 rounded-md text-xs font-medium border border-slate-700 text-slate-300 hover:bg-slate-800 transition-colors flex items-center gap-1 cursor-pointer"
+                >
+                  <Maximize2 className="w-3 h-3 text-purple-400" />
+                  <span>Ampliar</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={handleDownloadInfografico}
+                  disabled={downloadingPdf}
+                  className="px-2.5 py-1 rounded-md text-xs font-medium border border-slate-700 text-slate-300 hover:bg-slate-800 transition-colors flex items-center gap-1 cursor-pointer"
+                >
+                  <Download className="w-3 h-3 text-purple-400" />
+                  <span>{downloadingPdf ? 'Baixando...' : 'Baixar PDF'}</span>
+                </button>
               </div>
             </div>
 
-          </div>
-        </div>
-      )}
-
-      {/* ===================================================== */}
-      {/* 2. NAVEGAÇÃO POR ABAS (TABS SUPERIORES MODERNAS)      */}
-      {/* ===================================================== */}
-      {!isReadingMode && (
-        <div className="w-full flex flex-wrap items-center justify-start sm:justify-center gap-2.5 border-b border-[#2D1B4E]/60 pb-3">
-          
-          {/* Aba 1: Módulos do Curso */}
-          <button
-            onClick={() => {
-              setActiveTab('MODULES');
-              setIsReadingMode(false);
-            }}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-              activeTab === 'MODULES'
-                ? 'bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] text-white shadow-lg shadow-purple-950/50 border border-purple-500/40'
-                : 'bg-[#140E24] text-zinc-300 hover:text-white hover:bg-[#1C152E] border border-[#2D1B4E]'
-            }`}
-          >
-            <BookOpen className="w-4 h-4 text-purple-300" />
-            <span>Módulos do Curso ({course.modules.length})</span>
-          </button>
-
-          {/* Aba 2: Estudos de Caso & Prática */}
-          {course.caseStudies && course.caseStudies.length > 0 && (
-            <button
-              onClick={() => {
-                setActiveTab('CASE_STUDIES');
-                setIsReadingMode(false);
-              }}
-              className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-                activeTab === 'CASE_STUDIES'
-                  ? 'bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] text-white shadow-lg shadow-purple-950/50 border border-purple-500/40'
-                  : 'bg-[#140E24] text-zinc-300 hover:text-white hover:bg-[#1C152E] border border-[#2D1B4E]'
-              }`}
-            >
-              <Layers className="w-4 h-4 text-amber-300" />
-              <span>Estudos de Caso &amp; Prática ({course.caseStudies.length})</span>
-            </button>
-          )}
-
-          {/* Aba 3: Avaliação Final (Quiz) */}
-          <button
-            onClick={() => {
-              setActiveTab('QUIZ');
-              setIsReadingMode(false);
-            }}
-            className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
-              activeTab === 'QUIZ'
-                ? 'bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] text-white shadow-lg shadow-purple-950/50 border border-purple-500/40'
-                : isAllModulesCompleted
-                ? 'bg-[#140E24] text-zinc-300 hover:text-white hover:bg-[#1C152E] border border-[#2D1B4E]'
-                : 'bg-[#0E091A] text-zinc-500 border border-[#2D1B4E]/60 hover:text-zinc-400'
-            }`}
-          >
-            {isAllModulesCompleted ? (
-              <HelpCircle className="w-4 h-4 text-emerald-400" />
-            ) : (
-              <Lock className="w-4 h-4 text-amber-400" />
-            )}
-            <span>Avaliação Final (Quiz)</span>
-            {!isAllModulesCompleted ? (
-              <span className="text-[10px] bg-amber-950/60 text-amber-300 border border-amber-500/30 px-2 py-0.5 rounded-full font-bold">
-                Bloqueado ({completedModulesCount}/{course.modules.length})
-              </span>
-            ) : currentQuizResult ? (
-              <span className={`text-[10px] px-2 py-0.5 rounded-full font-bold ${
-                currentQuizResult.passed ? 'bg-emerald-950/80 text-emerald-300 border border-emerald-500/40' : 'bg-rose-950/80 text-rose-300 border border-rose-500/40'
-              }`}>
-                {currentQuizResult.score}%
-              </span>
-            ) : (
-              <span className="text-[10px] bg-emerald-950/60 text-emerald-300 border border-emerald-500/30 px-2 py-0.5 rounded-full font-bold">
-                Liberado
-              </span>
-            )}
-          </button>
-        </div>
-      )}
-
-      {/* ===================================================== */}
-      {/* 3. CONTEÚDO DA ABA 1: LISTAGEM DE MÓDULOS (CARDS)     */}
-      {/* ===================================================== */}
-      {activeTab === 'MODULES' && !isReadingMode && (
-        <div className="w-full space-y-6 flex flex-col items-center">
-          
-          {/* Subheader da Lista de Módulos */}
-          <div className="w-full flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[#2D1B4E]/40 pb-4">
-            <div>
-              <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                Módulos do Curso
-              </h2>
-              <p className="text-xs sm:text-sm text-zinc-400 mt-0.5">
-                Conteúdos teóricos, metodologias corporativas e exercícios práticos de fixação.
-              </p>
-            </div>
-            
-            <div className="flex items-center gap-2 text-xs">
-              <span className="text-zinc-400 font-medium">Status:</span>
-              <span className="bg-[#171126] border border-[#2D1B4E] text-zinc-300 font-bold px-3 py-1 rounded-full">
-                {completedList.length}/{course.modules.length} concluídos ({progressPercent}%)
-              </span>
+            <div className="bg-slate-900/60 border border-slate-800 rounded-2xl p-2 shadow-md flex items-center justify-center">
+              <img 
+                src="/mapa-mental-orcamento.png" 
+                alt="Mapa Mental: Orçamento do Primeiro Salário" 
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.dataset.triedFallback) {
+                    target.dataset.triedFallback = 'true';
+                    target.src = '/api/course-image';
+                  }
+                }}
+                className="w-full h-auto object-contain max-h-[480px] rounded-xl cursor-pointer" 
+                onClick={() => setIsImageExpanded(true)}
+              />
             </div>
           </div>
+        )}
 
-          {/* Grid de Cards dos Módulos Aprimorados */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 w-full">
-            {course.modules.map((mod, idx) => {
-              const isCompleted = completedList.includes(mod.id);
-              const isExpanded = !!expandedDesc[mod.id];
-              const isCurrentUnfinished = !isCompleted && idx === nextUnfinishedIndex;
-              const formattedNumber = String(mod.number).padStart(2, '0');
+      </div>
 
-              return (
-                <div
-                  key={mod.id}
-                  className={`bg-[#140E24] border rounded-2xl p-5 sm:p-6 shadow-xl flex flex-col justify-between space-y-4 transition-all duration-200 hover:-translate-y-1 hover:shadow-2xl ${
-                    isCompleted
-                      ? 'border-emerald-500/40 hover:border-emerald-500/70'
-                      : isCurrentUnfinished
-                      ? 'border-[#8B5CF6]/70 ring-1 ring-[#8B5CF6]/40 shadow-purple-950/40'
-                      : 'border-[#2D1B4E]/60 hover:border-purple-500/40'
-                  }`}
-                >
-                  <div className="space-y-3.5">
-                    {/* Linha Superior: Número Destacado + Tag de Status Clara */}
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="bg-[#1F1535] border border-[#2D1B4E] text-purple-300 text-xs font-black px-3 py-1 rounded-xl uppercase tracking-wider">
-                        Módulo {formattedNumber}
-                      </span>
-                      
-                      {isCompleted ? (
-                        <span className="bg-emerald-950/60 text-emerald-300 border border-emerald-500/30 text-[11px] font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1">
-                          <Check className="w-3 h-3 stroke-[3]" /> Concluído
-                        </span>
-                      ) : isCurrentUnfinished ? (
-                        <span className="bg-amber-950/60 text-amber-300 border border-amber-500/30 text-[11px] font-bold px-2.5 py-0.5 rounded-full flex items-center gap-1">
-                          <Clock className="w-3 h-3" /> Em Progresso
-                        </span>
-                      ) : (
-                        <span className="bg-[#171126] text-zinc-400 border border-[#2D1B4E] text-[11px] font-semibold px-2.5 py-0.5 rounded-full">
-                          Disponível
-                        </span>
-                      )}
-                    </div>
+      {/* ========================================================================= */}
+      {/* 3. CONTEÚDO PRINCIPAL: MODULAR (GRID DE CARDS) OU LEITURA FOCADA           */}
+      {/* ========================================================================= */}
+      {activeTab === 'AULA' && (
+        <div className="w-full space-y-8">
+          
+          {/* --------------------------------------------------------------------- */}
+          {/* CASO A: VISÃO GERAL EM GRID DE CARDS MODULARES (NENHUM MÓDULO ABERTO) */}
+          {/* --------------------------------------------------------------------- */}
+          {!selectedModuleId ? (
+            <div className="w-full space-y-6 animate-fadeIn">
+              
+              {/* Barra de Título do Conteúdo */}
+              <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+                <div className="flex items-center gap-2.5">
+                  <BookOpen className="w-5 h-5 text-purple-400" />
+                  <h2 className="text-xl font-bold text-white tracking-tight">
+                    Módulos do Curso
+                  </h2>
+                  <span className="rounded-full text-xs font-semibold px-2.5 py-0.5 bg-slate-800 text-slate-300">
+                    {course.modules.length} {course.modules.length === 1 ? 'módulo' : 'módulos'}
+                  </span>
+                </div>
 
-                    {/* Título do Módulo */}
-                    <h3 className="text-base sm:text-lg font-bold text-white leading-snug">
-                      {mod.title.replace(/MÓDULO \d+: /, '')}
-                    </h3>
+                <span className="text-xs text-slate-400 font-medium">
+                  {completedInCourse.length} de {course.modules.length} concluídos
+                </span>
+              </div>
 
-                    {/* Resumo do Módulo */}
-                    <p 
-                      className={`text-sm text-zinc-300 leading-relaxed break-normal ${isExpanded ? '' : 'line-clamp-2'}`}
-                      style={{ whiteSpace: 'normal', wordBreak: 'normal', lineHeight: 1.6 }}
+              {/* GRID DE CARDS MODULARES LADO A LADO (2 ou 3 colunas) */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+                {course.modules.map((module, mIdx) => {
+                  const isModuleDone = completedInCourse.includes(module.id);
+
+                  return (
+                    <div 
+                      key={module.id || mIdx}
+                      className={`bg-slate-900/40 border rounded-2xl p-6 backdrop-blur-md flex flex-col justify-between transition-all duration-300 hover:border-purple-500/40 hover:shadow-xl hover:shadow-purple-950/20 group relative overflow-hidden ${
+                        isModuleDone 
+                          ? 'border-emerald-500/30 shadow-emerald-950/10' 
+                          : 'border-slate-800/80'
+                      }`}
                     >
-                      {mod.summary}
-                    </p>
+                      {/* Topo do Card: Badge sutil + Título limpo */}
+                      <div className="space-y-3">
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="rounded-full text-xs font-semibold px-3 py-1 bg-slate-800 text-slate-300 group-hover:bg-purple-950/60 group-hover:text-purple-300 transition-colors">
+                            Módulo {mIdx + 1}
+                          </span>
 
-                    {mod.summary && mod.summary.length > 70 && (
-                      <button
-                        type="button"
-                        onClick={() => setExpandedDesc((prev) => ({ ...prev, [mod.id]: !prev[mod.id] }))}
-                        className="text-xs text-purple-400 hover:text-white font-bold flex items-center gap-1 transition-colors cursor-pointer"
-                      >
-                        <span>{isExpanded ? 'Ver menos' : 'Ver mais'}</span>
-                        <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isExpanded ? 'rotate-180' : ''}`} />
-                      </button>
-                    )}
+                          {isModuleDone ? (
+                            <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-400 bg-emerald-950/40 px-2 py-0.5 rounded-md border border-emerald-500/20">
+                              <CheckCircle2 className="w-3.5 h-3.5" />
+                              Concluído
+                            </span>
+                          ) : (
+                            <span className="text-[11px] text-slate-400 font-medium flex items-center gap-1">
+                              <Clock className="w-3 h-3 text-slate-500" />
+                              {module.estimatedMinutes || 15} min
+                            </span>
+                          )}
+                        </div>
 
-                    {/* Checklist: O que o aluno vai aprender */}
-                    {mod.content && mod.content.sections && mod.content.sections.length > 0 && (
-                      <div className="pt-2 border-t border-[#2D1B4E]/40 space-y-1.5">
-                        <div className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">
-                          Tópicos Aprendidos:
-                        </div>
-                        <div className="space-y-1">
-                          {mod.content.sections.slice(0, 2).map((sec, sIdx) => (
-                            <div key={sIdx} className="flex items-start gap-1.5 text-xs text-zinc-300">
-                              <Check className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
-                              <span className="line-clamp-1">{sec.subheading}</span>
-                            </div>
-                          ))}
-                        </div>
+                        <h3 className="text-base md:text-lg font-semibold text-white group-hover:text-purple-300 transition-colors line-clamp-2">
+                          {module.title}
+                        </h3>
+
+                        {/* Meio do Card: Resumo/Descrição dos tópicos */}
+                        <p className="text-xs text-slate-400 leading-relaxed line-clamp-3 font-normal">
+                          {module.summary || 'Estudo detalhado dos conceitos essenciais, técnicas práticas e exemplos de aplicação corporativa.'}
+                        </p>
                       </div>
-                    )}
+
+                      {/* Rodapé do Card: Duração, barra e botão de acesso */}
+                      <div className="pt-5 mt-4 border-t border-slate-800/80 space-y-3">
+                        <div className="flex items-center justify-between text-[11px] text-slate-400">
+                          <span>{isModuleDone ? 'Conteúdo validado' : 'Pendente de leitura'}</span>
+                          <span className="text-slate-300 font-medium">{module.content.sections.length} seções</span>
+                        </div>
+
+                        <div className="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+                          <div
+                            className={`h-full rounded-full transition-all duration-300 ${
+                              isModuleDone ? 'bg-emerald-500 w-full' : 'bg-purple-600/40 w-1/4'
+                            }`}
+                          />
+                        </div>
+
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setSelectedModuleId(module.id);
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                          }}
+                          className={`w-full py-2.5 px-4 rounded-xl text-xs font-semibold flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                            isModuleDone
+                              ? 'bg-slate-800 hover:bg-slate-700 text-slate-200'
+                              : 'bg-purple-600 hover:bg-purple-500 text-white shadow-md shadow-purple-600/20'
+                          }`}
+                        >
+                          <span>{isModuleDone ? 'Rever Módulo' : 'Estudar Módulo'}</span>
+                          <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                        </button>
+                      </div>
+
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* CARD DE VÍDEO RECOMENDADO NO YOUTUBE (CENTRALIZADO) */}
+              <div className="w-full bg-slate-900/40 border border-slate-800/80 rounded-2xl p-6 backdrop-blur-md flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
+                <div className="space-y-1 text-center sm:text-left">
+                  <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-purple-400">
+                    <Play className="w-3.5 h-3.5 text-purple-400" />
+                    <span>Material Audiovisual Complementar</span>
                   </div>
+                  <p className="text-sm text-slate-300 font-medium">
+                    {isOrcamento 
+                      ? 'Se você quiser aprender mais sobre como administrar seus ganhos, assista ao vídeo complementar:'
+                      : 'Aprofunde seus conhecimentos assistindo à videoaula recomendada para fixar o aprendizado:'}
+                  </p>
+                </div>
 
-                  {/* Indicador Visual de Atividades & Barra de Progresso */}
-                  <div className="space-y-2.5 pt-2 border-t border-[#2D1B4E]/40">
-                    <div className="bg-[#0E091A] border border-[#2D1B4E] rounded-xl p-2.5 flex items-center justify-between text-[11px] text-zinc-400">
-                      <span className="flex items-center gap-1.5 text-zinc-300 font-medium">
-                        <BookOpen className="w-3.5 h-3.5 text-purple-400" />
-                        <span>Texto Teórico</span>
-                      </span>
-                      <span className="text-zinc-600">•</span>
-                      <span className="flex items-center gap-1.5 text-zinc-300 font-medium">
-                        <HelpCircle className="w-3.5 h-3.5 text-amber-400" />
-                        <span>7 Atividades</span>
+                <a
+                  href={isOrcamento 
+                    ? "https://youtu.be/CIdkEei-BdU?si=V5_UIYlhtdcZjtEZ" 
+                    : "https://www.youtube.com/results?search_query=inteligencia+emocional+e+foco+no+trabalho"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-purple-600 hover:bg-purple-500 text-white font-medium px-5 py-2.5 rounded-full transition-all shadow-md flex items-center gap-2 text-xs sm:text-sm shrink-0 whitespace-nowrap cursor-pointer hover:scale-[1.02]"
+                >
+                  <span>Assistir no YouTube ➔</span>
+                </a>
+              </div>
+
+              {/* BARRA INFERIOR DE TIMER & QUIZ */}
+              <div className="w-full bg-slate-900/40 border border-slate-800/80 rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between gap-4 backdrop-blur-md shadow-lg">
+                <div className="flex items-center gap-3">
+                  {hasReadingTimer ? (
+                    <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700 text-xs font-medium">
+                      <Clock className="w-3.5 h-3.5 text-purple-400" />
+                      <span>
+                        {isTimerFinished ? 'Tempo de estudo concluído' : `⏱️ Tempo mínimo de leitura: ${formatTime(timeLeft)}`}
                       </span>
                     </div>
-
-                    {/* Barra de Progresso do Módulo */}
-                    <div className="w-full h-1.5 bg-[#0D0818] rounded-full overflow-hidden border border-[#2D1B4E]/60">
-                      <div
-                        className={`h-full transition-all duration-500 rounded-full ${
-                          isCompleted
-                            ? 'bg-gradient-to-r from-emerald-500 to-teal-400 w-full'
-                            : 'bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] w-0'
-                        }`}
-                      />
+                  ) : (
+                    <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700 text-xs font-medium">
+                      <BookOpen className="w-3.5 h-3.5 text-purple-400" />
+                      <span>{completedInCourse.length} de {course.modules.length} módulos concluídos</span>
                     </div>
+                  )}
 
-                    {/* Botão Acessar Módulo com estilo Dark/Lilás */}
+                  {hasReadingTimer && !isTimerFinished && (
                     <button
                       type="button"
-                      onClick={() => {
-                        setActiveModuleIndex(idx);
-                        setIsReadingMode(true);
-                      }}
-                      className="w-full mt-1 py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] hover:from-[#7C3AED] hover:to-[#9D4EDD] text-white text-xs font-bold flex items-center justify-center gap-2 shadow-md transition-all duration-200 hover:scale-[1.02] cursor-pointer"
+                      onClick={handleSkipTimerForTesting}
+                      className="text-xs text-purple-400 hover:underline cursor-pointer"
+                      title="Atalho de teste"
                     >
-                      <span>{isCompleted ? 'Revisar Conteúdo' : 'Acessar Módulo'}</span>
-                      <ArrowRight className="w-4 h-4" />
+                      (pular tempo)
+                    </button>
+                  )}
+                </div>
+
+                <button
+                  onClick={() => {
+                    if (!hasReadingTimer || isTimerFinished) {
+                      setActiveTab('QUIZ');
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }
+                  }}
+                  disabled={hasReadingTimer && !isTimerFinished && !isCourseCompleted}
+                  className={`px-6 py-2.5 rounded-full text-xs sm:text-sm font-semibold flex items-center justify-center gap-2 transition-all shadow-md ${
+                    isCourseCompleted
+                      ? 'bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer'
+                      : !hasReadingTimer || isTimerFinished
+                      ? 'bg-purple-600 hover:bg-purple-500 text-white cursor-pointer hover:scale-[1.02]'
+                      : 'bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-700'
+                  }`}
+                >
+                  {isCourseCompleted ? (
+                    <>
+                      <Award className="w-4 h-4" />
+                      <span>Ver Certificado Oficial</span>
+                    </>
+                  ) : hasReadingTimer && !isTimerFinished ? (
+                    <>
+                      <Lock className="w-4 h-4" />
+                      <span>Quiz Bloqueado ({formatTime(timeLeft)})</span>
+                    </>
+                  ) : (
+                    <>
+                      <HelpCircle className="w-4 h-4" />
+                      <span>Fazer Prova de Fixação (Quiz) ➔</span>
+                    </>
+                  )}
+                </button>
+              </div>
+
+            </div>
+          ) : (
+            /* --------------------------------------------------------------------- */
+            /* CASO B: LEITURA FOCADA DO MÓDULO INDIVIDUAL (VISÃO LIMPA E SEM RUÍDO)  */
+            /* --------------------------------------------------------------------- */
+            currentModule && (
+              <div className="w-full space-y-6 animate-fadeIn">
+                
+                {/* Barra Superior da Leitura Focada */}
+                <div className="w-full flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setSelectedModuleId(null);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                    className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl bg-slate-800/80 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs font-semibold transition-colors cursor-pointer self-start sm:self-auto group"
+                  >
+                    <ChevronLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform text-purple-400" />
+                    <span>Voltar a Todos os Módulos</span>
+                  </button>
+
+                  <div className="flex items-center gap-2.5">
+                    <span className="rounded-full text-xs font-semibold px-3 py-1 bg-slate-800 text-slate-300">
+                      Módulo {currentModuleIndex + 1} de {course.modules.length}
+                    </span>
+
+                    <button
+                      type="button"
+                      onClick={() => markModuleComplete(course.id, currentModule.id)}
+                      className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-colors cursor-pointer ${
+                        isCurrentModuleDone
+                          ? 'bg-emerald-950/60 text-emerald-300 border border-emerald-500/30'
+                          : 'bg-purple-600 hover:bg-purple-500 text-white shadow-sm'
+                      }`}
+                    >
+                      <CheckCircle2 className="w-3.5 h-3.5" />
+                      <span>{isCurrentModuleDone ? 'Módulo Concluído' : 'Marcar como Concluído'}</span>
                     </button>
                   </div>
+                </div>
+
+                {/* Conteúdo Completo do Módulo */}
+                <div className="w-full bg-slate-900/40 border border-slate-800/80 rounded-2xl p-6 md:p-8 backdrop-blur-md space-y-6 shadow-xl">
+                  
+                  {/* Cabeçalho do Módulo */}
+                  <div className="space-y-2 border-b border-slate-800 pb-4">
+                    <div className="text-xs font-semibold uppercase tracking-wider text-purple-400">
+                      Módulo {currentModuleIndex + 1} • {currentModule.estimatedMinutes || 15} minutos estimados
+                    </div>
+                    <h2 className="text-xl md:text-2xl font-bold text-white tracking-tight">
+                      {currentModule.title}
+                    </h2>
+                    {currentModule.summary && (
+                      <p className="text-sm text-slate-300 font-normal leading-relaxed pt-1">
+                        {currentModule.summary}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Seções Internas */}
+                  <div className="space-y-6 pt-2">
+                    {currentModule.content.sections.map((section, sIdx) => (
+                      <div key={sIdx} className="space-y-3 pt-4 border-t border-slate-800/60 first:border-t-0 first:pt-0">
+                        <h3 className="text-base font-semibold text-slate-100 flex items-center gap-2">
+                          <ChevronRight className="w-4 h-4 text-purple-400 shrink-0" />
+                          <span>{section.subheading}</span>
+                        </h3>
+
+                        <div className="space-y-3 text-sm text-slate-300 leading-relaxed font-normal">
+                          {section.body.map((p, pIdx) => {
+                            if (p.startsWith('• ')) {
+                              const colonIdx = p.indexOf(':');
+                              const hasTitle = colonIdx !== -1;
+                              const title = hasTitle ? p.slice(2, colonIdx).trim() : null;
+                              const desc = hasTitle ? p.slice(colonIdx + 1).trim() : p.slice(2).trim();
+
+                              return (
+                                <div 
+                                  key={pIdx} 
+                                  className="bg-slate-900/60 border border-slate-800 rounded-xl p-3.5 flex items-start gap-2.5 my-2"
+                                >
+                                  <span className="w-1.5 h-1.5 rounded-full bg-purple-400 mt-2 shrink-0" />
+                                  <div className="text-sm text-slate-300 leading-relaxed">
+                                    {title && (
+                                      <strong className="font-semibold text-white mr-1.5">
+                                        {title}:
+                                      </strong>
+                                    )}
+                                    <span>{desc}</span>
+                                  </div>
+                                </div>
+                              );
+                            }
+
+                            return <p key={pIdx}>{p}</p>;
+                          })}
+                        </div>
+
+                        {section.highlightBox && (
+                          <div className="mt-4 border-l-2 border-purple-500 bg-purple-950/20 px-4 py-3 rounded-r-xl space-y-1 text-sm border border-y-0 border-r-0">
+                            <div className="font-semibold text-purple-300">
+                              {section.highlightBox.title}
+                            </div>
+                            <p className="text-slate-300 leading-relaxed text-sm">
+                              {section.highlightBox.text}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Rodapé de Navegação Entre Módulos */}
+                  <div className="pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    {currentModuleIndex > 0 ? (
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setSelectedModuleId(course.modules[currentModuleIndex - 1].id);
+                          window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }}
+                        className="w-full sm:w-auto px-4 py-2 rounded-xl border border-slate-700 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                      >
+                        <ChevronLeft className="w-4 h-4" />
+                        <span>Módulo Anterior</span>
+                      </button>
+                    ) : (
+                      <div />
+                    )}
+
+                    <div className="flex items-center gap-3 w-full sm:w-auto">
+                      <button
+                        type="button"
+                        onClick={() => markModuleComplete(course.id, currentModule.id)}
+                        className={`w-full sm:w-auto px-4 py-2 rounded-xl text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors cursor-pointer ${
+                          isCurrentModuleDone
+                            ? 'bg-emerald-950/60 text-emerald-300 border border-emerald-500/30'
+                            : 'bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700'
+                        }`}
+                      >
+                        <Check className="w-3.5 h-3.5" />
+                        <span>{isCurrentModuleDone ? 'Concluído' : 'Marcar Concluído'}</span>
+                      </button>
+
+                      {currentModuleIndex < course.modules.length - 1 ? (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            if (!isCurrentModuleDone) {
+                              markModuleComplete(course.id, currentModule.id);
+                            }
+                            setSelectedModuleId(course.modules[currentModuleIndex + 1].id);
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                          }}
+                          className="w-full sm:w-auto px-5 py-2 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-md shadow-purple-600/20"
+                        >
+                          <span>Próximo Módulo</span>
+                          <ChevronRight className="w-4 h-4" />
+                        </button>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => {
+                            if (!isCurrentModuleDone) {
+                              markModuleComplete(course.id, currentModule.id);
+                            }
+                            setSelectedModuleId(null);
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                          }}
+                          className="w-full sm:w-auto px-5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer"
+                        >
+                          <span>Concluir Todos os Módulos</span>
+                          <CheckCircle2 className="w-4 h-4" />
+                        </button>
+                      )}
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+            )
+          )}
+
+        </div>
+      )}
+
+      {/* ========================================================================= */}
+      {/* 4. AVALIAÇÃO FINAL (QUIZ INTERATIVO)                                      */}
+      {/* ========================================================================= */}
+      {activeTab === 'QUIZ' && (
+        <div className="w-full bg-slate-900/40 border border-slate-800/80 rounded-2xl p-6 md:p-8 space-y-6 backdrop-blur-md shadow-xl animate-fadeIn">
+          
+          <div className="border-b border-slate-800 pb-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div>
+              <div className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-purple-400 mb-1">
+                <HelpCircle className="w-4 h-4" />
+                <span>Avaliação Oficial do Curso</span>
+              </div>
+              <h2 className="text-xl md:text-2xl font-bold text-white tracking-tight">
+                Prova de Fixação: {course.title}
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-400 mt-0.5">
+                Nota mínima para certificação: <strong>{isEquilibrio ? '2 acertos' : '70% de aproveitamento'}</strong>.
+              </p>
+            </div>
+
+            <button
+              onClick={() => setActiveTab('AULA')}
+              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-medium bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700 transition-colors cursor-pointer"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" />
+              <span>Voltar aos Módulos</span>
+            </button>
+          </div>
+
+          {/* Feedback de Resultado */}
+          {quizSubmitted && (
+            <div className={`p-4 rounded-xl border text-xs sm:text-sm font-medium flex items-center justify-between gap-4 ${
+              quizPassedState
+                ? 'bg-emerald-950/40 border-emerald-500/30 text-emerald-200'
+                : 'bg-amber-950/40 border-amber-500/30 text-amber-200'
+            }`}>
+              <div className="space-y-1">
+                <div className="font-semibold flex items-center gap-2 text-sm sm:text-base">
+                  {quizPassedState ? <CheckCircle2 className="w-5 h-5 text-emerald-400" /> : <AlertTriangle className="w-5 h-5 text-amber-400" />}
+                  <span>{quizPassedState ? `Aprovado com ${quizScore}%!` : `Nota: ${quizScore}%. Você precisa de aprovação para validar o selo.`}</span>
+                </div>
+                <p className="text-xs opacity-90">
+                  {quizPassedState 
+                    ? 'Parabéns! Sua certificação oficial foi homologada no sistema.' 
+                    : 'Revise os tópicos dos módulos e tente novamente.'}
+                </p>
+              </div>
+
+              {!quizPassedState && (
+                <button
+                  type="button"
+                  onClick={handleRetakeQuiz}
+                  className="px-3.5 py-1.5 rounded-md bg-amber-600 hover:bg-amber-500 text-white text-xs font-semibold flex items-center gap-1.5 cursor-pointer shrink-0"
+                >
+                  <RefreshCw className="w-3.5 h-3.5" />
+                  <span>Refazer Prova</span>
+                </button>
+              )}
+            </div>
+          )}
+
+          {/* Questões do Quiz */}
+          <div className="space-y-5 pt-1">
+            {course.quiz.map((q, idx) => {
+              const selectedOption = userQuizAnswers[q.id];
+              const isCorrect = selectedOption === q.correct;
+
+              return (
+                <div 
+                  key={q.id || idx}
+                  className="bg-slate-900/60 border border-slate-800 rounded-xl p-5 space-y-3"
+                >
+                  <div className="flex items-start gap-2.5">
+                    <span className="w-6 h-6 rounded-full bg-slate-800 border border-slate-700 text-xs font-semibold text-slate-300 flex items-center justify-center shrink-0 mt-0.5">
+                      {idx + 1}
+                    </span>
+                    <h3 className="text-sm sm:text-base font-semibold text-white leading-snug">
+                      {q.question}
+                    </h3>
+                  </div>
+
+                  <div className="space-y-2 pt-1 sm:pl-8">
+                    {q.options.map((opt, oIdx) => {
+                      const isSelected = selectedOption === oIdx;
+                      let optionClasses = 'border-slate-800 bg-slate-900/40 text-slate-300 hover:border-slate-700 hover:bg-slate-800/60';
+
+                      if (isSelected) {
+                        optionClasses = 'border-purple-500 bg-purple-950/30 text-white';
+                      }
+
+                      if (quizSubmitted) {
+                        if (oIdx === q.correct) {
+                          optionClasses = 'border-emerald-500/60 bg-emerald-950/30 text-emerald-200';
+                        } else if (isSelected && !isCorrect) {
+                          optionClasses = 'border-rose-500/60 bg-rose-950/30 text-rose-200';
+                        }
+                      }
+
+                      return (
+                        <button
+                          key={oIdx}
+                          type="button"
+                          onClick={() => handleAnswerSelect(q.id, oIdx)}
+                          disabled={quizSubmitted}
+                          className={`w-full text-left p-3 rounded-lg border text-xs sm:text-sm transition-all flex items-start gap-2.5 cursor-pointer ${optionClasses}`}
+                        >
+                          <span className={`w-4 h-4 rounded-full border flex items-center justify-center text-[10px] shrink-0 mt-0.5 ${
+                            isSelected ? 'border-purple-400 bg-purple-600 text-white' : 'border-slate-700'
+                          }`}>
+                            {String.fromCharCode(65 + oIdx)}
+                          </span>
+                          <span className="leading-relaxed">{opt}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {quizSubmitted && q.explanation && (
+                    <div className="mt-2 ml-0 sm:ml-8 p-3 rounded-lg bg-slate-800/80 border border-slate-700 text-xs text-slate-300">
+                      <strong className="font-semibold text-white">Explicação Técnica:</strong> {q.explanation}
+                    </div>
+                  )}
                 </div>
               );
             })}
           </div>
 
+          {!quizSubmitted ? (
+            <div className="pt-3 flex justify-end">
+              <button
+                type="button"
+                onClick={handleSubmitQuiz}
+                className="w-full sm:w-auto px-6 py-2.5 rounded-full bg-purple-600 hover:bg-purple-500 text-white font-medium text-sm transition-colors cursor-pointer flex items-center justify-center gap-2 shadow-md"
+              >
+                <Check className="w-4 h-4" />
+                <span>Enviar Respostas</span>
+              </button>
+            </div>
+          ) : quizPassedState && (
+            <div className="pt-3 flex justify-end">
+              <button
+                type="button"
+                onClick={() => setIsCertificateModalOpen(true)}
+                className="w-full sm:w-auto px-6 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white font-medium text-sm transition-colors cursor-pointer flex items-center justify-center gap-2 shadow-md"
+              >
+                <Award className="w-4 h-4" />
+                <span>Ver Certificado Oficial</span>
+              </button>
+            </div>
+          )}
+
         </div>
       )}
 
-      {/* ===================================================== */}
-      {/* MODO LEITURA DO MÓDULO SELECIONADO (PLAYER EAD)       */}
-      {/* ===================================================== */}
-      {activeTab === 'MODULES' && isReadingMode && (
-        <div className="w-full max-w-4xl mx-auto space-y-8 animate-fadeIn">
-          
-          {/* Barra Superior de Navegação no Modo Leitura */}
-          <div className="w-full bg-[#140E24] border border-[#2D1B4E]/70 rounded-2xl p-4 sm:p-5 shadow-xl flex flex-col sm:flex-row items-center justify-between gap-4">
-            <button
-              type="button"
-              onClick={() => setIsReadingMode(false)}
-              className="w-full sm:w-auto flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-[#171126] hover:bg-[#251540] text-zinc-300 hover:text-white text-xs sm:text-sm font-bold transition-all border border-[#2D1B4E] shadow cursor-pointer"
-            >
-              <ArrowLeft className="w-4 h-4 text-purple-400" />
-              <span>Voltar para Todos os Módulos</span>
-            </button>
+      {/* ========================================================================= */}
+      {/* 5. MODAL DE EXPANSÃO DA IMAGEM                                            */}
+      {/* ========================================================================= */}
+      {isImageExpanded && (
+        <div 
+          onClick={() => setIsImageExpanded(false)}
+          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex flex-col items-center justify-center p-4 animate-fadeIn cursor-zoom-out"
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            className="relative max-w-5xl w-full bg-slate-900 border border-slate-800 rounded-2xl p-5 shadow-2xl flex flex-col space-y-3 max-h-[92vh] cursor-default"
+          >
+            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+              <span className="text-white font-semibold text-sm">
+                Material Visual: {course.title}
+              </span>
 
-            {/* Dropdown seletor rápido do módulo */}
-            <div className="flex items-center gap-3">
-              <span className="text-xs sm:text-sm text-zinc-400 font-bold hidden sm:inline">Navegar Módulos:</span>
-              <select
-                value={activeModuleIndex}
-                onChange={(e) => setActiveModuleIndex(Number(e.target.value))}
-                className="bg-[#0D0818] border border-[#2D1B4E] text-white text-xs sm:text-sm font-bold rounded-xl px-4 py-2.5 focus:outline-none focus:border-[#8B5CF6] cursor-pointer"
-              >
-                {course.modules.map((m, mIdx) => (
-                  <option key={m.id} value={mIdx}>
-                    Módulo {String(m.number).padStart(2, '0')}: {m.title.replace(/MÓDULO \d+: /, '')} {completedList.includes(m.id) ? '✓' : ''}
-                  </option>
-                ))}
-              </select>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={handleDownloadInfografico}
+                  className="px-3 py-1 rounded-md bg-purple-600 hover:bg-purple-500 text-white text-xs font-medium flex items-center gap-1.5 cursor-pointer shadow-sm"
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>Baixar</span>
+                </button>
+
+                <button
+                  type="button"
+                  onClick={() => setIsImageExpanded(false)}
+                  className="p-1 rounded-md text-slate-400 hover:text-white transition-colors cursor-pointer"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
+
+            <div className="overflow-auto max-h-[75vh] flex items-center justify-center p-2">
+              <img
+                src={isEquilibrio ? '/mapa-mental-equilibrio.png' : '/mapa-mental-orcamento.png'}
+                alt="Mapa Mental Expandido"
+                onError={(e) => {
+                  const target = e.currentTarget;
+                  if (!target.dataset.triedFallback) {
+                    target.dataset.triedFallback = 'true';
+                    target.src = isEquilibrio ? '/api/course-image?course=equilibrio' : '/api/course-image';
+                  }
+                }}
+                className="w-full h-auto object-contain rounded-xl max-w-4xl"
+              />
             </div>
           </div>
+        </div>
+      )}
 
-          {/* Card Principal do Conteúdo do Módulo */}
-          <div className="w-full bg-[#110E1B] border border-purple-500/20 rounded-3xl p-6 sm:p-8 lg:p-10 space-y-8 shadow-2xl">
-            
-            {/* Cabeçalho do Módulo (Destaque para MÓDULO X DE Y) */}
-            <div className="border-b border-[#2D1B4E]/60 pb-6 space-y-4">
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <div className="flex items-center gap-2 flex-wrap">
-                  <span className="bg-purple-950/80 text-purple-300 border border-purple-500/40 text-xs font-black tracking-wider uppercase px-3.5 py-1 rounded-full shadow-sm">
-                    MÓDULO {currentModule.number} DE {course.modules.length}
-                  </span>
+      {/* ========================================================================= */}
+      {/* 6. MODAL DE CERTIFICADO OFICIAL                                           */}
+      {/* ========================================================================= */}
+      {isCertificateModalOpen && (
+        <div 
+          onClick={() => setIsCertificateModalOpen(false)}
+          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 animate-fadeIn"
+        >
+          <div 
+            onClick={(e) => e.stopPropagation()}
+            className="max-w-lg w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 text-center space-y-5 shadow-2xl relative"
+          >
+            <div className="w-14 h-14 mx-auto rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
+              <Award className="w-7 h-7" />
+            </div>
 
-                  <span className="inline-flex items-center gap-1.5 bg-[#171126] border border-[#2D1B4E] text-zinc-300 text-xs font-semibold px-2.5 py-0.5 rounded-md">
-                    <Clock className="w-3.5 h-3.5 text-zinc-400" />
-                    <span>~{currentModule.estimatedMinutes || 45} min de leitura</span>
-                  </span>
-
-                  <span className="inline-flex items-center gap-1.5 bg-[#171126] border border-[#2D1B4E] text-zinc-300 text-xs font-semibold px-2.5 py-0.5 rounded-md">
-                    <BookOpen className="w-3.5 h-3.5 text-purple-400" />
-                    <span>{currentModule.content.sections.length} Tópicos Teóricos</span>
-                  </span>
-                </div>
-
-                {completedList.includes(currentModule.id) ? (
-                  <span className="bg-emerald-950/60 text-emerald-300 border border-emerald-500/30 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5">
-                    <Check className="w-3.5 h-3.5 stroke-[3]" />
-                    <span>Módulo Concluído</span>
-                  </span>
-                ) : (
-                  <span className="bg-amber-950/60 text-amber-300 border border-amber-500/30 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1.5">
-                    <Clock className="w-3.5 h-3.5" />
-                    <span>Em Andamento</span>
-                  </span>
-                )}
+            <div className="space-y-1.5">
+              <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-950/60 text-emerald-300 border border-emerald-500/30 uppercase tracking-wider">
+                Certificação Homologada
+              </span>
+              <h3 className="text-xl font-bold text-white uppercase tracking-tight">
+                {isEquilibrio ? 'SELO DE INTELIGÊNCIA EMOCIONAL' : isOrcamento ? 'Certificado de Educação Financeira' : 'Certificado de Conclusão'}
+              </h3>
+              <p className="text-xs text-slate-400">
+                A plataforma <strong>SkillHub Curitiba &amp; RMC</strong> confere a:
+              </p>
+              <div className="text-base font-bold text-white underline py-1">
+                {studentName}
               </div>
-
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight">
-                {currentModule.title.replace(/MÓDULO \d+: /, '')}
-              </h1>
-
-              <p className="text-sm sm:text-base text-zinc-200 leading-[1.65] font-normal">
-                {currentModule.summary}
+              <p className="text-xs text-slate-300 max-w-sm mx-auto">
+                O selo oficial de <strong>{course.badgeName}</strong> pelo curso <strong>"{course.title}"</strong>.
               </p>
             </div>
 
-            {/* Sub-Cards para cada Seção Teórica */}
-            <div className="space-y-6">
-              {currentModule.content.sections.map((section, sIdx) => {
-                const { topicNumber, title: cleanHeading } = parseHeading(section.subheading, sIdx);
-                const SectionIcon = getSectionIcon(section.subheading);
-
-                // Detecta se a seção aborda Flow / Deep Work para aplicar os 2 cards paralelos solicitados
-                const isFlowOrComparativeSection = 
-                  section.subheading.toLowerCase().includes('flow') ||
-                  section.subheading.toLowerCase().includes('deep work') ||
-                  section.body.some((p) => p.toLowerCase().includes('shallow work') || p.toLowerCase().includes('trabalho superficial'));
-
-                return (
-                  <div
-                    key={sIdx}
-                    className="bg-[#160F28]/90 border border-[#2D1B4E]/70 hover:border-purple-500/40 rounded-3xl p-6 sm:p-8 lg:p-9 shadow-xl space-y-6 transition-all"
-                  >
-                    {/* Topo do Sub-Card da Seção */}
-                    <div className="flex items-center gap-3.5 border-b border-[#2D1B4E]/50 pb-5">
-                      <span className="w-9 h-9 rounded-xl bg-purple-950/90 border border-purple-500/40 text-purple-300 text-sm font-black flex items-center justify-center shrink-0 shadow-sm">
-                        {topicNumber}
-                      </span>
-                      <div className="flex items-center gap-2.5">
-                        <SectionIcon className="w-5 h-5 text-purple-400 shrink-0" />
-                        <h2 className="text-xl sm:text-2xl font-bold text-white tracking-tight">
-                          {cleanHeading}
-                        </h2>
-                      </div>
-                    </div>
-
-                    {/* Conteúdo Teórico da Seção */}
-                    {isFlowOrComparativeSection ? (
-                      /* Layout Especial com 2 Cards Paralelos (Shallow Work vs Deep Work) */
-                      <div className="space-y-5">
-                        {section.body.length > 0 && (
-                          <p className="text-sm sm:text-base text-zinc-200 leading-[1.65] font-normal">
-                            {section.body[0].replace(/^[-•]\s*/, '').trim()}
-                          </p>
-                        )}
-
-                        {/* Grid com 2 Cards Paralelos e Idênticos */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
-                          
-                          {/* Card 1: Trabalho Superficial (Shallow Work) */}
-                          <div className="bg-[#120B20] border border-[#2D1B4E] rounded-2xl p-5 sm:p-6 space-y-3 flex flex-col justify-between">
-                            <div className="flex items-center gap-2.5 text-white font-bold text-sm sm:text-base">
-                              <div className="w-8 h-8 rounded-lg bg-[#1F1535] border border-[#2D1B4E] flex items-center justify-center text-zinc-400 shrink-0">
-                                <Layers className="w-4 h-4" />
-                              </div>
-                              <span>Trabalho Superficial (Shallow Work)</span>
-                            </div>
-                            <p className="text-sm text-zinc-300 leading-[1.6] font-normal">
-                              Tarefas mecânicas e operacionais (responder e-mails rápidos, organizar pastas) que exigem pouco esforço mental, mas consomem o dia todo sem gerar valor duradouro.
-                            </p>
-                          </div>
-
-                          {/* Card 2: Ritual de Trabalho Profundo (Foco) */}
-                          <div className="bg-[#120B20] border border-purple-500/40 rounded-2xl p-5 sm:p-6 space-y-3 flex flex-col justify-between">
-                            <div className="flex items-center gap-2.5 text-white font-bold text-sm sm:text-base">
-                              <div className="w-8 h-8 rounded-lg bg-purple-950/70 border border-purple-500/30 flex items-center justify-center text-purple-300 shrink-0">
-                                <Brain className="w-4 h-4 text-purple-300" />
-                              </div>
-                              <span>Ritual de Trabalho Profundo (Foco)</span>
-                            </div>
-                            <p className="text-sm text-zinc-200 leading-[1.6] font-normal">
-                              Eliminação de abas desnecessárias, bloqueio de notificações no celular e definição de metas claras para blocos ininterruptos de concentração extrema.
-                            </p>
-                          </div>
-
-                        </div>
-
-                        {/* Parágrafos subsequentes se houver */}
-                        {section.body.length > 3 && (
-                          <div className="space-y-4 pt-2">
-                            {section.body.slice(3).map((p, pIdx) => (
-                              <p key={pIdx} className="text-sm sm:text-base text-zinc-200 leading-[1.65] font-normal">
-                                {p}
-                              </p>
-                            ))}
-                          </div>
-                        )}
-                      </div>
-                    ) : (
-                      /* Layout Padrão em Sub-Cards com Itens e Parágrafos Neutros */
-                      <div className="space-y-4">
-                        {section.body.map((paragraph, pIdx) => {
-                          const trimmed = paragraph.trim();
-                          const colonIdx = trimmed.indexOf(':');
-                          const isItem = (paragraph.startsWith('  ') || paragraph.startsWith('- ') || paragraph.startsWith('• ')) && colonIdx > 0 && colonIdx < 50;
-
-                          if (isItem) {
-                            const itemTitle = trimmed.substring(0, colonIdx).replace(/^[-•]\s*/, '').trim();
-                            const itemDesc = trimmed.substring(colonIdx + 1).trim();
-
-                            return (
-                              <div
-                                key={pIdx}
-                                className="bg-[#120B20] border border-[#2D1B4E]/80 rounded-2xl p-5 sm:p-6 flex items-start gap-4 transition-all hover:border-purple-500/40 shadow-sm"
-                              >
-                                <div className="w-7 h-7 rounded-lg bg-purple-950/70 border border-purple-500/30 flex items-center justify-center text-purple-300 shrink-0 mt-0.5">
-                                  <Check className="w-4 h-4 stroke-[2.5]" />
-                                </div>
-                                <div className="space-y-1.5">
-                                  <div className="text-sm sm:text-base font-bold text-white">
-                                    {itemTitle}
-                                  </div>
-                                  <p className="text-sm sm:text-[15px] text-zinc-200 leading-[1.65] font-normal">
-                                    {itemDesc}
-                                  </p>
-                                </div>
-                              </div>
-                            );
-                          }
-
-                          return (
-                            <p key={pIdx} className="text-sm sm:text-base text-zinc-200 leading-[1.65] font-normal">
-                              {paragraph}
-                            </p>
-                          );
-                        })}
-                      </div>
-                    )}
-
-                    {/* Visual 1: Triângulo da Aprendizagem */}
-                    {section.visualType === 'triangle' && (
-                      <div className="my-6 bg-[#0E091A] border border-[#2D1B4E] rounded-2xl p-5 shadow-inner">
-                        <div className="text-xs font-bold text-zinc-300 uppercase tracking-wider mb-3 flex items-center justify-between">
-                          <span>📐 Diagrama do Triângulo da Aprendizagem (Lei nº 10.097/00)</span>
-                          <span className="text-[10px] bg-[#171126] text-purple-300 px-2 py-0.5 rounded-full border border-purple-500/20">Interativo</span>
-                        </div>
-
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 my-3 text-center">
-                          <div className="bg-[#140E24] border border-[#2D1B4E] rounded-xl p-3.5">
-                            <div className="w-10 h-10 mx-auto rounded-full bg-[#1F1535] text-purple-300 flex items-center justify-center font-bold mb-2">
-                              <User className="w-5 h-5" />
-                            </div>
-                            <div className="text-xs font-bold text-white">1. Estudante (Aprendiz)</div>
-                            <div className="text-[11px] text-zinc-400 mt-1">
-                              14 a 24 anos matriculado no ensino regular.
-                            </div>
-                          </div>
-
-                          <div className="bg-[#140E24] border border-[#2D1B4E] rounded-xl p-3.5">
-                            <div className="w-10 h-10 mx-auto rounded-full bg-[#1F1535] text-purple-300 flex items-center justify-center font-bold mb-2">
-                              <Building className="w-5 h-5" />
-                            </div>
-                            <div className="text-xs font-bold text-white">2. Empresa Contratante</div>
-                            <div className="text-[11px] text-zinc-400 mt-1">
-                              Prática supervisionada, CTPS, FGTS 2% e salário.
-                            </div>
-                          </div>
-
-                          <div className="bg-[#140E24] border border-[#2D1B4E] rounded-xl p-3.5">
-                            <div className="w-10 h-10 mx-auto rounded-full bg-[#1F1535] text-purple-300 flex items-center justify-center font-bold mb-2">
-                              <GraduationCap className="w-5 h-5" />
-                            </div>
-                            <div className="text-xs font-bold text-white">3. Entidade Formadora</div>
-                            <div className="text-[11px] text-zinc-400 mt-1">
-                              Sistema S (SENAI, SENAC), CIEE e escolas técnicas.
-                            </div>
-                          </div>
-                        </div>
-
-                        {section.asciiDiagram && (
-                          <pre className="bg-[#0A0514] p-3.5 rounded-xl text-purple-300 font-mono text-[11px] overflow-x-auto border border-[#2D1B4E]">
-                            {section.asciiDiagram}
-                          </pre>
-                        )}
-                      </div>
-                    )}
-
-                    {/* Visual 2: Work Hours Rules */}
-                    {section.visualType === 'work-hours' && (
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 my-4">
-                        <div className="bg-[#140E24] border border-[#2D1B4E] rounded-2xl p-4">
-                          <div className="text-xs font-bold text-zinc-300 mb-1 flex items-center gap-1.5">
-                            <Clock className="w-4 h-4 text-purple-400" />
-                            <span>Ensino Fundamental &amp; Médio</span>
-                          </div>
-                          <div className="text-2xl font-black text-white">Máximo 6h / dia</div>
-                          <div className="text-[11px] text-zinc-400 mt-1">
-                            30h semanais. Vedada a compensação e prorrogação (horas extras).
-                          </div>
-                        </div>
-
-                        <div className="bg-[#140E24] border border-emerald-500/30 rounded-2xl p-4">
-                          <div className="text-xs font-bold text-emerald-300 mb-1 flex items-center gap-1.5">
-                            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                            <span>Ensino Médio Concluído</span>
-                          </div>
-                          <div className="text-2xl font-black text-white">Até 8h / dia</div>
-                          <div className="text-[11px] text-zinc-400 mt-1">
-                            40h semanais, desde que computadas as horas teóricas.
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Visual 3: Comparison Table */}
-                    {section.visualType === 'comparison-table' && (
-                      <div className="my-6 bg-[#0E091A] border border-[#2D1B4E] rounded-2xl p-4 overflow-x-auto shadow-xl">
-                        <div className="text-xs font-bold text-zinc-300 uppercase tracking-wider mb-3">
-                          ⚖️ Matriz Comparativa: Jovem Aprendiz vs Estagiário
-                        </div>
-                        <table className="w-full text-left text-xs border-collapse">
-                          <thead>
-                            <tr className="border-b border-[#2D1B4E] bg-[#140E24] text-zinc-300">
-                              <th className="p-3 font-bold">Critério Legislação</th>
-                              <th className="p-3 font-bold text-white">Jovem Aprendiz (Lei 10.097/00)</th>
-                              <th className="p-3 font-bold text-purple-300">Estagiário (Lei 11.788/08)</th>
-                            </tr>
-                          </thead>
-                          <tbody className="divide-y divide-[#1D1130] text-zinc-300">
-                            <tr className="hover:bg-white/5">
-                              <td className="p-3 font-semibold text-white">Faixa Etária</td>
-                              <td className="p-3">14 a 24 anos incompletos (sem teto para PcD)</td>
-                              <td className="p-3">A partir de 16 anos (sem teto de idade)</td>
-                            </tr>
-                            <tr className="hover:bg-white/5">
-                              <td className="p-3 font-semibold text-white">Vínculo Empregatício</td>
-                              <td className="p-3 text-emerald-400 font-semibold">Sim (CLT Especial com CTPS)</td>
-                              <td className="p-3 text-purple-300 font-semibold">Não (Ato Educativo - Termo TCE)</td>
-                            </tr>
-                            <tr className="hover:bg-white/5">
-                              <td className="p-3 font-semibold text-white">FGTS</td>
-                              <td className="p-3 text-emerald-400 font-bold">Alíquota especial de 2% (paga pela empresa)</td>
-                              <td className="p-3 text-zinc-400">Isento (não há recolhimento de FGTS)</td>
-                            </tr>
-                            <tr className="hover:bg-white/5">
-                              <td className="p-3 font-semibold text-white">13º Salário</td>
-                              <td className="p-3 text-emerald-400 font-bold">Assegurado integralmente por lei</td>
-                              <td className="p-3 text-zinc-400">Não aplicável</td>
-                            </tr>
-                            <tr className="hover:bg-white/5">
-                              <td className="p-3 font-semibold text-white">Semana de Provas</td>
-                              <td className="p-3">Garantia de frequência escolar</td>
-                              <td className="p-3 text-purple-300 font-bold">Redução obrigatória da jornada em 50%</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    )}
-
-                    {/* Visual 4: Demonstrativo de Holerite */}
-                    {section.visualType === 'holerite' && (
-                      <div className="my-6 bg-[#0E091A] border border-[#2D1B4E] rounded-2xl p-4">
-                        <div className="text-xs font-bold text-zinc-300 uppercase tracking-wider mb-3 flex items-center justify-between">
-                          <span>💵 Demonstrativo de Pagamento (Holerite Modelo 120h)</span>
-                          <button
-                            onClick={() => setCurrentView('HOLERITE')}
-                            className="text-[11px] text-purple-400 hover:text-white underline font-bold flex items-center gap-1 cursor-pointer"
-                          >
-                            Abrir Calculadora Completa <ArrowRight className="w-3 h-3" />
-                          </button>
-                        </div>
-
-                        <div className="bg-[#140E24] border border-[#2D1B4E] rounded-xl p-4 font-mono text-xs">
-                          <div className="border-b border-[#2D1B4E]/60 pb-2 mb-3 flex justify-between text-zinc-400 font-sans">
-                            <div><strong>EMPRESA:</strong> TECNOLOGIA &amp; SERVIÇOS CURITIBA LTDA</div>
-                            <div><strong>MÊS:</strong> SETEMBRO/2026</div>
-                          </div>
-
-                          <div className="grid grid-cols-12 gap-2 text-zinc-400 font-sans font-bold border-b border-[#2D1B4E] pb-1.5 mb-2">
-                            <div className="col-span-6">Descrição da Rubrica</div>
-                            <div className="col-span-3 text-right">Proventos (+)</div>
-                            <div className="col-span-3 text-right">Descontos (-)</div>
-                          </div>
-
-                          <div className="space-y-1.5 text-zinc-300">
-                            <div className="grid grid-cols-12 gap-2">
-                              <div className="col-span-6">Salário Base (Aprendizagem 120h)</div>
-                              <div className="col-span-3 text-right text-emerald-400 font-bold">R$ 1.120,00</div>
-                              <div className="col-span-3 text-right">-</div>
-                            </div>
-                            <div className="grid grid-cols-12 gap-2">
-                              <div className="col-span-6">Vale-Transporte (Desc. Máx. 6%)</div>
-                              <div className="col-span-3 text-right">-</div>
-                              <div className="col-span-3 text-right text-rose-400">R$ 67,20</div>
-                            </div>
-                            <div className="grid grid-cols-12 gap-2">
-                              <div className="col-span-6">INSS (Alíquota Faixa Inicial 7,5%)</div>
-                              <div className="col-span-3 text-right">-</div>
-                              <div className="col-span-3 text-right text-rose-400">R$ 84,00</div>
-                            </div>
-                          </div>
-
-                          <div className="border-t border-[#2D1B4E] pt-3 mt-3 grid grid-cols-12 gap-2 font-sans font-bold">
-                            <div className="col-span-6 text-zinc-400">TOTAIS:</div>
-                            <div className="col-span-3 text-right text-emerald-400">R$ 1.120,00</div>
-                            <div className="col-span-3 text-right text-rose-400">R$ 151,20</div>
-                          </div>
-
-                          <div className="mt-3 bg-[#171126] border border-[#2D1B4E] rounded-xl p-3.5 flex flex-col sm:flex-row justify-between items-center gap-2 font-sans">
-                            <div>
-                              <div className="text-xs text-zinc-400 font-bold">VALOR LÍQUIDO A RECEBER:</div>
-                              <div className="text-xl font-black text-white">R$ 968,80</div>
-                            </div>
-                            <div className="text-right sm:text-right text-xs">
-                              <span className="text-zinc-400">Depósito FGTS (2% Patronal): </span>
-                              <strong className="text-emerald-400">R$ 22,40</strong>
-                              <div className="text-[10px] text-zinc-500">(Depositado pela empresa sem desconto)</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Highlight Box */}
-                    {section.highlightBox && (
-                      <div
-                        className={`p-4 rounded-2xl border text-xs leading-relaxed ${
-                          section.highlightBox.type === 'warning'
-                            ? 'bg-amber-950/40 border-amber-500/40 text-amber-200'
-                            : section.highlightBox.type === 'law'
-                            ? 'bg-[#171126] border-purple-500/40 text-zinc-200'
-                            : section.highlightBox.type === 'calc'
-                            ? 'bg-emerald-950/40 border-emerald-500/40 text-emerald-200'
-                            : 'bg-[#140E24] border-[#2D1B4E] text-zinc-200'
-                        }`}
-                      >
-                        <div className="font-bold text-sm mb-1 flex items-center gap-1.5 text-white">
-                          {section.highlightBox.type === 'warning' && <AlertTriangle className="w-4 h-4 text-amber-400" />}
-                          {section.highlightBox.type === 'law' && <Scale className="w-4 h-4 text-purple-300" />}
-                          {section.highlightBox.type === 'calc' && <DollarSign className="w-4 h-4 text-emerald-400" />}
-                          {section.highlightBox.type === 'info' && <Info className="w-4 h-4 text-purple-300" />}
-                          <span>{section.highlightBox.title}</span>
-                        </div>
-                        <p className="text-zinc-300">{section.highlightBox.text}</p>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
+            <div className="grid grid-cols-2 gap-2 text-left bg-slate-800/40 p-3.5 rounded-xl border border-slate-800 text-xs">
+              <div>
+                <span className="text-slate-400 block text-[11px]">Carga Horária:</span>
+                <strong className="text-white font-medium">{course.hours === 1 ? '1 hora' : `${course.hours} horas`}</strong>
+              </div>
+              <div>
+                <span className="text-slate-400 block text-[11px]">Aproveitamento:</span>
+                <strong className="text-emerald-400 font-medium">{quizScore || 100}%</strong>
+              </div>
+              <div>
+                <span className="text-slate-400 block text-[11px]">Data:</span>
+                <strong className="text-white font-medium">{new Date().toLocaleDateString('pt-BR')}</strong>
+              </div>
+              <div>
+                <span className="text-slate-400 block text-[11px]">Código:</span>
+                <strong className="text-purple-400 font-mono text-[10px]">SKILL-PR-2026</strong>
+              </div>
             </div>
 
-            {/* Nav Controls */}
-            <div className="pt-8 border-t border-[#2D1B4E]/60 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div className="space-y-2 pt-1">
               <button
-                onClick={handlePrevModule}
-                disabled={activeModuleIndex === 0}
-                className="w-full sm:w-auto px-5 py-3 rounded-2xl border border-[#2D1B4E] text-zinc-300 text-xs sm:text-sm font-bold hover:bg-[#171126] hover:text-white disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer transition-colors shadow-sm"
+                type="button"
+                onClick={() => {
+                  setIsCertificateModalOpen(false);
+                  setCurrentView('BADGES_PERFIL');
+                }}
+                className="w-full py-2.5 px-4 rounded-full bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold shadow-md transition-colors cursor-pointer"
               >
-                <ArrowLeft className="w-4 h-4" /> <span>Módulo Anterior</span>
+                Ver Minha Carteira de Badges
               </button>
 
               <button
                 type="button"
-                onClick={() => setIsReadingMode(false)}
-                className="w-full sm:w-auto px-5 py-3 rounded-2xl border border-[#2D1B4E] text-zinc-300 text-xs sm:text-sm font-bold hover:bg-[#171126] hover:text-white flex items-center justify-center gap-2 cursor-pointer transition-colors shadow-sm"
-              >
-                <Layers className="w-4 h-4 text-purple-400" /> <span>Ver Todos os Módulos</span>
-              </button>
-
-              <button
-                onClick={handleNextModule}
-                className="w-full sm:w-auto px-7 py-3 rounded-2xl bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] hover:from-[#7C3AED] hover:to-[#9D4EDD] text-white text-xs sm:text-sm font-bold flex items-center justify-center gap-2.5 shadow-lg shadow-purple-950/60 cursor-pointer transition-all hover:scale-[1.02]"
-              >
-                <span>{activeModuleIndex === course.modules.length - 1 ? 'Concluir Módulos e Ir para Casos' : 'Concluir Módulo e Avançar'}</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* ===================================================== */}
-      {/* ABA 2: ESTUDOS DE CASO & PRÁTICA                      */}
-      {/* ===================================================== */}
-      {activeTab === 'CASE_STUDIES' && !isReadingMode && (
-        <div className="w-full space-y-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {course.caseStudies.map((cs, idx) => (
-              <button
-                key={cs.id}
-                onClick={() => setSelectedCaseIdx(idx)}
-                className={`p-5 rounded-2xl border text-left transition-all cursor-pointer ${
-                  selectedCaseIdx === idx
-                    ? 'bg-[#171126] border-purple-500/80 ring-1 ring-purple-500/50 shadow-xl'
-                    : 'bg-[#140E24] border-[#2D1B4E]/60 hover:border-purple-500/30'
-                }`}
-              >
-                <div className="text-xs font-bold text-purple-400 mb-1">Caso #{idx + 1}</div>
-                <div className="text-sm font-bold text-white mb-2">{cs.title}</div>
-                <div className="text-xs text-zinc-400 line-clamp-2">{cs.scenario}</div>
-              </button>
-            ))}
-          </div>
-
-          {course.caseStudies[selectedCaseIdx] && (() => {
-            const cs = course.caseStudies[selectedCaseIdx];
-            const currentChoice = caseAnswers[cs.id];
-
-            return (
-              <div className="bg-[#110E1B] border border-[#2D1B4E]/60 rounded-3xl p-6 lg:p-8 space-y-6 shadow-2xl">
-                <div className="border-b border-[#2D1B4E]/60 pb-4">
-                  <span className="bg-[#1F1535] text-purple-300 border border-purple-500/30 text-[11px] font-bold px-3 py-1 rounded-full uppercase">
-                    {cs.character}
-                  </span>
-                  <h2 className="text-xl font-bold text-white mt-2">{cs.title}</h2>
-                </div>
-
-                <div className="bg-[#0E091A] border border-[#2D1B4E] rounded-2xl p-5">
-                  <div className="text-xs font-bold text-zinc-300 uppercase tracking-wider mb-2">
-                    📋 A Situação Real
-                  </div>
-                  <p className="text-xs lg:text-sm text-zinc-300 leading-relaxed">
-                    {cs.scenario}
-                  </p>
-                </div>
-
-                {cs.interactiveOptions && (
-                  <div className="bg-[#140E24] border border-[#2D1B4E] rounded-2xl p-5 space-y-4">
-                    <div className="text-xs font-bold text-zinc-200 flex items-center gap-2">
-                      <HelpCircle className="w-4 h-4 text-purple-400" />
-                      <span>{cs.interactiveOptions.question}</span>
-                    </div>
-
-                    <div className="space-y-2">
-                      {cs.interactiveOptions.choices.map((choice, cIdx) => {
-                        const isSelected = currentChoice === cIdx;
-
-                        return (
-                          <div key={cIdx} className="space-y-2">
-                            <button
-                              onClick={() => handleCaseOptionSelect(cs.id, cIdx)}
-                              className={`w-full text-left p-3.5 rounded-xl border text-xs transition-all cursor-pointer ${
-                                isSelected
-                                  ? choice.correct
-                                    ? 'bg-emerald-950/70 border-emerald-500 text-emerald-100 font-semibold'
-                                    : 'bg-rose-950/70 border-rose-500 text-rose-100 font-semibold'
-                                  : 'bg-[#0E091A] border-[#2D1B4E] text-zinc-300 hover:border-purple-500/40'
-                              }`}
-                            >
-                              <div className="flex items-center gap-2">
-                                <span className="w-5 h-5 rounded-full border border-current flex items-center justify-center font-bold text-[10px]">
-                                  {String.fromCharCode(65 + cIdx)}
-                                </span>
-                                <span>{choice.text}</span>
-                              </div>
-                            </button>
-
-                            {isSelected && (
-                              <div
-                                className={`p-3 rounded-xl text-xs ${
-                                  choice.correct
-                                    ? 'bg-emerald-950/50 border border-emerald-500/40 text-emerald-200'
-                                    : 'bg-rose-950/50 border border-rose-500/40 text-rose-200'
-                                }`}
-                              >
-                                <strong>{choice.correct ? '✓ Resposta Correta: ' : '✗ Atenção: '}</strong>
-                                {choice.feedback}
-                              </div>
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                )}
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="bg-[#0E091A] border border-[#2D1B4E] rounded-2xl p-4">
-                    <div className="text-xs font-bold text-zinc-300 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                      <Scale className="w-4 h-4 text-purple-400" />
-                      <span>Análise Jurídica Crítica</span>
-                    </div>
-                    <p className="text-xs text-zinc-300 leading-relaxed">
-                      {cs.criticalAnalysis}
-                    </p>
-                  </div>
-
-                  <div className="bg-[#0E091A] border border-[#2D1B4E] rounded-2xl p-4">
-                    <div className="text-xs font-bold text-emerald-300 uppercase tracking-wider mb-2 flex items-center gap-1.5">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                      <span>Pontos de Aprendizagem Prática</span>
-                    </div>
-                    <ul className="space-y-1.5 text-xs text-zinc-300">
-                      {cs.keyTakeaways.map((takeaway, tIdx) => (
-                        <li key={tIdx} className="flex items-start gap-2">
-                          <span className="text-emerald-400 font-bold">•</span>
-                          <span>{takeaway}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-[#2D1B4E]/60 flex justify-end">
-                  <button
-                    onClick={() => setActiveTab('QUIZ')}
-                    className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] hover:from-[#7C3AED] hover:to-[#9D4EDD] text-white text-xs font-bold flex items-center gap-2 cursor-pointer transition-all"
-                  >
-                    <span>Prosseguir para Avaliação Final (Quiz)</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
-            );
-          })()}
-        </div>
-      )}
-
-      {/* ===================================================== */}
-      {/* ABA 3: AVALIAÇÃO FINAL (QUIZ)                         */}
-      {/* ===================================================== */}
-      {activeTab === 'QUIZ' && !isReadingMode && (
-        !isAllModulesCompleted ? (
-          <div className="w-full bg-[#110E1B] border border-amber-500/40 rounded-3xl p-8 lg:p-12 text-center space-y-6 shadow-2xl">
-            <div className="w-20 h-20 mx-auto rounded-3xl bg-amber-950/40 border border-amber-500/40 flex items-center justify-center text-amber-400 shadow-xl">
-              <Lock className="w-10 h-10 animate-pulse" />
-            </div>
-
-            <div className="max-w-xl mx-auto space-y-3">
-              <span className="inline-block bg-amber-950/60 border border-amber-500/40 text-amber-300 text-xs font-black px-3.5 py-1 rounded-full uppercase tracking-wider">
-                🔒 Avaliação Final Bloqueada
-              </span>
-              <h2 className="text-2xl lg:text-3xl font-black text-white">
-                Conclua todos os módulos para liberar o Quiz
-              </h2>
-              <p className="text-sm text-zinc-300 leading-relaxed">
-                De acordo com as diretrizes pedagógicas da Escola Virtual e da Lei da Aprendizagem, a avaliação final e a emissão da Badge <strong>"{course.badgeName}"</strong> só são liberadas após a conclusão de <strong>100% dos módulos</strong> deste curso.
-              </p>
-            </div>
-
-            {/* Card de Progresso */}
-            <div className="max-w-md mx-auto bg-[#140E24] border border-[#2D1B4E] rounded-2xl p-4 space-y-2 text-left">
-              <div className="flex justify-between items-center text-xs font-bold">
-                <span className="text-zinc-300">Seu Progresso nas Aulas:</span>
-                <span className="text-emerald-400 font-extrabold">{completedModulesCount} de {course.modules.length} módulos ({progressPercent}%)</span>
-              </div>
-              <div className="w-full h-3 bg-[#0D0818] rounded-full overflow-hidden border border-[#2D1B4E]">
-                <div 
-                  className="h-full bg-gradient-to-r from-[#8B5CF6] to-[#10B981] transition-all duration-500" 
-                  style={{ width: `${progressPercent}%` }}
-                />
-              </div>
-              <div className="text-[11px] text-zinc-400 text-center pt-1">
-                Faltam {course.modules.length - completedModulesCount} módulo(s) para você desbloquear a avaliação!
-              </div>
-            </div>
-
-            <div>
-              <button
                 onClick={() => {
-                  const targetIdx = nextUnfinishedIndex !== -1 ? nextUnfinishedIndex : 0;
-                  setActiveModuleIndex(targetIdx);
-                  setActiveTab('MODULES');
-                  setIsReadingMode(true);
+                  setIsCertificateModalOpen(false);
+                  setCurrentView('DASHBOARD');
                 }}
-                className="px-6 py-3 rounded-xl bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] hover:from-[#7C3AED] hover:to-[#9D4EDD] text-white text-xs font-black shadow-lg shadow-purple-950/60 inline-flex items-center gap-2 transition-all transform hover:scale-105 cursor-pointer"
+                className="w-full py-2 px-4 rounded-full border border-slate-800 text-slate-300 hover:bg-slate-800 text-xs font-medium transition-colors cursor-pointer"
               >
-                <BookOpen className="w-4 h-4" />
-                <span>Voltar para as Aulas e Concluir Módulos</span>
+                Voltar ao Painel
               </button>
             </div>
           </div>
-        ) : (
-          <div className="w-full bg-[#110E1B] border border-[#2D1B4E]/60 rounded-3xl p-6 lg:p-8 space-y-6 shadow-2xl">
-            <div className="border-b border-[#2D1B4E]/60 pb-4 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-              <div>
-                <div className="flex items-center gap-2 text-purple-300 font-bold text-xs uppercase mb-1">
-                  <HelpCircle className="w-4 h-4" />
-                  <span>Avaliação Oficial de Competência</span>
-                </div>
-                <h2 className="text-xl lg:text-2xl font-black text-white">
-                  Questionário de Fixação: {course.title}
-                </h2>
-                <p className="text-xs sm:text-sm text-zinc-300 mt-1">
-                  Obtenha nota ≥ 70% para emissão da certificação e registro oficial do Selo no seu currículo.
-                </p>
-              </div>
-
-              {currentQuizResult && (
-                <div className={`px-4 py-2 rounded-xl border text-center ${
-                  currentQuizResult.passed ? 'bg-emerald-950/60 border-emerald-500/50 text-emerald-300' : 'bg-rose-950/60 border-rose-500/50 text-rose-300'
-                }`}>
-                  <div className="text-[10px] uppercase font-bold">Último Resultado</div>
-                  <div className="text-xl font-extrabold">{currentQuizResult.score}%</div>
-                  <div className="text-[10px]">{currentQuizResult.passed ? 'Aprovado ✓' : 'Nota Insuficiente'}</div>
-                </div>
-              )}
-            </div>
-
-            <div className="space-y-6">
-              {course.quiz.map((q, qIdx) => {
-                const selectedOpt = userQuizAnswers[q.id];
-                const isCorrect = selectedOpt === q.correct;
-
-                return (
-                  <div key={q.id} className="bg-[#0E091A] border border-[#2D1B4E] rounded-2xl p-5 space-y-3">
-                    <div className="text-xs font-bold text-purple-300 flex items-center justify-between">
-                      <span>Questão {qIdx + 1} de {course.quiz.length}</span>
-                      {quizSubmitted && (
-                        <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${isCorrect ? 'bg-emerald-950/60 text-emerald-300 border border-emerald-500/40' : 'bg-rose-950/60 text-rose-300 border border-rose-500/40'}`}>
-                          {isCorrect ? '✓ Correta' : '✗ Incorreta'}
-                        </span>
-                      )}
-                    </div>
-
-                    <p className="text-xs lg:text-sm font-semibold text-white">
-                      {q.question}
-                    </p>
-
-                    <div className="space-y-2 pt-1">
-                      {q.options.map((opt, optIdx) => {
-                        const isOptionSelected = selectedOpt === optIdx;
-                        let optionClasses = 'bg-[#140E24] border-[#2D1B4E] text-zinc-300 hover:border-purple-500/40';
-
-                        if (quizSubmitted) {
-                          if (optIdx === q.correct) {
-                            optionClasses = 'bg-emerald-950/60 border-emerald-500 text-emerald-200 font-semibold';
-                          } else if (isOptionSelected && !isCorrect) {
-                            optionClasses = 'bg-rose-950/60 border-rose-500 text-rose-200';
-                          }
-                        } else if (isOptionSelected) {
-                          optionClasses = 'bg-[#1F1535] border-purple-500 text-white font-semibold ring-1 ring-purple-500/60';
-                        }
-
-                        return (
-                          <button
-                            key={optIdx}
-                            onClick={() => handleQuizOptionSelect(q.id, optIdx)}
-                            disabled={quizSubmitted}
-                            className={`w-full text-left p-3 rounded-xl border text-xs transition-all flex items-center gap-3 cursor-pointer ${optionClasses}`}
-                          >
-                            <span className="w-5 h-5 rounded-full border border-current flex items-center justify-center font-bold text-[10px] shrink-0">
-                              {String.fromCharCode(65 + optIdx)}
-                            </span>
-                            <span>{opt}</span>
-                          </button>
-                        );
-                      })}
-                    </div>
-
-                    {quizSubmitted && (
-                      <div className={`p-4 rounded-xl text-xs mt-3 border space-y-2 ${
-                        isCorrect 
-                          ? 'bg-emerald-950/40 border-emerald-500/50 text-emerald-100' 
-                          : 'bg-rose-950/40 border-rose-500/50 text-rose-100'
-                      }`}>
-                        <div className="font-bold flex items-center gap-2 text-sm">
-                          {isCorrect ? (
-                            <span className="text-emerald-300 flex items-center gap-1.5">
-                              <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                              Você acertou!
-                            </span>
-                          ) : (
-                            <span className="text-rose-300 flex items-center gap-1.5">
-                              <AlertTriangle className="w-4 h-4 text-rose-400" />
-                              Você errou esta questão
-                            </span>
-                          )}
-                        </div>
-
-                        {!isCorrect && (
-                          <div className="text-xs text-rose-200 bg-rose-950/70 p-3 rounded-lg border border-rose-800/40 leading-relaxed">
-                            <div>
-                              Sua escolha:{' '}
-                              <span className="font-bold text-white">
-                                {selectedOpt !== undefined ? `Alternativa (${String.fromCharCode(65 + selectedOpt)})` : 'Não respondeu'}
-                              </span>
-                            </div>
-                            <div className="mt-1">
-                              Alternativa correta:{' '}
-                              <span className="font-bold text-emerald-300">
-                                Alternativa ({String.fromCharCode(65 + q.correct)}) - &ldquo;{q.options[q.correct]}&rdquo;
-                              </span>
-                            </div>
-                          </div>
-                        )}
-
-                        <div className="text-zinc-200 leading-relaxed pt-1">
-                          <strong className="text-white font-semibold">
-                            {isCorrect ? 'Explicação & Justificativa:' : 'Por que a alternativa (' + String.fromCharCode(65 + q.correct) + ') é a correta:'}
-                          </strong>{' '}
-                          <span>{q.explanation}</span>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="pt-4 border-t border-[#2D1B4E]/60 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <button
-                onClick={() => setActiveTab('MODULES')}
-                className="px-4 py-2 text-xs font-semibold text-zinc-400 hover:text-white cursor-pointer"
-              >
-                ← Voltar aos Módulos
-              </button>
-
-              <div className="flex items-center gap-3">
-                {quizSubmitted ? (
-                  <>
-                    <button
-                      onClick={handleRetakeQuiz}
-                      className="px-4 py-2 rounded-xl border border-[#2D1B4E] text-zinc-300 text-xs font-semibold hover:bg-[#171126] cursor-pointer"
-                    >
-                      Refazer Avaliação
-                    </button>
-                    <button
-                      onClick={() => setCurrentView('BADGES_PERFIL')}
-                      className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] text-white text-xs font-bold flex items-center gap-2 shadow-lg shadow-purple-950/60 cursor-pointer"
-                    >
-                      <Award className="w-4 h-4" />
-                      Ver Minhas Badges
-                    </button>
-                  </>
-                ) : (
-                  <button
-                    onClick={handleQuizSubmit}
-                    disabled={Object.keys(userQuizAnswers).length < course.quiz.length}
-                    className="px-6 py-2.5 rounded-xl bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] hover:from-[#7C3AED] hover:to-[#9D4EDD] text-white text-xs font-bold flex items-center gap-2 shadow-lg shadow-purple-950/60 disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
-                  >
-                    <CheckCircle2 className="w-4 h-4" />
-                    Finalizar Avaliação e Emitir Badge
-                  </button>
-                )}
-              </div>
-            </div>
-          </div>
-        )
+        </div>
       )}
 
-      {/* ===================================================== */}
-      {/* 4. SEÇÃO INFERIOR DE RECURSOS EXTRAS (APOIO)          */}
-      {/* ===================================================== */}
-      {!isReadingMode && (
-        <div className="w-full space-y-4 pt-4 border-t border-[#2D1B4E]/40">
-          
-          <div className="flex items-center gap-2 text-sm font-bold text-white">
-            <Sparkles className="w-4 h-4 text-amber-400" />
-            <span>Recursos de Apoio &amp; Material Complementar</span>
+      {/* ========================================================================= */}
+      {/* 7. ANIMAÇÃO DE CELEBRAÇÃO (CONFETTI)                                      */}
+      {/* ========================================================================= */}
+      {showConfetti && (
+        <div className="fixed inset-0 pointer-events-none z-[100] flex items-center justify-center overflow-hidden">
+          <div className="absolute inset-0 bg-purple-500/10 backdrop-blur-[1px] animate-pulse" />
+          <div className="flex flex-col items-center justify-center space-y-3 animate-bounce select-none">
+            <div className="text-6xl sm:text-8xl">🎉 🌟 🎊</div>
+            <div className="px-6 py-2 rounded-full bg-purple-600 text-white font-extrabold text-sm sm:text-base shadow-2xl border border-purple-400">
+              PARABÉNS! CERTIFICAÇÃO CONQUISTADA COM SUCESSO!
+            </div>
           </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            
-            {/* Card 1: Download da Apostila em PDF */}
-            <div className="bg-[#140E24] border border-[#2D1B4E] hover:border-purple-500/40 rounded-2xl p-5 space-y-3 transition-all flex flex-col justify-between">
-              <div className="space-y-2">
-                <div className="flex items-center gap-2.5 text-white font-bold text-sm">
-                  <div className="w-8 h-8 rounded-xl bg-[#1F1535] border border-purple-500/30 flex items-center justify-center text-purple-300 shrink-0">
-                    <FileText className="w-4 h-4" />
-                  </div>
-                  <span>Download da Apostila em PDF</span>
-                </div>
-                <p className="text-xs text-zinc-300 leading-relaxed">
-                  Baixe o material didático consolidado deste curso para estudar offline, imprimir ou consultar rapidamente no dia a dia do seu trabalho.
-                </p>
-              </div>
-
-              <div className="pt-2">
-                <button
-                  type="button"
-                  onClick={handleDownloadApostila}
-                  className="w-full py-2.5 px-4 rounded-xl bg-[#171126] hover:bg-[#251540] border border-purple-500/30 text-purple-200 hover:text-white text-xs font-bold flex items-center justify-center gap-2 transition-all cursor-pointer"
-                >
-                  <Download className="w-4 h-4 text-purple-400" />
-                  <span>Baixar Apostila Completa (.PDF)</span>
-                </button>
-              </div>
-            </div>
-
-            {/* Card 2: Dicas para Entrevistas & LinkedIn */}
-            <div className="bg-[#140E24] border border-[#2D1B4E] hover:border-amber-500/40 rounded-2xl p-5 space-y-3 transition-all flex flex-col justify-between">
-              <div className="space-y-2">
-                <div className="flex items-center gap-2.5 text-white font-bold text-sm">
-                  <div className="w-8 h-8 rounded-xl bg-amber-950/60 border border-amber-500/40 flex items-center justify-center text-amber-300 shrink-0">
-                    <Lightbulb className="w-4 h-4" />
-                  </div>
-                  <span>Dicas para Entrevistas &amp; LinkedIn</span>
-                </div>
-                <p className="text-xs text-zinc-300 leading-relaxed">
-                  Descubra como mencionar as competências deste curso no seu currículo e como responder a perguntas de recrutadores de Curitiba e RMC.
-                </p>
-              </div>
-
-              <div className="pt-2">
-                <button
-                  type="button"
-                  onClick={() => setShowInterviewTips(!showInterviewTips)}
-                  className="w-full py-2.5 px-4 rounded-xl bg-[#171126] hover:bg-[#2A1838] border border-amber-500/30 text-amber-200 hover:text-white text-xs font-bold flex items-center justify-center gap-2 transition-all cursor-pointer"
-                >
-                  <Sparkles className="w-4 h-4 text-amber-400" />
-                  <span>{showInterviewTips ? 'Ocultar Recomendações' : 'Ver Recomendações de RH'}</span>
-                  <ChevronDown className={`w-3.5 h-3.5 transition-transform ${showInterviewTips ? 'rotate-180' : ''}`} />
-                </button>
-              </div>
-            </div>
-
-          </div>
-
-          {/* Drawer Expandido de Dicas para Entrevistas */}
-          {showInterviewTips && (
-            <div className="w-full bg-[#110E1B] border border-amber-500/40 rounded-2xl p-5 sm:p-6 space-y-4 shadow-xl">
-              <div className="text-xs font-bold uppercase tracking-wider text-amber-300 flex items-center gap-2">
-                <Lightbulb className="w-4 h-4 text-amber-400" />
-                <span>Como valorizar este curso perante Recrutadores:</span>
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
-                {/* Dica 1 */}
-                <div className="bg-[#140E24] border border-[#2D1B4E] rounded-xl p-3.5 space-y-1.5">
-                  <div className="font-bold text-white flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-purple-400"></span>
-                    <span>No seu Currículo (PDF/Word):</span>
-                  </div>
-                  <p className="text-zinc-300 leading-relaxed">
-                    Insira na seção "Cursos Complementares": <em>"{course.title} ({course.hours}h) — Escola Virtual SkillHub (Curitiba &amp; RMC)"</em>.
-                  </p>
-                </div>
-
-                {/* Dica 2 */}
-                <div className="bg-[#140E24] border border-[#2D1B4E] rounded-xl p-3.5 space-y-1.5">
-                  <div className="font-bold text-white flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-amber-400"></span>
-                    <span>Na Entrevista com o RH:</span>
-                  </div>
-                  <p className="text-zinc-300 leading-relaxed">
-                    Destaque como você aprendeu a aplicar essa competência em situações reais de trabalho, mencionando a resolução de casos práticos.
-                  </p>
-                </div>
-
-                {/* Dica 3 */}
-                <div className="bg-[#140E24] border border-[#2D1B4E] rounded-xl p-3.5 space-y-1.5">
-                  <div className="font-bold text-white flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-                    <span>No seu Perfil do LinkedIn:</span>
-                  </div>
-                  <p className="text-zinc-300 leading-relaxed">
-                    Adicione na aba "Licenças e Certificados" a sua Badge Oficial <strong>"{course.badgeName}"</strong> com o código de validação emitido pela plataforma.
-                  </p>
-                </div>
-              </div>
-            </div>
-          )}
-
         </div>
       )}
 

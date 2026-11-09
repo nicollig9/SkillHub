@@ -52,7 +52,7 @@ export default function HomePage() {
       {isAuthenticated && <Sidebar />}
 
       {/* Dynamic Main Content Area - Totalmente Centralizada */}
-      <main className="flex-1 p-4 lg:p-8 overflow-y-auto max-w-6xl w-full mx-auto flex flex-col items-center justify-start">
+      <main className="flex-1 p-4 lg:p-8 overflow-y-auto max-w-7xl w-full mx-auto flex flex-col items-center justify-start">
         {!isAuthenticated ? (
           <LoginPage />
         ) : (
