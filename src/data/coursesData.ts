@@ -2161,6 +2161,8 @@ export const COURSES: Course[] = [
   // =========================================================================
   {
     id: 'curso-produtividade-notebooklm',
+    videoUrl: 'https://youtu.be/LVYRzFxBZLE?si=hjVmprUh1FY5ifFd',
+    youtubeId: '1uIR8erwQmI',
     trackId: 'trilha-3',
     trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
     category: 'Tecnologia da Informação',

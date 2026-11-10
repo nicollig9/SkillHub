@@ -36,6 +36,7 @@ function MinimalistVideoPlayer({
   isSoftSkills,
   isIaProdutividade,
   isExcelAvancado,
+  isNotebookLM,
   autoStartMuted = false
 }: { 
   youtubeId: string; 
@@ -50,6 +51,7 @@ function MinimalistVideoPlayer({
   isSoftSkills?: boolean;
   isIaProdutividade?: boolean;
   isExcelAvancado?: boolean;
+  isNotebookLM?: boolean;
   autoStartMuted?: boolean;
 }) {
   const [isPlaying, setIsPlaying] = useState<boolean>(autoStartMuted || false);
@@ -178,6 +180,16 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
 
   const activeCourseId = courseId || selectedCourseId;
 
+  const isNotebookLMId = (id?: string | null) =>
+    Boolean(
+      id && (
+        id === 'curso-produtividade-notebooklm' ||
+        id === 'produtividade-notebooklm' ||
+        id === 'notebooklm' ||
+        id.includes('notebooklm')
+      )
+    );
+
   const isExcelAvancadoId = (id?: string | null) =>
     Boolean(
       id && (
@@ -301,6 +313,9 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     );
 
   const course = 
+    (isNotebookLMId(activeCourseId)
+      ? COURSES.find((c) => isNotebookLMId(c.id))
+      : null) ||
     (isExcelAvancadoId(activeCourseId)
       ? COURSES.find((c) => isExcelAvancadoId(c.id))
       : null) ||
@@ -337,6 +352,7 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     CURSO_EQUILIBRIO_EMOCIONAL ||
     COURSES[0];
 
+  const isNotebookLM = isNotebookLMId(course?.id) || isNotebookLMId(activeCourseId) || Boolean(course?.title && course.title.toLowerCase().includes('notebooklm'));
   const isExcelAvancado = isExcelAvancadoId(course?.id) || isExcelAvancadoId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('excel avançado') || course.title.toLowerCase().includes('excel avancado')));
   const isIaProdutividade = isIaProdutividadeId(course?.id) || isIaProdutividadeId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('inteligência artificial e automação') || course.title.toLowerCase().includes('automacao no dia a dia') || course.title.toLowerCase().includes('automação no dia a dia')));
   const isSoftSkills = isSoftSkillsId(course?.id) || isSoftSkillsId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('soft skills') || course.title.toLowerCase().includes('comunicação interpessoal')));
@@ -347,9 +363,11 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
   const isExcel = isExcelId(course?.id) || Boolean(course?.title && course.title.toLowerCase().includes('excel do zero'));
   const isInformatica = isInformaticaId(course?.id) || Boolean(course?.title && course.title.toLowerCase().includes('informática básica'));
   const isComunicacao = isComunicacaoId(course?.id) || Boolean(course?.title && course.title.toLowerCase().includes('comunicação escrita'));
-  const hasReadingTimer = isOrcamento || isEquilibrio || isExcel || isInformatica || isComunicacao || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado;
+  const hasReadingTimer = isOrcamento || isEquilibrio || isExcel || isInformatica || isComunicacao || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM;
 
-  const currentYoutubeId = isExcelAvancado
+  const currentYoutubeId = isNotebookLM
+    ? (course?.youtubeId || '1uIR8erwQmI')
+    : isExcelAvancado
     ? '9QbIuIZMVUw'
     : isIaProdutividade
     ? '1uIR8erwQmI'
@@ -371,7 +389,9 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     ? 'PAVaaGa_gug' 
     : (course?.youtubeId || 'X2wgk02Bqt0');
 
-  const currentVideoUrl = isExcelAvancado
+  const currentVideoUrl = isNotebookLM
+    ? (course?.videoUrl || 'https://youtu.be/LVYRzFxBZLE?si=hjVmprUh1FY5ifFd')
+    : isExcelAvancado
     ? 'https://youtu.be/9QbIuIZMVUw'
     : isIaProdutividade
     ? 'https://youtu.be/1uIR8erwQmI?si=_Q067y0xVY9R8iWQ'
@@ -393,7 +413,9 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     ? 'https://youtu.be/PAVaaGa_gug?si=JYdOWSYOz0oJj5TH'
     : (course?.videoUrl || 'https://youtu.be/X2wgk02Bqt0');
 
-  const currentVideoTitle = isExcelAvancado
+  const currentVideoTitle = isNotebookLM
+    ? 'Produtividade com NotebookLM'
+    : isExcelAvancado
     ? 'Excel Avançado e Análise de Dados'
     : isIaProdutividade
     ? 'Inteligência Artificial e Automação no Dia a Dia de Trabalho'
@@ -893,7 +915,8 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                     isSoftSkills={isSoftSkills}
                     isIaProdutividade={isIaProdutividade}
                     isExcelAvancado={isExcelAvancado}
-                    autoStartMuted={isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado}
+                    isNotebookLM={isNotebookLM}
+                    autoStartMuted={isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM}
                   />
 
                   {/* Barra de Progresso do Vídeo Vinculada ao Temporizador */}
@@ -1169,7 +1192,8 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                     isSoftSkills={isSoftSkills}
                     isIaProdutividade={isIaProdutividade}
                     isExcelAvancado={isExcelAvancado}
-                    autoStartMuted={isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado}
+                    isNotebookLM={isNotebookLM}
+                    autoStartMuted={isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM}
                         />
 
                         {/* Barra de Progresso do Vídeo Vinculada ao Temporizador */}
