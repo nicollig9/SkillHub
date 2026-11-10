@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Header from '@/components/Header';
 import Sidebar from '@/components/Sidebar';
 import TracksView from '@/components/TracksView';
@@ -8,13 +9,22 @@ import CourseViewer from '@/components/CourseViewer';
 import { useApp } from '@/context/AppContext';
 
 export default function MinhasTrilhasPage() {
+  const router = useRouter();
   const { isAuthenticated, currentView, setCurrentView } = useApp();
 
   useEffect(() => {
+    if (!isAuthenticated) {
+      router.replace('/login');
+      return;
+    }
     if (currentView !== 'CURSO_DETALHE') {
       setCurrentView('MINHAS_TRILHAS');
     }
-  }, [currentView, setCurrentView]);
+  }, [isAuthenticated, currentView, setCurrentView, router]);
+
+  if (!isAuthenticated) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-[#0B0D17] text-slate-100 transition-colors duration-300">

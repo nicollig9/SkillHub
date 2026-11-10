@@ -57,13 +57,7 @@ export default function TracksView() {
 
   // Verificação de conclusão de curso
   const isCourseCompleted = (courseId: string) => {
-    if (quizResults[courseId]?.passed) return true;
-    if (student?.badgesEarned?.some((b) => b.badgeId === courseId)) return true;
-    const course = COURSES.find((c) => c.id === courseId);
-    if (course && completedModules[courseId] && completedModules[courseId].length >= course.modules.length) {
-      return true;
-    }
-    return false;
+    return Boolean(quizResults[courseId]?.passed);
   };
 
   // Cálculo de progresso de cada trilha
@@ -105,6 +99,14 @@ export default function TracksView() {
 
   // Filtragem de trilhas
   const filteredTracks = TRACKS.filter((track) => {
+    // Filtro por aba: Minhas Trilhas só exibe trilhas com progresso real do aluno
+    if (activeTab === 'MINHAS') {
+      const { completed } = getTrackProgress(track);
+      const stepIds = track.steps ? track.steps.map((s) => s.courseId) : track.courseIds;
+      const hasProgress = completed > 0 || stepIds.some((id) => (completedModules[id]?.length || 0) > 0);
+      if (!hasProgress) return false;
+    }
+
     // Filtro por perfil
     const matchesAudience = 
       selectedAudience === 'TODOS' ||
@@ -300,9 +302,25 @@ export default function TracksView() {
       {/* ===================================================== */}
       <div className="space-y-4">
         {filteredTracks.length === 0 ? (
-          <div className="text-center py-12 bg-[#140E24] rounded-2xl border border-[#2D1B4E] p-6 space-y-2">
-            <p className="text-base font-bold text-white">Nenhuma trilha encontrada</p>
-            <p className="text-xs text-zinc-400">Tente ajustar seus termos de pesquisa ou filtros selecionados.</p>
+          <div className="text-center py-12 bg-white dark:bg-[#140E24] rounded-2xl border border-slate-300 dark:border-[#2D1B4E] p-6 space-y-3">
+            <Layers className="w-10 h-10 text-purple-400 mx-auto" />
+            <p className="text-base font-bold text-slate-900 dark:text-white">
+              {activeTab === 'MINHAS' ? 'Nenhuma trilha em andamento' : 'Nenhuma trilha encontrada'}
+            </p>
+            <p className="text-xs text-slate-600 dark:text-zinc-400 max-w-md mx-auto">
+              {activeTab === 'MINHAS' 
+                ? 'Você ainda não iniciou nenhuma trilha de qualificação. Escolha uma das trilhas disponíveis no catálogo para começar seu aprendizado e conquistar selos de especialista!'
+                : 'Tente ajustar seus termos de pesquisa ou filtros selecionados.'}
+            </p>
+            {activeTab === 'MINHAS' && (
+              <button
+                onClick={() => setActiveTab('CATALOGO')}
+                className="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs shadow transition-all inline-flex items-center gap-1.5 cursor-pointer"
+              >
+                <Compass className="w-4 h-4" />
+                <span>Explorar Trilhas Disponíveis</span>
+              </button>
+            )}
           </div>
         ) : (
           filteredTracks.map((track) => {

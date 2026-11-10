@@ -73,7 +73,7 @@ export default function MyCoursesView() {
               </span>
               <span className="inline-flex items-center gap-1.5 bg-slate-200 dark:bg-[#171126] border border-slate-300 dark:border-purple-500/30 px-3 py-1 rounded-full text-xs font-semibold text-slate-800 dark:text-zinc-300">
                 <Target className="w-3.5 h-3.5 text-amber-400" />
-                <span>Meta da semana: 3/5 aulas</span>
+                <span>Meta da semana: {Math.min(concluidosList.length, 5)}/5 aulas</span>
               </span>
               <span className="inline-flex items-center gap-1.5 bg-slate-200 dark:bg-[#171126] border border-slate-300 dark:border-purple-500/30 px-3 py-1 rounded-full text-xs font-semibold text-slate-800 dark:text-zinc-300">
                 <GraduationCap className="w-3.5 h-3.5 text-rose-400" />

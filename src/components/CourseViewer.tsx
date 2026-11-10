@@ -37,6 +37,13 @@ function MinimalistVideoPlayer({
   isIaProdutividade,
   isExcelAvancado,
   isNotebookLM,
+  isEtica,
+  isConciliacaoEscola,
+  isAtendimento,
+  isPowerBi,
+  isGestaoProjetos,
+  isInteligenciaNegocios,
+  isTransformacaoDigital,
   autoStartMuted = false
 }: { 
   youtubeId: string; 
@@ -52,6 +59,13 @@ function MinimalistVideoPlayer({
   isIaProdutividade?: boolean;
   isExcelAvancado?: boolean;
   isNotebookLM?: boolean;
+  isEtica?: boolean;
+  isConciliacaoEscola?: boolean;
+  isAtendimento?: boolean;
+  isPowerBi?: boolean;
+  isGestaoProjetos?: boolean;
+  isInteligenciaNegocios?: boolean;
+  isTransformacaoDigital?: boolean;
   autoStartMuted?: boolean;
 }) {
   const [isPlaying, setIsPlaying] = useState<boolean>(autoStartMuted || false);
@@ -179,6 +193,88 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
   } = useApp();
 
   const activeCourseId = courseId || selectedCourseId;
+
+  const isTransformacaoDigitalId = (id?: string | null) =>
+    Boolean(
+      id && (
+        id === 'curso-transformacao-digital-inovacao' ||
+        id === 'transformacao-digital-inovacao' ||
+        id === 'curso-transformacao-digital' ||
+        id === 'transformacao-digital' ||
+        id.includes('transformacao-digital')
+      )
+    );
+
+  const isInteligenciaNegociosId = (id?: string | null) =>
+    Boolean(
+      id && (
+        id === 'curso-inteligencia-negocios-indicadores' ||
+        id === 'inteligencia-negocios-indicadores' ||
+        id === 'curso-inteligencia-negocios' ||
+        id === 'inteligencia-negocios' ||
+        id.includes('inteligencia-negocios')
+      )
+    );
+
+  const isGestaoProjetosId = (id?: string | null) =>
+    Boolean(
+      id && (
+        id === 'curso-gestao-estrategica-projetos' ||
+        id === 'gestao-estrategica-projetos' ||
+        id === 'curso-gestao-projetos' ||
+        id === 'gestao-projetos' ||
+        id.includes('gestao-estrategica-projetos') ||
+        id.includes('gestao-projetos')
+      )
+    );
+
+  const isPowerBiId = (id?: string | null) =>
+    Boolean(
+      id && (
+        id === 'curso-analise-dados-power-bi' ||
+        id === 'analise-dados-power-bi' ||
+        id === 'curso-power-bi' ||
+        id === 'power-bi' ||
+        id.includes('power-bi') ||
+        id.includes('powerbi')
+      )
+    );
+
+  const isAtendimentoId = (id?: string | null) =>
+    Boolean(
+      id && (
+        id === 'curso-atendimento-relacionamento-cliente' ||
+        id === 'atendimento-relacionamento-cliente' ||
+        id === 'curso-atendimento-cliente' ||
+        id === 'atendimento-cliente' ||
+        id === 'curso-atendimento-publico' ||
+        id.includes('atendimento-relacionamento') ||
+        id.includes('atendimento-cliente')
+      )
+    );
+
+  const isConciliacaoEscolaId = (id?: string | null) =>
+    Boolean(
+      id && (
+        id === 'curso-financas-pessoais' ||
+        id === 'curso-gestao-tempo-foco-conciliacao' ||
+        id === 'gestao-tempo-foco-conciliacao' ||
+        id === 'conciliacao-escola-trabalho' ||
+        id.includes('conciliacao')
+      )
+    );
+
+  const isEticaId = (id?: string | null) =>
+    Boolean(
+      id && (
+        id === 'curso-etica-etiqueta-corporativa' ||
+        id === 'etica-etiqueta-corporativa' ||
+        id === 'curso-etica-etiqueta' ||
+        id === 'etica-etiqueta' ||
+        id.includes('etica-etiqueta') ||
+        id.includes('etica')
+      )
+    );
 
   const isNotebookLMId = (id?: string | null) =>
     Boolean(
@@ -313,6 +409,27 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     );
 
   const course = 
+    (isTransformacaoDigitalId(activeCourseId)
+      ? COURSES.find((c) => isTransformacaoDigitalId(c.id))
+      : null) ||
+    (isInteligenciaNegociosId(activeCourseId)
+      ? COURSES.find((c) => isInteligenciaNegociosId(c.id))
+      : null) ||
+    (isGestaoProjetosId(activeCourseId)
+      ? COURSES.find((c) => isGestaoProjetosId(c.id))
+      : null) ||
+    (isPowerBiId(activeCourseId)
+      ? COURSES.find((c) => isPowerBiId(c.id))
+      : null) ||
+    (isAtendimentoId(activeCourseId)
+      ? COURSES.find((c) => isAtendimentoId(c.id))
+      : null) ||
+    (isConciliacaoEscolaId(activeCourseId)
+      ? COURSES.find((c) => isConciliacaoEscolaId(c.id))
+      : null) ||
+    (isEticaId(activeCourseId)
+      ? COURSES.find((c) => isEticaId(c.id))
+      : null) ||
     (isNotebookLMId(activeCourseId)
       ? COURSES.find((c) => isNotebookLMId(c.id))
       : null) ||
@@ -352,6 +469,13 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     CURSO_EQUILIBRIO_EMOCIONAL ||
     COURSES[0];
 
+  const isTransformacaoDigital = isTransformacaoDigitalId(course?.id) || isTransformacaoDigitalId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('transformação digital') || course.title.toLowerCase().includes('transformacao digital')));
+  const isInteligenciaNegocios = isInteligenciaNegociosId(course?.id) || isInteligenciaNegociosId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('inteligência de negócios') || course.title.toLowerCase().includes('inteligencia de negocios') || course.title.toLowerCase().includes('baseada em indicadores')));
+  const isGestaoProjetos = isGestaoProjetosId(course?.id) || isGestaoProjetosId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('gestão estratégica de projetos') || course.title.toLowerCase().includes('gestao estrategica de projetos') || course.title.toLowerCase().includes('metodologias de gerenciamento')));
+  const isPowerBi = isPowerBiId(course?.id) || isPowerBiId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('power bi') || course.title.toLowerCase().includes('business intelligence')));
+  const isAtendimento = isAtendimentoId(course?.id) || isAtendimentoId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('atendimento ao cliente') || course.title.toLowerCase().includes('experiência e relacionamento') || course.title.toLowerCase().includes('experiencia e relacionamento')));
+  const isConciliacaoEscola = isConciliacaoEscolaId(course?.id) || isConciliacaoEscolaId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('conciliação') || course.title.toLowerCase().includes('conciliacao')));
+  const isEtica = isEticaId(course?.id) || isEticaId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('ética') || course.title.toLowerCase().includes('etica')));
   const isNotebookLM = isNotebookLMId(course?.id) || isNotebookLMId(activeCourseId) || Boolean(course?.title && course.title.toLowerCase().includes('notebooklm'));
   const isExcelAvancado = isExcelAvancadoId(course?.id) || isExcelAvancadoId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('excel avançado') || course.title.toLowerCase().includes('excel avancado')));
   const isIaProdutividade = isIaProdutividadeId(course?.id) || isIaProdutividadeId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('inteligência artificial e automação') || course.title.toLowerCase().includes('automacao no dia a dia') || course.title.toLowerCase().includes('automação no dia a dia')));
@@ -363,9 +487,23 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
   const isExcel = isExcelId(course?.id) || Boolean(course?.title && course.title.toLowerCase().includes('excel do zero'));
   const isInformatica = isInformaticaId(course?.id) || Boolean(course?.title && course.title.toLowerCase().includes('informática básica'));
   const isComunicacao = isComunicacaoId(course?.id) || Boolean(course?.title && course.title.toLowerCase().includes('comunicação escrita'));
-  const hasReadingTimer = isOrcamento || isEquilibrio || isExcel || isInformatica || isComunicacao || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM;
+  const hasReadingTimer = isOrcamento || isEquilibrio || isExcel || isInformatica || isComunicacao || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM || isEtica || isConciliacaoEscola || isAtendimento || isPowerBi || isGestaoProjetos || isInteligenciaNegocios || isTransformacaoDigital;
 
-  const currentYoutubeId = isNotebookLM
+  const currentYoutubeId = isTransformacaoDigital
+    ? (course?.youtubeId || 'vFo9TS-rNPQ')
+    : isInteligenciaNegocios
+    ? (course?.youtubeId || 'sL0m2cnrk8Y')
+    : isGestaoProjetos
+    ? (course?.youtubeId || 'qO0GZGy76gc')
+    : isPowerBi
+    ? (course?.youtubeId || 'QnCSgEsIHMA')
+    : isAtendimento
+    ? (course?.youtubeId || 'SFC9uLZSevs')
+    : isConciliacaoEscola
+    ? (course?.youtubeId || 'VcFK4u1IOZQ')
+    : isEtica
+    ? (course?.youtubeId || 'ps8k_bKoXoU')
+    : isNotebookLM
     ? (course?.youtubeId || '1uIR8erwQmI')
     : isExcelAvancado
     ? '9QbIuIZMVUw'
@@ -376,7 +514,7 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     : isRotinas
     ? 'HRqLQmuW_kc'
     : isGestaoTempo
-    ? 'VcFK4u1IOZQ'
+    ? (course?.youtubeId || 'Ipjxv5uU1R8')
     : isComunicacao
     ? 'Lt4zabLCJ9I'
     : isInformatica
@@ -389,7 +527,21 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     ? 'PAVaaGa_gug' 
     : (course?.youtubeId || 'X2wgk02Bqt0');
 
-  const currentVideoUrl = isNotebookLM
+  const currentVideoUrl = isTransformacaoDigital
+    ? (course?.videoUrl || 'https://youtu.be/vFo9TS-rNPQ')
+    : isInteligenciaNegocios
+    ? (course?.videoUrl || 'https://youtu.be/sL0m2cnrk8Y')
+    : isGestaoProjetos
+    ? (course?.videoUrl || 'https://youtu.be/qO0GZGy76gc')
+    : isPowerBi
+    ? (course?.videoUrl || 'https://youtu.be/QnCSgEsIHMA')
+    : isAtendimento
+    ? (course?.videoUrl || 'https://youtu.be/SFC9uLZSevs?si=8uoTJHebCyg4PF9z')
+    : isConciliacaoEscola
+    ? (course?.videoUrl || 'https://youtu.be/VcFK4u1IOZQ?si=Tu1cU82TTmsVr1Gv')
+    : isEtica
+    ? (course?.videoUrl || 'https://youtu.be/ps8k_bKoXoU?si=zF7CUiC-AUmgArQB')
+    : isNotebookLM
     ? (course?.videoUrl || 'https://youtu.be/LVYRzFxBZLE?si=hjVmprUh1FY5ifFd')
     : isExcelAvancado
     ? 'https://youtu.be/9QbIuIZMVUw'
@@ -400,7 +552,7 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     : isRotinas
     ? 'https://youtu.be/HRqLQmuW_kc?si=QN6bzX4Wc1Z-yZ6U'
     : isGestaoTempo
-    ? 'https://youtu.be/VcFK4u1IOZQ?si=hhiqf7NL7QwLWP_X'
+    ? (course?.videoUrl || 'https://youtu.be/Ipjxv5uU1R8?si=bS-CURqa2Exmfp7C')
     : isComunicacao
     ? 'https://youtu.be/Lt4zabLCJ9I?si=NpcDLAKgOkQYGDF9'
     : isInformatica
@@ -413,7 +565,21 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     ? 'https://youtu.be/PAVaaGa_gug?si=JYdOWSYOz0oJj5TH'
     : (course?.videoUrl || 'https://youtu.be/X2wgk02Bqt0');
 
-  const currentVideoTitle = isNotebookLM
+  const currentVideoTitle = isTransformacaoDigital
+    ? 'Transformação Digital, Inovação e Estratégias Empresariais'
+    : isInteligenciaNegocios
+    ? 'Inteligência de Negócios e Tomada de Decisão Baseada em Indicadores'
+    : isGestaoProjetos
+    ? 'Gestão Estratégica de Projetos e Metodologias de Gerenciamento'
+    : isPowerBi
+    ? 'Análise de Dados e Business Intelligence com Power BI'
+    : isAtendimento
+    ? 'Atendimento ao Cliente, Experiência e Relacionamento Profissional'
+    : isConciliacaoEscola
+    ? 'Gestão do Tempo, Foco e Conciliação Escola x Trabalho'
+    : isEtica
+    ? 'Ética e Etiqueta Corporativa (Presencial e Digital)'
+    : isNotebookLM
     ? 'Produtividade com NotebookLM'
     : isExcelAvancado
     ? 'Excel Avançado e Análise de Dados'
@@ -463,7 +629,7 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     : Math.min(99, Math.round((completedInCourse.length / Math.max(course?.modules?.length || 1, 1)) * 100));
 
   // Cronômetro de leitura / vídeo com persistência de estado
-  const INITIAL_TIMER_SECONDS = (isOrcamento || isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado) ? 300 : 180;
+  const INITIAL_TIMER_SECONDS = (isOrcamento || isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM || isEtica || isConciliacaoEscola || isAtendimento || isPowerBi || isGestaoProjetos || isInteligenciaNegocios || isTransformacaoDigital) ? 300 : 180;
   const [timeLeft, setTimeLeft] = useState<number>(INITIAL_TIMER_SECONDS);
   const isTimerFinished = timeLeft === 0;
 
@@ -485,7 +651,7 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
       }
     } catch {}
 
-    setTimeLeft((isOrcamento || isExcel || isInformatica || isComunicacao) ? 300 : 180);
+    setTimeLeft((isOrcamento || isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM || isEtica || isConciliacaoEscola || isAtendimento || isPowerBi || isGestaoProjetos || isInteligenciaNegocios || isTransformacaoDigital) ? 300 : 180);
   }, [course.id, hasReadingTimer, isQuizPassedInContext, isOrcamento, isExcel, isInformatica, isComunicacao]);
 
   useEffect(() => {
@@ -916,7 +1082,14 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                     isIaProdutividade={isIaProdutividade}
                     isExcelAvancado={isExcelAvancado}
                     isNotebookLM={isNotebookLM}
-                    autoStartMuted={isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM}
+                    isEtica={isEtica}
+                    isConciliacaoEscola={isConciliacaoEscola}
+                    isAtendimento={isAtendimento}
+                    isPowerBi={isPowerBi}
+                    isGestaoProjetos={isGestaoProjetos}
+                    isInteligenciaNegocios={isInteligenciaNegocios}
+                    isTransformacaoDigital={isTransformacaoDigital}
+                    autoStartMuted={isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM || isEtica || isConciliacaoEscola || isAtendimento || isPowerBi || isGestaoProjetos || isInteligenciaNegocios || isTransformacaoDigital}
                   />
 
                   {/* Barra de Progresso do Vídeo Vinculada ao Temporizador */}
@@ -1193,7 +1366,14 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                     isIaProdutividade={isIaProdutividade}
                     isExcelAvancado={isExcelAvancado}
                     isNotebookLM={isNotebookLM}
-                    autoStartMuted={isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM}
+                    isEtica={isEtica}
+                    isConciliacaoEscola={isConciliacaoEscola}
+                    isAtendimento={isAtendimento}
+                    isPowerBi={isPowerBi}
+                    isGestaoProjetos={isGestaoProjetos}
+                    isInteligenciaNegocios={isInteligenciaNegocios}
+                    isTransformacaoDigital={isTransformacaoDigital}
+                    autoStartMuted={isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM || isEtica || isConciliacaoEscola || isAtendimento || isPowerBi || isGestaoProjetos || isInteligenciaNegocios || isTransformacaoDigital}
                         />
 
                         {/* Barra de Progresso do Vídeo Vinculada ao Temporizador */}

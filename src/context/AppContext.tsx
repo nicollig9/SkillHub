@@ -191,13 +191,14 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     try {
-      // Invalidação e renovação de cache do localStorage (versão 2)
+      // Invalidação e renovação de cache do localStorage (versão 3 - Reset total de progresso mock)
       const DATA_VERSION_KEY = 'skillhub_data_version';
-      const CURRENT_DATA_VERSION = '2';
+      const CURRENT_DATA_VERSION = '3';
       const cachedVersion = localStorage.getItem(DATA_VERSION_KEY);
 
       if (cachedVersion !== CURRENT_DATA_VERSION) {
         localStorage.setItem(DATA_VERSION_KEY, CURRENT_DATA_VERSION);
+        localStorage.removeItem(SESSION_KEY);
         const allKeys = Object.keys(localStorage);
         allKeys.forEach((key) => {
           if (key.startsWith(STORAGE_PREFIX)) {
@@ -206,9 +207,16 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
               if (raw) {
                 const parsed = JSON.parse(raw);
                 if (parsed) {
-                  parsed.version = 2;
-                  if (parsed.selectedCourseId === 'equilibrio-emocional' || parsed.selectedCourseId === 'curso-equilibrio-emocional') {
-                    parsed.selectedCourseId = 'curso-saude-mental-trabalho';
+                  parsed.version = 3;
+                  parsed.completedModules = {};
+                  parsed.quizResults = {};
+                  parsed.cursosInscritos = [];
+                  parsed.badgesConquistadas = [];
+                  parsed.horasEstudadas = 0;
+                  parsed.progressoGeral = 0;
+                  parsed.lastView = 'DASHBOARD';
+                  if (parsed.student) {
+                    parsed.student.badgesEarned = [];
                   }
                   localStorage.setItem(key, JSON.stringify(parsed));
                 }
@@ -220,38 +228,16 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         });
       }
 
-      const rawSession = localStorage.getItem(SESSION_KEY);
-      if (!rawSession) return;
-
-      const session = JSON.parse(rawSession) as UserAccount;
-      if (!session?.email || !session.role) {
-        localStorage.removeItem(SESSION_KEY);
-        return;
-      }
-
-      setCurrentUser(session);
-      setRole(session.role);
-      setIsAuthenticated(true);
-
-      if (session.role === 'ALUNO' && session.email !== 'demo@skillhub.com.br') {
-        const rawUserData = localStorage.getItem(`${STORAGE_PREFIX}${session.email.toLowerCase().trim()}`);
-        const savedData = rawUserData ? JSON.parse(rawUserData) as UserSavedData : null;
-        if (savedData?.student) {
-          setCandidateProfileType(savedData.candidateProfileType || session.profileType);
-          setStudent(savedData.student);
-          setCompletedModules(savedData.completedModules || {});
-          setQuizResults(savedData.quizResults || {});
-          setBadges(savedData.badges || INITIAL_BADGES);
-          setApplications(savedData.applications || []);
-          setCurrentView(savedData.lastView && savedData.lastView !== 'LOGIN' ? savedData.lastView : 'DASHBOARD');
-        }
-      } else if (session.role === 'RECRUTADOR') {
-        setCurrentView('RECRUTADOR_RH');
-      } else {
-        setCurrentView('DASHBOARD');
-      }
+      // Requisito 1: A aplicação deve SEMPRE abrir na tela de login por padrão (sem auto-login silencioso de sessões antigas)
+      localStorage.removeItem(SESSION_KEY);
+      setIsAuthenticated(false);
+      setCurrentUser(null);
+      setCurrentView('LOGIN');
     } catch {
       localStorage.removeItem(SESSION_KEY);
+      setIsAuthenticated(false);
+      setCurrentUser(null);
+      setCurrentView('LOGIN');
     }
   }, []);
 
@@ -345,51 +331,6 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
   // 1. Cursos Inscritos (Zero para nova conta, calculado dinamicamente conforme o jovem estuda)
   const cursosInscritos: UserCourseItem[] = useMemo(() => {
-    if (isDemoMode) {
-      return [
-        {
-          id: 'curso-jovem-aprendiz-avancado',
-          courseId: 'curso-jovem-aprendiz-avancado',
-          title: 'Legislação Trabalhista, Direitos & Deveres do Aprendiz',
-          trackName: 'Trilha Entrada no Mercado',
-          category: 'Direito & Cidadania',
-          currentModule: 'Módulo 2: Jornada de Trabalho e Horas Teóricas',
-          progress: 60,
-          workload: '20h',
-          hours: 20,
-          status: 'em_andamento',
-          moduleIndex: 1
-        },
-        {
-          id: 'curso-soft-skills-comunicacao-interpessoal',
-          courseId: 'curso-soft-skills-comunicacao-interpessoal',
-          title: 'Microsoft Excel & Planilhas para Escritório',
-          trackName: 'Trilha Rotinas Administrativas',
-          category: 'Tecnologia & Escritório',
-          currentModule: 'Módulo 3: Fórmulas PROCV, PROCH e Tabelas Dinâmicas',
-          progress: 45,
-          workload: '24h',
-          hours: 24,
-          status: 'em_andamento',
-          moduleIndex: 2
-        },
-        {
-          id: 'curso-preparacao-entrevistas-processos-seletivos',
-          courseId: 'curso-preparacao-entrevistas-processos-seletivos',
-          title: 'Comunicação Assertiva e Postura Corporativa',
-          trackName: 'Trilha Soft Skills Essenciais',
-          category: 'Desenvolvimento Pessoal',
-          currentModule: 'Módulo 1: Escuta Ativa e Convivência em Equipe',
-          progress: 30,
-          workload: '16h',
-          hours: 16,
-          status: 'em_andamento',
-          moduleIndex: 0
-        }
-      ];
-    }
-
-    // Para nova conta ou usuário real:
     const list: UserCourseItem[] = [];
     const courseIds = Array.from(new Set([
       ...Object.keys(completedModules),
@@ -404,7 +345,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       const quizPassed = Boolean(quizResults[cId]?.passed);
       const totalMods = course.modules.length || 1;
       const progress = quizPassed ? 100 : Math.min(99, Math.round((completedInCourse.length / totalMods) * 100));
-      const isCompleted = quizPassed || (progress >= 100 && completedInCourse.length === totalMods);
+      const isCompleted = quizPassed;
 
       list.push({
         id: course.id,
@@ -414,7 +355,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         category: course.category || 'Geral',
         currentModule: completedInCourse.length < course.modules.length 
           ? course.modules[completedInCourse.length]?.title || `Módulo ${completedInCourse.length + 1}`
-          : 'Curso Concluído',
+          : (isCompleted ? 'Curso Concluído' : 'Aguardando Avaliação Final'),
         progress: isCompleted ? 100 : progress,
         workload: `${course.hours}h`,
         hours: course.hours,
@@ -424,7 +365,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     }
 
     return list;
-  }, [isDemoMode, completedModules, quizResults]);
+  }, [completedModules, quizResults]);
 
   // 2. Badges Conquistadas (Zero para nova conta)
   const badgesConquistadas = useMemo(() => {
@@ -442,20 +383,18 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
   // 3. Horas Estudadas (0h para nova conta)
   const horasEstudadas = useMemo(() => {
-    if (isDemoMode) return 42;
     return cursosInscritos.reduce((acc, curr) => {
       if (curr.status === 'concluido') return acc + curr.hours;
       return acc + Math.round((curr.hours * curr.progress) / 100);
     }, 0);
-  }, [isDemoMode, cursosInscritos]);
+  }, [cursosInscritos]);
 
   // 4. Progresso Geral (0% para nova conta)
   const progressoGeral = useMemo(() => {
-    if (isDemoMode) return 45;
     if (cursosInscritos.length === 0) return 0;
     const total = cursosInscritos.reduce((acc, c) => acc + c.progress, 0);
     return Math.round(total / cursosInscritos.length);
-  }, [isDemoMode, cursosInscritos]);
+  }, [cursosInscritos]);
 
   // 5. Candidaturas Enviadas (Zero para nova conta)
   const candidaturasEnviadas = useMemo(() => {
@@ -1345,16 +1284,17 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   };
 
   const resetSimulator = () => {
-    setStudent(INITIAL_STUDENT);
-    setVagas(INITIAL_VAGAS);
-    setBadges(INITIAL_BADGES);
-    setApplications(INITIAL_APPLICATIONS);
-    setGuardrailLogs(INITIAL_GUARDRAILS_LOGS);
-    setCompletedModules({
-      'curso-jovem-aprendiz-avancado': ['mod-1', 'mod-2'],
-      'curso-curriculo-plataformas': ['cur-mod-1']
+    setStudent({
+      ...INITIAL_STUDENT,
+      badgesEarned: []
     });
-    showToast('Demonstração Restaurada', 'Dados restaurados para os valores padrão do sistema.', 'info');
+    setVagas(INITIAL_VAGAS.map((v) => ({ ...v, jaCandidatou: false })));
+    setBadges(INITIAL_BADGES.map((b) => ({ ...b, dateEarned: undefined, score: undefined, codeVerificador: undefined })));
+    setApplications([]);
+    setGuardrailLogs(INITIAL_GUARDRAILS_LOGS);
+    setCompletedModules({});
+    setQuizResults({});
+    showToast('Dados Zerados', 'Progresso, cursos e avaliações foram zerados com sucesso.', 'info');
   };
 
   return (

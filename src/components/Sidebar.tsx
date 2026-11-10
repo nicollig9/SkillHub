@@ -1,7 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useMemo } from 'react';
+import { useRouter } from 'next/navigation';
 import { useApp, AppView } from '@/context/AppContext';
+import { TRACKS } from '@/data/coursesData';
 import { 
   Home,
   LayoutDashboard,
@@ -33,8 +35,11 @@ export default function Sidebar() {
     candidateProfileType,
     isSidebarOpen,
     setIsSidebarOpen,
-    cursosInscritos
+    cursosInscritos,
+    completedModules,
+    quizResults
   } = useApp();
+  const router = useRouter();
 
   // Se a barra não estiver aberta, não renderiza nada
   if (!isSidebarOpen) return null;
@@ -49,7 +54,18 @@ export default function Sidebar() {
     : 'Primeiro Emprego';
 
   // Contagem dinâmica de cursos em andamento
-  const cursosAtivosCount = cursosInscritos ? cursosInscritos.filter(c => c.status === 'em_andamento').length : 3;
+  const cursosAtivosCount = cursosInscritos ? cursosInscritos.filter((c) => c.status === 'em_andamento').length : 0;
+
+  const minhasTrilhasCount = useMemo(() => {
+    const passedCourseIds = Object.keys(quizResults || {}).filter((id) => quizResults[id]?.passed);
+    const inProgressCourseIds = Object.keys(completedModules || {});
+    const activeIds = new Set([...passedCourseIds, ...inProgressCourseIds]);
+    if (activeIds.size === 0) return 0;
+    return TRACKS.filter((t) => {
+      const stepIds = t.steps ? t.steps.map((s) => s.courseId) : t.courseIds;
+      return stepIds.some((id) => activeIds.has(id));
+    }).length;
+  }, [quizResults, completedModules]);
 
   // Itens de navegação do Aluno / Candidato organizados em estrutura simétrica
   const studentNavItems: { id: AppView; label: string; icon: React.ComponentType<{ className?: string }>; badge?: string }[] = [
@@ -70,7 +86,7 @@ export default function Sidebar() {
       id: 'MEUS_CURSOS',
       label: 'Meus Cursos',
       icon: BookOpen,
-      badge: `${cursosAtivosCount || 3} Ativos`
+      badge: `${cursosAtivosCount} Ativo${cursosAtivosCount === 1 ? '' : 's'}`
     },
     {
       id: 'CURSOS_DISPONIVEIS',
@@ -83,7 +99,7 @@ export default function Sidebar() {
       id: 'MINHAS_TRILHAS',
       label: 'Minhas Trilhas',
       icon: Layers,
-      badge: '1 Ativa'
+      badge: `${minhasTrilhasCount} Ativa${minhasTrilhasCount === 1 ? '' : 's'}`
     },
     {
       id: 'TRILHAS_DISPONIVEIS',
@@ -247,6 +263,7 @@ export default function Sidebar() {
                 onClick={() => {
                   logout();
                   setIsSidebarOpen(false);
+                  router.push('/');
                 }}
                 title="Sair"
                 className="p-1.5 text-purple-300 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors shrink-0 cursor-pointer"
