@@ -1215,8 +1215,28 @@ export const CURSO_ATENDIMENTO_RELACIONAMENTO_CLIENTE: Course = {
   badgeIcon: 'Headphones',
   accentColor: '#EC4899',
   level: 'Intermediário',
-  videoUrl: 'https://youtu.be/SFC9uLZSevs?si=8uoTJHebCyg4PF9z',
-  youtubeId: 'SFC9uLZSevs',
+  videoUrl: 'https://www.youtube.com/watch?v=8rjey8HmRxM',
+  youtubeId: '8rjey8HmRxM',
+  videos: [
+    {
+      title: 'Aula 01 — Fundamentos do Atendimento e Escuta Ativa',
+      subtitle: 'Parte 1: Comunicação multicanal, postura empática e desescalada verbal de conflitos',
+      url: 'https://www.youtube.com/watch?v=8rjey8HmRxM',
+      youtubeId: '8rjey8HmRxM',
+      autoPlay: true,
+      badge: 'Aula 01 — Fundamentos do Atendimento',
+      description: 'Fundamentos de atendimento profissional, escuta ativa, postura empática e técnicas de desescalada de conflitos.'
+    },
+    {
+      title: 'Aula 02 — Experiência do Cliente, Métricas e Fidelização',
+      subtitle: 'Parte 2: Jornada do cliente, NPS, CSAT, FCR e retenção duradoura',
+      url: 'https://www.youtube.com/watch?v=mu7URey9TsI',
+      youtubeId: 'mu7URey9TsI',
+      autoPlay: false,
+      badge: 'Aula 02 — Experiência e Fidelização',
+      description: 'Customer Experience (CX), análise de indicadores de satisfação (NPS, CSAT, FCR) e estratégias de fidelização.'
+    }
+  ],
   learningObjectives: [
     'Capacitar o aluno a realizar atendimentos profissionais em canais presenciais e digitais.',
     'Diferenciar atendimento transacional de Customer Experience (CX) relacional.',
@@ -1378,20 +1398,29 @@ export const CURSO_ATENDIMENTO_RELACIONAMENTO_CLIENTE: Course = {
     {
       id: 'atendimento-mod-4',
       number: 4,
-      title: 'MÓDULO 4: Fidelização, Indicadores de CX e Avaliação Final',
-      summary: 'Follow-up proativo, métricas de suporte (NPS, CSAT, FCR), cultura de feedback e certificação.',
-      estimatedMinutes: 45,
+      title: 'MÓDULO 4: Fidelização, Indicadores de CX e Vídeos Oficiais de Conclusão',
+      summary: 'Follow-up proativo, métricas de suporte (NPS, CSAT, FCR), cultura de feedback, duas videoaulas de conclusão e certificação oficial.',
+      estimatedMinutes: 50,
       content: {
         sections: [
           {
-            subheading: 'Aula 4.1: O Ciclo de Pós-Atendimento e Follow-up Proativo',
+            subheading: 'Aula 4.1: Vídeos de Conclusão — Fundamentos do Atendimento & Experiência e Fidelização',
+            body: [
+              'Assista às duas videoaulas oficiais de encerramento do curso organizadas em duas partes complementares:',
+              '• Parte 1 (Fundamentos do Atendimento): Postura profissional, escuta ativa e desescalada verbal de conflitos.',
+              '• Parte 2 (Experiência e Fidelização): Aplicação prática de CX, acompanhamento de indicadores e retenção duradoura de clientes.',
+              'Acompanhe o temporizador obrigatório do player até o término da contagem para liberar o acesso à Prova de Fixação e Emissão do Certificado Oficial.'
+            ]
+          },
+          {
+            subheading: 'Aula 4.2: O Ciclo de Pós-Atendimento e Follow-up Proativo',
             body: [
               'O relacionamento não se encerra no fechamento do ticket. Entrar em contato após 24 a 48 horas para verificar se a solução continua funcionando consolida a lealdade do cliente.',
               'Transformando o suporte reativo em suporte proativo: antecipe-se a dúvidas frequentes enviando tutoriais ou links de apoio.'
             ]
           },
           {
-            subheading: 'Aula 4.2: Métricas Essenciais de CX e Atendimento',
+            subheading: 'Aula 4.3: Métricas Essenciais de CX e Atendimento',
             body: [
               'NPS (Net Promoter Score): mede a probabilidade de recomendação da marca em uma escala de 0 a 10 (Detratores: 0 a 6; Neutros: 7 e 8; Promotores: 9 e 10).',
               'CSAT (Customer Satisfaction Score): mede a satisfação específica com a interação recém-concluída (ex: "Quão satisfeito você ficou com o atendimento de hoje?").',
@@ -1405,14 +1434,14 @@ export const CURSO_ATENDIMENTO_RELACIONAMENTO_CLIENTE: Course = {
             }
           },
           {
-            subheading: 'Aula 4.3: Cultura de Melhoria Contínua e Inteligência de Feedback',
+            subheading: 'Aula 4.4: Cultura de Melhoria Contínua e Inteligência de Feedback',
             body: [
               'Reclamações não são incômodos: são consultorias gratuitas apontando falhas reais no produto ou processo.',
               'Compartilhamento de dados com os times de produto e desenvolvimento para retroalimentar melhorias contínuas.'
             ]
           },
           {
-            subheading: 'Aula 4.4: Encerramento do Curso e Orientações para a Avaliação',
+            subheading: 'Aula 4.5: Encerramento do Curso e Orientações para a Avaliação',
             body: [
               'Complete o Quiz de 7 perguntas sobre os 4 módulos para validar suas competências em Atendimento e CX.',
               'Atingindo o aproveitamento mínimo de 70%, seu Selo Oficial de Especialista em Atendimento & CX será emitido e adicionado ao seu currículo.'
@@ -3635,8 +3664,8 @@ export const COURSES: Course[] = [
     isPublished: true,
     active: true,
     visible: true,
-    videoUrl: 'https://youtu.be/VcFK4u1IOZQ?si=hhiqf7NL7QwLWP_X',
-    youtubeId: 'VcFK4u1IOZQ',
+    videoUrl: 'https://youtu.be/Ipjxv5uU1R8?si=bS-CURqa2Exmfp7C',
+    youtubeId: 'Ipjxv5uU1R8',
     trackId: 'trilha-5',
     trackName: 'TRILHA 5: Gestão do Tempo, Foco & Educação Financeira',
     category: 'Desenvolvimento Pessoal',
@@ -3726,6 +3755,80 @@ export const COURSES: Course[] = [
                 title: 'Descanso de Verdade',
                 text: 'Durante os 5 minutos de pausa, afaste-se do computador e do celular: beba água, alongue-se e descanse a visão para oxigenar a mente.'
               }
+            }
+          ]
+        }
+      },
+      {
+        id: 'gestao-tempo-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Gestão de Interrupções, Ladrões de Tempo e Time Blocking',
+        summary: 'Estratégias para blindar a rotina contra distrações digitais, organização do dia em blocos de tempo (Time Blocking) e agrupamento de tarefas em lotes (batching).',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Identificação e Eliminação de Ladrões de Tempo',
+              body: [
+                'Interrupções constantes fragmentam o raciocínio e roubam horas úteis da jornada de trabalho e estudos.',
+                'Notificações de aplicativos, redes sociais abertas em segundo plano e reuniões sem pauta definida são os maiores drenos de produtividade no ambiente corporativo.',
+                'Aprender a dizer "não" com elegância profissional e desativar alertas durante momentos de produção intensa protege sua energia para o que é prioritário.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Blindagem de Foco',
+                text: 'Desativar notificações durante os blocos de trabalho profundo pode recuperar até duas horas de atenção líquida por dia.'
+              }
+            },
+            {
+              subheading: '2. Metodologia Time Blocking e Agrupamento em Lotes (Batching)',
+              body: [
+                'O Time Blocking consiste em dividir o calendário diário em blocos dedicados exclusivamente a tipos específicos de atividades (ex: bloco matinal para relatórios, bloco da tarde para reuniões e e-mails).',
+                'Combinado ao Batching (agrupamento de tarefas similares para execução contínua), esse método reduz o custo de troca de contexto e acelera o fluxo de entregas da equipe.'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Agenda Única e Realista',
+                text: 'Mantenha todos os prazos profissionais e acadêmicos centralizados em um único calendário para evitar sobreposições e atrasos de última hora.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'gestao-tempo-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Sustentabilidade da Rotina, Resiliência e Vídeo de Conclusão',
+        summary: 'Equilíbrio entre alta performance e descanso de qualidade, prevenção da sobrecarga mental, vídeo oficial de conclusão e preparação para a avaliação final.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: 'Aula 4.1: Vídeo de Conclusão e Estudo de Caso de Gestão do Tempo',
+              body: [
+                'Assista à videoaula oficial de conclusão do curso, consolidando as metodologias de foco, priorização inteligente e produtividade sustentável para o dia a dia profissional.',
+                'Acompanhe o temporizador obrigatório do player minimalista até o encerramento da contagem para desbloquear o acesso à Prova de Fixação e Certificação Oficial.'
+              ]
+            },
+            {
+              subheading: 'Aula 4.2: Sustentabilidade da Rotina e Energia Cognitiva',
+              body: [
+                'Produtividade verdadeira não significa trabalhar até a exaustão, mas alcançar resultados consistentes preservando a saúde mental e o bem-estar.',
+                'O descanso e o sono de qualidade são ativos fundamentais para a consolidação da memória, tomada de decisão precisa e prevenção do Burnout.',
+                'Estabelecer limites claros entre o horário de expediente e os momentos pessoais fortalece a resiliência e a longevidade profissional do colaborador.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Ritmo Sustentável',
+                text: 'Quem não planeja seu descanso acaba forçado a pausar por exaustão. Produtividade consistente requer pausas estratégicas regulares.'
+              }
+            },
+            {
+              subheading: 'Aula 4.3: Avaliação Final de Fixação e Emissão de Selo Oficial',
+              body: [
+                'Após concluir o tempo mínimo de visualização da videoaula e a leitura dos módulos, realize o Quiz Final de Fixação.',
+                'Atingindo aproveitamento igual ou superior a 70%, sua Badge Oficial de Mestre em Foco e Produtividade será validada e registrada no seu perfil SkillHub.'
+              ]
             }
           ]
         }
@@ -4243,6 +4346,12 @@ export const COURSES: Course[] = [
   // =========================================================================
   {
     id: 'curso-hard-skills-excel-ferramentas-digitais',
+    published: true,
+    isPublished: true,
+    active: true,
+    visible: true,
+    videoUrl: 'https://youtu.be/HmLzrPf4x0I?si=rNz7acTPrkmAcs84',
+    youtubeId: 'HmLzrPf4x0I',
     trackId: 'trilha-3',
     trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
     category: 'Tecnologia da Informação',
@@ -4305,7 +4414,7 @@ export const COURSES: Course[] = [
       {
         id: 'hard-skills-mod-2',
         number: 2,
-        title: 'MÓDULO 2: O Ecossistema Nuvem',
+        title: 'MÓDULO 2: O Ecossistema Nuvem e Trabalho Colaborativo',
         summary: 'Colaboração em tempo real, segurança de permissões de arquivos compartilhados e ganho de velocidade com atalhos de teclado.',
         estimatedMinutes: 45,
         content: {
@@ -4333,6 +4442,97 @@ export const COURSES: Course[] = [
                 title: 'Ganho de Tempo Real',
                 text: 'Combinar atalhos de teclado para navegação, cópia e busca transforma a produtividade do usuário nas rotinas de escritório.'
               }
+            }
+          ]
+        }
+      },
+      {
+        id: 'hard-skills-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Automação Básica, Gestão de Documentos e Ferramentas Digitais',
+        summary: 'Padronização de arquivos corporativos, integração de formulários em tempo real e boas práticas de gestão de caixa de entrada e reuniões virtuais.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Padronização e Nomenclatura de Arquivos Corporativos',
+              body: [
+                'A organização lógica de pastas e a padronização na nomenclatura de arquivos (ex: ANO_MES_DIA_PROJETO_VERSAO) evitam retrabalho, perda de dados e versões conflitantes na equipe.',
+                'A criação de templates institucionais para planilhas, relatórios e apresentações garante a conformidade com a identidade visual da organização.',
+                '• Estrutura de Diretórios: Separação clara entre pastas públicas, restritas a departamentos e arquivos arquivados/históricos.',
+                '• Controle de Versionamento: Utilização de histórico em nuvem para auditar alterações sem criar cópias desnecessárias com sufixos confusos como "final_final2".'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Higiene Digital Corporativa',
+                text: 'Evite salvar versões no padrão "relatorio_final_novo_v2.xlsx". Utilize histórico de versões da nuvem e convenção padronizada de datas para organização profissional.'
+              }
+            },
+            {
+              subheading: '2. Integração de Ferramentas Digitais e Comunicação Produtiva',
+              body: [
+                'O ecossistema digital corporativo integra planilhas a formulários de coleta (Google Forms / Microsoft Forms) e ferramentas de videoconferência e mensagens institucionais (Teams / Slack / Google Meet).',
+                'A automação da coleta de respostas diretamente para planilhas elimina a digitação manual de relatórios e pesquisas de satisfação interna.',
+                '• Etiquetas e Regras de Caixa de Entrada: Criação de filtros automáticos para organizar e-mails prioritários e diminuir o volume da caixa de entrada.',
+                '• Agendamento Eficiente de Reuniões: Uso de agendas compartilhadas com envio de pauta prévia e links integrados de videoconferência.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Fluxo Automatizado',
+                text: 'Vincular formulários digitais a planilhas eletrônicas consolida registros em tempo real, eliminando etapas operacionais suscetíveis a erro humano.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'hard-skills-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Segurança da Informação, Vídeo de Conclusão e Avaliação Final',
+        summary: 'Proteção de dados corporativos, confidencialidade em planilhas compartilhadas, vídeo oficial de conclusão e preparação para a avaliação final.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: 'Aula 4.1: Vídeo de Conclusão e Estudo de Caso de Hard Skills e Ferramentas Digitais',
+              body: [
+                'Assista à videoaula oficial de conclusão do curso, consolidando o domínio de planilhas eletrônicas, integração em nuvem e ferramentas digitais para o ambiente corporativo.',
+                'Acompanhe o temporizador obrigatório do player minimalista até o encerramento da contagem regressiva para desbloquear o acesso à Prova de Fixação e Emissão do Certificado Oficial.'
+              ]
+            },
+            {
+              subheading: 'Aula 4.2: Segurança da Informação e LGPD em Planilhas e Documentos',
+              body: [
+                'Planilhas corporativas frequentemente armazenam dados confidenciais, incluindo informações financeiras, cadastros de clientes e dados pessoais.',
+                'A conformidade com a LGPD (Lei Geral de Proteção de Dados) exige cautela no compartilhamento externo, evitando links públicos irrestritos.',
+                '• Bloqueio de Células e Proteção por Senha: Como proteger fórmulas críticas contra alterações acidentais em planilhas compartilhadas.',
+                '• Prevenção contra Vazamento de Dados: Nunca envie planilhas contendo dados sensíveis de clientes para endereços de e-mail pessoais ou canais informais.'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Responsabilidade com Dados Sensíveis',
+                text: 'Antes de compartilhar uma planilha por e-mail ou link, verifique se não há abas ocultas com dados pessoais ou confidenciais da empresa.'
+              }
+            },
+            {
+              subheading: 'Aula 4.3: Melhores Práticas e Aplicação Prática no Mercado de Trabalho',
+              body: [
+                'O domínio das Hard Skills de escritório amplia expressivamente a empregabilidade e o reconhecimento técnico de estagiários e jovens profissionais.',
+                'A combinação de agilidade no teclado, precisão matemática no Excel e organização exemplar em nuvem posiciona o colaborador como referência de suporte operacional na equipe.',
+                'Mantenha a busca contínua por atualização tecnológica, explorando novas ferramentas digitais e recursos de automação.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Diferencial Competitivo',
+                text: 'Profissionais que resolvem problemas com planilhas e ferramentas em nuvem reduzem custos operacionais e economizam centenas de horas de trabalho da equipe.'
+              }
+            },
+            {
+              subheading: 'Aula 4.4: Avaliação Final de Fixação e Emissão de Selo Oficial',
+              body: [
+                'Após concluir o tempo mínimo de visualização da videoaula e a leitura atenta de todos os módulos teóricos, realize o Quiz Final de Fixação.',
+                'Atingindo aproveitamento igual ou superior a 70%, sua Badge Oficial de Mestre em Ferramentas Digitais será validada e registrada no seu perfil SkillHub.'
+              ]
             }
           ]
         }
@@ -7084,8 +7284,8 @@ export const COURSES: Course[] = [
   // =========================================================================
   {
     id: 'curso-gestao-tempo',
-    videoUrl: 'https://youtu.be/VcFK4u1IOZQ?si=hhiqf7NL7QwLWP_X',
-    youtubeId: 'VcFK4u1IOZQ',
+    videoUrl: 'https://youtu.be/Ipjxv5uU1R8?si=bS-CURqa2Exmfp7C',
+    youtubeId: 'Ipjxv5uU1R8',
     trackId: 'trilha-4',
     trackName: 'TRILHA 4: Rotinas Administrativas & Gestão Empresarial',
     category: 'Desenvolvimento Pessoal',
@@ -7148,6 +7348,12 @@ export const COURSES: Course[] = [
   // =========================================================================
   {
     id: 'curso-financas-pessoais',
+    published: true,
+    isPublished: true,
+    active: true,
+    visible: true,
+    videoUrl: 'https://youtu.be/VcFK4u1IOZQ?si=Tu1cU82TTmsVr1Gv',
+    youtubeId: 'VcFK4u1IOZQ',
     trackId: 'trilha-5',
     trackName: 'TRILHA 5: Gestão do Tempo, Foco & Produtividade',
     category: 'Desenvolvimento Pessoal',
@@ -7306,13 +7512,20 @@ export const COURSES: Course[] = [
       {
         id: 'ges-mod-4',
         number: 4,
-        title: 'MÓDULO 4: Gestão da Energia, Limites e Sustentabilidade da Rotina',
-        summary: 'O sono como ativo cognitivo, higiene do sono, estudo de alta densidade e comunicação transparente com gestores e colegas de grupo.',
+        title: 'MÓDULO 4: Gestão da Energia, Limites, Sustentabilidade e Vídeo de Conclusão',
+        summary: 'O sono como ativo cognitivo, higiene do sono, estudo de alta densidade, comunicação transparente com lideranças e equipes, vídeo oficial de conclusão e preparação para a avaliação final.',
         estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1. O Sono como Ativo de Performance',
+              subheading: 'Aula 4.1: Vídeo de Conclusão e Estudo de Caso de Conciliação Escola x Trabalho',
+              body: [
+                'Assista à videoaula oficial de conclusão do curso, integrando o planejamento de rotina dupla, o gerenciamento de energia, o foco adaptado e as estratégias de alinhamento com lideranças e equipes.',
+                'Acompanhe o temporizador obrigatório do player minimalista até o término da contagem regressiva para desbloquear o acesso à Prova de Fixação e Emissão do Certificado Oficial.'
+              ]
+            },
+            {
+              subheading: 'Aula 4.2: O Sono como Ativo de Performance e Higiene do Descanso',
               body: [
                 'Sustentar a rotina dupla no longo prazo depende de proteger a saúde física e mental, evitando o colapso por exaustão.',
                 'Cortar horas de sono para estudar na madrugada costuma ser contraproducente. A privação do sono prejudica a consolidação da memória, o foco no trabalho e a imunidade.',
@@ -7326,7 +7539,7 @@ export const COURSES: Course[] = [
               }
             },
             {
-              subheading: '2. Comunicação e Alinhamento de Expectativas',
+              subheading: 'Aula 4.3: Comunicação Assertiva e Alinhamento de Expectativas',
               body: [
                 'É fundamental manter transparência com as lideranças no trabalho e com os grupos de estudo na escola/faculdade.',
                 '• No Trabalho: Informar a liderança sobre horários de aula para alinhar expectativas quanto a horas extras e viagens corporativas.',
@@ -7337,6 +7550,13 @@ export const COURSES: Course[] = [
                 title: 'Trabalho Acadêmico Assíncrono',
                 text: 'Combine com o grupo de estudos: "Tenho expediente comercial, mas entrego minha parte revisada no drive até quinta-feira às 21h". A clareza evita conflitos.'
               }
+            },
+            {
+              subheading: 'Aula 4.4: Avaliação Final de Fixação e Emissão de Selo Oficial',
+              body: [
+                'Após concluir o tempo mínimo de visualização da videoaula e a leitura atenta dos módulos teóricos, realize o Quiz Final de Fixação.',
+                'Atingindo aproveitamento igual ou superior a 70%, sua Badge Oficial de Gestão do Tempo & Foco será validada e registrada no seu perfil SkillHub.'
+              ]
             }
           ]
         }
