@@ -44,6 +44,7 @@ function MinimalistVideoPlayer({
   isGestaoProjetos,
   isInteligenciaNegocios,
   isTransformacaoDigital,
+  isResolucaoCriativa,
   autoStartMuted = false
 }: { 
   youtubeId: string; 
@@ -66,6 +67,7 @@ function MinimalistVideoPlayer({
   isGestaoProjetos?: boolean;
   isInteligenciaNegocios?: boolean;
   isTransformacaoDigital?: boolean;
+  isResolucaoCriativa?: boolean;
   autoStartMuted?: boolean;
 }) {
   const [isPlaying, setIsPlaying] = useState<boolean>(autoStartMuted || false);
@@ -193,6 +195,17 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
   } = useApp();
 
   const activeCourseId = courseId || selectedCourseId;
+
+  const isResolucaoCriativaId = (id?: string | null) =>
+    Boolean(
+      id && (
+        id === 'curso-resolucao-criativa-problemas-adaptacao' ||
+        id === 'resolucao-criativa-problemas-adaptacao' ||
+        id === 'curso-resolucao-criativa' ||
+        id === 'resolucao-criativa' ||
+        id.includes('resolucao-criativa')
+      )
+    );
 
   const isTransformacaoDigitalId = (id?: string | null) =>
     Boolean(
@@ -409,6 +422,9 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     );
 
   const course = 
+    (isResolucaoCriativaId(activeCourseId)
+      ? COURSES.find((c) => isResolucaoCriativaId(c.id))
+      : null) ||
     (isTransformacaoDigitalId(activeCourseId)
       ? COURSES.find((c) => isTransformacaoDigitalId(c.id))
       : null) ||
@@ -469,6 +485,7 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     CURSO_EQUILIBRIO_EMOCIONAL ||
     COURSES[0];
 
+  const isResolucaoCriativa = isResolucaoCriativaId(course?.id) || isResolucaoCriativaId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('resolução criativa') || course.title.toLowerCase().includes('resolucao criativa')));
   const isTransformacaoDigital = isTransformacaoDigitalId(course?.id) || isTransformacaoDigitalId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('transformação digital') || course.title.toLowerCase().includes('transformacao digital')));
   const isInteligenciaNegocios = isInteligenciaNegociosId(course?.id) || isInteligenciaNegociosId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('inteligência de negócios') || course.title.toLowerCase().includes('inteligencia de negocios') || course.title.toLowerCase().includes('baseada em indicadores')));
   const isGestaoProjetos = isGestaoProjetosId(course?.id) || isGestaoProjetosId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('gestão estratégica de projetos') || course.title.toLowerCase().includes('gestao estrategica de projetos') || course.title.toLowerCase().includes('metodologias de gerenciamento')));
@@ -487,9 +504,11 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
   const isExcel = isExcelId(course?.id) || Boolean(course?.title && course.title.toLowerCase().includes('excel do zero'));
   const isInformatica = isInformaticaId(course?.id) || Boolean(course?.title && course.title.toLowerCase().includes('informática básica'));
   const isComunicacao = isComunicacaoId(course?.id) || Boolean(course?.title && course.title.toLowerCase().includes('comunicação escrita'));
-  const hasReadingTimer = isOrcamento || isEquilibrio || isExcel || isInformatica || isComunicacao || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM || isEtica || isConciliacaoEscola || isAtendimento || isPowerBi || isGestaoProjetos || isInteligenciaNegocios || isTransformacaoDigital;
+  const hasReadingTimer = isResolucaoCriativa || isOrcamento || isEquilibrio || isExcel || isInformatica || isComunicacao || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM || isEtica || isConciliacaoEscola || isAtendimento || isPowerBi || isGestaoProjetos || isInteligenciaNegocios || isTransformacaoDigital;
 
-  const currentYoutubeId = isTransformacaoDigital
+  const currentYoutubeId = isResolucaoCriativa
+    ? (course?.youtubeId || 'kKo9a3ZlqHo')
+    : isTransformacaoDigital
     ? (course?.youtubeId || 'vFo9TS-rNPQ')
     : isInteligenciaNegocios
     ? (course?.youtubeId || 'sL0m2cnrk8Y')
@@ -527,7 +546,9 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     ? 'PAVaaGa_gug' 
     : (course?.youtubeId || 'X2wgk02Bqt0');
 
-  const currentVideoUrl = isTransformacaoDigital
+  const currentVideoUrl = isResolucaoCriativa
+    ? (course?.videoUrl || 'https://youtu.be/kKo9a3ZlqHo?si=yPsxbpTQaoZtGlQ')
+    : isTransformacaoDigital
     ? (course?.videoUrl || 'https://youtu.be/vFo9TS-rNPQ')
     : isInteligenciaNegocios
     ? (course?.videoUrl || 'https://youtu.be/sL0m2cnrk8Y')
@@ -565,7 +586,9 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     ? 'https://youtu.be/PAVaaGa_gug?si=JYdOWSYOz0oJj5TH'
     : (course?.videoUrl || 'https://youtu.be/X2wgk02Bqt0');
 
-  const currentVideoTitle = isTransformacaoDigital
+  const currentVideoTitle = isResolucaoCriativa
+    ? 'Resolução Criativa de Problemas e Adaptação'
+    : isTransformacaoDigital
     ? 'Transformação Digital, Inovação e Estratégias Empresariais'
     : isInteligenciaNegocios
     ? 'Inteligência de Negócios e Tomada de Decisão Baseada em Indicadores'
@@ -629,7 +652,7 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     : Math.min(99, Math.round((completedInCourse.length / Math.max(course?.modules?.length || 1, 1)) * 100));
 
   // Cronômetro de leitura / vídeo com persistência de estado
-  const INITIAL_TIMER_SECONDS = (isOrcamento || isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM || isEtica || isConciliacaoEscola || isAtendimento || isPowerBi || isGestaoProjetos || isInteligenciaNegocios || isTransformacaoDigital) ? 300 : 180;
+  const INITIAL_TIMER_SECONDS = (isResolucaoCriativa || isOrcamento || isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM || isEtica || isConciliacaoEscola || isAtendimento || isPowerBi || isGestaoProjetos || isInteligenciaNegocios || isTransformacaoDigital) ? 300 : 180;
   const [timeLeft, setTimeLeft] = useState<number>(INITIAL_TIMER_SECONDS);
   const isTimerFinished = timeLeft === 0;
 
@@ -651,7 +674,7 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
       }
     } catch {}
 
-    setTimeLeft((isOrcamento || isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM || isEtica || isConciliacaoEscola || isAtendimento || isPowerBi || isGestaoProjetos || isInteligenciaNegocios || isTransformacaoDigital) ? 300 : 180);
+    setTimeLeft((isResolucaoCriativa || isOrcamento || isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM || isEtica || isConciliacaoEscola || isAtendimento || isPowerBi || isGestaoProjetos || isInteligenciaNegocios || isTransformacaoDigital) ? 300 : 180);
   }, [course.id, hasReadingTimer, isQuizPassedInContext, isOrcamento, isExcel, isInformatica, isComunicacao]);
 
   useEffect(() => {
@@ -1025,13 +1048,17 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                   <div className="space-y-1">
                     <div className={`inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider ${isOrcamento ? 'text-emerald-400' : 'text-purple-400'}`}>
                       <Play className="w-3.5 h-3.5" />
-                      <span>{isExcel || isOrcamento || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado ? 'Vídeo Oficial de Conclusão' : 'Material Audiovisual Complementar'}</span>
+                      <span>{isExcel || isOrcamento || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isEtica ? 'Vídeo Oficial de Conclusão' : 'Material Audiovisual Complementar'}</span>
                     </div>
                     <h3 className="text-base sm:text-lg font-bold text-white">
                       {currentVideoTitle}
                     </h3>
                     <p className="text-xs text-slate-300 font-normal">
-                      {isComunicacao
+                      {isResolucaoCriativa
+                        ? 'Assista à videoaula completa de Resolução Criativa de Problemas e Adaptação e acompanhe o temporizador para liberar o acesso à Prova de Fixação.'
+                        : isEtica
+                        ? 'Assista à videoaula completa de Ética e Etiqueta Corporativa (Presencial e Digital) e aguarde o temporizador para liberar o acesso à Prova de Fixação.'
+                        : isComunicacao
                         ? 'Assista à aula completa de Comunicação Escrita e Redação Corporativa e aguarde o temporizador para liberar o acesso à Prova de Fixação.'
                         : isInformatica
                         ? 'Assista à aula prática de Informática Básica, Nuvem e Segurança e aguarde o temporizador para liberar o acesso à Prova de Fixação.'
@@ -1089,7 +1116,8 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                     isGestaoProjetos={isGestaoProjetos}
                     isInteligenciaNegocios={isInteligenciaNegocios}
                     isTransformacaoDigital={isTransformacaoDigital}
-                    autoStartMuted={isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM || isEtica || isConciliacaoEscola || isAtendimento || isPowerBi || isGestaoProjetos || isInteligenciaNegocios || isTransformacaoDigital}
+                    isResolucaoCriativa={isResolucaoCriativa}
+                    autoStartMuted={isResolucaoCriativa || isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM || isEtica || isConciliacaoEscola || isAtendimento || isPowerBi || isGestaoProjetos || isInteligenciaNegocios || isTransformacaoDigital}
                   />
 
                   {/* Barra de Progresso do Vídeo Vinculada ao Temporizador */}
@@ -1373,7 +1401,8 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                     isGestaoProjetos={isGestaoProjetos}
                     isInteligenciaNegocios={isInteligenciaNegocios}
                     isTransformacaoDigital={isTransformacaoDigital}
-                    autoStartMuted={isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM || isEtica || isConciliacaoEscola || isAtendimento || isPowerBi || isGestaoProjetos || isInteligenciaNegocios || isTransformacaoDigital}
+                    isResolucaoCriativa={isResolucaoCriativa}
+                    autoStartMuted={isResolucaoCriativa || isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM || isEtica || isConciliacaoEscola || isAtendimento || isPowerBi || isGestaoProjetos || isInteligenciaNegocios || isTransformacaoDigital}
                         />
 
                         {/* Barra de Progresso do Vídeo Vinculada ao Temporizador */}

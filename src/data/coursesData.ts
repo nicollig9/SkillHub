@@ -2885,6 +2885,8 @@ export const COURSES: Course[] = [
     badgeIcon: 'Briefcase',
     accentColor: '#F59E0B',
     level: 'Iniciante',
+    videoUrl: 'https://youtu.be/kKo9a3ZlqHo?si=yPsxbpTQaoZtGlQ',
+    youtubeId: 'kKo9a3ZlqHo',
     learningObjectives: [
       'Aplicar a técnica dos Cinco Porquês da metodologia Toyota/Lean para identificar a causa-raiz de falhas operacionais e evitar correções superficiais.',
       'Adotar uma postura focada em soluções, apresentando à liderança alternativas viáveis ao reportar obstáculos.',
@@ -2960,6 +2962,83 @@ export const COURSES: Course[] = [
                 title: 'Flexibilidade e Inovação',
                 text: 'Quando o plano A falha, olhar a situação por um ângulo não convencional descobre oportunidades onde os outros enxergam apenas bloqueios.'
               }
+            }
+          ]
+        }
+      },
+      {
+        id: 'resolucao-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Matriz de Priorização e Planos de Ação',
+        summary: 'Seleção estruturada de alternativas com a Matriz Esforço x Impacto e execução prática de soluções com o framework 5W2H.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Matriz Esforço x Impacto (Ganhos Rápidos)',
+              body: [
+                'Após uma sessão de Brainstorming, a equipe se depara com dezenas de alternativas possíveis. A Matriz Esforço x Impacto organiza essas ideias em quatro quadrantes estratégicos:',
+                'Ganhos Rápidos (Quick Wins): Baixo esforço e alto impacto. Devem ser implementadas de imediato para gerar resultados visíveis e motivar o time.',
+                'Grandes Projetos: Alto esforço e alto impacto. Exigem planejamento detalhado, alocação de recursos e cronograma estruturado.',
+                'Preenchimento / Tarefas Menores: Baixo esforço e baixo impacto. Podem ser realizadas quando houver tempo ocioso.',
+                'Drenos de Energia / Ingratas: Alto esforço e baixo impacto. Devem ser descartadas ou reformuladas.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Priorização Inteligente',
+                text: 'Focar primeiro nas soluções de alto impacto e baixo esforço constrói credibilidade rápida para o jovem profissional perante os gestores.'
+              }
+            },
+            {
+              subheading: '2. Framework 5W2H para Execução Prática',
+              body: [
+                'Uma ideia criativa sem execução estruturada se perde na rotina. A ferramenta 5W2H transforma a solução escolhida em um plano de ação objetivo respondendo a 7 perguntas:',
+                'What (O que será feito?), Why (Por que será feito?), Where (Onde será feito?), When (Quando será feito?), Who (Quem será o responsável?), How (Como será executado?) e How Much (Quanto custará?).',
+                'O uso do 5W2H elimina ambiguidades, define responsabilidades claras e garante o acompanhamento pontual dos prazos de entrega.'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Clareza Operacional',
+                text: 'Definir claramente "Quem" e "Quando" é o segredo para transformar discussões criativas em entregas concretas no ambiente de trabalho.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'resolucao-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Adaptação sob Pressão, Resiliência e Conclusão',
+        summary: 'Flexibilidade cognitiva diante de cenários dinâmicos, resolução colaborativa de conflitos operacionais, vídeo oficial de conclusão e preparação para a avaliação final.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: 'Aula 4.1: Vídeo de Conclusão e Estudo de Caso de Resolução Criativa e Adaptação',
+              body: [
+                'Assista à videoaula oficial de conclusão do curso, integrando a mentalidade ágil de solução de problemas, flexibilidade e capacidade de adaptação no dia a dia corporativo.',
+                'Acompanhe o temporizador obrigatório do player minimalista até o encerramento da contagem para desbloquear o acesso à Prova de Fixação e Certificação Oficial.'
+              ]
+            },
+            {
+              subheading: 'Aula 4.2: Resiliência Operacional e Flexibilidade Cognitiva',
+              body: [
+                'A adaptabilidade é a habilidade de ajustar rotinas e posturas diante de mudanças imprevistas de prioridade, tecnologia ou demandas de clientes.',
+                'Profissionais adaptáveis não se apegam a processos obsoletos; eles compreendem o objetivo final e encontram caminhos alternativos sem perder o foco ou a qualidade técnica.',
+                'A resiliência permite absorver o impacto de falhas temporárias, aprender com os desvios e reorientar a equipe para o atingimento das metas organizacionais.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Mentalidade de Crescimento',
+                text: 'O erro em ambiente corporativo é um dado analítico de melhoria contínua quando acompanhado de investigação de causa-raiz e rápida capacidade de adaptação.'
+              }
+            },
+            {
+              subheading: 'Aula 4.3: Avaliação Final de Fixação e Emissão de Selo Oficial',
+              body: [
+                'Após concluir o tempo mínimo de visualização da videoaula e a leitura dos módulos, realize o Quiz Final de Fixação.',
+                'Atingindo aproveitamento igual ou superior a 70%, sua Badge Oficial de Solucionador Criativo de Problemas será validada e registrada no seu perfil SkillHub.'
+              ]
             }
           ]
         }
@@ -3087,6 +3166,8 @@ export const COURSES: Course[] = [
     badgeIcon: 'Sparkles',
     accentColor: '#8B5CF6',
     level: 'Iniciante',
+    videoUrl: 'https://youtu.be/ps8k_bKoXoU?si=zF7CUiC-AUmgArQB',
+    youtubeId: 'ps8k_bKoXoU',
     learningObjectives: [
       'Compreender e respeitar o código de vestimenta (dress code) alinhado à cultura corporativa e aos diferentes segmentos de mercado.',
       'Cultivar pontualidade e rigor no cumprimento de compromissos como pilar de credibilidade profissional.',
@@ -3164,6 +3245,81 @@ export const COURSES: Course[] = [
                 title: 'Direito à Desconexão',
                 text: 'Demandas enviadas em fins de semana geram ansiedade e quebram a barreira saudável entre vida pessoal e profissional dos colaboradores.'
               }
+            }
+          ]
+        }
+      },
+      {
+        id: 'etica-etiqueta-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Comunicação Assertiva, Conflitos e Redes Sociais',
+        summary: 'Diferença entre assertividade e agressividade, gestão ética de desentendimentos e cuidados essenciais com a reputação digital.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Postura Ética nas Redes Sociais e Marca Pessoal',
+              body: [
+                'O perfil digital de um colaborador reflete indiretamente na reputação da organização.',
+                'Expressar opiniões preconceituosas, reclamar publicamente de superiores ou expor fotos de documentos internos em redes sociais constitui falta grave e quebra de ética.',
+                'Utilize redes como LinkedIn para compartilhar aprendizados e conquistas profissionais com moderação, respeitando sempre o sigilo institucional.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Reputação e Pegada Digital',
+                text: 'O que é publicado na internet permanece acessível. Cultive uma presença digital que reforce sua maturidade e credibilidade profissional.'
+              }
+            },
+            {
+              subheading: '2. Comunicação Assertiva e Resolução de Conflitos',
+              body: [
+                'Divergências de opinião são naturais no ambiente de trabalho. A conduta ética exige que conflitos sejam tratados de forma privada, direta e respeitosa.',
+                'Ser assertivo significa expressar seu ponto de vista e suas necessidades com clareza e firmeza, sem recorrer à agressividade ou à passividade dissimulada.',
+                'A prática do feedback construtivo foca em comportamentos e processos observáveis, nunca em ataques pessoais aos colegas.'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Elogie em Público, Corrija em Particular',
+                text: 'Divergências operacionais devem ser debatidas com serenidade entre os envolvidos, preservando o respeito e a coesão do time.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'etica-etiqueta-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Compliance, Sigilo Corporativo e Vídeo de Conclusão',
+        summary: 'Confidencialidade de dados, conduta em conformidade com as regras institucionais (compliance), vídeo oficial de encerramento e preparação para a avaliação final.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: 'Aula 4.1: Vídeo de Conclusão e Estudo de Caso de Ética e Etiqueta Corporativa',
+              body: [
+                'Assista à videoaula oficial de conclusão do curso, revisando as principais diretrizes de etiqueta profissional presencial, remota e digital.',
+                'Acompanhe o temporizador obrigatório do player minimalista até o encerramento da contagem para desbloquear o acesso à Prova de Fixação e Certificação Oficial.'
+              ]
+            },
+            {
+              subheading: 'Aula 4.2: Confidencialidade, Sigilo Profissional e LGPD nas Relações de Trabalho',
+              body: [
+                'Informações sobre clientes, contratos, faturamento ou estratégias da empresa são sigilosas e confidenciais.',
+                'Compartilhar dados corporativos em grupos externos de WhatsApp ou comentar detalhes de projetos em locais públicos viola o termo de confidencialidade e a LGPD.',
+                'O compliance corporativo assegura que todas as operações sigam rigorosamente a legislação vigente e os valores éticos da organização.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Sigilo Profissional',
+                text: 'A confiança depositada no jovem profissional começa pelo respeito incondicional às informações sensíveis que passam por suas mãos.'
+              }
+            },
+            {
+              subheading: 'Aula 4.3: Avaliação Final de Fixação e Emissão de Selo Oficial',
+              body: [
+                'Após concluir o tempo mínimo de visualização da videoaula e a leitura dos módulos, realize o Quiz Final de Fixação.',
+                'Atingindo aproveitamento igual ou superior a 70%, sua Badge Oficial de Profissional de Alta Postura & Ética será validada e registrada no seu perfil SkillHub.'
+              ]
             }
           ]
         }
