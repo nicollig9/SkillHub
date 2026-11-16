@@ -139,6 +139,15 @@ export interface Course {
   visible?: boolean;
   videoUrl?: string;
   youtubeId?: string;
+  videos?: {
+    title: string;
+    subtitle?: string;
+    url: string;
+    youtubeId: string;
+    autoPlay?: boolean;
+    badge?: string;
+    description?: string;
+  }[];
 }
 
 export interface TrackStep {
