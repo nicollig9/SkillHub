@@ -44,6 +44,13 @@ const COURSE_REASONS: Record<string, string> = {
   'curso-planejamento-orcamento': 'Planejamento financeiro prático pelo método 50-30-20, cálculo de juros e construção da reserva de emergência.',
 
   // Nível 3
+  'curso-inteligencia-negocios-indicadores': 'Interpretação de KPIs estratégicos, pirâmide DIKW, diagnóstico de gargalos operacionais e tomada de decisão data-driven.',
+  'inteligencia-negocios-indicadores': 'Interpretação de KPIs estratégicos, pirâmide DIKW, diagnóstico de gargalos operacionais e tomada de decisão data-driven.',
+  'inteligencia-negocios': 'Interpretação de KPIs estratégicos, pirâmide DIKW, diagnóstico de gargalos operacionais e tomada de decisão data-driven.',
+  'curso-inteligencia-negocios': 'Interpretação de KPIs estratégicos, pirâmide DIKW, diagnóstico de gargalos operacionais e tomada de decisão data-driven.',
+  'curso-analise-dados-power-bi': 'Modelagem dimensional Star Schema, ETL no Power Query, fórmulas DAX e relatórios interativos de Business Intelligence.',
+  'analise-dados-power-bi': 'Modelagem dimensional Star Schema, ETL no Power Query, fórmulas DAX e relatórios interativos de Business Intelligence.',
+  'power-bi': 'Modelagem dimensional Star Schema, ETL no Power Query, fórmulas DAX e relatórios interativos de Business Intelligence.',
   'curso-ia-produtividade': 'Aplicação prática de Inteligência Artificial generativa, engenharia de prompts avançada e automação de fluxos operacionais.',
   'curso-lgpd-seguranca-dados': 'Conformidade com a Lei Geral de Proteção de Dados (LGPD), classificação de dados sensíveis e segurança da informação corporativa.'
 };
@@ -99,6 +106,11 @@ const LEVEL_DEFINITIONS = [
     badgeClass: 'bg-rose-950/60 text-rose-300 border-rose-500/30',
     dotColor: 'bg-rose-400',
     priorityOrder: [
+      'curso-analise-dados-power-bi',
+      'power-bi',
+      'curso-inteligencia-negocios-indicadores',
+      'inteligencia-negocios',
+      'curso-transformacao-digital-inovacao',
       'curso-ia-produtividade',
       'curso-lgpd-seguranca-dados'
     ]

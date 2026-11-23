@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
 import { UserRole, CandidateProfileType, UserAccount, Student, JobVacancy, Badge, Application, GuardrailLog, UserCourseItem } from '@/types';
 import { INITIAL_STUDENT, INITIAL_VAGAS, INITIAL_BADGES, INITIAL_APPLICATIONS, INITIAL_GUARDRAILS_LOGS } from '@/data/mockData';
-import { COURSES } from '@/data/coursesData';
+import { COURSES, resolveCourseAlias as resolveCourseAliasFromData } from '@/data/coursesData';
 
 export type AppView = 
   | 'INICIO'
@@ -193,7 +193,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     try {
       // Invalidação e renovação de cache do localStorage (versão 3 - Reset total de progresso mock)
       const DATA_VERSION_KEY = 'skillhub_data_version';
-      const CURRENT_DATA_VERSION = '3';
+      const CURRENT_DATA_VERSION = '4';
       const cachedVersion = localStorage.getItem(DATA_VERSION_KEY);
 
       if (cachedVersion !== CURRENT_DATA_VERSION) {
@@ -207,7 +207,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
               if (raw) {
                 const parsed = JSON.parse(raw);
                 if (parsed) {
-                  parsed.version = 3;
+                  parsed.version = 4;
                   parsed.completedModules = {};
                   parsed.quizResults = {};
                   parsed.cursosInscritos = [];
@@ -329,7 +329,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   // GESTÃO DINÂMICA DE PROGRESSO REAL DO USUÁRIO (ZERA EM NOVOS CADASTROS)
   // =========================================================================
 
-  // 1. Cursos Inscritos (Zero para nova conta, calculado dinamicamente conforme o jovem estuda)
+  // 1. Cursos Inscritos (Zero para nova conta, calculado dinamicamente conforme o jovem estuda - com deduplicação)
   const cursosInscritos: UserCourseItem[] = useMemo(() => {
     const list: UserCourseItem[] = [];
     const courseIds = Array.from(new Set([
@@ -337,12 +337,21 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       ...Object.keys(quizResults)
     ]));
 
-    for (const cId of courseIds) {
-      const course = COURSES.find((c) => c.id === cId);
+    const seenCourseIds = new Set<string>();
+
+    for (const rawId of courseIds) {
+      const resolvedId = resolveCourseAlias(rawId);
+      if (seenCourseIds.has(resolvedId)) continue;
+      seenCourseIds.add(resolvedId);
+
+      const course = COURSES.find((c) => c.id === resolvedId || c.id === rawId);
       if (!course) continue;
 
-      const completedInCourse = completedModules[cId] || [];
-      const quizPassed = Boolean(quizResults[cId]?.passed);
+      const completedInCourse = Array.from(new Set([
+        ...(completedModules[resolvedId] || []),
+        ...(completedModules[rawId] || [])
+      ]));
+      const quizPassed = Boolean(quizResults[resolvedId]?.passed || quizResults[rawId]?.passed);
       const totalMods = course.modules.length || 1;
       const progress = quizPassed ? 100 : Math.min(99, Math.round((completedInCourse.length / totalMods) * 100));
       const isCompleted = quizPassed;
@@ -454,20 +463,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     currentView
   ]);
 
-  const resolveCourseAlias = (id: string): string => {
-    if (id === 'equilibrio-emocional' || id === 'curso-equilibrio-emocional' || id === 'curso-saude-mental-trabalho' || id === 'inteligencia-emocional' || id === 'curso-inteligencia-emocional' || id === 'c16') {
-      return 'curso-saude-mental-trabalho';
-    }
-    if (id === 'orcamento-primeiro-salario' || id === 'orcamento-primeiro-salarial' || id === 'curso-orcamento-primeiro-salario') {
-      return 'orcamento-primeiro-salario';
-    }
-    if (id === 'informatica-basica' || id === 'informatica-basica-nuvem-seguranca' || id === 'informatica' || id === 'curso-informatica-seguranca') {
-      return 'curso-informatica-seguranca';
-    }
-    if (id === 'comunicacao-escrita' || id === 'curso-comunicacao-escrita' || id === 'curso-comunicacao-corporativa' || id === 'curso-comunicacao-escrita-corporativa') {
-      return 'curso-comunicacao-escrita-corporativa';
-    }
-    return id;
+    const resolveCourseAlias = (id: string): string => {
+    return resolveCourseAliasFromData(id);
   };
 
   const openCourse = (courseId: string, moduleIndex?: number) => {

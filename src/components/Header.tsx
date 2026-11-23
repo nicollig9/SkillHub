@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useRef, useMemo } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { useApp } from '@/context/AppContext';
+import { useApp, AppView } from '@/context/AppContext';
 import { COURSES, TRACKS } from '@/data/coursesData';
 import { JOB_OPPORTUNITIES } from '@/data/jobsData';
 import { 
@@ -21,7 +21,17 @@ import {
   Calculator,
   MapPin,
   X, 
-  ArrowRight
+  ArrowRight,
+  FileText,
+  ClipboardCheck,
+  BookOpen,
+  Layers,
+  Sparkles,
+  Building2,
+  HelpCircle,
+  Info,
+  Mail,
+  Clock
 } from 'lucide-react';
 
 export default function Header() {
@@ -29,11 +39,14 @@ export default function Header() {
   const pathname = usePathname();
   const [hasStoredSession, setHasStoredSession] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isMoreOpen, setIsMoreOpen] = useState(false);
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isSupportModalOpen, setIsSupportModalOpen] = useState(false);
 
   const modalInputRef = useRef<HTMLInputElement>(null);
   const profileRef = useRef<HTMLDivElement>(null);
+  const moreMenuRef = useRef<HTMLDivElement>(null);
 
   const { 
     role, 
@@ -76,6 +89,8 @@ export default function Header() {
       } else if (e.key === 'Escape') {
         setIsSearchModalOpen(false);
         setIsProfileOpen(false);
+        setIsMoreOpen(false);
+        setIsSupportModalOpen(false);
       }
     };
 
@@ -92,11 +107,14 @@ export default function Header() {
     }
   }, [isSearchModalOpen]);
 
-  // Fecha dropdown do perfil ao clicar fora
+  // Fecha dropdowns ao clicar fora
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (profileRef.current && !profileRef.current.contains(event.target as Node)) {
         setIsProfileOpen(false);
+      }
+      if (moreMenuRef.current && !moreMenuRef.current.contains(event.target as Node)) {
+        setIsMoreOpen(false);
       }
     };
     document.addEventListener('mousedown', handleClickOutside);
@@ -121,7 +139,7 @@ export default function Header() {
 
   const hasSession = isAuthenticated && hasStoredSession;
 
-  // Nome e inicial do usuário (enxuto e delicado)
+  // Nome e inicial do usuário
   const rawName = currentUser?.nome || student?.nome || 'Nicolli Vitória';
   const normalizedName = rawName === 'Lucas Silva Oliveira' ? 'Nicolli Vitória' : rawName;
   const firstName = normalizedName.split(' ')[0] || 'Nicolli';
@@ -137,12 +155,11 @@ export default function Header() {
   const isCoursesActive = 
     pathname === '/cursos' || 
     pathname.startsWith('/cursos/') || 
-    (pathname === '/' && (currentView === 'CURSOS_DISPONIVEIS' || currentView === 'CURSOS' || currentView === 'MEUS_CURSOS' || currentView === 'CURSO_DETALHE'));
+    (pathname === '/' && (currentView === 'CURSOS_DISPONIVEIS' || currentView === 'CURSOS'));
 
   const isTracksActive = 
     pathname === '/trilhas' || 
-    pathname === '/minhas-trilhas' || 
-    (pathname === '/' && (currentView === 'TRILHAS_DISPONIVEIS' || currentView === 'TRILHAS' || currentView === 'MINHAS_TRILHAS'));
+    (pathname === '/' && (currentView === 'TRILHAS_DISPONIVEIS' || currentView === 'TRILHAS'));
 
   const isJobsActive = 
     pathname === '/vagas' || 
@@ -152,42 +169,123 @@ export default function Header() {
     pathname === '/holerite' || 
     (pathname === '/' && currentView === 'HOLERITE');
 
+  // Detecção do estado ativo para abas secundárias dentro do menu "Mais"
+  const isMoreActive = 
+    pathname === '/curriculo' || 
+    pathname === '/sobre' || 
+    pathname === '/minhas-trilhas' || 
+    (pathname === '/' && (
+      currentView === 'MINHAS_AVALIACOES' || 
+      currentView === 'MEUS_CURSOS' || 
+      currentView === 'MINHAS_TRILHAS' || 
+      currentView === 'BADGES_PERFIL'
+    ));
+
   // Ações de navegação direta
-  const handleNav = (route: string, view: any) => {
-    setCurrentView(view);
+  const handleNav = (route: string, view?: AppView) => {
+    if (view) {
+      setCurrentView(view);
+    }
     if (pathname !== route) {
       router.push(route);
     }
   };
 
-  // Resultados rápidos do Command Palette
+  // Navegação para views que vivem na Home ou em rotas dedicadas
+  const handleViewNav = (view: AppView, fallbackRoute?: string) => {
+    setCurrentView(view);
+    if (fallbackRoute) {
+      if (pathname !== fallbackRoute) {
+        router.push(fallbackRoute);
+      }
+    } else {
+      if (pathname !== '/') {
+        router.push('/');
+      }
+    }
+  };
+
+  // Resultados rápidos do Command Palette com estrita deduplicação
   const searchResults = useMemo(() => {
     const query = searchQuery.trim().toLowerCase();
+
+    // Deduplicação garantida de Cursos por título normalizado e ID canônico
+    const deduplicateCourses = (courseList: typeof COURSES) => {
+      const seen = new Set<string>();
+      const result: typeof COURSES = [];
+      for (const course of courseList) {
+        const titleKey = course.title.trim().toLowerCase();
+        if (!seen.has(titleKey) && !seen.has(course.id)) {
+          seen.add(titleKey);
+          seen.add(course.id);
+          result.push(course);
+        }
+      }
+      return result;
+    };
+
+    // Deduplicação garantida de Trilhas por nome normalizado e ID
+    const deduplicateTracks = (trackList: typeof TRACKS) => {
+      const seen = new Set<string>();
+      const result: typeof TRACKS = [];
+      for (const track of trackList) {
+        const nameKey = track.name.trim().toLowerCase();
+        if (!seen.has(nameKey) && !seen.has(track.id)) {
+          seen.add(nameKey);
+          seen.add(track.id);
+          result.push(track);
+        }
+      }
+      return result;
+    };
+
+    // Deduplicação garantida de Vagas por cargo + empresa e ID
+    const deduplicateJobs = (jobList: typeof JOB_OPPORTUNITIES) => {
+      const seen = new Set<string>();
+      const result: typeof JOB_OPPORTUNITIES = [];
+      for (const job of jobList) {
+        const jobKey = `${job.title.trim().toLowerCase()}__${job.company.trim().toLowerCase()}`;
+        const idKey = String(job.id);
+        if (!seen.has(jobKey) && !seen.has(idKey)) {
+          seen.add(jobKey);
+          seen.add(idKey);
+          result.push(job);
+        }
+      }
+      return result;
+    };
+
     if (!query) {
       return {
-        courses: COURSES.slice(0, 3),
-        tracks: TRACKS.slice(0, 2),
-        jobs: JOB_OPPORTUNITIES.slice(0, 3)
+        courses: deduplicateCourses(COURSES).slice(0, 3),
+        tracks: deduplicateTracks(TRACKS).slice(0, 2),
+        jobs: deduplicateJobs(JOB_OPPORTUNITIES).slice(0, 3)
       };
     }
 
-    const matchedCourses = COURSES.filter((c) =>
-      c.title.toLowerCase().includes(query) ||
-      c.subtitle.toLowerCase().includes(query) ||
-      c.category.toLowerCase().includes(query)
+    const matchedCourses = deduplicateCourses(
+      COURSES.filter((c) =>
+        c.title.toLowerCase().includes(query) ||
+        c.subtitle?.toLowerCase().includes(query) ||
+        c.category?.toLowerCase().includes(query)
+      )
     ).slice(0, 3);
 
-    const matchedTracks = TRACKS.filter((t) =>
-      t.name.toLowerCase().includes(query) ||
-      t.description.toLowerCase().includes(query) ||
-      t.category.toLowerCase().includes(query)
+    const matchedTracks = deduplicateTracks(
+      TRACKS.filter((t) =>
+        t.name.toLowerCase().includes(query) ||
+        t.description?.toLowerCase().includes(query) ||
+        t.category?.toLowerCase().includes(query)
+      )
     ).slice(0, 2);
 
-    const matchedJobs = JOB_OPPORTUNITIES.filter((j) =>
-      j.title.toLowerCase().includes(query) ||
-      j.company.toLowerCase().includes(query) ||
-      j.neighborhood.toLowerCase().includes(query) ||
-      j.modality.toLowerCase().includes(query)
+    const matchedJobs = deduplicateJobs(
+      JOB_OPPORTUNITIES.filter((j) =>
+        j.title.toLowerCase().includes(query) ||
+        j.company.toLowerCase().includes(query) ||
+        j.neighborhood?.toLowerCase().includes(query) ||
+        j.modality?.toLowerCase().includes(query)
+      )
     ).slice(0, 3);
 
     return {
@@ -210,21 +308,19 @@ export default function Header() {
           {/* ========================================================================= */}
           {/* 1. ESQUERDA — MARCA MINIMALISTA (SEM SELOS EXTRAS)                        */}
           {/* ========================================================================= */}
-          <div className="flex items-center gap-3 shrink-0">
-            {/* Menu Hambúrguer apenas no mobile */}
-            {isAuthenticated && (
-              <button
-                type="button"
-                onClick={toggleSidebar}
-                title="Abrir Menu"
-                aria-label="Abrir Menu de Navegação"
-                className="md:hidden p-2 rounded-lg text-slate-600 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-white/10 transition cursor-pointer"
-              >
-                <Menu className="w-5 h-5" />
-              </button>
-            )}
+          <div className="flex items-center gap-2.5 shrink-0">
+            {/* Menu Hambúrguer visível no mobile para abrir a gaveta completa */}
+            <button
+              type="button"
+              onClick={toggleSidebar}
+              title="Abrir Menu de Navegação Completo"
+              aria-label="Abrir Menu de Navegação"
+              className="md:hidden p-2 rounded-lg text-slate-600 dark:text-zinc-300 hover:bg-slate-100 dark:hover:bg-white/10 transition cursor-pointer"
+            >
+              <Menu className="w-5 h-5" />
+            </button>
 
-            {/* Logo + Nome SkillHub limpo */}
+            {/* Logo + Nome SkillHub limpo e elegante */}
             <button
               type="button"
               onClick={handleLogoClick}
@@ -242,11 +338,11 @@ export default function Header() {
           </div>
 
           {/* ========================================================================= */}
-          {/* 2. CENTRO — NAVEGAÇÃO INTEGRADA COM BOTÃO DE LUPA DISCRETO                 */}
+          {/* 2. CENTRO — NAVEGAÇÃO INTEGRADA + DROPDOWN "MAIS ▾" + LUPA COMPACTA       */}
           {/* ========================================================================= */}
           <div className="hidden md:flex items-center gap-1 bg-slate-100/80 dark:bg-white/[0.03] border border-slate-200/80 dark:border-white/[0.08] rounded-full p-1 shadow-xs">
             
-            {/* 5 Links Enxutos */}
+            {/* 5 Links Principais Enxutos */}
             <button
               type="button"
               onClick={() => handleNav('/dashboard', role === 'RECRUTADOR' ? 'RECRUTADOR_RH' : 'DASHBOARD')}
@@ -307,6 +403,224 @@ export default function Header() {
               Salário
             </button>
 
+            {/* Dropdown "Mais ▾" com todas as abas secundárias */}
+            <div className="relative" ref={moreMenuRef}>
+              <button
+                type="button"
+                onClick={() => setIsMoreOpen(!isMoreOpen)}
+                className={`text-xs font-medium px-3 py-1.5 rounded-full transition-all whitespace-nowrap cursor-pointer flex items-center gap-1 ${
+                  isMoreActive || isMoreOpen
+                    ? 'bg-purple-600/15 dark:bg-purple-600/20 text-purple-700 dark:text-purple-300 border border-purple-500/30 font-semibold'
+                    : 'text-slate-600 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200/50 dark:hover:bg-white/[0.05] border border-transparent'
+                }`}
+                aria-expanded={isMoreOpen}
+                aria-haspopup="true"
+              >
+                <span>Mais</span>
+                <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${isMoreOpen ? 'rotate-180 text-purple-600 dark:text-purple-400' : 'text-slate-400'}`} />
+              </button>
+
+              {/* Menu Flutuante Moderno (Glassmorphism) com Abas Secundárias */}
+              {isMoreOpen && (
+                <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-72 sm:w-80 rounded-2xl bg-white/95 dark:bg-[#120a22]/95 border border-slate-200/80 dark:border-purple-500/25 shadow-2xl p-2 z-50 backdrop-blur-xl animate-in fade-in zoom-in-95 duration-150 space-y-1">
+                  
+                  {/* Meu Currículo com IA */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsMoreOpen(false);
+                      handleNav('/curriculo');
+                    }}
+                    className="w-full flex items-center justify-between p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition-all text-left group cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <div className="w-7 h-7 rounded-lg bg-purple-50 dark:bg-purple-950/50 border border-purple-200/50 dark:border-purple-800/30 flex items-center justify-center shrink-0 text-purple-600 dark:text-purple-400 group-hover:scale-105 transition-transform">
+                        <FileText className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-xs font-semibold text-slate-800 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors">
+                          Meu Currículo
+                        </p>
+                        <p className="text-[10px] text-slate-500 dark:text-zinc-400 truncate">
+                          Gerador profissional com IA e exportação em PDF
+                        </p>
+                      </div>
+                    </div>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-purple-100 dark:bg-purple-900/40 text-purple-700 dark:text-purple-300 shrink-0 ml-1">
+                      IA
+                    </span>
+                  </button>
+
+                  {/* Minhas Avaliações */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsMoreOpen(false);
+                      handleViewNav('MINHAS_AVALIACOES');
+                    }}
+                    className="w-full flex items-center justify-between p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition-all text-left group cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <div className="w-7 h-7 rounded-lg bg-emerald-50 dark:bg-emerald-950/50 border border-emerald-200/50 dark:border-emerald-800/30 flex items-center justify-center shrink-0 text-emerald-600 dark:text-emerald-400 group-hover:scale-105 transition-transform">
+                        <ClipboardCheck className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-xs font-semibold text-slate-800 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-300 transition-colors">
+                          Minhas Avaliações
+                        </p>
+                        <p className="text-[10px] text-slate-500 dark:text-zinc-400 truncate">
+                          Histórico de notas, quizzes e desempenho
+                        </p>
+                      </div>
+                    </div>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-900/40 text-emerald-700 dark:text-emerald-300 shrink-0 ml-1">
+                      Quizzes
+                    </span>
+                  </button>
+
+                  {/* Minhas Badges & Perfil */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsMoreOpen(false);
+                      handleViewNav('BADGES_PERFIL');
+                    }}
+                    className="w-full flex items-center justify-between p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition-all text-left group cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <div className="w-7 h-7 rounded-lg bg-amber-50 dark:bg-amber-950/50 border border-amber-200/50 dark:border-amber-800/30 flex items-center justify-center shrink-0 text-amber-600 dark:text-amber-400 group-hover:scale-105 transition-transform">
+                        <Award className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-xs font-semibold text-slate-800 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-300 transition-colors">
+                          Badges &amp; Certificados
+                        </p>
+                        <p className="text-[10px] text-slate-500 dark:text-zinc-400 truncate">
+                          Selos de competência e conquistas
+                        </p>
+                      </div>
+                    </div>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 shrink-0 ml-1">
+                      {student?.badgesEarned?.length || 0} Selos
+                    </span>
+                  </button>
+
+                  {/* Meus Cursos em Andamento */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsMoreOpen(false);
+                      handleViewNav('MEUS_CURSOS');
+                    }}
+                    className="w-full flex items-center justify-between p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition-all text-left group cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <div className="w-7 h-7 rounded-lg bg-blue-50 dark:bg-blue-950/50 border border-blue-200/50 dark:border-blue-800/30 flex items-center justify-center shrink-0 text-blue-600 dark:text-blue-400 group-hover:scale-105 transition-transform">
+                        <BookOpen className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-xs font-semibold text-slate-800 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-300 transition-colors">
+                          Meus Cursos Inscritos
+                        </p>
+                        <p className="text-[10px] text-slate-500 dark:text-zinc-400 truncate">
+                          Aulas em andamento e progresso
+                        </p>
+                      </div>
+                    </div>
+                  </button>
+
+                  {/* Minhas Trilhas */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsMoreOpen(false);
+                      handleNav('/minhas-trilhas', 'MINHAS_TRILHAS');
+                    }}
+                    className="w-full flex items-center justify-between p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition-all text-left group cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <div className="w-7 h-7 rounded-lg bg-fuchsia-50 dark:bg-fuchsia-950/50 border border-fuchsia-200/50 dark:border-fuchsia-800/30 flex items-center justify-center shrink-0 text-fuchsia-600 dark:text-fuchsia-400 group-hover:scale-105 transition-transform">
+                        <Layers className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-xs font-semibold text-slate-800 dark:text-white group-hover:text-fuchsia-600 dark:group-hover:text-fuchsia-300 transition-colors">
+                          Minhas Trilhas Ativas
+                        </p>
+                        <p className="text-[10px] text-slate-500 dark:text-zinc-400 truncate">
+                          Trilhas profissionais em andamento
+                        </p>
+                      </div>
+                    </div>
+                  </button>
+
+                  {/* Painel RH da Empresa (se aplicável) */}
+                  {role === 'RECRUTADOR' && (
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setIsMoreOpen(false);
+                        handleNav('/dashboard/empresa', 'RECRUTADOR_RH');
+                      }}
+                      className="w-full flex items-center justify-between p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition-all text-left group cursor-pointer"
+                    >
+                      <div className="flex items-center gap-2.5 min-w-0">
+                        <div className="w-7 h-7 rounded-lg bg-indigo-50 dark:bg-indigo-950/50 border border-indigo-200/50 dark:border-indigo-800/30 flex items-center justify-center shrink-0 text-indigo-600 dark:text-indigo-400 group-hover:scale-105 transition-transform">
+                          <Building2 className="w-3.5 h-3.5" />
+                        </div>
+                        <div className="min-w-0">
+                          <p className="text-xs font-semibold text-slate-800 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-300 transition-colors">
+                            Painel RH da Empresa
+                          </p>
+                          <p className="text-[10px] text-slate-500 dark:text-zinc-400 truncate">
+                            Gestão de vagas e candidatos da Lei 10.097
+                          </p>
+                        </div>
+                      </div>
+                    </button>
+                  )}
+
+                  {/* Sobre o SkillHub */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsMoreOpen(false);
+                      handleNav('/sobre');
+                    }}
+                    className="w-full flex items-center justify-between p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition-all text-left group cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <div className="w-7 h-7 rounded-lg bg-violet-50 dark:bg-violet-950/50 border border-violet-200/50 dark:border-violet-800/30 flex items-center justify-center shrink-0 text-violet-600 dark:text-violet-400 group-hover:scale-105 transition-transform">
+                        <Sparkles className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-xs font-semibold text-slate-800 dark:text-white group-hover:text-violet-600 dark:group-hover:text-violet-300 transition-colors">
+                          Sobre o SkillHub
+                        </p>
+                        <p className="text-[10px] text-slate-500 dark:text-zinc-400 truncate">
+                          Propósito, impacto e regras da Lei 10.097
+                        </p>
+                      </div>
+                    </div>
+                  </button>
+
+                  <div className="my-1 border-t border-slate-100 dark:border-white/5" />
+
+                  {/* Ajuda & Suporte */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsMoreOpen(false);
+                      setIsSupportModalOpen(true);
+                    }}
+                    className="w-full flex items-center gap-2 p-2 rounded-xl text-slate-500 dark:text-zinc-400 hover:text-slate-800 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/5 transition-all text-left cursor-pointer"
+                  >
+                    <HelpCircle className="w-4 h-4 text-purple-500" />
+                    <span className="text-xs font-medium">Ajuda &amp; Suporte</span>
+                  </button>
+                </div>
+              )}
+            </div>
+
             {/* Divisor sutil */}
             <div className="h-3.5 w-[1px] bg-slate-300 dark:bg-white/10 mx-0.5" />
 
@@ -326,7 +640,7 @@ export default function Header() {
           </div>
 
           {/* ========================================================================= */}
-          {/* 3. DIREITA — AÇÕES ENXUTAS (TEMA + PERFIL COMPACTO)                       */}
+          {/* 3. DIREITA — AÇÕES ENXUTAS (TEMA + PERFIL EXPANDIDO COMPACTO)             */}
           {/* ========================================================================= */}
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
             
@@ -356,7 +670,7 @@ export default function Header() {
               )}
             </button>
 
-            {/* Perfil Compacto: Avatar (w-8 h-8) + Primeiro Nome (Nicolli) */}
+            {/* Perfil Compacto (Avatar + Primeiro Nome + Dropdown Expandido) */}
             {hasSession ? (
               <div className="relative" ref={profileRef}>
                 <button
@@ -383,9 +697,9 @@ export default function Header() {
                   />
                 </button>
 
-                {/* Dropdown Limpo de Perfil */}
+                {/* Dropdown Expandido de Perfil com Acesso Completo */}
                 {isProfileOpen && (
-                  <div className="absolute right-0 top-full mt-2 w-60 rounded-2xl bg-white dark:bg-[#120a22] border border-slate-200 dark:border-white/10 shadow-xl p-2 z-50 backdrop-blur-xl animate-in fade-in zoom-in-95 duration-150 space-y-1">
+                  <div className="absolute right-0 top-full mt-2 w-64 rounded-2xl bg-white dark:bg-[#120a22] border border-slate-200 dark:border-white/10 shadow-2xl p-2 z-50 backdrop-blur-xl animate-in fade-in zoom-in-95 duration-150 space-y-1">
                     
                     {/* Cabeçalho do Usuário */}
                     <div className="p-2.5 rounded-xl bg-slate-50 dark:bg-white/5 border border-slate-100 dark:border-white/5">
@@ -398,7 +712,7 @@ export default function Header() {
                       </p>
                     </div>
 
-                    {/* Ações */}
+                    {/* Ações e Rotas Secundárias */}
                     <div className="pt-1 space-y-0.5">
                       <button
                         type="button"
@@ -412,19 +726,43 @@ export default function Header() {
                         <span>Meu Dashboard</span>
                       </button>
 
+                      {/* Meu Currículo com IA */}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setIsProfileOpen(false);
+                          handleNav('/curriculo');
+                        }}
+                        className="w-full flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-700 dark:text-zinc-200 hover:bg-slate-100 dark:hover:bg-white/10 transition cursor-pointer text-left"
+                      >
+                        <FileText className="w-3.5 h-3.5 text-indigo-500" />
+                        <span>Meu Currículo com IA</span>
+                      </button>
+
                       {role !== 'RECRUTADOR' && (
                         <>
                           <button
                             type="button"
                             onClick={() => {
                               setIsProfileOpen(false);
-                              setCurrentView('BADGES_PERFIL');
-                              if (pathname !== '/') router.push('/');
+                              handleViewNav('BADGES_PERFIL');
                             }}
                             className="w-full flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-700 dark:text-zinc-200 hover:bg-slate-100 dark:hover:bg-white/10 transition cursor-pointer text-left"
                           >
                             <Award className="w-3.5 h-3.5 text-amber-500" />
-                            <span>Minhas Badges</span>
+                            <span>Minhas Badges &amp; Perfil</span>
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setIsProfileOpen(false);
+                              handleViewNav('MINHAS_AVALIACOES');
+                            }}
+                            className="w-full flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-700 dark:text-zinc-200 hover:bg-slate-100 dark:hover:bg-white/10 transition cursor-pointer text-left"
+                          >
+                            <ClipboardCheck className="w-3.5 h-3.5 text-emerald-500" />
+                            <span>Minhas Avaliações</span>
                           </button>
 
                           <button
@@ -440,6 +778,18 @@ export default function Header() {
                           </button>
                         </>
                       )}
+
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setIsProfileOpen(false);
+                          handleNav('/sobre');
+                        }}
+                        className="w-full flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-700 dark:text-zinc-200 hover:bg-slate-100 dark:hover:bg-white/10 transition cursor-pointer text-left"
+                      >
+                        <Sparkles className="w-3.5 h-3.5 text-violet-500" />
+                        <span>Sobre o SkillHub</span>
+                      </button>
 
                       <button
                         type="button"
@@ -465,7 +815,7 @@ export default function Header() {
                       className="w-full flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold text-rose-600 dark:text-rose-400 hover:bg-rose-50 dark:hover:bg-rose-500/10 transition cursor-pointer text-left"
                     >
                       <LogOut className="w-3.5 h-3.5" />
-                      <span>Sair</span>
+                      <span>Sair da Conta</span>
                     </button>
                   </div>
                 )}
@@ -522,7 +872,7 @@ export default function Header() {
               <button
                 type="button"
                 onClick={() => setIsSearchModalOpen(false)}
-                className="p-1 rounded-md text-slate-400 hover:text-slate-600 dark:hover:text-white transition"
+                className="p-1 rounded-md text-slate-400 hover:text-slate-600 dark:hover:text-white transition cursor-pointer"
               >
                 <kbd className="px-1.5 py-0.5 text-[10px] font-mono bg-slate-100 dark:bg-white/10 border border-slate-200 dark:border-white/10 rounded">
                   ESC
@@ -643,6 +993,127 @@ export default function Header() {
           </div>
         </div>
       )}
+      {/* ========================================================================= */}
+      {/* MODAL DE AJUDA & SUPORTE AO ESTUDANTE (GLASSMORPHISM RESPONSIVO)          */}
+      {/* ========================================================================= */}
+      {isSupportModalOpen && (
+        <div
+          onClick={() => setIsSupportModalOpen(false)}
+          className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="w-full max-w-lg bg-white/95 dark:bg-[#120a22]/95 border border-slate-200/80 dark:border-purple-500/30 rounded-3xl shadow-2xl p-6 backdrop-blur-2xl animate-in zoom-in-95 duration-200 relative overflow-hidden text-slate-800 dark:text-zinc-100"
+          >
+            {/* Efeito Glow de Fundo */}
+            <div className="absolute -top-24 -right-24 w-48 h-48 bg-purple-500/20 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-indigo-500/15 rounded-full blur-3xl pointer-events-none" />
+
+            {/* Cabeçalho do Modal */}
+            <div className="flex items-start justify-between pb-4 border-b border-slate-100 dark:border-white/10 relative z-10">
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-purple-600 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-purple-500/30">
+                  <HelpCircle className="w-5 h-5" />
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-slate-900 dark:text-white tracking-tight">
+                    Suporte &amp; Atendimento ao Aluno
+                  </h3>
+                  <p className="text-xs text-slate-500 dark:text-zinc-400">
+                    Estamos aqui para ajudar na sua jornada profissional
+                  </p>
+                </div>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setIsSupportModalOpen(false)}
+                className="p-1.5 rounded-full text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-white/10 transition cursor-pointer"
+                title="Fechar (ESC)"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Conteúdo / Cards Informativos */}
+            <div className="py-5 space-y-3.5 relative z-10">
+              {/* Card E-mail */}
+              <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200/70 dark:border-white/10 flex items-center justify-between gap-3">
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="w-9 h-9 rounded-xl bg-purple-100 dark:bg-purple-950/60 border border-purple-200 dark:border-purple-800/40 flex items-center justify-center text-purple-600 dark:text-purple-400 shrink-0">
+                    <Mail className="w-4 h-4" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-[11px] font-semibold text-slate-500 dark:text-zinc-400">
+                      Canal Direto por E-mail
+                    </p>
+                    <p className="text-xs font-bold text-slate-900 dark:text-white truncate">
+                      contato@skillhub.com.br
+                    </p>
+                  </div>
+                </div>
+                <a
+                  href="mailto:contato@skillhub.com.br?subject=Suporte%20SkillHub"
+                  className="px-3 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold shadow-xs transition cursor-pointer shrink-0"
+                >
+                  Enviar E-mail
+                </a>
+              </div>
+
+              {/* Card Localização & Abrangência */}
+              <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200/70 dark:border-white/10 flex items-start gap-3">
+                <div className="w-9 h-9 rounded-xl bg-emerald-100 dark:bg-emerald-950/60 border border-emerald-200 dark:border-emerald-800/40 flex items-center justify-center text-emerald-600 dark:text-emerald-400 shrink-0">
+                  <MapPin className="w-4 h-4" />
+                </div>
+                <div>
+                  <p className="text-[11px] font-semibold text-slate-500 dark:text-zinc-400">
+                    Polo Regional &amp; Atendimento
+                  </p>
+                  <p className="text-xs font-bold text-slate-900 dark:text-white">
+                    Curitiba &amp; Região Metropolitana (RMC)
+                  </p>
+                  <p className="text-[11px] text-slate-500 dark:text-zinc-400 mt-0.5">
+                    Programas de Jovem Aprendiz (Lei 10.097/00), Estágio e Primeiro Emprego.
+                  </p>
+                </div>
+              </div>
+
+              {/* Card Horários */}
+              <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-white/[0.04] border border-slate-200/70 dark:border-white/10 flex items-start gap-3">
+                <div className="w-9 h-9 rounded-xl bg-amber-100 dark:bg-amber-950/60 border border-amber-200 dark:border-amber-800/40 flex items-center justify-center text-amber-600 dark:text-amber-400 shrink-0">
+                  <Clock className="w-4 h-4" />
+                </div>
+                <div>
+                  <p className="text-[11px] font-semibold text-slate-500 dark:text-zinc-400">
+                    Horário de Atendimento Técnico
+                  </p>
+                  <p className="text-xs font-bold text-slate-900 dark:text-white">
+                    Segunda a Sexta-feira — das 08h às 18h
+                  </p>
+                  <p className="text-[11px] text-slate-500 dark:text-zinc-400 mt-0.5">
+                    Tempo médio de resposta: até 24 horas úteis.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Rodapé do Modal */}
+            <div className="pt-4 border-t border-slate-100 dark:border-white/10 flex items-center justify-between text-xs relative z-10">
+              <span className="text-[11px] text-slate-400 dark:text-zinc-500">
+                Plataforma SkillHub • Curitiba/PR
+              </span>
+              <button
+                type="button"
+                onClick={() => setIsSupportModalOpen(false)}
+                className="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-white/10 dark:hover:bg-white/15 text-slate-700 dark:text-zinc-200 font-semibold transition cursor-pointer"
+              >
+                Entendi, Fechar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
     </>
   );
 }
