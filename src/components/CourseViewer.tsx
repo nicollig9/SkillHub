@@ -2,7 +2,12 @@
 
 import React, { useState, useEffect } from 'react';
 import { useApp } from '@/context/AppContext';
-import { COURSES, CURSO_EQUILIBRIO_EMOCIONAL } from '@/data/coursesData';
+import { 
+  COURSES, 
+  CURSO_EQUILIBRIO_EMOCIONAL,
+  CURSO_EXCEL_AVANCADO_ANALISE_DADOS,
+  CURSO_ANALISE_DADOS_POWER_BI
+} from '@/data/coursesData';
 import { 
   BookOpen, 
   CheckCircle2, 
@@ -23,6 +28,172 @@ import {
   ArrowRight
 } from 'lucide-react';
 import OrcamentoMindMap from '@/components/OrcamentoMindMap';
+function DualVideoGridPlayer({
+  video1,
+  video2,
+  theme = 'pink'
+}: {
+  video1: {
+    title: string;
+    badge: string;
+    description: string;
+    youtubeId: string;
+    url: string;
+    autoPlay: boolean;
+  };
+  video2: {
+    title: string;
+    badge: string;
+    description: string;
+    youtubeId: string;
+    url: string;
+    autoPlay: boolean;
+  };
+  theme?: 'pink' | 'cyan' | 'purple';
+}) {
+  const [video1Muted, setVideo1Muted] = useState(true);
+  const [video2Muted, setVideo2Muted] = useState(true);
+
+  const isCyan = theme === 'cyan';
+  const isPurple = theme === 'purple';
+  const cardBorder = isCyan 
+    ? 'border-cyan-500/30' 
+    : isPurple 
+    ? 'border-purple-500/30' 
+    : 'border-pink-500/30';
+  const badgeClass = isCyan 
+    ? 'bg-cyan-950/80 text-cyan-300 border-cyan-500/30' 
+    : isPurple
+    ? 'bg-purple-950/80 text-purple-300 border-purple-500/30'
+    : 'bg-pink-950/80 text-pink-300 border-pink-500/30';
+  const iconColor = isCyan ? 'text-cyan-400' : isPurple ? 'text-purple-400' : 'text-pink-400';
+  const linkClass = isCyan 
+    ? 'text-cyan-400 hover:text-cyan-300' 
+    : isPurple
+    ? 'text-purple-400 hover:text-purple-300'
+    : 'text-pink-400 hover:text-pink-300';
+  const noticeBox = isCyan 
+    ? 'bg-cyan-950/40 border-cyan-500/20 text-cyan-200' 
+    : isPurple
+    ? 'bg-purple-950/40 border-purple-500/20 text-purple-200'
+    : 'bg-pink-950/40 border-pink-500/20 text-pink-200';
+  const unmuteBtn = isCyan 
+    ? 'text-cyan-300 hover:text-white' 
+    : isPurple
+    ? 'text-purple-300 hover:text-white'
+    : 'text-pink-300 hover:text-white';
+
+  return (
+    <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-6">
+      {/* CARD VÍDEO 1 */}
+      <div className={`flex flex-col rounded-2xl border ${cardBorder} bg-zinc-900/90 p-4 sm:p-5 shadow-md backdrop-blur-md space-y-3`}>
+        <div className="flex items-center justify-between gap-2">
+          <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold border ${badgeClass}`}>
+            <Play className={`w-3 h-3 ${iconColor}`} />
+            {video1.badge}
+          </span>
+          <a
+            href={video1.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`text-[11px] font-medium ${linkClass} hover:underline flex items-center gap-1`}
+          >
+            YouTube ➔
+          </a>
+        </div>
+
+        <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-slate-800 bg-zinc-900 shadow-md">
+          <iframe
+            className="w-full h-full"
+            src={`https://www.youtube.com/embed/${video1.youtubeId}?autoplay=1&mute=${video1Muted ? 1 : 0}&controls=1&rel=0&modestbranding=1&showinfo=0&iv_load_policy=3`}
+            title={video1.title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
+        </div>
+
+        {video1Muted && (
+          <div className={`flex items-center justify-between px-3 py-1.5 rounded-lg border text-[11px] ${noticeBox}`}>
+            <span className="flex items-center gap-1.5">
+              <span>🔊</span>
+              <span>Iniciado no modo mudo.</span>
+            </span>
+            <button
+              type="button"
+              onClick={() => setVideo1Muted(false)}
+              className={`font-semibold ${unmuteBtn} underline cursor-pointer`}
+            >
+              Ativar Som
+            </button>
+          </div>
+        )}
+
+        <div className="space-y-1 pt-1">
+          <h4 className="text-sm sm:text-base font-bold text-white leading-snug">
+            {video1.title}
+          </h4>
+          <p className="text-xs text-slate-400 leading-relaxed">
+            {video1.description}
+          </p>
+        </div>
+      </div>
+
+      {/* CARD VÍDEO 2 */}
+      <div className={`flex flex-col rounded-2xl border ${cardBorder} bg-zinc-900/90 p-4 sm:p-5 shadow-md backdrop-blur-md space-y-3`}>
+        <div className="flex items-center justify-between gap-2">
+          <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-semibold border ${badgeClass}`}>
+            <Play className={`w-3 h-3 ${iconColor}`} />
+            {video2.badge}
+          </span>
+          <a
+            href={video2.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`text-[11px] font-medium ${linkClass} hover:underline flex items-center gap-1`}
+          >
+            YouTube ➔
+          </a>
+        </div>
+
+        <div className="relative w-full aspect-video rounded-xl overflow-hidden border border-slate-800 bg-zinc-900 shadow-md">
+          <iframe
+            className="w-full h-full"
+            src={`https://www.youtube.com/embed/${video2.youtubeId}?autoplay=0&mute=${video2Muted ? 1 : 0}&controls=1&rel=0&modestbranding=1&showinfo=0&iv_load_policy=3`}
+            title={video2.title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
+        </div>
+
+        {video2Muted && (
+          <div className={`flex items-center justify-between px-3 py-1.5 rounded-lg border text-[11px] ${noticeBox}`}>
+            <span className="flex items-center gap-1.5">
+              <span>🔊</span>
+              <span>Iniciado no modo mudo.</span>
+            </span>
+            <button
+              type="button"
+              onClick={() => setVideo2Muted(false)}
+              className={`font-semibold ${unmuteBtn} underline cursor-pointer`}
+            >
+              Ativar Som
+            </button>
+          </div>
+        )}
+
+        <div className="space-y-1 pt-1">
+          <h4 className="text-sm sm:text-base font-bold text-white leading-snug">
+            {video2.title}
+          </h4>
+          <p className="text-xs text-slate-400 leading-relaxed">
+            {video2.description}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function MinimalistVideoPlayer({ 
   youtubeId, 
   title, 
@@ -44,6 +215,8 @@ function MinimalistVideoPlayer({
   isGestaoProjetos,
   isInteligenciaNegocios,
   isTransformacaoDigital,
+  isResolucaoCriativa,
+  isHardSkills,
   autoStartMuted = false
 }: { 
   youtubeId: string; 
@@ -66,6 +239,8 @@ function MinimalistVideoPlayer({
   isGestaoProjetos?: boolean;
   isInteligenciaNegocios?: boolean;
   isTransformacaoDigital?: boolean;
+  isResolucaoCriativa?: boolean;
+  isHardSkills?: boolean;
   autoStartMuted?: boolean;
 }) {
   const [isPlaying, setIsPlaying] = useState<boolean>(autoStartMuted || false);
@@ -194,6 +369,28 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
 
   const activeCourseId = courseId || selectedCourseId;
 
+  const isHardSkillsId = (id?: string | null) =>
+    Boolean(
+      id && (
+        id === 'curso-hard-skills-excel-ferramentas-digitais' ||
+        id === 'hard-skills-excel-ferramentas-digitais' ||
+        id === 'curso-hard-skills' ||
+        id === 'hard-skills' ||
+        id.includes('hard-skills')
+      )
+    );
+
+  const isResolucaoCriativaId = (id?: string | null) =>
+    Boolean(
+      id && (
+        id === 'curso-resolucao-criativa-problemas-adaptacao' ||
+        id === 'resolucao-criativa-problemas-adaptacao' ||
+        id === 'curso-resolucao-criativa' ||
+        id === 'resolucao-criativa' ||
+        id.includes('resolucao-criativa')
+      )
+    );
+
   const isTransformacaoDigitalId = (id?: string | null) =>
     Boolean(
       id && (
@@ -230,7 +427,8 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
 
   const isPowerBiId = (id?: string | null) =>
     Boolean(
-      id && (
+      id &&
+      !id.includes('excel') && (
         id === 'curso-analise-dados-power-bi' ||
         id === 'analise-dados-power-bi' ||
         id === 'curso-power-bi' ||
@@ -288,13 +486,16 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
 
   const isExcelAvancadoId = (id?: string | null) =>
     Boolean(
-      id && (
+      id &&
+      !id.includes('power-bi') &&
+      !id.includes('powerbi') && (
         id === 'curso-excel-avancado-analise-dados' ||
         id === 'excel-avancado-analise-dados' ||
         id === 'curso-excel-avancado' ||
         id === 'excel-avancado' ||
         id.includes('excel-avancado') ||
-        id.includes('analise-dados')
+        (id.includes('excel') && id.includes('analise-dados')) ||
+        (id.includes('excel') && id.includes('avancado'))
       )
     );
 
@@ -358,7 +559,7 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
         id === 'curso-inteligencia-emocional' ||
         id === 'c16' ||
         id.includes('equilibrio') ||
-        id.includes('inteligencia') ||
+        id.includes('inteligencia-emocional') ||
         id.includes('saude-mental')
       )
     );
@@ -375,7 +576,10 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
 
   const isExcelId = (id?: string | null) =>
     Boolean(
-      id && (
+      id &&
+      !id.includes('avancado') &&
+      !id.includes('power-bi') &&
+      !id.includes('powerbi') && (
         id === 'curso-excel-iniciante' ||
         id === 'c11' ||
         id === 'excel-do-zero' ||
@@ -408,7 +612,24 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
       )
     );
 
+  // 1. Prioridade absoluta: correspondência direta de ID único no catálogo
+  const exactCourse = COURSES.find((c) => c.id === activeCourseId);
+
+  // 2. Resolução especializada caso activeCourseId seja um alias ou slug alternativo
   const course = 
+    exactCourse ||
+    (isExcelAvancadoId(activeCourseId)
+      ? (COURSES.find((c) => isExcelAvancadoId(c.id)) || CURSO_EXCEL_AVANCADO_ANALISE_DADOS)
+      : null) ||
+    (isPowerBiId(activeCourseId)
+      ? (COURSES.find((c) => isPowerBiId(c.id)) || CURSO_ANALISE_DADOS_POWER_BI)
+      : null) ||
+    (isHardSkillsId(activeCourseId)
+      ? COURSES.find((c) => isHardSkillsId(c.id))
+      : null) ||
+    (isResolucaoCriativaId(activeCourseId)
+      ? COURSES.find((c) => isResolucaoCriativaId(c.id))
+      : null) ||
     (isTransformacaoDigitalId(activeCourseId)
       ? COURSES.find((c) => isTransformacaoDigitalId(c.id))
       : null) ||
@@ -417,9 +638,6 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
       : null) ||
     (isGestaoProjetosId(activeCourseId)
       ? COURSES.find((c) => isGestaoProjetosId(c.id))
-      : null) ||
-    (isPowerBiId(activeCourseId)
-      ? COURSES.find((c) => isPowerBiId(c.id))
       : null) ||
     (isAtendimentoId(activeCourseId)
       ? COURSES.find((c) => isAtendimentoId(c.id))
@@ -432,9 +650,6 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
       : null) ||
     (isNotebookLMId(activeCourseId)
       ? COURSES.find((c) => isNotebookLMId(c.id))
-      : null) ||
-    (isExcelAvancadoId(activeCourseId)
-      ? COURSES.find((c) => isExcelAvancadoId(c.id))
       : null) ||
     (isIaProdutividadeId(activeCourseId)
       ? COURSES.find((c) => isIaProdutividadeId(c.id))
@@ -454,7 +669,6 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     (isInformaticaId(activeCourseId)
       ? COURSES.find((c) => isInformaticaId(c.id))
       : null) ||
-    COURSES.find((c) => c.id === activeCourseId) || 
     (isEquilibrioId(activeCourseId) 
       ? (COURSES.find((c) => isEquilibrioId(c.id)) || CURSO_EQUILIBRIO_EMOCIONAL)
       : null) ||
@@ -469,36 +683,42 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     CURSO_EQUILIBRIO_EMOCIONAL ||
     COURSES[0];
 
+  const isHardSkills = isHardSkillsId(course?.id) || isHardSkillsId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('hard skills') || course.title.toLowerCase().includes('ferramentas digitais')));
+  const isResolucaoCriativa = isResolucaoCriativaId(course?.id) || isResolucaoCriativaId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('resolução criativa') || course.title.toLowerCase().includes('resolucao criativa')));
   const isTransformacaoDigital = isTransformacaoDigitalId(course?.id) || isTransformacaoDigitalId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('transformação digital') || course.title.toLowerCase().includes('transformacao digital')));
   const isInteligenciaNegocios = isInteligenciaNegociosId(course?.id) || isInteligenciaNegociosId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('inteligência de negócios') || course.title.toLowerCase().includes('inteligencia de negocios') || course.title.toLowerCase().includes('baseada em indicadores')));
   const isGestaoProjetos = isGestaoProjetosId(course?.id) || isGestaoProjetosId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('gestão estratégica de projetos') || course.title.toLowerCase().includes('gestao estrategica de projetos') || course.title.toLowerCase().includes('metodologias de gerenciamento')));
-  const isPowerBi = isPowerBiId(course?.id) || isPowerBiId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('power bi') || course.title.toLowerCase().includes('business intelligence')));
+  const isExcelAvancado = isExcelAvancadoId(course?.id) || isExcelAvancadoId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('excel avançado') || course.title.toLowerCase().includes('excel avancado')));
+  const isPowerBi = !isExcelAvancado && (isPowerBiId(course?.id) || isPowerBiId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('power bi') || course.title.toLowerCase().includes('business intelligence'))));
   const isAtendimento = isAtendimentoId(course?.id) || isAtendimentoId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('atendimento ao cliente') || course.title.toLowerCase().includes('experiência e relacionamento') || course.title.toLowerCase().includes('experiencia e relacionamento')));
   const isConciliacaoEscola = isConciliacaoEscolaId(course?.id) || isConciliacaoEscolaId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('conciliação') || course.title.toLowerCase().includes('conciliacao')));
   const isEtica = isEticaId(course?.id) || isEticaId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('ética') || course.title.toLowerCase().includes('etica')));
   const isNotebookLM = isNotebookLMId(course?.id) || isNotebookLMId(activeCourseId) || Boolean(course?.title && course.title.toLowerCase().includes('notebooklm'));
-  const isExcelAvancado = isExcelAvancadoId(course?.id) || isExcelAvancadoId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('excel avançado') || course.title.toLowerCase().includes('excel avancado')));
   const isIaProdutividade = isIaProdutividadeId(course?.id) || isIaProdutividadeId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('inteligência artificial e automação') || course.title.toLowerCase().includes('automacao no dia a dia') || course.title.toLowerCase().includes('automação no dia a dia')));
   const isSoftSkills = isSoftSkillsId(course?.id) || isSoftSkillsId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('soft skills') || course.title.toLowerCase().includes('comunicação interpessoal')));
   const isRotinas = isRotinasId(course?.id) || isRotinasId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('rotinas administrativas') || course.title.toLowerCase().includes('processos de escritório')));
   const isGestaoTempo = isGestaoTempoId(course?.id) || isGestaoTempoId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('gestão do tempo') || course.title.toLowerCase().includes('gestao do tempo')));
   const isOrcamento = isOrcamentoId(course?.id);
   const isEquilibrio = isEquilibrioId(course?.id) || isEquilibrioId(activeCourseId) || Boolean(course?.title && (course.title.toLowerCase().includes('equilíbrio') || course.title.toLowerCase().includes('inteligência emocional') || course.title.toLowerCase().includes('saúde mental')));
-  const isExcel = isExcelId(course?.id) || Boolean(course?.title && course.title.toLowerCase().includes('excel do zero'));
+  const isExcel = !isExcelAvancado && (isExcelId(course?.id) || Boolean(course?.title && course.title.toLowerCase().includes('excel do zero')));
   const isInformatica = isInformaticaId(course?.id) || Boolean(course?.title && course.title.toLowerCase().includes('informática básica'));
   const isComunicacao = isComunicacaoId(course?.id) || Boolean(course?.title && course.title.toLowerCase().includes('comunicação escrita'));
-  const hasReadingTimer = isOrcamento || isEquilibrio || isExcel || isInformatica || isComunicacao || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM || isEtica || isConciliacaoEscola || isAtendimento || isPowerBi || isGestaoProjetos || isInteligenciaNegocios || isTransformacaoDigital;
+  const hasReadingTimer = isHardSkills || isResolucaoCriativa || isOrcamento || isEquilibrio || isExcel || isInformatica || isComunicacao || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM || isEtica || isConciliacaoEscola || isAtendimento || isPowerBi || isGestaoProjetos || isInteligenciaNegocios || isTransformacaoDigital;
 
-  const currentYoutubeId = isTransformacaoDigital
-    ? (course?.youtubeId || 'vFo9TS-rNPQ')
+  const currentYoutubeId = isHardSkills
+    ? (course?.youtubeId || 'HmLzrPf4x0I')
+    : isResolucaoCriativa
+    ? (course?.youtubeId || 'kKo9a3ZlqHo')
+    : isTransformacaoDigital
+    ? (course?.youtubeId || 'ip1XaFJi4g0')
     : isInteligenciaNegocios
-    ? (course?.youtubeId || 'sL0m2cnrk8Y')
+    ? (course?.youtubeId || 'NtMwZXOXtKo')
     : isGestaoProjetos
     ? (course?.youtubeId || 'qO0GZGy76gc')
     : isPowerBi
     ? (course?.youtubeId || 'QnCSgEsIHMA')
     : isAtendimento
-    ? (course?.youtubeId || 'SFC9uLZSevs')
+    ? (course?.youtubeId || '8rjey8HmRxM')
     : isConciliacaoEscola
     ? (course?.youtubeId || 'VcFK4u1IOZQ')
     : isEtica
@@ -506,7 +726,7 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     : isNotebookLM
     ? (course?.youtubeId || '1uIR8erwQmI')
     : isExcelAvancado
-    ? '9QbIuIZMVUw'
+    ? (course?.youtubeId || 'wdzffBz9XtA')
     : isIaProdutividade
     ? '1uIR8erwQmI'
     : isSoftSkills
@@ -527,16 +747,20 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     ? 'PAVaaGa_gug' 
     : (course?.youtubeId || 'X2wgk02Bqt0');
 
-  const currentVideoUrl = isTransformacaoDigital
-    ? (course?.videoUrl || 'https://youtu.be/vFo9TS-rNPQ')
+  const currentVideoUrl = isHardSkills
+    ? (course?.videoUrl || 'https://youtu.be/HmLzrPf4x0I?si=rNz7acTPrkmAcs84')
+    : isResolucaoCriativa
+    ? (course?.videoUrl || 'https://youtu.be/kKo9a3ZlqHo?si=yPsxbpTQaoZtGlQ')
+    : isTransformacaoDigital
+    ? (course?.videoUrl || 'https://www.youtube.com/watch?v=ip1XaFJi4g0')
     : isInteligenciaNegocios
-    ? (course?.videoUrl || 'https://youtu.be/sL0m2cnrk8Y')
+    ? (course?.videoUrl || 'https://www.youtube.com/watch?v=NtMwZXOXtKo')
     : isGestaoProjetos
     ? (course?.videoUrl || 'https://youtu.be/qO0GZGy76gc')
     : isPowerBi
     ? (course?.videoUrl || 'https://youtu.be/QnCSgEsIHMA')
     : isAtendimento
-    ? (course?.videoUrl || 'https://youtu.be/SFC9uLZSevs?si=8uoTJHebCyg4PF9z')
+    ? (course?.videoUrl || 'https://www.youtube.com/watch?v=8rjey8HmRxM')
     : isConciliacaoEscola
     ? (course?.videoUrl || 'https://youtu.be/VcFK4u1IOZQ?si=Tu1cU82TTmsVr1Gv')
     : isEtica
@@ -544,7 +768,7 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     : isNotebookLM
     ? (course?.videoUrl || 'https://youtu.be/LVYRzFxBZLE?si=hjVmprUh1FY5ifFd')
     : isExcelAvancado
-    ? 'https://youtu.be/9QbIuIZMVUw'
+    ? (course?.videoUrl || 'https://www.youtube.com/watch?v=wdzffBz9XtA')
     : isIaProdutividade
     ? 'https://youtu.be/1uIR8erwQmI?si=_Q067y0xVY9R8iWQ'
     : isSoftSkills
@@ -565,16 +789,20 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     ? 'https://youtu.be/PAVaaGa_gug?si=JYdOWSYOz0oJj5TH'
     : (course?.videoUrl || 'https://youtu.be/X2wgk02Bqt0');
 
-  const currentVideoTitle = isTransformacaoDigital
-    ? 'Transformação Digital, Inovação e Estratégias Empresariais'
+  const currentVideoTitle = isHardSkills
+    ? 'Hard Skills (Excel e Ferramentas Digitais)'
+    : isResolucaoCriativa
+    ? 'Resolução Criativa de Problemas e Adaptação'
+    : isTransformacaoDigital
+    ? 'Transformação Digital, Inovação e Estratégias Empresariais (Aulas 01 e 02)'
     : isInteligenciaNegocios
-    ? 'Inteligência de Negócios e Tomada de Decisão Baseada em Indicadores'
+    ? 'Inteligência de Negócios e Tomada de Decisão Baseada em Indicadores (Aulas 01 e 02)'
     : isGestaoProjetos
     ? 'Gestão Estratégica de Projetos e Metodologias de Gerenciamento'
     : isPowerBi
     ? 'Análise de Dados e Business Intelligence com Power BI'
     : isAtendimento
-    ? 'Atendimento ao Cliente, Experiência e Relacionamento Profissional'
+    ? 'Atendimento ao Cliente, Experiência e Relacionamento Profissional (Aulas 01 e 02)'
     : isConciliacaoEscola
     ? 'Gestão do Tempo, Foco e Conciliação Escola x Trabalho'
     : isEtica
@@ -629,7 +857,7 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
     : Math.min(99, Math.round((completedInCourse.length / Math.max(course?.modules?.length || 1, 1)) * 100));
 
   // Cronômetro de leitura / vídeo com persistência de estado
-  const INITIAL_TIMER_SECONDS = (isOrcamento || isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM || isEtica || isConciliacaoEscola || isAtendimento || isPowerBi || isGestaoProjetos || isInteligenciaNegocios || isTransformacaoDigital) ? 300 : 180;
+  const INITIAL_TIMER_SECONDS = (isHardSkills || isResolucaoCriativa || isOrcamento || isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM || isEtica || isConciliacaoEscola || isAtendimento || isPowerBi || isGestaoProjetos || isInteligenciaNegocios || isTransformacaoDigital) ? 300 : 180;
   const [timeLeft, setTimeLeft] = useState<number>(INITIAL_TIMER_SECONDS);
   const isTimerFinished = timeLeft === 0;
 
@@ -651,7 +879,7 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
       }
     } catch {}
 
-    setTimeLeft((isOrcamento || isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM || isEtica || isConciliacaoEscola || isAtendimento || isPowerBi || isGestaoProjetos || isInteligenciaNegocios || isTransformacaoDigital) ? 300 : 180);
+    setTimeLeft((isHardSkills || isResolucaoCriativa || isOrcamento || isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM || isEtica || isConciliacaoEscola || isAtendimento || isPowerBi || isGestaoProjetos || isInteligenciaNegocios || isTransformacaoDigital) ? 300 : 180);
   }, [course.id, hasReadingTimer, isQuizPassedInContext, isOrcamento, isExcel, isInformatica, isComunicacao]);
 
   useEffect(() => {
@@ -1025,13 +1253,27 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                   <div className="space-y-1">
                     <div className={`inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider ${isOrcamento ? 'text-emerald-400' : 'text-purple-400'}`}>
                       <Play className="w-3.5 h-3.5" />
-                      <span>{isExcel || isOrcamento || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado ? 'Vídeo Oficial de Conclusão' : 'Material Audiovisual Complementar'}</span>
+                      <span>{hasReadingTimer ? 'Vídeo Oficial de Conclusão' : 'Material Audiovisual Complementar'}</span>
                     </div>
                     <h3 className="text-base sm:text-lg font-bold text-white">
                       {currentVideoTitle}
                     </h3>
                     <p className="text-xs text-slate-300 font-normal">
-                      {isComunicacao
+                      {isAtendimento
+                        ? 'Assista às duas videoaulas completas de Atendimento ao Cliente e Experiência (CX) e aguarde o temporizador para liberar o acesso à Prova de Fixação.'
+                        : isTransformacaoDigital
+                        ? 'Assista às duas videoaulas completas de Transformação Digital, Inovação e Estratégia Empresarial (Aulas 01 e 02) e aguarde o temporizador para liberar o acesso à Prova de Fixação.'
+                        : isInteligenciaNegocios
+                        ? 'Assista às duas videoaulas completas de Inteligência de Negócios (BI) e Tomada de Decisão Baseada em Indicadores (Aulas 01 e 02) e aguarde o temporizador para liberar o acesso à Prova de Fixação.'
+                        : isHardSkills
+                        ? 'Assista à videoaula completa de Hard Skills (Excel e Ferramentas Digitais) e acompanhe o temporizador para liberar o acesso à Prova de Fixação.'
+                        : isResolucaoCriativa
+                        ? 'Assista à videoaula completa de Resolução Criativa de Problemas e Adaptação e acompanhe o temporizador para liberar o acesso à Prova de Fixação.'
+                        : isConciliacaoEscola
+                        ? 'Assista à videoaula completa de Gestão do Tempo, Foco e Conciliação Escola x Trabalho e aguarde o temporizador para liberar o acesso à Prova de Fixação.'
+                        : isEtica
+                        ? 'Assista à videoaula completa de Ética e Etiqueta Corporativa (Presencial e Digital) e aguarde o temporizador para liberar o acesso à Prova de Fixação.'
+                        : isComunicacao
                         ? 'Assista à aula completa de Comunicação Escrita e Redação Corporativa e aguarde o temporizador para liberar o acesso à Prova de Fixação.'
                         : isInformatica
                         ? 'Assista à aula prática de Informática Básica, Nuvem e Segurança e aguarde o temporizador para liberar o acesso à Prova de Fixação.'
@@ -1060,7 +1302,7 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={`font-medium px-4 py-2 rounded-full transition-all shadow-md flex items-center gap-2 text-xs shrink-0 whitespace-nowrap cursor-pointer hover:scale-[1.02] text-white ${
-                      isOrcamento ? 'bg-emerald-600 hover:bg-emerald-500' : 'bg-purple-600 hover:bg-purple-500'
+                      isOrcamento ? 'bg-emerald-600 hover:bg-emerald-500' : isTransformacaoDigital ? 'bg-cyan-600 hover:bg-cyan-500' : 'bg-purple-600 hover:bg-purple-500'
                     }`}
                   >
                     <span>Abrir no YouTube ➔</span>
@@ -1068,36 +1310,100 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                 </div>
 
                 <div className="w-full max-w-4xl space-y-4">
-                  <MinimalistVideoPlayer
-                    youtubeId={currentYoutubeId}
-                    title={currentVideoTitle}
-                    isOrcamento={isOrcamento}
-                    isExcel={isExcel}
-                    isInformatica={isInformatica}
-                    isComunicacao={isComunicacao}
-                    isEquilibrio={isEquilibrio}
-                    isGestaoTempo={isGestaoTempo}
-                    isRotinas={isRotinas}
-                    isSoftSkills={isSoftSkills}
-                    isIaProdutividade={isIaProdutividade}
-                    isExcelAvancado={isExcelAvancado}
-                    isNotebookLM={isNotebookLM}
-                    isEtica={isEtica}
-                    isConciliacaoEscola={isConciliacaoEscola}
-                    isAtendimento={isAtendimento}
-                    isPowerBi={isPowerBi}
-                    isGestaoProjetos={isGestaoProjetos}
-                    isInteligenciaNegocios={isInteligenciaNegocios}
-                    isTransformacaoDigital={isTransformacaoDigital}
-                    autoStartMuted={isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM || isEtica || isConciliacaoEscola || isAtendimento || isPowerBi || isGestaoProjetos || isInteligenciaNegocios || isTransformacaoDigital}
-                  />
+                  {isAtendimento ? (
+                    <DualVideoGridPlayer
+                      theme="pink"
+                      video1={{
+                        title: 'Aula 01 — Fundamentos do Atendimento e Escuta Ativa',
+                        badge: 'Aula 01 — Fundamentos do Atendimento',
+                        description: 'Fundamentos de atendimento profissional, escuta ativa, postura empática e técnicas de desescalada de conflitos.',
+                        youtubeId: '8rjey8HmRxM',
+                        url: 'https://www.youtube.com/watch?v=8rjey8HmRxM',
+                        autoPlay: true
+                      }}
+                      video2={{
+                        title: 'Aula 02 — Experiência do Cliente, Métricas e Fidelização',
+                        badge: 'Aula 02 — Experiência e Fidelização',
+                        description: 'Customer Experience (CX), análise de indicadores de satisfação (NPS, CSAT, FCR) e estratégias de fidelização.',
+                        youtubeId: 'mu7URey9TsI',
+                        url: 'https://www.youtube.com/watch?v=mu7URey9TsI',
+                        autoPlay: false
+                      }}
+                    />
+                  ) : isTransformacaoDigital ? (
+                    <DualVideoGridPlayer
+                      theme="cyan"
+                      video1={{
+                        title: 'Aula 01 — Transformação Digital nas Empresas e Inovação',
+                        badge: 'Aula 01 — Transformação Digital',
+                        description: 'Conceitos fundamentais de transformação digital, cultura de inovação, automação de processos e uso estratégico da tecnologia nos negócios.',
+                        youtubeId: 'ip1XaFJi4g0',
+                        url: 'https://www.youtube.com/watch?v=ip1XaFJi4g0',
+                        autoPlay: true
+                      }}
+                      video2={{
+                        title: 'Aula 02 — Estratégia Empresarial e Vantagem Competitiva',
+                        badge: 'Aula 02 — Estratégia Empresarial',
+                        description: 'Definição de estratégia corporativa, análise de mercado, tomada de decisão e alinhamento entre inovação tecnológica e resultados.',
+                        youtubeId: 'a32rtLp1VeU',
+                        url: 'https://www.youtube.com/watch?v=a32rtLp1VeU',
+                        autoPlay: false
+                      }}
+                    />
+                  ) : isInteligenciaNegocios ? (
+                    <DualVideoGridPlayer
+                      theme="purple"
+                      video1={{
+                        title: 'Aula 01 — Fundamentos de Business Intelligence e Análise de Dados',
+                        badge: 'Aula 01 — Inteligência de Negócios (BI)',
+                        description: 'Introdução à inteligência de negócios, coleta e organização de dados estratégicos para apoiar decisões corporativas.',
+                        youtubeId: 'NtMwZXOXtKo',
+                        url: 'https://www.youtube.com/watch?v=NtMwZXOXtKo',
+                        autoPlay: true
+                      }}
+                      video2={{
+                        title: 'Aula 02 — Tomada de Decisão Baseada em Indicadores (KPIs)',
+                        badge: 'Aula 02 — Indicadores e Decisão',
+                        description: 'Definição, monitoramento e interpretação de métricas e KPIs essenciais para mensurar resultados e guiar estratégias.',
+                        youtubeId: 'zr-3EEhmJCA',
+                        url: 'https://www.youtube.com/watch?v=zr-3EEhmJCA',
+                        autoPlay: false
+                      }}
+                    />
+                  ) : (
+                    <MinimalistVideoPlayer
+                      youtubeId={currentYoutubeId}
+                      title={currentVideoTitle}
+                      isOrcamento={isOrcamento}
+                      isExcel={isExcel}
+                      isInformatica={isInformatica}
+                      isComunicacao={isComunicacao}
+                      isEquilibrio={isEquilibrio}
+                      isGestaoTempo={isGestaoTempo}
+                      isRotinas={isRotinas}
+                      isSoftSkills={isSoftSkills}
+                      isIaProdutividade={isIaProdutividade}
+                      isExcelAvancado={isExcelAvancado}
+                      isNotebookLM={isNotebookLM}
+                      isEtica={isEtica}
+                      isConciliacaoEscola={isConciliacaoEscola}
+                      isAtendimento={isAtendimento}
+                      isPowerBi={isPowerBi}
+                      isGestaoProjetos={isGestaoProjetos}
+                      isInteligenciaNegocios={isInteligenciaNegocios}
+                      isTransformacaoDigital={isTransformacaoDigital}
+                      isResolucaoCriativa={isResolucaoCriativa}
+                      isHardSkills={isHardSkills}
+                      autoStartMuted={isHardSkills || isResolucaoCriativa || isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM || isEtica || isConciliacaoEscola || isAtendimento || isPowerBi || isGestaoProjetos || isInteligenciaNegocios || isTransformacaoDigital}
+                    />
+                  )}
 
                   {/* Barra de Progresso do Vídeo Vinculada ao Temporizador */}
                   {hasReadingTimer && (
-                    <div className="w-full bg-slate-900/60 border border-purple-500/20 rounded-2xl p-4 backdrop-blur-md shadow-lg space-y-2.5">
+                    <div className={`w-full bg-slate-900/60 border ${isOrcamento ? 'border-emerald-500/20' : isTransformacaoDigital ? 'border-cyan-500/20' : 'border-purple-500/20'} rounded-2xl p-4 backdrop-blur-md shadow-lg space-y-2.5`}>
                       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
                         <div className="flex items-center gap-2 text-slate-300 font-medium">
-                          <Clock className={`w-4 h-4 ${isOrcamento ? 'text-emerald-400' : 'text-purple-400'}`} />
+                          <Clock className={`w-4 h-4 ${isOrcamento ? 'text-emerald-400' : isTransformacaoDigital ? 'text-cyan-400' : 'text-purple-400'}`} />
                           <span>
                             {isTimerFinished 
                               ? '✅ Tempo mínimo de visualização concluído!' 
@@ -1106,14 +1412,14 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                         </div>
 
                         <div className="flex items-center gap-3">
-                          <span className={`text-xs font-semibold ${isOrcamento ? 'text-emerald-400' : 'text-purple-300'}`}>
+                          <span className={`text-xs font-semibold ${isOrcamento ? 'text-emerald-400' : isTransformacaoDigital ? 'text-cyan-400' : 'text-purple-300'}`}>
                             {Math.round(((INITIAL_TIMER_SECONDS - timeLeft) / INITIAL_TIMER_SECONDS) * 100)}% concluído
                           </span>
                           {!isTimerFinished && (
                             <button
                               type="button"
                               onClick={handleSkipTimerForTesting}
-                              className={`text-xs ${isOrcamento ? 'text-emerald-400' : 'text-purple-400'} hover:underline cursor-pointer`}
+                              className={`text-xs ${isOrcamento ? 'text-emerald-400' : isTransformacaoDigital ? 'text-cyan-400' : 'text-purple-400'} hover:underline cursor-pointer`}
                               title="Atalho de teste para validação imediata"
                             >
                               (pular tempo)
@@ -1129,6 +1435,8 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                               ? 'bg-emerald-500 w-full' 
                               : isOrcamento 
                               ? 'bg-gradient-to-r from-emerald-600 to-teal-400' 
+                              : isTransformacaoDigital
+                              ? 'bg-gradient-to-r from-cyan-500 to-teal-400'
                               : 'bg-gradient-to-r from-purple-600 to-emerald-400'
                           }`}
                           style={{ width: `${Math.round(((INITIAL_TIMER_SECONDS - timeLeft) / INITIAL_TIMER_SECONDS) * 100)}%` }}
@@ -1180,7 +1488,7 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                     isCourseCompleted
                       ? 'bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer'
                       : !hasReadingTimer || isTimerFinished
-                      ? (isOrcamento ? 'bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer hover:scale-[1.02]' : 'bg-purple-600 hover:bg-purple-500 text-white cursor-pointer hover:scale-[1.02]')
+                      ? (isOrcamento ? 'bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer hover:scale-[1.02]' : isTransformacaoDigital ? 'bg-cyan-600 hover:bg-cyan-500 text-white cursor-pointer hover:scale-[1.02]' : 'bg-purple-600 hover:bg-purple-500 text-white cursor-pointer hover:scale-[1.02]')
                       : 'bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-700 opacity-70'
                   }`}
                 >
@@ -1352,36 +1660,100 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                       </div>
 
                       <div className="w-full max-w-4xl mx-auto space-y-4">
-                        <MinimalistVideoPlayer
-                          youtubeId={currentYoutubeId}
-                          title={currentVideoTitle}
-                          isOrcamento={isOrcamento}
-                          isExcel={isExcel}
-                          isInformatica={isInformatica}
-                          isComunicacao={isComunicacao}
-                          isEquilibrio={isEquilibrio}
-                    isGestaoTempo={isGestaoTempo}
-                    isRotinas={isRotinas}
-                    isSoftSkills={isSoftSkills}
-                    isIaProdutividade={isIaProdutividade}
-                    isExcelAvancado={isExcelAvancado}
-                    isNotebookLM={isNotebookLM}
-                    isEtica={isEtica}
-                    isConciliacaoEscola={isConciliacaoEscola}
-                    isAtendimento={isAtendimento}
-                    isPowerBi={isPowerBi}
-                    isGestaoProjetos={isGestaoProjetos}
-                    isInteligenciaNegocios={isInteligenciaNegocios}
-                    isTransformacaoDigital={isTransformacaoDigital}
-                    autoStartMuted={isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM || isEtica || isConciliacaoEscola || isAtendimento || isPowerBi || isGestaoProjetos || isInteligenciaNegocios || isTransformacaoDigital}
-                        />
+                        {isAtendimento ? (
+                          <DualVideoGridPlayer
+                            theme="pink"
+                            video1={{
+                              title: 'Aula 01 — Fundamentos do Atendimento e Escuta Ativa',
+                              badge: 'Aula 01 — Fundamentos do Atendimento',
+                              description: 'Fundamentos de atendimento profissional, escuta ativa, postura empática e técnicas de desescalada de conflitos.',
+                              youtubeId: '8rjey8HmRxM',
+                              url: 'https://www.youtube.com/watch?v=8rjey8HmRxM',
+                              autoPlay: true
+                            }}
+                            video2={{
+                              title: 'Aula 02 — Experiência do Cliente, Métricas e Fidelização',
+                              badge: 'Aula 02 — Experiência e Fidelização',
+                              description: 'Customer Experience (CX), análise de indicadores de satisfação (NPS, CSAT, FCR) e estratégias de fidelização.',
+                              youtubeId: 'mu7URey9TsI',
+                              url: 'https://www.youtube.com/watch?v=mu7URey9TsI',
+                              autoPlay: false
+                            }}
+                          />
+                        ) : isTransformacaoDigital ? (
+                          <DualVideoGridPlayer
+                            theme="cyan"
+                            video1={{
+                              title: 'Aula 01 — Transformação Digital nas Empresas e Inovação',
+                              badge: 'Aula 01 — Transformação Digital',
+                              description: 'Conceitos fundamentais de transformação digital, cultura de inovação, automação de processos e uso estratégico da tecnologia nos negócios.',
+                              youtubeId: 'ip1XaFJi4g0',
+                              url: 'https://www.youtube.com/watch?v=ip1XaFJi4g0',
+                              autoPlay: true
+                            }}
+                            video2={{
+                              title: 'Aula 02 — Estratégia Empresarial e Vantagem Competitiva',
+                              badge: 'Aula 02 — Estratégia Empresarial',
+                              description: 'Definição de estratégia corporativa, análise de mercado, tomada de decisão e alinhamento entre inovação tecnológica e resultados.',
+                              youtubeId: 'a32rtLp1VeU',
+                              url: 'https://www.youtube.com/watch?v=a32rtLp1VeU',
+                              autoPlay: false
+                            }}
+                          />
+                        ) : isInteligenciaNegocios ? (
+                          <DualVideoGridPlayer
+                            theme="purple"
+                            video1={{
+                              title: 'Aula 01 — Fundamentos de Business Intelligence e Análise de Dados',
+                              badge: 'Aula 01 — Inteligência de Negócios (BI)',
+                              description: 'Introdução à inteligência de negócios, coleta e organização de dados estratégicos para apoiar decisões corporativas.',
+                              youtubeId: 'NtMwZXOXtKo',
+                              url: 'https://www.youtube.com/watch?v=NtMwZXOXtKo',
+                              autoPlay: true
+                            }}
+                            video2={{
+                              title: 'Aula 02 — Tomada de Decisão Baseada em Indicadores (KPIs)',
+                              badge: 'Aula 02 — Indicadores e Decisão',
+                              description: 'Definição, monitoramento e interpretação de métricas e KPIs essenciais para mensurar resultados e guiar estratégias.',
+                              youtubeId: 'zr-3EEhmJCA',
+                              url: 'https://www.youtube.com/watch?v=zr-3EEhmJCA',
+                              autoPlay: false
+                            }}
+                          />
+                        ) : (
+                          <MinimalistVideoPlayer
+                            youtubeId={currentYoutubeId}
+                            title={currentVideoTitle}
+                            isOrcamento={isOrcamento}
+                            isExcel={isExcel}
+                            isInformatica={isInformatica}
+                            isComunicacao={isComunicacao}
+                            isEquilibrio={isEquilibrio}
+                            isGestaoTempo={isGestaoTempo}
+                            isRotinas={isRotinas}
+                            isSoftSkills={isSoftSkills}
+                            isIaProdutividade={isIaProdutividade}
+                            isExcelAvancado={isExcelAvancado}
+                            isNotebookLM={isNotebookLM}
+                            isEtica={isEtica}
+                            isConciliacaoEscola={isConciliacaoEscola}
+                            isAtendimento={isAtendimento}
+                            isPowerBi={isPowerBi}
+                            isGestaoProjetos={isGestaoProjetos}
+                            isInteligenciaNegocios={isInteligenciaNegocios}
+                            isTransformacaoDigital={isTransformacaoDigital}
+                            isResolucaoCriativa={isResolucaoCriativa}
+                            isHardSkills={isHardSkills}
+                            autoStartMuted={isHardSkills || isResolucaoCriativa || isExcel || isInformatica || isComunicacao || isEquilibrio || isGestaoTempo || isRotinas || isSoftSkills || isIaProdutividade || isExcelAvancado || isNotebookLM || isEtica || isConciliacaoEscola || isAtendimento || isPowerBi || isGestaoProjetos || isInteligenciaNegocios || isTransformacaoDigital}
+                          />
+                        )}
 
                         {/* Barra de Progresso do Vídeo Vinculada ao Temporizador */}
                         {hasReadingTimer && (
-                          <div className="w-full bg-slate-900/60 border border-purple-500/20 rounded-2xl p-4 backdrop-blur-md shadow-lg space-y-2.5">
+                          <div className={`w-full bg-slate-900/60 border ${isOrcamento ? 'border-emerald-500/20' : isTransformacaoDigital ? 'border-cyan-500/20' : 'border-purple-500/20'} rounded-2xl p-4 backdrop-blur-md shadow-lg space-y-2.5`}>
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
                               <div className="flex items-center gap-2 text-slate-300 font-medium">
-                                <Clock className={`w-4 h-4 ${isOrcamento ? 'text-emerald-400' : 'text-purple-400'}`} />
+                                <Clock className={`w-4 h-4 ${isOrcamento ? 'text-emerald-400' : isTransformacaoDigital ? 'text-cyan-400' : 'text-purple-400'}`} />
                                 <span>
                                   {isTimerFinished 
                                     ? '✅ Tempo mínimo de visualização concluído!' 
@@ -1390,14 +1762,14 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                               </div>
 
                               <div className="flex items-center gap-3">
-                                <span className={`text-xs font-semibold ${isOrcamento ? 'text-emerald-400' : 'text-purple-300'}`}>
+                                <span className={`text-xs font-semibold ${isOrcamento ? 'text-emerald-400' : isTransformacaoDigital ? 'text-cyan-400' : 'text-purple-300'}`}>
                                   {Math.round(((INITIAL_TIMER_SECONDS - timeLeft) / INITIAL_TIMER_SECONDS) * 100)}% concluído
                                 </span>
                                 {!isTimerFinished && (
                                   <button
                                     type="button"
                                     onClick={handleSkipTimerForTesting}
-                                    className={`text-xs ${isOrcamento ? 'text-emerald-400' : 'text-purple-400'} hover:underline cursor-pointer`}
+                                    className={`text-xs ${isOrcamento ? 'text-emerald-400' : isTransformacaoDigital ? 'text-cyan-400' : 'text-purple-400'} hover:underline cursor-pointer`}
                                     title="Pular tempo para validação imediata"
                                   >
                                     (pular tempo)
@@ -1413,6 +1785,8 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                                     ? 'bg-emerald-500 w-full' 
                                     : isOrcamento 
                                     ? 'bg-gradient-to-r from-emerald-600 to-teal-400' 
+                                    : isTransformacaoDigital
+                                    ? 'bg-gradient-to-r from-cyan-500 to-teal-400'
                                     : 'bg-gradient-to-r from-purple-600 to-emerald-400'
                                 }`}
                                 style={{ width: `${Math.round(((INITIAL_TIMER_SECONDS - timeLeft) / INITIAL_TIMER_SECONDS) * 100)}%` }}
@@ -1441,7 +1815,7 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
                           }}
                           className={`w-full sm:w-auto px-5 py-2.5 rounded-full text-xs font-semibold flex items-center justify-center gap-2 transition-all shadow-md ${
                             isTimerFinished
-                              ? (isOrcamento ? 'bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer hover:scale-[1.02]' : 'bg-purple-600 hover:bg-purple-500 text-white cursor-pointer hover:scale-[1.02]')
+                              ? (isOrcamento ? 'bg-emerald-600 hover:bg-emerald-500 text-white cursor-pointer hover:scale-[1.02]' : isTransformacaoDigital ? 'bg-cyan-600 hover:bg-cyan-500 text-white cursor-pointer hover:scale-[1.02]' : 'bg-purple-600 hover:bg-purple-500 text-white cursor-pointer hover:scale-[1.02]')
                               : 'bg-slate-800 text-slate-500 cursor-not-allowed border border-slate-700 opacity-70'
                           }`}
                         >

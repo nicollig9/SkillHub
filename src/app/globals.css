@@ -969,3 +969,64 @@ html:not(.dark) :is(
   color: #1E293B !important;
   font-weight: 600 !important;
 }
+
+
+/* =========================================================================
+   SKILLHUB LEAFLET POPUP & SCROLLBAR STYLES
+   ========================================================================= */
+.leaflet-popup-content-wrapper {
+  background: #090D16 !important;
+  color: #F8FAFC !important;
+  border-radius: 1.25rem !important;
+  border: 1.5px solid rgba(139, 92, 246, 0.45) !important;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.75) !important;
+  padding: 0.25rem !important;
+}
+
+.leaflet-popup-tip {
+  background: #090D16 !important;
+  border: 1.5px solid rgba(139, 92, 246, 0.45) !important;
+}
+
+.leaflet-popup-close-button {
+  color: #94A3B8 !important;
+  padding: 6px !important;
+  top: 8px !important;
+  right: 8px !important;
+}
+
+.leaflet-popup-close-button:hover {
+  color: #FFFFFF !important;
+}
+
+.leaflet-popup-content {
+  margin: 0.75rem 0.85rem !important;
+  line-height: 1.4 !important;
+}
+
+.leaflet-container {
+  font-family: inherit !important;
+}
+
+/* Garante que as imagens dos tiles do OpenStreetMap fiquem 100% nítidas, coloridas e sem filtros escuros */
+.leaflet-tile {
+  filter: none !important;
+}
+.leaflet-tile-pane {
+  filter: none !important;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.6);
+  border-radius: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(139, 92, 246, 0.4);
+  border-radius: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 92, 246, 0.7);
+}

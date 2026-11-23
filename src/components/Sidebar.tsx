@@ -19,7 +19,8 @@ import {
   GraduationCap,
   HelpCircle,
   LogOut,
-  X
+  X,
+  FileText
 } from 'lucide-react';
 
 export default function Sidebar() {
@@ -68,12 +69,19 @@ export default function Sidebar() {
   }, [quizResults, completedModules]);
 
   // Itens de navegação do Aluno / Candidato organizados em estrutura simétrica
-  const studentNavItems: { id: AppView; label: string; icon: React.ComponentType<{ className?: string }>; badge?: string }[] = [
+  const studentNavItems: { id: AppView; label: string; icon: React.ComponentType<{ className?: string }>; badge?: string; route?: string }[] = [
     {
       id: 'DASHBOARD',
       label: 'Meu Dashboard',
       icon: LayoutDashboard,
       badge: 'Principal'
+    },
+    {
+      id: 'DASHBOARD',
+      label: 'Meu Currículo (IA)',
+      icon: FileText,
+      badge: 'PDF',
+      route: '/curriculo'
     },
     {
       id: 'MINHAS_AVALIACOES',
@@ -125,6 +133,12 @@ export default function Sidebar() {
       label: 'Minhas Badges & Perfil',
       icon: Award,
       badge: `${student.badgesEarned.length} Selos`
+    },
+    {
+      id: 'INICIO',
+      label: 'Sobre o SkillHub',
+      icon: Sparkles,
+      route: '/sobre'
     }
   ];
 
@@ -134,13 +148,23 @@ export default function Sidebar() {
       id: 'RECRUTADOR_RH',
       label: 'Painel RH da Empresa',
       icon: Building2,
-      badge: 'Empresa'
+      badge: 'Empresa',
+      route: '/dashboard/empresa'
     });
   }
 
-  const handleNavigate = (view: AppView) => {
+  const handleNavigate = (view: AppView, route?: string) => {
     setCurrentView(view);
     setIsSidebarOpen(false); // Fecha a barra lateral ao clicar
+    if (route) {
+      if (typeof window !== 'undefined' && window.location.pathname !== route) {
+        router.push(route);
+      }
+    } else {
+      if (typeof window !== 'undefined' && window.location.pathname !== '/') {
+        router.push('/');
+      }
+    }
   };
 
   return (
@@ -198,12 +222,14 @@ export default function Sidebar() {
           <nav className="space-y-1">
             {studentNavItems.map((item) => {
               const Icon = item.icon;
-              const isActive = currentView === item.id;
+              const isActive = item.route 
+                ? (typeof window !== 'undefined' && window.location.pathname === item.route)
+                : currentView === item.id;
 
               return (
                 <button
-                  key={item.id}
-                  onClick={() => handleNavigate(item.id)}
+                  key={`${item.id}-${item.label}`}
+                  onClick={() => handleNavigate(item.id, item.route)}
                   className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all duration-150 cursor-pointer ${
                     isActive
                       ? 'bg-gradient-to-r from-[#4C1D95] to-[#6D28D9] text-white border border-[#8B5CF6]/60 shadow-md shadow-purple-950/60'
