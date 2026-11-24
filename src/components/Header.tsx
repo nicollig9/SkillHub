@@ -171,6 +171,7 @@ export default function Header() {
 
   // Detecção do estado ativo para abas secundárias dentro do menu "Mais"
   const isMoreActive = 
+    pathname === '/perfil' || 
     pathname === '/curriculo' || 
     pathname === '/sobre' || 
     pathname === '/minhas-trilhas' || 
@@ -424,6 +425,33 @@ export default function Header() {
               {isMoreOpen && (
                 <div className="absolute left-1/2 -translate-x-1/2 top-full mt-2 w-72 sm:w-80 rounded-2xl bg-white/95 dark:bg-[#120a22]/95 border border-slate-200/80 dark:border-purple-500/25 shadow-2xl p-2 z-50 backdrop-blur-xl animate-in fade-in zoom-in-95 duration-150 space-y-1">
                   
+                                    {/* Meu Passaporte de Competências */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setIsMoreOpen(false);
+                      handleNav('/perfil');
+                    }}
+                    className="w-full flex items-center justify-between p-2 rounded-xl hover:bg-slate-100 dark:hover:bg-white/5 transition-all text-left group cursor-pointer"
+                  >
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <div className="w-7 h-7 rounded-lg bg-amber-50 dark:bg-amber-950/50 border border-amber-200/50 dark:border-amber-800/30 flex items-center justify-center shrink-0 text-amber-600 dark:text-amber-400 group-hover:scale-105 transition-transform">
+                        <Award className="w-3.5 h-3.5" />
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-xs font-semibold text-slate-800 dark:text-white group-hover:text-amber-600 dark:group-hover:text-amber-300 transition-colors">
+                          Meu Passaporte
+                        </p>
+                        <p className="text-[10px] text-slate-500 dark:text-zinc-400 truncate">
+                          Portfólio público de competências e certificados
+                        </p>
+                      </div>
+                    </div>
+                    <span className="text-[9px] font-bold px-1.5 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/40 text-amber-700 dark:text-amber-300 shrink-0 ml-1">
+                      Portfólio
+                    </span>
+                  </button>
+
                   {/* Meu Currículo com IA */}
                   <button
                     type="button"
@@ -724,6 +752,18 @@ export default function Header() {
                       >
                         <User className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
                         <span>Meu Dashboard</span>
+                      </button>
+                      {/* Meu Passaporte / Portfólio */}
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setIsProfileOpen(false);
+                          handleNav('/perfil');
+                        }}
+                        className="w-full flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-700 dark:text-zinc-200 hover:bg-slate-100 dark:hover:bg-white/10 transition cursor-pointer text-left"
+                      >
+                        <Award className="w-3.5 h-3.5 text-amber-400" />
+                        <span>Meu Passaporte de Competências</span>
                       </button>
 
                       {/* Meu Currículo com IA */}

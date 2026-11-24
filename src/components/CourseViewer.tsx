@@ -28,6 +28,8 @@ import {
   ArrowRight
 } from 'lucide-react';
 import OrcamentoMindMap from '@/components/OrcamentoMindMap';
+import PremiumCertificateModal from '@/components/PremiumCertificateModal';
+import { generateCertificateCode } from '@/utils/certificateUtils';
 function DualVideoGridPlayer({
   video1,
   video2,
@@ -2067,82 +2069,19 @@ export default function CourseViewer({ courseId }: { courseId?: string } = {}) {
       {/* ========================================================================= */}
       {/* 6. MODAL DE CERTIFICADO OFICIAL                                           */}
       {/* ========================================================================= */}
-      {isCertificateModalOpen && (
-        <div 
-          onClick={() => setIsCertificateModalOpen(false)}
-          className="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 animate-fadeIn"
-        >
-          <div 
-            onClick={(e) => e.stopPropagation()}
-            className="max-w-lg w-full bg-slate-900 border border-slate-800 rounded-2xl p-6 sm:p-8 text-center space-y-5 shadow-2xl relative"
-          >
-            <div className="w-14 h-14 mx-auto rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400">
-              <Award className="w-7 h-7" />
-            </div>
-
-            <div className="space-y-1.5">
-              <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-950/60 text-emerald-300 border border-emerald-500/30 uppercase tracking-wider">
-                Certificação Homologada
-              </span>
-              <h3 className="text-xl font-bold text-white uppercase tracking-tight">
-                {isEquilibrio ? 'SELO DE INTELIGÊNCIA EMOCIONAL' : isOrcamento ? 'Selo de Certificação de Educação Financeira do SkillHub' : 'Certificado de Conclusão'}
-              </h3>
-              <p className="text-xs text-slate-400">
-                A plataforma <strong>SkillHub Curitiba &amp; RMC</strong> confere a:
-              </p>
-              <div className="text-base font-bold text-white underline py-1">
-                {studentName}
-              </div>
-              <p className="text-xs text-slate-300 max-w-sm mx-auto">
-                O selo oficial de <strong>{course.badgeName}</strong> pelo curso <strong>"{course.title}"</strong>.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 gap-2 text-left bg-slate-800/40 p-3.5 rounded-xl border border-slate-800 text-xs">
-              <div>
-                <span className="text-slate-400 block text-[11px]">Carga Horária:</span>
-                <strong className="text-white font-medium">{course.hours === 1 ? '1 hora' : `${course.hours} horas`}</strong>
-              </div>
-              <div>
-                <span className="text-slate-400 block text-[11px]">Aproveitamento:</span>
-                <strong className="text-emerald-400 font-medium">{quizScore || 100}%</strong>
-              </div>
-              <div>
-                <span className="text-slate-400 block text-[11px]">Data:</span>
-                <strong className="text-white font-medium">{new Date().toLocaleDateString('pt-BR')}</strong>
-              </div>
-              <div>
-                <span className="text-slate-400 block text-[11px]">Código:</span>
-                <strong className="text-purple-400 font-mono text-[10px]">SKILL-PR-2026</strong>
-              </div>
-            </div>
-
-            <div className="space-y-2 pt-1">
-              <button
-                type="button"
-                onClick={() => {
-                  setIsCertificateModalOpen(false);
-                  setCurrentView('BADGES_PERFIL');
-                }}
-                className="w-full py-2.5 px-4 rounded-full bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold shadow-md transition-colors cursor-pointer"
-              >
-                Ver Minha Carteira de Badges
-              </button>
-
-              <button
-                type="button"
-                onClick={() => {
-                  setIsCertificateModalOpen(false);
-                  setCurrentView('DASHBOARD');
-                }}
-                className="w-full py-2 px-4 rounded-full border border-slate-800 text-slate-300 hover:bg-slate-800 text-xs font-medium transition-colors cursor-pointer"
-              >
-                Voltar ao Painel
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+      <PremiumCertificateModal
+        isOpen={isCertificateModalOpen}
+        onClose={() => setIsCertificateModalOpen(false)}
+        course={course}
+        studentName={studentName}
+        score={quizScore || 100}
+        issueDate={new Date().toLocaleDateString('pt-BR')}
+        validationCode={
+          student?.badgesEarned?.find((b) => b.badgeId === course.id && b.code?.startsWith('SH-2026-'))?.code ||
+          generateCertificateCode(course.id, studentName)
+        }
+        isFirstEarned={quizPassedState}
+      />
 
       {/* ========================================================================= */}
       {/* 7. ANIMAÇÃO DE CELEBRAÇÃO (CONFETTI)                                      */}
