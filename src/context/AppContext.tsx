@@ -5,6 +5,10 @@ import { UserRole, CandidateProfileType, UserAccount, Student, JobVacancy, Badge
 import { INITIAL_STUDENT, INITIAL_VAGAS, INITIAL_BADGES, INITIAL_APPLICATIONS, INITIAL_GUARDRAILS_LOGS } from '@/data/mockData';
 import { COURSES, resolveCourseAlias as resolveCourseAliasFromData } from '@/data/coursesData';
 
+function resolveCourseAlias(id: string): string {
+  return resolveCourseAliasFromData(id);
+}
+
 export type AppView = 
   | 'INICIO'
   | 'LOGIN'
@@ -462,10 +466,6 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     candidateProfileType,
     currentView
   ]);
-
-    const resolveCourseAlias = (id: string): string => {
-    return resolveCourseAliasFromData(id);
-  };
 
   const openCourse = (courseId: string, moduleIndex?: number) => {
     const resolvedId = resolveCourseAlias(courseId);

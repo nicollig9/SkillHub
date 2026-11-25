@@ -27,6 +27,7 @@ import {
   Calendar
 } from 'lucide-react';
 import { BAIRROS_CURITIBA } from '@/data/mockData';
+import { COURSES, TRACKS } from '@/data/coursesData';
 
 export default function LoginPage() {
   const { 
@@ -160,7 +161,7 @@ export default function LoginPage() {
   // Modo Demonstração Controlado
   const quickDemoLogin = (profile: CandidateProfileType, label: string) => {
     setSelectedProfile(profile);
-    loginUser('demo@skillhub.com.br', 'ALUNO', profile, `Visitante (${label})`, true);
+    loginUser('demo@skillhub.com.br', 'ALUNO', profile, 'Lucas Andrade', true);
   };
 
   const loginCompanyDemo = () => {
@@ -242,7 +243,7 @@ export default function LoginPage() {
               <div className="w-8 h-8 rounded-xl bg-purple-500/20 border border-purple-400/30 flex items-center justify-center text-amber-300">
                 <Award className="w-4 h-4" />
               </div>
-              <h3 className="text-xs font-bold text-white">8 Trilhas de Aprendizagem</h3>
+              <h3 className="text-xs font-bold text-white">{TRACKS.length} Trilhas de Aprendizagem</h3>
               <p className="text-[11px] text-purple-200/80 leading-snug">
                 Com badges oficiais reconhecidos pelo mercado.
               </p>
@@ -253,7 +254,7 @@ export default function LoginPage() {
               <div className="w-8 h-8 rounded-xl bg-purple-500/20 border border-purple-400/30 flex items-center justify-center text-amber-300">
                 <BookOpen className="w-4 h-4" />
               </div>
-              <h3 className="text-xs font-bold text-white">27 Cursos Práticos</h3>
+              <h3 className="text-xs font-bold text-white">{COURSES.length} Cursos Práticos</h3>
               <p className="text-[11px] text-purple-200/80 leading-snug">
                 Do nível Iniciante ao Avançado com IA e planilhas.
               </p>
