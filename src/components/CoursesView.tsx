@@ -20,13 +20,23 @@ import {
 // Mapeamento dos motivos e objetivos pedagógicos
 const COURSE_REASONS: Record<string, string> = {
   // Nível 1
+  'equilibrio-emocional': 'Inteligência emocional de entrada, controle da ansiedade no primeiro emprego e foco para conciliar novas responsabilidades.',
+  'curso-equilibrio-emocional': 'Inteligência emocional de entrada, controle da ansiedade no primeiro emprego e foco para conciliar novas responsabilidades.',
+  'orcamento-primeiro-salario': 'Adaptação financeira inicial, mentalidade consciente sobre o salário líquido, impostos do contracheque e formação de hábitos de poupança.',
+  'orcamento-primeiro-salarial': 'Adaptação financeira inicial, mentalidade consciente sobre o salário líquido, impostos do contracheque e formação de hábitos de poupança.',
   'curso-orcamento-primeiro-salario': 'Adaptação financeira inicial, mentalidade consciente sobre o salário líquido, impostos do contracheque e formação de hábitos de poupança.',
   'curso-saude-mental-trabalho': 'Inteligência emocional de entrada, controle da ansiedade no primeiro emprego e foco para conciliar novas responsabilidades.',
   'curso-financas-pessoais': 'Organização de rotina semanal, conciliação prática entre os horários escolares e a jornada de trabalho sem esgotamento mental.',
   'curso-excel-iniciante': 'Primeiros passos em planilhas eletrônicas, interface básica, inserção de dados, primeiras fórmulas matemáticas e gráficos simples.',
   'curso-informatica-seguranca': 'Conceitos fundamentais de informática, arquivos em nuvem, cuidados com senhas corporativas e prevenção a vírus e phishing.',
+  'informatica-basica': 'Conceitos fundamentais de informática, arquivos em nuvem, cuidados com senhas corporativas e prevenção a vírus e phishing.',
+  'informatica-basica-nuvem-seguranca': 'Conceitos fundamentais de informática, arquivos em nuvem, cuidados com senhas corporativas e prevenção a vírus e phishing.',
 
   // Nível 2
+  'excel-avancado': 'Domínio de PROCX, tratamento de bases desestruturadas, tabelas dinâmicas com segmentação de dados e dashboards executivos.',
+  'curso-excel-avancado-analise-dados': 'Domínio de PROCX, tratamento de bases desestruturadas, tabelas dinâmicas com segmentação de dados e dashboards executivos.',
+  'excel-avancado-analise-dados': 'Domínio de PROCX, tratamento de bases desestruturadas, tabelas dinâmicas com segmentação de dados e dashboards executivos.',
+  'curso-excel-avancado': 'Domínio de PROCX, tratamento de bases desestruturadas, tabelas dinâmicas com segmentação de dados e dashboards executivos.',
   'curso-comunicacao-nao-violenta': 'Comunicação empática e sem conflitos no dia a dia do escritório, escuta ativa e mediação de divergências.',
   'curso-excel-basico-avancado': 'Operações estruturadas de escritório, tabelas dinâmicas, PROCV, funções lógicas e padronização visual de dados.',
   'curso-rotinas-administrativas': 'Organização e controle de processos internos, redação de atas formais, arquivos e atendimento telefônico institucional.',
@@ -34,6 +44,13 @@ const COURSE_REASONS: Record<string, string> = {
   'curso-planejamento-orcamento': 'Planejamento financeiro prático pelo método 50-30-20, cálculo de juros e construção da reserva de emergência.',
 
   // Nível 3
+  'curso-inteligencia-negocios-indicadores': 'Interpretação de KPIs estratégicos, pirâmide DIKW, diagnóstico de gargalos operacionais e tomada de decisão data-driven.',
+  'inteligencia-negocios-indicadores': 'Interpretação de KPIs estratégicos, pirâmide DIKW, diagnóstico de gargalos operacionais e tomada de decisão data-driven.',
+  'inteligencia-negocios': 'Interpretação de KPIs estratégicos, pirâmide DIKW, diagnóstico de gargalos operacionais e tomada de decisão data-driven.',
+  'curso-inteligencia-negocios': 'Interpretação de KPIs estratégicos, pirâmide DIKW, diagnóstico de gargalos operacionais e tomada de decisão data-driven.',
+  'curso-analise-dados-power-bi': 'Modelagem dimensional Star Schema, ETL no Power Query, fórmulas DAX e relatórios interativos de Business Intelligence.',
+  'analise-dados-power-bi': 'Modelagem dimensional Star Schema, ETL no Power Query, fórmulas DAX e relatórios interativos de Business Intelligence.',
+  'power-bi': 'Modelagem dimensional Star Schema, ETL no Power Query, fórmulas DAX e relatórios interativos de Business Intelligence.',
   'curso-ia-produtividade': 'Aplicação prática de Inteligência Artificial generativa, engenharia de prompts avançada e automação de fluxos operacionais.',
   'curso-lgpd-seguranca-dados': 'Conformidade com a Lei Geral de Proteção de Dados (LGPD), classificação de dados sensíveis e segurança da informação corporativa.'
 };
@@ -48,9 +65,16 @@ const LEVEL_DEFINITIONS = [
     badgeClass: 'bg-emerald-950/60 text-emerald-300 border-emerald-500/30',
     dotColor: 'bg-emerald-400',
     priorityOrder: [
-      'curso-orcamento-primeiro-salario',
+      'equilibrio-emocional',
       'curso-saude-mental-trabalho',
-      'curso-financas-pessoais',
+      'curso-equilibrio-emocional',
+
+      'orcamento-primeiro-salario',
+      'orcamento-primeiro-salarial',
+      'curso-orcamento-primeiro-salario',
+
+
+
       'curso-excel-iniciante',
       'curso-informatica-seguranca'
     ]
@@ -64,6 +88,8 @@ const LEVEL_DEFINITIONS = [
     badgeClass: 'bg-amber-950/60 text-amber-300 border-amber-500/30',
     dotColor: 'bg-amber-400',
     priorityOrder: [
+      'excel-avancado',
+      'curso-excel-avancado-analise-dados',
       'curso-comunicacao-nao-violenta',
       'curso-excel-basico-avancado',
       'curso-rotinas-administrativas',
@@ -80,6 +106,11 @@ const LEVEL_DEFINITIONS = [
     badgeClass: 'bg-rose-950/60 text-rose-300 border-rose-500/30',
     dotColor: 'bg-rose-400',
     priorityOrder: [
+      'curso-analise-dados-power-bi',
+      'power-bi',
+      'curso-inteligencia-negocios-indicadores',
+      'inteligencia-negocios',
+      'curso-transformacao-digital-inovacao',
       'curso-ia-produtividade',
       'curso-lgpd-seguranca-dados'
     ]
@@ -103,13 +134,21 @@ export default function CoursesView() {
 
   const categories = [
     'TODAS',
+    'Finanças Pessoais',
     'Desenvolvimento Pessoal',
     'Administração e Negócios',
     'Tecnologia da Informação',
     'Legislação e Cidadania'
   ];
 
-  const filteredCourses = COURSES.filter((course) => {
+  const uniqueCourses = COURSES.reduce((acc: typeof COURSES, c) => {
+    if (!acc.some((x) => x.id === c.id || x.title.trim().toLowerCase() === c.title.trim().toLowerCase())) {
+      acc.push(c);
+    }
+    return acc;
+  }, []);
+
+  const filteredCourses = uniqueCourses.filter((course) => {
     // Filtro por texto
     const matchesSearch = 
       course.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -118,52 +157,58 @@ export default function CoursesView() {
 
     // Filtro por categoria
     const matchesCategory = 
-      selectedCategory === 'TODAS' || course.category === selectedCategory;
+      selectedCategory === 'TODAS' || 
+      course.category === selectedCategory ||
+      course.category.toLowerCase().includes(selectedCategory.toLowerCase()) ||
+      (selectedCategory === 'Tecnologia da Informação' && (course.category.toLowerCase().includes('tecnologia') || course.category.toLowerCase().includes('produtividade') || course.id.includes('excel'))) ||
+      (selectedCategory === 'Produtividade & Tecnologia' && (course.category.toLowerCase().includes('tecnologia') || course.category.toLowerCase().includes('produtividade') || course.id.includes('excel'))) ||
+      (selectedCategory === 'Desenvolvimento Pessoal' && (course.id === 'orcamento-primeiro-salario' || course.id === 'orcamento-primeiro-salarial' || course.id === 'curso-orcamento-primeiro-salario')) ||
+      (selectedCategory === 'Finanças Pessoais' && (course.id === 'orcamento-primeiro-salario' || course.id === 'orcamento-primeiro-salarial' || course.id === 'curso-orcamento-primeiro-salario' || course.category === 'Finanças Pessoais' || course.category.toLowerCase().includes('finan')));
 
     // Filtro por público-alvo
     const matchesAudience = 
       selectedAudience === 'TODOS' || 
       course.targetAudienceType === 'TODOS' || 
-      (Array.isArray(course.targetAudienceType) && course.targetAudienceType.includes(selectedAudience));
+      (Array.isArray(course.targetAudienceType) && (course.targetAudienceType.includes(selectedAudience) || course.targetAudienceType.includes('TODOS' as any)));
 
     // Filtro por nível
     const matchesLevel =
-      selectedLevel === 'TODOS' || course.level === selectedLevel;
+      selectedLevel === 'TODOS' || course.level === selectedLevel || Boolean(course.level?.toLowerCase().startsWith(selectedLevel.toLowerCase()));
 
     return matchesSearch && matchesCategory && matchesAudience && matchesLevel;
   });
 
   return (
-    <div className="w-full max-w-6xl mx-auto pb-12 space-y-8 flex flex-col items-center">
+    <div className="w-full max-w-6xl mx-auto px-4 py-8 space-y-8 flex flex-col items-center">
       
       {/* Banner Principal Unificado: Aba de Cursos & Progressão por Níveis */}
-      <div className="w-full bg-[#110E1B] border border-[#2D1B4E]/60 rounded-3xl p-6 lg:p-8 shadow-2xl relative overflow-hidden space-y-6">
+      <div className="w-full bg-white dark:bg-[#110E1B] border border-slate-200 dark:border-[#2D1B4E]/60 rounded-3xl p-6 lg:p-8 shadow-sm dark:shadow-2xl relative overflow-hidden space-y-6">
         
         {/* Cabeçalho do Catálogo */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative z-10 pb-6 border-b border-[#2D1B4E]/60">
           <div className="space-y-3 max-w-2xl">
             <div className="flex flex-wrap items-center gap-2">
-              <span className="inline-flex items-center gap-1.5 bg-[#171126] border border-purple-500/30 px-3 py-1 rounded-full text-xs font-semibold text-zinc-300">
+              <span className="inline-flex items-center gap-1.5 bg-slate-200 dark:bg-[#171126] border border-slate-300 dark:border-purple-500/30 px-3 py-1 rounded-full text-xs font-semibold text-slate-800 dark:text-zinc-300">
                 <GraduationCap className="w-3.5 h-3.5 text-purple-400" />
                 <span>Certificação por Competências</span>
               </span>
-              <span className="inline-flex items-center gap-1.5 bg-[#171126] border border-purple-500/30 px-3 py-1 rounded-full text-xs font-semibold text-zinc-300">
+              <span className="inline-flex items-center gap-1.5 bg-slate-200 dark:bg-[#171126] border border-slate-300 dark:border-purple-500/30 px-3 py-1 rounded-full text-xs font-semibold text-slate-800 dark:text-zinc-300">
                 <MapPin className="w-3.5 h-3.5 text-rose-400" />
                 <span>Focado em Curitiba &amp; RMC</span>
               </span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Catálogo de Cursos por Níveis
             </h1>
-            <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+            <p className="text-xs sm:text-sm text-slate-700 dark:text-zinc-300 leading-relaxed">
               Trilha formativa progressiva e orientada à empregabilidade, desenvolvida para apoiar sua trajetória profissional desde o primeiro emprego até funções analíticas e de gestão.
             </p>
           </div>
 
           {/* Card Único de Métricas Dinâmicas */}
           <div className="bg-[#171126] border border-[#2D1B4E] rounded-2xl p-4 sm:p-5 text-center shrink-0 shadow-lg min-w-[190px] flex flex-col items-center justify-center">
-            <div className="text-3xl sm:text-4xl font-black text-white tracking-tight">
-              {COURSES.length}
+            <div className="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white tracking-tight">
+              {uniqueCourses.length}
             </div>
             <div className="text-xs text-zinc-400 font-medium mt-1">
               Cursos Cadastrados
@@ -221,7 +266,7 @@ export default function CoursesView() {
       </div>
 
       {/* Barra de Filtros & Pesquisa - 100% Centralizada */}
-      <div className="w-full bg-[#140E24] border border-[#2D1B4E]/60 rounded-2xl p-4 sm:p-5 shadow-lg space-y-4">
+      <div className="w-full bg-white dark:bg-[#140E24] border border-slate-300 dark:border-[#2D1B4E]/60 rounded-2xl p-4 sm:p-5 shadow-sm space-y-4">
         
         {/* Linha 1: Input de Busca + Filtro por Público */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-3">
@@ -233,16 +278,16 @@ export default function CoursesView() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Pesquisar por título, área, ferramenta ou competência..."
-              className="w-full bg-[#0D0818] border border-[#2D1B4E] rounded-xl pl-10 pr-4 py-2.5 text-xs sm:text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-[#8B5CF6]"
+              className="w-full bg-white dark:bg-[#0D0818] border border-slate-300 dark:border-[#2D1B4E] rounded-xl pl-10 pr-4 py-2.5 text-xs sm:text-sm text-slate-900 dark:text-white placeholder-slate-500 font-semibold focus:outline-none focus:border-purple-600"
             />
           </div>
 
           <div className="md:col-span-5 flex items-center gap-2">
-            <span className="text-xs font-bold text-zinc-400 shrink-0">Para quem:</span>
+            <span className="text-xs font-bold text-slate-800 dark:text-zinc-400 shrink-0">Para quem:</span>
             <select
               value={selectedAudience}
               onChange={(e) => setSelectedAudience(e.target.value as any)}
-              className="w-full bg-[#0D0818] border border-[#2D1B4E] rounded-xl px-3 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-[#8B5CF6]"
+              className="w-full bg-white dark:bg-[#0D0818] border border-slate-300 dark:border-[#2D1B4E] rounded-xl px-3 py-2.5 text-xs sm:text-sm text-slate-900 dark:text-white font-semibold focus:outline-none focus:border-purple-600"
             >
               <option value="TODOS">Todos os Públicos</option>
               <option value="JOVEM_APRENDIZ">Jovem Aprendiz</option>
@@ -254,7 +299,7 @@ export default function CoursesView() {
         </div>
 
         {/* Linha 2: Filtro Rápido por Nível */}
-        <div className="flex flex-wrap items-center justify-start sm:justify-center gap-2 pt-2 border-t border-[#2D1B4E]/40 text-xs">
+        <div className="flex flex-wrap items-center justify-start sm:justify-center gap-2 pt-2 border-t border-slate-300 dark:border-[#2D1B4E]/40 text-xs">
           <span className="text-zinc-400 font-bold shrink-0 flex items-center gap-1.5 mr-1">
             <Target className="w-3.5 h-3.5 text-amber-400" />
             Níveis:
@@ -263,22 +308,22 @@ export default function CoursesView() {
             onClick={() => setSelectedLevel('TODOS')}
             className={`px-3 py-1.5 rounded-xl font-bold transition-all ${
               selectedLevel === 'TODOS'
-                ? 'bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] text-white shadow'
-                : 'bg-[#0D0818] text-zinc-400 hover:text-white border border-[#2D1B4E]'
+                ? 'bg-purple-700 text-white font-black shadow'
+                : 'bg-slate-200 text-slate-800 hover:text-black hover:bg-slate-300 font-bold border border-slate-300 dark:bg-[#0D0818] dark:text-zinc-400 dark:hover:text-white dark:border-[#2D1B4E]'
             }`}
           >
             Todos os Níveis ({filteredCourses.length})
           </button>
           {LEVEL_DEFINITIONS.map((def) => {
-            const count = COURSES.filter((c) => c.level === def.id).length;
+            const count = uniqueCourses.filter((c) => c.level === def.id).length;
             return (
               <button
                 key={def.id}
                 onClick={() => setSelectedLevel(selectedLevel === def.id ? 'TODOS' : def.id)}
                 className={`px-3 py-1.5 rounded-xl font-bold transition-all flex items-center gap-1.5 ${
                   selectedLevel === def.id
-                    ? 'bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] text-white shadow ring-2 ring-[#8B5CF6]/50'
-                    : 'bg-[#0D0818] text-zinc-400 hover:text-white border border-[#2D1B4E]'
+                    ? 'bg-purple-700 text-white font-black shadow ring-2 ring-purple-600/50'
+                    : 'bg-slate-200 text-slate-800 hover:text-black hover:bg-slate-300 font-bold border border-slate-300 dark:bg-[#0D0818] dark:text-zinc-400 dark:hover:text-white dark:border-[#2D1B4E]'
                 }`}
               >
                 <span>{def.badgeText}</span>
@@ -289,7 +334,7 @@ export default function CoursesView() {
         </div>
 
         {/* Linha 3: Categorias da Escola Virtual */}
-        <div className="flex flex-wrap items-center justify-start sm:justify-center gap-2 text-xs pt-2 border-t border-[#2D1B4E]/30">
+        <div className="flex flex-wrap items-center justify-start sm:justify-center gap-2 text-xs pt-2 border-t border-slate-300 dark:border-[#2D1B4E]/30">
           <span className="text-zinc-400 font-bold shrink-0">Categorias:</span>
           {categories.map((cat) => (
             <button
@@ -312,7 +357,7 @@ export default function CoursesView() {
       <div className="w-full space-y-12">
         {LEVEL_DEFINITIONS.filter((def) => selectedLevel === 'TODOS' || selectedLevel === def.id).map((def) => {
           // Filtrar os cursos deste nível
-          const rawCoursesInLevel = filteredCourses.filter((course) => (course.level || 'Iniciante') === def.id);
+          const rawCoursesInLevel = filteredCourses.filter((course) => (course.level || 'Iniciante') === def.id || Boolean(course.level?.toLowerCase().startsWith(def.id.toLowerCase())));
 
           // Ordenação pedagógica prioritária
           const priorityIndex = (id: string, list: string[]) => {
@@ -365,49 +410,49 @@ export default function CoursesView() {
               </div>
 
               {/* Grid de Cursos do Nível */}
-              <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {coursesInLevel.map((course) => {
                   const pedagogicalReason = COURSE_REASONS[course.id];
 
                   return (
                     <div
                       key={course.id}
-                      className="bg-[#140E24] border border-[#2D1B4E]/60 hover:border-[#8B5CF6]/70 rounded-2xl p-5 sm:p-6 shadow-xl flex flex-col justify-between space-y-4 transition-all duration-200 hover:-translate-y-1 group relative"
+                      className="bg-white border border-slate-200 shadow-sm dark:bg-slate-900/50 dark:backdrop-blur-md dark:border-purple-500/15 hover:border-purple-500/50 dark:hover:border-purple-500/40 rounded-3xl p-6 flex flex-col justify-between space-y-4 transition-all duration-200 hover:-translate-y-1 group relative"
                     >
                       <div className="space-y-3">
                         {/* Header do Card com Categoria, Nível & Carga Horária (SEM numeração 'Curso X') */}
                         <div className="flex items-center justify-between gap-2">
                           <div className="flex items-center gap-1.5 flex-wrap">
-                            <span className="text-[10px] font-bold bg-[#1F1535] text-zinc-300 border border-[#2D1B4E] px-2.5 py-0.5 rounded-md">
-                              {course.category}
+                            <span className="text-[10px] font-bold bg-slate-200 text-slate-900 border border-slate-300 dark:bg-[#1F1535] dark:text-zinc-300 dark:border-[#2D1B4E] px-2.5 py-0.5 rounded-md">
+                              {(course.id === 'orcamento-primeiro-salario' || course.id === 'orcamento-primeiro-salarial') ? 'Finanças Pessoais' : course.category}
                             </span>
                             <span className={`text-[10px] font-bold px-2 py-0.5 rounded-md border ${def.badgeClass}`}>
-                              {course.level || 'Iniciante'}
+                              {(course.id === 'curso-informatica-seguranca' || course.id === 'informatica-basica' || course.id === 'informatica-basica-nuvem-seguranca') ? 'Iniciante / Absoluto Zero' : (course.id === 'curso-saude-mental-trabalho' || course.id === 'equilibrio-emocional' || course.id === 'curso-equilibrio-emocional') ? 'Iniciante a Intermediário / Prático' : (course.level || 'Iniciante')}
                             </span>
                           </div>
                           <span className="text-xs font-semibold text-zinc-400 flex items-center gap-1 shrink-0">
                             <Clock className="w-3.5 h-3.5 text-zinc-400" />
-                            <span>{course.hours}h</span>
+                            <span>{(course.id === 'curso-saude-mental-trabalho' || course.id === 'equilibrio-emocional' || course.id === 'curso-equilibrio-emocional') ? '4 Semanas (12 horas estimadas)' : `${course.hours}h`}</span>
                           </span>
                         </div>
 
                         {/* Título & Subtítulo */}
-                        <h3 className="text-base font-bold text-white group-hover:text-[#FDE68A] transition-colors line-clamp-2">
+                        <h3 className="text-base font-black text-slate-900 dark:text-white transition-colors line-clamp-2">
                           {course.title}
                         </h3>
 
-                        <p className="text-xs text-zinc-400 line-clamp-3 leading-relaxed">
+                        <p className="text-xs text-slate-700 dark:text-zinc-400 line-clamp-3 leading-relaxed font-medium">
                           {course.subtitle}
                         </p>
 
                         {/* Motivo Pedagógico / Justificativa Estruturada */}
                         {pedagogicalReason && (
-                          <div className="bg-[#0E091A] border border-[#2D1B4E] rounded-xl p-3 text-[11px] leading-relaxed space-y-1">
-                            <div className="font-bold text-zinc-300 flex items-center gap-1">
+                          <div className="bg-slate-50 dark:bg-[#0E091A] border border-slate-300 dark:border-[#2D1B4E] rounded-xl p-3 text-[11px] leading-relaxed space-y-1">
+                            <div className="font-bold text-slate-900 dark:text-zinc-300 flex items-center gap-1">
                               <Sparkles className="w-3 h-3 text-purple-400" />
                               <span>Foco do Curso:</span>
                             </div>
-                            <p className="text-zinc-300/90 italic">
+                            <p className="text-slate-800 dark:text-zinc-300/90 font-medium italic">
                               "{pedagogicalReason}"
                             </p>
                           </div>
@@ -427,7 +472,7 @@ export default function CoursesView() {
                       </div>
 
                       {/* Rodapé com Ação */}
-                      <div className="pt-4 border-t border-[#2D1B4E]/60 flex items-center justify-between">
+                      <div className="pt-4 border-t border-slate-300 dark:border-[#2D1B4E]/60 flex items-center justify-between">
                         <span className="text-[11px] text-emerald-400 font-bold flex items-center gap-1">
                           <CheckCircle2 className="w-3.5 h-3.5" />
                           <span>Certificado Incluso</span>

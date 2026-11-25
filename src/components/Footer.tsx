@@ -1,248 +1,151 @@
 'use client';
 
-import React from 'react';
-import Link from 'next/link';
-import {
-  MapPin,
-  Mail,
-  Phone,
-  Heart,
-  ExternalLink,
-  ShieldCheck,
-  GraduationCap,
-  Calculator,
-  Compass,
-  ArrowUpRight,
-  Briefcase
-} from 'lucide-react';
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { Lock, X } from 'lucide-react';
 import { useApp } from '@/context/AppContext';
 
 export default function Footer() {
+  const router = useRouter();
   const { setCurrentView } = useApp();
+  const [showLegalModal, setShowLegalModal] = useState(false);
+
+  const handleNav = (view: any, route?: string) => {
+    setCurrentView(view);
+    if (typeof window !== 'undefined' && window.location.pathname !== '/' && route) {
+      router.push(route);
+    } else if (typeof window !== 'undefined' && window.location.pathname !== '/') {
+      router.push('/');
+    }
+  };
 
   return (
-    <footer className="w-full bg-[#0B0716] text-zinc-300 border-t border-neutral-800/80 mt-auto print:hidden">
-      {/* Container Principal do Rodapé (4 Colunas no Desktop / 1 Coluna no Mobile) */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
+    <footer className="w-full mt-auto py-6 px-4 sm:px-6 lg:px-8 print:hidden transition-colors duration-300">
+      {/* Container delicado e flutuante */}
+      <div className="max-w-7xl mx-auto bg-white/80 dark:bg-slate-900/60 backdrop-blur-md border border-slate-200/60 dark:border-purple-500/15 rounded-3xl shadow-sm py-6 px-8 transition-colors duration-300">
+        
+        {/* Linha principal: Esquerda (Identidade) e Direita (Links Essenciais) */}
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           
-          {/* ===================================================== */}
-          {/* COLUNA 1: SOBRE O PROJETO                             */}
-          {/* ===================================================== */}
-          <div className="space-y-3.5">
-            <Link href="/" className="inline-flex items-center gap-2.5 group">
-              <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-purple-700 to-indigo-600 flex items-center justify-center text-white font-black text-base shadow-md shadow-purple-900/40">
-                S
+          {/* ESQUERDA: Identidade Simples */}
+          <div className="space-y-1.5">
+            <div className="flex items-center gap-3">
+              <div className="relative flex items-center justify-center shrink-0">
+                <img
+                  src="/logo.png"
+                  alt="SkillHub"
+                  className="h-11 w-auto object-contain drop-shadow-sm"
+                  onError={(e) => {
+                    (e.target as HTMLElement).style.display = 'none';
+                  }}
+                />
               </div>
-              <span className="text-lg font-black text-white tracking-tight group-hover:text-purple-300 transition-colors">
-                Skill<span className="text-purple-400">Hub</span>
+
+              <span className="text-xl font-bold text-slate-800 dark:text-white tracking-tight">
+                Skill<span className="text-purple-600 dark:text-purple-400">Hub</span>
               </span>
-            </Link>
 
-            <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed">
-              Plataforma inteligente de formação, capacitação e inserção profissional focada exclusivamente em <strong>Jovens Aprendizes</strong>, <strong>Estagiários</strong> e <strong>Primeiro Emprego</strong> em Curitiba &amp; Região Metropolitana.
+              <span className="bg-purple-50 text-purple-700 dark:bg-purple-950/60 dark:text-purple-300 dark:border-purple-500/20 text-[11px] font-medium px-2.5 py-0.5 rounded-full border border-purple-100">
+                Curitiba &amp; RMC
+              </span>
+            </div>
+
+            <p className="text-slate-500 dark:text-slate-400 text-xs font-normal">
+              Aceleração profissional e primeiro emprego para jovens da RMC.
             </p>
-
-            <div className="pt-1 flex items-center gap-2 text-xs text-zinc-400">
-              <MapPin className="w-4 h-4 text-purple-400 shrink-0" />
-              <span>Curitiba &amp; Região Metropolitana - PR</span>
-            </div>
-
-            <div className="text-[11px] text-zinc-400 pt-1">
-              Conforme a Lei nº 10.097/00 (Aprendizagem) e Lei nº 11.788/08 (Estágio).
-            </div>
           </div>
 
-          {/* ===================================================== */}
-          {/* COLUNA 2: NAVEGAÇÃO PRINCIPAL                         */}
-          {/* ===================================================== */}
-          <div className="space-y-3">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-white border-b border-neutral-800 pb-1.5 flex items-center gap-1.5">
-              <span>Navegação Rápida</span>
-            </h3>
+          {/* DIREITA: Links Essenciais */}
+          <nav aria-label="Links do Rodapé" className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-slate-600 dark:text-slate-400 font-medium">
+            <button
+              onClick={() => handleNav('CURSOS_DISPONIVEIS')}
+              className="hover:text-purple-600 dark:hover:text-purple-300 transition-colors cursor-pointer"
+            >
+              Cursos
+            </button>
+            <span className="text-slate-300 dark:text-slate-700 select-none">•</span>
 
-            <ul className="space-y-2 text-xs sm:text-sm">
-              <li>
-                <button
-                  onClick={() => setCurrentView('INICIO')}
-                  className="text-zinc-400 hover:text-purple-300 transition-colors cursor-pointer flex items-center gap-1.5"
-                >
-                  <span>• Início</span>
-                </button>
-              </li>
-              <li>
-                <Link
-                  href="/vagas"
-                  className="text-zinc-400 hover:text-purple-300 transition-colors flex items-center gap-1.5"
-                >
-                  <span>• Painel de Vagas</span>
-                  <span className="text-[10px] bg-purple-950/80 text-purple-300 px-1.5 py-0.2 rounded border border-purple-500/30">
-                    RMC
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/holerite"
-                  className="text-zinc-400 hover:text-purple-300 transition-colors flex items-center gap-1.5"
-                >
-                  <span>• Calculadora de Holerite</span>
-                  <span className="text-[10px] bg-emerald-950/80 text-emerald-300 px-1.5 py-0.2 rounded border border-emerald-500/30">
-                    Didática
-                  </span>
-                </Link>
-              </li>
-              <li>
-                <button
-                  onClick={() => setCurrentView('DASHBOARD')}
-                  className="text-zinc-400 hover:text-purple-300 transition-colors cursor-pointer flex items-center gap-1.5"
-                >
-                  <span>• Dashboard do Aluno</span>
-                </button>
-              </li>
-              <li>
-                <Link
-                  href="/curriculo"
-                  className="text-zinc-400 hover:text-purple-300 transition-colors flex items-center gap-1.5"
-                >
-                  <span>• Gerador de Currículo</span>
-                </Link>
-              </li>
-              <li>
-                <button
-                  onClick={() => setCurrentView('CURSOS_DISPONIVEIS')}
-                  className="text-zinc-400 hover:text-purple-300 transition-colors cursor-pointer flex items-center gap-1.5"
-                >
-                  <span>• Catálogo de Cursos &amp; Badges</span>
-                </button>
-              </li>
-            </ul>
-          </div>
+            <button
+              onClick={() => handleNav('TRILHAS_DISPONIVEIS')}
+              className="hover:text-purple-600 dark:hover:text-purple-300 transition-colors cursor-pointer"
+            >
+              Trilhas
+            </button>
+            <span className="text-slate-300 dark:text-slate-700 select-none">•</span>
 
-          {/* ===================================================== */}
-          {/* COLUNA 3: SERVIÇOS & POLOS                            */}
-          {/* ===================================================== */}
-          <div className="space-y-3">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-white border-b border-neutral-800 pb-1.5">
-              Serviços &amp; Curitiba
-            </h3>
+            <button
+              onClick={() => handleNav('MAPA_PROXIMIDADE', '/vagas')}
+              className="hover:text-purple-600 dark:hover:text-purple-300 transition-colors cursor-pointer"
+            >
+              Mapa de Vagas
+            </button>
+            <span className="text-slate-300 dark:text-slate-700 select-none">•</span>
 
-            <ul className="space-y-2 text-xs sm:text-sm">
-              <li>
-                <button
-                  onClick={() => setCurrentView('MAPA_PROXIMIDADE')}
-                  className="text-zinc-400 hover:text-purple-300 transition-colors cursor-pointer"
-                >
-                  • Guia de Bairros (CIC, Centro, Batel...)
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => setCurrentView('HOLERITE')}
-                  className="text-zinc-400 hover:text-purple-300 transition-colors cursor-pointer"
-                >
-                  • Simulador Salarial &amp; FGTS
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => setCurrentView('TRILHAS_DISPONIVEIS')}
-                  className="text-zinc-400 hover:text-purple-300 transition-colors cursor-pointer"
-                >
-                  • Trilhas de Entrada no Mercado
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => setCurrentView('BADGES_PERFIL')}
-                  className="text-zinc-400 hover:text-purple-300 transition-colors cursor-pointer"
-                >
-                  • Carteira de Microcertificações
-                </button>
-              </li>
-              <li>
-                <Link
-                  href="/sobre"
-                  className="text-zinc-400 hover:text-purple-300 transition-colors flex items-center gap-1"
-                >
-                  <span>• Proteção LGPD &amp; Termos</span>
-                  <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-                </Link>
-              </li>
-            </ul>
-          </div>
+            <button
+              onClick={() => handleNav('HOLERITE', '/holerite')}
+              className="hover:text-purple-600 dark:hover:text-purple-300 transition-colors cursor-pointer"
+            >
+              Calculadora Salarial
+            </button>
+            <span className="text-slate-300 dark:text-slate-700 select-none">•</span>
 
-          {/* ===================================================== */}
-          {/* COLUNA 4: CONTATO & CANAIS                            */}
-          {/* ===================================================== */}
-          <div className="space-y-3">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-white border-b border-neutral-800 pb-1.5">
-              Canais de Atendimento
-            </h3>
+            <button
+              onClick={() => setShowLegalModal(true)}
+              className="hover:text-purple-600 dark:hover:text-purple-300 transition-colors cursor-pointer"
+            >
+              Termos &amp; Privacidade
+            </button>
+          </nav>
 
-            <div className="space-y-2.5 text-xs sm:text-sm text-zinc-400">
-              <a
-                href="mailto:contato@skillhub.com.br"
-                className="flex items-center gap-2 hover:text-purple-300 transition-colors"
+        </div>
+
+        {/* LINHA INFERIOR (DISCRETA) */}
+        <div className="border-t border-slate-100 dark:border-slate-800/50 mt-5 pt-4">
+          <p className="text-[11px] text-slate-400 dark:text-slate-500 text-center font-normal">
+            © 2026 SkillHub. Todos os direitos reservados.
+          </p>
+        </div>
+
+      </div>
+
+      {/* Modal Minimalista de Termos e Privacidade */}
+      {showLegalModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-fadeIn">
+          <div className="w-full max-w-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-purple-500/20 rounded-2xl p-6 shadow-xl relative text-slate-800 dark:text-slate-200 space-y-4">
+            <div className="flex items-center justify-between pb-3 border-b border-slate-100 dark:border-slate-800">
+              <h3 className="text-sm font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                <Lock className="w-4 h-4 text-purple-600" />
+                <span>Termos de Uso &amp; Política de Privacidade</span>
+              </h3>
+              <button
+                onClick={() => setShowLegalModal(false)}
+                className="p-1 rounded-lg text-slate-400 hover:text-slate-600 dark:hover:text-white cursor-pointer"
+                aria-label="Fechar"
               >
-                <Mail className="w-4 h-4 text-purple-400 shrink-0" />
-                <span>contato@skillhub.com.br</span>
-              </a>
+                <X className="w-5 h-5" />
+              </button>
+            </div>
 
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-purple-400 shrink-0" />
-                <span>(41) 3350-8000 • Curitiba/PR</span>
-              </div>
+            <div className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed space-y-3 max-h-[60vh] overflow-y-auto pr-1">
+              <p>
+                O <strong>SkillHub</strong> atua em estrita conformidade com a <strong>LGPD (Lei Federal nº 13.709/2018)</strong>, com a Lei da Aprendizagem (Lei nº 10.097/00) e a Lei do Estágio (Lei nº 11.788/08).
+              </p>
+              <p>
+                Os dados cadastrados são utilizados exclusivamente para a intermediação segura entre jovens e empresas contratantes credenciadas em Curitiba e Região Metropolitana. Nenhuma taxa é cobrada dos candidatos.
+              </p>
+            </div>
 
-              <div className="pt-2">
-                <span className="text-xs font-semibold text-zinc-300 block mb-2">Redes Oficiais:</span>
-                <div className="flex items-center gap-2">
-                  <a
-                    href="https://instagram.com"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="p-2 rounded-xl bg-[#140E24] hover:bg-purple-950/80 border border-neutral-800 hover:border-purple-500/40 text-zinc-300 hover:text-white transition-all text-xs"
-                    title="Instagram SkillHub"
-                  >
-                    Instagram
-                  </a>
-                  <a
-                    href="https://linkedin.com"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="p-2 rounded-xl bg-[#140E24] hover:bg-purple-950/80 border border-neutral-800 hover:border-purple-500/40 text-zinc-300 hover:text-white transition-all text-xs"
-                    title="LinkedIn SkillHub"
-                  >
-                    LinkedIn
-                  </a>
-                  <a
-                    href="https://github.com/nicollig9/SkillHub"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="p-2 rounded-xl bg-[#140E24] hover:bg-purple-950/80 border border-neutral-800 hover:border-purple-500/40 text-zinc-300 hover:text-white transition-all text-xs"
-                    title="GitHub Projeto"
-                  >
-                    GitHub
-                  </a>
-                </div>
-              </div>
+            <div className="pt-2 flex justify-end">
+              <button
+                onClick={() => setShowLegalModal(false)}
+                className="px-4 py-2 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-medium text-xs transition-colors cursor-pointer shadow-sm"
+              >
+                Entendi
+              </button>
             </div>
           </div>
-
         </div>
-      </div>
-
-      {/* Linha Inferior com Copyright */}
-      <div className="border-t border-neutral-800/80 bg-[#090513] py-4 px-4 sm:px-6 lg:px-8 text-center text-xs text-zinc-400">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2">
-          <span>
-            © 2026 SkillHub — Plataforma de Empregabilidade Jovem em Curitiba &amp; Região Metropolitana.
-          </span>
-          <span className="text-[11px] text-zinc-400 flex items-center gap-1">
-            Desenvolvido com foco em impacto social, educação e mobilidade urbana.
-          </span>
-        </div>
-      </div>
+      )}
     </footer>
   );
 }

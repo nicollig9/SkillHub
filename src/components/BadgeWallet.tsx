@@ -19,7 +19,8 @@ import {
   DollarSign,
   HeartPulse,
   Briefcase,
-  FileText
+  FileText,
+  ArrowRight
 } from 'lucide-react';
 
 export default function BadgeWallet() {
@@ -113,6 +114,34 @@ export default function BadgeWallet() {
           {student.bio}
         </div>
       </div>
+
+      {/* Empty State Delicado para Novos Usuários */}
+      {student.badgesEarned.length === 0 && (
+        <div className="bg-slate-900/90 border border-dashed border-purple-500/30 rounded-3xl p-8 sm:p-10 text-center space-y-4 shadow-sm">
+          <div className="w-14 h-14 mx-auto rounded-2xl bg-purple-950/80 border border-purple-500/30 flex items-center justify-center text-purple-300">
+            <Award className="w-7 h-7" />
+          </div>
+
+          <div className="max-w-md mx-auto space-y-1.5">
+            <h3 className="text-base font-bold text-white">
+              Você ainda não conquistou nenhuma badge
+            </h3>
+            <p className="text-xs text-slate-300 leading-relaxed">
+              Você ainda não iniciou nenhum curso. Que tal explorar as Trilhas de Curitiba &amp; RMC para emitir seus primeiros selos oficiais?
+            </p>
+          </div>
+
+          <div>
+            <button
+              onClick={() => setCurrentView('CURSOS_DISPONIVEIS')}
+              className="px-6 py-3 rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-bold text-xs shadow-md transition-all inline-flex items-center gap-2 cursor-pointer hover:scale-[1.02]"
+            >
+              <span>🚀 Explorar Cursos Gratuitos</span>
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* Badges Grid */}
       <div className="space-y-4">

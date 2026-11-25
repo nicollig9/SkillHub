@@ -1,7 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useMemo } from 'react';
+import { useRouter } from 'next/navigation';
 import { useApp, AppView } from '@/context/AppContext';
+import { TRACKS } from '@/data/coursesData';
 import { 
   Home,
   LayoutDashboard,
@@ -17,7 +19,8 @@ import {
   GraduationCap,
   HelpCircle,
   LogOut,
-  X
+  X,
+  FileText
 } from 'lucide-react';
 
 export default function Sidebar() {
@@ -32,8 +35,12 @@ export default function Sidebar() {
     role,
     candidateProfileType,
     isSidebarOpen,
-    setIsSidebarOpen
+    setIsSidebarOpen,
+    cursosInscritos,
+    completedModules,
+    quizResults
   } = useApp();
+  const router = useRouter();
 
   // Se a barra não estiver aberta, não renderiza nada
   if (!isSidebarOpen) return null;
@@ -47,8 +54,22 @@ export default function Sidebar() {
     ? 'Estudante' 
     : 'Primeiro Emprego';
 
-  // Itens de navegação do Aluno / Candidato
-  const studentNavItems: { id: AppView; label: string; icon: React.ComponentType<{ className?: string }>; badge?: string }[] = [
+  // Contagem dinâmica de cursos em andamento
+  const cursosAtivosCount = cursosInscritos ? cursosInscritos.filter((c) => c.status === 'em_andamento').length : 0;
+
+  const minhasTrilhasCount = useMemo(() => {
+    const passedCourseIds = Object.keys(quizResults || {}).filter((id) => quizResults[id]?.passed);
+    const inProgressCourseIds = Object.keys(completedModules || {});
+    const activeIds = new Set([...passedCourseIds, ...inProgressCourseIds]);
+    if (activeIds.size === 0) return 0;
+    return TRACKS.filter((t) => {
+      const stepIds = t.steps ? t.steps.map((s) => s.courseId) : t.courseIds;
+      return stepIds.some((id) => activeIds.has(id));
+    }).length;
+  }, [quizResults, completedModules]);
+
+  // Itens de navegação do Aluno / Candidato organizados em estrutura simétrica
+  const studentNavItems: { id: AppView; label: string; icon: React.ComponentType<{ className?: string }>; badge?: string; route?: string }[] = [
     {
       id: 'DASHBOARD',
       label: 'Meu Dashboard',
@@ -56,28 +77,24 @@ export default function Sidebar() {
       badge: 'Principal'
     },
     {
+      id: 'DASHBOARD',
+      label: 'Meu Currículo (IA)',
+      icon: FileText,
+      badge: 'PDF',
+      route: '/curriculo'
+    },
+    {
       id: 'MINHAS_AVALIACOES',
       label: 'Minhas Avaliações',
       icon: ClipboardCheck,
       badge: 'Quizzes'
     },
+    // --- GRUPO CURSOS (Inscritos | Catálogo) ---
     {
       id: 'MEUS_CURSOS',
       label: 'Meus Cursos',
       icon: BookOpen,
-      badge: '3 Ativos'
-    },
-    {
-      id: 'TRILHAS_DISPONIVEIS',
-      label: 'Trilhas de Formação',
-      icon: Compass,
-      badge: '5 Trilhas'
-    },
-    {
-      id: 'MINHAS_TRILHAS',
-      label: 'Minhas Trilhas',
-      icon: Layers,
-      badge: '1 Ativa'
+      badge: `${cursosAtivosCount} Ativo${cursosAtivosCount === 1 ? '' : 's'}`
     },
     {
       id: 'CURSOS_DISPONIVEIS',
@@ -85,6 +102,20 @@ export default function Sidebar() {
       icon: GraduationCap,
       badge: 'Catálogo'
     },
+    // --- GRUPO TRILHAS (Inscritas | Catálogo) ---
+    {
+      id: 'MINHAS_TRILHAS',
+      label: 'Minhas Trilhas',
+      icon: Layers,
+      badge: `${minhasTrilhasCount} Ativa${minhasTrilhasCount === 1 ? '' : 's'}`
+    },
+    {
+      id: 'TRILHAS_DISPONIVEIS',
+      label: 'Explorar Trilhas',
+      icon: Compass,
+      badge: 'Catálogo'
+    },
+    // --- RECURSOS & FERRAMENTAS ---
     {
       id: 'MAPA_PROXIMIDADE',
       label: 'Mapa de Vagas',
@@ -102,6 +133,12 @@ export default function Sidebar() {
       label: 'Minhas Badges & Perfil',
       icon: Award,
       badge: `${student.badgesEarned.length} Selos`
+    },
+    {
+      id: 'INICIO',
+      label: 'Sobre o SkillHub',
+      icon: Sparkles,
+      route: '/sobre'
     }
   ];
 
@@ -111,13 +148,23 @@ export default function Sidebar() {
       id: 'RECRUTADOR_RH',
       label: 'Painel RH da Empresa',
       icon: Building2,
-      badge: 'Empresa'
+      badge: 'Empresa',
+      route: '/dashboard/empresa'
     });
   }
 
-  const handleNavigate = (view: AppView) => {
+  const handleNavigate = (view: AppView, route?: string) => {
     setCurrentView(view);
     setIsSidebarOpen(false); // Fecha a barra lateral ao clicar
+    if (route) {
+      if (typeof window !== 'undefined' && window.location.pathname !== route) {
+        router.push(route);
+      }
+    } else {
+      if (typeof window !== 'undefined' && window.location.pathname !== '/') {
+        router.push('/');
+      }
+    }
   };
 
   return (
@@ -135,7 +182,7 @@ export default function Sidebar() {
         <div className="space-y-6">
           <div className="flex items-center justify-between pb-3 border-b border-[#3E1C66]/50">
             <div className="flex items-center gap-2.5">
-              <img src="/logo.png" alt="SkillHub Logo" className="w-8 h-8 object-contain" />
+              <img src="/logo.png" alt="SkillHub Logo" className="h-9 w-auto object-contain drop-shadow-sm" />
               <div>
                 <span className="font-black text-base text-white tracking-tight">
                   Skill<span className="text-[#FBBF24]">Hub</span>
@@ -147,7 +194,7 @@ export default function Sidebar() {
             <button
               onClick={() => setIsSidebarOpen(false)}
               title="Fechar menu"
-              className="p-1.5 rounded-xl bg-[#24123E] hover:bg-[#351859] text-purple-300 hover:text-white border border-[#7C3AED]/30 transition-all"
+              className="p-1.5 rounded-xl bg-[#24123E] hover:bg-[#351859] text-purple-300 hover:text-white border border-[#7C3AED]/30 transition-all cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
@@ -156,7 +203,7 @@ export default function Sidebar() {
           {/* Botão Atalho Início */}
           <button
             onClick={() => handleNavigate('INICIO')}
-            className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all ${
+            className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
               currentView === 'INICIO'
                 ? 'bg-gradient-to-r from-[#4C1D95] to-[#6D28D9] text-white border border-[#8B5CF6]/60 shadow-md'
                 : 'text-purple-200 hover:text-white hover:bg-[#25123E]/60'
@@ -175,13 +222,15 @@ export default function Sidebar() {
           <nav className="space-y-1">
             {studentNavItems.map((item) => {
               const Icon = item.icon;
-              const isActive = currentView === item.id;
+              const isActive = item.route 
+                ? (typeof window !== 'undefined' && window.location.pathname === item.route)
+                : currentView === item.id;
 
               return (
                 <button
-                  key={item.id}
-                  onClick={() => handleNavigate(item.id)}
-                  className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all duration-150 ${
+                  key={`${item.id}-${item.label}`}
+                  onClick={() => handleNavigate(item.id, item.route)}
+                  className={`w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold transition-all duration-150 cursor-pointer ${
                     isActive
                       ? 'bg-gradient-to-r from-[#4C1D95] to-[#6D28D9] text-white border border-[#8B5CF6]/60 shadow-md shadow-purple-950/60'
                       : 'text-purple-200 hover:text-white hover:bg-[#25123E]/60'
@@ -193,7 +242,7 @@ export default function Sidebar() {
                   </div>
                   {item.badge && (
                     <span
-                      className={`text-[10px] px-1.5 py-0.2 rounded-full font-bold ${
+                      className={`text-[10px] px-2 py-0.5 rounded-full font-bold transition-colors ${
                         isActive
                           ? 'bg-white/20 text-white'
                           : 'bg-[#220E3A] text-purple-300 border border-[#521E8A]/40'
@@ -216,7 +265,7 @@ export default function Sidebar() {
               alert('Canal de Suporte ao Usuário SkillHub:\nE-mail: contato@skillhub.com.br\nCuritiba & Região Metropolitana');
               setIsSidebarOpen(false);
             }}
-            className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-purple-300 hover:text-white hover:bg-white/5 transition-colors"
+            className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-purple-300 hover:text-white hover:bg-white/5 transition-colors cursor-pointer"
           >
             <div className="flex items-center gap-2">
               <HelpCircle className="w-4 h-4 text-[#A78BFA]" />
@@ -240,9 +289,10 @@ export default function Sidebar() {
                 onClick={() => {
                   logout();
                   setIsSidebarOpen(false);
+                  router.push('/');
                 }}
                 title="Sair"
-                className="p-1.5 text-purple-300 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors shrink-0"
+                className="p-1.5 text-purple-300 hover:text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors shrink-0 cursor-pointer"
               >
                 <LogOut className="w-4 h-4" />
               </button>
@@ -250,7 +300,7 @@ export default function Sidebar() {
           ) : (
             <button
               onClick={() => handleNavigate('LOGIN')}
-              className="w-full bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] hover:from-[#7C3AED] hover:to-[#9D4EDD] text-white font-bold py-2.5 rounded-xl text-xs shadow-md transition-all text-center"
+              className="w-full bg-gradient-to-r from-[#6D28D9] to-[#8B5CF6] hover:from-[#7C3AED] hover:to-[#9D4EDD] text-white font-bold py-2.5 rounded-xl text-xs shadow-md transition-all text-center cursor-pointer"
             >
               Fazer Login / Cadastrar
             </button>

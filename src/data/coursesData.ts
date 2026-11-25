@@ -329,7 +329,2529 @@ export const TRACKS: Track[] = [
   }
 ];
 
+// =========================================================================
+// CURSO OFICIAL: EQUILÍBRIO EMOCIONAL, ANSIEDADE E FOCO NO TRABALHO
+// =========================================================================
+export const CURSO_EQUILIBRIO_EMOCIONAL: Course = {
+  id: 'curso-saude-mental-trabalho',
+  published: true,
+  isPublished: true,
+  active: true,
+  visible: true,
+  trackId: 'trilha-2',
+  trackName: 'TRILHA 2: Soft Skills, Postura & Comunicação Corporativa',
+  category: 'Desenvolvimento Pessoal',
+  targetAudienceType: 'TODOS',
+  title: 'Equilíbrio Emocional, Ansiedade e Foco no Trabalho',
+  subtitle: 'Capacitar o profissional a identificar gatilhos de estresse e ansiedade no ambiente corporativo, aplicar técnicas de autorregulação emocional e mindfulness, manter o foco em tarefas complexas e construir uma rotina de trabalho mentalmente saudável e sustentável.',
+  hours: 12,
+  equivalentHours: 12,
+  modality: 'EAD 100% Gratuito (Escola Virtual)',
+  targetAudience: 'Estudantes, aprendizes e profissionais em transição ou atuação no mercado de trabalho',
+  prerequisites: 'Nenhum pré-requisito.',
+  badgeName: 'Equilíbrio Emocional & Foco',
+  badgeCategory: 'Saúde Mental & Carreira',
+  videoUrl: 'https://youtu.be/PAVaaGa_gug?si=JYdOWSYOz0oJj5TH',
+  youtubeId: 'PAVaaGa_gug',
+  badgeIcon: 'HeartPulse',
+  accentColor: '#EC4899',
+  level: 'Iniciante',
+  learningObjectives: [
+    'Identificar o mecanismo biológico do estresse no trabalho, compreendendo as diferenças entre Eustresse (positivo) e Distresse (negativo).',
+    'Mapear gatilhos individuais internos (perfeccionismo, síndrome do impostor) e externos (pressões, reuniões e cobranças).',
+    'Aplicar técnicas de autorregulação fisiológica e respiratória como Respiração Quadrada (Box Breathing) e Técnica 4-7-8.',
+    'Praticar a reestruturação cognitiva contra a catastrofização, focando em fatos e planos de ação práticos.',
+    'Implementar o Trabalho Profundo (Deep Work) e a pausa estratégica com o método S.T.O.P. de Mindfulness Corporativo.',
+    'Estabelecer fronteiras e desconexão digital no expediente, prevenindo precocemente os sinais e estágios da Síndrome de Burnout.'
+  ],
+  modules: [
+    {
+      id: 'sau-mod-1',
+      number: 1,
+      title: 'MÓDULO 1: Inteligência Emocional e Mapeamento de Gatilhos',
+      summary: 'O primeiro passo para o equilíbrio emocional é o autoconhecimento. O ambiente corporativo expõe os profissionais a pressões constantes, prazos curtos e conflitos interpessoais. Entender como o corpo e a mente reagem a esses estímulos é fundamental para evitar a exaustão.',
+      estimatedMinutes: 45,
+      content: {
+        sections: [
+          {
+            subheading: '1. O Mecanismo do Estresse no Trabalho',
+            body: [
+              'O primeiro passo para o equilíbrio emocional é o autoconhecimento. O ambiente corporativo expõe os profissionais a pressões constantes, prazos curtos e conflitos interpessoais. Entender como o corpo e a mente reagem a esses estímulos é fundamental para evitar a exaustão.',
+              'O estresse é uma resposta biológica natural de preservação. No entanto, quando ativado de forma crônica no escritório (reação de "luta ou fuga"), ele libera cortisol e adrenalina continuamente, prejudicando o raciocínio lógico e a tomada de decisões.',
+              '• Estresse Positivo (Eustresse): O nível de ativação saudável que gera motivação, foco e impulso para cumprir prazos.',
+              '• Estresse Negativo (Distresse): A sobrecarga contínua que gera paralisia, irritabilidade, esquecimentos e exaustão física.'
+            ],
+            highlightBox: {
+              type: 'info',
+              title: 'Eustresse vs. Distresse',
+              text: 'O eustresse é o nível produtivo de energia que nos move. O perigo é a sobrecarga constante sem descanso, que descamba para o distresse crônico.'
+            }
+          },
+          {
+            subheading: '2. Mapeamento de Gatilhos Individuais',
+            body: [
+              'Cada profissional reage de forma diferente aos estímulos do trabalho. O mapeamento consiste em identificar as situações específicas que desencadeiam picos de ansiedade:',
+              '• Gatilhos Internos: Perfeccionismo extremo, medo de errar, síndrome do impostor e necessidade contínua de aprovação.',
+              '• Gatilhos Externos: E-mails de cobrança, reuniões de última hora, sobrecarga de demandas e comunicação agressiva de terceiros.'
+            ],
+            asciiDiagram: `┌────────────────────────────────────────────────────────┐
+│           MAPEAMENTO DE GATILHOS CORPORATIVOS          │
+├────────────────────────────────────────────────────────┤
+│ GATILHOS INTERNOS:                                     │
+│ • Perfeccionismo ──► Medo de errar ──► Procrastinação  │
+│ • Síndrome do Impostor ──► Insegurança contínua        │
+├────────────────────────────────────────────────────────┤
+│ GATILHOS EXTERNOS:                                     │
+│ • Demandas urgentes ──► Sobrecarga ──► Desorganização  │
+│ • Cobranças e prazos ──► Reação de Luta ou Fuga        │
+└────────────────────────────────────────────────────────┘`
+          }
+        ]
+      }
+    },
+    {
+      id: 'sau-mod-2',
+      number: 2,
+      title: 'MÓDULO 2: Técnicas de Autorregulação e Gestão da Ansiedade',
+      summary: 'A ansiedade manifesta-se quando a mente antecipa cenários futuros catastróficos. A autorregulação emocional reúne ferramentas práticas para trazer a atenção de volta ao presente e acalmar o sistema nervoso autônomo.',
+      estimatedMinutes: 45,
+      content: {
+        sections: [
+          {
+            subheading: '1. Técnicas Respiratórias para Redução Ansiolítica',
+            body: [
+              'A ansiedade manifesta-se quando a mente antecipa cenários futuros catastróficos. A autorregulação emocional reúne ferramentas práticas para trazer a atenção de volta ao presente e acalmar o sistema nervoso autônomo.',
+              'A respiração é a ponte direta para ativar o sistema nervoso parassimpático, desacelerando os batimentos cardíacos:',
+              '• Respiração Quadrada (Box Breathing): Inspirar em 4 segundos, reter o ar por 4 segundos, expirar em 4 segundos e manter os pulmões vazios por 4 segundos. Ideal para fazer antes de reuniões decisivas.',
+              '• Técnica 4-7-8: Inspirar em 4 segundos, reter o ar por 7 segundos e soltar o ar lentamente pela boca durante 8 segundos.'
+            ],
+            highlightBox: {
+              type: 'calc',
+              title: 'Respiração Quadrada (Box Breathing)',
+              text: 'Inspire em 4s ──► Segure em 4s ──► Expire em 4s ──► Pause em 4s. Pratique rodadas conscientes para normalizar batimentos e clarear o raciocínio.'
+            }
+          },
+          {
+            subheading: '2. Reestruturação Cognitiva',
+            body: [
+              'Diante de uma crise de ansiedade ou de um erro no projeto, a mente costuma criar distorções cognitivas (catastrofização). A reestruturação é o ato de questionar o pensamento ansiogênico com fatos concretos:',
+              '• Pensamento Ansiogênico: "Apresentei o relatório com um dado incorreto, serei demitido imediatamente."',
+              '• Questionamento Racional: "O dado foi corrigido a tempo? Qual é a probabilidade real de demissão por esse fato isolado? Qual o plano de ação prático agora?"'
+            ],
+            highlightBox: {
+              type: 'warning',
+              title: 'Fatos vs. Suposições',
+              text: 'Não tome pensamentos catastróficos como certezas. Busque fatos observáveis e estruture um plano de resolução prático em vez de alimentar o pânico.'
+            }
+          }
+        ]
+      }
+    },
+    {
+      id: 'sau-mod-3',
+      number: 3,
+      title: 'MÓDULO 3: Foco Profundo (Deep Work) e Atenção Plena',
+      summary: 'A oscilação emocional corrói a capacidade de concentração. Em um ambiente repleto de notificações, manter o foco em tarefas complexas exige estratégias deliberadas de proteção mental.',
+      estimatedMinutes: 45,
+      content: {
+        sections: [
+          {
+            subheading: '1. O Estado de Flow e o Trabalho Profundo (Deep Work)',
+            body: [
+              'O conceito de Deep Work (Trabalho Profundo), desenvolvido por Cal Newport, refere-se à capacidade de focar sem distrações em uma tarefa cognitivamente exigente.',
+              '• Trabalho Superficial (Shallow Work): Tarefas mecânicas e operacionais (responder e-mails rápidos, organizar pastas) que exigem pouco esforço mental, mas consomem o dia.',
+              '• Construção de Rituais de Foco: Eliminação de abas desnecessárias, bloqueio de notificações e definição de metas claras para o bloco de trabalho focado.'
+            ]
+          },
+          {
+            subheading: '2. Aplicação Prática do Mindfulness Corporativo',
+            body: [
+              'Atenção plena (Mindfulness) não significa "esvaziar a mente", mas observar os pensamentos e emoções sem julgamento imediato, ancorando-se na atividade presente.',
+              'A Pausa Estratégica (Método STOP):',
+              '• S (Stop): Pare o que está fazendo.',
+              '• T (Take a breath): Tome uma respiração profunda.',
+              '• O (Observe): Observe seus pensamentos e o seu corpo.',
+              '• P (Proceed): Prossiga com clareza e intenção.'
+            ],
+            asciiDiagram: `┌────────────────────────────────────────────────────────┐
+│               MÉTODO S.T.O.P. DE MINDFULNESS           │
+├────────────────────────────────────────────────────────┤
+│ [S] STOP: Pare imediatamente o que está fazendo        │
+│ [T] TAKE A BREATH: Respire consciente e profundamente  │
+│ [O] OBSERVE: Observe mente, emoções e corpo sem julgar │
+│ [P] PROCEED: Prossiga com foco, calma e intenção clara │
+└────────────────────────────────────────────────────────┘`
+          }
+        ]
+      }
+    },
+    {
+      id: 'sau-mod-4',
+      number: 4,
+      title: 'MÓDULO 4: Limites Saudáveis, Comunicação e Prevenção do Burnout',
+      summary: 'O equilíbrio emocional sustentável depende da capacidade de estabelecer fronteiras claras entre a vida profissional e a vida pessoal, evitando o esgotamento extremo (Burnout).',
+      estimatedMinutes: 45,
+      content: {
+        sections: [
+          {
+            subheading: '1. Estabelecimento de Fronteiras e Desconexão Digital',
+            body: [
+              'A hiperconectividade cria a falsa sensação de que tudo precisa ser respondido imediatamente.',
+              '• Desconexão do Expediente: Definir um horário claro para encerrar a checagem de mensagens corporativas no celular pessoal.',
+              '• Gestão de Expectativas: Comunicar à equipe os prazos reais de resposta e entrega, sem assumir compromissos inalcançáveis por medo de dizer "não".'
+            ],
+            highlightBox: {
+              type: 'info',
+              title: 'Comunicação Assertiva',
+              text: 'Dizer "não" fundamentado com alternativas e prazos viáveis é sinal de maturidade profissional e respeito pela qualidade do trabalho.'
+            }
+          },
+          {
+            subheading: '2. Sinais de Alerta do Burnout',
+            body: [
+              'A Síndrome de Burnout é o estresse crônico não gerenciado no ambiente de trabalho. Reconhecer os sinais iniciais evita o colapso físico e emocional:',
+              '• Estágio Inicial: Entusiasmo excessivo com negligência de necessidades básicas (sono, alimentação); sensação constante de falta de tempo e ansiedade aos domingos.',
+              '• Estágio Avançado: Exaustão física e mental diária; cinismo, desconexão emocional com o trabalho e queda brusca de produtividade.'
+            ],
+            asciiDiagram: `┌────────────────────────────────────────────────────────┐
+│             ESTÁGIOS DA SÍNDROME DE BURNOUT            │
+├────────────────────────────────────────────────────────┤
+│ ESTÁGIO INICIAL:                                       │
+│ • Entusiasmo desmedido sem descanso                    │
+│ • Negligência com sono e alimentação                   │
+│ • Ansiedade aos domingos e falta de tempo              │
+├────────────────────────────────────────────────────────┤
+│ ESTÁGIO AVANÇADO:                                      │
+│ • Exaustão física e mental diária                      │
+│ • Cinismo, frieza e distanciamento da equipe           │
+│ • Queda drástica de produtividade e esgotamento        │
+└────────────────────────────────────────────────────────┘`
+          }
+        ]
+      }
+    }
+  ],
+  caseStudies: [],
+  quiz: [
+    {
+      id: 1,
+      question: 'Durante um dia de alta demanda no escritório, um colaborador percebe que sua respiração está acelerada e que não consegue se concentrar nas tarefas devido ao nervosismo. Qual técnica de autorregulação fisiológica é mais indicada para reativar a calma do sistema nervoso de forma rápida?',
+      options: [
+        'Ingerir bebidas estimulantes com alto teor de cafeína para acelerar o ritmo de trabalho.',
+        'Ignorar os sinais do corpo e continuar digitando em velocidade máxima sem fazer pausas.',
+        'Aplicar a técnica de Respiração Quadrada (Box Breathing), alternando inspiração, retenção, expiração e pausa em tempos iguais.',
+        'Reclamar abertamente sobre a sobrecarga com os colegas de equipe durante o horário de pico.'
+      ],
+      correct: 2,
+      explanation: 'A técnica de Respiração Quadrada (Box Breathing) reduz diretamente os níveis de excitação fisiológica provocados pela ansiedade, desacelerando a frequência cardíaca e ativando o sistema nervoso parassimpático para recuperar o controle consciente.'
+    },
+    {
+      id: 2,
+      question: 'A Síndrome de Burnout foi reconhecida como uma condição ocupacional resultante do estresse crônico no ambiente de trabalho. Qual das opções abaixo apresenta um sintoma característico dessa síndrome em seu estágio avançado?',
+      options: [
+        'Sensação diária de exaustão física/mental acompanhada de atitudes de cinismo e desapego ao trabalho.',
+        'Aumento da criatividade e engajamento constante em novos projetos da empresa.',
+        'Capacidade de manter o foco ininterrupto por 12 horas consecutivas sem apresentar fadiga.',
+        'Facilidade em desligar-se das responsabilidades profissionais no exato momento em que encerra o expediente.'
+      ],
+      correct: 0,
+      explanation: 'O Burnout é caracterizado pela tríade: exaustão emocional profunda, despersonalização/cinismo (desapego frio em relação às tarefas e colegas) e queda da percepção de eficácia profissional.'
+    },
+    {
+      id: 3,
+      question: 'O conceito de Deep Work (Trabalho Profundo) exige eliminar distrações para focar em tarefas cognitivamente complexas. Qual ação prática contribui diretamente para a criação de um ambiente favorável ao Deep Work?',
+      options: [
+        'Deixar os alertas sonoros do e-mail e do chat corporativo ativados na tela principal.',
+        'Alternar a atenção a cada 5 minutos entre a escrita de um relatório e a navegação em redes sociais.',
+        'Realizar chamadas de vídeo sem roteiro prévio enquanto tenta revisar planilhas complexas.',
+        'Agendar o checamento de e-mails para horários específicos do dia e silenciar notificações durante o bloco de foco.'
+      ],
+      correct: 3,
+      explanation: 'O Trabalho Profundo exige a eliminação de fragmentações na atenção. Definir blocos de tempo isolados e silenciar notificações previne a troca constante de contexto, permitindo hiperfoco e alta performance.'
+    },
+    {
+      id: 4,
+      question: 'Diante de um erro cometido em um projeto, a mente de um profissional ansioso pode gerar uma "distorção cognitiva", acreditando que o problema é uma catastrofização irreparável. Qual técnica ajuda a reestruturar esse pensamento de forma racional?',
+      options: [
+        'Aceitar o pensamento catastrófico como verdade absoluta e pedir demissão imediatamente.',
+        'Questionar o pensamento ansiogênico buscando evidências concretas sobre o impacto real e focando no plano de ação para correção.',
+        'Esconder o erro da equipe na esperança de que ninguém perceba a falha.',
+        'Culpar publicamente outros colegas pelo ocorrido para preservar a própria imagem.'
+      ],
+      correct: 1,
+      explanation: 'A Reestruturação Cognitiva combate vieses de catastrofização substituindo suposições por fatos. Analisar o erro objetivamente e construir uma solução prática reduz a ansiedade e restaura o senso de controle.'
+    },
+    {
+      id: 5,
+      question: 'O acrônimo S.T.O.P. representa uma pausa consciente no meio da rotina para recuperar a clareza e o equilíbrio emocional. O que significa a letra "O" nessa metodologia de Mindfulness?',
+      options: [
+        'Observar os pensamentos, emoções e sensações corporais sem julgamento imediato.',
+        'Omitir os sentimentos negativos até o fim da semana.',
+        'Optimizar o tempo eliminando o horário de almoço.',
+        'Organizar a mesa de trabalho descartando papéis antigos.'
+      ],
+      correct: 0,
+      explanation: 'No método S.T.O.P. (Stop, Take a breath, Observe, Proceed), o passo Observe orienta o indivíduo a tomar consciência de seus estados internos (pensamentos, emoções, tensão muscular) com curiosidade e sem auto-julgamento.'
+    },
+    {
+      id: 6,
+      question: 'Para manter a saúde mental e prevenir o esgotamento no ambiente de trabalho, o estabelecimento de limites saudáveis é indispensável. Qual postura reflete o estabelecimento de uma fronteira profissional assertiva?',
+      options: [
+        'Responder mensagens de trabalho no aplicativo pessoal de mensagens às 23 horas de um domingo.',
+        'Aceitar todas as solicitações de última hora recebidas, mesmo quando impossibilitam o cumprimento dos prazos já acordados.',
+        'Desligar o telefone corporativo durante o horário de expediente normal sem avisar a equipe.',
+        'Comunicar com clareza a capacidade atual de entregas, renegociar prazos com a liderança e respeitar os horários de descanso.'
+      ],
+      correct: 3,
+      explanation: 'Ter assertividade emocional significa alinhar expectativas e prioridades de forma transparente com a equipe. Dizer "não" fundamentado ou renegociar prazos protege a qualidade das entregas e a saúde mental do profissional.'
+    },
+    {
+      id: 7,
+      question: 'O estresse é uma reação biológica do organismo que pode ser dividida entre "eustresse" e "distresse". Qual a principal característica do eustresse?',
+      options: [
+        'É o estágio final de esgotamento físico que exige afastamento médico imediato.',
+        'Trata-se do sentimento constante de pânico acompanhado de insônia crônica.',
+        'É a forma saudável e positiva de estresse, que mobiliza energia, melhora o foco e motiva a resolução de desafios.',
+        'É a incapacidade total de sentir qualquer tipo de emoção durante reuniões de trabalho.'
+      ],
+      correct: 2,
+      explanation: 'O Eustresse (estresse positivo) é o nível moderado de ativação necessário para nos manter alertas, motivados e engajados na superação de metas e desafios do dia a dia, diferindo do estresse crônico nocivo (distresse).'
+    }
+  ]
+};
+
+export const EQUILIBRIO_EMOCIONAL_DATA = CURSO_EQUILIBRIO_EMOCIONAL;
+
+// =========================================================================
+// CURSO OFICIAL: INFORMÁTICA BÁSICA, NUVEM E SEGURANÇA DA INFORMAÇÃO
+// =========================================================================
+export const CURSO_INFORMATICA_SEGURANCA: Course = {
+  id: 'curso-informatica-seguranca',
+  published: true,
+  isPublished: true,
+  active: true,
+  visible: true,
+  trackId: 'trilha-3',
+  trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
+  category: 'Tecnologia da Informação',
+  targetAudienceType: 'TODOS',
+  title: 'Informática Básica, Nuvem e Segurança da Informação',
+  subtitle: 'Sistemas operacionais, atalhos de produtividade, Google Workspace, OneDrive e defesa contra ameaças cibernéticas',
+  hours: 12,
+  equivalentHours: 12,
+  modality: 'EAD 100% Gratuito (Escola Virtual)',
+  targetAudience: 'Iniciante / Absoluto Zero — Estudantes e profissionais iniciando o uso de computadores e ferramentas em nuvem',
+  prerequisites: 'Nenhum pré-requisito.',
+  badgeName: 'Segurança Digital & Nuvem',
+  badgeCategory: 'Ferramentas de Escritório',
+  badgeIcon: 'Shield',
+  accentColor: '#3B82F6',
+  level: 'Iniciante',
+  videoUrl: 'https://youtu.be/X2wgk02Bqt0?si=vwlWKuVB6909U_dG',
+  youtubeId: 'X2wgk02Bqt0',
+  learningObjectives: [
+    'Capacitar o participante a operar sistemas operacionais de forma eficiente, compreendendo hardware e software.',
+    'Utilizar serviços de armazenamento e produtividade em nuvem (Google Drive e OneDrive) com permissões adequadas e edição colaborativa.',
+    'Adotar práticas essenciais de segurança da informação (senhas fortes, 2FA, defesa contra phishing e ransomware) e aplicar a regra 3-2-1 de backup e princípios da LGPD.'
+  ],
+  modules: [
+    {
+      id: 'inf-mod-1',
+      number: 1,
+      title: 'MÓDULO 1: Fundamentos de Informática e Sistemas Operacionais',
+      summary: 'Compreender a estrutura de um computador e dominar a navegação eficiente pelo sistema operacional.',
+      estimatedMinutes: 45,
+      content: {
+        sections: [
+          {
+            subheading: '1. Hardware, Software e Estrutura Lógica',
+            body: [
+              'Hardware vs. Software: Diferença entre componentes físicos (processador, memória RAM, disco de armazenamento SSD/HD) e programas/sistemas.',
+              'Sistemas Operacionais (Windows e Linux): Interface gráfica, atalhos universais de teclado (Ctrl+C, Ctrl+V, Ctrl+Z, Alt+Tab, Windows+E) e personalização de ambiente.'
+            ]
+          },
+          {
+            subheading: '2. Organização de Arquivos e Armazenamento',
+            body: [
+              'Estrutura de Pastas e Diretórios: Boas práticas de criação, movimentação, renomeação e exclusão de arquivos.',
+              'Extensões de Arquivos Frequentes: Identificação de formatos (.pdf, .docx, .xlsx, .png, .jpeg, .zip).',
+              'Gerenciamento de Espaço e Lixeira: Como esvaziar a lixeira com segurança e recuperar arquivos excluídos acidentalmente.'
+            ],
+            highlightBox: {
+              type: 'info',
+              title: 'Atalhos de Produtividade',
+              text: 'Dominar atalhos como Alt+Tab (alternar janelas) e Windows+E (explorador de arquivos) aumenta expressivamente a velocidade de trabalho no computador corporativo.'
+            }
+          }
+        ]
+      }
+    },
+    {
+      id: 'inf-mod-2',
+      number: 2,
+      title: 'MÓDULO 2: Navegação na Web e Serviços de Produtividade em Nuvem',
+      summary: 'Aprender a explorar a internet de forma rápida e utilizar plataformas de colaboração em tempo real.',
+      estimatedMinutes: 45,
+      content: {
+        sections: [
+          {
+            subheading: '1. Navegadores e Pesquisa Eficiente',
+            body: [
+              'Navegadores (Browsers): Configuração básica de Chrome, Edge e Firefox (favoritos, histórico, guias e modo anônimo).',
+              'Técnicas de Busca: Uso de aspas ("termo exato"), hífen para exclusão (termo -excluído) e busca por tipo de arquivo (filetype:pdf).'
+            ]
+          },
+          {
+            subheading: '2. Ecossistemas em Nuvem (Google Workspace e Microsoft 365)',
+            body: [
+              'O que é Computação em Nuvem (Cloud Computing): Conceito de armazenamento e processamento remoto de dados.',
+              'Armazenamento e Compartilhamento: Uso do Google Drive / OneDrive para criar pastas compartilhadas, definir permissões de acesso (Apenas Leitura, Comentador, Editor) e sincronizar arquivos locais.',
+              'Edição Colaborativa em Tempo Real: Criação e revisão simultânea de documentos e planilhas em equipe.'
+            ],
+            highlightBox: {
+              type: 'info',
+              title: 'Permissões em Nuvem',
+              text: 'A permissão de "Apenas Leitura" (ou Visualizador) garante a transparência da informação sem colocar em risco a integridade do arquivo original contra edições ou exclusões indevidas.'
+            }
+          }
+        ]
+      }
+    },
+    {
+      id: 'inf-mod-3',
+      number: 3,
+      title: 'MÓDULO 3: Segurança da Informação e Proteção de Dados',
+      summary: 'Desenvolver uma postura preventiva contra os golpes digitais mais comuns do mercado.',
+      estimatedMinutes: 45,
+      content: {
+        sections: [
+          {
+            subheading: '1. Mapeamento de Ameaças Digitais',
+            body: [
+              'Engenharia Social e Phishing: Como identificar e-mails, mensagens de WhatsApp e sites falsos projetados para roubar senhas e dados bancários.',
+              'Tipos de Malware: Diferenças conceituais entre Vírus, Ransomware (sequestro de dados), Spyware e Trojan (Cavalo de Tróia).'
+            ]
+          },
+          {
+            subheading: '2. Mecanismos de Defesa Pessoal e Corporativa',
+            body: [
+              'Gestão de Senhas Fortes: Criação de combinações seguras sem padrões óbvios e uso de gerenciadores de senhas.',
+              'Autenticação em Duas Etapas (2FA/MFA): Configuração obrigatória de verificação em duas etapas via aplicativos autenticadores (Google Authenticator, Microsoft Authenticator) ou chaves de segurança.',
+              'Redes Wi-Fi Seguras: Cuidados ao navegar em redes Wi-Fi públicas e uso de conexões criptografadas (HTTPS).'
+            ],
+            highlightBox: {
+              type: 'warning',
+              title: 'Alerta de Phishing e Ransomware',
+              text: 'Desconfie sempre de e-mails com tom de urgência ou links suspeitos. O ransomware bloqueia arquivos por criptografia exigindo resgate financeiro; a prevenção e a postura atenta são as melhores defesas.'
+            }
+          }
+        ]
+      }
+    },
+    {
+      id: 'inf-mod-4',
+      number: 4,
+      title: 'MÓDULO 4: Rotinas de Proteção e Lei Geral de Proteção de Dados (LGPD)',
+      summary: 'Garantir a continuidade das atividades e o cumprimento das normas legais de privacidade.',
+      estimatedMinutes: 45,
+      content: {
+        sections: [
+          {
+            subheading: '1. Estratégias de Backup (Cópia de Segurança)',
+            body: [
+              'A Regra de Backup 3-2-1: Manter 3 cópias dos dados, em 2 mídias diferentes, com 1 cópia armazenada fora do local (na nuvem).',
+              'Automação de Backups: Programação de rotinas de sincronização automática no sistema operacional e na nuvem.'
+            ]
+          },
+          {
+            subheading: '2. Boas Práticas de Privacidade e LGPD no Dia a Dia',
+            body: [
+              'Privacidade de Dados: Configuração de permissões em aplicativos, redes sociais e navegadores.',
+              'Introdução à LGPD: Noções básicas sobre o tratamento responsável de dados de clientes, colegas e fornecedores no ambiente de trabalho.'
+            ],
+            highlightBox: {
+              type: 'law',
+              title: 'A Regra 3-2-1 de Backup',
+              text: 'Padrão ouro de segurança: 3 cópias dos dados (1 principal + 2 backups), em 2 mídias distintas (ex: disco interno e HD externo), com 1 cópia fora da empresa/residência (nuvem).'
+            }
+          }
+        ]
+      }
+    }
+  ],
+  caseStudies: [],
+  quiz: [
+    {
+      id: 1,
+      question: 'Um profissional recebeu um e-mail parecendo ser do seu banco, informando sobre o bloqueio da conta e solicitando que ele clique em um link para digitar sua senha e reativar o acesso. Trata-se de uma tentativa de golpe conhecida como:',
+      options: [
+        'Phishing.',
+        'Defragmentação de disco.',
+        'Backup em nuvem.',
+        'Atualização de firmware.'
+      ],
+      correct: 0,
+      explanation: 'Phishing é uma técnica de engenharia social onde golpistas se passam por instituições confiáveis (bancos, empresas, órgãos governamentais) para enganar o usuário e induzi-lo a fornecer dados confidenciais.'
+    },
+    {
+      id: 2,
+      question: 'Para reforçar a segurança de uma conta corporativa de e-mail contra acessos não autorizados, qual das opções representa a prática recomendada de proteção adicional?',
+      options: [
+        'Utilizar a mesma senha simples em todos os sites da internet.',
+        'Anotar a senha em um bloco de notas colado no monitor do computador.',
+        'Habilitar a Autenticação em Duas Etapas (2FA) utilizando um aplicativo autenticador.',
+        'Compartilhar a senha com todos os colegas de equipe para facilitar o trabalho.'
+      ],
+      correct: 2,
+      explanation: 'A Autenticação em Duas Etapas (2FA) adiciona uma camada de proteção física/digital além da senha, exigindo um código temporário gerado no celular para confirmar a identidade.'
+    },
+    {
+      id: 3,
+      question: 'Na rotina de trabalho em equipe utilizando serviços de armazenamento em nuvem (como Google Drive ou OneDrive), qual é a vantagem de definir uma permissão como "Apenas Leitura" ao compartilhar um arquivo com um parceiro externo?',
+      options: [
+        'Permitir que a pessoa apague permanentemente o arquivo original.',
+        'Garantir que o destinatário consiga visualizar o documento sem a possibilidade de alterar seu conteúdo original.',
+        'Fazer com que o arquivo seja impresso automaticamente na impressora do destinatário.',
+        'Bloquear completamente o acesso da pessoa ao link compartilhado.'
+      ],
+      correct: 1,
+      explanation: 'A permissão de Apenas Leitura (ou Visualizador) garante a transparência da informação sem colocar em risco a integridade do arquivo original contra edições ou exclusões indevidas.'
+    },
+    {
+      id: 4,
+      question: 'Qual atalho universal de teclado nos sistemas operacionais é utilizado para alternar rapidamente entre as janelas e programas abertos na tela?',
+      options: [
+        'Ctrl + P',
+        'Alt + Tab',
+        'Ctrl + S',
+        'Windows + L'
+      ],
+      correct: 1,
+      explanation: 'O atalho Alt + Tab é o padrão nos sistemas operacionais para navegar e alternar a visualização entre diferentes aplicativos abertos na área de trabalho.'
+    },
+    {
+      id: 5,
+      question: 'A estratégia de proteção de dados conhecida como "Regra 3-2-1 de Backup" recomenda qual das seguintes estruturas para garantir que informações críticas não sejam perdidas?',
+      options: [
+        'Guardar 3 cópias dos dados, em 2 mídias diferentes, com 1 cópia armazenada em um local externo (como a nuvem).',
+        'Fazer backup a cada 3 dias, durante 2 meses, usando 1 pendrive usado.',
+        'Salvar 3 arquivos na mesma pasta, em 2 computadores iguais, sem senha.',
+        'Enviar 3 e-mails para você mesmo com 2 anexos em 1 dia.'
+      ],
+      correct: 0,
+      explanation: 'A Regra 3-2-1 é o padrão de ouro da segurança da informação: ter 3 cópias no total (1 primária + 2 backups), em 2 tipos de mídias diferentes (ex: HD externo e nuvem), com 1 cópia mantida fora da empresa/residência (nuvem).'
+    },
+    {
+      id: 6,
+      question: 'Um tipo nocivo de software malicioso que criptografa (bloqueia) os arquivos de um computador e exige o pagamento de um "resgate" financeiro para liberar o acesso aos dados é chamado de:',
+      options: [
+        'Antivírus.',
+        'Ransomware.',
+        'Sistema Operacional.',
+        'Processador.'
+      ],
+      correct: 1,
+      explanation: 'O Ransomware é uma ameaça cibersegurança grave que "sequestra" dados por meio de criptografia forte, cobrando pagamentos (geralmente em criptomoedas) para a suposta devolução das chaves de acesso.'
+    },
+    {
+      id: 7,
+      question: 'Para encontrar no Google exatamente um arquivo em formato PDF contendo um manual de instruções, sem exibir páginas com textos genéricos, qual expressão de busca utiliza o operador correto?',
+      options: [
+        'manual de instrucoes filetype:pdf',
+        'manual + instrucoes + site',
+        'buscar manual formato texto',
+        'pdf.manual.com'
+      ],
+      correct: 0,
+      explanation: 'O operador filetype:pdf filtra a pesquisa do Google para retornar exclusivamente arquivos com a extensão .pdf, tornando a busca por manuais, livros e relatórios muito mais precisa.'
+    }
+  ]
+};
+
+export const INFORMATICA_SEGURANCA_DATA = CURSO_INFORMATICA_SEGURANCA;
+
+
+// =========================================================================
+// CURSO OFICIAL: EXCEL AVANÇADO E ANÁLISE DE DADOS
+// =========================================================================
+export const CURSO_EXCEL_AVANCADO_ANALISE_DADOS: Course = {
+  id: 'excel-avancado',
+  trackId: 'trilha-3',
+  trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
+  category: 'Produtividade & Tecnologia',
+  targetAudienceType: 'TODOS',
+  title: 'Excel Avançado e Análise de Dados',
+  subtitle: 'Domine PROCX, tratamento de bases desestruturadas, Tabelas Dinâmicas interativas e construção de Dashboards executivos de alto impacto.',
+  hours: 4,
+  equivalentHours: 4,
+  modality: 'EAD 100% Gratuito (Escola Virtual)',
+  targetAudience: 'Estudantes, estagiários, assistentes e analistas que buscam automatizar análises, tratar grandes bases de dados e construir painéis executivos dinâmicos.',
+  prerequisites: 'Conhecimentos básicos de Excel e planilhas eletrônicas.',
+  badgeName: 'Especialista em Excel Avançado & Dashboards',
+  badgeCategory: 'Produtividade & Tecnologia',
+  badgeIcon: 'FileSpreadsheet',
+  accentColor: '#10B981',
+  level: 'Intermediário',
+  published: true,
+  isPublished: true,
+  active: true,
+  visible: true,
+  videoUrl: 'https://www.youtube.com/watch?v=wdzffBz9XtA',
+  youtubeId: 'wdzffBz9XtA',
+  learningObjectives: [
+    'Substituir fórmulas complexas de busca pelo PROCX com correspondência exata nativa e buscas bidirecionais à esquerda.',
+    'Tratar exceções e erros de planilhas (#N/D, #VALOR!) com a função SEERRO e combinar operadores lógicos encadeados.',
+    'Higienizar bases desestruturadas com ARRUMAR, Texto para Colunas, eliminação de duplicatas e regras de Validação de Dados.',
+    'Construir Tabelas Dinâmicas avançadas com agrupamentos cronológicos, campos calculados e filtros por Segmentação de Dados (Slicers).',
+    'Desenvolver Dashboards executivos interativos sem linhas de grade, com gráficos analíticos combinados e formatação condicional avançada baseada em fórmulas.'
+  ],
+  modules: [
+    {
+      id: 'exc-av-mod-1',
+      number: 1,
+      title: 'MÓDULO 1: Fórmulas de Busca e Lógica Avançada',
+      summary: 'Substituição de estruturas complexas de busca pelo PROCX, além da combinação de operadores lógicos e controle profissional de erros.',
+      estimatedMinutes: 60,
+      content: {
+        sections: [
+          {
+            subheading: '1. Sintaxe e Poder do PROCX',
+            body: [
+              'O PROCX revoluciona a pesquisa no Excel, superando as limitações históricas do PROCV:',
+              '• Buscas à Esquerda: O PROCX aceita matrizes de pesquisa e de retorno independentes, permitindo buscar valores à esquerda sem truques.',
+              '• Correspondência Exata por Padrão: Elimina a necessidade de digitar o parâmetro FALSO ou 0 no final da fórmula.',
+              '• Tratamento Nativo de Erro: O 4º argumento [se_não_encontrado] permite definir uma mensagem padrão caso o item não exista na base.',
+              '• Sintaxe Básica: =PROCX(pesquisa_valor; matriz_pesquisa; matriz_retorno; [se_não_encontrado]; [modo_correspondência]; [modo_pesquisa]).'
+            ],
+            highlightBox: {
+              type: 'calc',
+              title: 'PROCX vs. PROCV Clássico',
+              text: '=PROCX(A2; Clientes[CPF]; Clientes[Nome]; "Não localizado") busca de forma rápida, segura e sem quebrar ao inserir novas colunas.'
+            }
+          },
+          {
+            subheading: '2. Funções de Busca Clássicas em Planilhas Legadas',
+            body: [
+              'Embora o PROCX seja moderno, milhares de empresas utilizam modelos legados compatíveis com versões anteriores do Excel:',
+              '• PROCV e PROCH: Entendimento do índice de coluna e limitações de ordenação.',
+              '• ÍNDICE + CORRESP: A combinação bidirecional clássica para matrizes dinâmicas antes da criação do PROCX.'
+            ]
+          },
+          {
+            subheading: '3. Lógica Encadeada e Tratamento de Exceções',
+            body: [
+              'Combinando testes lógicos para tomada de decisão automatizada no ambiente corporativo:',
+              '• Operadores Lógicos SE, E e OU: Construção de regras de validação multicritério em cascata.',
+              '• Função SEERRO: Envolver fórmulas críticas para exibir mensagens elegantes ou 0 em vez de erros antiestéticos como #N/D, #VALOR! ou #DIV/0!.'
+            ],
+            highlightBox: {
+              type: 'info',
+              title: 'Controle Profissional com SEERRO',
+              text: '=SEERRO(PROCX(A2; Base[ID]; Base[Salário]); 0) garante que células filhas (como somas e médias) não quebrem por erros transitórios.'
+            }
+          }
+        ]
+      }
+    },
+    {
+      id: 'exc-av-mod-2',
+      number: 2,
+      title: 'MÓDULO 2: Tratamento, Limpeza e Organização de Dados',
+      summary: 'Preparação e saneamento de bases desestruturadas ou exportadas de sistemas ERP para análises confiáveis e auditáveis.',
+      estimatedMinutes: 60,
+      content: {
+        sections: [
+          {
+            subheading: '1. Higienização e Tratamento de Dados',
+            body: [
+              'Bases extraídas de sistemas comumente trazem inconsistências invisíveis que quebram fórmulas:',
+              '• Função =ARRUMAR(): Remove espaços duplicados e espaços no início/fim de textos.',
+              '• Padronização de Texto: Funções =MAIÚSCULA(), =MINÚSCULA() e =PRI.MAIÚSCULA() para padronizar nomes e cadastros.',
+              '• Conversão de Tipos: Conversão de datas e números importados incorretamente como texto utilizando =VALOR() e multiplicação por 1.'
+            ]
+          },
+          {
+            subheading: '2. Ferramenta Texto para Colunas',
+            body: [
+              'Separação eficiente de relatórios brutos ou arquivos CSV delimitados:',
+              '• Delimitadores Comuns: Ponto e vírgula (;), vírgula (,), tabulação ou caracteres customizados.',
+              '• Largura Fixa: Divisão de campos baseada em posições de caracteres para relatórios bancários ou de folha de pagamento.'
+            ],
+            highlightBox: {
+              type: 'calc',
+              title: 'Texto para Colunas',
+              text: 'Aba Dados ──► Texto para Colunas ──► Delimitado ──► Selecionar Delimitador (ex: ponto e vírgula) ──► Concluir.'
+            }
+          },
+          {
+            subheading: '3. Validação de Dados e Eliminação de Duplicatas',
+            body: [
+              'Blindagem de planilhas para evitar erros humanos na entrada de dados:',
+              '• Listas Suspensas (Drop-downs): Restrição de células a opções predeterminadas de uma tabela de apoio.',
+              '• Validações Numéricas e de Data: Limitação de intervalos (ex: notas de 0 a 10, datas no ano vigente).',
+              '• Remoção de Duplicatas: Identificação e exclusão de registros repetidos preservando a integridade dos dados originais.'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      id: 'exc-av-mod-3',
+      number: 3,
+      title: 'MÓDULO 3: Tabulação e Análise Dinâmica de Dados',
+      summary: 'Sumarização, agrupamentos e extração de insights de grandes volumes de dados em segundos com Tabelas Dinâmicas.',
+      estimatedMinutes: 60,
+      content: {
+        sections: [
+          {
+            subheading: '1. Arquitetura de Tabelas Dinâmicas (Pivot Tables)',
+            body: [
+              'A ferramenta mais veloz e poderosa para exploração analítica no Excel:',
+              '• Quadrantes Estruturais: Filtros, Colunas, Linhas e Valores.',
+              '• Modos de Resumo: Alternância entre Soma, Contagem, Média, Máximo e Percentual do Total Geral.',
+              '• Formatação Numérica Preservada: Ajuste da formatação de valores direto no resumo do campo.'
+            ]
+          },
+          {
+            subheading: '2. Agrupamentos Automáticos e Campos Calculados',
+            body: [
+              'Elevando o nível analítico sem tocar na base bruta:',
+              '• Agrupamento Cronológico: Agrupar milhares de linhas de pedidos por Anos, Trimestres e Meses com apenas um clique.',
+              '• Agrupamento Numérico: Criação de faixas salariais ou de faturamento para análise de distribuição.',
+              '• Campos Calculados: Criação de métricas proprietárias (ex: Margem de Lucro = [Lucro] / [Receita]) direto na dinâmica.'
+            ],
+            highlightBox: {
+              type: 'info',
+              title: 'Agrupamento Dinâmico',
+              text: 'Clique com o botão direito sobre qualquer data na Tabela Dinâmica ──► Agrupar ──► Selecione "Meses" e "Anos".'
+            }
+          },
+          {
+            subheading: '3. Segmentação de Dados (Slicers) e Linhas do Tempo',
+            body: [
+              'Transformando tabelas estáticas em painéis interativos:',
+              '• Slicers (Segmentação de Dados): Botões modernos de filtro visual intuitivo.',
+              '• Conexões de Relatório: Vinculação de uma única segmentação a múltiplas Tabelas Dinâmicas simultaneamente.',
+              '• Linhas do Tempo (Timelines): Controle visual deslizante para recorte dinâmico de períodos e safras.'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      id: 'exc-av-mod-4',
+      number: 4,
+      title: 'MÓDULO 4: Visualização Profissional, Formatação e Dashboards',
+      summary: 'Transformação de dados brutos em painéis de bordo executivos (Dashboards) funcionais, elegantes e de alto impacto visual.',
+      estimatedMinutes: 60,
+      content: {
+        sections: [
+          {
+            subheading: '1. Gráficos Analíticos e Combinações de Eixos',
+            body: [
+              'A escolha correta do tipo de gráfico orientada ao tipo de decisão:',
+              '• Comparação e Ranking: Gráficos de barras e colunas horizontais/verticais.',
+              '• Tendência e Evolução Temporal: Gráficos de linhas com marcadores para dados contínuos.',
+              '• Composição: Gráficos de rosca ou cascata (waterfall).',
+              '• Gráfico Combinado com Eixo Secundário: Colunas (Volume) + Linha (Percentual de Margem) para análise simultânea.'
+            ]
+          },
+          {
+            subheading: '2. Formatação Condicional Avançada com Fórmulas',
+            body: [
+              'Gestão visual imediata com base em regras automáticas:',
+              '• Regras Baseadas em Fórmulas: Destacar a linha inteira quando a meta não for atingida (ex: =$D2<$C2).',
+              '• Barras de Dados e Escalas de Cor: Gráficos em miniatura dentro das próprias células da tabela.',
+              '• Conjuntos de Ícones (KPIs): Semáforos e setas de tendência para rápida leitura executiva.'
+            ],
+            highlightBox: {
+              type: 'calc',
+              title: 'Formatação Condicional da Linha Inteira',
+              text: 'Selecione a tabela ──► Nova Regra ──► Usar fórmula: =$E2<0 ──► Formatar Preenchimento Vermelho Suave. O "$" na coluna fixa a análise.'
+            }
+          },
+          {
+            subheading: '3. Design e Arquitetura de Dashboards Executivos',
+            body: [
+              'Princípios de UI/UX e design de informação em planilhas corporativas:',
+              '• Limpeza Visual: Ocultar linhas de grade, barra de fórmulas e títulos de linha/coluna na apresentação.',
+              '• Hierarquia e Alinhamento: Cartões de KPIs no topo, gráficos principais no centro e detalhamentos abaixo.',
+              '• Interatividade Integrada: Painel com Segmentação de Dados conectada a todos os gráficos para exploração em tempo real.'
+            ]
+          },
+          {
+            subheading: '4. Videoaula Oficial de Conclusão: Excel Avançado e Análise de Dados',
+            body: [
+              'Assista à videoaula prática oficial de conclusão para consolidar os conceitos de PROCX, saneamento de dados, Tabelas Dinâmicas avançadas e elaboração de Dashboards executivos interativos.',
+              'Acompanhe a reprodução no player padronizado abaixo ou acesse diretamente pelo link oficial do YouTube, observando a contagem do cronômetro para desbloqueio da avaliação final.'
+            ],
+            highlightBox: {
+              type: 'info',
+              title: 'Vídeo Oficial de Conclusão (YouTube)',
+              text: 'Acesse o conteúdo completo em: https://www.youtube.com/watch?v=wdzffBz9XtA. Recomenda-se abrir uma planilha de apoio para reproduzir os passos demonstrados.'
+            }
+          },
+          {
+            subheading: '5. Orientações para a Prova de Fixação e Certificação',
+            body: [
+              'Após assistir à videoaula oficial e cumprir o tempo mínimo de estudo indicado no cronômetro, a Prova de Fixação será liberada automaticamente.',
+              'Obtenha aproveitamento igual ou superior a 70% para validar seus conhecimentos e emitir seu Certificado com a Badge Especialista em Excel Avançado & Dashboards.'
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  caseStudies: [
+    {
+      id: 'case-excel-avancado-1',
+      title: 'Dashboard de Vendas e Margem Operacional da TechVarejo',
+      character: 'Mariana Duarte, Analista de Dados e Planejamento Financeiro',
+      scenario: 'A diretoria da TechVarejo recebia relatórios de vendas semanais em planilhas com 45.000 linhas, nomes de clientes despadronizados e múltiplos erros #N/D provenientes de PROCVs quebrados, impedindo uma tomada de decisão rápida sobre margens por região.',
+      criticalAnalysis: 'Mariana higienizou a base com Texto para Colunas e ARRUMAR, substituiu as buscas instáveis por PROCX encapsulado com SEERRO, estruturou uma Tabela Dinâmica com agrupamento de datas e construiu um Dashboard executivo interativo com Segmentação de Dados e Gráficos Combinados.',
+      keyTakeaways: [
+        'Uso do PROCX para evitar erros decorrentes de inserção de colunas na base de dados.',
+        'Saneamento prévio dos dados brutos com ARRUMAR e remoção de duplicatas antes de qualquer modelagem.',
+        'Conexão de múltiplos gráficos e tabelas dinâmicas a uma mesma Segmentação de Dados para análise executiva em tempo real.'
+      ],
+      badgeRelevance: 'Demonstra maestria em transformar planilhas brutas e caóticas em sistemas de apoio à decisão visualmente impecáveis e auditáveis.',
+      interactiveOptions: {
+        question: 'Qual a primeira medida para garantir que o Dashboard não apresente erros de cálculo ao importar uma nova remessa de dados do sistema?',
+        choices: [
+          { text: 'Tratar a base com ARRUMAR, verificar formatos e validar fórmulas de busca com PROCX e SEERRO.', correct: true, feedback: 'Excelente! A higienização prévia e o tratamento com SEERRO garantem integridade total.' },
+          { text: 'Ocultar as linhas que apresentarem erro na Tabela Dinâmica.', correct: false, feedback: 'Incorreto. Ocultar linhas omite valores reais e distorce os totais do relatório.' },
+          { text: 'Mudar a cor de fundo das células de erro para branco.', correct: false, feedback: 'Incorreto. A célula continua contendo o erro na memória do Excel, quebrando cálculos posteriores.' }
+        ]
+      }
+    }
+  ],
+  quiz: [
+    {
+      id: 1,
+      question: 'Qual é a principal vantagem da função PROCX em relação ao PROCV tradicional?',
+      options: [
+        'O PROCX é a única função que consegue somar valores com base em critérios.',
+        'O PROCX consegue realizar buscas à esquerda da coluna de pesquisa e busca correspondência exata por padrão.',
+        'O PROCX exige que a coluna de busca esteja organizada em ordem alfabética obrigatória.',
+        'O PROCX funciona apenas com valores numéricos, ignorando textos.'
+      ],
+      correct: 1,
+      explanation: 'Diferente do PROCV (que exige que o valor buscado esteja na primeira coluna à esquerda do intervalo), o PROCX aceita matrizes de busca e retorno independentes, além de procurar correspondência exata sem necessidade do parâmetro FALSO.'
+    },
+    {
+      id: 2,
+      question: 'Em um relatório no Excel, algumas células exibem o erro #N/D. Qual é a melhor abordagem para tratar esse problema profissionalmente?',
+      options: [
+        'Deletar a fórmula da célula para que a palavra sumir.',
+        'Ocultar a coluna inteira onde o erro aparece.',
+        'Envolver a fórmula dentro da função SEERRO, definindo um texto amigável como "Não encontrado" ou o valor 0.',
+        'Mudar a cor da fonte da célula para branco para disfarçar o erro.'
+      ],
+      correct: 2,
+      explanation: 'A função SEERRO(fórmula; valor_se_erro) intercepta qualquer erro retornado e exibe uma alternativa limpa, garantindo que fórmulas dependentes continuem funcionando.'
+    },
+    {
+      id: 3,
+      question: 'Para que serve a ferramenta "Segmentação de Dados" (Slicer) associada a uma Tabela Dinâmica?',
+      options: [
+        'Para dividir o arquivo do Excel em várias planilhas separadas por e-mail.',
+        'Para criar botões visuais e interativos que filtram rapidamente as Tabelas Dinâmicas e Gráficos do Dashboard.',
+        'Para calcular a média dos valores da tabela automaticamente.',
+        'Para converter todas as fórmulas em texto estático.'
+      ],
+      correct: 1,
+      explanation: 'A Segmentação de Dados gera botões clicáveis de fácil navegação que filtram a Tabela Dinâmica e podem ser conectados a múltiplos gráficos ao mesmo tempo.'
+    },
+    {
+      id: 4,
+      question: 'Qual é o objetivo principal do recurso "Validação de Dados" no Excel?',
+      options: [
+        'Proteger a planilha contra cópias não autorizadas por senha.',
+        'Restringir os tipos de dados ou valores que os usuários podem inserir em células específicas, evitando erros de digitação.',
+        'Fazer a leitura ótica de imagens e transformar em tabela.',
+        'Atualizar automaticamente as cotações de moedas em tempo real.'
+      ],
+      correct: 1,
+      explanation: 'A Validação de Dados permite definir regras (como permitir apenas datas, números em um intervalo ou criar uma lista suspensa de opções), garantindo a integridade dos dados inseridos.'
+    },
+    {
+      id: 5,
+      question: 'Ao construir um Dashboard executivo, qual tipo de gráfico é o mais recomendado para mostrar a evolução temporal de uma métrica (ex: vendas ao longo dos 12 meses do ano)?',
+      options: [
+        'Gráfico de Pizza (Setores).',
+        'Gráfico de Linhas.',
+        'Gráfico de Dispersão de Bolhas.',
+        'Gráfico de Radar.'
+      ],
+      correct: 1,
+      explanation: 'Gráficos de linha são visualmente ideais para demonstrar tendências, oscilações, picos e quedas contínuas ao longo do tempo (dias, meses, anos).'
+    },
+    {
+      id: 6,
+      question: 'Como a Formatação Condicional com "Regra baseada em Fórmula" pode ajudar na gestão visual de estoque?',
+      options: [
+        'Aumentando o tamanho da célula quando o estoque acaba.',
+        'Destacando automaticamente em vermelho as linhas onde a quantidade atual for menor que o estoque mínimo definido.',
+        'Enviando um alarme sonoro quando o usuário abre o Excel.',
+        'Bloqueando a edição da planilha quando o estoque atingir zero.'
+      ],
+      correct: 1,
+      explanation: 'Aplicar regras de formatação condicional usando fórmulas lógicas (ex: =$C2<$D2) altera dinamicamente o preenchimento, borda ou cor da fonte da linha inteira com base nos dados.'
+    },
+    {
+      id: 7,
+      question: 'O que acontece quando você utiliza a funcionalidade "Texto para Colunas"?',
+      options: [
+        'Converte automaticamente todas as letras minúsculas em maiúsculas.',
+        'Traduz o texto da planilha para outros idiomas.',
+        'Divide o conteúdo de uma única célula em múltiplas colunas com base em um delimitador (como vírgula, espaço ou ponto e vírgula).',
+        'Transforma colunas verticais em linhas horizontais.'
+      ],
+      correct: 2,
+      explanation: 'É a ferramenta ideal para separar dados importados em bloco (como Nome;Sobrenome;CPF ou arquivos CSV), dividindo o texto em colunas independentes a partir do caractere separador.'
+    }
+  ]
+};
+
+// =========================================================================
+// CURSO OFICIAL: ATENDIMENTO AO CLIENTE, EXPERIÊNCIA E RELACIONAMENTO PROFISSIONAL
+// =========================================================================
+export const CURSO_ATENDIMENTO_RELACIONAMENTO_CLIENTE: Course = {
+  id: 'curso-atendimento-relacionamento-cliente',
+  trackId: 'trilha-comunicacao-relacionamento',
+  trackName: 'TRILHA 2: Soft Skills, Postura & Comunicação Corporativa',
+  category: 'Desenvolvimento Pessoal',
+  targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO', 'ESTAGIARIO'],
+  title: 'Atendimento ao Cliente, Experiência e Relacionamento Profissional',
+  subtitle: 'Fundamentos de CX, comunicação multicanal, desescalada de conflitos, métricas de satisfação (NPS, CSAT, FCR) e fidelização.',
+  hours: 16,
+  equivalentHours: 16,
+  modality: 'EAD 100% Gratuito (Escola Virtual)',
+  targetAudience: 'Estudantes, jovens aprendizes, estagiários e profissionais que realizam atendimento ao público, suporte ou relacionamento com clientes.',
+  prerequisites: 'Nenhum pré-requisito.',
+  badgeName: 'Especialista em Atendimento & Experiência do Cliente (CX)',
+  badgeCategory: 'Atendimento & Relacionamento',
+  badgeIcon: 'Headphones',
+  accentColor: '#EC4899',
+  level: 'Intermediário',
+  videoUrl: 'https://www.youtube.com/watch?v=8rjey8HmRxM',
+  youtubeId: '8rjey8HmRxM',
+  videos: [
+    {
+      title: 'Aula 01 — Fundamentos do Atendimento e Escuta Ativa',
+      subtitle: 'Parte 1: Comunicação multicanal, postura empática e desescalada verbal de conflitos',
+      url: 'https://www.youtube.com/watch?v=8rjey8HmRxM',
+      youtubeId: '8rjey8HmRxM',
+      autoPlay: true,
+      badge: 'Aula 01 — Fundamentos do Atendimento',
+      description: 'Fundamentos de atendimento profissional, escuta ativa, postura empática e técnicas de desescalada de conflitos.'
+    },
+    {
+      title: 'Aula 02 — Experiência do Cliente, Métricas e Fidelização',
+      subtitle: 'Parte 2: Jornada do cliente, NPS, CSAT, FCR e retenção duradoura',
+      url: 'https://www.youtube.com/watch?v=mu7URey9TsI',
+      youtubeId: 'mu7URey9TsI',
+      autoPlay: false,
+      badge: 'Aula 02 — Experiência e Fidelização',
+      description: 'Customer Experience (CX), análise de indicadores de satisfação (NPS, CSAT, FCR) e estratégias de fidelização.'
+    }
+  ],
+  learningObjectives: [
+    'Capacitar o aluno a realizar atendimentos profissionais em canais presenciais e digitais.',
+    'Diferenciar atendimento transacional de Customer Experience (CX) relacional.',
+    'Aplicar escuta ativa, empatia e adequação do tom de voz da marca.',
+    'Dominar técnicas de desescalada verbal, negociação ganha-ganha e resolução na causa-raiz de conflitos.',
+    'Acompanhar e analisar métricas-chave de satisfação e eficiência: NPS, CSAT e FCR.'
+  ],
+  modules: [
+    {
+      id: 'atendimento-mod-1',
+      number: 1,
+      title: 'MÓDULO 1: Fundamentos da Experiência do Cliente e Postura Profissional',
+      summary: 'Diferença entre atendimento e CX, retenção de clientes e mapeamento de perfis comportamentais.',
+      estimatedMinutes: 45,
+      content: {
+        sections: [
+          {
+            subheading: 'Aula 1.1: O Papel do Atendimento no Posicionamento e Retenção',
+            body: [
+              'O atendimento é a linha de frente de qualquer organização e o principal ponto de contato onde a proposta de valor da marca se concretiza.',
+              'Manter um cliente existente custa de 5 a 7 vezes menos do que adquirir um novo cliente. Profissionais que compreendem o valor da retenção geram impacto financeiro e reputacional direto no negócio.',
+              'Cada interação é uma oportunidade de reforçar a credibilidade da empresa, transformar potenciais detratores em defensores da marca e identificar oportunidades de melhoria contínua.'
+            ],
+            highlightBox: {
+              type: 'info',
+              title: 'Impacto Estratégico',
+              text: 'Mais de 80% dos clientes afirmam que a experiência proporcionada por uma empresa é tão importante quanto seus produtos ou serviços.'
+            }
+          },
+          {
+            subheading: 'Aula 1.2: Atendimento Transacional vs. Experiência do Cliente (CX)',
+            body: [
+              'O Atendimento Tradicional (transacional) tem foco no fechamento imediato do chamado ou na resposta pontual a uma solicitação (ex: "Aqui está o boleto").',
+              'A Experiência do Cliente (CX - Customer Experience) é relacional e holística: engloba todas as percepções, sentimentos e memórias construídas ao longo de toda a jornada do consumidor com a marca, antes, durante e após a compra.',
+              'Enquanto o atendimento transacional se contenta com a ausência de reclamações, o CX busca a facilidade de esforço (Customer Effort Score) e o encantamento genuíno.'
+            ],
+            highlightBox: {
+              type: 'warning',
+              title: 'Mudança de Mindset',
+              text: 'Transacional: "Resolvi o protocolo número 1234". Relacional (CX): "Garanti que o cliente compreendesse os passos e se sentisse seguro com a solução oferecida".'
+            }
+          },
+          {
+            subheading: 'Aula 1.3: Mapeamento de Perfis Comportamentais de Clientes',
+            body: [
+              'Cliente Decidido/Pragmático: valoriza objetividade, rapidez e respostas diretas sem rodeios.',
+              'Cliente Analítico: exige dados técnicos, comprovações, prazos exatos e riqueza de detalhes.',
+              'Cliente Inseguro: necessita de paciência, validação constante, suporte passo a passo e tom acolhedor.',
+              'Cliente Apressado/Impaciente: exige agilidade máxima, atualizações em tempo real e foco na ação imediata.',
+              'A flexibilidade comportamental permite ao profissional calibrar sua comunicação para criar sintonia imediata com cada cliente.'
+            ]
+          },
+          {
+            subheading: 'Aula 1.4: Apresentação e Postura Profissional (Presencial e Virtual)',
+            body: [
+              'No atendimento presencial: contato visual acolhedor, postura ereta e aberta, sorriso receptivo e vestimenta compatível com o dress code da organização.',
+              'No atendimento virtual/vídeo: enquadramento adequado de câmera, iluminação frontal, fundo profissional ou desfocado, e atenção contínua sem distrações com telas secundárias.',
+              'A pontualidade é a primeira demonstração explícita de respeito ao tempo do outro.'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      id: 'atendimento-mod-2',
+      number: 2,
+      title: 'MÓDULO 2: Comunicação Multicanal e Empatia no Atendimento',
+      summary: 'Escuta ativa, atendimento telefônico, canais digitais (Chat, WhatsApp, E-mail) e Brand Voice.',
+      estimatedMinutes: 50,
+      content: {
+        sections: [
+          {
+            subheading: 'Aula 2.1: Escuta Ativa e Investigação das Reais Necessidades',
+            body: [
+              'Escutar ativamente significa suspender julgamentos prévios e focar 100% no que o cliente está expressando, verbalmente e emocionalmente.',
+              'Técnica do Espelhamento e Parafraseamento: confirme o entendimento antes de responder ("Se entendi corretamente, o senhor precisa que o relatório seja reenviado até as 17h, correto?").',
+              'Uso estratégico de perguntas abertas ("Poderia me detalhar o que ocorreu?") para diagnóstico e perguntas fechadas ("O erro ocorreu após atualizar a página?") para confirmação rápida.'
+            ],
+            highlightBox: {
+              type: 'info',
+              title: 'Dica Prática',
+              text: 'Evite interromper o cliente enquanto ele relata a dúvida ou dor. Permita que ele conclua seu raciocínio antes de intervir.'
+            }
+          },
+          {
+            subheading: 'Aula 2.2: Atendimento Telefônico Profissional',
+            body: [
+              'Padronização de saudação: saudação inicial + identificação da empresa + nome do profissional + oferta de ajuda ("Bom dia, SkillHub! Me chamo Maria, como posso te ajudar hoje?").',
+              'Modulação e tom de voz: o tom da voz transmite energia, segurança e empatia — no telefone, a entonação substitui a expressão facial.',
+              'Uso de scripts flexíveis: utilize roteiros como guias estruturais, nunca como leituras robóticas ou impessoais.'
+            ]
+          },
+          {
+            subheading: 'Aula 2.3: Atendimento via Canais Digitais (WhatsApp, Chat e E-mail)',
+            body: [
+              'WhatsApp Corporativo e Chat: rapidez de resposta, frases concisas, divisão de textos em parágrafos curtos e uso comedido e adequado de pontuação e emojis.',
+              'E-mail Corporativo: assunto objetivo, saudação formal ou cordial, estruturação em tópicos numerados e assinatura profissional completa.',
+              'Tempo de Primeira Resposta (FRT): atenda às expectativas de agilidade sem abrir mão da precisão técnica.'
+            ]
+          },
+          {
+            subheading: 'Aula 2.4: Tom de Voz da Marca (Brand Voice) e Personalização',
+            body: [
+              'Cada empresa possui um tom de voz característico: do extremamente formal e corporativo ao informal e descontraído.',
+              'O atendente deve harmonizar as diretrizes da marca com a sensibilidade humana individualizada.',
+              'Evite respostas genéricas com "copia e cola" desatento — personalize o nome do cliente e cite os dados específicos da situação relatada.'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      id: 'atendimento-mod-3',
+      number: 3,
+      title: 'MÓDULO 3: Gestão de Situações Difíceis, Conflitos e Desescalada',
+      summary: 'Desescalada verbal, dizer não com empatia, diagnóstico de causa-raiz e negociação ganha-ganha.',
+      estimatedMinutes: 50,
+      content: {
+        sections: [
+          {
+            subheading: 'Aula 3.1: Técnicas de Desescalada Verbal com Clientes Irritados',
+            body: [
+              'Princípio do "Não levar para o lado pessoal": o cliente está reagindo à frustração gerada pelo problema, não contra você.',
+              'Acolhimento emocional: valide a dor do cliente antes de apresentar a solução técnica ("Compreendo perfeitamente sua frustração e peço desculpas pelo transtorno. Vou me dedicar pessoalmente para resolver isso agora").',
+              'Redução do volume e ritmo de fala: quando o cliente altera o tom, falar de forma pausada e calma desacelera naturalmente a tensão do diálogo.'
+            ],
+            highlightBox: {
+              type: 'warning',
+              title: 'O que NUNCA dizer',
+              text: 'Jamais diga "o senhor precisa se acalmar" ou "isso não é culpa do meu setor". Tais frases aumentam a hostilidade imediatamente.'
+            }
+          },
+          {
+            subheading: 'Aula 3.2: Como Dizer "Não" com Empatia e Propor Alternativas',
+            body: [
+              'A técnica do Enquadramento Positivo: foque no que você PODE fazer em vez de enfatizar o que é proibido.',
+              'Em vez de: "Não podemos cancelar fora do prazo", use: "O prazo regulamentar expirou ontem, mas o que posso providenciar para você de imediato é a suspensão temporária da cobrança enquanto analisamos alternativas com a gerência".',
+              'Transparência com gentileza: explique o motivo da política sem transferir a responsabilidade para "o sistema".'
+            ]
+          },
+          {
+            subheading: 'Aula 3.3: Resolução de Reclamações na Causa-Raiz',
+            body: [
+              'Técnica dos 5 Porquês aplicada ao atendimento para descobrir a origem da falha e não apenas mitigar o sintoma.',
+              'Encaminhamento interno qualificado: repasse o histórico detalhado aos setores de apoio para que o cliente não precise recontar a história toda vez.',
+              'Registro impecável de logs e notas de suporte no sistema de CRM.'
+            ]
+          },
+          {
+            subheading: 'Aula 3.4: Técnicas de Negociação Ganha-Ganha no Suporte',
+            body: [
+              'Identificação do interesse real versus a posição manifestada: muitas vezes o cliente pede devolução total porque apenas quer ser ouvido e ter sua dúvida sanada.',
+              'Concessões inteligentes: ofereça compensações sustentáveis (ex: prazo estendido, desconto em renovação, treinamento guiado) que preservem a margem do negócio e restabeleçam a confiança do consumidor.'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      id: 'atendimento-mod-4',
+      number: 4,
+      title: 'MÓDULO 4: Fidelização, Indicadores de CX e Vídeos Oficiais de Conclusão',
+      summary: 'Follow-up proativo, métricas de suporte (NPS, CSAT, FCR), cultura de feedback, duas videoaulas de conclusão e certificação oficial.',
+      estimatedMinutes: 50,
+      content: {
+        sections: [
+          {
+            subheading: 'Aula 4.1: Vídeos de Conclusão — Fundamentos do Atendimento & Experiência e Fidelização',
+            body: [
+              'Assista às duas videoaulas oficiais de encerramento do curso organizadas em duas partes complementares:',
+              '• Parte 1 (Fundamentos do Atendimento): Postura profissional, escuta ativa e desescalada verbal de conflitos.',
+              '• Parte 2 (Experiência e Fidelização): Aplicação prática de CX, acompanhamento de indicadores e retenção duradoura de clientes.',
+              'Acompanhe o temporizador obrigatório do player até o término da contagem para liberar o acesso à Prova de Fixação e Emissão do Certificado Oficial.'
+            ]
+          },
+          {
+            subheading: 'Aula 4.2: O Ciclo de Pós-Atendimento e Follow-up Proativo',
+            body: [
+              'O relacionamento não se encerra no fechamento do ticket. Entrar em contato após 24 a 48 horas para verificar se a solução continua funcionando consolida a lealdade do cliente.',
+              'Transformando o suporte reativo em suporte proativo: antecipe-se a dúvidas frequentes enviando tutoriais ou links de apoio.'
+            ]
+          },
+          {
+            subheading: 'Aula 4.3: Métricas Essenciais de CX e Atendimento',
+            body: [
+              'NPS (Net Promoter Score): mede a probabilidade de recomendação da marca em uma escala de 0 a 10 (Detratores: 0 a 6; Neutros: 7 e 8; Promotores: 9 e 10).',
+              'CSAT (Customer Satisfaction Score): mede a satisfação específica com a interação recém-concluída (ex: "Quão satisfeito você ficou com o atendimento de hoje?").',
+              'FCR (First Contact Resolution): porcentagem de solicitações completamente solucionadas logo no primeiro contato, sem necessidade de reiteração.',
+              'AHT / TMA (Tempo Médio de Atendimento): equilíbrio entre rapidez e qualidade resolutiva.'
+            ],
+            highlightBox: {
+              type: 'info',
+              title: 'Métricas em Equilíbrio',
+              text: 'Um FCR alto aliado a um CSAT elevado é o principal indicador de uma operação de suporte madura e humanizada.'
+            }
+          },
+          {
+            subheading: 'Aula 4.4: Cultura de Melhoria Contínua e Inteligência de Feedback',
+            body: [
+              'Reclamações não são incômodos: são consultorias gratuitas apontando falhas reais no produto ou processo.',
+              'Compartilhamento de dados com os times de produto e desenvolvimento para retroalimentar melhorias contínuas.'
+            ]
+          },
+          {
+            subheading: 'Aula 4.5: Encerramento do Curso e Orientações para a Avaliação',
+            body: [
+              'Complete o Quiz de 7 perguntas sobre os 4 módulos para validar suas competências em Atendimento e CX.',
+              'Atingindo o aproveitamento mínimo de 70%, seu Selo Oficial de Especialista em Atendimento & CX será emitido e adicionado ao seu currículo.'
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  caseStudies: [],
+  quiz: [
+    {
+      id: 1,
+      question: "Qual é a principal diferença prática entre atendimento ao cliente e Customer Experience (CX)?",
+      options: [
+        "Atendimento é exclusivo de lojas físicas, enquanto CX se aplica apenas ao comércio eletrônico.",
+        "Atendimento refere-se às interações pontuais de suporte; CX engloba a percepção global e a jornada completa do cliente com a marca.",
+        "CX lida apenas com a resolução de problemas financeiros, enquanto atendimento lida com dúvidas simples.",
+        "Atendimento busca encantar o cliente a todo custo; CX foca apenas em reduzir custos operacionais."
+      ],
+      correct: 1,
+      explanation: "Atendimento são os pontos de contato pontuais de suporte, enquanto Customer Experience (CX) compreende toda a percepção, sentimentos e jornada holística do cliente com a marca."
+    },
+    {
+      id: 2,
+      question: "Ao atender um cliente extremamente irritado por conta de uma falha grave na entrega de um serviço, qual deve ser a primeira postura profissional?",
+      options: [
+        "Dizer imediatamente ao cliente que ele precisa se acalmar para que você possa falar.",
+        "Praticar a escuta ativa, validar a frustração do cliente com empatia e focar na busca imediata da solução.",
+        "Transferir a ligação para outro setor sem aviso prévio para não absorver a tensão do cliente.",
+        "Manter silêncio absoluto até que o cliente decida encerrar a chamada por conta própria."
+      ],
+      correct: 1,
+      explanation: "A primeira postura deve ser de acolhimento e escuta ativa, validando os sentimentos do cliente antes de direcionar o foco para uma solução ágil e resolutiva."
+    },
+    {
+      id: 3,
+      question: "O que caracteriza o conceito de 'Tom de Voz da Marca' (Brand Voice) no atendimento ao cliente?",
+      options: [
+        "A obrigação de usar gírias e memes em qualquer canal para parecer sempre jovem e moderno.",
+        "A personificação da identidade da empresa aplicada à comunicação com os clientes, equilibrando empatia e as diretrizes da organização.",
+        "O uso de termos jurídicos complexos para desencorajar o cliente a registrar reclamações formais.",
+        "O envio de respostas automáticas genéricas para encerrar os chamados o mais rápido possível."
+      ],
+      correct: 1,
+      explanation: "Tom de voz é a aplicação da personalidade e valores da marca na forma de se comunicar com o cliente, equilibrando empatia, clareza e adequação ao contexto."
+    },
+    {
+      id: 4,
+      question: "O indicador First Contact Resolution (FCR) avalia qual aspecto do atendimento?",
+      options: [
+        "O tempo total que o cliente permaneceu na fila de espera antes de ser atendido.",
+        "O percentual de solicitações ou chamados que são completamente resolvidos logo na primeira interação com a equipe de suporte.",
+        "A quantidade de clientes que compram um segundo produto após entrarem em contato com o suporte.",
+        "O valor de receita gerado a partir de vendas cruzadas durante o suporte."
+      ],
+      correct: 1,
+      explanation: "FCR (First Contact Resolution) mede a taxa de demandas que são completamente resolvidas logo no primeiro atendimento, sem necessidade de recontato."
+    },
+    {
+      id: 5,
+      question: "Em um processo de negociação e resolução de conflitos, o conceito de solução 'Ganha-Ganha' significa que:",
+      options: [
+        "A empresa aceita qualquer prejuízo financeiro apenas para não perder a avaliação positiva do cliente.",
+        "O cliente deve ceder todas as suas exigências em favor das políticas internas da empresa.",
+        "Encontra-se um acordo equilibrado que atende à necessidade do cliente e preserva a viabilidade/regras da empresa.",
+        "Ambas as partes desistem de resolver a situação e o contrato é cancelado."
+      ],
+      correct: 2,
+      explanation: "A negociação ganha-ganha busca uma solução mutuamente vantajosa, respeitando os direitos e expectativas do cliente e a sustentabilidade operacional da empresa."
+    },
+    {
+      id: 6,
+      question: "Como o Net Promoter Score (NPS) classifica um cliente que respondeu à pesquisa de satisfação com nota 7 ou 8?",
+      options: [
+        "Promotor da marca.",
+        "Neutro / Passivo.",
+        "Detrator da marca.",
+        "Cliente Inativo."
+      ],
+      correct: 1,
+      explanation: "No NPS, notas de 0 a 6 são Detratores, notas 7 e 8 são Neutros/Passivos e notas 9 e 10 são Promotores da marca."
+    },
+    {
+      id: 7,
+      question: "Durante um atendimento presencial ou via vídeo, qual elemento NÃO verbal reforça a postura de atenção e empatia com o consumidor?",
+      options: [
+        "Manter contato visual adequado e postura corporal aberta durante a explicação do cliente.",
+        "Verificar constantemente as notificações do celular pessoal enquanto o cliente fala.",
+        "Evitar olhar para o cliente para demonstrar foco na digitação do sistema.",
+        "Cruzar os braços e manter expressão rígida para demonstrar autoridade."
+      ],
+      correct: 0,
+      explanation: "Contato visual natural e postura corporal receptiva transmitem atenção genuína, enquanto distrações com celulares ou expressões fechadas criam barreiras de comunicação."
+    }
+  ]
+};
+
+// =========================================================================
+// CURSO OFICIAL: ANÁLISE DE DADOS E BUSINESS INTELLIGENCE COM POWER BI
+// =========================================================================
+export const CURSO_ANALISE_DADOS_POWER_BI: Course = {
+  id: 'curso-analise-dados-power-bi',
+  trackId: 'trilha-tecnologia-produtividade',
+  trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
+  category: 'Tecnologia e Dados',
+  targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO', 'ESTAGIARIO'],
+  title: 'Análise de Dados e Business Intelligence com Power BI',
+  subtitle: 'Estruturação de dados, ETL com Power Query, modelagem Star Schema, fórmulas DAX intermediárias e criação de Dashboards interativos.',
+  hours: 20,
+  equivalentHours: 20,
+  modality: 'EAD 100% Gratuito (Escola Virtual)',
+  targetAudience: 'Estudantes, jovens aprendizes, estagiários e profissionais que desejam transformar dados brutos em relatórios gerenciais e inteligência competitiva com Power BI.',
+  prerequisites: 'Conhecimentos básicos de informática e noções elementares de planilhas eletrônicas.',
+  badgeName: 'Especialista em Business Intelligence & Power BI',
+  badgeCategory: 'Análise de Dados & BI',
+  badgeIcon: 'BarChart3',
+  accentColor: '#F59E0B',
+  level: 'Avançado',
+  videoUrl: 'https://youtu.be/QnCSgEsIHMA',
+  youtubeId: 'QnCSgEsIHMA',
+  learningObjectives: [
+    'Compreender os fundamentos de Business Intelligence e o ciclo de vida dos dados corporativos.',
+    'Dominar a extração, tratamento e transformação de dados (ETL) no Power Query.',
+    'Modelar relacionamentos dimensionais utilizando as melhores práticas do Esquema Estrela (Star Schema).',
+    'Construir medidas dinâmicas com funções DAX intermediárias (CALCULATE, DIVIDE, SUM, AVERAGE).',
+    'Projetar dashboards executivos com foco em usabilidade, filtros cruzados, drill-down e storytelling visual.'
+  ],
+  modules: [
+    {
+      id: 'pbi-mod-1',
+      number: 1,
+      title: 'MÓDULO 1: Fundamentos de BI e ETL no Power Query',
+      summary: 'Conceitos de Business Intelligence, fontes de dados e higienização analítica no Power Query.',
+      estimatedMinutes: 50,
+      content: {
+        sections: [
+          {
+            subheading: 'Aula 1.1: Introdução ao Business Intelligence e Ciclo de Vida dos Dados',
+            body: [
+              'Business Intelligence (BI) é o conjunto de teorias, metodologias, processos e tecnologias que transformam dados brutos em informações úteis e acionáveis para a tomada de decisão estratégica.',
+              'O ciclo de vida analítico compreende: Coleta e Extração -> Limpeza e Transformação (ETL) -> Modelagem e Cálculos (DAX) -> Visualização e Storytelling -> Compartilhamento e Tomada de Decisão.',
+              'No mercado contemporâneo, profissionais capazes de traduzir números em narrativas visuais ganham protagonismo direto no apoio à liderança e eficiência operacional.'
+            ],
+            highlightBox: {
+              type: 'info',
+              title: 'Cultura Data-Driven',
+              text: 'Empresas orientadas a dados tomam decisões até 3x mais rápidas e reduzem em mais de 40% perdas operacionais decorrentes de palpites intuitivos.'
+            }
+          },
+          {
+            subheading: 'Aula 1.2: Conexão a Diferentes Fontes de Dados',
+            body: [
+              'O Power BI permite integração nativa com centenas de fontes: planilhas Excel (.xlsx), arquivos delimitados (.csv, .txt), pastas locais e da nuvem (SharePoint, OneDrive), bancos de dados relacionais (SQL Server, PostgreSQL, MySQL) e APIs da web.',
+              'Diferença entre o modo Import (dados carregados na memória do Power BI com compressão VertiPaq) e DirectQuery (consultas disparadas em tempo real contra o banco de origem).',
+              'Boas práticas de governança: manutenção de caminhos padronizados e parametrização de fontes para facilitar a atualização contínua.'
+            ]
+          },
+          {
+            subheading: 'Aula 1.3: Limpeza, Tratamento e Transformação no Power Query',
+            body: [
+              'O Power Query é o motor de ETL visual: cada ação gera uma etapa sequencial gravada na linguagem M, permitindo automação total de rotinas de higienização.',
+              'Operações fundamentais: promoção da primeira linha a cabeçalho, tipagem correta de dados (número decimal, número inteiro, texto, data/hora), remoção de nulos, duplicatas e espaços em excesso.',
+              'Transformações avançadas: Mesclar Consultas (similar ao PROCV/Join relacional) e Acrescentar Consultas (empilhamento de tabelas/Union All).'
+            ],
+            highlightBox: {
+              type: 'warning',
+              title: 'Regra de Ouro do ETL',
+              text: 'Quanto mais cedo o dado for tratado no Power Query, mais leve, rápido e eficiente será o desempenho do seu modelo analítico e fórmulas DAX.'
+            }
+          }
+        ]
+      }
+    },
+    {
+      id: 'pbi-mod-2',
+      number: 2,
+      title: 'MÓDULO 2: Modelagem de Dados e Linguagem DAX Intermediária',
+      summary: 'Arquitetura Star Schema, cardinalidade de relacionamentos e cálculo de medidas dinâmicas com DAX.',
+      estimatedMinutes: 55,
+      content: {
+        sections: [
+          {
+            subheading: 'Aula 2.1: Construção de Modelos de Dados (Star Schema e Relacionamentos)',
+            body: [
+              'A modelagem dimensional é o alicerce de relatórios performáticos. O modelo padrão da indústria é o Star Schema (Esquema Estrela), composto por Tabelas Fato e Tabelas Dimensão.',
+              'Tabela Fato (F_Vendas, F_Chamados): armazena registros de transações com métricas numéricas acumuladas e chaves de relacionamento (chaves estrangeiras).',
+              'Tabela Dimensão (D_Cliente, D_Produto, D_Calendario): armazena atributos descritivos e contextos categóricos de análise.',
+              'Tipos de relacionamento: a relação 1 para Muitos (1:*) de direção única (dimensão filtra fato) garante integridade relacional e previne ambiguidades analíticas.'
+            ],
+            highlightBox: {
+              type: 'calc',
+              title: 'Estrutura Estrela',
+              text: 'Evite tabelas únicas gigantescas (flat tables). O particionamento em Fatos e Dimensões otimiza a memória VertiPaq do Power BI em até 10 vezes.'
+            }
+          },
+          {
+            subheading: 'Aula 2.2: Colunas Calculadas vs. Medidas Implícitas e Explícitas',
+            body: [
+              'Colunas Calculadas: avaliadas linha a linha durante a carga de dados. Consomem armazenamento em disco e memória RAM permanentemente.',
+              'Medidas DAX: expressões calculadas dinamicamente sob demanda, avaliadas no momento exato em que o usuário interage com o gráfico ou filtro.',
+              'Medidas Explícitas (criadas manualmente pelo analista) conferem controle total sobre formatação, agregação e reuso em outras fórmulas complexas.'
+            ]
+          },
+          {
+            subheading: 'Aula 2.3: Funções DAX Essenciais e Inteligência Temporal',
+            body: [
+              'Função CALCULATE: o coração do DAX. Avalia uma expressão modificando, aplicando ou substituindo o contexto de filtro visual existente.',
+              'Função DIVIDE: executa divisão segura tratando automaticamente divisão por zero (retornando BLANK() ou valor padrão sem quebrar o relatório).',
+              'Funções agregadoras e iteradoras: distinção entre SUM (agrega uma coluna) e SUMX (itera linha a linha avaliando expressões antes de somar).',
+              'Inteligência Temporal básica (SAMEPERIODLASTYEAR, DATEADD, TOTALYTD): comparativos de desempenho ano contra ano (YoY) fundamentados em uma D_Calendario consistente.'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      id: 'pbi-mod-3',
+      number: 3,
+      title: 'MÓDULO 3: Storytelling com Dados e Visualização de Indicadores (KPIs)',
+      summary: 'Seleção visual, cartões de metas, segmentadores dinâmicos, drill-down e experiência do usuário.',
+      estimatedMinutes: 50,
+      content: {
+        sections: [
+          {
+            subheading: 'Aula 3.1: Escolha dos Visuais Corretos para Análise',
+            body: [
+              'Cada tipo de gráfico tem uma finalidade analítica clara: gráficos de linhas para evolução temporal contínua; barras/colunas para comparações entre categorias; matrizes para dados hierárquicos detalhados.',
+              'Evite gráficos de pizza ou rosca com mais de 3 categorias: o olho humano tem dificuldade em quantificar ângulos e áreas em vez de comprimentos lineares.',
+              'Hierarquia visual: posicione os indicadores mais críticos (KPIs macro) no topo superior esquerdo do painel, seguindo o padrão natural de leitura em F.'
+            ]
+          },
+          {
+            subheading: 'Aula 3.2: Criação de Cartões de KPIs, Filtros e Drill-Down Interativo',
+            body: [
+              'Novo Cartão de KPI: exibição de valores absolutos, variações percentuais em relação à meta e formatação condicional visual (verde/vermelho).',
+              'Segmentadores de Dados (Slicers): filtros interativos por período, canal de vendas ou filial que reagem instantaneamente em todos os visuais conectados.',
+              'Recurso de Drill-Down: navegação vertical entre níveis hierárquicos de uma dimensão (exemplo: Ano -> Trimestre -> Mês -> Dia) com um único clique.'
+            ],
+            highlightBox: {
+              type: 'info',
+              title: 'Interatividade Sem Sobrecarga',
+              text: 'Configure as interações visuais no menu Formato para impedir que filtros desnecessários recalculem tabelas pesadas desnecessariamente.'
+            }
+          },
+          {
+            subheading: 'Aula 3.3: Boas Práticas de Design, Cores e Storytelling Visual',
+            body: [
+              'Uso intencional de cores: adote paleta corporativa neutra com 1 ou 2 cores de contraste apenas para apontar destaques e anomalias.',
+              'Espaçamento e alinhamento: reserve margens de respiro entre os cartões para evitar poluição visual e cansaço cognitivo.',
+              'Foco no usuário final: construa painéis intuitivos que respondam às 3 perguntas de ouro: O que aconteceu? Por que aconteceu? O que devemos fazer a respeito?'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      id: 'pbi-mod-4',
+      number: 4,
+      title: 'MÓDULO 4: Publicação, Projeto Prático e Avaliação Final',
+      summary: 'Projeto prático de vendas, publicação na nuvem (Power BI Service) e certificação oficial.',
+      estimatedMinutes: 45,
+      content: {
+        sections: [
+          {
+            subheading: 'Aula 4.1: Vídeo de Conclusão e Apresentação do Projeto Prático',
+            body: [
+              'Assista à demonstração prática passo a passo da construção de um Dashboard de Vendas e Performance Comercial no Power BI Desktop.',
+              'Observe a conexão com planilhas reais de transações, a modelagem dimensional no Star Schema e o cálculo de medidas de faturamento, ticket médio e margem.',
+              'A conclusão completa desta aula desbloqueia sua avaliação final e a emissão do certificado de especialista.'
+            ]
+          },
+          {
+            subheading: 'Aula 4.2: Publicação no Power BI Service e Compartilhamento',
+            body: [
+              'Publicação segura no ambiente online do Power BI Service através do botão Publicar no Desktop.',
+              'Configuração de Espaços de Trabalho (Workspaces), controle de acesso por perfis e compartilhamento por link ou aplicativos.',
+              'Atualização agendada de dados através de Gateways de dados locais e nuvem para manter as informações sempre sincronizadas.'
+            ]
+          },
+          {
+            subheading: 'Aula 4.3: Avaliação Final de Fixação e Emissão de Selo Oficial',
+            body: [
+              'Realize o Quiz de 7 questões intermediárias para validar seu domínio em Power Query, DAX, Modelagem Star Schema e Storytelling.',
+              'Alcançando aproveitamento igual ou superior a 70%, seu Selo Oficial de Especialista em Business Intelligence & Power BI será emitido e adicionado ao seu perfil profissional.'
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  caseStudies: [],
+  quiz: [
+    {
+      id: 1,
+      question: "No Power BI, qual é a função principal da etapa de ETL (Extract, Transform, Load) realizada dentro do Power Query?",
+      options: [
+        "Criar layouts de relatórios visuais e gráficos interativos para apresentação final.",
+        "Conectar às fontes de origem, limpar, tratar e estruturar os dados antes de carregá-los para o modelo.",
+        "Substituir o uso de fórmulas DAX em medidas de inteligência temporal.",
+        "Exportar relatórios diretamente em formato de apresentação do PowerPoint."
+      ],
+      correct: 1,
+      explanation: "O Power Query é o mecanismo de ETL do Power BI, responsável por extrair dados de diversas fontes, transformar/limpar inconsistências e carregar a base tratada para o modelo analítico."
+    },
+    {
+      id: 2,
+      question: "Ao construir um Modelo de Dados no Power BI, qual arquitetura de modelagem é considerada a melhor prática de mercado?",
+      options: [
+        "Esquema Estrela (Star Schema), separando tabelas Fato (eventos/transações) e tabelas Dimensão (contextos/atributos).",
+        "Tabela Única (Flat Table), combinando todas as informações em uma única planilha gigante sem relacionamentos.",
+        "Modelagem Cíclica, onde todas as tabelas se conectam entre si com relacionamentos bidirecionais.",
+        "Esquema de Lista, onde as tabelas não possuem nenhuma chave primária ou estrangeira."
+      ],
+      correct: 0,
+      explanation: "O Star Schema (Esquema Estrela) é o padrão ouro de modelagem dimensional, organizando tabelas Fato centrais conectadas a tabelas Dimensão com relacionamentos 1:N."
+    },
+    {
+      id: 3,
+      question: "Qual é a principal diferença entre uma Coluna Calculada e uma Medida no Power BI?",
+      options: [
+        "Colunas Calculadas consomem memória RAM e espaço em disco pois são calculadas linha a linha na carga; Medidas são calculadas dinamicamente no momento da visualização.",
+        "Medidas só podem ser usadas no Power Query, enquanto Colunas Calculadas funcionam apenas nos relatórios visuais.",
+        "Colunas Calculadas não aceitam funções DAX, enquanto Medidas aceitam apenas código SQL.",
+        "Não existe diferença prática; ambas gastam exatamente o mesmo recurso computacional."
+      ],
+      correct: 0,
+      explanation: "Colunas calculadas avaliam valores linha por linha no carregamento consumindo armazenamento e memória, enquanto medidas DAX são avaliadas sob demanda respeitando o contexto de filtro visual."
+    },
+    {
+      id: 4,
+      question: "Em linguagem DAX, qual é a função da fórmula CALCULATE?",
+      options: [
+        "Realizar apenas somas simples de colunas inteiras de uma tabela.",
+        "Avaliar uma expressão alterando ou modificando o contexto de filtro atual.",
+        "Contar a quantidade de textos duplicados em uma coluna específica.",
+        "Formatar um número para exibição de moeda local."
+      ],
+      correct: 1,
+      explanation: "A função CALCULATE é a mais poderosa do DAX pois permite modificar, substituir ou adicionar filtros ao contexto de avaliação atual de uma medida."
+    },
+    {
+      id: 5,
+      question: "O recurso 'Drill-Down' em um gráfico do Power BI permite ao usuário:",
+      options: [
+        "Navegar hierarquicamente para níveis mais detalhados dos dados (ex: do Ano para Mês e Dia) ao clicar em um ponto do visual.",
+        "Alterar a cor de fundo do dashboard automaticamente.",
+        "Apagar os dados incorretos da base diretamente no gráfico.",
+        "Exportar o gráfico como uma imagem de alta resolução."
+      ],
+      correct: 0,
+      explanation: "O Drill-Down permite aprofundar a visualização através de níveis hierárquicos (Ano -> Trimestre -> Mês -> Dia) diretamente nos visuais interativos."
+    },
+    {
+      id: 6,
+      question: "Para evitar erros de cálculo em divisões onde o denominador pode ser zero, qual função DAX intermediária deve ser utilizada?",
+      options: [
+        "SUMX()",
+        "DIVIDE()",
+        "RELATED()",
+        "FILTER()"
+      ],
+      correct: 1,
+      explanation: "A função DIVIDE realiza a divisão segura tratando divisão por zero ou denominadores nulos automaticamente, permitindo definir um resultado alternativo (BLANK() por padrão)."
+    },
+    {
+      id: 7,
+      question: "O que caracteriza uma tabela FATO em um modelo relacional no Power BI?",
+      options: [
+        "Contém atributos descritivos e cadastrais, como nome de clientes, categorias de produtos e datas.",
+        "Contém valores quantitativos e numéricos acumulados resultantes de eventos ou transações do negócio (ex: vendas, chamados, acessos).",
+        "Uma tabela temporária utilizada apenas para armazenar logotipos do relatório.",
+        "Uma tabela que guarda unicamente as regras de permissão de acesso dos usuários (RLS)."
+      ],
+      correct: 1,
+      explanation: "Tabelas Fato registram ocorrências e métricas quantitativas de transações e eventos de negócio vinculadas a chaves que apontam para as tabelas Dimensão."
+    }
+  ]
+};
+
+// =========================================================================
+// CURSO OFICIAL: GESTÃO ESTRATÉGICA DE PROJETOS E METODOLOGIAS DE GERENCIAMENTO
+// =========================================================================
+export const CURSO_GESTAO_ESTRATEGICA_PROJETOS: Course = {
+  id: 'curso-gestao-estrategica-projetos',
+  trackId: 'trilha-rotinas-gestao',
+  trackName: 'TRILHA 4: Rotinas Administrativas & Gestão Empresarial',
+  category: 'Administração e Negócios',
+  targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO', 'ESTAGIARIO'],
+  title: 'Gestão Estratégica de Projetos e Metodologias de Gerenciamento',
+  subtitle: 'Planejamento, escopo, EAP/WBS, matriz RACI, metodologias ágeis (Scrum e Kanban), análise de riscos e liderança.',
+  hours: 20,
+  equivalentHours: 20,
+  modality: 'EAD 100% Gratuito (Escola Virtual)',
+  targetAudience: 'Estudantes, jovens aprendizes, estagiários e profissionais que desejam dominar o planejamento, execução e monitoramento de projetos com abordagens tradicionais e ágeis.',
+  prerequisites: 'Nenhum pré-requisito.',
+  badgeName: 'Especialista em Gestão Estratégica de Projetos',
+  badgeCategory: 'Gestão Empresarial & Projetos',
+  badgeIcon: 'FolderKanban',
+  accentColor: '#3B82F6',
+  level: 'Avançado',
+  videoUrl: 'https://youtu.be/qO0GZGy76gc',
+  youtubeId: 'qO0GZGy76gc',
+  learningObjectives: [
+    'Compreender a diferença prática entre projetos temporários e operações contínuas.',
+    'Construir o escopo do projeto, decomposição em EAP/WBS e Matriz de Responsabilidades (RACI).',
+    'Comparar abordagens preditivas (Waterfall/Cascata) com frameworks adaptativos e ágeis (Scrum e Kanban).',
+    'Aplicar gestão visual de fluxo com limitação de WIP para identificação de gargalos.',
+    'Mapear riscos e elaborar planos preventivos de contingência (Probabilidade x Impacto).'
+  ],
+  modules: [
+    {
+      id: 'proj-mod-1',
+      number: 1,
+      title: 'MÓDULO 1: Fundamentos da Gestão de Projetos e Alinhamento Estratégico',
+      summary: 'Conceito de projeto vs. operação contínua, ciclo de vida e papel do Gerente de Projetos.',
+      estimatedMinutes: 50,
+      content: {
+        sections: [
+          {
+            subheading: 'Aula 1.1: O Que Caracteriza um Projeto e Diferença para Operações Contínuas',
+            body: [
+              'Um Projeto é um esforço temporário empreendido para criar um produto, serviço ou resultado exclusivo, com início, meio e fim claramente delimitados.',
+              'As Operações Contínuas são trabalhos rotineiros, padronizados e permanentes que sustentam a operação cotidiana da organização (ex: faturamento mensal, atendimento diário ao cliente).',
+              'Compreender essa distinção permite alocar recursos com precisão, definir metas temporais objetivas e gerenciar mudanças de forma estruturada.'
+            ],
+            highlightBox: {
+              type: 'info',
+              title: 'Conceito-Chave PMBOK',
+              text: 'Projetos geram inovação e transformação; Operações garantem a estabilidade e a continuidade do negócio.'
+            }
+          },
+          {
+            subheading: 'Aula 1.2: Ciclo de Vida do Projeto e o Papel de Liderança do GP',
+            body: [
+              'O ciclo de vida tradicional contempla 5 grupos de processos: Iniciação (Termo de Abertura / TAP) -> Planejamento -> Execução -> Monitoramento e Controle -> Encerramento formal.',
+              'O Gerente de Projetos (GP) atua como articulador estratégico, integrando expectativas de stakeholders, mediando conflitos internos e garantindo o alinhamento da equipe.',
+              'Soft skills indispensáveis ao líder de projetos: comunicação transparente, negociação assertiva, empatia e adaptabilidade a cenários voláteis.'
+            ]
+          },
+          {
+            subheading: 'Aula 1.3: Alinhamento de Objetivos com as Metas Estratégicas',
+            body: [
+              'Nenhum projeto deve existir no vácuo: todo investimento deve responder diretamente a metas corporativas (OKRs, KPIs estratégicos e expansão de mercado).',
+              'Critérios de priorização de projetos: análise de custo-benefício, retorno sobre investimento (ROI) e alinhamento com a visão de longo prazo da organização.',
+              'Construção do Business Case e validação formal de viabilidade antes do início do planejamento detalhado.'
+            ],
+            highlightBox: {
+              type: 'warning',
+              title: 'Atenção Estratégica',
+              text: 'Entregar um projeto no prazo e no custo não basta se ele não gerar valor real perceptível para a estratégia do negócio.'
+            }
+          }
+        ]
+      }
+    },
+    {
+      id: 'proj-mod-2',
+      number: 2,
+      title: 'MÓDULO 2: Planejamento, Escopo, EAP e Cronograma',
+      summary: 'Declaração de escopo, Estrutura Analítica do Projeto (EAP/WBS), matriz RACI e cronograma.',
+      estimatedMinutes: 55,
+      content: {
+        sections: [
+          {
+            subheading: 'Aula 2.1: Definição do Escopo e Construção da EAP (WBS)',
+            body: [
+              'O Escopo define as fronteiras exatas do que faz parte e do que NÃO faz parte das entregas do projeto, prevenindo o temido Scope Creep (aumento descontrolado de escopo).',
+              'A Estrutura Analítica do Projeto (EAP / WBS - Work Breakdown Structure) é uma decomposição hierárquica e visual orientada a entregáveis finais.',
+              'Regra dos 100%: a EAP deve conter 100% do trabalho definido pelo escopo do projeto, nem mais nem menos, descendo até o nível de Pacotes de Trabalho gerenciáveis.'
+            ],
+            highlightBox: {
+              type: 'calc',
+              title: 'Regra dos 100% na EAP',
+              text: 'A soma dos pacotes de trabalho em cada nível hierárquico deve totalizar exatamente 100% da entrega do nível superior correspondente.'
+            }
+          },
+          {
+            subheading: 'Aula 2.2: Estimativa de Prazos, Sequenciamento e Matriz RACI',
+            body: [
+              'Sequenciamento de atividades: dependências de término para início (TI), marcos críticos (milestones) e identificação do Caminho Crítico (CPM).',
+              'Matriz RACI para clareza absoluta de papéis: R (Responsible / Quem faz), A (Accountable / Quem aprova e responde), C (Consulted / Quem opina) e I (Informed / Quem recebe atualização).',
+              'Evite ambiguidade: cada pacote de trabalho ou entrega deve possuir exatamente 1 (um) Accountable.'
+            ]
+          },
+          {
+            subheading: 'Aula 2.3: Planejamento e Alocação de Recursos e Orçamento',
+            body: [
+              'Levantamento de recursos materiais, licenças tecnológicas e dimensionamento de horas da equipe multidisciplinar.',
+              'Construção da Linha de Base de Custos (Cost Baseline) e reservas orçamentárias de contingência para eventos previstos e imprevistos.',
+              'Nivelamento de recursos (Resource Leveling) para evitar sobrecarga ou ociosidade dos membros do time ao longo do cronograma.'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      id: 'proj-mod-3',
+      number: 3,
+      title: 'MÓDULO 3: Metodologias Ágeis, Híbridas e Tradicionais (Predictive vs. Adaptive)',
+      summary: 'Modelo Cascata (Waterfall), Framework Scrum, Cerimônias e Gestão de Fluxo com Kanban.',
+      estimatedMinutes: 55,
+      content: {
+        sections: [
+          {
+            subheading: 'Aula 3.1: Metodologias Tradicionais (Waterfall/Cascata) e Quando Aplicá-las',
+            body: [
+              'O modelo Preditivo (Waterfall) é linear e sequencial: cada fase precisa ser formalmente aprovada antes do início da seguinte.',
+              'Indicações ideais: projetos com escopo muito estável, requisitos normativos rigorosos ou custos proibitivos de retrabalho (ex: engenharia civil, infraestrutura fabril).',
+              'Limitações: baixa flexibilidade para absorver mudanças durante o andamento e feedback do cliente apenas nas etapas finais.'
+            ]
+          },
+          {
+            subheading: 'Aula 3.2: Framework Scrum (Papéis, Cerimônias e Artefatos)',
+            body: [
+              'Três Papéis essenciais: Product Owner (PO - dono do backlog e valor), Scrum Master (facilitador e guardião das práticas ágeis) e Time de Desenvolvimento (equipe multifuncional auto-organizada).',
+              'Cinco Cerimônias: Sprint Planning (planejamento), Daily Scrum (alinhamento diário de 15 min), Sprint Review (apresentação do incremento), Sprint Retrospective (melhoria contínua) e a própria Sprint (ciclo de 1 a 4 semanas).',
+              'Três Artefatos: Product Backlog, Sprint Backlog e Incremento Potencialmente Entregável (Definition of Done).'
+            ],
+            highlightBox: {
+              type: 'info',
+              title: 'Pilar Ágil',
+              text: 'Scrum se baseia no empirismo: transparência, inspeção contínua e adaptação rápida a novas circunstâncias.'
+            }
+          },
+          {
+            subheading: 'Aula 3.3: Método Kanban para Gestão Visual de Fluxo e Limites de WIP',
+            body: [
+              'Princípios do Kanban: visualizar o fluxo de trabalho (Quadro To-Do, Doing, Done), limitar o Trabalho em Progresso (WIP) e gerenciar gargalos operacionais.',
+              'A máxima ágil: "Pare de começar e comece a terminar" — diminuir tarefas paralelas reduz alternância de contexto e acelera o Lead Time e Cycle Time de entrega.',
+              'Abordagens Híbridas (Scrumban): combinação da estrutura de ritos do Scrum com a fluidez contínua do Kanban.'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      id: 'proj-mod-4',
+      number: 4,
+      title: 'MÓDULO 4: Monitoramento, Análise de Riscos e Avaliação Final',
+      summary: 'Simulação do plano de projeto, Matriz de Riscos (Probabilidade x Impacto) e avaliação de certificação.',
+      estimatedMinutes: 45,
+      content: {
+        sections: [
+          {
+            subheading: 'Aula 4.1: Vídeo de Conclusão e Simulação do Plano de Projeto',
+            body: [
+              'Assista à demonstração prática de integração entre o termo de abertura, a construção da EAP, a definição do cronograma com marcos e a gestão de entregáveis em equipes multidisciplinares.',
+              'Observe como um plano de projeto robusto e visual simplifica a comunicação com a liderança e garante previsibilidade às entregas.',
+              'O acompanhamento completo desta aula libera o temporizador para você realizar a avaliação final de certificação.'
+            ]
+          },
+          {
+            subheading: 'Aula 4.2: Matriz de Riscos (Probabilidade x Impacto) e Planos de Mitigação',
+            body: [
+              'Identificação contínua de ameaças e oportunidades: um risco é um evento incerto que, se ocorrer, provocará impacto positivo ou negativo no projeto.',
+              'Construção da Matriz de Riscos (Probabilidade x Impacto): classificação em níveis baixo, médio, alto e crítico (vermelho) para priorização.',
+              'Estratégias de resposta a riscos: Mitigar (reduzir probabilidade/impacto), Evitar (alterar o plano), Transferir (seguros ou terceiros) ou Aceitar (com plano de contingência reservado).'
+            ],
+            highlightBox: {
+              type: 'warning',
+              title: 'Gestão Proativa',
+              text: 'Gerenciar riscos antes que se tornem problemas operacionais é a marca registrada de um profissional sênior em projetos.'
+            }
+          },
+          {
+            subheading: 'Aula 4.3: Avaliação Final de Fixação e Emissão de Selo Oficial',
+            body: [
+              'Realize o Quiz de 7 perguntas intermediárias para validar suas competências em EAP, RACI, Scrum, Kanban e Análise de Riscos.',
+              'Atingindo o aproveitamento mínimo de 70%, seu Selo Oficial de Especialista em Gestão Estratégica de Projetos será emitido e adicionado ao seu currículo profissional.'
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  caseStudies: [],
+  quiz: [
+    {
+      id: 1,
+      question: "Qual é a principal característica que diferencia um Projeto de uma Operação contínua dentro de uma organização?",
+      options: [
+        "Projetos são atividades repetitivas e permanentes; operações têm data para terminar.",
+        "Projetos são temporários, têm início e fim definidos e geram um produto, serviço ou resultado exclusivo.",
+        "Projetos não possuem orçamento delimitado, enquanto operações possuem verba fixa.",
+        "Operações são gerenciadas exclusivamente por metodologias ágeis como o Scrum."
+      ],
+      correct: 1,
+      explanation: "Projetos têm natureza temporária e produzem entregáveis exclusivos, enquanto operações são contínuas, padronizadas e mantêm o negócio em funcionamento diário."
+    },
+    {
+      id: 2,
+      question: "Na etapa de Planejamento, para que serve a Estrutura Analítica do Projeto (EAP / WBS)?",
+      options: [
+        "Para registrar as atas de reunião com os stakeholders da empresa.",
+        "Para decompor o escopo total do projeto em partes menores e mais gerenciáveis (entregáveis).",
+        "Para calcular automaticamente o salário dos membros da equipe.",
+        "Para controlar as permissões de acesso ao sistema de arquivos do projeto."
+      ],
+      correct: 1,
+      explanation: "A EAP (Estrutura Analítica do Projeto) organiza e decompõe visualmente todo o escopo do projeto em pacotes de trabalho e entregáveis menores."
+    },
+    {
+      id: 3,
+      question: "Na Matriz de Responsabilidades RACI, o que representa a letra 'A' (Accountable)?",
+      options: [
+        "A pessoa que executa diretamente a tarefa no dia a dia.",
+        "A pessoa responsável final pela aprovação e pela qualidade da entrega (prestador de contas).",
+        "O profissional que apenas precisa ser consultado antes de tomar uma decisão.",
+        "O membro da equipe que deve ser apenas informado após a conclusão da atividade."
+      ],
+      correct: 1,
+      explanation: "Na matriz RACI, o Accountable é a única pessoa com autoridade final de aprovação e prestação de contas pelo sucesso da entrega."
+    },
+    {
+      id: 4,
+      question: "No framework Scrum, qual é a responsabilidade central do Product Owner (PO)?",
+      options: [
+        "Remover impedimentos técnicos e facilitar os ritos diários da equipe de desenvolvimento.",
+        "Definir e priorizar o Backlog do Produto de acordo com o valor para o negócio e clientes.",
+        "Gerenciar diretamente o horário de trabalho e atribuição de tarefas de cada desenvolvedor.",
+        "Conduzir testes de código e infraestrutura de servidores."
+      ],
+      correct: 1,
+      explanation: "O Product Owner é a voz do cliente e do negócio no Scrum, responsável por gerenciar, refinar e priorizar os itens do Product Backlog."
+    },
+    {
+      id: 5,
+      question: "O principal objetivo de definir limites de Trabalho em Progresso (WIP - Work in Progress) no método Kanban é:",
+      options: [
+        "Impedir que os colaboradores façam pausas durante a jornada de trabalho.",
+        "Evitar a sobrecarga do sistema, identificar gargalos no fluxo e focar na conclusão de tarefas antes de iniciar novas.",
+        "Aumentar a quantidade de tarefas iniciadas simultaneamente por pessoa.",
+        "Eliminar a necessidade de realizar reuniões de acompanhamento."
+      ],
+      correct: 1,
+      explanation: "A limitação do WIP ('pare de começar e comece a terminar') impede a sobrecarga operacional, reduz o tempo de ciclo e expõe gargalos do fluxo de trabalho."
+    },
+    {
+      id: 6,
+      question: "Como deve ser preenchida uma Matriz de Riscos durante a fase de planejamento?",
+      options: [
+        "Listando apenas os riscos de origem financeira e ignorando falhas operacionais.",
+        "Mapeando os eventos incertos e avaliando-os com base na sua Probabilidade de ocorrência e no seu Impacto no projeto.",
+        "Registrando eventos que já aconteceram no passado para punir os responsáveis.",
+        "Definindo respostas de risco apenas após o estouro do prazo final."
+      ],
+      correct: 1,
+      explanation: "A análise qualitativa de riscos cruza a probabilidade de ocorrência com a severidade do impacto, orientando a priorização de planos de mitigação e contingência."
+    },
+    {
+      id: 7,
+      question: "Em qual situação o modelo Tradicional (Waterfall / Cascata) é mais recomendado do que abordagens Ágeis?",
+      options: [
+        "Em projetos inovadores com requisitos altamente incertos e que mudam constantemente.",
+        "Em projetos com escopo muito bem definido, requisitos estáveis e regulamentações rígidas (ex: construção civil).",
+        "Quando a equipe não possui um gerente de projetos para acompanhar as entregas.",
+        "Apenas em startups de tecnologia que precisam lançar produtos rapidamente."
+      ],
+      correct: 1,
+      explanation: "O modelo em cascata (Waterfall) é ideal quando o escopo é previsível, os custos de retrabalho são altíssimos e as etapas devem ser cumpridas sequencialmente com rigor documental."
+    }
+  ]
+};
+
+// =========================================================================
+// CURSO OFICIAL: INTELIGÊNCIA DE NEGÓCIOS E TOMADA DE DECISÃO BASEADA EM INDICADORES
+// =========================================================================
+export const CURSO_INTELIGENCIA_NEGOCIOS_INDICADORES: Course = {
+  id: 'curso-inteligencia-negocios-indicadores',
+  trackId: 'trilha-rotinas-gestao',
+  trackName: 'TRILHA 4: Rotinas Administrativas & Gestão Empresarial',
+  category: 'Administração e Negócios',
+  targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO', 'ESTAGIARIO'],
+  title: 'Inteligência de Negócios e Tomada de Decisão Baseada em Indicadores',
+  subtitle: 'Interpretação de KPIs, pirâmide DIKW, diagnóstico de gargalos operacionais, metas SMART e tomada de decisão data-driven.',
+  hours: 20,
+  equivalentHours: 20,
+  modality: 'EAD 100% Gratuito (Escola Virtual)',
+  targetAudience: 'Estudantes, jovens aprendizes, estagiários e profissionais que desejam dominar a interpretação de KPIs, diagnóstico de gargalos e tomada de decisão orientada a dados.',
+  prerequisites: 'Nenhum pré-requisito.',
+  badgeName: 'Especialista em Inteligência de Negócios & KPIs',
+  badgeCategory: 'Gestão Estratégica & BI',
+  badgeIcon: 'TrendingUp',
+  accentColor: '#8B5CF6',
+  level: 'Avançado',
+  videoUrl: 'https://www.youtube.com/watch?v=NtMwZXOXtKo',
+  youtubeId: 'NtMwZXOXtKo',
+  learningObjectives: [
+    'Compreender a informação como ativo estratégico e dominar a pirâmide DIKW (Dados, Informação, Conhecimento e Sabedoria).',
+    'Estruturar e interpretar indicadores de desempenho (KPIs) financeiros, operacionais e de produtividade.',
+    'Desdobrar metas corporativas e acompanhar planos de ação através da metodologia SMART e OKRs.',
+    'Analisar desvios entre resultado real vs. meta planejada para diagnosticar a causa-raiz de gargalos.',
+    'Construir matrizes de decisão e planos de ação corretiva orientados por dados e evidências.'
+  ],
+  modules: [
+    {
+      id: 'bi-kpi-mod-1',
+      number: 1,
+      title: 'MÓDULO 1: Fundamentos da Inteligência de Negócios e Gestão do Conhecimento',
+      summary: 'Informação como ativo estratégico, pirâmide DIKW e inteligência empresarial no dia a dia.',
+      estimatedMinutes: 50,
+      content: {
+        sections: [
+          {
+            subheading: 'Aula 1.1: Conceitos de Inteligência Empresarial e a Informação como Ativo Estratégico',
+            body: [
+              'Na economia digital, a informação consolidada e confiável é o ativo mais valioso de qualquer organização competitiva.',
+              'Inteligência de Negócios consiste em coletar, organizar, analisar e monitorar dados de mercado e de processos internos para antecipar tendências e subsidiar escolhas conscientes.',
+              'A transição de uma postura intuitiva ("eu acho que...") para uma postura analítica ("os dados demonstram que...") eleva a credibilidade do profissional em qualquer área corporativa.'
+            ],
+            highlightBox: {
+              type: 'info',
+              title: 'Cultura Analítica',
+              text: 'Decisões orientadas a evidências diminuem o retrabalho em até 35% e ampliam a assertividade na entrega de projetos e metas de vendas.'
+            }
+          },
+          {
+            subheading: 'Aula 1.2: A Pirâmide DIKW (Dado, Informação, Conhecimento e Sabedoria)',
+            body: [
+              'Dado (Data): registros factuais e símbolos brutos sem contexto (exemplo: "38").',
+              'Informação (Information): dado processado, categorizado e com significado prático (exemplo: "38 chamados de suporte abertos hoje").',
+              'Conhecimento (Knowledge): informação compreendida e integrada a experiências práticas (exemplo: "38 chamados é o triplo da média diária devido à instabilidade do novo servidor").',
+              'Sabedoria (Wisdom): aplicação ética e estratégica do conhecimento no longo prazo (exemplo: "Revisar a arquitetura de servidores e criar rotinas de redundância antes dos períodos sazonais").'
+            ]
+          },
+          {
+            subheading: 'Aula 1.3: Aplicações Práticas da Inteligência de Negócios na Rotina',
+            body: [
+              'Rotinas de suporte ao cliente: acompanhamento do volume de tickets por horário para escalonamento eficiente de atendentes.',
+              'Gestão de estoque e compras: monitoramento da velocidade de giro de produtos para prevenir ruptura ou excesso de capital imobilizado.',
+              'Comunicação interdepartamental: compartilhamento transparente de dados para evitar silos departamentais e conflitos de prioridade.'
+            ],
+            highlightBox: {
+              type: 'warning',
+              title: 'Alerta de Gestão',
+              text: 'Armazenar milhões de dados sem analisá-los gera apenas custo de infraestrutura. O valor real reside na capacidade humana de extrair insights e agir.'
+            }
+          }
+        ]
+      }
+    },
+    {
+      id: 'bi-kpi-mod-2',
+      number: 2,
+      title: 'MÓDULO 2: Arquitetura e Gestão de Indicadores de Desempenho (KPIs)',
+      summary: 'Estruturação de KPIs, categorias de indicadores (financeiros, operacionais, qualidade) e metas SMART.',
+      estimatedMinutes: 55,
+      content: {
+        sections: [
+          {
+            subheading: 'Aula 2.1: O Que São KPIs e Como Estruturar Indicadores Alinhados',
+            body: [
+              'Key Performance Indicators (KPIs) são os indicadores mais críticos para o sucesso de um objetivo estratégico; métricas comuns apenas medem volume sem orientar ação direta.',
+              'Critérios de um KPI de excelência: deve ter fórmula matemática transparente, fonte de dados auditável, periodicidade definida e um responsável (owner) direto.',
+              'Equilíbrio entre Indicadores de Tendência (Leading Indicators - orientam o futuro) e Indicadores de Resultado (Lagging Indicators - mostram o passado).'
+            ]
+          },
+          {
+            subheading: 'Aula 2.2: Indicadores Financeiros, Operacionais, de Produtividade e Qualidade',
+            body: [
+              'Indicadores Financeiros: Margem de Contribuição, EBITDA, Retorno sobre o Investimento (ROI) e Ponto de Equilíbrio (Break-Even).',
+              'Indicadores Operacionais e de Produtividade: Tempo Médio de Atendimento (TMA), Taxa de Ocupação e Unidades Produzidas por Hora.',
+              'Indicadores de Qualidade e Satisfação: Net Promoter Score (NPS), Customer Satisfaction Score (CSAT) e Índice de Retrabalho/Devoluções.'
+            ],
+            highlightBox: {
+              type: 'calc',
+              title: 'Fórmula do ROI',
+              text: 'ROI = (Ganho Obtido - Custo do Investimento) / Custo do Investimento. Um índice fundamental para justificar novos projetos à diretoria.'
+            }
+          },
+          {
+            subheading: 'Aula 2.3: Definição, Desdobramento e Acompanhamento de Metas (OKRs e SMART)',
+            body: [
+              'Critérios da Meta SMART: Specific (Específica), Measurable (Mensurável), Achievable (Alcançável), Relevant (Relevante) e Time-bound (Com prazo definido).',
+              'Framework OKR (Objectives and Key Results): Objetivos inspiradores e qualitativos combinados a 3 a 5 Resultados-Chave estritamente quantitativos.',
+              'Desdobramento top-down e bottom-up: como conectar a meta global da organização com as tarefas semanais de cada colaborador.'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      id: 'bi-kpi-mod-3',
+      number: 3,
+      title: 'MÓDULO 3: Análise de Resultados, Tendências e Identificação de Gargalos',
+      summary: 'Leitura técnica de relatórios empresariais, análise de desvio Real vs. Meta e diagnóstico de causa-raiz.',
+      estimatedMinutes: 50,
+      content: {
+        sections: [
+          {
+            subheading: 'Aula 3.1: Interpretação Técnica de Relatórios Empresariais',
+            body: [
+              'Como navegar por dashboards executivos, tabelas dinâmicas e relatórios consolidados identificando anomalias instantaneamente.',
+              'Análise de séries temporais: diferenciação entre flutuações normais, variações sazonais esperadas e desvios críticos estruturais.',
+              'Uso de médias móveis para filtrar ruídos pontuais e enxergar a real direção da curva de desempenho.'
+            ]
+          },
+          {
+            subheading: 'Aula 3.2: Análise Comparativa: Desempenho Real vs. Meta Planejada',
+            body: [
+              'Cálculo de variação percentual (Variance): [(Real - Planejado) / Planejado] * 100.',
+              'Farolização de indicadores (semáforo de gestão): Verde (meta atingida), Amarelo (zona de alerta) e Vermelho (desvio crítico que exige plano de ação imediato).',
+              'Evite atalhos ilusórios: alterar metas para disfarçar desempenhos insatisfatórios compromete o futuro da empresa.'
+            ]
+          },
+          {
+            subheading: 'Aula 3.3: Diagnóstico de Gargalos Operacionais e Análise de Tendências',
+            body: [
+              'A Teoria das Restrições (TOC): a capacidade global de um sistema é sempre limitada pelo seu elo mais fraco (gargalo).',
+              'Técnicas de diagnóstico de causa-raiz: Diagrama de Ishikawa (Espinha de Peixe) e o método dos 5 Porquês para encontrar a origem do problema.',
+              'Mapeamento de tendências de mercado e benchmarks setoriais para calibrar a competitividade da organização.'
+            ],
+            highlightBox: {
+              type: 'info',
+              title: 'Eliminação de Gargalos',
+              text: 'Investir na otimização de etapas que não são o gargalo do processo gera apenas aumento de estoques intermediários e desperdício financeiro.'
+            }
+          }
+        ]
+      }
+    },
+    {
+      id: 'bi-kpi-mod-4',
+      number: 4,
+      title: 'MÓDULO 4: Tomada de Decisão Baseada em Evidências e Videoaulas Oficiais de Conclusão',
+      summary: 'Estudo de caso prático, matrizes de decisão, planos 5W2H, duas videoaulas de conclusão e certificação oficial.',
+      estimatedMinutes: 45,
+      content: {
+        sections: [
+          {
+            subheading: 'Aula 4.1: Videoaulas Oficiais de Conclusão (BI & Tomada de Decisão com KPIs)',
+            body: [
+              'Assista às duas videoaulas oficiais de encerramento do curso organizadas em duas perspectivas complementares:',
+              '• Aula 01 (Inteligência de Negócios - BI): Introdução à inteligência de negócios, coleta e organização de dados estratégicos para apoiar decisões corporativas.',
+              '• Aula 02 (Tomada de Decisão Baseada em Indicadores): Definição, monitoramento e interpretação de métricas e KPIs essenciais para mensurar resultados e guiar estratégias.',
+              'Acompanhe a reprodução no player duplo com controle de áudio independente e aguarde a contagem do cronômetro para desbloquear a Prova de Fixação.'
+            ],
+            highlightBox: {
+              type: 'info',
+              title: 'Videoaulas Oficiais de Conclusão (YouTube)',
+              text: 'Aula 01: Fundamentos de Business Intelligence (https://www.youtube.com/watch?v=NtMwZXOXtKo) | Aula 02: Tomada de Decisão Baseada em Indicadores (https://www.youtube.com/watch?v=zr-3EEhmJCA)'
+            }
+          },
+          {
+            subheading: 'Aula 4.2: Matriz de Decisão, Avaliação de Impacto e Planos 5W2H',
+            body: [
+              'Matriz de Decisão Ponderada: atribuição de notas e pesos para diferentes critérios (custo, tempo, risco e retorno) antes de aprovar uma escolha.',
+              'Plano de Ação Corretiva com 5W2H: O que (What), Por que (Why), Onde (Where), Quando (When), Quem (Who), Como (How) e Quanto Custa (How Much).',
+              'O ciclo PDCA (Plan, Do, Check, Act): após aplicar a intervenção, mensure os indicadores periodicamente para comprovar a eficácia da solução.'
+            ],
+            highlightBox: {
+              type: 'warning',
+              title: 'Rigor no Monitoramento',
+              text: 'Um plano de ação sem mensuração de eficácia posterior é apenas uma lista de boas intenções. O fechamento do ciclo de melhoria é obrigatório.'
+            }
+          },
+          {
+            subheading: 'Aula 4.3: Avaliação Final de Fixação e Emissão de Selo Oficial',
+            body: [
+              'Realize o Quiz de 7 questões intermediárias para demonstrar sua capacidade de interpretar KPIs, diagnosticar gargalos e propor decisões estratégicas.',
+              'Com aproveitamento igual ou superior a 70%, seu Selo Oficial de Especialista em Inteligência de Negócios & KPIs será emitido e adicionado ao seu currículo profissional.'
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  caseStudies: [],
+  quiz: [
+    {
+      id: 1,
+      question: "Na hierarquia do conhecimento (Pirâmide DIKW), qual é a principal diferença entre Dado e Informação?",
+      options: [
+        "Dados são relatórios prontos; informações são números brutos sem tratamento.",
+        "Dados são registros brutos sem contexto; informação é o dado processado, estruturado e com significado útil.",
+        "Não existe diferença, ambos os termos significam exatamente a mesma coisa na gestão.",
+        "Informação é gerada exclusivamente por sistemas de inteligência artificial."
+      ],
+      correct: 1,
+      explanation: "Dados são símbolos ou registros brutos sem contexto; Informação é o dado processado, organizado e contextualizado para ter utilidade prática na tomada de decisão."
+    },
+    {
+      id: 2,
+      question: "O que caracteriza um Key Performance Indicator (KPI) eficiente dentro de uma organização?",
+      options: [
+        "Deve medir absolutamente todas as rotinas da empresa, independente da relevância.",
+        "Deve ser mensurável, relevante, ter um objetivo claro e estar diretamente conectado às metas estratégicas.",
+        "Deve ser alterado diariamente para refletir os sentimentos da equipe.",
+        "Deve ser mantido em segredo e compartilhado apenas com a diretoria."
+      ],
+      correct: 1,
+      explanation: "Um bom KPI é mensurável, simples de interpretar, acionável e alinhado aos objetivos estratégicos do negócio, orientando prioridades sem dispersar o foco operacional."
+    },
+    {
+      id: 3,
+      question: "Qual das opções abaixo representa um indicador do tipo OPERACIONAL / PRODUTIVIDADE?",
+      options: [
+        "Margem de Lucro Líquido anual.",
+        "Tempo Médio de Atendimento (TMA) e taxa de unidades produzidas por hora.",
+        "Retorno sobre o Investimento (ROI) acionário.",
+        "Valor de Mercado da Marca (Brand Equity)."
+      ],
+      correct: 1,
+      explanation: "Indicadores operacionais e de produtividade medem a eficiência e o volume da execução das atividades do dia a dia, como o TMA ou o rendimento por hora trabalhada."
+    },
+    {
+      id: 4,
+      question: "Ao analisar a meta SMART, a letra 'R' refere-se ao atributo de que a meta deve ser:",
+      options: [
+        "Rápida (deve ser concluída em menos de 24 horas).",
+        "Relevante (deve fazer sentido e impactar os resultados reais do negócio).",
+        "Restrita (deve ser aplicada a apenas um funcionário).",
+        "Rígida (não pode sofrer nenhuma alteração sob qualquer hipótese)."
+      ],
+      correct: 1,
+      explanation: "No método SMART, 'R' significa Relevante: a meta deve ser crucial para a organização, alinhada à estratégia e gerar impacto substancial nos resultados."
+    },
+    {
+      id: 5,
+      question: "Quando o gestor compara o 'Resultado Real' contra a 'Meta Planejada' e identifica uma variação negativa recorrente, qual deve ser o primeiro passo?",
+      options: [
+        "Ignorar o relatório e aguardar o próximo trimestre para tomar medidas.",
+        "Investigar a causa-raiz do desvio utilizando ferramentas analíticas antes de propor ações corretivas.",
+        "Reduzir a meta imediatamente para fingir que o resultado foi atingido.",
+        "Demitir a equipe responsável sem analisar o contexto do mercado."
+      ],
+      correct: 1,
+      explanation: "A atitude analítica exige investigar a causa-raiz (com ferramentas como Ishikawa ou 5 Porquês) para diagnosticar o gargalo antes de desenhar planos de intervenção."
+    },
+    {
+      id: 6,
+      question: "O que significa adotar uma cultura de Tomada de Decisão Baseada em Evidências (Data-Driven)?",
+      options: [
+        "Tomar decisões baseadas puramente na intuição e experiência passada dos gestores mais antigos.",
+        "Utilizar dados concretos, fatos e análises de desempenho para fundamentar as escolhas estratégicas.",
+        "Delegar todas as decisões empresariais para softwares automáticos sem intervenção humana.",
+        "Aguardar a aprovação dos clientes antes de realizar qualquer alteração interna."
+      ],
+      correct: 1,
+      explanation: "Uma gestão Data-Driven orienta suas escolhas em métricas objetivas, validações empíricas e relatórios confiáveis, reduzindo o risco e os vieses de julgamento intuitivo."
+    },
+    {
+      id: 7,
+      question: "Após a implementação de um plano de ação para resolver um gargalo operacional, qual é a etapa final fundamental do processo de gestão?",
+      options: [
+        "Encerrar a coleta de dados daquele setor.",
+        "Monitorar e mensurar continuamente os resultados para verificar se a solução foi efetiva.",
+        "Arquivar o projeto e não realizar novas medições.",
+        "Aumentar o preço dos produtos imediatamente."
+      ],
+      correct: 1,
+      explanation: "O ciclo de melhoria contínua (PDCA) exige checagem contínua (Check/Act) para comprovar a eficácia das correções implementadas e padronizar o processo."
+    }
+  ]
+};
+
+// =========================================================================
+// CURSO OFICIAL: TRANSFORMAÇÃO DIGITAL, INOVAÇÃO E ESTRATÉGIAS EMPRESARIAIS
+// =========================================================================
+export const CURSO_TRANSFORMACAO_DIGITAL_INOVACAO: Course = {
+  id: 'curso-transformacao-digital-inovacao',
+  trackId: 'trilha-rotinas-gestao',
+  trackName: 'TRILHA 4: Rotinas Administrativas & Gestão Empresarial',
+  category: 'Administração e Negócios',
+  targetAudienceType: ['JOVEM_APRENDIZ', 'ESTUDANTE', 'PRIMEIRO_EMPREGO', 'ESTAGIARIO'],
+  title: 'Transformação Digital, Inovação e Estratégias Empresariais',
+  subtitle: 'Computação em nuvem, IoT, IA gerativa, modelos de plataforma, automação RPA e liderança da mudança cultural.',
+  hours: 20,
+  equivalentHours: 20,
+  modality: 'EAD 100% Gratuito (Escola Virtual)',
+  targetAudience: 'Estudantes, jovens aprendizes, estagiários e profissionais que buscam liderar processos de inovação, modernização tecnológica e estratégias de transformação digital corporativa.',
+  prerequisites: 'Nenhum pré-requisito.',
+  badgeName: 'Especialista em Transformação Digital & Inovação',
+  badgeCategory: 'Inovação & Estratégia Digital',
+  badgeIcon: 'Zap',
+  accentColor: '#06B6D4',
+  level: 'Avançado',
+  videoUrl: 'https://www.youtube.com/watch?v=ip1XaFJi4g0',
+  youtubeId: 'ip1XaFJi4g0',
+  learningObjectives: [
+    'Compreender a diferença estratégica entre Digitização, Digitalização de processos e Transformação Digital de modelos de negócio.',
+    'Analisar o impacto da Computação em Nuvem, Big Data, IoT e Inteligência Artificial na eficiência corporativa.',
+    'Construir modelos de negócios digitais escaláveis baseados em Plataformas, SaaS, Freemium e Ecossistemas integrados.',
+    'Fomentar a cultura de inovação aberta, tolerância ao erro, squads ágeis e automação via RPA e APIs.',
+    'Liderar a gestão da mudança organizacional através de frameworks consolidados (ADKAR e Kotter) superando resistências culturais.'
+  ],
+  modules: [
+    {
+      id: 'transf-dig-mod-1',
+      number: 1,
+      title: 'MÓDULO 1: Fundamentos e Estratégia da Transformação Digital',
+      summary: 'Evolução dos negócios digitais, distinção estratégica e novos modelos de monetização e ecossistemas.',
+      estimatedMinutes: 50,
+      content: {
+        sections: [
+          {
+            subheading: 'Aula 1.1: Conceito, Evolução e Imperativos da Transformação Digital',
+            body: [
+              'A Transformação Digital não é meramente a adoção de novas ferramentas tecnológicas, mas uma profunda reinvenção estratégica da proposta de valor, da experiência do cliente e dos processos corporativos.',
+              'Os imperativos de mercado: mudanças aceleradas no comportamento do consumidor, ciclos de inovação reduzidos e o surgimento de novos concorrentes ágeis que desafiam modelos tradicionais.',
+              'A tecnologia atua como habilitadora de novos patamares de produtividade, enquanto a visão estratégica de liderança define a sustentabilidade do negócio no longo prazo.'
+            ],
+            highlightBox: {
+              type: 'info',
+              title: 'Visão Estratégica',
+              text: 'A transformação digital é impulsionada pela estratégia de negócios e pela centralidade no cliente, não pela tecnologia isolada.'
+            }
+          },
+          {
+            subheading: 'Aula 1.2: Digitização vs. Digitalização de Processos vs. Transformação Digital',
+            body: [
+              'Digitização (Digitization): conversão de informações analógicas para formatos digitais (exemplo: digitalizar contratos em papel para arquivos PDF).',
+              'Digitalização (Digitalization): redesenho e automação de fluxos operacionais existentes utilizando tecnologias digitais (exemplo: fluxo automatizado de aprovação de notas fiscais).',
+              'Transformação Digital (Digital Transformation): transformação holística que reformula a cultura, a criação de valor e os modelos de receita da organização (exemplo: transição de venda de produtos físicos para modelos de assinatura de serviços recorrentes).'
+            ],
+            highlightBox: {
+              type: 'warning',
+              title: 'Diferenciação Crucial',
+              text: 'Automatizar um processo burocrático e ineficiente apenas cria um processo ineficiente mais rápido. A verdadeira transformação exige repensar o porquê daquele processo.'
+            }
+          },
+          {
+            subheading: 'Aula 1.3: Novos Modelos de Negócios Digitais (Plataformas, SaaS, Freemium)',
+            body: [
+              'Modelos de Plataforma e Ecossistema: empresas que conectam produtores e consumidores de valor (Marketplaces, serviços sob demanda) aproveitando os poderosos Efeitos de Rede (Network Effects).',
+              'Software as a Service (SaaS): entrega contínua de soluções baseadas em nuvem com previsibilidade de receita recorrente (MRR / ARR).',
+              'Freemium e Economia da Assinatura: estratégias de aquisição acelerada de usuários com camadas gratuitas de entrada e monetização em funcionalidades premium avançadas.'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      id: 'transf-dig-mod-2',
+      number: 2,
+      title: 'MÓDULO 2: Arquiteturas de Tecnologia e Tendências Emergentes',
+      summary: 'Cloud computing, Big Data, Internet das Coisas (IoT) e convergência da IA na eficiência corporativa.',
+      estimatedMinutes: 55,
+      content: {
+        sections: [
+          {
+            subheading: 'Aula 2.1: Computação em Nuvem (Cloud Computing) e Arquiteturas Escaláveis',
+            body: [
+              'A nuvem como pilar de agilidade empresarial: eliminação de custos vultosos com servidores locais (CapEx para OpEx) e elasticidade imediata para atender a picos de demanda.',
+              'Modelos de serviço em nuvem: IaaS (Infraestrutura como Serviço), PaaS (Plataforma como Serviço) e SaaS (Software como Serviço).',
+              'Estratégias multinuvem (Multi-Cloud) e nuvem híbrida para garantia de alta disponibilidade, governança e conformidade com a LGPD.'
+            ]
+          },
+          {
+            subheading: 'Aula 2.2: Big Data, Internet das Coisas (IoT) e Convergência de Dados Operacionais',
+            body: [
+              'Os 5 Vs do Big Data: Volume, Velocidade, Variedade, Veracidade e Valor transformando dados operacionais em ativos estratégicos.',
+              'A Internet das Coisas (IoT) na prática: sensores conectados em frotas, linhas de produção e equipamentos corporativos enviando telemetria em tempo real.',
+              'Manutenção Preditiva e Redução de Ociosidade: agir proativamente antes que falhas catastróficas paralisem os serviços da empresa.'
+            ],
+            highlightBox: {
+              type: 'calc',
+              title: 'Impacto da IoT',
+              text: 'Sistemas inteligentes com sensores de IoT reduzem custos de manutenção não planejada em até 30% em operações industriais e logísticas.'
+            }
+          },
+          {
+            subheading: 'Aula 2.3: Inteligência Artificial Gerativa e Machine Learning Organizacional',
+            body: [
+              'Machine Learning (Aprendizado de Máquina) para previsão de demanda, scoring de crédito e personalização dinâmica de ofertas ao consumidor.',
+              'Inteligência Artificial Gerativa como copiloto de produtividade: síntese instantânea de documentos regulatórios, redação assistida e suporte a decisões complexas.',
+              'Ética e responsabilidade algorítmica: governança de dados, mitigação de vieses e proteção à privacidade corporativa.'
+            ]
+          }
+        ]
+      }
+    },
+    {
+      id: 'transf-dig-mod-3',
+      number: 3,
+      title: 'MÓDULO 3: Cultura de Inovação e Modernização de Processos',
+      summary: 'Inovação aberta, tolerância ao erro, squads ágeis, mapeamento de processos e automação com RPA.',
+      estimatedMinutes: 50,
+      content: {
+        sections: [
+          {
+            subheading: 'Aula 3.1: Fomento à Cultura de Inovação Aberta e Squads Ágeis',
+            body: [
+              'Inovação Aberta (Open Innovation): colaboração estratégica com startups, universidades e ecossistemas externos para acelerar o desenvolvimento de soluções.',
+              'A importância da Segurança Psicológica e tolerância ao erro calculado: sem experimentação e aprendizado rápido, não existe inovação autêntica.',
+              'Estruturas organizacionais em Squads: equipes multidisciplinares auto-organizadas focadas em jornadas completas do usuário com ciclos curtos de entrega.'
+            ]
+          },
+          {
+            subheading: 'Aula 3.2: Mapeamento de Gargalos e Redesenho de Processos Digitais',
+            body: [
+              'Metodologia de Design Thinking aplicada aos processos internos: Imersão, Ideação, Prototipagem e Testes contínuos centrados nas dores do usuário.',
+              'Mapeamento da Jornada do Usuário (User Journey) para identificar pontos de atrito e substituir etapas manuais lentas por experiências digitais fluidas.',
+              'Simplificação prévia: nunca digitalize etapas redundantes que poderiam ser simplesmente eliminadas do processo.'
+            ]
+          },
+          {
+            subheading: 'Aula 3.3: Automação de Processos (RPA) e Integração via APIs',
+            body: [
+              'RPA (Robotic Process Automation): bots de software configurados para assumir tarefas repetitivas baseadas em regras (ex: conciliação bancária, extração de relatórios e preenchimento de planilhas).',
+              'Economia de APIs (Application Programming Interfaces): integração transparente entre sistemas legados e plataformas modernas na nuvem sem necessidade de reescrever códigos do zero.',
+              'Liberando o talento humano: a automação inteligente redireciona os colaboradores de tarefas mecânicas para funções analíticas e de relacionamento.'
+            ],
+            highlightBox: {
+              type: 'info',
+              title: 'Eficiência de RPA',
+              text: 'Rotinas com RPA operam 24/7 com índice zero de erro de digitação, permitindo que a equipe humana se dedique à inovação e atendimento consultivo.'
+            }
+          }
+        ]
+      }
+    },
+    {
+      id: 'transf-dig-mod-4',
+      number: 4,
+      title: 'MÓDULO 4: Gestão de Mudança, Estratégia e Videoaulas Oficiais de Conclusão',
+      summary: 'Estudo de caso prático, modelos de gestão da mudança (ADKAR/Kotter), duas videoaulas de conclusão e certificação oficial.',
+      estimatedMinutes: 45,
+      content: {
+        sections: [
+          {
+            subheading: 'Aula 4.1: Videoaulas Oficiais de Conclusão (Transformação Digital & Estratégia)',
+            body: [
+              'Assista às duas videoaulas oficiais de encerramento do curso organizadas em duas perspectivas complementares:',
+              '• Aula 01 (Transformação Digital nas Empresas): Conceitos fundamentais de transformação digital, cultura de inovação, automação de processos e uso estratégico da tecnologia nos negócios.',
+              '• Aula 02 (Estratégia Empresarial): Definição de estratégia corporativa, análise de mercado, tomada de decisão e alinhamento entre inovação tecnológica e resultados competitivos.',
+              'Acompanhe a reprodução no player duplo com controle de áudio independente e aguarde a contagem do cronômetro para desbloquear a Prova de Fixação.'
+            ],
+            highlightBox: {
+              type: 'info',
+              title: 'Videoaulas Oficiais de Conclusão (YouTube)',
+              text: 'Aula 01: Transformação Digital nas Empresas (https://www.youtube.com/watch?v=ip1XaFJi4g0) | Aula 02: Estratégia Empresarial: o que é, afinal? (https://www.youtube.com/watch?v=a32rtLp1VeU)'
+            }
+          },
+          {
+            subheading: 'Aula 4.2: Gestão de Mudança Organizacional (ADKAR/Kotter) e Cultura',
+            body: [
+              'O maior fator de insucesso em projetos de transformação digital reside na resistência cultural e comportamental humana, não na tecnologia.',
+              'Framework ADKAR: Awareness (Consciência da necessidade), Desire (Desejo de participar), Knowledge (Conhecimento prático), Ability (Habilidade de aplicar) e Reinforcement (Reforço e sustentação da mudança).',
+              'Os 8 passos de John Kotter: criar senso de urgência, formar coalizões fortes, comunicar a visão, gerar vitórias de curto prazo (quick wins) e ancorar a mudança na cultura corporativa.'
+            ],
+            highlightBox: {
+              type: 'warning',
+              title: 'Fator Humano',
+              text: 'Pessoas apoiam aquilo que ajudam a construir. Envolva os colaboradores desde as fases iniciais de ideação para mitigar o medo natural da obsolescência.'
+            }
+          },
+          {
+            subheading: 'Aula 4.3: Avaliação Final de Fixação e Emissão de Selo Oficial',
+            body: [
+              'Realize o Quiz de 7 perguntas avançadas sobre Digitização vs. Digitalização, Nuvem, IoT, RPA, Modelos de Plataforma e Gestão de Mudança.',
+              'Com aproveitamento igual ou superior a 70%, seu Selo Oficial de Especialista em Transformação Digital & Inovação será emitido e anexado ao seu currículo profissional.'
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  caseStudies: [],
+  quiz: [
+    {
+      id: 1,
+      question: "Qual é a diferença fundamental entre 'Digitização' (Digitization), 'Digitalização' (Digitalization) e 'Transformação Digital'?",
+      options: [
+        "Não existe diferença, são apenas sinônimos usados para vender softwares corporativos.",
+        "Digitização é a conversão do analógico para o digital; Digitalização é o uso de tecnologia para melhorar processos existentes; Transformação Digital é a mudança cultural e estratégica profunda no modelo de negócio.",
+        "Transformação Digital se aplica apenas a startups de tecnologia, enquanto Digitalização é para empresas tradicionais.",
+        "Digitização refere-se à compra de computadores; Transformação Digital é a criação de páginas em redes sociais."
+      ],
+      correct: 1,
+      explanation: "A Digitização converte o formato físico para bits, a Digitalização moderniza e automatiza processos específicos e a Transformação Digital altera estrategicamente como a empresa gera e entrega valor ao mercado."
+    },
+    {
+      id: 2,
+      question: "Em um contexto de Transformação Digital, qual é o papel estratégico da Computação em Nuvem (Cloud Computing)?",
+      options: [
+        "Apenas reduzir os custos com impressão de papel na empresa.",
+        "Proporcionar escalabilidade, agilidade na implementação de novos serviços, flexibilidade e redução de infraestrutura física local.",
+        "Substituir integralmente a necessidade de equipes de desenvolvimento e programação.",
+        "Garantir que a empresa não precise mais de conexão com a internet."
+      ],
+      correct: 1,
+      explanation: "A computação em nuvem fornece a flexibilidade e a infraestrutura elástica necessárias para lançar novos produtos rapidamente sem necessidade de data centers físicos próprios."
+    },
+    {
+      id: 3,
+      question: "Como a tecnologia de Internet das Coisas (IoT) agrega valor aos processos operacionais e industriais?",
+      options: [
+        "Permitindo que sensores conectados coletem dados em tempo real sobre equipamentos e produtos para manutenção preditiva e otimização.",
+        "Criando apresentações automáticas em PowerPoint para a diretoria.",
+        "Aumentando a velocidade de navegação nas redes sociais dos funcionários.",
+        "Bloqueando acessos não autorizados em servidores de e-mail."
+      ],
+      correct: 0,
+      explanation: "A IoT conecta ativos físicos ao ambiente analítico, viabilizando telemetria em tempo real, rastreabilidade e manutenção preditiva que evitam perdas financeiras."
+    },
+    {
+      id: 4,
+      question: "O que caracteriza a automação por meio de RPA (Robotic Process Automation) nas organizações?",
+      options: [
+        "O uso de robôs físicos para montagem de peças em linhas de produção.",
+        "A implementação de softwares configurados para automatizar tarefas repetitivas, manuais e baseadas em regras em sistemas digitais.",
+        "A eliminação de todos os cargos de gestão em uma empresa.",
+        "O desenvolvimento de novos produtos através de impressoras 3D."
+      ],
+      correct: 1,
+      explanation: "O RPA atua como um assistente digital programado para interagir com interfaces de sistemas, preenchendo formulários, validando planilhas e executando tarefas mecânicas sem erro."
+    },
+    {
+      id: 5,
+      question: "Qual é considerado o maior obstáculo no fracasso de iniciativas de Transformação Digital nas corporações?",
+      options: [
+        "A escassez de fornecedores de computadores no mercado local.",
+        "Resistência cultural interna, falta de engajamento da liderança e ausência de mentalidade voltada à mudança.",
+        "O excesso de velocidade na conexão de fibra óptica.",
+        "O alto custo de licenças de antivírus."
+      ],
+      correct: 1,
+      explanation: "A maior barreira à inovação é humana e cultural: o medo do novo, a falta de segurança psicológica e a resistência de lideranças acostumadas a modelos legados."
+    },
+    {
+      id: 6,
+      question: "O modelo de negócio baseado em 'Plataforma / Ecossistema Digital' (ex: Uber, Airbnb, Marketplaces) diferencia-se do modelo tradicional linear porque:",
+      options: [
+        "Fabrica e armazena todos os produtos em estoque próprio antes da venda.",
+        "Conecta diretamente produtores e consumidores de valor, gerando efeitos de rede sem necessariamente possuir os ativos físicos.",
+        "Funciona apenas através de atendimentos presenciais e físicos.",
+        "Não utiliza dados de usuários para personalizar a experiência."
+      ],
+      correct: 1,
+      explanation: "Modelos de plataforma operam como ecossistemas de intermediação com custos marginais baixíssimos, potencializados por efeitos de rede onde cada novo participante agrega valor ao conjunto."
+    },
+    {
+      id: 7,
+      question: "Dentro de uma estratégia de Gestão de Mudança Organizacional, qual é a importância da fase de 'Ancoragem da Mudança na Cultura'?",
+      options: [
+        "Garantir que as novas práticas, tecnologias e comportamentos sejam consolidados como a norma padrão da empresa, evitando o retorno aos hábitos antigos.",
+        "Punir os colaboradores que não aprenderam a usar os novos sistemas na primeira semana.",
+        "Cancelar todos os projetos digitais e retornar ao formato em papel.",
+        "Vender os equipamentos antigos para arrecadar fundos de emergência."
+      ],
+      correct: 0,
+      explanation: "Ancorar a mudança significa integrá-la aos ritos, avaliações de desempenho e rotinas cotidianas para que os novos métodos se tornem a identidade definitiva da organização."
+    }
+  ]
+};
+
 export const COURSES: Course[] = [
+  CURSO_TRANSFORMACAO_DIGITAL_INOVACAO,
+  CURSO_INTELIGENCIA_NEGOCIOS_INDICADORES,
+  CURSO_GESTAO_ESTRATEGICA_PROJETOS,
+  CURSO_ANALISE_DADOS_POWER_BI,
+  CURSO_ATENDIMENTO_RELACIONAMENTO_CLIENTE,
+  CURSO_EXCEL_AVANCADO_ANALISE_DADOS,
+  // =========================================================================
+  // CURSO OFICIAL: COMUNICAÇÃO ESCRITA, E-MAILS E REDAÇÃO CORPORATIVA
+  // =========================================================================
+  {
+    id: 'curso-comunicacao-escrita-corporativa',
+    videoUrl: 'https://youtu.be/Lt4zabLCJ9I?si=NpcDLAKgOkQYGDF9',
+    youtubeId: 'Lt4zabLCJ9I',
+    trackId: 'trilha-comunicacao-relacionamento',
+    trackName: 'Trilha Comunicação & Relacionamento Profissional',
+    category: 'Administração e Negócios',
+    targetAudienceType: 'TODOS',
+    title: 'Comunicação Escrita, E-mails e Redação Corporativa',
+    subtitle: 'Domine a arte de redigir mensagens corporativas claras, estruturar e-mails que geram respostas rápidas, elaborar relatórios e utilizar ferramentas digitais com assertividade.',
+    hours: 12,
+    equivalentHours: 12,
+    modality: 'EAD 100% Gratuito (Escola Virtual)',
+    targetAudience: 'Jovens aprendizes, estagiários e profissionais em início de carreira em Curitiba e RMC.',
+    prerequisites: 'Nenhum pré-requisito.',
+    badgeName: 'Especialista em Comunicação Corporativa',
+    badgeCategory: 'Comunicacao',
+    badgeIcon: 'Mail',
+    accentColor: '#8B5CF6',
+    level: 'Iniciante',
+    learningObjectives: [
+      'Dominar os fundamentos da escrita corporativa: clareza, concisão e adequação de tom.',
+      'Estruturar e-mails profissionais com assuntos informativos e uso correto de CC e CCO.',
+      'Aplicar técnicas de redação lógica e auto-revisão eliminando vícios e gírias.',
+      'Elaborar documentos institucionais respeitando o sigilo e a LGPD.',
+      'Gerenciar fluxos de comunicação interna (Slack/Teams) e externa com clientes.',
+      'Utilizar ferramentas digitais e copiloto de IA com supervisão e validação humana.'
+    ],
+    modules: [
+      {
+        id: 'comunicacao-mod-1',
+        number: 1,
+        title: 'MÓDULO 1: Fundamentos da Comunicação Escrita & E-mails Profissionais',
+        summary: 'Da postura escrita ao envio de e-mails eficazes, com foco em clareza, tom e assertividade corporativa.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Fundamentos da Comunicação Escrita',
+              body: [
+                'A comunicação escrita no ambiente de trabalho é o principal cartão de visitas de um profissional. Mensagens claras, concisas e objetivas economizam o tempo da equipe e evitam retrabalho.',
+                'Adequação ao interlocutor: O tom adotado com a liderança ou clientes deve ser cordial e polido, equilibrando formalidade e empatia sem prolixidade.',
+                'O teste dos 5 segundos: Ao reler sua mensagem, certifique-se de que o destinatário consegue identificar o objetivo principal logo no primeiro parágrafo.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: '💡 Dica de Ouro de RH',
+                text: 'Evite mensagens fragmentadas de uma linha em chats corporativos. Envie blocos completos com contexto, dúvida e prazo.'
+              }
+            },
+            {
+              subheading: '2. E-mails Profissionais Eficazes',
+              body: [
+                'O assunto do e-mail deve ser um resumo executivo: utilize [Ação], [Urgente] ou [Alinhamento] seguido do projeto e data.',
+                'Estrutura em 3 blocos: Saudação personalizada, parágrafo contextual e chamada para ação (CTA) com prazo claro.',
+                'Uso seguro de CC e CCO: Envie cópia visível apenas para quem precisa acompanhar, e use CCO para listas externas garantindo a privacidade (LGPD).'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: '⚠️ Atenção com Cópia Oculta (CCO)',
+                text: 'Nunca utilize CCO para comunicação velada interna; utilize apenas para proteção de dados em disparos coletivos.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'comunicacao-mod-2',
+        number: 2,
+        title: 'MÓDULO 2: Documentos Corporativos, Fluxos e Ferramentas',
+        summary: 'Redação de atas, relatórios e uso de ferramentas modernas com Inteligência Artificial supervisionada.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Documentos Corporativos e Sigilo',
+              body: [
+                'Elaboração de memorandos, atas de reunião e relatórios operacionais com formatação limpa e numeração padronizada.',
+                'Confidencialidade e LGPD: Atenção redobrada ao compartilhar dados pessoais e planilhas por canais digitais.'
+              ]
+            },
+            {
+              subheading: '2. Ferramentas, Tecnologias e IA',
+              body: [
+                'Uso de corretores gramaticais inteligentes e modelos pré-definidos de respostas.',
+                'Apoio de IA Generativa: Utilizar a IA para rascunhos com revisão humana 100% obrigatória antes do envio.'
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    caseStudies: [
+      {
+        id: 'caso-comunicacao-1',
+        title: 'Reestruturação de E-mail de Alinhamento com a Diretoria',
+        character: 'Beatriz, Estagiária Administrativa',
+        scenario: 'Beatriz precisava solicitar aprovação de orçamento para um evento da empresa e o e-mail anterior continha 6 parágrafos densos sem destaque do valor.',
+        criticalAnalysis: 'Beatriz resumiu a solicitação em 3 tópicos, colocou o valor total em destaque e uma data limite para resposta. O orçamento foi aprovado no mesmo dia.',
+        keyTakeaways: [
+          'Diretoria e gestores priorizam objetividade e clareza com números destacados.',
+          'Sempre estipule prazos amigáveis para retorno.'
+        ],
+        badgeRelevance: 'Comprova alta competência em redação executiva e comunicação ágil.'
+      }
+    ],
+    quiz: [
+      {
+        id: 1,
+        question: 'Qual é a estrutura mais recomendada para um e-mail corporativo eficaz?',
+        options: [
+          'Assunto genérico, texto em caixa alta e sem assinatura para poupar espaço.',
+          'Assunto informativo claro, saudação polida, corpo em tópicos objetivos e chamada clara para ação com prazo.',
+          'Parágrafo longo contínuo de 50 linhas sem pontuação definida.',
+          'Enviar apenas anexos sem nenhuma mensagem explicativa no corpo.'
+        ],
+        correct: 1,
+        explanation: 'A clareza no assunto e a divisão do corpo em blocos com prazo facilitam a leitura e a tomada de decisão rápida.'
+      },
+      {
+        id: 2,
+        question: 'Quando é indicado utilizar o recurso de Cópia Oculta (CCO)?',
+        options: [
+          'Para falar mal de um colega sem que ele perceba.',
+          'Para proteger o e-mail de destinatários em envios coletivos e respeitar a privacidade/LGPD.',
+          'Para fingir que o gestor não foi copiado.',
+          'Em todos os e-mails internos da empresa rotineiramente.'
+        ],
+        correct: 1,
+        explanation: 'O CCO preserva a identidade e o endereço eletrônico dos destinatários externos, evitando vazamento de dados.'
+      }
+    ]
+  },
   // =========================================================================
   // CURSO 10: RESOLUÇÃO CRIATIVA DE PROBLEMAS E ADAPTAÇÃO
   // =========================================================================
@@ -351,6 +2873,8 @@ export const COURSES: Course[] = [
     badgeIcon: 'Briefcase',
     accentColor: '#F59E0B',
     level: 'Iniciante',
+    videoUrl: 'https://youtu.be/kKo9a3ZlqHo?si=yPsxbpTQaoZtGlQ',
+    youtubeId: 'kKo9a3ZlqHo',
     learningObjectives: [
       'Aplicar a técnica dos Cinco Porquês da metodologia Toyota/Lean para identificar a causa-raiz de falhas operacionais e evitar correções superficiais.',
       'Adotar uma postura focada em soluções, apresentando à liderança alternativas viáveis ao reportar obstáculos.',
@@ -426,6 +2950,83 @@ export const COURSES: Course[] = [
                 title: 'Flexibilidade e Inovação',
                 text: 'Quando o plano A falha, olhar a situação por um ângulo não convencional descobre oportunidades onde os outros enxergam apenas bloqueios.'
               }
+            }
+          ]
+        }
+      },
+      {
+        id: 'resolucao-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Matriz de Priorização e Planos de Ação',
+        summary: 'Seleção estruturada de alternativas com a Matriz Esforço x Impacto e execução prática de soluções com o framework 5W2H.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Matriz Esforço x Impacto (Ganhos Rápidos)',
+              body: [
+                'Após uma sessão de Brainstorming, a equipe se depara com dezenas de alternativas possíveis. A Matriz Esforço x Impacto organiza essas ideias em quatro quadrantes estratégicos:',
+                'Ganhos Rápidos (Quick Wins): Baixo esforço e alto impacto. Devem ser implementadas de imediato para gerar resultados visíveis e motivar o time.',
+                'Grandes Projetos: Alto esforço e alto impacto. Exigem planejamento detalhado, alocação de recursos e cronograma estruturado.',
+                'Preenchimento / Tarefas Menores: Baixo esforço e baixo impacto. Podem ser realizadas quando houver tempo ocioso.',
+                'Drenos de Energia / Ingratas: Alto esforço e baixo impacto. Devem ser descartadas ou reformuladas.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Priorização Inteligente',
+                text: 'Focar primeiro nas soluções de alto impacto e baixo esforço constrói credibilidade rápida para o jovem profissional perante os gestores.'
+              }
+            },
+            {
+              subheading: '2. Framework 5W2H para Execução Prática',
+              body: [
+                'Uma ideia criativa sem execução estruturada se perde na rotina. A ferramenta 5W2H transforma a solução escolhida em um plano de ação objetivo respondendo a 7 perguntas:',
+                'What (O que será feito?), Why (Por que será feito?), Where (Onde será feito?), When (Quando será feito?), Who (Quem será o responsável?), How (Como será executado?) e How Much (Quanto custará?).',
+                'O uso do 5W2H elimina ambiguidades, define responsabilidades claras e garante o acompanhamento pontual dos prazos de entrega.'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Clareza Operacional',
+                text: 'Definir claramente "Quem" e "Quando" é o segredo para transformar discussões criativas em entregas concretas no ambiente de trabalho.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'resolucao-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Adaptação sob Pressão, Resiliência e Conclusão',
+        summary: 'Flexibilidade cognitiva diante de cenários dinâmicos, resolução colaborativa de conflitos operacionais, vídeo oficial de conclusão e preparação para a avaliação final.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: 'Aula 4.1: Vídeo de Conclusão e Estudo de Caso de Resolução Criativa e Adaptação',
+              body: [
+                'Assista à videoaula oficial de conclusão do curso, integrando a mentalidade ágil de solução de problemas, flexibilidade e capacidade de adaptação no dia a dia corporativo.',
+                'Acompanhe o temporizador obrigatório do player minimalista até o encerramento da contagem para desbloquear o acesso à Prova de Fixação e Certificação Oficial.'
+              ]
+            },
+            {
+              subheading: 'Aula 4.2: Resiliência Operacional e Flexibilidade Cognitiva',
+              body: [
+                'A adaptabilidade é a habilidade de ajustar rotinas e posturas diante de mudanças imprevistas de prioridade, tecnologia ou demandas de clientes.',
+                'Profissionais adaptáveis não se apegam a processos obsoletos; eles compreendem o objetivo final e encontram caminhos alternativos sem perder o foco ou a qualidade técnica.',
+                'A resiliência permite absorver o impacto de falhas temporárias, aprender com os desvios e reorientar a equipe para o atingimento das metas organizacionais.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Mentalidade de Crescimento',
+                text: 'O erro em ambiente corporativo é um dado analítico de melhoria contínua quando acompanhado de investigação de causa-raiz e rápida capacidade de adaptação.'
+              }
+            },
+            {
+              subheading: 'Aula 4.3: Avaliação Final de Fixação e Emissão de Selo Oficial',
+              body: [
+                'Após concluir o tempo mínimo de visualização da videoaula e a leitura dos módulos, realize o Quiz Final de Fixação.',
+                'Atingindo aproveitamento igual ou superior a 70%, sua Badge Oficial de Solucionador Criativo de Problemas será validada e registrada no seu perfil SkillHub.'
+              ]
             }
           ]
         }
@@ -553,6 +3154,8 @@ export const COURSES: Course[] = [
     badgeIcon: 'Sparkles',
     accentColor: '#8B5CF6',
     level: 'Iniciante',
+    videoUrl: 'https://youtu.be/ps8k_bKoXoU?si=zF7CUiC-AUmgArQB',
+    youtubeId: 'ps8k_bKoXoU',
     learningObjectives: [
       'Compreender e respeitar o código de vestimenta (dress code) alinhado à cultura corporativa e aos diferentes segmentos de mercado.',
       'Cultivar pontualidade e rigor no cumprimento de compromissos como pilar de credibilidade profissional.',
@@ -630,6 +3233,81 @@ export const COURSES: Course[] = [
                 title: 'Direito à Desconexão',
                 text: 'Demandas enviadas em fins de semana geram ansiedade e quebram a barreira saudável entre vida pessoal e profissional dos colaboradores.'
               }
+            }
+          ]
+        }
+      },
+      {
+        id: 'etica-etiqueta-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Comunicação Assertiva, Conflitos e Redes Sociais',
+        summary: 'Diferença entre assertividade e agressividade, gestão ética de desentendimentos e cuidados essenciais com a reputação digital.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Postura Ética nas Redes Sociais e Marca Pessoal',
+              body: [
+                'O perfil digital de um colaborador reflete indiretamente na reputação da organização.',
+                'Expressar opiniões preconceituosas, reclamar publicamente de superiores ou expor fotos de documentos internos em redes sociais constitui falta grave e quebra de ética.',
+                'Utilize redes como LinkedIn para compartilhar aprendizados e conquistas profissionais com moderação, respeitando sempre o sigilo institucional.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Reputação e Pegada Digital',
+                text: 'O que é publicado na internet permanece acessível. Cultive uma presença digital que reforce sua maturidade e credibilidade profissional.'
+              }
+            },
+            {
+              subheading: '2. Comunicação Assertiva e Resolução de Conflitos',
+              body: [
+                'Divergências de opinião são naturais no ambiente de trabalho. A conduta ética exige que conflitos sejam tratados de forma privada, direta e respeitosa.',
+                'Ser assertivo significa expressar seu ponto de vista e suas necessidades com clareza e firmeza, sem recorrer à agressividade ou à passividade dissimulada.',
+                'A prática do feedback construtivo foca em comportamentos e processos observáveis, nunca em ataques pessoais aos colegas.'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Elogie em Público, Corrija em Particular',
+                text: 'Divergências operacionais devem ser debatidas com serenidade entre os envolvidos, preservando o respeito e a coesão do time.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'etica-etiqueta-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Compliance, Sigilo Corporativo e Vídeo de Conclusão',
+        summary: 'Confidencialidade de dados, conduta em conformidade com as regras institucionais (compliance), vídeo oficial de encerramento e preparação para a avaliação final.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: 'Aula 4.1: Vídeo de Conclusão e Estudo de Caso de Ética e Etiqueta Corporativa',
+              body: [
+                'Assista à videoaula oficial de conclusão do curso, revisando as principais diretrizes de etiqueta profissional presencial, remota e digital.',
+                'Acompanhe o temporizador obrigatório do player minimalista até o encerramento da contagem para desbloquear o acesso à Prova de Fixação e Certificação Oficial.'
+              ]
+            },
+            {
+              subheading: 'Aula 4.2: Confidencialidade, Sigilo Profissional e LGPD nas Relações de Trabalho',
+              body: [
+                'Informações sobre clientes, contratos, faturamento ou estratégias da empresa são sigilosas e confidenciais.',
+                'Compartilhar dados corporativos em grupos externos de WhatsApp ou comentar detalhes de projetos em locais públicos viola o termo de confidencialidade e a LGPD.',
+                'O compliance corporativo assegura que todas as operações sigam rigorosamente a legislação vigente e os valores éticos da organização.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Sigilo Profissional',
+                text: 'A confiança depositada no jovem profissional começa pelo respeito incondicional às informações sensíveis que passam por suas mãos.'
+              }
+            },
+            {
+              subheading: 'Aula 4.3: Avaliação Final de Fixação e Emissão de Selo Oficial',
+              body: [
+                'Após concluir o tempo mínimo de visualização da videoaula e a leitura dos módulos, realize o Quiz Final de Fixação.',
+                'Atingindo aproveitamento igual ou superior a 70%, sua Badge Oficial de Profissional de Alta Postura & Ética será validada e registrada no seu perfil SkillHub.'
+              ]
             }
           ]
         }
@@ -941,6 +3619,12 @@ export const COURSES: Course[] = [
   // =========================================================================
   {
     id: 'curso-gestao-tempo-produtividade-iniciante',
+    published: true,
+    isPublished: true,
+    active: true,
+    visible: true,
+    videoUrl: 'https://youtu.be/Ipjxv5uU1R8?si=bS-CURqa2Exmfp7C',
+    youtubeId: 'Ipjxv5uU1R8',
     trackId: 'trilha-5',
     trackName: 'TRILHA 5: Gestão do Tempo, Foco & Educação Financeira',
     category: 'Desenvolvimento Pessoal',
@@ -1030,6 +3714,80 @@ export const COURSES: Course[] = [
                 title: 'Descanso de Verdade',
                 text: 'Durante os 5 minutos de pausa, afaste-se do computador e do celular: beba água, alongue-se e descanse a visão para oxigenar a mente.'
               }
+            }
+          ]
+        }
+      },
+      {
+        id: 'gestao-tempo-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Gestão de Interrupções, Ladrões de Tempo e Time Blocking',
+        summary: 'Estratégias para blindar a rotina contra distrações digitais, organização do dia em blocos de tempo (Time Blocking) e agrupamento de tarefas em lotes (batching).',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Identificação e Eliminação de Ladrões de Tempo',
+              body: [
+                'Interrupções constantes fragmentam o raciocínio e roubam horas úteis da jornada de trabalho e estudos.',
+                'Notificações de aplicativos, redes sociais abertas em segundo plano e reuniões sem pauta definida são os maiores drenos de produtividade no ambiente corporativo.',
+                'Aprender a dizer "não" com elegância profissional e desativar alertas durante momentos de produção intensa protege sua energia para o que é prioritário.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Blindagem de Foco',
+                text: 'Desativar notificações durante os blocos de trabalho profundo pode recuperar até duas horas de atenção líquida por dia.'
+              }
+            },
+            {
+              subheading: '2. Metodologia Time Blocking e Agrupamento em Lotes (Batching)',
+              body: [
+                'O Time Blocking consiste em dividir o calendário diário em blocos dedicados exclusivamente a tipos específicos de atividades (ex: bloco matinal para relatórios, bloco da tarde para reuniões e e-mails).',
+                'Combinado ao Batching (agrupamento de tarefas similares para execução contínua), esse método reduz o custo de troca de contexto e acelera o fluxo de entregas da equipe.'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Agenda Única e Realista',
+                text: 'Mantenha todos os prazos profissionais e acadêmicos centralizados em um único calendário para evitar sobreposições e atrasos de última hora.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'gestao-tempo-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Sustentabilidade da Rotina, Resiliência e Vídeo de Conclusão',
+        summary: 'Equilíbrio entre alta performance e descanso de qualidade, prevenção da sobrecarga mental, vídeo oficial de conclusão e preparação para a avaliação final.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: 'Aula 4.1: Vídeo de Conclusão e Estudo de Caso de Gestão do Tempo',
+              body: [
+                'Assista à videoaula oficial de conclusão do curso, consolidando as metodologias de foco, priorização inteligente e produtividade sustentável para o dia a dia profissional.',
+                'Acompanhe o temporizador obrigatório do player minimalista até o encerramento da contagem para desbloquear o acesso à Prova de Fixação e Certificação Oficial.'
+              ]
+            },
+            {
+              subheading: 'Aula 4.2: Sustentabilidade da Rotina e Energia Cognitiva',
+              body: [
+                'Produtividade verdadeira não significa trabalhar até a exaustão, mas alcançar resultados consistentes preservando a saúde mental e o bem-estar.',
+                'O descanso e o sono de qualidade são ativos fundamentais para a consolidação da memória, tomada de decisão precisa e prevenção do Burnout.',
+                'Estabelecer limites claros entre o horário de expediente e os momentos pessoais fortalece a resiliência e a longevidade profissional do colaborador.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Ritmo Sustentável',
+                text: 'Quem não planeja seu descanso acaba forçado a pausar por exaustão. Produtividade consistente requer pausas estratégicas regulares.'
+              }
+            },
+            {
+              subheading: 'Aula 4.3: Avaliação Final de Fixação e Emissão de Selo Oficial',
+              body: [
+                'Após concluir o tempo mínimo de visualização da videoaula e a leitura dos módulos, realize o Quiz Final de Fixação.',
+                'Atingindo aproveitamento igual ou superior a 70%, sua Badge Oficial de Mestre em Foco e Produtividade será validada e registrada no seu perfil SkillHub.'
+              ]
             }
           ]
         }
@@ -1141,6 +3899,8 @@ export const COURSES: Course[] = [
   // =========================================================================
   {
     id: 'curso-produtividade-notebooklm',
+    videoUrl: 'https://youtu.be/LVYRzFxBZLE?si=hjVmprUh1FY5ifFd',
+    youtubeId: '1uIR8erwQmI',
     trackId: 'trilha-3',
     trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
     category: 'Tecnologia da Informação',
@@ -1545,6 +4305,12 @@ export const COURSES: Course[] = [
   // =========================================================================
   {
     id: 'curso-hard-skills-excel-ferramentas-digitais',
+    published: true,
+    isPublished: true,
+    active: true,
+    visible: true,
+    videoUrl: 'https://youtu.be/HmLzrPf4x0I?si=rNz7acTPrkmAcs84',
+    youtubeId: 'HmLzrPf4x0I',
     trackId: 'trilha-3',
     trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
     category: 'Tecnologia da Informação',
@@ -1607,7 +4373,7 @@ export const COURSES: Course[] = [
       {
         id: 'hard-skills-mod-2',
         number: 2,
-        title: 'MÓDULO 2: O Ecossistema Nuvem',
+        title: 'MÓDULO 2: O Ecossistema Nuvem e Trabalho Colaborativo',
         summary: 'Colaboração em tempo real, segurança de permissões de arquivos compartilhados e ganho de velocidade com atalhos de teclado.',
         estimatedMinutes: 45,
         content: {
@@ -1635,6 +4401,97 @@ export const COURSES: Course[] = [
                 title: 'Ganho de Tempo Real',
                 text: 'Combinar atalhos de teclado para navegação, cópia e busca transforma a produtividade do usuário nas rotinas de escritório.'
               }
+            }
+          ]
+        }
+      },
+      {
+        id: 'hard-skills-mod-3',
+        number: 3,
+        title: 'MÓDULO 3: Automação Básica, Gestão de Documentos e Ferramentas Digitais',
+        summary: 'Padronização de arquivos corporativos, integração de formulários em tempo real e boas práticas de gestão de caixa de entrada e reuniões virtuais.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: '1. Padronização e Nomenclatura de Arquivos Corporativos',
+              body: [
+                'A organização lógica de pastas e a padronização na nomenclatura de arquivos (ex: ANO_MES_DIA_PROJETO_VERSAO) evitam retrabalho, perda de dados e versões conflitantes na equipe.',
+                'A criação de templates institucionais para planilhas, relatórios e apresentações garante a conformidade com a identidade visual da organização.',
+                '• Estrutura de Diretórios: Separação clara entre pastas públicas, restritas a departamentos e arquivos arquivados/históricos.',
+                '• Controle de Versionamento: Utilização de histórico em nuvem para auditar alterações sem criar cópias desnecessárias com sufixos confusos como "final_final2".'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Higiene Digital Corporativa',
+                text: 'Evite salvar versões no padrão "relatorio_final_novo_v2.xlsx". Utilize histórico de versões da nuvem e convenção padronizada de datas para organização profissional.'
+              }
+            },
+            {
+              subheading: '2. Integração de Ferramentas Digitais e Comunicação Produtiva',
+              body: [
+                'O ecossistema digital corporativo integra planilhas a formulários de coleta (Google Forms / Microsoft Forms) e ferramentas de videoconferência e mensagens institucionais (Teams / Slack / Google Meet).',
+                'A automação da coleta de respostas diretamente para planilhas elimina a digitação manual de relatórios e pesquisas de satisfação interna.',
+                '• Etiquetas e Regras de Caixa de Entrada: Criação de filtros automáticos para organizar e-mails prioritários e diminuir o volume da caixa de entrada.',
+                '• Agendamento Eficiente de Reuniões: Uso de agendas compartilhadas com envio de pauta prévia e links integrados de videoconferência.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Fluxo Automatizado',
+                text: 'Vincular formulários digitais a planilhas eletrônicas consolida registros em tempo real, eliminando etapas operacionais suscetíveis a erro humano.'
+              }
+            }
+          ]
+        }
+      },
+      {
+        id: 'hard-skills-mod-4',
+        number: 4,
+        title: 'MÓDULO 4: Segurança da Informação, Vídeo de Conclusão e Avaliação Final',
+        summary: 'Proteção de dados corporativos, confidencialidade em planilhas compartilhadas, vídeo oficial de conclusão e preparação para a avaliação final.',
+        estimatedMinutes: 45,
+        content: {
+          sections: [
+            {
+              subheading: 'Aula 4.1: Vídeo de Conclusão e Estudo de Caso de Hard Skills e Ferramentas Digitais',
+              body: [
+                'Assista à videoaula oficial de conclusão do curso, consolidando o domínio de planilhas eletrônicas, integração em nuvem e ferramentas digitais para o ambiente corporativo.',
+                'Acompanhe o temporizador obrigatório do player minimalista até o encerramento da contagem regressiva para desbloquear o acesso à Prova de Fixação e Emissão do Certificado Oficial.'
+              ]
+            },
+            {
+              subheading: 'Aula 4.2: Segurança da Informação e LGPD em Planilhas e Documentos',
+              body: [
+                'Planilhas corporativas frequentemente armazenam dados confidenciais, incluindo informações financeiras, cadastros de clientes e dados pessoais.',
+                'A conformidade com a LGPD (Lei Geral de Proteção de Dados) exige cautela no compartilhamento externo, evitando links públicos irrestritos.',
+                '• Bloqueio de Células e Proteção por Senha: Como proteger fórmulas críticas contra alterações acidentais em planilhas compartilhadas.',
+                '• Prevenção contra Vazamento de Dados: Nunca envie planilhas contendo dados sensíveis de clientes para endereços de e-mail pessoais ou canais informais.'
+              ],
+              highlightBox: {
+                type: 'warning',
+                title: 'Responsabilidade com Dados Sensíveis',
+                text: 'Antes de compartilhar uma planilha por e-mail ou link, verifique se não há abas ocultas com dados pessoais ou confidenciais da empresa.'
+              }
+            },
+            {
+              subheading: 'Aula 4.3: Melhores Práticas e Aplicação Prática no Mercado de Trabalho',
+              body: [
+                'O domínio das Hard Skills de escritório amplia expressivamente a empregabilidade e o reconhecimento técnico de estagiários e jovens profissionais.',
+                'A combinação de agilidade no teclado, precisão matemática no Excel e organização exemplar em nuvem posiciona o colaborador como referência de suporte operacional na equipe.',
+                'Mantenha a busca contínua por atualização tecnológica, explorando novas ferramentas digitais e recursos de automação.'
+              ],
+              highlightBox: {
+                type: 'info',
+                title: 'Diferencial Competitivo',
+                text: 'Profissionais que resolvem problemas com planilhas e ferramentas em nuvem reduzem custos operacionais e economizam centenas de horas de trabalho da equipe.'
+              }
+            },
+            {
+              subheading: 'Aula 4.4: Avaliação Final de Fixação e Emissão de Selo Oficial',
+              body: [
+                'Após concluir o tempo mínimo de visualização da videoaula e a leitura atenta de todos os módulos teóricos, realize o Quiz Final de Fixação.',
+                'Atingindo aproveitamento igual ou superior a 70%, sua Badge Oficial de Mestre em Ferramentas Digitais será validada e registrada no seu perfil SkillHub.'
+              ]
             }
           ]
         }
@@ -1746,6 +4603,12 @@ export const COURSES: Course[] = [
   // =========================================================================
   {
     id: 'curso-soft-skills-comunicacao-interpessoal',
+    published: true,
+    isPublished: true,
+    active: true,
+    visible: true,
+    videoUrl: 'https://youtu.be/SFC9uLZSevs?si=8uoTJHebCyg4PF9z',
+    youtubeId: 'SFC9uLZSevs',
     trackId: 'trilha-2',
     trackName: 'TRILHA 2: Soft Skills, Postura & Comunicação Corporativa',
     category: 'Desenvolvimento Pessoal',
@@ -2289,15 +5152,20 @@ export const COURSES: Course[] = [
     ]
   },
 
+
   // =========================================================================
   // 3. ORÇAMENTO DO PRIMEIRO SALÁRIO
   // =========================================================================
   {
-    id: 'curso-orcamento-primeiro-salario',
+    id: 'orcamento-primeiro-salario',
+    published: true,
+    isPublished: true,
+    active: true,
+    visible: true,
     trackId: 'trilha-1',
     trackName: 'TRILHA 1: Entrada no Mercado & Primeiro Emprego',
-    category: 'Desenvolvimento Pessoal',
-    targetAudienceType: ['PRIMEIRO_EMPREGO', 'JOVEM_APRENDIZ', 'ESTUDANTE'],
+    category: 'Finanças Pessoais',
+    targetAudienceType: 'TODOS',
     title: 'Orçamento do Primeiro Salário',
     subtitle: 'Ensinar a organizar, priorizar e multiplicar o primeiro salário, evitando dívidas e criando hábitos financeiros saudáveis desde o início da carreira.',
     hours: 12,
@@ -2305,8 +5173,10 @@ export const COURSES: Course[] = [
     modality: 'EAD 100% Gratuito (Escola Virtual)',
     targetAudience: 'Jovens aprendizes, estagiários e profissionais em seu primeiro emprego',
     prerequisites: 'Nenhum pré-requisito.',
-    badgeName: 'Orçamento do Primeiro Salário',
-    badgeCategory: 'Finanças Pessoais',
+    badgeName: 'Mestre em Finanças',
+    videoUrl: 'https://youtu.be/CIdkEei-BdU?si=V5_UIYlhtdcZjtEZ',
+    youtubeId: 'CIdkEei-BdU',
+    badgeCategory: 'Finanças',
     badgeIcon: 'DollarSign',
     accentColor: '#10B981',
     level: 'Iniciante',
@@ -3003,6 +5873,8 @@ export const COURSES: Course[] = [
     targetAudience: 'Estudantes que nunca utilizaram planilhas ou querem reforçar a base',
     prerequisites: 'Nenhum.',
     badgeName: 'Excel Fundamentos',
+    videoUrl: 'https://youtu.be/9QbIuIZMVUw?si=WLZ2FTGusBMd0mU2',
+    youtubeId: '9QbIuIZMVUw',
     badgeCategory: 'Ferramentas de Escritório',
     badgeIcon: 'FileSpreadsheet',
     accentColor: '#10B981',
@@ -3281,6 +6153,12 @@ export const COURSES: Course[] = [
   // =========================================================================
   {
     id: 'curso-ia-produtividade',
+    published: true,
+    isPublished: true,
+    active: true,
+    visible: true,
+    videoUrl: 'https://youtu.be/1uIR8erwQmI?si=_Q067y0xVY9R8iWQ',
+    youtubeId: '1uIR8erwQmI',
     trackId: 'trilha-3',
     trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
     category: 'Tecnologia da Informação',
@@ -3515,68 +6393,11 @@ export const COURSES: Course[] = [
 
   // =========================================================================
   // 9. INFORMÁTICA BÁSICA, NUVEM E SEGURANÇA DA INFORMAÇÃO
-  // =========================================================================
-  {
-    id: 'curso-informatica-seguranca',
-    trackId: 'trilha-3',
-    trackName: 'TRILHA 3: Tecnologia, Informática & Produtividade com IA',
-    category: 'Tecnologia da Informação',
-    targetAudienceType: 'TODOS',
-    title: 'Informática Básica, Nuvem e Segurança da Informação',
-    subtitle: 'Navegação segura, senhas fortes, Google Drive/OneDrive e proteção contra phishing',
-    hours: 10,
-    equivalentHours: 10,
-    modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Estudantes e aprendizes iniciando o uso de computadores corporativos',
-    prerequisites: 'Nenhum.',
-    badgeName: 'Segurança Digital & Nuvem',
-    badgeCategory: 'Ferramentas de Escritório',
-    badgeIcon: 'Shield',
-    accentColor: '#3B82F6',
-    level: 'Iniciante',
-    learningObjectives: [
-      'Criar senhas fortes e gerenciar autenticação em dois fatores.',
-      'Identificar e-mails de phishing e links maliciosos.',
-      'Organizar pastas e permissões de compartilhamento no Google Drive e OneDrive.'
-    ],
-    modules: [
-      {
-        id: 'inf-mod-1',
-        number: 1,
-        title: 'MÓDULO 1: Proteção de Senhas e Prevenção a Fraudes',
-        summary: 'Como manter o computador da empresa seguro e evitar infecções por malware.',
-        estimatedMinutes: 30,
-        content: {
-          sections: [
-            {
-              subheading: '1.1 Criando Senhas Inquebráveis',
-              body: [
-                'Combine letras maiúsculas, minúsculas, números e caracteres especiais. Nunca utilize "123456" ou sua data de aniversário.'
-              ]
-            }
-          ]
-        }
-      }
-    ],
-    caseStudies: [],
-    quiz: [
-      {
-        id: 1,
-        question: 'Se você receber um e-mail suspeito pedindo sua senha corporativa, o que deve fazer?',
-        options: [
-          'Responder imediatamente com a senha.',
-          'Não clicar em nenhum link e alertar o time de TI da empresa.',
-          'Encaminhar para todos os colegas de trabalho.',
-          'Ignorar e apagar sem avisar ninguém.'
-        ],
-        correct: 1,
-        explanation: 'Nunca compartilhe senhas por e-mail e sempre notifique o departamento de segurança da informação.'
-      }
-    ]
-  },
+    // =========================================================================
+  // 9. INFORMÁTICA BÁSICA, NUVEM E SEGURANÇA DA INFORMAÇÃO
+    CURSO_INFORMATICA_SEGURANCA,
 
-  // =========================================================================
-  // 10. LGPD, PRIVACIDADE E SEGURANÇA DIGITAL CORPORATIVA
+
   // =========================================================================
   {
     id: 'curso-lgpd-seguranca-dados',
@@ -4015,6 +6836,12 @@ export const COURSES: Course[] = [
   // =========================================================================
   {
     id: 'curso-rotinas-administrativas',
+    published: true,
+    isPublished: true,
+    active: true,
+    visible: true,
+    videoUrl: 'https://youtu.be/HRqLQmuW_kc?si=QN6bzX4Wc1Z-yZ6U',
+    youtubeId: 'HRqLQmuW_kc',
     trackId: 'trilha-4',
     trackName: 'TRILHA 4: Rotinas Administrativas & Gestão Empresarial',
     category: 'Administração e Negócios',
@@ -4236,6 +7063,8 @@ export const COURSES: Course[] = [
   // =========================================================================
   {
     id: 'curso-gestao-tempo',
+    videoUrl: 'https://youtu.be/Ipjxv5uU1R8?si=bS-CURqa2Exmfp7C',
+    youtubeId: 'Ipjxv5uU1R8',
     trackId: 'trilha-4',
     trackName: 'TRILHA 4: Rotinas Administrativas & Gestão Empresarial',
     category: 'Desenvolvimento Pessoal',
@@ -4298,6 +7127,12 @@ export const COURSES: Course[] = [
   // =========================================================================
   {
     id: 'curso-financas-pessoais',
+    published: true,
+    isPublished: true,
+    active: true,
+    visible: true,
+    videoUrl: 'https://youtu.be/VcFK4u1IOZQ?si=Tu1cU82TTmsVr1Gv',
+    youtubeId: 'VcFK4u1IOZQ',
     trackId: 'trilha-5',
     trackName: 'TRILHA 5: Gestão do Tempo, Foco & Produtividade',
     category: 'Desenvolvimento Pessoal',
@@ -4456,13 +7291,20 @@ export const COURSES: Course[] = [
       {
         id: 'ges-mod-4',
         number: 4,
-        title: 'MÓDULO 4: Gestão da Energia, Limites e Sustentabilidade da Rotina',
-        summary: 'O sono como ativo cognitivo, higiene do sono, estudo de alta densidade e comunicação transparente com gestores e colegas de grupo.',
+        title: 'MÓDULO 4: Gestão da Energia, Limites, Sustentabilidade e Vídeo de Conclusão',
+        summary: 'O sono como ativo cognitivo, higiene do sono, estudo de alta densidade, comunicação transparente com lideranças e equipes, vídeo oficial de conclusão e preparação para a avaliação final.',
         estimatedMinutes: 45,
         content: {
           sections: [
             {
-              subheading: '1. O Sono como Ativo de Performance',
+              subheading: 'Aula 4.1: Vídeo de Conclusão e Estudo de Caso de Conciliação Escola x Trabalho',
+              body: [
+                'Assista à videoaula oficial de conclusão do curso, integrando o planejamento de rotina dupla, o gerenciamento de energia, o foco adaptado e as estratégias de alinhamento com lideranças e equipes.',
+                'Acompanhe o temporizador obrigatório do player minimalista até o término da contagem regressiva para desbloquear o acesso à Prova de Fixação e Emissão do Certificado Oficial.'
+              ]
+            },
+            {
+              subheading: 'Aula 4.2: O Sono como Ativo de Performance e Higiene do Descanso',
               body: [
                 'Sustentar a rotina dupla no longo prazo depende de proteger a saúde física e mental, evitando o colapso por exaustão.',
                 'Cortar horas de sono para estudar na madrugada costuma ser contraproducente. A privação do sono prejudica a consolidação da memória, o foco no trabalho e a imunidade.',
@@ -4476,7 +7318,7 @@ export const COURSES: Course[] = [
               }
             },
             {
-              subheading: '2. Comunicação e Alinhamento de Expectativas',
+              subheading: 'Aula 4.3: Comunicação Assertiva e Alinhamento de Expectativas',
               body: [
                 'É fundamental manter transparência com as lideranças no trabalho e com os grupos de estudo na escola/faculdade.',
                 '• No Trabalho: Informar a liderança sobre horários de aula para alinhar expectativas quanto a horas extras e viagens corporativas.',
@@ -4487,6 +7329,13 @@ export const COURSES: Course[] = [
                 title: 'Trabalho Acadêmico Assíncrono',
                 text: 'Combine com o grupo de estudos: "Tenho expediente comercial, mas entrego minha parte revisada no drive até quinta-feira às 21h". A clareza evita conflitos.'
               }
+            },
+            {
+              subheading: 'Aula 4.4: Avaliação Final de Fixação e Emissão de Selo Oficial',
+              body: [
+                'Após concluir o tempo mínimo de visualização da videoaula e a leitura atenta dos módulos teóricos, realize o Quiz Final de Fixação.',
+                'Atingindo aproveitamento igual ou superior a 70%, sua Badge Oficial de Gestão do Tempo & Foco será validada e registrada no seu perfil SkillHub.'
+              ]
             }
           ]
         }
@@ -4598,7 +7447,7 @@ export const COURSES: Course[] = [
     targetAudience: 'Jovens aprendizes, estagiários e estudantes que buscam organizar suas finanças pessoais, quitar dívidas e criar sua primeira reserva de emergência',
     prerequisites: 'Nenhum pré-requisito.',
     badgeName: 'Mestre do Orçamento & Reserva',
-    badgeCategory: 'Finanças Pessoais',
+    badgeCategory: 'Finanças',
     badgeIcon: 'PiggyBank',
     accentColor: '#F59E0B',
     level: 'Intermediário',
@@ -4806,524 +7655,14 @@ export const COURSES: Course[] = [
     ]
   },
 
-  // =========================================================================
   // 16. EQUILÍBRIO EMOCIONAL, ANSIEDADE E FOCO NO TRABALHO
-  // =========================================================================
-  {
-    id: 'curso-saude-mental-trabalho',
-    trackId: 'trilha-2',
-    trackName: 'TRILHA 2: Soft Skills, Postura & Comunicação Corporativa',
-    category: 'Desenvolvimento Pessoal',
-    targetAudienceType: 'TODOS',
-    title: 'Equilíbrio Emocional, Ansiedade e Foco no Trabalho',
-    subtitle: 'Capacitar o profissional a identificar gatilhos de estresse e ansiedade no ambiente corporativo, aplicar técnicas de autorregulação emocional e mindfulness, manter o foco em tarefas complexas e construir uma rotina de trabalho mentalmente saudável e sustentável.',
-    hours: 12,
-    equivalentHours: 12,
-    modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Estudantes, aprendizes e profissionais em transição ou atuação no mercado de trabalho',
-    prerequisites: 'Nenhum pré-requisito.',
-    badgeName: 'Equilíbrio Emocional & Foco',
-    badgeCategory: 'Saúde Mental & Carreira',
-    badgeIcon: 'HeartPulse',
-    accentColor: '#EC4899',
-    level: 'Iniciante',
-    learningObjectives: [
-      'Identificar o mecanismo biológico do estresse no trabalho, compreendendo as diferenças entre Eustresse (positivo) e Distresse (negativo).',
-      'Mapear gatilhos individuais internos (perfeccionismo, síndrome do impostor) e externos (pressões, reuniões e cobranças).',
-      'Aplicar técnicas de autorregulação fisiológica e respiratória como Respiração Quadrada (Box Breathing) e Técnica 4-7-8.',
-      'Praticar a reestruturação cognitiva contra a catastrofização, focando em fatos e planos de ação práticos.',
-      'Implementar o Trabalho Profundo (Deep Work) e a pausa estratégica com o método S.T.O.P. de Mindfulness Corporativo.',
-      'Estabelecer fronteiras e desconexão digital no expediente, prevenindo precocemente os sinais e estágios da Síndrome de Burnout.'
-    ],
-    modules: [
-      {
-        id: 'sau-mod-1',
-        number: 1,
-        title: 'MÓDULO 1: Inteligência Emocional e Mapeamento de Gatilhos',
-        summary: 'O primeiro passo para o equilíbrio emocional é o autoconhecimento. O ambiente corporativo expõe os profissionais a pressões constantes, prazos curtos e conflitos interpessoais. Entender como o corpo e a mente reagem a esses estímulos é fundamental para evitar a exaustão.',
-        estimatedMinutes: 45,
-        content: {
-          sections: [
-            {
-              subheading: '1. O Mecanismo do Estresse no Trabalho',
-              body: [
-                'O primeiro passo para o equilíbrio emocional é o autoconhecimento. O ambiente corporativo expõe os profissionais a pressões constantes, prazos curtos e conflitos interpessoais. Entender como o corpo e a mente reagem a esses estímulos é fundamental para evitar a exaustão.',
-                'O estresse é uma resposta biológica natural de preservação. No entanto, quando ativado de forma crônica no escritório (reação de "luta ou fuga"), ele libera cortisol e adrenalina continuamente, prejudicando o raciocínio lógico e a tomada de decisões.',
-                '• Estresse Positivo (Eustresse): O nível de ativação saudável que gera motivação, foco e impulso para cumprir prazos.',
-                '• Estresse Negativo (Distresse): A sobrecarga contínua que gera paralisia, irritabilidade, esquecimentos e exaustão física.'
-              ],
-              highlightBox: {
-                type: 'info',
-                title: 'Eustresse vs. Distresse',
-                text: 'O eustresse é o nível produtivo de energia que nos move. O perigo é a sobrecarga constante sem descanso, que descamba para o distresse crônico.'
-              }
-            },
-            {
-              subheading: '2. Mapeamento de Gatilhos Individuais',
-              body: [
-                'Cada profissional reage de forma diferente aos estímulos do trabalho. O mapeamento consiste em identificar as situações específicas que desencadeiam picos de ansiedade:',
-                '• Gatilhos Internos: Perfeccionismo extremo, medo de errar, síndrome do impostor e necessidade contínua de aprovação.',
-                '• Gatilhos Externos: E-mails de cobrança, reuniões de última hora, sobrecarga de demandas e comunicação agressiva de terceiros.'
-              ],
-              asciiDiagram: `┌────────────────────────────────────────────────────────┐
-│           MAPEAMENTO DE GATILHOS CORPORATIVOS          │
-├────────────────────────────────────────────────────────┤
-│ GATILHOS INTERNOS:                                     │
-│ • Perfeccionismo ──► Medo de errar ──► Procrastinação  │
-│ • Síndrome do Impostor ──► Insegurança contínua        │
-├────────────────────────────────────────────────────────┤
-│ GATILHOS EXTERNOS:                                     │
-│ • Demandas urgentes ──► Sobrecarga ──► Desorganização  │
-│ • Cobranças e prazos ──► Reação de Luta ou Fuga        │
-└────────────────────────────────────────────────────────┘`
-            }
-          ]
-        }
-      },
-      {
-        id: 'sau-mod-2',
-        number: 2,
-        title: 'MÓDULO 2: Técnicas de Autorregulação e Gestão da Ansiedade',
-        summary: 'A ansiedade manifesta-se quando a mente antecipa cenários futuros catastróficos. A autorregulação emocional reúne ferramentas práticas para trazer a atenção de volta ao presente e acalmar o sistema nervoso autônomo.',
-        estimatedMinutes: 45,
-        content: {
-          sections: [
-            {
-              subheading: '1. Técnicas Respiratórias para Redução Ansiolítica',
-              body: [
-                'A ansiedade manifesta-se quando a mente antecipa cenários futuros catastróficos. A autorregulação emocional reúne ferramentas práticas para trazer a atenção de volta ao presente e acalmar o sistema nervoso autônomo.',
-                'A respiração é a ponte direta para ativar o sistema nervoso parassimpático, desacelerando os batimentos cardíacos:',
-                '• Respiração Quadrada (Box Breathing): Inspirar em 4 segundos, reter o ar por 4 segundos, expirar em 4 segundos e manter os pulmões vazios por 4 segundos. Ideal para fazer antes de reuniões decisivas.',
-                '• Técnica 4-7-8: Inspirar em 4 segundos, reter o ar por 7 segundos e soltar o ar lentamente pela boca durante 8 segundos.'
-              ],
-              highlightBox: {
-                type: 'calc',
-                title: 'Respiração Quadrada (Box Breathing)',
-                text: 'Inspire em 4s ──► Segure em 4s ──► Expire em 4s ──► Pause em 4s. Pratique rodadas conscientes para normalizar batimentos e clarear o raciocínio.'
-              }
-            },
-            {
-              subheading: '2. Reestruturação Cognitiva',
-              body: [
-                'Diante de uma crise de ansiedade ou de um erro no projeto, a mente costuma criar distorções cognitivas (catastrofização). A reestruturação é o ato de questionar o pensamento ansiogênico com fatos concretos:',
-                '• Pensamento Ansiogênico: "Apresentei o relatório com um dado incorreto, serei demitido imediatamente."',
-                '• Questionamento Racional: "O dado foi corrigido a tempo? Qual é a probabilidade real de demissão por esse fato isolado? Qual o plano de ação prático agora?"'
-              ],
-              highlightBox: {
-                type: 'warning',
-                title: 'Fatos vs. Suposições',
-                text: 'Não tome pensamentos catastróficos como certezas. Busque fatos observáveis e estruture um plano de resolução prático em vez de alimentar o pânico.'
-              }
-            }
-          ]
-        }
-      },
-      {
-        id: 'sau-mod-3',
-        number: 3,
-        title: 'MÓDULO 3: Foco Profundo (Deep Work) e Atenção Plena',
-        summary: 'A oscilação emocional corrói a capacidade de concentração. Em um ambiente repleto de notificações, manter o foco em tarefas complexas exige estratégias deliberadas de proteção mental.',
-        estimatedMinutes: 45,
-        content: {
-          sections: [
-            {
-              subheading: '1. O Estado de Flow e o Trabalho Profundo (Deep Work)',
-              body: [
-                'O conceito de Deep Work (Trabalho Profundo), desenvolvido por Cal Newport, refere-se à capacidade de focar sem distrações em uma tarefa cognitivamente exigente.',
-                '• Trabalho Superficial (Shallow Work): Tarefas mecânicas e operacionais (responder e-mails rápidos, organizar pastas) que exigem pouco esforço mental, mas consomem o dia.',
-                '• Construção de Rituais de Foco: Eliminação de abas desnecessárias, bloqueio de notificações e definição de metas claras para o bloco de trabalho focado.'
-              ]
-            },
-            {
-              subheading: '2. Aplicação Prática do Mindfulness Corporativo',
-              body: [
-                'Atenção plena (Mindfulness) não significa "esvaziar a mente", mas observar os pensamentos e emoções sem julgamento imediato, ancorando-se na atividade presente.',
-                'A Pausa Estratégica (Método STOP):',
-                '• S (Stop): Pare o que está fazendo.',
-                '• T (Take a breath): Tome uma respiração profunda.',
-                '• O (Observe): Observe seus pensamentos e o seu corpo.',
-                '• P (Proceed): Prossiga com clareza e intenção.'
-              ],
-              asciiDiagram: `┌────────────────────────────────────────────────────────┐
-│               MÉTODO S.T.O.P. DE MINDFULNESS           │
-├────────────────────────────────────────────────────────┤
-│ [S] STOP: Pare imediatamente o que está fazendo        │
-│ [T] TAKE A BREATH: Respire consciente e profundamente  │
-│ [O] OBSERVE: Observe mente, emoções e corpo sem julgar │
-│ [P] PROCEED: Prossiga com foco, calma e intenção clara │
-└────────────────────────────────────────────────────────┘`
-            }
-          ]
-        }
-      },
-      {
-        id: 'sau-mod-4',
-        number: 4,
-        title: 'MÓDULO 4: Limites Saudáveis, Comunicação e Prevenção do Burnout',
-        summary: 'O equilíbrio emocional sustentável depende da capacidade de estabelecer fronteiras claras entre a vida profissional e a vida pessoal, evitando o esgotamento extremo (Burnout).',
-        estimatedMinutes: 45,
-        content: {
-          sections: [
-            {
-              subheading: '1. Estabelecimento de Fronteiras e Desconexão Digital',
-              body: [
-                'A hiperconectividade cria a falsa sensação de que tudo precisa ser respondido imediatamente.',
-                '• Desconexão do Expediente: Definir um horário claro para encerrar a checagem de mensagens corporativas no celular pessoal.',
-                '• Gestão de Expectativas: Comunicar à equipe os prazos reais de resposta e entrega, sem assumir compromissos inalcançáveis por medo de dizer "não".'
-              ],
-              highlightBox: {
-                type: 'info',
-                title: 'Comunicação Assertiva',
-                text: 'Dizer "não" fundamentado com alternativas e prazos viáveis é sinal de maturidade profissional e respeito pela qualidade do trabalho.'
-              }
-            },
-            {
-              subheading: '2. Sinais de Alerta do Burnout',
-              body: [
-                'A Síndrome de Burnout é o estresse crônico não gerenciado no ambiente de trabalho. Reconhecer os sinais iniciais evita o colapso físico e emocional:',
-                '• Estágio Inicial: Entusiasmo excessivo com negligência de necessidades básicas (sono, alimentação); sensação constante de falta de tempo e ansiedade aos domingos.',
-                '• Estágio Avançado: Exaustão física e mental diária; cinismo, desconexão emocional com o trabalho e queda brusca de produtividade.'
-              ],
-              asciiDiagram: `┌────────────────────────────────────────────────────────┐
-│             ESTÁGIOS DA SÍNDROME DE BURNOUT            │
-├────────────────────────────────────────────────────────┤
-│ ESTÁGIO INICIAL:                                       │
-│ • Entusiasmo desmedido sem descanso                    │
-│ • Negligência com sono e alimentação                   │
-│ • Ansiedade aos domingos e falta de tempo              │
-├────────────────────────────────────────────────────────┤
-│ ESTÁGIO AVANÇADO:                                      │
-│ • Exaustão física e mental diária                      │
-│ • Cinismo, frieza e distanciamento da equipe           │
-│ • Queda drástica de produtividade e esgotamento        │
-└────────────────────────────────────────────────────────┘`
-            }
-          ]
-        }
-      }
-    ],
-    caseStudies: [],
-    quiz: [
-      {
-        id: 1,
-        question: 'Durante um dia de alta demanda no escritório, um colaborador percebe que sua respiração está acelerada e que não consegue se concentrar nas tarefas devido ao nervosismo. Qual técnica de autorregulação fisiológica é mais indicada para reativar a calma do sistema nervoso de forma rápida?',
-        options: [
-          'Ingerir bebidas estimulantes com alto teor de cafeína para acelerar o ritmo de trabalho.',
-          'Ignorar os sinais do corpo e continuar digitando em velocidade máxima sem fazer pausas.',
-          'Aplicar a técnica de Respiração Quadrada (Box Breathing), alternando inspiração, retenção, expiração e pausa em tempos iguais.',
-          'Reclamar abertamente sobre a sobrecarga com os colegas de equipe durante o horário de pico.'
-        ],
-        correct: 2,
-        explanation: 'A técnica de Respiração Quadrada (Box Breathing) reduz diretamente os níveis de excitação fisiológica provocados pela ansiedade, desacelerando a frequência cardíaca e ativando o sistema nervoso parassimpático para recuperar o controle consciente.'
-      },
-      {
-        id: 2,
-        question: 'A Síndrome de Burnout foi reconhecida como uma condição ocupacional resultante do estresse crônico no ambiente de trabalho. Qual das opções abaixo apresenta um sintoma característico dessa síndrome em seu estágio avançado?',
-        options: [
-          'Sensação diária de exaustão física/mental acompanhada de atitudes de cinismo e desapego ao trabalho.',
-          'Aumento da criatividade e engajamento constante em novos projetos da empresa.',
-          'Capacidade de manter o foco ininterrupto por 12 horas consecutivas sem apresentar fadiga.',
-          'Facilidade em desligar-se das responsabilidades profissionais no exato momento em que encerra o expediente.'
-        ],
-        correct: 0,
-        explanation: 'O Burnout é caracterizado pela tríade: exaustão emocional profunda, despersonalização/cinismo (desapego frio em relação às tarefas e colegas) e queda da percepção de eficácia profissional.'
-      },
-      {
-        id: 3,
-        question: 'O conceito de Deep Work (Trabalho Profundo) exige eliminar distrações para focar em tarefas cognitivamente complexas. Qual ação prática contribui diretamente para a criação de um ambiente favorável ao Deep Work?',
-        options: [
-          'Deixar os alertas sonoros do e-mail e do chat corporativo ativados na tela principal.',
-          'Alternar a atenção a cada 5 minutos entre a escrita de um relatório e a navegação em redes sociais.',
-          'Realizar chamadas de vídeo sem roteiro prévio enquanto tenta revisar planilhas complexas.',
-          'Agendar o checamento de e-mails para horários específicos do dia e silenciar notificações durante o bloco de foco.'
-        ],
-        correct: 3,
-        explanation: 'O Trabalho Profundo exige a eliminação de fragmentações na atenção. Definir blocos de tempo isolados e silenciar notificações previne a troca constante de contexto, permitindo hiperfoco e alta performance.'
-      },
-      {
-        id: 4,
-        question: 'Diante de um erro cometido em um projeto, a mente de um profissional ansioso pode gerar uma "distorção cognitiva", acreditando que o problema é uma catastrofização irreparável. Qual técnica ajuda a reestruturar esse pensamento de forma racional?',
-        options: [
-          'Aceitar o pensamento catastrófico como verdade absoluta e pedir demissão imediatamente.',
-          'Questionar o pensamento ansiogênico buscando evidências concretas sobre o impacto real e focando no plano de ação para correção.',
-          'Esconder o erro da equipe na esperança de que ninguém perceba a falha.',
-          'Culpar publicamente outros colegas pelo ocorrido para preservar a própria imagem.'
-        ],
-        correct: 1,
-        explanation: 'A Reestruturação Cognitiva combate vieses de catastrofização substituindo suposições por fatos. Analisar o erro objetivamente e construir uma solução prática reduz a ansiedade e restaura o senso de controle.'
-      },
-      {
-        id: 5,
-        question: 'O acrônimo S.T.O.P. representa uma pausa consciente no meio da rotina para recuperar a clareza e o equilíbrio emocional. O que significa a letra "O" nessa metodologia de Mindfulness?',
-        options: [
-          'Observar os pensamentos, emoções e sensações corporais sem julgamento imediato.',
-          'Omitir os sentimentos negativos até o fim da semana.',
-          'Optimizar o tempo eliminando o horário de almoço.',
-          'Organizar a mesa de trabalho descartando papéis antigos.'
-        ],
-        correct: 0,
-        explanation: 'No método S.T.O.P. (Stop, Take a breath, Observe, Proceed), o passo Observe orienta o indivíduo a tomar consciência de seus estados internos (pensamentos, emoções, tensão muscular) com curiosidade e sem auto-julgamento.'
-      },
-      {
-        id: 6,
-        question: 'Para manter a saúde mental e prevenir o esgotamento no ambiente de trabalho, o estabelecimento de limites saudáveis é indispensável. Qual postura reflete o estabelecimento de uma fronteira profissional assertiva?',
-        options: [
-          'Responder mensagens de trabalho no aplicativo pessoal de mensagens às 23 horas de um domingo.',
-          'Aceitar todas as solicitações de última hora recebidas, mesmo quando impossibilitam o cumprimento dos prazos já acordados.',
-          'Desligar o telefone corporativo durante o horário de expediente normal sem avisar a equipe.',
-          'Comunicar com clareza a capacidade atual de entregas, renegociar prazos com a liderança e respeitar os horários de descanso.'
-        ],
-        correct: 3,
-        explanation: 'Ter assertividade emocional significa alinhar expectativas e prioridades de forma transparente com a equipe. Dizer "não" fundamentado ou renegociar prazos protege a qualidade das entregas e a saúde mental do profissional.'
-      },
-      {
-        id: 7,
-        question: 'O estresse é uma reação biológica do organismo que pode ser dividida entre "eustresse" e "distresse". Qual a principal característica do eustresse?',
-        options: [
-          'É o estágio final de esgotamento físico que exige afastamento médico imediato.',
-          'Trata-se do sentimento constante de pânico acompanhado de insônia crônica.',
-          'É a forma saudável e positiva de estresse, que mobiliza energia, melhora o foco e motiva a resolução de desafios.',
-          'É a incapacidade total de sentir qualquer tipo de emoção durante reuniões de trabalho.'
-        ],
-        correct: 2,
-        explanation: 'O Eustresse (estresse positivo) é o nível moderado de ativação necessário para nos manter alertas, motivados e engajados na superação de metas e desafios do dia a dia, diferindo do estresse crônico nocivo (distresse).'
-      }
-    ]
-  },
-
-  // =========================================================================
-  // 17. COMUNICAÇÃO ESCRITA, E-MAILS E REDAÇÃO CORPORATIVA
-  // =========================================================================
-  {
-    id: 'curso-comunicacao-corporativa',
-    trackId: 'trilha-2',
-    trackName: 'TRILHA 2: Soft Skills, Postura & Comunicação Corporativa',
-    category: 'Desenvolvimento Pessoal',
-    targetAudienceType: ['PRIMEIRO_EMPREGO', 'JOVEM_APRENDIZ', 'ESTUDANTE'],
-    title: 'Comunicação Escrita, E-mails e Redação Corporativa',
-    subtitle: 'Capacitar profissionais a redigir mensagens corporativas claras, concisas e assertivas, dominando a estrutura de e-mails profissionais, relatórios executivos e comunicados internos, prevenindo ruídos de comunicação e fortalecendo a imagem institucional.',
-    hours: 12,
-    equivalentHours: 12,
-    modality: 'EAD 100% Gratuito (Escola Virtual)',
-    targetAudience: 'Jovens aprendizes, estagiários e profissionais em início de carreira buscando clareza, concisão e profissionalismo na escrita corporativa',
-    prerequisites: 'Nenhum pré-requisito.',
-    badgeName: 'Comunicação Escrita & E-mails',
-    badgeCategory: 'Comunicação Corporativa',
-    badgeIcon: 'Mail',
-    accentColor: '#EC4899',
-    level: 'Intermediário',
-    learningObjectives: [
-      'Dominar a técnica da Pirâmide Invertida na escrita profissional, transmitindo informações prioritárias com clareza, objetividade e sem prolixidade.',
-      'Aplicar regras gramaticais essenciais e pontuação estratégica no dia a dia corporativo (há vs. a, anexo vs. em anexo, crase e concordância).',
-      'Construir e-mails profissionais de alta performance com linhas de assunto eficazes, uso correto de Para/Cc/Cco e chamadas para ação (CTA) claras com prazos.',
-      'Elaborar relatórios executivos, memorandos objetivos, comunicados gerais e atas de reunião com foco em decisões e planos de ação.',
-      'Adotar boas práticas de comunicação escrita em canais instantâneos (Slack, Teams, WhatsApp), gerenciar mensagens difíceis e respeitar limites de horário.'
-    ],
-    modules: [
-      {
-        id: 'com-corp-mod-1',
-        number: 1,
-        title: 'MÓDULO 1: Fundamentos da Redação Corporativa e Clareza Textual',
-        summary: 'A comunicação escrita no ambiente de trabalho deve ser focada em transmitir a mensagem com o menor gasto de tempo possível do leitor, sem perder o profissionalismo.',
-        estimatedMinutes: 45,
-        content: {
-          sections: [
-            {
-              subheading: '1. Princípios da Comunicação Direta e Objetiva',
-              body: [
-                'A comunicação escrita no ambiente de trabalho deve ser focada em transmitir a mensagem com o menor gasto de tempo possível do leitor, sem perder o profissionalismo.',
-                'A Regra da Pirâmide Invertida: Posicionar a informação mais importante (a conclusão, decisão ou solicitação principal) logo no primeiro parágrafo do texto, garantindo compreensão instantânea.',
-                'Eliminação de Vícios e Pleonasmos: Substituir formulações prolixas e arcaicas (\"Venho por meio deste informar que...\") por construções diretas e dinâmicas (\"Informamos que...\").',
-                'Adequação ao Tom da Empresa: Equilibrar a comunicação entre o formalismo excessivo (linguagem engessada e arcaica) e a informalidade inadequada (gírias, abreviações e emojis excessivos).'
-              ]
-            },
-            {
-              subheading: '2. Gramática Aplicada ao Cotidiano de Escritório',
-              body: [
-                'Pontuação Estratégica: Emprego consciente de vírgulas, dois-pontos e ponto e vírgula para estruturar ideias em tópicos (bullet points) de fácil escaneamento visual.',
-                'Erros Gramaticais Frequentes no Trabalho:',
-                '• Há vs. A: \"Há\" para tempo decorrido (\"Trabalho aqui há dois anos\") e \"a\" para tempo futuro ou distância (\"A reunião será daqui a pouco\").',
-                '• A fim de vs. Afim: \"A fim de\" indica finalidade/objetivo; \"afim\" indica semelhança/afinidade.',
-                '• Anexo vs. Em anexo: O adjetivo \"anexo\" concorda com o substantivo (\"Seguem anexos os relatórios\"); a locução \"em anexo\" é invariável (\"Seguem em anexo os relatórios\").',
-                '• Regras de Crase: Uso correto antes de palavras femininas e em locuções prepositivas de tempo/lugar.'
-              ]
-            }
-          ]
-        }
-      },
-      {
-        id: 'com-corp-mod-2',
-        number: 2,
-        title: 'MÓDULO 2: Estruturação de E-mails Profissionais Eficientes',
-        summary: 'O e-mail continua sendo o canal oficial de registros e tomadas de decisão nas empresas.',
-        estimatedMinutes: 45,
-        content: {
-          sections: [
-            {
-              subheading: '1. Anatomia de um E-mail de Alta Performance',
-              body: [
-                'Assunto Efetivo (Subject Line): Criação de linhas de assunto objetivas e contextuais que garantem abertura e priorização imediata (ex: [APROVAÇÃO] Relatório de Vendas - Agosto/2026).',
-                'Saudação e Fechamento: Fórmulas adequadas de início (Prezado(a), Olá, Bom dia) e encerramento (Atenciosamente, Cordialmente) alinhadas à hierarquia e proximidade corporativa.',
-                'Uso Correto dos Campos de Envio:',
-                '• Para: Destinatários principais diretamente responsáveis pela ação solicitada.',
-                '• Cc (Com Cópia): Pessoas que precisam apenas se manter informadas sobre o andamento do assunto.',
-                '• Cco (Cópia Oculta): Envio para listas amplas com preservação de privacidade dos e-mails ou comunicação discreta sem expor contatos aos demais.'
-              ]
-            },
-            {
-              subheading: '2. Chamada para Ação (Call to Action - CTA) e Prazos',
-              body: [
-                'Clareza nos Próximos Passos: Deixar explícito quem deve executar cada tarefa e até qual data e horário limite.',
-                'Técnica de Destaque Visual: Aplicação estratégica de negritos, numerações e espaçamentos para facilitar a leitura rápida em telas de celulares e computadores.'
-              ]
-            }
-          ]
-        }
-      },
-      {
-        id: 'com-corp-mod-3',
-        number: 3,
-        title: 'MÓDULO 3: Redação de Documentos Executivos e Técnicos',
-        summary: 'Para além do e-mail, o profissional precisa dominar a escrita de documentos formais para registro de processos e reuniões.',
-        estimatedMinutes: 45,
-        content: {
-          sections: [
-            {
-              subheading: '1. Elaboração de Relatórios e Memorandos',
-              body: [
-                'Estrutura Básica de Relatórios: Contextualização do problema, Diagnóstico com dados quantitativos, Conclusão lógica e Recomendações práticas.',
-                'Transformação de Dados em Narrativa (Data Storytelling): Como traduzir tabelas numéricas complexas e gráficos em parágrafos simples e explicativos para a liderança executiva.'
-              ]
-            },
-            {
-              subheading: '2. Atas de Reunião e Comunicados Internos',
-              body: [
-                'Atas Objetivas: Registro sintético e factual estruturado em: Lista de Presentes, Principais Tópicos Discutidos e Plano de Ação (O quê + Quem + Quando).',
-                'Comunicados Gerais: Redação institucional para toda a empresa com linguagem clara, acolhedora, precisa e sem margem para interpretações ambíguas.'
-              ]
-            }
-          ]
-        }
-      },
-      {
-        id: 'com-corp-mod-4',
-        number: 4,
-        title: 'MÓDULO 4: Comunicação Escrita em Situações Críticas e Canais Instantâneos',
-        summary: 'Como gerenciar conflitos por escrito e utilizar ferramentas como Slack, Microsoft Teams e WhatsApp Corporativo sem perder o tom profissional.',
-        estimatedMinutes: 45,
-        content: {
-          sections: [
-            {
-              subheading: '1. Gestão de Mensagens Difíceis e Assertivas',
-              body: [
-                'Tratamento de Reclamações e Erros: Respostas a clientes ou gestores assumindo responsabilidades com profissionalismo, empatia e propostas focadas na resolução ágil do problema.',
-                'Atrasos e Pedidos de Adiamento: Como solicitar novas datas e horários de forma transparente, fundamentada em fatos e com compromisso renovado de entrega.'
-              ]
-            },
-            {
-              subheading: '2. Etiqueta nas Ferramentas de Mensagem Instantânea',
-              body: [
-                'A Regra do Parágrafo Único: Evitar o envio fragmentado de múltiplas mensagens curtas (\"Oi\", \"Tudo bem?\", \"Pode falar?\"). Reúna saudação, contexto da dúvida e solicitação em um único texto completo e fluido.',
-                'Limites de Horário e Desconexão: Respeito à jornada de trabalho e ao descanso dos colegas ao agendar envios fora do expediente convencional.'
-              ]
-            }
-          ]
-        }
-      }
-    ],
-    caseStudies: [],
-    quiz: [
-      {
-        id: 1,
-        question: 'Um analista precisa enviar um e-mail urgente para a equipe solicitando a validação de um orçamento até o final do dia. Qual das alternativas apresenta a \"Linha de Assunto\" mais adequada segundo as boas práticas de redação corporativa?',
-        options: [
-          'Aviso importante favor ler urgente!!!',
-          'Orçamento',
-          '[AÇÃO NECESSÁRIA] Validação do Orçamento do Projeto X - Prazo: 18h',
-          'Oi pessoal, tudo bem? Dêem uma olhada nisso aqui quando der.'
-        ],
-        correct: 2,
-        explanation: 'A alternativa C utiliza a tag visual [AÇÃO NECESSÁRIA], indica o assunto exato do e-mail e define o prazo limite (18h), permitindo que o leitor priorize a mensagem imediatamente.'
-      },
-      {
-        id: 2,
-        question: 'Ao redigir um e-mail anexando um relatório financeiro, qual das frases abaixo está gramaticalmente correta para indicar a presença do documento?',
-        options: [
-          'Seguem em anexo os relatórios financeiros do mês de julho.',
-          'Segue em anexos os relatórios financeiros do mês de julho.',
-          'Seguem em anexas as relatórios financeiros do mês de julho.',
-          'Segue anexos os relatórios financeiros do mês de julho.'
-        ],
-        correct: 0,
-        explanation: 'A expressão \"em anexo\" é invariável (permanece \"em anexo\" no singular ou plural). Como o sujeito \"os relatórios\" está no plural, o verbo concorda no plural: \"Seguem em anexo os relatórios...\".'
-      },
-      {
-        id: 3,
-        question: 'A aplicação da técnica da \"Pirâmide Invertida\" na escrita de um e-mail corporativo exige qual estrutura de organização do texto?',
-        options: [
-          'Iniciar o e-mail com histórias longas e detalhes históricos antes de chegar ao ponto principal.',
-          'Colocar a informação mais relevante, a conclusão ou a solicitação principal logo no primeiro parágrafo do texto.',
-          'Escrever todo o conteúdo no campo de assunto do e-mail para economizar espaço no corpo da mensagem.',
-          'Ocultar a intenção do e-mail até a última linha para gerar suspense no leitor.'
-        ],
-        correct: 1,
-        explanation: 'A Pirâmide Invertida é uma técnica jornalística e corporativa que posiciona a ideia principal no topo do texto, respeitando o tempo do leitor e garantindo que o objetivo da mensagem seja compreendido rapidamente.'
-      },
-      {
-        id: 4,
-        question: 'No uso corporativo de e-mails, para que serve o campo \"Cco\" (Cópia Oculta)?',
-        options: [
-          'Para enviar mensagens que devem ser apagadas automaticamente em 24 horas.',
-          'Para incluir destinatários que devem responder obrigatoriamente a todos da lista.',
-          'Para enviar um e-mail a múltiplos destinatários garantindo a privacidade de seus endereços ou para informar alguém de forma discreta sem expor seu e-mail aos demais.',
-          'Para sinalizar que o e-mail contém vírus ou arquivos corrompidos.'
-        ],
-        correct: 2,
-        explanation: 'O campo Cco (Cópia Oculta) oculta os endereços dos destinatários, sendo essencial para manter a privacidade em envios em massa e evitar o vazamento de contatos.'
-      },
-      {
-        id: 5,
-        question: 'Ao utilizar aplicativos de comunicação instantânea corporativa (como Microsoft Teams, Slack ou WhatsApp), qual comportamento reflete uma boa etiqueta de comunicação escrita?',
-        options: [
-          'Enviar dez mensagens consecutivas contendo apenas uma palavra em cada uma delas (ex: \"Oi\", \"Tudo bem?\", \"Preciso\", \"De\", \"Uma\", \"Ajuda\").',
-          'Agrupar a saudação, o contexto e a dúvida/solicitação em uma única mensagem clara e completa.',
-          'Enviar áudios de 10 minutos para explicar tarefas simples que poderiam ser descritas em duas linhas de texto.',
-          'Utilizar caixa alta (letras maiúsculas) em todo o texto para garantir que as pessoas leiam mais rápido.'
-        ],
-        correct: 1,
-        explanation: 'Agrupar a mensagem completa evita notificações fragmentadas e permite que o interlocutor entenda o contexto e responda de forma ágil e estruturada.'
-      },
-      {
-        id: 6,
-        question: 'Em um comunicado oficial sobre a alteração do horário de funcionamento do escritório, a redação deve focar prioritariamente em qual característica textual?',
-        options: [
-          'Objetividade, precisão das informações e ausência de ambiguidades nos horários e datas indicados.',
-          'Uso abundante de metáforas, poesias e figuras de linguagem para tornar a leitura divertida.',
-          'Uso de jargões técnicos complexos que apenas a diretoria consegue entender.',
-          'Escrita informal com abreviações da internet como \"vc\", \"tbm\" e \"pq\".'
-        ],
-        correct: 0,
-        explanation: 'Comunicados oficiais exigem clareza absoluta, exatidão de datas e horários e ausência de ambiguidades para evitar mal-entendidos operacionais na equipe.'
-      },
-      {
-        id: 7,
-        question: 'Um profissional precisa solicitar a prorrogação de um prazo de entrega ao seu gestor de forma assertiva. Qual estrutura de mensagem representa a melhor abordagem escrita?',
-        options: [
-          'Não vou conseguir entregar no prazo porque estou com muitos problemas pessoais. Depois eu entrego.',
-          'Conforme acompanhado, identificamos uma complexidade extra na etapa Y. Proponho o envio da entrega ajustada para a próxima terça-feira às 14h, mantendo a qualidade do projeto.',
-          'Fingir que esqueceu o prazo e só responder se o gestor cobrar no dia seguinte.',
-          'Enviar o relatório incompleto e com erros na data do prazo original sem avisar nada.'
-        ],
-        correct: 1,
-        explanation: 'A alternativa B é profissional e assertiva: apresenta a justificativa baseada em fatos, demonstra compromisso com a qualidade e propõe uma nova data e hora concretas para a entrega.'
-      }
-    ]
-  },
+  CURSO_EQUILIBRIO_EMOCIONAL,
 
   // =========================================================================
   // 18. ATENDIMENTO AO PÚBLICO E TÉCNICAS DE RELACIONAMENTO
   // =========================================================================
   {
+    ...CURSO_ATENDIMENTO_RELACIONAMENTO_CLIENTE,
     id: 'curso-atendimento-publico',
     trackId: 'trilha-2',
     trackName: 'TRILHA 2: Soft Skills, Postura & Comunicação Corporativa',
@@ -5612,3 +7951,118 @@ export const COURSES: Course[] = [
   }
 
 ];
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+export const COURSES_DATA = COURSES;
+export const catalogCourses = COURSES;
+export const EXCEL_AVANCADO_DATA = CURSO_EXCEL_AVANCADO_ANALISE_DADOS;
+
+export const ATENDIMENTO_CLIENTE_DATA = CURSO_ATENDIMENTO_RELACIONAMENTO_CLIENTE;
+
+export const POWER_BI_DATA = CURSO_ANALISE_DADOS_POWER_BI;
+
+export const GESTAO_PROJETOS_DATA = CURSO_GESTAO_ESTRATEGICA_PROJETOS;
+
+export const INTELIGENCIA_NEGOCIOS_DATA = CURSO_INTELIGENCIA_NEGOCIOS_INDICADORES;
+
+export const TRANSFORMACAO_DIGITAL_DATA = CURSO_TRANSFORMACAO_DIGITAL_INOVACAO;
+
+export const tracks = TRACKS;
+
+
+export const COURSE_ALIASES: Record<string, string> = {
+  // Inteligência de Negócios
+  'inteligencia-negocios-indicadores': 'curso-inteligencia-negocios-indicadores',
+  'curso-inteligencia-negocios': 'curso-inteligencia-negocios-indicadores',
+  'inteligencia-negocios': 'curso-inteligencia-negocios-indicadores',
+
+  // Transformação Digital
+  'transformacao-digital-inovacao': 'curso-transformacao-digital-inovacao',
+  'curso-transformacao-digital': 'curso-transformacao-digital-inovacao',
+  'transformacao-digital': 'curso-transformacao-digital-inovacao',
+
+  // Gestão Estratégica de Projetos
+  'gestao-estrategica-projetos': 'curso-gestao-estrategica-projetos',
+  'curso-gestao-projetos': 'curso-gestao-estrategica-projetos',
+  'gestao-projetos': 'curso-gestao-estrategica-projetos',
+
+  // Análise de Dados e Power BI
+  'analise-dados-power-bi': 'curso-analise-dados-power-bi',
+  'curso-power-bi': 'curso-analise-dados-power-bi',
+  'power-bi': 'curso-analise-dados-power-bi',
+
+  // Atendimento ao Cliente
+  'atendimento-relacionamento-cliente': 'curso-atendimento-relacionamento-cliente',
+  'curso-atendimento-cliente': 'curso-atendimento-relacionamento-cliente',
+  'atendimento-cliente': 'curso-atendimento-relacionamento-cliente',
+
+  // Excel Avançado
+  'curso-excel-avancado-analise-dados': 'excel-avancado',
+  'excel-avancado-analise-dados': 'excel-avancado',
+  'curso-excel-avancado': 'excel-avancado',
+
+  // Informática Básica
+  'informatica-basica': 'curso-informatica-seguranca',
+  'informatica-basica-nuvem-seguranca': 'curso-informatica-seguranca',
+  'informatica': 'curso-informatica-seguranca',
+
+  // Equilíbrio Emocional / Saúde Mental
+  'equilibrio-emocional': 'curso-saude-mental-trabalho',
+  'curso-equilibrio-emocional': 'curso-saude-mental-trabalho',
+  'c16': 'curso-saude-mental-trabalho',
+
+  // Orçamento
+  'orcamento-primeiro-salarial': 'orcamento-primeiro-salario',
+  'curso-orcamento-primeiro-salario': 'orcamento-primeiro-salario',
+
+  // Outros aliases históricos
+  'ia-produtividade': 'curso-ia-produtividade',
+  'curso-inteligencia-artificial-automacao': 'curso-ia-produtividade',
+  'soft-skills-comunicacao-interpessoal': 'curso-soft-skills-comunicacao-interpessoal',
+  'curso-soft-skills': 'curso-soft-skills-comunicacao-interpessoal',
+  'rotinas-administrativas': 'curso-rotinas-administrativas',
+  'rotinas-processos-escritorio': 'curso-rotinas-administrativas',
+  'curso-rotinas-processos': 'curso-rotinas-administrativas',
+  'gestao-tempo-produtividade': 'curso-gestao-tempo-produtividade-iniciante',
+  'curso-gestao-tempo-produtividade': 'curso-gestao-tempo-produtividade-iniciante',
+  'inteligencia-emocional': 'curso-inteligencia-emocional-trabalho',
+  'curso-inteligencia-emocional': 'curso-inteligencia-emocional-trabalho',
+  'curso-comunicacao-corporativa': 'curso-comunicacao-escrita-corporativa',
+  'curso-comunicacao-escrita': 'curso-comunicacao-escrita-corporativa',
+  'comunicacao-escrita': 'curso-comunicacao-escrita-corporativa',
+};
+
+export const resolveCourseAlias = (id: string): string => {
+  return COURSE_ALIASES[id] || id;
+};
+
+export const findCourseById = (id: string): Course | undefined => {
+  const resolved = resolveCourseAlias(id);
+  return COURSES.find((c) => c.id === resolved || c.id === id);
+};

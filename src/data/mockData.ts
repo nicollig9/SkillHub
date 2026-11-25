@@ -1,4 +1,8 @@
 import { Student, JobVacancy, Badge, Application, GuardrailLog } from '@/types';
+import { TRACKS } from './coursesData';
+
+export { TRACKS };
+export const tracks = TRACKS;
 
 export const BAIRROS_CURITIBA: Record<string, { nome: string; coords: [number, number]; desc: string; vagasCount: number; distKmDoBoqueirao: number; distKmDaCIC: number; regiao: 'Curitiba' | 'RMC' }> = {
   'CIC': {
@@ -111,9 +115,9 @@ export const INITIAL_BADGES: Badge[] = [
     workloadHours: 12,
     icon: 'Scale',
     color: '#8B5CF6',
-    dateEarned: '14/09/2026',
-    score: 92,
-    codeVerificador: 'SKILL-PR-2026-8841A'
+    dateEarned: undefined,
+    score: undefined,
+    codeVerificador: undefined
   },
   {
     id: 'badge-curriculo-campeao',
@@ -123,9 +127,9 @@ export const INITIAL_BADGES: Badge[] = [
     workloadHours: 8,
     icon: 'FileText',
     color: '#3B82F6',
-    dateEarned: '12/09/2026',
-    score: 88,
-    codeVerificador: 'SKILL-PR-2026-1920B'
+    dateEarned: undefined,
+    score: undefined,
+    codeVerificador: undefined
   },
   {
     id: 'badge-financas',
@@ -181,21 +185,8 @@ export const INITIAL_STUDENT: Student = {
     latitude: -25.5036,
     longitude: -49.3338
   },
-  badgesEarned: [
-    {
-      badgeId: 'badge-direitos-legislação',
-      date: '14/09/2026',
-      score: 92,
-      code: 'SKILL-PR-2026-8841A'
-    },
-    {
-      badgeId: 'badge-curriculo-campeao',
-      date: '12/09/2026',
-      score: 88,
-      code: 'SKILL-PR-2026-1920B'
-    }
-  ],
-  bio: 'Estudante da Cidade Industrial de Curitiba (CIC) buscando oportunidade como Jovem Aprendiz ou Estágio em TI, Logística e Rotinas Administrativas. Badges validadas em Legislação Trabalhista e Currículo Campeão.',
+  badgesEarned: [],
+  bio: 'Estudante da Cidade Industrial de Curitiba (CIC) buscando oportunidade como Jovem Aprendiz ou Estágio em TI, Logística e Rotinas Administrativas.',
   telefoneRaw: '(41) 98877-6655',
   telefoneMasked: '(41) *****-6655'
 };
@@ -222,7 +213,7 @@ export const INITIAL_VAGAS: JobVacancy[] = [
     dataCriacao: '12/09/2026',
     badgesRequeridas: ['badge-direitos-legislação', 'badge-curriculo-campeao'],
     candidatosInscritos: 18,
-    jaCandidatou: true,
+    jaCandidatou: false,
     origemIA: 'Via CIEE',
     distanciaKm: 1.2,
     aderenciaPerfil: 94
@@ -660,27 +651,7 @@ export const INITIAL_VAGAS: JobVacancy[] = [
   }
 ];
 
-export const INITIAL_APPLICATIONS: Application[] = [
-  {
-    id: 1001,
-    protocolo: '#CAND-2026-88412',
-    idVaga: 1,
-    vagaTitulo: 'Jovem Aprendiz em Logística e Suprimentos',
-    empresaNome: 'Bosch Curitiba (Unidade CIC)',
-    bairroVaga: 'CIC',
-    idAluno: 1,
-    alunoNome: 'Lucas Silva Oliveira',
-    alunoBairro: 'Boqueirão',
-    dataCandidatura: '14/09/2026 10:15',
-    status: 'EM_ANALISE',
-    badgesCompatíveis: 2,
-    totalBadgesRequeridas: 2,
-    lgpdDadosLiberados: true,
-    curriculoTipo: 'CURRICULO_SKILLHUB',
-    curriculoNomeArquivo: 'Curriculo_Lucas_Oliveira_SkillHub.pdf',
-    cartaApresentacao: 'Tenho grande interesse em ingressar como Jovem Aprendiz na área de logística para aplicar meus conhecimentos em organização e aprender as rotinas industriais da Bosch.'
-  }
-];
+export const INITIAL_APPLICATIONS: Application[] = [];
 
 export const INITIAL_GUARDRAILS_LOGS: GuardrailLog[] = [
   {

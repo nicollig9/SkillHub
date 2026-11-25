@@ -245,45 +245,45 @@ export default function HoleriteSimulator() {
   };
 
   return (
-    <div className="w-full max-w-[800px] mx-auto space-y-4 pb-16">
+    <div className="w-full max-w-6xl mx-auto space-y-6 pb-16">
       {/* ========================================================================= */}
       {/* 1. CABEÇALHO HERO BANNER (FOCO EM APRENDIZ, ESTÁGIO E PRIMEIRO EMPREGO)   */}
       {/* ========================================================================= */}
-      <div className="bg-[#110E1B] border border-purple-500/20 rounded-2xl p-5 shadow-xl relative overflow-hidden">
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-3 relative z-10">
+      <div className="w-full bg-white dark:bg-[#110E1B] border border-slate-300 dark:border-purple-500/20 rounded-2xl p-5 sm:p-6 shadow-sm dark:shadow-xl relative overflow-hidden">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 relative z-10">
           <div>
             <div className="flex flex-wrap items-center gap-1.5 mb-2">
-              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-purple-950/80 text-purple-200 border border-purple-500/30">
-                <Calculator className="w-3.5 h-3.5 text-purple-400" />
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-bold bg-purple-100 dark:bg-purple-950/80 text-purple-800 dark:text-purple-200 border border-purple-300 dark:border-purple-500/30">
+                <Calculator className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
                 <span>Calculadora Salarial do Jovem</span>
               </span>
-              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-950/70 text-emerald-300 border border-emerald-500/30">
-                <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+              <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-500/30">
+                <Sparkles className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                 <span>Estágio • Jovem Aprendiz • Primeiro Emprego</span>
               </span>
             </div>
 
-            <h1 className="text-lg sm:text-xl font-bold text-white tracking-tight">
+            <h1 className="text-xl sm:text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">
               Calculadora de Holerite &amp; Salário Líquido
             </h1>
-            <p className="text-xs sm:text-sm text-zinc-300 mt-1 max-w-xl leading-relaxed">
-              Exclusiva para vagas de <strong>Estágio</strong>, <strong>Jovem Aprendiz</strong> e <strong>Primeiro Emprego</strong>. Calcule quanto vai cair no seu Pix sem burocracia ou termos difíceis.
+            <p className="text-xs sm:text-sm text-slate-700 dark:text-zinc-300 mt-1 max-w-2xl leading-relaxed font-medium">
+              Exclusiva para vagas de <strong className="text-slate-900 dark:text-white">Estágio</strong>, <strong className="text-slate-900 dark:text-white">Jovem Aprendiz</strong> e <strong className="text-slate-900 dark:text-white">Primeiro Emprego</strong>. Calcule quanto vai cair no seu Pix sem burocracia ou termos difíceis.
             </p>
           </div>
 
           <div className="flex items-center gap-2 self-end sm:self-auto shrink-0 print:hidden">
             <button
               onClick={handleCopySummary}
-              className="px-3 py-1.5 rounded-xl bg-[#171126] hover:bg-[#221838] text-zinc-300 hover:text-white border border-purple-500/20 text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer"
+              className="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-[#171126] dark:hover:bg-[#221838] text-slate-700 hover:text-slate-900 dark:text-zinc-300 dark:hover:text-white border border-slate-300 dark:border-purple-500/20 text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
               title="Copiar resumo simplificado"
             >
-              {copied ? <Check className="w-3.5 h-3.5 text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-purple-400" />}
+              {copied ? <Check className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" /> : <Copy className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />}
               <span>{copied ? 'Copiado!' : 'Copiar Resumo'}</span>
             </button>
 
             <button
               onClick={handlePrint}
-              className="px-3 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer shadow-md shadow-purple-950/40"
+              className="px-3 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer shadow-md shadow-purple-950/20"
               title="Imprimir ou salvar em PDF"
             >
               <Printer className="w-3.5 h-3.5" />
@@ -293,12 +293,12 @@ export default function HoleriteSimulator() {
         </div>
 
         {/* Modalidade de Contrato: 3 Pilares do SkillHub */}
-        <div className="mt-4 pt-3.5 border-t border-[#2D1B4E]/60 space-y-2">
-          <span className="text-xs font-bold text-zinc-300 block">
+        <div className="mt-5 pt-4 border-t border-slate-200 dark:border-[#2D1B4E]/60 space-y-2.5">
+          <span className="text-xs font-bold text-slate-800 dark:text-zinc-300 block">
             Selecione a sua modalidade de oportunidade:
           </span>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             {/* Opção 1: Jovem Aprendiz */}
             <button
               onClick={() => {
@@ -306,22 +306,26 @@ export default function HoleriteSimulator() {
                 setSalarioBruto(1518);
                 setOptValeTransporte(true);
               }}
-              className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
+              className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
                 contractType === 'APRENDIZ'
-                  ? 'bg-purple-950/90 border-purple-500 text-white shadow-md ring-1 ring-purple-400/50'
-                  : 'bg-[#140E24] border-[#2D1B4E] text-zinc-400 hover:text-white'
+                  ? 'bg-purple-600 border-purple-600 text-white shadow-md ring-1 ring-purple-400/50'
+                  : 'bg-slate-100 hover:bg-slate-200 dark:bg-slate-900/80 dark:hover:bg-slate-800 border-slate-300 dark:border-purple-500/30 text-slate-900 dark:text-zinc-300'
               }`}
             >
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-white flex items-center gap-1">
-                  <GraduationCap className="w-3.5 h-3.5 text-purple-400" />
+                <span className={`text-xs font-bold flex items-center gap-1.5 ${contractType === 'APRENDIZ' ? 'text-white' : 'text-slate-900 dark:text-white'}`}>
+                  <GraduationCap className={`w-3.5 h-3.5 ${contractType === 'APRENDIZ' ? 'text-white' : 'text-purple-600 dark:text-purple-400'}`} />
                   <span>Jovem Aprendiz</span>
                 </span>
-                <span className="text-[10px] bg-purple-900 text-purple-200 px-1.5 py-0.2 rounded font-semibold">
+                <span className={`text-[10px] px-1.5 py-0.5 rounded font-bold ${
+                  contractType === 'APRENDIZ'
+                    ? 'bg-white/20 text-white'
+                    : 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200'
+                }`}>
                   FGTS 2%
                 </span>
               </div>
-              <p className="text-[11px] text-zinc-300 mt-1">
+              <p className={`text-[11px] mt-1.5 leading-snug ${contractType === 'APRENDIZ' ? 'text-purple-100' : 'text-slate-700 dark:text-zinc-300 font-medium'}`}>
                 De 14 a 24 anos. Carteira assinada, curso teórico e horário protegido (Lei 10.097).
               </p>
             </button>
@@ -333,22 +337,26 @@ export default function HoleriteSimulator() {
                 setSalarioBruto(1400);
                 setOptValeTransporte(false);
               }}
-              className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
+              className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
                 contractType === 'ESTAGIARIO'
-                  ? 'bg-purple-950/90 border-purple-500 text-white shadow-md ring-1 ring-purple-400/50'
-                  : 'bg-[#140E24] border-[#2D1B4E] text-zinc-400 hover:text-white'
+                  ? 'bg-purple-600 border-purple-600 text-white shadow-md ring-1 ring-purple-400/50'
+                  : 'bg-slate-100 hover:bg-slate-200 dark:bg-slate-900/80 dark:hover:bg-slate-800 border-slate-300 dark:border-purple-500/30 text-slate-900 dark:text-zinc-300'
               }`}
             >
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-white flex items-center gap-1">
-                  <Briefcase className="w-3.5 h-3.5 text-emerald-400" />
+                <span className={`text-xs font-bold flex items-center gap-1.5 ${contractType === 'ESTAGIARIO' ? 'text-white' : 'text-slate-900 dark:text-white'}`}>
+                  <Briefcase className={`w-3.5 h-3.5 ${contractType === 'ESTAGIARIO' ? 'text-white' : 'text-emerald-600 dark:text-emerald-400'}`} />
                   <span>Estagiário</span>
                 </span>
-                <span className="text-[10px] bg-emerald-950 text-emerald-300 px-1.5 py-0.2 rounded font-semibold">
+                <span className={`text-[10px] px-1.5 py-0.5 rounded font-bold ${
+                  contractType === 'ESTAGIARIO'
+                    ? 'bg-white/20 text-white'
+                    : 'bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300'
+                }`}>
                   Sem Descontos
                 </span>
               </div>
-              <p className="text-[11px] text-zinc-300 mt-1">
+              <p className={`text-[11px] mt-1.5 leading-snug ${contractType === 'ESTAGIARIO' ? 'text-purple-100' : 'text-slate-700 dark:text-zinc-300 font-medium'}`}>
                 Para estudantes de Ensino Médio, Técnico ou Superior. Bolsa-auxílio livre de INSS (Lei 11.788).
               </p>
             </button>
@@ -360,22 +368,26 @@ export default function HoleriteSimulator() {
                 setSalarioBruto(1600);
                 setOptValeTransporte(true);
               }}
-              className={`p-2.5 rounded-xl border text-left transition-all cursor-pointer ${
+              className={`p-3 rounded-xl border text-left transition-all cursor-pointer ${
                 contractType === 'PRIMEIRO_EMPREGO'
-                  ? 'bg-purple-950/90 border-purple-500 text-white shadow-md ring-1 ring-purple-400/50'
-                  : 'bg-[#140E24] border-[#2D1B4E] text-zinc-400 hover:text-white'
+                  ? 'bg-purple-600 border-purple-600 text-white shadow-md ring-1 ring-purple-400/50'
+                  : 'bg-slate-100 hover:bg-slate-200 dark:bg-slate-900/80 dark:hover:bg-slate-800 border-slate-300 dark:border-purple-500/30 text-slate-900 dark:text-zinc-300'
               }`}
             >
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold text-white flex items-center gap-1">
-                  <Award className="w-3.5 h-3.5 text-purple-400" />
+                <span className={`text-xs font-bold flex items-center gap-1.5 ${contractType === 'PRIMEIRO_EMPREGO' ? 'text-white' : 'text-slate-900 dark:text-white'}`}>
+                  <Award className={`w-3.5 h-3.5 ${contractType === 'PRIMEIRO_EMPREGO' ? 'text-white' : 'text-purple-600 dark:text-purple-400'}`} />
                   <span>Primeiro Emprego</span>
                 </span>
-                <span className="text-[10px] bg-purple-900 text-purple-200 px-1.5 py-0.2 rounded font-semibold">
+                <span className={`text-[10px] px-1.5 py-0.5 rounded font-bold ${
+                  contractType === 'PRIMEIRO_EMPREGO'
+                    ? 'bg-white/20 text-white'
+                    : 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200'
+                }`}>
                   FGTS 8%
                 </span>
               </div>
-              <p className="text-[11px] text-zinc-300 mt-1">
+              <p className={`text-[11px] mt-1.5 leading-snug ${contractType === 'PRIMEIRO_EMPREGO' ? 'text-purple-100' : 'text-slate-700 dark:text-zinc-300 font-medium'}`}>
                 Vaga de entrada formal para quem não tem experiência. Direitos completos garantidos.
               </p>
             </button>
@@ -386,17 +398,17 @@ export default function HoleriteSimulator() {
       {/* ========================================================================= */}
       {/* 2. GRID PRINCIPAL RESPONSIVO DE 2 COLUNAS (ENTRADA VS RESUMO)            */}
       {/* ========================================================================= */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         {/* ========================================================================= */}
         {/* COLUNA ESQUERDA: FORMULÁRIO DE ENTRADA (LINGUAGEM SIMPLES E DIDÁTICA)     */}
         {/* ========================================================================= */}
-        <div className="bg-[#110E1B] border border-purple-500/20 rounded-2xl p-4 sm:p-5 space-y-4 shadow-xl">
-          <div className="border-b border-[#2D1B4E]/60 pb-2.5">
-            <h2 className="text-sm sm:text-base font-bold text-white flex items-center gap-1.5">
-              <Scale className="w-4 h-4 text-purple-400" />
+        <div className="bg-white dark:bg-[#110E1B] border border-slate-300 dark:border-purple-500/20 rounded-2xl p-4 sm:p-5 space-y-4 shadow-sm dark:shadow-xl">
+          <div className="border-b border-slate-200 dark:border-[#2D1B4E]/60 pb-2.5">
+            <h2 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+              <Scale className="w-4 h-4 text-purple-600 dark:text-purple-400" />
               <span>Valores da sua Oportunidade</span>
             </h2>
-            <p className="text-[12px] text-zinc-400 mt-0.5">
+            <p className="text-[12px] text-slate-600 dark:text-zinc-400 mt-0.5 font-medium">
               Preencha o valor combinado para ver o resultado instantâneo:
             </p>
           </div>
@@ -405,20 +417,20 @@ export default function HoleriteSimulator() {
           <div className="space-y-1.5">
             <div>
               <div className="flex justify-between items-center text-xs">
-                <label htmlFor="salario-input" className="font-bold text-zinc-200">
+                <label htmlFor="salario-input" className="font-bold text-slate-800 dark:text-zinc-200">
                   {contractType === 'ESTAGIARIO' ? 'Bolsa-Auxílio Mensal (Estudante):' : 'Salário Bruto Combinado:'}
                 </label>
-                <span className="text-xs font-bold text-emerald-400 bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-500/30">
+                <span className="text-xs font-bold text-emerald-700 dark:text-emerald-400 bg-emerald-100 dark:bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-300 dark:border-emerald-500/30">
                   R$ {salarioBruto.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                 </span>
               </div>
-              <p className="text-[11px] text-purple-300 mt-0.5">
+              <p className="text-[11px] text-purple-700 dark:text-purple-300 mt-0.5 font-semibold">
                 💡 O valor que a empresa combinou pagar por mês antes dos descontos.
               </p>
             </div>
 
             <div className="relative">
-              <span className="absolute left-3 top-2.5 text-zinc-400 text-xs font-semibold">R$</span>
+              <span className="absolute left-3 top-2.5 text-slate-500 dark:text-zinc-400 text-xs font-semibold">R$</span>
               <input
                 id="salario-input"
                 type="number"
@@ -426,7 +438,7 @@ export default function HoleriteSimulator() {
                 step="50"
                 value={salarioBruto || ''}
                 onChange={(e) => setSalarioBruto(Math.max(0, Number(e.target.value)))}
-                className="w-full bg-[#160F28] border border-purple-500/20 rounded-xl pl-9 pr-3 py-2 text-xs sm:text-sm text-white font-bold focus:outline-none focus:border-purple-400 transition-colors"
+                className="w-full bg-slate-50 dark:bg-[#160F28] border border-slate-300 dark:border-purple-500/20 rounded-xl pl-9 pr-3 py-2 text-xs sm:text-sm text-slate-900 dark:text-white font-bold focus:outline-none focus:border-purple-500 transition-colors"
                 placeholder="Ex: 1518.00"
               />
             </div>
@@ -443,10 +455,10 @@ export default function HoleriteSimulator() {
                   key={b.value}
                   type="button"
                   onClick={() => setSalarioBruto(b.value)}
-                  className={`text-[11px] px-2 py-0.5 rounded-md border transition-all cursor-pointer ${
+                  className={`text-[11px] px-2.5 py-1 rounded-lg border transition-all cursor-pointer ${
                     salarioBruto === b.value
-                      ? 'bg-purple-900/80 border-purple-400 text-purple-200 font-bold'
-                      : 'bg-[#140E24] border-[#2D1B4E] text-zinc-400 hover:text-white'
+                      ? 'bg-purple-600 border-purple-600 text-white font-bold shadow-sm'
+                      : 'bg-slate-100 hover:bg-slate-200 dark:bg-[#140E24] dark:hover:bg-slate-800 border-slate-300 dark:border-[#2D1B4E] text-slate-700 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white font-medium'
                   }`}
                 >
                   {b.label}
@@ -458,30 +470,30 @@ export default function HoleriteSimulator() {
           {/* 2. Dependentes com explicação simples */}
           <div className="space-y-1.5 pt-1">
             <div className="flex justify-between items-center text-xs">
-              <span className="font-bold text-zinc-200 flex items-center gap-1.5">
+              <span className="font-bold text-slate-800 dark:text-zinc-200 flex items-center gap-1.5">
                 <span>Pessoas que Dependem de Você:</span>
                 <button
                   type="button"
                   onClick={() =>
                     setActiveTooltip(activeTooltip === 'dependentes' ? null : 'dependentes')
                   }
-                  className="text-purple-400 hover:text-purple-300 cursor-pointer"
+                  className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 cursor-pointer"
                   title="Clique para entender"
                 >
                   <HelpCircle className="w-3.5 h-3.5" />
                 </button>
               </span>
-              <span className="text-[11px] text-purple-300">
+              <span className="text-[11px] text-purple-700 dark:text-purple-300 font-semibold">
                 {dependentes > 0 ? `Economiza no Imposto de Renda` : 'Nenhum dependente'}
               </span>
             </div>
-            <p className="text-[11px] text-zinc-400">
+            <p className="text-[11px] text-slate-600 dark:text-zinc-400 font-medium">
               Filhos ou dependentes legais. Reduz o desconto do Imposto de Renda!
             </p>
 
             {activeTooltip === 'dependentes' && (
-              <div className="text-[11px] bg-[#160F28] border border-purple-500/40 rounded-xl p-3 text-zinc-200 leading-relaxed space-y-1 shadow-lg">
-                <div className="font-bold text-purple-300 flex items-center gap-1">
+              <div className="text-[11px] bg-slate-100 dark:bg-[#160F28] border border-slate-300 dark:border-purple-500/40 rounded-xl p-3 text-slate-800 dark:text-zinc-200 leading-relaxed space-y-1 shadow-md">
+                <div className="font-bold text-purple-700 dark:text-purple-300 flex items-center gap-1">
                   <Info className="w-3.5 h-3.5" />
                   <span>O que são dependentes?</span>
                 </div>
@@ -492,36 +504,36 @@ export default function HoleriteSimulator() {
             )}
 
             <div className="flex items-center gap-3">
-              <div className="flex items-center bg-[#160F28] border border-purple-500/20 rounded-xl overflow-hidden">
+              <div className="flex items-center bg-slate-100 dark:bg-[#160F28] border border-slate-300 dark:border-purple-500/20 rounded-xl overflow-hidden">
                 <button
                   type="button"
                   onClick={() => setDependentes(Math.max(0, dependentes - 1))}
-                  className="p-2 text-zinc-300 hover:text-white hover:bg-purple-950/60 transition-colors cursor-pointer"
+                  className="p-2 text-slate-700 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-purple-950/60 transition-colors cursor-pointer"
                   aria-label="Diminuir dependentes"
                 >
                   <Minus className="w-3.5 h-3.5" />
                 </button>
-                <span className="px-4 text-xs font-bold text-white min-w-[28px] text-center">
+                <span className="px-4 text-xs font-bold text-slate-900 dark:text-white min-w-[28px] text-center">
                   {dependentes}
                 </span>
                 <button
                   type="button"
                   onClick={() => setDependentes(dependentes + 1)}
-                  className="p-2 text-zinc-300 hover:text-white hover:bg-purple-950/60 transition-colors cursor-pointer"
+                  className="p-2 text-slate-700 dark:text-zinc-300 hover:text-slate-900 dark:hover:text-white hover:bg-slate-200 dark:hover:bg-purple-950/60 transition-colors cursor-pointer"
                   aria-label="Aumentar dependentes"
                 >
                   <Plus className="w-3.5 h-3.5" />
                 </button>
               </div>
-              <span className="text-xs text-zinc-300">dependentes informados</span>
+              <span className="text-xs text-slate-700 dark:text-zinc-300 font-medium">dependentes informados</span>
             </div>
           </div>
 
           {/* 3. Vale-Transporte com linguagem do dia a dia */}
           {contractType !== 'ESTAGIARIO' && (
-            <div className="bg-[#140E24] border border-purple-500/20 rounded-xl p-3 space-y-1.5">
+            <div className="bg-slate-50 dark:bg-[#140E24] border border-slate-200 dark:border-purple-500/20 rounded-xl p-3 space-y-1.5">
               <div className="flex items-center justify-between">
-                <label className="flex items-center gap-2 text-xs font-bold text-zinc-200 cursor-pointer">
+                <label className="flex items-center gap-2 text-xs font-bold text-slate-800 dark:text-zinc-200 cursor-pointer">
                   <input
                     type="checkbox"
                     checked={optValeTransporte}
@@ -533,19 +545,19 @@ export default function HoleriteSimulator() {
                 <button
                   type="button"
                   onClick={() => setActiveTooltip(activeTooltip === 'vt' ? null : 'vt')}
-                  className="text-purple-400 hover:text-purple-300 text-[11px] font-semibold flex items-center gap-0.5 cursor-pointer"
+                  className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 text-[11px] font-semibold flex items-center gap-0.5 cursor-pointer"
                 >
                   <span>Entenda</span>
                   <HelpCircle className="w-3.5 h-3.5" />
                 </button>
               </div>
 
-              <p className="text-[11px] text-zinc-400 pl-6 leading-relaxed">
+              <p className="text-[11px] text-slate-600 dark:text-zinc-400 pl-6 leading-relaxed font-medium">
                 A empresa cobre as passagens do mês inteiro e desconta no máximo <strong>6% do seu salário base</strong> (neste caso: R$ {descontoVT.toFixed(2)}).
               </p>
 
               {activeTooltip === 'vt' && (
-                <div className="text-[11px] bg-[#160F28] border border-purple-500/40 rounded-xl p-2.5 text-zinc-200 leading-relaxed shadow-lg">
+                <div className="text-[11px] bg-slate-100 dark:bg-[#160F28] border border-slate-300 dark:border-purple-500/40 rounded-xl p-2.5 text-slate-800 dark:text-zinc-200 leading-relaxed shadow-md">
                   <strong>Regra do Vale-Transporte:</strong> A empresa é obrigada a fornecer passagens suficientes para você ir e voltar do trabalho. Se suas passagens custarem R$ 250 no mês, você só contribui com até 6% do salário (R$ {descontoVT.toFixed(2)}) e a empresa paga todo o restante!
                 </div>
               )}
@@ -553,14 +565,14 @@ export default function HoleriteSimulator() {
           )}
 
           {/* 4. Sanfona de Ganhos Extras */}
-          <div className="border-t border-[#2D1B4E]/60 pt-2">
+          <div className="border-t border-slate-200 dark:border-[#2D1B4E]/60 pt-2">
             <button
               type="button"
               onClick={() => setShowAdicionais(!showAdicionais)}
-              className="w-full flex items-center justify-between text-xs font-semibold text-purple-300 hover:text-white py-1 transition-colors cursor-pointer"
+              className="w-full flex items-center justify-between text-xs font-bold text-purple-700 dark:text-purple-300 hover:text-purple-900 dark:hover:text-white py-1 transition-colors cursor-pointer"
             >
               <span className="flex items-center gap-1.5">
-                <TrendingUp className="w-3.5 h-3.5 text-purple-400" />
+                <TrendingUp className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
                 <span>Ganhos Extras (Horas Extras, Bônus, Adicionais)</span>
               </span>
               {showAdicionais ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
@@ -569,7 +581,7 @@ export default function HoleriteSimulator() {
             {showAdicionais && (
               <div className="space-y-3 pt-2">
                 <div className="space-y-1">
-                  <label className="text-xs font-medium text-zinc-300 block">
+                  <label className="text-xs font-semibold text-slate-700 dark:text-zinc-300 block">
                     Horas a mais trabalhadas (Horas Extras e Noturno):
                   </label>
                   <input
@@ -578,24 +590,24 @@ export default function HoleriteSimulator() {
                     step="20"
                     value={horasExtras || ''}
                     onChange={(e) => setHorasExtras(Math.max(0, Number(e.target.value)))}
-                    className="w-full bg-[#160F28] border border-purple-500/20 rounded-xl px-3 py-1.5 text-xs text-white"
+                    className="w-full bg-slate-50 dark:bg-[#160F28] border border-slate-300 dark:border-purple-500/20 rounded-xl px-3 py-1.5 text-xs text-slate-900 dark:text-white font-medium focus:outline-none focus:border-purple-500"
                     placeholder="R$ 0,00"
                   />
                   {contractType === 'APRENDIZ' && (
-                    <span className="text-[10px] text-amber-300 block">
+                    <span className="text-[10px] text-amber-700 dark:text-amber-300 block font-medium">
                       Nota: A Lei do Aprendiz protege o jovem e proíbe a realização de horas extras rotineiras.
                     </span>
                   )}
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-medium text-zinc-300 block">
+                  <label className="text-xs font-semibold text-slate-700 dark:text-zinc-300 block">
                     Adicional por Atividade Especial:
                   </label>
                   <select
                     value={tipoAdicional}
                     onChange={(e) => setTipoAdicional(e.target.value as any)}
-                    className="w-full bg-[#160F28] border border-purple-500/20 rounded-xl px-3 py-1.5 text-xs text-white"
+                    className="w-full bg-slate-50 dark:bg-[#160F28] border border-slate-300 dark:border-purple-500/20 rounded-xl px-3 py-1.5 text-xs text-slate-900 dark:text-white font-medium focus:outline-none focus:border-purple-500"
                   >
                     <option value="NENHUM">Nenhum adicional especial</option>
                     <option value="PERICULOSIDADE">Periculosidade (+30% por risco físico/eletricidade/combustível)</option>
@@ -606,7 +618,7 @@ export default function HoleriteSimulator() {
                 </div>
 
                 <div className="space-y-1">
-                  <label className="text-xs font-medium text-zinc-300 block">
+                  <label className="text-xs font-semibold text-slate-700 dark:text-zinc-300 block">
                     Bônus, Gratificações ou Prêmios (R$):
                   </label>
                   <input
@@ -615,7 +627,7 @@ export default function HoleriteSimulator() {
                     step="50"
                     value={outrosAdicionais || ''}
                     onChange={(e) => setOutrosAdicionais(Math.max(0, Number(e.target.value)))}
-                    className="w-full bg-[#160F28] border border-purple-500/20 rounded-xl px-3 py-1.5 text-xs text-white"
+                    className="w-full bg-slate-50 dark:bg-[#160F28] border border-slate-300 dark:border-purple-500/20 rounded-xl px-3 py-1.5 text-xs text-slate-900 dark:text-white font-medium focus:outline-none focus:border-purple-500"
                     placeholder="R$ 0,00"
                   />
                 </div>
@@ -624,12 +636,12 @@ export default function HoleriteSimulator() {
           </div>
 
           {/* 5. Outros Descontos Voluntários */}
-          <div className="space-y-1 pt-1 border-t border-[#2D1B4E]/60">
+          <div className="space-y-1 pt-1 border-t border-slate-200 dark:border-[#2D1B4E]/60">
             <div className="flex justify-between items-center text-xs">
-              <label htmlFor="outros-descontos-input" className="font-bold text-zinc-300">
+              <label htmlFor="outros-descontos-input" className="font-bold text-slate-800 dark:text-zinc-300">
                 Outros Descontos (Convênios ou Adiantamentos):
               </label>
-              <span className="text-[11px] text-zinc-400">Plano odontológico, etc.</span>
+              <span className="text-[11px] text-slate-600 dark:text-zinc-400 font-medium">Plano odontológico, etc.</span>
             </div>
             <input
               id="outros-descontos-input"
@@ -638,7 +650,7 @@ export default function HoleriteSimulator() {
               step="10"
               value={outrosDescontos || ''}
               onChange={(e) => setOutrosDescontos(Math.max(0, Number(e.target.value)))}
-              className="w-full bg-[#160F28] border border-purple-500/20 rounded-xl px-3 py-2 text-xs text-white"
+              className="w-full bg-slate-50 dark:bg-[#160F28] border border-slate-300 dark:border-purple-500/20 rounded-xl px-3 py-2 text-xs text-slate-900 dark:text-white font-medium focus:outline-none focus:border-purple-500"
               placeholder="Ex: 30.00"
             />
           </div>
@@ -647,30 +659,30 @@ export default function HoleriteSimulator() {
         {/* ========================================================================= */}
         {/* COLUNA DIREITA: RESUMO DO HOLERITE COM BOTÕES "ENTENDA ESTE DESCONTO"     */}
         {/* ========================================================================= */}
-        <div className="bg-[#110E1B] border border-purple-500/20 rounded-2xl p-4 sm:p-5 flex flex-col justify-between space-y-4 shadow-xl">
+        <div className="bg-white dark:bg-[#110E1B] border border-slate-300 dark:border-purple-500/20 rounded-2xl p-4 sm:p-5 flex flex-col justify-between space-y-4 shadow-sm dark:shadow-xl">
           <div className="space-y-3.5">
             {/* Topo do Resumo */}
-            <div className="flex items-center justify-between border-b border-[#2D1B4E]/60 pb-2.5">
+            <div className="flex items-center justify-between border-b border-slate-200 dark:border-[#2D1B4E]/60 pb-2.5">
               <div className="flex items-center gap-1.5">
-                <FileText className="w-4 h-4 text-purple-400" />
-                <h2 className="text-sm sm:text-base font-bold text-white">
+                <FileText className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+                <h2 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
                   Contracheque do Jovem
                 </h2>
               </div>
-              <span className="text-[11px] bg-purple-950/80 text-purple-300 border border-purple-500/30 px-2 py-0.5 rounded font-semibold">
+              <span className="text-[11px] bg-purple-100 dark:bg-purple-950/80 text-purple-800 dark:text-purple-300 border border-purple-300 dark:border-purple-500/30 px-2 py-0.5 rounded font-semibold">
                 Ano Oficial 2026
               </span>
             </div>
 
             {/* DESTAQUE DO SALÁRIO LÍQUIDO */}
-            <div className="bg-gradient-to-r from-emerald-950/90 via-[#0F1E17] to-[#140E24] border border-emerald-500/40 rounded-xl p-4 shadow-inner">
-              <span className="text-[11px] uppercase font-bold text-emerald-300 tracking-wider block">
+            <div className="bg-slate-50 dark:bg-gradient-to-r dark:from-emerald-950/90 dark:via-[#0F1E17] dark:to-[#140E24] border border-slate-200 dark:border-emerald-500/40 rounded-xl p-4 shadow-sm">
+              <span className="text-[11px] uppercase font-bold text-emerald-800 dark:text-emerald-300 tracking-wider block">
                 💰 O que realmente cai na sua conta (via Pix/TED):
               </span>
-              <div className="text-2xl sm:text-3xl font-black text-emerald-400 mt-1">
+              <div className="text-3xl sm:text-4xl font-black text-emerald-600 dark:text-emerald-400 mt-1">
                 R$ {salarioLiquido.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
               </div>
-              <p className="text-xs text-zinc-300 mt-1">
+              <p className="text-xs text-slate-600 dark:text-zinc-300 mt-1 font-medium">
                 Seu dinheiro limpo para usar livremente após os descontos legais.
               </p>
             </div>
@@ -678,51 +690,51 @@ export default function HoleriteSimulator() {
             {/* ITENS DETALHADOS COM BOTÃO "ENTENDA" */}
             <div className="space-y-2 text-xs">
               {/* Salário Bruto */}
-              <div className="flex items-center justify-between p-2.5 rounded-lg bg-[#140E24] text-zinc-200">
+              <div className="flex items-center justify-between p-2.5 rounded-lg bg-slate-50 dark:bg-[#140E24] border border-slate-200 dark:border-transparent text-slate-800 dark:text-zinc-200">
                 <div>
-                  <span className="font-bold text-white block">
+                  <span className="font-bold text-slate-900 dark:text-white block">
                     {contractType === 'ESTAGIARIO' ? '1. Bolsa de Estágio' : '1. Salário Bruto Combinado'}
                   </span>
-                  <span className="text-[11px] text-zinc-400">Total antes dos descontos</span>
+                  <span className="text-[11px] text-slate-600 dark:text-zinc-400 font-medium">Total antes dos descontos</span>
                 </div>
-                <span className="font-bold text-emerald-400 text-sm">
+                <span className="font-bold text-emerald-600 dark:text-emerald-400 text-sm">
                   + R$ {totalProventos.toFixed(2)}
                 </span>
               </div>
 
               {/* INSS com Balão Explicativo Didático */}
               <div className="space-y-1">
-                <div className="flex items-center justify-between p-2.5 rounded-lg bg-[#140E24] text-zinc-200">
+                <div className="flex items-center justify-between p-2.5 rounded-lg bg-slate-50 dark:bg-[#140E24] border border-slate-200 dark:border-transparent text-slate-800 dark:text-zinc-200">
                   <div className="space-y-0.5">
                     <div className="flex items-center gap-1.5">
-                      <span className="font-bold text-white">2. INSS (Previdência Social)</span>
+                      <span className="font-bold text-slate-900 dark:text-white">2. INSS (Previdência Social)</span>
                       <button
                         type="button"
                         onClick={() => setActiveTooltip(activeTooltip === 'inss' ? null : 'inss')}
-                        className="text-purple-400 hover:text-purple-300 text-[11px] font-semibold underline cursor-pointer"
+                        className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 text-[11px] font-semibold underline cursor-pointer"
                       >
                         {activeTooltip === 'inss' ? 'Fechar' : 'Entenda (?)'}
                       </button>
                     </div>
-                    <span className="text-[11px] text-zinc-400 block">
+                    <span className="text-[11px] text-slate-600 dark:text-zinc-400 block font-medium">
                       {contractType === 'ESTAGIARIO' ? 'Estágio é isento' : `Contribuição: ${inssCalculado.faixa}`}
                     </span>
                   </div>
-                  <span className="font-bold text-rose-400 text-sm">
+                  <span className="font-bold text-rose-600 dark:text-rose-400 text-sm">
                     {inssCalculado.valor > 0 ? `- R$ ${inssCalculado.valor.toFixed(2)}` : 'R$ 0,00'}
                   </span>
                 </div>
 
                 {activeTooltip === 'inss' && (
-                  <div className="text-[12px] bg-[#160F28] border border-purple-500/40 rounded-xl p-3 text-zinc-200 leading-relaxed space-y-1.5 shadow-lg">
-                    <p className="font-bold text-purple-300 flex items-center gap-1">
-                      <ShieldCheck className="w-4 h-4 text-emerald-400" />
+                  <div className="text-[12px] bg-slate-100 dark:bg-[#160F28] border border-slate-300 dark:border-purple-500/40 rounded-xl p-3 text-slate-800 dark:text-zinc-200 leading-relaxed space-y-1.5 shadow-md">
+                    <p className="font-bold text-purple-700 dark:text-purple-300 flex items-center gap-1">
+                      <ShieldCheck className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
                       <span>O que é o INSS para o jovem?</span>
                     </p>
                     <p>
                       É a contribuição obrigatória para a <strong>Previdência Social</strong> que garante a sua aposentadoria no futuro, auxílio-doença caso você precise se afastar e licença-maternidade/paternidade.
                     </p>
-                    <p className="text-[11px] text-purple-200">
+                    <p className="text-[11px] text-purple-800 dark:text-purple-200 font-medium">
                       Estagiários não têm desconto de INSS. Aprendizes e Primeiro Emprego contribuem a partir de 7,5%.
                     </p>
                   </div>
@@ -731,37 +743,37 @@ export default function HoleriteSimulator() {
 
               {/* IRPF com Balão Explicativo Didático */}
               <div className="space-y-1">
-                <div className="flex items-center justify-between p-2.5 rounded-lg bg-[#140E24] text-zinc-200">
+                <div className="flex items-center justify-between p-2.5 rounded-lg bg-slate-50 dark:bg-[#140E24] border border-slate-200 dark:border-transparent text-slate-800 dark:text-zinc-200">
                   <div className="space-y-0.5">
                     <div className="flex items-center gap-1.5">
-                      <span className="font-bold text-white">3. Imposto de Renda (IRPF)</span>
+                      <span className="font-bold text-slate-900 dark:text-white">3. Imposto de Renda (IRPF)</span>
                       <button
                         type="button"
                         onClick={() => setActiveTooltip(activeTooltip === 'irpf' ? null : 'irpf')}
-                        className="text-purple-400 hover:text-purple-300 text-[11px] font-semibold underline cursor-pointer"
+                        className="text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 text-[11px] font-semibold underline cursor-pointer"
                       >
                         {activeTooltip === 'irpf' ? 'Fechar' : 'Entenda (?)'}
                       </button>
                     </div>
-                    <span className="text-[11px] text-zinc-400 block">
+                    <span className="text-[11px] text-slate-600 dark:text-zinc-400 block font-medium">
                       Retido na fonte: {irpfCalculado.aliquota}
                     </span>
                   </div>
-                  <span className="font-bold text-rose-400 text-sm">
+                  <span className="font-bold text-rose-600 dark:text-rose-400 text-sm">
                     {irpfCalculado.valor > 0 ? `- R$ ${irpfCalculado.valor.toFixed(2)}` : 'Isento (R$ 0)'}
                   </span>
                 </div>
 
                 {activeTooltip === 'irpf' && (
-                  <div className="text-[12px] bg-[#160F28] border border-purple-500/40 rounded-xl p-3 text-zinc-200 leading-relaxed space-y-1.5 shadow-lg">
-                    <p className="font-bold text-purple-300 flex items-center gap-1">
-                      <Landmark className="w-4 h-4 text-purple-400" />
+                  <div className="text-[12px] bg-slate-100 dark:bg-[#160F28] border border-slate-300 dark:border-purple-500/40 rounded-xl p-3 text-slate-800 dark:text-zinc-200 leading-relaxed space-y-1.5 shadow-md">
+                    <p className="font-bold text-purple-700 dark:text-purple-300 flex items-center gap-1">
+                      <Landmark className="w-4 h-4 text-purple-600 dark:text-purple-400" />
                       <span>O que é o Imposto de Renda (IRPF)?</span>
                     </p>
                     <p>
                       É o imposto recolhido pelo Governo Federal proporcional aos ganhos.
                     </p>
-                    <p className="text-emerald-400 font-semibold">
+                    <p className="text-emerald-700 dark:text-emerald-400 font-bold">
                       🎉 Se você ganha até R$ 2.259 (ou até R$ 2.824 com o desconto simplificado), você é 100% isento e não paga nenhum centavo!
                     </p>
                   </div>
@@ -770,12 +782,12 @@ export default function HoleriteSimulator() {
 
               {/* Vale-Transporte */}
               {descontoVT > 0 && (
-                <div className="flex items-center justify-between p-2.5 rounded-lg bg-[#140E24] text-zinc-200">
+                <div className="flex items-center justify-between p-2.5 rounded-lg bg-slate-50 dark:bg-[#140E24] border border-slate-200 dark:border-transparent text-slate-800 dark:text-zinc-200">
                   <div>
-                    <span className="font-bold text-white block">4. Vale-Transporte (6%)</span>
-                    <span className="text-[11px] text-zinc-400">Desconto limite para passagens de ônibus</span>
+                    <span className="font-bold text-slate-900 dark:text-white block">4. Vale-Transporte (6%)</span>
+                    <span className="text-[11px] text-slate-600 dark:text-zinc-400 font-medium">Desconto limite para passagens de ônibus</span>
                   </div>
-                  <span className="font-bold text-rose-400 text-sm">
+                  <span className="font-bold text-rose-600 dark:text-rose-400 text-sm">
                     - R$ {descontoVT.toFixed(2)}
                   </span>
                 </div>
@@ -783,12 +795,12 @@ export default function HoleriteSimulator() {
 
               {/* Outros Descontos */}
               {outrosDescontos > 0 && (
-                <div className="flex items-center justify-between p-2.5 rounded-lg bg-[#140E24] text-zinc-200">
+                <div className="flex items-center justify-between p-2.5 rounded-lg bg-slate-50 dark:bg-[#140E24] border border-slate-200 dark:border-transparent text-slate-800 dark:text-zinc-200">
                   <div>
-                    <span className="font-bold text-white block">5. Outros Convênios / Descontos</span>
-                    <span className="text-[11px] text-zinc-400">Planos médicos ou adiantamentos</span>
+                    <span className="font-bold text-slate-900 dark:text-white block">5. Outros Convênios / Descontos</span>
+                    <span className="text-[11px] text-slate-600 dark:text-zinc-400 font-medium">Planos médicos ou adiantamentos</span>
                   </div>
-                  <span className="font-bold text-rose-400 text-sm">
+                  <span className="font-bold text-rose-600 dark:text-rose-400 text-sm">
                     - R$ {outrosDescontos.toFixed(2)}
                   </span>
                 </div>
@@ -796,26 +808,26 @@ export default function HoleriteSimulator() {
             </div>
 
             {/* FGTS COM EXPLICAÇÃO: NÃO É DESCONTADO! */}
-            <div className="bg-[#140E24] border border-purple-500/30 rounded-xl p-3 space-y-1.5">
+            <div className="bg-slate-50 dark:bg-[#140E24] border border-amber-300/60 dark:border-purple-500/30 rounded-xl p-3 space-y-1.5">
               <div className="flex items-center justify-between text-xs">
                 <div className="space-y-0.5">
-                  <span className="font-bold text-white flex items-center gap-1.5">
-                    <PiggyBank className="w-4 h-4 text-amber-400" />
+                  <span className="font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+                    <PiggyBank className="w-4 h-4 text-amber-500 dark:text-amber-400" />
                     <span>FGTS (Poupança que a empresa deposita para você):</span>
                   </span>
-                  <span className="text-[11px] text-emerald-400 font-semibold block">
+                  <span className="text-[11px] text-emerald-700 dark:text-emerald-400 font-bold block">
                     NÃO é descontado do seu salário! É um dinheiro a mais.
                   </span>
                 </div>
                 <div className="text-right">
-                  <span className="text-base font-black text-amber-300">
+                  <span className="text-base font-black text-amber-600 dark:text-amber-300">
                     R$ {fgtsCalculado.valor.toFixed(2)}
                   </span>
-                  <span className="text-[10px] text-zinc-400 block">por mês na Caixa</span>
+                  <span className="text-[10px] text-slate-600 dark:text-zinc-400 block font-medium">por mês na Caixa</span>
                 </div>
               </div>
 
-              <div className="text-[11px] text-zinc-300 bg-[#0F0C1D] p-2 rounded-lg leading-relaxed">
+              <div className="text-[11px] text-slate-700 dark:text-zinc-300 bg-white dark:bg-[#0F0C1D] border border-slate-200 dark:border-transparent p-2 rounded-lg leading-relaxed font-medium">
                 <strong>O que é o FGTS?</strong> É o Fundo de Garantia depositado pela empresa em uma conta da Caixa Econômica no seu nome ({fgtsCalculado.rotulo}). Aprendizes recebem 2% e vagas de Primeiro Emprego recebem 8% sobre a remuneração.
               </div>
             </div>
@@ -826,15 +838,15 @@ export default function HoleriteSimulator() {
       {/* ========================================================================= */}
       {/* 3. RESUMO VISUAL: "PARA ONDE VAI MEU DINHEIRO? (PASSO A PASSO)"           */}
       {/* ========================================================================= */}
-      <div className="bg-[#110E1B] border border-purple-500/20 rounded-2xl p-5 space-y-4 shadow-xl">
-        <div className="flex items-center justify-between border-b border-[#2D1B4E]/60 pb-3">
+      <div className="bg-white dark:bg-[#110E1B] border border-slate-300 dark:border-purple-500/20 rounded-2xl p-5 space-y-4 shadow-sm dark:shadow-xl">
+        <div className="flex items-center justify-between border-b border-slate-200 dark:border-[#2D1B4E]/60 pb-3">
           <div className="flex items-center gap-2">
-            <Wallet className="w-5 h-5 text-emerald-400" />
-            <h3 className="text-sm sm:text-base font-bold text-white">
+            <Wallet className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+            <h3 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white">
               Para Onde Vai Meu Dinheiro? (Passo a Passo Descomplicado)
             </h3>
           </div>
-          <span className="text-xs text-purple-300 font-semibold">
+          <span className="text-xs text-purple-700 dark:text-purple-300 font-bold">
             {percentLiquido.toFixed(1)}% fica com você
           </span>
         </div>
@@ -842,53 +854,53 @@ export default function HoleriteSimulator() {
         {/* Passo a Passo em 4 Caixas Claras */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           {/* Passo 1 */}
-          <div className="bg-[#140E24] border border-purple-500/20 rounded-xl p-3.5 space-y-1">
-            <span className="text-[11px] font-bold text-purple-400 uppercase tracking-wider block">
+          <div className="bg-slate-50 dark:bg-[#140E24] border border-slate-200 dark:border-purple-500/20 rounded-xl p-3.5 space-y-1">
+            <span className="text-[11px] font-bold text-purple-700 dark:text-purple-400 uppercase tracking-wider block">
               Passo 1: Você Ganha
             </span>
-            <div className="text-base font-black text-white">
+            <div className="text-base font-black text-slate-900 dark:text-white">
               R$ {totalProventos.toFixed(2)}
             </div>
-            <p className="text-[11px] text-zinc-400 leading-snug">
+            <p className="text-[11px] text-slate-600 dark:text-zinc-400 leading-snug font-medium">
               Salário bruto da oportunidade mais eventuais horas extras.
             </p>
           </div>
 
           {/* Passo 2 */}
-          <div className="bg-[#140E24] border border-purple-500/20 rounded-xl p-3.5 space-y-1">
-            <span className="text-[11px] font-bold text-rose-400 uppercase tracking-wider block">
+          <div className="bg-slate-50 dark:bg-[#140E24] border border-slate-200 dark:border-purple-500/20 rounded-xl p-3.5 space-y-1">
+            <span className="text-[11px] font-bold text-rose-600 dark:text-rose-400 uppercase tracking-wider block">
               Passo 2: Governo / INSS
             </span>
-            <div className="text-base font-black text-rose-400">
+            <div className="text-base font-black text-rose-600 dark:text-rose-400">
               - R$ {totalDescontosGoverno.toFixed(2)}
             </div>
-            <p className="text-[11px] text-zinc-400 leading-snug">
+            <p className="text-[11px] text-slate-600 dark:text-zinc-400 leading-snug font-medium">
               Contribuição de aposentadoria (INSS) e Imposto de Renda (IRPF).
             </p>
           </div>
 
           {/* Passo 3 */}
-          <div className="bg-[#140E24] border border-purple-500/20 rounded-xl p-3.5 space-y-1">
-            <span className="text-[11px] font-bold text-amber-400 uppercase tracking-wider block">
+          <div className="bg-slate-50 dark:bg-[#140E24] border border-slate-200 dark:border-purple-500/20 rounded-xl p-3.5 space-y-1">
+            <span className="text-[11px] font-bold text-amber-600 dark:text-amber-400 uppercase tracking-wider block">
               Passo 3: Seus Benefícios
             </span>
-            <div className="text-base font-black text-amber-400">
+            <div className="text-base font-black text-amber-600 dark:text-amber-400">
               - R$ {totalDescontosBeneficios.toFixed(2)}
             </div>
-            <p className="text-[11px] text-zinc-400 leading-snug">
+            <p className="text-[11px] text-slate-600 dark:text-zinc-400 leading-snug font-medium">
               Parte do custo do vale-transporte de ônibus e outros convênios.
             </p>
           </div>
 
           {/* Passo 4 */}
-          <div className="bg-[#140E24] border border-emerald-500/40 rounded-xl p-3.5 space-y-1 bg-gradient-to-b from-[#140E24] to-emerald-950/40">
-            <span className="text-[11px] font-bold text-emerald-400 uppercase tracking-wider block">
+          <div className="bg-emerald-50 dark:bg-[#140E24] border border-emerald-300 dark:border-emerald-500/40 rounded-xl p-3.5 space-y-1 dark:bg-gradient-to-b dark:from-[#140E24] dark:to-emerald-950/40">
+            <span className="text-[11px] font-bold text-emerald-700 dark:text-emerald-400 uppercase tracking-wider block">
               Passo 4: Na sua Conta
             </span>
-            <div className="text-base font-black text-emerald-300">
+            <div className="text-base font-black text-emerald-700 dark:text-emerald-300">
               R$ {salarioLiquido.toFixed(2)}
             </div>
-            <p className="text-[11px] text-zinc-300 leading-snug">
+            <p className="text-[11px] text-slate-700 dark:text-zinc-300 leading-snug font-medium">
               O valor líquido disponível para você pagar contas e usar livremente!
             </p>
           </div>
@@ -896,7 +908,7 @@ export default function HoleriteSimulator() {
 
         {/* Barra Visual Colorida de Distribuição */}
         <div className="pt-2 space-y-2">
-          <div className="w-full h-3 bg-[#160F28] rounded-full overflow-hidden flex border border-[#2D1B4E]">
+          <div className="w-full h-3 bg-slate-200 dark:bg-[#160F28] rounded-full overflow-hidden flex border border-slate-300 dark:border-[#2D1B4E]">
             <div
               style={{ width: `${percentLiquido}%` }}
               className="h-full bg-emerald-500 transition-all duration-300"
@@ -925,10 +937,10 @@ export default function HoleriteSimulator() {
             )}
           </div>
 
-          <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] text-zinc-400">
+          <div className="flex flex-wrap items-center justify-between gap-2 text-[11px] text-slate-700 dark:text-zinc-400">
             <span className="flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
-              <strong className="text-zinc-200">Líquido no Bolso: {percentLiquido.toFixed(1)}%</strong>
+              <strong className="text-slate-900 dark:text-zinc-200 font-bold">Líquido no Bolso: {percentLiquido.toFixed(1)}%</strong>
             </span>
             <span className="flex items-center gap-1.5">
               <span className="w-2.5 h-2.5 rounded-full bg-purple-500" />
@@ -950,14 +962,14 @@ export default function HoleriteSimulator() {
         </div>
 
         {/* Abas Didáticas: Acumulado Anual & Comparativo entre Aprendiz, Estágio e Primeiro Emprego */}
-        <div className="pt-3 border-t border-[#2D1B4E]/60 space-y-3">
+        <div className="pt-3 border-t border-slate-200 dark:border-[#2D1B4E]/60 space-y-3">
           <div className="flex items-center gap-2 overflow-x-auto pb-1">
             <button
               onClick={() => setViewMode(viewMode === 'ANUAL' ? 'MENSAL' : 'ANUAL')}
               className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
                 viewMode === 'ANUAL'
                   ? 'bg-purple-600 text-white shadow-md'
-                  : 'bg-[#140E24] text-zinc-400 hover:text-white border border-[#2D1B4E]'
+                  : 'bg-slate-100 hover:bg-slate-200 dark:bg-[#140E24] text-slate-700 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white border border-slate-300 dark:border-[#2D1B4E]'
               }`}
             >
               <Calendar className="w-3.5 h-3.5" />
@@ -969,7 +981,7 @@ export default function HoleriteSimulator() {
               className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer ${
                 viewMode === 'COMPARATIVO_MODALIDADES'
                   ? 'bg-purple-600 text-white shadow-md'
-                  : 'bg-[#140E24] text-zinc-400 hover:text-white border border-[#2D1B4E]'
+                  : 'bg-slate-100 hover:bg-slate-200 dark:bg-[#140E24] text-slate-700 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white border border-slate-300 dark:border-[#2D1B4E]'
               }`}
             >
               <Users className="w-3.5 h-3.5" />
@@ -979,42 +991,42 @@ export default function HoleriteSimulator() {
 
           {/* Visualização 1: Acumulado Anual */}
           {viewMode === 'ANUAL' && (
-            <div className="bg-[#140E24] border border-purple-500/20 rounded-xl p-4 space-y-3 text-xs">
-              <div className="flex items-center justify-between border-b border-[#2D1B4E] pb-2">
-                <span className="font-bold text-white flex items-center gap-1.5">
-                  <Calendar className="w-4 h-4 text-purple-400" />
+            <div className="bg-slate-50 dark:bg-[#140E24] border border-slate-200 dark:border-purple-500/20 rounded-xl p-4 space-y-3 text-xs">
+              <div className="flex items-center justify-between border-b border-slate-200 dark:border-[#2D1B4E] pb-2">
+                <span className="font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+                  <Calendar className="w-4 h-4 text-purple-600 dark:text-purple-400" />
                   <span>Seu Ganho Total Acumulado em 1 Ano de Contrato:</span>
                 </span>
-                <span className="text-[11px] text-emerald-400 font-semibold">12 meses + direitos</span>
+                <span className="text-[11px] text-emerald-700 dark:text-emerald-400 font-bold">12 meses + direitos</span>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
-                <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-lg p-3">
-                  <span className="text-[11px] text-zinc-400 block">Total Líquido Anual:</span>
-                  <div className="text-base font-bold text-emerald-400 mt-0.5">
+                <div className="bg-white dark:bg-[#0F0C1D] border border-slate-200 dark:border-purple-500/20 rounded-lg p-3 shadow-xs">
+                  <span className="text-[11px] text-slate-600 dark:text-zinc-400 block font-medium">Total Líquido Anual:</span>
+                  <div className="text-base font-bold text-emerald-600 dark:text-emerald-400 mt-0.5">
                     R$ {anualAcumulado.totalAnualLiquido.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                   </div>
-                  <span className="text-[10px] text-zinc-400 block mt-0.5">
+                  <span className="text-[10px] text-slate-500 dark:text-zinc-400 block mt-0.5">
                     12 salários + 13º integral + Férias (+ 1/3)
                   </span>
                 </div>
 
-                <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-lg p-3">
-                  <span className="text-[11px] text-zinc-400 block">FGTS Guardado na Caixa:</span>
-                  <div className="text-base font-bold text-purple-300 mt-0.5">
+                <div className="bg-white dark:bg-[#0F0C1D] border border-slate-200 dark:border-purple-500/20 rounded-lg p-3 shadow-xs">
+                  <span className="text-[11px] text-slate-600 dark:text-zinc-400 block font-medium">FGTS Guardado na Caixa:</span>
+                  <div className="text-base font-bold text-purple-700 dark:text-purple-300 mt-0.5">
                     R$ {anualAcumulado.totalFGTSAnual.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                   </div>
-                  <span className="text-[10px] text-zinc-400 block mt-0.5">
+                  <span className="text-[10px] text-slate-500 dark:text-zinc-400 block mt-0.5">
                     {contractType === 'ESTAGIARIO' ? 'Estágio não recolhe FGTS' : 'Depositado pela empresa sem desconto'}
                   </span>
                 </div>
 
-                <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-lg p-3">
-                  <span className="text-[11px] text-zinc-400 block">Média Mensal Real:</span>
-                  <div className="text-base font-bold text-white mt-0.5">
+                <div className="bg-white dark:bg-[#0F0C1D] border border-slate-200 dark:border-purple-500/20 rounded-lg p-3 shadow-xs">
+                  <span className="text-[11px] text-slate-600 dark:text-zinc-400 block font-medium">Média Mensal Real:</span>
+                  <div className="text-base font-bold text-slate-900 dark:text-white mt-0.5">
                     R$ {anualAcumulado.mediaMensalReal.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
                   </div>
-                  <span className="text-[10px] text-zinc-400 block mt-0.5">
+                  <span className="text-[10px] text-slate-500 dark:text-zinc-400 block mt-0.5">
                     Média por mês somando todos os benefícios
                   </span>
                 </div>
@@ -1024,58 +1036,58 @@ export default function HoleriteSimulator() {
 
           {/* Visualização 2: Comparativo Didático das 3 Modalidades do SkillHub */}
           {viewMode === 'COMPARATIVO_MODALIDADES' && (
-            <div className="bg-[#140E24] border border-purple-500/20 rounded-xl p-4 space-y-3 text-xs">
-              <div className="flex items-center justify-between border-b border-[#2D1B4E] pb-2">
-                <span className="font-bold text-white flex items-center gap-1.5">
-                  <Users className="w-4 h-4 text-purple-400" />
+            <div className="bg-slate-50 dark:bg-[#140E24] border border-slate-200 dark:border-purple-500/20 rounded-xl p-4 space-y-3 text-xs">
+              <div className="flex items-center justify-between border-b border-slate-200 dark:border-[#2D1B4E] pb-2">
+                <span className="font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+                  <Users className="w-4 h-4 text-purple-600 dark:text-purple-400" />
                   <span>Diferenças entre as Modalidades de Oportunidades do SkillHub:</span>
                 </span>
-                <span className="text-[11px] text-purple-300 font-semibold">Guia Oficial</span>
+                <span className="text-[11px] text-purple-700 dark:text-purple-300 font-bold">Guia Oficial</span>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
                 {/* Jovem Aprendiz */}
-                <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-lg p-3 space-y-1.5">
-                  <span className="font-bold text-purple-300 text-xs block flex items-center gap-1">
-                    <GraduationCap className="w-3.5 h-3.5 text-purple-400" />
+                <div className="bg-white dark:bg-[#0F0C1D] border border-slate-200 dark:border-purple-500/20 rounded-lg p-3 space-y-1.5 shadow-xs">
+                  <span className="font-bold text-purple-700 dark:text-purple-300 text-xs block flex items-center gap-1">
+                    <GraduationCap className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
                     <span>Jovem Aprendiz:</span>
                   </span>
-                  <ul className="space-y-1 text-zinc-300 text-[11px]">
-                    <li>• <strong>Idade:</strong> 14 a 24 anos incompletos</li>
-                    <li>• <strong>Carga:</strong> 4h a 6h diárias protegidas</li>
-                    <li>• <strong>FGTS:</strong> 2% especial depositado</li>
-                    <li>• <strong>13º e Férias:</strong> 100% garantidos</li>
-                    <li>• <strong>Capacitação:</strong> Curso teórico incluído</li>
+                  <ul className="space-y-1 text-slate-700 dark:text-zinc-300 text-[11px] font-medium">
+                    <li>• <strong className="text-slate-900 dark:text-white">Idade:</strong> 14 a 24 anos incompletos</li>
+                    <li>• <strong className="text-slate-900 dark:text-white">Carga:</strong> 4h a 6h diárias protegidas</li>
+                    <li>• <strong className="text-slate-900 dark:text-white">FGTS:</strong> 2% especial depositado</li>
+                    <li>• <strong className="text-slate-900 dark:text-white">13º e Férias:</strong> 100% garantidos</li>
+                    <li>• <strong className="text-slate-900 dark:text-white">Capacitação:</strong> Curso teórico incluído</li>
                   </ul>
                 </div>
 
                 {/* Estágio */}
-                <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-lg p-3 space-y-1.5">
-                  <span className="font-bold text-emerald-400 text-xs block flex items-center gap-1">
-                    <Briefcase className="w-3.5 h-3.5 text-emerald-400" />
+                <div className="bg-white dark:bg-[#0F0C1D] border border-slate-200 dark:border-purple-500/20 rounded-lg p-3 space-y-1.5 shadow-xs">
+                  <span className="font-bold text-emerald-700 dark:text-emerald-400 text-xs block flex items-center gap-1">
+                    <Briefcase className="w-3.5 h-3.5 text-emerald-600 dark:text-emerald-400" />
                     <span>Estagiário:</span>
                   </span>
-                  <ul className="space-y-1 text-zinc-300 text-[11px]">
-                    <li>• <strong>Requisito:</strong> Matrícula ativa em curso</li>
-                    <li>• <strong>Carga:</strong> 4h a 6h diárias (máx. 30h/sem)</li>
-                    <li>• <strong>INSS e FGTS:</strong> Isento (sem descontos)</li>
-                    <li>• <strong>Recesso:</strong> 30 dias remunerados após 1 ano</li>
-                    <li>• <strong>Seguro:</strong> Apólice contra acidentes inclusa</li>
+                  <ul className="space-y-1 text-slate-700 dark:text-zinc-300 text-[11px] font-medium">
+                    <li>• <strong className="text-slate-900 dark:text-white">Requisito:</strong> Matrícula ativa em curso</li>
+                    <li>• <strong className="text-slate-900 dark:text-white">Carga:</strong> 4h a 6h diárias (máx. 30h/sem)</li>
+                    <li>• <strong className="text-slate-900 dark:text-white">INSS e FGTS:</strong> Isento (sem descontos)</li>
+                    <li>• <strong className="text-slate-900 dark:text-white">Recesso:</strong> 30 dias remunerados após 1 ano</li>
+                    <li>• <strong className="text-slate-900 dark:text-white">Seguro:</strong> Apólice contra acidentes inclusa</li>
                   </ul>
                 </div>
 
                 {/* Primeiro Emprego */}
-                <div className="bg-[#0F0C1D] border border-purple-500/20 rounded-lg p-3 space-y-1.5">
-                  <span className="font-bold text-white text-xs block flex items-center gap-1">
-                    <Award className="w-3.5 h-3.5 text-purple-400" />
+                <div className="bg-white dark:bg-[#0F0C1D] border border-slate-200 dark:border-purple-500/20 rounded-lg p-3 space-y-1.5 shadow-xs">
+                  <span className="font-bold text-purple-700 dark:text-purple-300 text-xs block flex items-center gap-1">
+                    <Award className="w-3.5 h-3.5 text-purple-600 dark:text-purple-400" />
                     <span>Primeiro Emprego:</span>
                   </span>
-                  <ul className="space-y-1 text-zinc-300 text-[11px]">
-                    <li>• <strong>Perfil:</strong> Jovens sem experiência prévia</li>
-                    <li>• <strong>Carga:</strong> Até 40h ou 44h semanais</li>
-                    <li>• <strong>FGTS:</strong> 8% integral na conta Caixa</li>
-                    <li>• <strong>Direitos:</strong> 13º, férias e rescisão legal</li>
-                    <li>• <strong>Carteira:</strong> Registro formal de início</li>
+                  <ul className="space-y-1 text-slate-700 dark:text-zinc-300 text-[11px] font-medium">
+                    <li>• <strong className="text-slate-900 dark:text-white">Perfil:</strong> Jovens sem experiência prévia</li>
+                    <li>• <strong className="text-slate-900 dark:text-white">Carga:</strong> Até 40h ou 44h semanais</li>
+                    <li>• <strong className="text-slate-900 dark:text-white">FGTS:</strong> 8% integral na conta Caixa</li>
+                    <li>• <strong className="text-slate-900 dark:text-white">Direitos:</strong> 13º, férias e rescisão legal</li>
+                    <li>• <strong className="text-slate-900 dark:text-white">Carteira:</strong> Registro formal de início</li>
                   </ul>
                 </div>
               </div>

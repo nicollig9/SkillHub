@@ -1,9 +1,13 @@
 'use client';
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
-import { UserRole, CandidateProfileType, UserAccount, Student, JobVacancy, Badge, Application, GuardrailLog } from '@/types';
+import React, { createContext, useContext, useState, useEffect, useMemo } from 'react';
+import { UserRole, CandidateProfileType, UserAccount, Student, JobVacancy, Badge, Application, GuardrailLog, UserCourseItem } from '@/types';
 import { INITIAL_STUDENT, INITIAL_VAGAS, INITIAL_BADGES, INITIAL_APPLICATIONS, INITIAL_GUARDRAILS_LOGS } from '@/data/mockData';
-import { COURSES } from '@/data/coursesData';
+import { COURSES, resolveCourseAlias as resolveCourseAliasFromData } from '@/data/coursesData';
+
+function resolveCourseAlias(id: string): string {
+  return resolveCourseAliasFromData(id);
+}
 
 export type AppView = 
   | 'INICIO'
@@ -32,6 +36,7 @@ export interface ToastNotification {
 }
 
 export interface UserSavedData {
+  version?: number;
   student: Student;
   completedModules: Record<string, string[]>;
   quizResults: Record<string, { score: number; passed: boolean; answers: number[]; date: string }>;
@@ -40,7 +45,12 @@ export interface UserSavedData {
   selectedCourseId: string;
   activeModuleIndex: number;
   candidateProfileType: CandidateProfileType;
-  currentUser: UserAccount;
+  currentUser: UserAccount | null;
+  cursosInscritos?: UserCourseItem[];
+  badgesConquistadas?: { badgeId: string; title: string; date: string; score: number; code: string }[];
+  horasEstudadas?: number;
+  progressoGeral?: number;
+  candidaturasEnviadas?: Application[];
   lastView?: AppView;
   savedAt: string;
 }
@@ -106,6 +116,7 @@ interface AppContextType {
   openCourse: (courseId: string, moduleIndex?: number) => void;
   markModuleComplete: (courseId: string, moduleId: string) => void;
   submitCourseQuiz: (courseId: string, scorePercentage: number, userAnswers: number[]) => boolean;
+  completeCourseAndClaimBadge: (courseId: string) => boolean;
   applyToJob: (
     vagaId: number, 
     details?: {
@@ -125,6 +136,11 @@ interface AppContextType {
   theme: 'dark' | 'light';
   toggleTheme: () => void;
   isDemoMode: boolean;
+  cursosInscritos: UserCourseItem[];
+  badgesConquistadas: { badgeId: string; title: string; date: string; score: number; code: string }[];
+  horasEstudadas: number;
+  progressoGeral: number;
+  candidaturasEnviadas: Application[];
 }
 
 const STORAGE_PREFIX = 'skillhub_user_';
@@ -179,38 +195,53 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     try {
-      const rawSession = localStorage.getItem(SESSION_KEY);
-      if (!rawSession) return;
+      // Invalidação e renovação de cache do localStorage (versão 3 - Reset total de progresso mock)
+      const DATA_VERSION_KEY = 'skillhub_data_version';
+      const CURRENT_DATA_VERSION = '4';
+      const cachedVersion = localStorage.getItem(DATA_VERSION_KEY);
 
-      const session = JSON.parse(rawSession) as UserAccount;
-      if (!session?.email || !session.role) {
+      if (cachedVersion !== CURRENT_DATA_VERSION) {
+        localStorage.setItem(DATA_VERSION_KEY, CURRENT_DATA_VERSION);
         localStorage.removeItem(SESSION_KEY);
-        return;
+        const allKeys = Object.keys(localStorage);
+        allKeys.forEach((key) => {
+          if (key.startsWith(STORAGE_PREFIX)) {
+            try {
+              const raw = localStorage.getItem(key);
+              if (raw) {
+                const parsed = JSON.parse(raw);
+                if (parsed) {
+                  parsed.version = 4;
+                  parsed.completedModules = {};
+                  parsed.quizResults = {};
+                  parsed.cursosInscritos = [];
+                  parsed.badgesConquistadas = [];
+                  parsed.horasEstudadas = 0;
+                  parsed.progressoGeral = 0;
+                  parsed.lastView = 'DASHBOARD';
+                  if (parsed.student) {
+                    parsed.student.badgesEarned = [];
+                  }
+                  localStorage.setItem(key, JSON.stringify(parsed));
+                }
+              }
+            } catch {
+              // ignore
+            }
+          }
+        });
       }
 
-      setCurrentUser(session);
-      setRole(session.role);
-      setIsAuthenticated(true);
-
-      if (session.role === 'ALUNO' && session.email !== 'demo@skillhub.com.br') {
-        const rawUserData = localStorage.getItem(`${STORAGE_PREFIX}${session.email.toLowerCase().trim()}`);
-        const savedData = rawUserData ? JSON.parse(rawUserData) as UserSavedData : null;
-        if (savedData?.student) {
-          setCandidateProfileType(savedData.candidateProfileType || session.profileType);
-          setStudent(savedData.student);
-          setCompletedModules(savedData.completedModules || {});
-          setQuizResults(savedData.quizResults || {});
-          setBadges(savedData.badges || INITIAL_BADGES);
-          setApplications(savedData.applications || []);
-          setCurrentView(savedData.lastView && savedData.lastView !== 'LOGIN' ? savedData.lastView : 'DASHBOARD');
-        }
-      } else if (session.role === 'RECRUTADOR') {
-        setCurrentView('RECRUTADOR_RH');
-      } else {
-        setCurrentView('DASHBOARD');
-      }
+      // Requisito 1: A aplicação deve SEMPRE abrir na tela de login por padrão (sem auto-login silencioso de sessões antigas)
+      localStorage.removeItem(SESSION_KEY);
+      setIsAuthenticated(false);
+      setCurrentUser(null);
+      setCurrentView('LOGIN');
     } catch {
       localStorage.removeItem(SESSION_KEY);
+      setIsAuthenticated(false);
+      setCurrentUser(null);
+      setCurrentView('LOGIN');
     }
   }, []);
 
@@ -298,6 +329,91 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     }
   };
 
+  // =========================================================================
+  // GESTÃO DINÂMICA DE PROGRESSO REAL DO USUÁRIO (ZERA EM NOVOS CADASTROS)
+  // =========================================================================
+
+  // 1. Cursos Inscritos (Zero para nova conta, calculado dinamicamente conforme o jovem estuda - com deduplicação)
+  const cursosInscritos: UserCourseItem[] = useMemo(() => {
+    const list: UserCourseItem[] = [];
+    const courseIds = Array.from(new Set([
+      ...Object.keys(completedModules),
+      ...Object.keys(quizResults)
+    ]));
+
+    const seenCourseIds = new Set<string>();
+
+    for (const rawId of courseIds) {
+      const resolvedId = resolveCourseAlias(rawId);
+      if (seenCourseIds.has(resolvedId)) continue;
+      seenCourseIds.add(resolvedId);
+
+      const course = COURSES.find((c) => c.id === resolvedId || c.id === rawId);
+      if (!course) continue;
+
+      const completedInCourse = Array.from(new Set([
+        ...(completedModules[resolvedId] || []),
+        ...(completedModules[rawId] || [])
+      ]));
+      const quizPassed = Boolean(quizResults[resolvedId]?.passed || quizResults[rawId]?.passed);
+      const totalMods = course.modules.length || 1;
+      const progress = quizPassed ? 100 : Math.min(99, Math.round((completedInCourse.length / totalMods) * 100));
+      const isCompleted = quizPassed;
+
+      list.push({
+        id: course.id,
+        courseId: course.id,
+        title: course.title,
+        trackName: course.trackName || 'Trilha de Qualificação',
+        category: course.category || 'Geral',
+        currentModule: completedInCourse.length < course.modules.length 
+          ? course.modules[completedInCourse.length]?.title || `Módulo ${completedInCourse.length + 1}`
+          : (isCompleted ? 'Curso Concluído' : 'Aguardando Avaliação Final'),
+        progress: isCompleted ? 100 : progress,
+        workload: `${course.hours}h`,
+        hours: course.hours,
+        status: isCompleted ? 'concluido' : 'em_andamento',
+        moduleIndex: Math.min(completedInCourse.length, course.modules.length - 1)
+      });
+    }
+
+    return list;
+  }, [completedModules, quizResults]);
+
+  // 2. Badges Conquistadas (Zero para nova conta)
+  const badgesConquistadas = useMemo(() => {
+    return student.badgesEarned.map((b) => {
+      const badgeObj = badges.find((item) => item.id.includes(b.badgeId.replace('badge-', '')) || b.badgeId.includes(item.id.replace('badge-', '')));
+      return {
+        badgeId: b.badgeId,
+        title: badgeObj?.title || 'Badge Conquistada',
+        date: b.date,
+        score: b.score,
+        code: b.code
+      };
+    });
+  }, [student.badgesEarned, badges]);
+
+  // 3. Horas Estudadas (0h para nova conta)
+  const horasEstudadas = useMemo(() => {
+    return cursosInscritos.reduce((acc, curr) => {
+      if (curr.status === 'concluido') return acc + curr.hours;
+      return acc + Math.round((curr.hours * curr.progress) / 100);
+    }, 0);
+  }, [cursosInscritos]);
+
+  // 4. Progresso Geral (0% para nova conta)
+  const progressoGeral = useMemo(() => {
+    if (cursosInscritos.length === 0) return 0;
+    const total = cursosInscritos.reduce((acc, c) => acc + c.progress, 0);
+    return Math.round(total / cursosInscritos.length);
+  }, [cursosInscritos]);
+
+  // 5. Candidaturas Enviadas (Zero para nova conta)
+  const candidaturasEnviadas = useMemo(() => {
+    return applications;
+  }, [applications]);
+
   // SINCRONIZAÇÃO AUTOMÁTICA DO PROGRESSO DO USUÁRIO NO LOCALSTORAGE
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -313,8 +429,21 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         selectedCourseId,
         activeModuleIndex,
         candidateProfileType,
-        currentUser,
+        currentUser: currentUser ? {
+          ...currentUser,
+          cursosInscritos,
+          badgesConquistadas,
+          horasEstudadas,
+          progressoGeral,
+          candidaturasEnviadas
+        } : null,
+        cursosInscritos,
+        badgesConquistadas,
+        horasEstudadas,
+        progressoGeral,
+        candidaturasEnviadas,
         lastView: currentView === 'LOGIN' ? 'DASHBOARD' : currentView,
+        version: 2,
         savedAt: new Date().toISOString()
       };
       try {
@@ -339,13 +468,14 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   ]);
 
   const openCourse = (courseId: string, moduleIndex?: number) => {
-    setSelectedCourseId(courseId);
+    const resolvedId = resolveCourseAlias(courseId);
+    setSelectedCourseId(resolvedId);
     if (moduleIndex !== undefined) {
       setActiveModuleIndex(moduleIndex);
     } else {
       // Retomar automaticamente de onde o aluno parou naquele curso
-      const course = COURSES.find((c) => c.id === courseId);
-      const doneList = completedModules[courseId] || [];
+      const course = COURSES.find((c) => c.id === resolvedId || c.id === courseId);
+      const doneList = completedModules[resolvedId] || completedModules[courseId] || [];
       if (course && doneList.length > 0 && doneList.length < course.modules.length) {
         setActiveModuleIndex(doneList.length);
       } else {
@@ -356,13 +486,15 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   };
 
   const markModuleComplete = (courseId: string, moduleId: string) => {
+    const resolvedId = resolveCourseAlias(courseId);
     setCompletedModules((prev) => {
       const currentList = prev[courseId] || [];
       if (!currentList.includes(moduleId)) {
         showToast('Progresso Salvo', 'Módulo concluído e salvo no seu histórico!', 'success');
         return {
           ...prev,
-          [courseId]: [...currentList, moduleId]
+          [courseId]: [...currentList, moduleId],
+          [resolvedId]: [...currentList, moduleId]
         };
       }
       return prev;
@@ -370,7 +502,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   };
 
   const submitCourseQuiz = (courseId: string, scorePercentage: number, userAnswers: number[]): boolean => {
-    const course = COURSES.find((c) => c.id === courseId);
+    const resolvedId = resolveCourseAlias(courseId);
+    const course = COURSES.find((c) => c.id === resolvedId || c.id === courseId);
     if (!course) return false;
 
     const passed = scorePercentage >= 70;
@@ -453,6 +586,80 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       );
       return false;
     }
+  };
+
+  const completeCourseAndClaimBadge = (courseId: string): boolean => {
+    const resolvedId = resolveCourseAlias(courseId);
+    const course = COURSES.find((c) => c.id === resolvedId || c.id === courseId) || COURSES[0];
+    if (!course) return false;
+
+    const allModuleIds = course.modules.map((m) => m.id);
+    const now = new Date().toLocaleDateString('pt-BR');
+    const badgeCode = `SKILL-PR-2026-${Math.floor(1000 + Math.random() * 9000)}Z`;
+
+    setCompletedModules((prev) => ({
+      ...prev,
+      [course.id]: allModuleIds
+    }));
+
+    setQuizResults((prev) => ({
+      ...prev,
+      [course.id]: {
+        score: 100,
+        passed: true,
+        answers: course.quiz.map((q) => q.correct),
+        date: now
+      }
+    }));
+
+    setBadges((prev) =>
+      prev.map((b) =>
+        b.title.toLowerCase().includes(course.badgeName.toLowerCase()) || 
+        b.id.includes(course.badgeCategory.toLowerCase()) ||
+        b.title.toLowerCase().includes(course.title.toLowerCase())
+          ? { ...b, dateEarned: now, score: 100, codeVerificador: badgeCode }
+          : b
+      )
+    );
+
+    setStudent((prev) => {
+      const alreadyHas = prev.badgesEarned.some(
+        (b) => b.badgeId === `badge-${course.badgeCategory.toLowerCase()}` || b.badgeId.includes(course.id)
+      );
+      if (!alreadyHas) {
+        return {
+          ...prev,
+          badgesEarned: [
+            ...prev.badgesEarned,
+            {
+              badgeId: `badge-${course.badgeCategory.toLowerCase()}`,
+              date: now,
+              score: 100,
+              code: badgeCode
+            }
+          ]
+        };
+      }
+      return prev;
+    });
+
+    const newLog: GuardrailLog = {
+      id: 'glog-' + Date.now(),
+      timestamp: `${now} ${new Date().toLocaleTimeString('pt-BR')}`,
+      type: 'BADGE_INTEGRITY',
+      status: 'ALLOWED',
+      details: `Curso "${course.title}" concluído com 100%. Badge "${course.badgeName}" resgatada e validada.`,
+      source: 'Módulo de Visualização de Curso & Gamificação'
+    };
+    setGuardrailLogs((prev) => [newLog, ...prev]);
+
+    showToast(
+      '🎉 Parabéns! Curso Concluído!',
+      `Você concluiu "${course.title}" e resgatou sua Badge Oficial: "${course.badgeName}"!`,
+      'success'
+    );
+
+    return true;
   };
 
   const applyToJob = (
@@ -855,7 +1062,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
             candidateProfileType: profileType,
             currentUser: newAccount,
             lastView: 'DASHBOARD',
-            savedAt: new Date().toISOString()
+            version: 2,
+        savedAt: new Date().toISOString()
           };
           localStorage.setItem(storageKey, JSON.stringify(initialRecord));
           recordAccountInIndex(cleanEmail, userName, profileType);
@@ -909,7 +1117,12 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       idade: data.idade || 17,
       menorDeIdade: isMinor,
       responsavelLegal: data.responsavelLegal,
-      matriculaEscolar: data.matriculaEscolar
+      matriculaEscolar: data.matriculaEscolar,
+      cursosInscritos: [],
+      badgesConquistadas: [],
+      horasEstudadas: 0,
+      progressoGeral: 0,
+      candidaturasEnviadas: []
     };
     persistSession(account);
 
@@ -953,8 +1166,14 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
           activeModuleIndex: 0,
           candidateProfileType: data.profileType,
           currentUser: account,
+          cursosInscritos: [],
+          badgesConquistadas: [],
+          horasEstudadas: 0,
+          progressoGeral: 0,
+          candidaturasEnviadas: [],
           lastView: 'DASHBOARD',
-          savedAt: new Date().toISOString()
+          version: 2,
+        savedAt: new Date().toISOString()
         };
         localStorage.setItem(storageKey, JSON.stringify(initialRecord));
         recordAccountInIndex(cleanEmail, data.nome, data.profileType, cleanUsername);
@@ -1045,21 +1264,34 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     localStorage.removeItem(SESSION_KEY);
     setIsAuthenticated(false);
     setCurrentUser(null);
+    setStudent({
+      ...INITIAL_STUDENT,
+      id: 0,
+      nome: '',
+      email: '',
+      badgesEarned: []
+    });
+    setCompletedModules({});
+    setQuizResults({});
+    setApplications([]);
+    setBadges(INITIAL_BADGES.map((b) => ({ ...b, dateEarned: undefined, score: undefined, codeVerificador: undefined })));
+    setVagas(INITIAL_VAGAS.map((v) => ({ ...v, jaCandidatou: false })));
     setCurrentView('LOGIN');
     showToast('Sessão Encerrada', 'Você saiu com segurança do sistema.', 'info');
   };
 
   const resetSimulator = () => {
-    setStudent(INITIAL_STUDENT);
-    setVagas(INITIAL_VAGAS);
-    setBadges(INITIAL_BADGES);
-    setApplications(INITIAL_APPLICATIONS);
-    setGuardrailLogs(INITIAL_GUARDRAILS_LOGS);
-    setCompletedModules({
-      'curso-jovem-aprendiz-avancado': ['mod-1', 'mod-2'],
-      'curso-curriculo-plataformas': ['cur-mod-1']
+    setStudent({
+      ...INITIAL_STUDENT,
+      badgesEarned: []
     });
-    showToast('Demonstração Restaurada', 'Dados restaurados para os valores padrão do sistema.', 'info');
+    setVagas(INITIAL_VAGAS.map((v) => ({ ...v, jaCandidatou: false })));
+    setBadges(INITIAL_BADGES.map((b) => ({ ...b, dateEarned: undefined, score: undefined, codeVerificador: undefined })));
+    setApplications([]);
+    setGuardrailLogs(INITIAL_GUARDRAILS_LOGS);
+    setCompletedModules({});
+    setQuizResults({});
+    showToast('Dados Zerados', 'Progresso, cursos e avaliações foram zerados com sucesso.', 'info');
   };
 
   return (
@@ -1073,7 +1305,19 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         setIsSidebarOpen,
         toggleSidebar,
         isAuthenticated,
-        currentUser,
+        currentUser: currentUser ? {
+          ...currentUser,
+          cursosInscritos,
+          badgesConquistadas,
+          horasEstudadas,
+          progressoGeral,
+          candidaturasEnviadas
+        } : null,
+        cursosInscritos,
+        badgesConquistadas,
+        horasEstudadas,
+        progressoGeral,
+        candidaturasEnviadas,
         candidateProfileType,
         setCandidateProfileType,
         loginUser,
@@ -1097,6 +1341,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         openCourse,
         markModuleComplete,
         submitCourseQuiz,
+        completeCourseAndClaimBadge,
         applyToJob,
         addNewVacancy,
         testAntiHarassment,

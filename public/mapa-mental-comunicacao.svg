@@ -1,0 +1,212 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 820" width="100%" height="100%">
+  <defs>
+    <!-- Background Gradient -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E091B" />
+      <stop offset="50%" stop-color="#140D26" />
+      <stop offset="100%" stop-color="#0A0614" />
+    </linearGradient>
+
+    <!-- Center Node Gradient -->
+    <linearGradient id="centerGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8B5CF6" />
+      <stop offset="100%" stop-color="#6D28D9" />
+    </linearGradient>
+
+    <!-- Branch Gradients -->
+    <linearGradient id="branch1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A855F7" />
+      <stop offset="100%" stop-color="#7C3AED" />
+    </linearGradient>
+    <linearGradient id="branch2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6" />
+      <stop offset="100%" stop-color="#1D4ED8" />
+    </linearGradient>
+    <linearGradient id="branch3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981" />
+      <stop offset="100%" stop-color="#047857" />
+    </linearGradient>
+    <linearGradient id="branch4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#B45309" />
+    </linearGradient>
+    <linearGradient id="branch5" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EC4899" />
+      <stop offset="100%" stop-color="#BE185D" />
+    </linearGradient>
+    <linearGradient id="branch6" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06B6D4" />
+      <stop offset="100%" stop-color="#0E7490" />
+    </linearGradient>
+
+    <!-- Node Glow Filters -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Canvas -->
+  <rect width="1280" height="820" rx="24" fill="url(#bgGrad)" />
+
+  <!-- Subtle Grid Pattern -->
+  <g opacity="0.06" stroke="#FFFFFF" stroke-width="1">
+    <line x1="0" y1="136" x2="1280" y2="136" />
+    <line x1="0" y1="272" x2="1280" y2="272" />
+    <line x1="0" y1="408" x2="1280" y2="408" />
+    <line x1="0" y1="544" x2="1280" y2="544" />
+    <line x1="0" y1="680" x2="1280" y2="680" />
+    <line x1="213" y1="0" x2="213" y2="820" />
+    <line x1="426" y1="0" x2="426" y2="820" />
+    <line x1="640" y1="0" x2="640" y2="820" />
+    <line x1="853" y1="0" x2="853" y2="820" />
+    <line x1="1066" y1="0" x2="1066" y2="820" />
+  </g>
+
+  <!-- Watermark / Brand Header inside SVG -->
+  <g transform="translate(640, 55)" text-anchor="middle">
+    <rect x="-190" y="-20" width="380" height="36" rx="18" fill="#1E1438" stroke="#8B5CF6" stroke-width="1" stroke-opacity="0.4" />
+    <text y="3" fill="#C4B5FD" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" letter-spacing="1.5">MAPA MENTAL PEDAGÓGICO • ESCOLA VIRTUAL</text>
+  </g>
+
+  <!-- Connecting Curved Connector Lines -->
+  <g fill="none" stroke-width="2.5" opacity="0.5">
+    <!-- Center to Branch 1 (Top Left) -->
+    <path d="M 540 370 C 440 330 380 230 290 190" stroke="url(#branch1)" stroke-dasharray="4,4" />
+    <!-- Center to Branch 2 (Mid Left) -->
+    <path d="M 500 410 C 400 410 350 410 290 410" stroke="url(#branch2)" />
+    <!-- Center to Branch 3 (Bottom Left) -->
+    <path d="M 540 450 C 440 490 380 590 290 630" stroke="url(#branch3)" stroke-dasharray="4,4" />
+
+    <!-- Center to Branch 4 (Top Right) -->
+    <path d="M 740 370 C 840 330 900 230 990 190" stroke="url(#branch4)" stroke-dasharray="4,4" />
+    <!-- Center to Branch 5 (Mid Right) -->
+    <path d="M 780 410 C 880 410 930 410 990 410" stroke="url(#branch5)" />
+    <!-- Center to Branch 6 (Bottom Right) -->
+    <path d="M 740 450 C 840 490 900 590 990 630" stroke="url(#branch6)" stroke-dasharray="4,4" />
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- CENTER HUB: TÍTULO CENTRAL DO MAPA MENTAL                                 -->
+  <!-- ========================================================================= -->
+  <g transform="translate(640, 410)">
+    <!-- Outer Glow Circle -->
+    <circle r="130" fill="#7C3AED" opacity="0.12" filter="url(#glow)" />
+    <circle r="115" fill="#190F30" stroke="#8B5CF6" stroke-width="2.5" stroke-opacity="0.8" />
+    
+    <!-- Central Badge Pill -->
+    <rect x="-95" y="-90" width="190" height="26" rx="13" fill="#2E1065" stroke="#A78BFA" stroke-width="1" />
+    <text y="-73" text-anchor="middle" fill="#DDD6FE" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="800" letter-spacing="1">CURSO COMPLETO</text>
+
+    <!-- Center Icons & Title -->
+    <text y="-32" text-anchor="middle" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="900" letter-spacing="-0.5">COMUNICAÇÃO</text>
+    <text y="-6" text-anchor="middle" fill="#FBBF24" font-family="system-ui, -apple-system, sans-serif" font-size="21" font-weight="900" letter-spacing="-0.5">ESCRITA &amp; E-MAILS</text>
+    <text y="20" text-anchor="middle" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700">REDAÇÃO CORPORATIVA</text>
+    
+    <!-- Subtitle Pill -->
+    <rect x="-80" y="38" width="160" height="22" rx="11" fill="#7C3AED" />
+    <text y="53" text-anchor="middle" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="700">SKILLHUB • CURITIBA &amp; RMC</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 1. FUNDAMENTOS DA COMUNICAÇÃO ESCRITA (TOP LEFT)                          -->
+  <!-- ========================================================================= -->
+  <g transform="translate(190, 190)">
+    <rect x="-130" y="-65" width="260" height="130" rx="18" fill="#17102A" stroke="url(#branch1)" stroke-width="1.8" filter="url(#glow)" />
+    <rect x="-130" y="-65" width="260" height="130" rx="18" fill="#17102A" />
+    <!-- Header Pill -->
+    <rect x="-115" y="-53" width="70" height="20" rx="10" fill="#7C3AED" />
+    <text x="-80" y="-39" text-anchor="middle" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="900">1. BASE</text>
+    <text x="-35" y="-38" fill="#DDD6FE" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800">Fundamentos da Escrita</text>
+    <!-- Bullets -->
+    <text x="-110" y="-12" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="11">✓ Clareza, concisão e objetividade</text>
+    <text x="-110" y="10" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="11">✓ Adequação de tom ao interlocutor</text>
+    <text x="-110" y="32" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="11">✓ Empatia e cordialidade sem prolixidade</text>
+    <text x="-110" y="52" fill="#A78BFA" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600">• Norma culta &amp; ortografia padrão</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 2. E-MAILS PROFISSIONAIS EFICAZES (MID LEFT)                              -->
+  <!-- ========================================================================= -->
+  <g transform="translate(190, 410)">
+    <rect x="-130" y="-65" width="260" height="130" rx="18" fill="#17102A" stroke="url(#branch2)" stroke-width="1.8" />
+    <!-- Header Pill -->
+    <rect x="-115" y="-53" width="80" height="20" rx="10" fill="#2563EB" />
+    <text x="-75" y="-39" text-anchor="middle" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="900">2. E-MAILS</text>
+    <text x="-25" y="-38" fill="#93C5FD" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800">E-mails Profissionais</text>
+    <!-- Bullets -->
+    <text x="-110" y="-12" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="11">✓ Assunto claro, específico e com ação</text>
+    <text x="-110" y="10" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="11">✓ Saudação, corpo e chamada (CTA)</text>
+    <text x="-110" y="32" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="11">✓ Uso correto de CC e CCO (sigilo)</text>
+    <text x="-110" y="52" fill="#60A5FA" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600">• Assinatura profissional padronizada</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 3. REDAÇÃO E REVISÃO (BOTTOM LEFT)                                        -->
+  <!-- ========================================================================= -->
+  <g transform="translate(190, 630)">
+    <rect x="-130" y="-65" width="260" height="130" rx="18" fill="#17102A" stroke="url(#branch3)" stroke-width="1.8" />
+    <!-- Header Pill -->
+    <rect x="-115" y="-53" width="85" height="20" rx="10" fill="#059669" />
+    <text x="-73" y="-39" text-anchor="middle" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="900">3. REVISÃO</text>
+    <text x="-20" y="-38" fill="#6EE7B7" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800">Redação e Revisão</text>
+    <!-- Bullets -->
+    <text x="-110" y="-12" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="11">✓ Estrutura lógica: Início, Meio e Fim</text>
+    <text x="-110" y="10" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="11">✓ Concordância verbal e pontuação</text>
+    <text x="-110" y="32" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="11">✓ Eliminação de vícios e gírias</text>
+    <text x="-110" y="52" fill="#34D399" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600">• Leitura em voz alta antes de enviar</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 4. DOCUMENTOS CORPORATIVOS (TOP RIGHT)                                    -->
+  <!-- ========================================================================= -->
+  <g transform="translate(1090, 190)">
+    <rect x="-130" y="-65" width="260" height="130" rx="18" fill="#17102A" stroke="url(#branch4)" stroke-width="1.8" />
+    <!-- Header Pill -->
+    <rect x="-115" y="-53" width="65" height="20" rx="10" fill="#D97706" />
+    <text x="-82" y="-39" text-anchor="middle" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="900">4. DOCS</text>
+    <text x="-40" y="-38" fill="#FDE68A" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800">Documentos Corporativos</text>
+    <!-- Bullets -->
+    <text x="-110" y="-12" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="11">✓ Memorandos e comunicações internas</text>
+    <text x="-110" y="10" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="11">✓ Atas de reunião concisas e acionáveis</text>
+    <text x="-110" y="32" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="11">✓ Relatórios e propostas operacionais</text>
+    <text x="-110" y="52" fill="#FBBF24" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600">• Sigilo documental e conformidade LGPD</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 5. COMUNICAÇÃO INTERNA & EXTERNA (MID RIGHT)                              -->
+  <!-- ========================================================================= -->
+  <g transform="translate(1090, 410)">
+    <rect x="-130" y="-65" width="260" height="130" rx="18" fill="#17102A" stroke="url(#branch5)" stroke-width="1.8" />
+    <!-- Header Pill -->
+    <rect x="-115" y="-53" width="75" height="20" rx="10" fill="#DB2777" />
+    <text x="-78" y="-39" text-anchor="middle" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="900">5. FLUXO</text>
+    <text x="-30" y="-38" fill="#FBCFE8" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800">Comunicação In / Out</text>
+    <!-- Bullets -->
+    <text x="-110" y="-12" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="11">✓ Slack, Teams &amp; WhatsApp Corporativo</text>
+    <text x="-110" y="10" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="11">✓ Respeito a horários e canais oficiais</text>
+    <text x="-110" y="32" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="11">✓ Atendimento cordial a clientes</text>
+    <text x="-110" y="52" fill="#F472B6" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600">• Confirmação de alinhamentos por escrito</text>
+  </g>
+
+  <!-- ========================================================================= -->
+  <!-- 6. FERRAMENTAS E TECNOLOGIAS (BOTTOM RIGHT)                               -->
+  <!-- ========================================================================= -->
+  <g transform="translate(1090, 630)">
+    <rect x="-130" y="-65" width="260" height="130" rx="18" fill="#17102A" stroke="url(#branch6)" stroke-width="1.8" />
+    <!-- Header Pill -->
+    <rect x="-115" y="-53" width="75" height="20" rx="10" fill="#0891B2" />
+    <text x="-78" y="-39" text-anchor="middle" fill="#FFFFFF" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="900">6. TOOLS</text>
+    <text x="-30" y="-38" fill="#A5F3FC" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="800">Ferramentas &amp; IA</text>
+    <!-- Bullets -->
+    <text x="-110" y="-12" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="11">✓ Corretores gramaticais e extensões</text>
+    <text x="-110" y="10" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="11">✓ Modelos e templates de respostas rápidas</text>
+    <text x="-110" y="32" fill="#E2E8F0" font-family="system-ui, -apple-system, sans-serif" font-size="11">✓ Copiloto com IA (ChatGPT / Gemini)</text>
+    <text x="-110" y="52" fill="#22D3EE" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="600">• Revisão humana sempre mandatória</text>
+  </g>
+
+  <!-- Footer Tag -->
+  <g transform="translate(640, 775)" text-anchor="middle">
+    <text fill="#64748B" font-family="system-ui, -apple-system, sans-serif" font-size="11">Plataforma Educacional SkillHub © 2026 • Curitiba e Região Metropolitana • Conteúdo Verificado</text>
+  </g>
+</svg>
